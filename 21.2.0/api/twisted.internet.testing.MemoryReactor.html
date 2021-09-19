@@ -1,0 +1,1287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.testing.MemoryReactor : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://twistedmatrix.com/">Twisted</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><a href="twisted.html" class="code" data-type="Package">twisted</a>.<a href="twisted.internet.html" class="code" data-type="Package">internet</a>.<a href="twisted.internet.testing.html" class="code" data-type="Module">testing</a>.<a href="twisted.internet.testing.MemoryReactor.html" class="code" data-type="Class">MemoryReactor</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> twisted.internet.testing.MemoryReactor: <a href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L401">(source)</a></code></p><p>Known subclasses: <a href="twisted.internet.testing.MemoryReactorClock.html" class="code" data-type="Class">twisted.internet.testing.MemoryReactorClock</a></p><p>Implements interfaces: <a href="twisted.internet.interfaces.IReactorCore.html" class="code" data-type="Interface">twisted.internet.interfaces.IReactorCore</a>, <a href="twisted.internet.interfaces.IReactorFDSet.html" class="code" data-type="Interface">twisted.internet.interfaces.IReactorFDSet</a>, <a href="twisted.internet.interfaces.IReactorSocket.html" class="code" data-type="Interface">twisted.internet.interfaces.IReactorSocket</a>, <a href="twisted.internet.interfaces.IReactorSSL.html" class="code" data-type="Interface">twisted.internet.interfaces.IReactorSSL</a>, <a href="twisted.internet.interfaces.IReactorTCP.html" class="code" data-type="Interface">twisted.internet.interfaces.IReactorTCP</a>, <a href="twisted.internet.interfaces.IReactorUNIX.html" class="code" data-type="Interface">twisted.internet.interfaces.IReactorUNIX</a></p>
+        <p><a href="classIndex.html#twisted.internet.testing.MemoryReactor">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A fake reactor to be used in tests.  This reactor doesn't actually do much that's useful yet.  It accepts TCP connection setup attempts, but they will never succeed.</p></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1279">
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#hasInstalled" class="code" data-type="Instance Variable">hasInstalled</a></td>
+    <td><span>Keeps track of whether this reactor has been installed.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#running" class="code" data-type="Instance Variable">running</a></td>
+    <td><span>A <code>bool</code> which is <code>True</code> from <i>during startup</i> to <i>during shutdown</i> and <code>False</code> the rest of the time.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#hasStopped" class="code" data-type="Instance Variable">hasStopped</a></td>
+    <td><span>Keeps track of whether this reactor has been stopped.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#hasCrashed" class="code" data-type="Instance Variable">hasCrashed</a></td>
+    <td><span>Keeps track of whether this reactor has crashed.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#whenRunningHooks" class="code" data-type="Instance Variable">whenRunningHooks</a></td>
+    <td><span>Keeps track of hooks registered with <code>callWhenRunning</code>.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#triggers" class="code" data-type="Instance Variable">triggers</a></td>
+    <td><span>Keeps track of hooks registered with <code>addSystemEventTrigger</code>.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#tcpClients" class="code" data-type="Instance Variable">tcpClients</a></td>
+    <td><span>Keeps track of connection attempts (ie, calls to <code>connectTCP</code>).</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#tcpServers" class="code" data-type="Instance Variable">tcpServers</a></td>
+    <td><span>Keeps track of server listen attempts (ie, calls to <code>listenTCP</code>).</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#sslClients" class="code" data-type="Instance Variable">sslClients</a></td>
+    <td><span>Keeps track of connection attempts (ie, calls to <code>connectSSL</code>).</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#sslServers" class="code" data-type="Instance Variable">sslServers</a></td>
+    <td><span>Keeps track of server listen attempts (ie, calls to <code>listenSSL</code>).</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#unixClients" class="code" data-type="Instance Variable">unixClients</a></td>
+    <td><span>Keeps track of connection attempts (ie, calls to <code>connectUNIX</code>).</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#unixServers" class="code" data-type="Instance Variable">unixServers</a></td>
+    <td><span>Keeps track of server listen attempts (ie, calls to <code>listenUNIX</code>).</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#adoptedPorts" class="code" data-type="Instance Variable">adoptedPorts</a></td>
+    <td><span>Keeps track of server listen attempts (ie, calls to <code>adoptStreamPort</code>).</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#adoptedStreamConnections" class="code" data-type="Instance Variable">adoptedStreamConnections</a></td>
+    <td><span>Keeps track of stream-oriented connections added using <code>adoptStreamConnection</code>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#__init__" class="code" data-type="Method">__init__</a></td>
+    <td><span>Initialize the tracking lists.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#hasRun" class="code" data-type="Instance Variable">hasRun</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#connectors" class="code" data-type="Instance Variable">connectors</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#readers" class="code" data-type="Instance Variable">readers</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#writers" class="code" data-type="Instance Variable">writers</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#install" class="code" data-type="Method">install</a></td>
+    <td><span>Fake install callable to emulate reactor module installation.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#resolve" class="code" data-type="Method">resolve</a></td>
+    <td><span>Not implemented; raises <a href="https://docs.python.org/3/library/exceptions.html#NotImplementedError"><code>NotImplementedError</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#run" class="code" data-type="Method">run</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#stop" class="code" data-type="Method">stop</a></td>
+    <td><span>Fake <a href="twisted.internet.interfaces.IReactorCore.html#run"><code>IReactorCore.run</code></a>. Sets <code>self.running</code> to <a href="https://docs.python.org/3/library/constants.html#False"><code>False</code></a>. Sets <code>self.hasStopped</code> to <a href="https://docs.python.org/3/library/constants.html#True"><code>True</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#crash" class="code" data-type="Method">crash</a></td>
+    <td><span>Fake <a href="twisted.internet.interfaces.IReactorCore.html#crash"><code>IReactorCore.crash</code></a>. Sets <code>self.running</code> to <a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>, because that feels crashy. Sets <code>self.hasCrashed</code> to <a href="https://docs.python.org/3/library/constants.html#True"><code>True</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#iterate" class="code" data-type="Method">iterate</a></td>
+    <td><span>Not implemented; raises <a href="https://docs.python.org/3/library/exceptions.html#NotImplementedError"><code>NotImplementedError</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#fireSystemEvent" class="code" data-type="Method">fireSystemEvent</a></td>
+    <td><span>Not implemented; raises <a href="https://docs.python.org/3/library/exceptions.html#NotImplementedError"><code>NotImplementedError</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#addSystemEventTrigger" class="code" data-type="Method">addSystemEventTrigger</a></td>
+    <td><span>Fake <a href="twisted.internet.interfaces.IReactorCore.html#run"><code>IReactorCore.run</code></a>. Keep track of trigger by appending it to self.triggers[phase][eventType].</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#removeSystemEventTrigger" class="code" data-type="Method">removeSystemEventTrigger</a></td>
+    <td><span>Not implemented; raises <a href="https://docs.python.org/3/library/exceptions.html#NotImplementedError"><code>NotImplementedError</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#callWhenRunning" class="code" data-type="Method">callWhenRunning</a></td>
+    <td><span>Fake <a href="twisted.internet.interfaces.IReactorCore.html#callWhenRunning"><code>IReactorCore.callWhenRunning</code></a>. Keeps a list of invocations to make in <code>self.whenRunningHooks</code>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#adoptStreamPort" class="code" data-type="Method">adoptStreamPort</a></td>
+    <td><span>Fake <a href="twisted.internet.interfaces.IReactorSocket.html#adoptStreamPort"><code>IReactorSocket.adoptStreamPort</code></a>, that logs the call and returns an <a href="twisted.internet.interfaces.IListeningPort.html"><code>IListeningPort</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#adoptStreamConnection" class="code" data-type="Method">adoptStreamConnection</a></td>
+    <td><span>Record the given stream connection in <code>adoptedStreamConnections</code>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#adoptDatagramPort" class="code" data-type="Method">adoptDatagramPort</a></td>
+    <td><span>Fake <a href="twisted.internet.interfaces.IReactorSocket.html#adoptDatagramPort"><code>IReactorSocket.adoptDatagramPort</code></a>, that logs the call and returns a fake <a href="twisted.internet.interfaces.IListeningPort.html"><code>IListeningPort</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#listenTCP" class="code" data-type="Method">listenTCP</a></td>
+    <td><span>Fake <a href="twisted.internet.interfaces.IReactorTCP.html#listenTCP"><code>IReactorTCP.listenTCP</code></a>, that logs the call and returns an <a href="twisted.internet.interfaces.IListeningPort.html"><code>IListeningPort</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#connectTCP" class="code" data-type="Method">connectTCP</a></td>
+    <td><span>Fake <a href="twisted.internet.interfaces.IReactorTCP.html#connectTCP"><code>IReactorTCP.connectTCP</code></a>, that logs the call and returns an <a href="twisted.internet.interfaces.IConnector.html"><code>IConnector</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#listenSSL" class="code" data-type="Method">listenSSL</a></td>
+    <td><span>Fake <a href="twisted.internet.interfaces.IReactorSSL.html#listenSSL"><code>IReactorSSL.listenSSL</code></a>, that logs the call and returns an <a href="twisted.internet.interfaces.IListeningPort.html"><code>IListeningPort</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#connectSSL" class="code" data-type="Method">connectSSL</a></td>
+    <td><span>Fake <a href="twisted.internet.interfaces.IReactorSSL.html#connectSSL"><code>IReactorSSL.connectSSL</code></a>, that logs the call and returns an <a href="twisted.internet.interfaces.IConnector.html"><code>IConnector</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#listenUNIX" class="code" data-type="Method">listenUNIX</a></td>
+    <td><span>Fake <a href="twisted.internet.interfaces.IReactorUNIX.html#listenUNIX"><code>IReactorUNIX.listenUNIX</code></a>, that logs the call and returns an <a href="twisted.internet.interfaces.IListeningPort.html"><code>IListeningPort</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#connectUNIX" class="code" data-type="Method">connectUNIX</a></td>
+    <td><span>Fake <a href="twisted.internet.interfaces.IReactorUNIX.html#connectUNIX"><code>IReactorUNIX.connectUNIX</code></a>, that logs the call and returns an <a href="twisted.internet.interfaces.IConnector.html"><code>IConnector</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#addReader" class="code" data-type="Method">addReader</a></td>
+    <td><span>Fake <a href="twisted.internet.interfaces.IReactorFDSet.html#addReader"><code>IReactorFDSet.addReader</code></a> which adds the reader to a local set.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#removeReader" class="code" data-type="Method">removeReader</a></td>
+    <td><span>Fake <a href="twisted.internet.interfaces.IReactorFDSet.html#removeReader"><code>IReactorFDSet.removeReader</code></a> which removes the reader from a local set.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#addWriter" class="code" data-type="Method">addWriter</a></td>
+    <td><span>Fake <a href="twisted.internet.interfaces.IReactorFDSet.html#addWriter"><code>IReactorFDSet.addWriter</code></a> which adds the writer to a local set.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#removeWriter" class="code" data-type="Method">removeWriter</a></td>
+    <td><span>Fake <a href="twisted.internet.interfaces.IReactorFDSet.html#removeWriter"><code>IReactorFDSet.removeWriter</code></a> which removes the writer from a local set.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#getReaders" class="code" data-type="Method">getReaders</a></td>
+    <td><span>Fake <a href="twisted.internet.interfaces.IReactorFDSet.html#getReaders"><code>IReactorFDSet.getReaders</code></a> which returns a list of readers from the local set.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#getWriters" class="code" data-type="Method">getWriters</a></td>
+    <td><span>Fake <a href="twisted.internet.interfaces.IReactorFDSet.html#getWriters"><code>IReactorFDSet.getWriters</code></a> which returns a list of writers from the local set.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.MemoryReactor.html#removeAll" class="code" data-type="Method">removeAll</a></td>
+    <td><span>Fake <a href="twisted.internet.interfaces.IReactorFDSet.html#removeAll"><code>IReactorFDSet.removeAll</code></a> which removed all readers and writers from the local sets.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.MemoryReactor.hasInstalled">
+    
+  </a>
+  <a name="hasInstalled">
+    
+  </a>
+  <div class="functionHeader">
+    
+    hasInstalled =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L410">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Keeps track of whether this reactor has been installed.</div> (type: <a href="https://docs.python.org/3/library/functions.html#bool"><code>bool</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.MemoryReactor.running">
+    
+  </a>
+  <a name="running">
+    
+  </a>
+  <div class="functionHeader">
+    
+    running =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L413">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorCore.html#running" class="code" data-type="Attribute">twisted.internet.interfaces.IReactorCore</a></div>
+    
+    <div>Keeps track of whether this reactor is running.</div> (type: <a href="https://docs.python.org/3/library/functions.html#bool"><code>bool</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.MemoryReactor.hasStopped">
+    
+  </a>
+  <a name="hasStopped">
+    
+  </a>
+  <div class="functionHeader">
+    
+    hasStopped =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L416">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Keeps track of whether this reactor has been stopped.</div> (type: <a href="https://docs.python.org/3/library/functions.html#bool"><code>bool</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.MemoryReactor.hasCrashed">
+    
+  </a>
+  <a name="hasCrashed">
+    
+  </a>
+  <div class="functionHeader">
+    
+    hasCrashed =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L419">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Keeps track of whether this reactor has crashed.</div> (type: <a href="https://docs.python.org/3/library/functions.html#bool"><code>bool</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.MemoryReactor.whenRunningHooks">
+    
+  </a>
+  <a name="whenRunningHooks">
+    
+  </a>
+  <div class="functionHeader">
+    
+    whenRunningHooks =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L422">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Keeps track of hooks registered with <code>callWhenRunning</code>.</div> (type: <a href="https://docs.python.org/3/library/stdtypes.html#list"><code>list</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.MemoryReactor.triggers">
+    
+  </a>
+  <a name="triggers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    triggers =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L426">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Keeps track of hooks registered with <code>addSystemEventTrigger</code>.</div> (type: <a href="https://docs.python.org/3/library/stdtypes.html#dict"><code>dict</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.MemoryReactor.tcpClients">
+    
+  </a>
+  <a name="tcpClients">
+    
+  </a>
+  <div class="functionHeader">
+    
+    tcpClients =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L430">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Keeps track of connection attempts (ie, calls to <code>connectTCP</code>).</div> (type: <a href="https://docs.python.org/3/library/stdtypes.html#list"><code>list</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.MemoryReactor.tcpServers">
+    
+  </a>
+  <a name="tcpServers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    tcpServers =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L434">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Keeps track of server listen attempts (ie, calls to <code>listenTCP</code>).</div> (type: <a href="https://docs.python.org/3/library/stdtypes.html#list"><code>list</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.MemoryReactor.sslClients">
+    
+  </a>
+  <a name="sslClients">
+    
+  </a>
+  <div class="functionHeader">
+    
+    sslClients =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L438">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Keeps track of connection attempts (ie, calls to <code>connectSSL</code>).</div> (type: <a href="https://docs.python.org/3/library/stdtypes.html#list"><code>list</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.MemoryReactor.sslServers">
+    
+  </a>
+  <a name="sslServers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    sslServers =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L442">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Keeps track of server listen attempts (ie, calls to <code>listenSSL</code>).</div> (type: <a href="https://docs.python.org/3/library/stdtypes.html#list"><code>list</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.MemoryReactor.unixClients">
+    
+  </a>
+  <a name="unixClients">
+    
+  </a>
+  <div class="functionHeader">
+    
+    unixClients =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L446">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Keeps track of connection attempts (ie, calls to <code>connectUNIX</code>).</div> (type: <a href="https://docs.python.org/3/library/stdtypes.html#list"><code>list</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.MemoryReactor.unixServers">
+    
+  </a>
+  <a name="unixServers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    unixServers =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L450">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Keeps track of server listen attempts (ie, calls to <code>listenUNIX</code>).</div> (type: <a href="https://docs.python.org/3/library/stdtypes.html#list"><code>list</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.MemoryReactor.adoptedPorts">
+    
+  </a>
+  <a name="adoptedPorts">
+    
+  </a>
+  <div class="functionHeader">
+    
+    adoptedPorts =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L454">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Keeps track of server listen attempts (ie, calls to <code>adoptStreamPort</code>).</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="code">list</a></code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.MemoryReactor.adoptedStreamConnections">
+    
+  </a>
+  <a name="adoptedStreamConnections">
+    
+  </a>
+  <div class="functionHeader">
+    
+    adoptedStreamConnections =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L457">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Keeps track of stream-oriented connections added using <code>adoptStreamConnection</code>.</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="code">list</a></code>)
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def __init__(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L461">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.internet.testing.MemoryReactorClock.html" class="code" data-type="Class">twisted.internet.testing.MemoryReactorClock</a></div>
+    
+    <div><p>Initialize the tracking lists.</p></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.MemoryReactor.hasRun">
+    
+  </a>
+  <a name="hasRun">
+    
+  </a>
+  <div class="functionHeader">
+    
+    hasRun =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L468">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="code">bool</a></code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.MemoryReactor.connectors">
+    
+  </a>
+  <a name="connectors">
+    
+  </a>
+  <div class="functionHeader">
+    
+    connectors =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L483">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="code">list</a></code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.MemoryReactor.readers">
+    
+  </a>
+  <a name="readers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    readers =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L485">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#set" class="code">set</a></code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.MemoryReactor.writers">
+    
+  </a>
+  <a name="writers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    writers =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L486">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#set" class="code">set</a></code>)
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.install">
+    
+  </a>
+  <a name="install">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def install(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L488">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Fake install callable to emulate reactor module installation.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.resolve">
+    
+  </a>
+  <a name="resolve">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def resolve(self, name, timeout=10):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L494">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorCore.html#resolve" class="code" data-type="Method">twisted.internet.interfaces.IReactorCore</a></div>
+    
+    <div><p>Not implemented; raises <a href="https://docs.python.org/3/library/exceptions.html#NotImplementedError"><code>NotImplementedError</code></a>.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.run">
+    
+  </a>
+  <a name="run">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def run(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L500">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorCore.html#run" class="code" data-type="Method">twisted.internet.interfaces.IReactorCore</a></div>
+    
+    <div><p>Fake <a href="twisted.internet.interfaces.IReactorCore.html#run"><code>IReactorCore.run</code></a>. Sets <code>self.running</code> to <a href="https://docs.python.org/3/library/constants.html#True"><code>True</code></a>, runs all of the hooks passed to <code>self.callWhenRunning</code>, then calls <code>self.stop</code> to simulate a request to stop the reactor. Sets <code>self.hasRun</code> to <a href="https://docs.python.org/3/library/constants.html#True"><code>True</code></a>.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.stop">
+    
+  </a>
+  <a name="stop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def stop(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L518">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorCore.html#stop" class="code" data-type="Method">twisted.internet.interfaces.IReactorCore</a></div>
+    
+    <div><p>Fake <a href="twisted.internet.interfaces.IReactorCore.html#run"><code>IReactorCore.run</code></a>. Sets <code>self.running</code> to <a href="https://docs.python.org/3/library/constants.html#False"><code>False</code></a>. Sets <code>self.hasStopped</code> to <a href="https://docs.python.org/3/library/constants.html#True"><code>True</code></a>.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.crash">
+    
+  </a>
+  <a name="crash">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def crash(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L527">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorCore.html#crash" class="code" data-type="Method">twisted.internet.interfaces.IReactorCore</a></div>
+    
+    <div><p>Fake <a href="twisted.internet.interfaces.IReactorCore.html#crash"><code>IReactorCore.crash</code></a>. Sets <code>self.running</code> to <a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>, because that feels crashy. Sets <code>self.hasCrashed</code> to <a href="https://docs.python.org/3/library/constants.html#True"><code>True</code></a>.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.iterate">
+    
+  </a>
+  <a name="iterate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def iterate(self, delay=0):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L536">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorCore.html#iterate" class="code" data-type="Method">twisted.internet.interfaces.IReactorCore</a></div>
+    
+    <div><p>Not implemented; raises <a href="https://docs.python.org/3/library/exceptions.html#NotImplementedError"><code>NotImplementedError</code></a>.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.fireSystemEvent">
+    
+  </a>
+  <a name="fireSystemEvent">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def fireSystemEvent(self, eventType):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L542">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorCore.html#fireSystemEvent" class="code" data-type="Method">twisted.internet.interfaces.IReactorCore</a></div>
+    
+    <div><p>Not implemented; raises <a href="https://docs.python.org/3/library/exceptions.html#NotImplementedError"><code>NotImplementedError</code></a>.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.addSystemEventTrigger">
+    
+  </a>
+  <a name="addSystemEventTrigger">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def addSystemEventTrigger(self, phase, eventType, callable, *args, **kw):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L548">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorCore.html#addSystemEventTrigger" class="code" data-type="Method">twisted.internet.interfaces.IReactorCore</a></div>
+    
+    <div><p>Fake <a href="twisted.internet.interfaces.IReactorCore.html#run"><code>IReactorCore.run</code></a>. Keep track of trigger by appending it to self.triggers[phase][eventType].</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">phase</td><td><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)</td></tr><tr><td></td><td class="fieldArg">eventType</td><td><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)</td></tr><tr><td></td><td class="fieldArg">callable</td><td><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="code">Callable</a>[..., <a href="https://docs.python.org/3/library/typing.html#typing.Any" class="code">Any</a>]</code>)</td></tr><tr><td></td><td class="fieldArg">args</td><td><span class="undocumented">Undocumented</span></td></tr><tr><td></td><td class="fieldArg">kw</td><td><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.removeSystemEventTrigger">
+    
+  </a>
+  <a name="removeSystemEventTrigger">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def removeSystemEventTrigger(self, triggerID):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L560">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorCore.html#removeSystemEventTrigger" class="code" data-type="Method">twisted.internet.interfaces.IReactorCore</a></div>
+    
+    <div><p>Not implemented; raises <a href="https://docs.python.org/3/library/exceptions.html#NotImplementedError"><code>NotImplementedError</code></a>.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.callWhenRunning">
+    
+  </a>
+  <a name="callWhenRunning">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def callWhenRunning(self, callable, *args, **kw):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L566">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorCore.html#callWhenRunning" class="code" data-type="Method">twisted.internet.interfaces.IReactorCore</a></div>
+    
+    <div><p>Fake <a href="twisted.internet.interfaces.IReactorCore.html#callWhenRunning"><code>IReactorCore.callWhenRunning</code></a>. Keeps a list of invocations to make in <code>self.whenRunningHooks</code>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">callable</td><td><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/typing.html#typing.Callable" class="code">Callable</a>[..., <a href="https://docs.python.org/3/library/typing.html#typing.Any" class="code">Any</a>]</code>)</td></tr><tr><td></td><td class="fieldArg">args</td><td><span class="undocumented">Undocumented</span></td></tr><tr><td></td><td class="fieldArg">kw</td><td><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.adoptStreamPort">
+    
+  </a>
+  <a name="adoptStreamPort">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def adoptStreamPort(self, fileno, addressFamily, factory):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L573">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorSocket.html#adoptStreamPort" class="code" data-type="Method">twisted.internet.interfaces.IReactorSocket</a></div>
+    
+    <div><p>Fake <a href="twisted.internet.interfaces.IReactorSocket.html#adoptStreamPort"><code>IReactorSocket.adoptStreamPort</code></a>, that logs the call and returns an <a href="twisted.internet.interfaces.IListeningPort.html"><code>IListeningPort</code></a>.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.adoptStreamConnection">
+    
+  </a>
+  <a name="adoptStreamConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def adoptStreamConnection(self, fileDescriptor, addressFamily, factory):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L588">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorSocket.html#adoptStreamConnection" class="code" data-type="Method">twisted.internet.interfaces.IReactorSocket</a></div>
+    
+    <div><p>Record the given stream connection in <code>adoptedStreamConnections</code>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><a href="twisted.internet.interfaces.IReactorSocket.html#adoptStreamConnection"><code>twisted.internet.interfaces.IReactorSocket.adoptStreamConnection</code></a></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.adoptDatagramPort">
+    
+  </a>
+  <a name="adoptDatagramPort">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def adoptDatagramPort(self, fileno, addressFamily, protocol, maxPacketSize=8192):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L597">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorSocket.html#adoptDatagramPort" class="code" data-type="Method">twisted.internet.interfaces.IReactorSocket</a></div>
+    
+    <div><p>Fake <a href="twisted.internet.interfaces.IReactorSocket.html#adoptDatagramPort"><code>IReactorSocket.adoptDatagramPort</code></a>, that logs the call and returns a fake <a href="twisted.internet.interfaces.IListeningPort.html"><code>IListeningPort</code></a>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><a href="twisted.internet.interfaces.IReactorSocket.html#adoptDatagramPort"><code>twisted.internet.interfaces.IReactorSocket.adoptDatagramPort</code></a></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.listenTCP">
+    
+  </a>
+  <a name="listenTCP">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def listenTCP(self, port, factory, backlog=50, interface=''):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L614">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorTCP.html#listenTCP" class="code" data-type="Method">twisted.internet.interfaces.IReactorTCP</a></div>
+    
+    <div><p>Fake <a href="twisted.internet.interfaces.IReactorTCP.html#listenTCP"><code>IReactorTCP.listenTCP</code></a>, that logs the call and returns an <a href="twisted.internet.interfaces.IListeningPort.html"><code>IListeningPort</code></a>.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.connectTCP">
+    
+  </a>
+  <a name="connectTCP">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def connectTCP(self, host, port, factory, timeout=30, bindAddress=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L626">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorTCP.html#connectTCP" class="code" data-type="Method">twisted.internet.interfaces.IReactorTCP</a></div>
+    
+    <div><p>Fake <a href="twisted.internet.interfaces.IReactorTCP.html#connectTCP"><code>IReactorTCP.connectTCP</code></a>, that logs the call and returns an <a href="twisted.internet.interfaces.IConnector.html"><code>IConnector</code></a>.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.listenSSL">
+    
+  </a>
+  <a name="listenSSL">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def listenSSL(self, port, factory, contextFactory, backlog=50, interface=''):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L640">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorSSL.html#listenSSL" class="code" data-type="Method">twisted.internet.interfaces.IReactorSSL</a></div>
+    
+    <div><p>Fake <a href="twisted.internet.interfaces.IReactorSSL.html#listenSSL"><code>IReactorSSL.listenSSL</code></a>, that logs the call and returns an <a href="twisted.internet.interfaces.IListeningPort.html"><code>IListeningPort</code></a>.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.connectSSL">
+    
+  </a>
+  <a name="connectSSL">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def connectSSL(self, host, port, factory, contextFactory, timeout=30, bindAddress=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L648">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorSSL.html#connectSSL" class="code" data-type="Method">twisted.internet.interfaces.IReactorSSL</a></div>
+    
+    <div><p>Fake <a href="twisted.internet.interfaces.IReactorSSL.html#connectSSL"><code>IReactorSSL.connectSSL</code></a>, that logs the call and returns an <a href="twisted.internet.interfaces.IConnector.html"><code>IConnector</code></a>.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.listenUNIX">
+    
+  </a>
+  <a name="listenUNIX">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def listenUNIX(self, address, factory, backlog=50, mode=438, wantPID=0):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L663">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorUNIX.html#listenUNIX" class="code" data-type="Method">twisted.internet.interfaces.IReactorUNIX</a></div>
+    
+    <div><p>Fake <a href="twisted.internet.interfaces.IReactorUNIX.html#listenUNIX"><code>IReactorUNIX.listenUNIX</code></a>, that logs the call and returns an <a href="twisted.internet.interfaces.IListeningPort.html"><code>IListeningPort</code></a>.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.connectUNIX">
+    
+  </a>
+  <a name="connectUNIX">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def connectUNIX(self, address, factory, timeout=30, checkPID=0):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L671">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorUNIX.html#connectUNIX" class="code" data-type="Method">twisted.internet.interfaces.IReactorUNIX</a></div>
+    
+    <div><p>Fake <a href="twisted.internet.interfaces.IReactorUNIX.html#connectUNIX"><code>IReactorUNIX.connectUNIX</code></a>, that logs the call and returns an <a href="twisted.internet.interfaces.IConnector.html"><code>IConnector</code></a>.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.addReader">
+    
+  </a>
+  <a name="addReader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def addReader(self, reader):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L682">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#addReader" class="code" data-type="Method">twisted.internet.interfaces.IReactorFDSet</a></div>
+    
+    <div><p>Fake <a href="twisted.internet.interfaces.IReactorFDSet.html#addReader"><code>IReactorFDSet.addReader</code></a> which adds the reader to a local set.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.removeReader">
+    
+  </a>
+  <a name="removeReader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def removeReader(self, reader):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L688">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#removeReader" class="code" data-type="Method">twisted.internet.interfaces.IReactorFDSet</a></div>
+    
+    <div><p>Fake <a href="twisted.internet.interfaces.IReactorFDSet.html#removeReader"><code>IReactorFDSet.removeReader</code></a> which removes the reader from a local set.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.addWriter">
+    
+  </a>
+  <a name="addWriter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def addWriter(self, writer):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L695">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#addWriter" class="code" data-type="Method">twisted.internet.interfaces.IReactorFDSet</a></div>
+    
+    <div><p>Fake <a href="twisted.internet.interfaces.IReactorFDSet.html#addWriter"><code>IReactorFDSet.addWriter</code></a> which adds the writer to a local set.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.removeWriter">
+    
+  </a>
+  <a name="removeWriter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def removeWriter(self, writer):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L701">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#removeWriter" class="code" data-type="Method">twisted.internet.interfaces.IReactorFDSet</a></div>
+    
+    <div><p>Fake <a href="twisted.internet.interfaces.IReactorFDSet.html#removeWriter"><code>IReactorFDSet.removeWriter</code></a> which removes the writer from a local set.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.getReaders">
+    
+  </a>
+  <a name="getReaders">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def getReaders(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L708">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#getReaders" class="code" data-type="Method">twisted.internet.interfaces.IReactorFDSet</a></div>
+    
+    <div><p>Fake <a href="twisted.internet.interfaces.IReactorFDSet.html#getReaders"><code>IReactorFDSet.getReaders</code></a> which returns a list of readers from the local set.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.getWriters">
+    
+  </a>
+  <a name="getWriters">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def getWriters(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L715">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#getWriters" class="code" data-type="Method">twisted.internet.interfaces.IReactorFDSet</a></div>
+    
+    <div><p>Fake <a href="twisted.internet.interfaces.IReactorFDSet.html#getWriters"><code>IReactorFDSet.getWriters</code></a> which returns a list of writers from the local set.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.MemoryReactor.removeAll">
+    
+  </a>
+  <a name="removeAll">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def removeAll(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L722">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#removeAll" class="code" data-type="Method">twisted.internet.interfaces.IReactorFDSet</a></div>
+    
+    <div><p>Fake <a href="twisted.internet.interfaces.IReactorFDSet.html#removeAll"><code>IReactorFDSet.removeAll</code></a> which removed all readers and writers from the local sets.</p></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-02-28 19:53:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

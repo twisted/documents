@@ -1,0 +1,286 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.mail.pop3.IMailbox : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="interface">t.m.p.IMailbox(<span title="zope.interface.Interface">Interface</span>) : interface documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.mail.html">mail</a>.<a href="twisted.mail.pop3.html">pop3</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/mail/pop3.py#L860">View Source</a>
+      <a href="classIndex.html#twisted.mail.pop3.IMailbox">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known implementations: <a href="twisted.mail.maildir.StringListMailbox.html">twisted.mail.maildir.StringListMailbox</a>, <a href="twisted.mail.pop3.Mailbox.html">twisted.mail.pop3.Mailbox</a></p>
+    </div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">loginDelay</td><td>The number of seconds between allowed logins for the user associated 
+with this mailbox.  None
+ (type: <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">messageExpiration</td><td>The number of days messages in this mailbox will remain on the server 
+before being deleted.
+ (type: <code>int</code>
+)</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3294">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.pop3.IMailbox.html#listMessages">listMessages</a></td>
+    <td><span>Retrieve the size of one or more messages.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.pop3.IMailbox.html#getMessage">getMessage</a></td>
+    <td><span>Retrieve a file-like object for a particular message.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.pop3.IMailbox.html#getUidl">getUidl</a></td>
+    <td><span>Get a unique identifier for a particular message.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.pop3.IMailbox.html#deleteMessage">deleteMessage</a></td>
+    <td><span>Delete a particular message.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.pop3.IMailbox.html#undeleteMessages">undeleteMessages</a></td>
+    <td><span>Undelete any messages which have been marked for deletion since the most
+recent <a href="twisted.mail.pop3.IMailbox.html#sync"><code>sync</code></a>
+call.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.pop3.IMailbox.html#sync">sync</a></td>
+    <td><span>Perform checkpointing.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.mail.pop3.IMailbox.listMessages">
+    
+  </a>
+  <a name="listMessages">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    listMessages(index=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/mail/pop3.py#L871" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Retrieve the size of one or more messages.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">index</td><td>The number of the message for which to retrieve the size (starting at 
+0), or None to retrieve the size of all messages.
+ (type: <code>int</code> or <code>None</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The number of octets in the specified message, or an iterable of 
+integers representing the number of octets in all the messages.  Any value 
+which would have referred to a deleted message should be set to 0.
+ (type: <code>int</code> or any iterable of <code>int</code> or a <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> which
+fires with one of these.
+)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">ValueError</td><td>if <code>index</code> is greater than the index of any message in the 
+mailbox.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.pop3.IMailbox.getMessage">
+    
+  </a>
+  <a name="getMessage">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getMessage(index):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/mail/pop3.py#L889" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Retrieve a file-like object for a particular message.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">index</td><td>The number of the message to retrieve
+ (type: <code>int</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A file containing the message data with lines delimited by 
+<code>\n</code>.
+ (type: A file-like object
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.pop3.IMailbox.getUidl">
+    
+  </a>
+  <a name="getUidl">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getUidl(index):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/mail/pop3.py#L900" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Get a unique identifier for a particular message.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">index</td><td>The number of the message for which to retrieve a UIDL
+ (type: <code>int</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A string of printable characters uniquely identifying for all time the 
+specified message.
+ (type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">ValueError</td><td>if <code>index</code> is greater than the index of any message in the 
+mailbox.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.pop3.IMailbox.deleteMessage">
+    
+  </a>
+  <a name="deleteMessage">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    deleteMessage(index):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/mail/pop3.py#L914" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Delete a particular message.</p>
+This must not change the number of messages in this mailbox.  Further 
+requests for the size of deleted messages should return 0.  Further 
+requests for the message itself may raise an exception.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">index</td><td>The number of the message to delete.
+ (type: <code>int</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.pop3.IMailbox.undeleteMessages">
+    
+  </a>
+  <a name="undeleteMessages">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    undeleteMessages():
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/mail/pop3.py#L925" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Undelete any messages which have been marked for deletion since the most
+recent <a href="twisted.mail.pop3.IMailbox.html#sync"><code>sync</code></a>
+call.</p>
+Any message which can be undeleted should be returned to its original 
+position in the message sequence and retain its original UID.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.pop3.IMailbox.sync">
+    
+  </a>
+  <a name="sync">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    sync():
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/mail/pop3.py#L935" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Perform checkpointing.</p>
+This method will be called to indicate the mailbox should attempt to 
+clean up any remaining deleted messages.
+<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-10-27 16:02:37.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

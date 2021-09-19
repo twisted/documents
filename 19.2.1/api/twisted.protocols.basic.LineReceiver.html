@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.protocols.basic.LineReceiver : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="apidocs.css" type="text/css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>twisted.protocols.basic.LineReceiver(<a href="twisted.internet.protocol.Protocol.html" data-type="Class" class="code">protocol.Protocol</a>, <a href="twisted.protocols.basic._PauseableMixin.html" data-type="Class" class="code">_PauseableMixin</a>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.protocols.html" data-type="Package" class="code">protocols</a>.<a href="twisted.protocols.basic.html" data-type="Module" class="code">basic</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/protocols/basic.py#L508">View Source</a>
+          <a href="classIndex.html#twisted.protocols.basic.LineReceiver">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Known subclasses: <a href="twisted.conch.scripts.cftp.StdioClient.html" data-type="Class" class="code">twisted.conch.scripts.cftp.StdioClient</a>, <a href="twisted.conch.telnet.StatefulTelnetProtocol.html" data-type="Class" class="code">twisted.conch.telnet.StatefulTelnetProtocol</a>, <a href="twisted.mail.imap4.IMAP4Client.html" data-type="Class" class="code">twisted.mail.imap4.IMAP4Client</a>, <a href="twisted.mail.imap4.IMAP4Server.html" data-type="Class" class="code">twisted.mail.imap4.IMAP4Server</a>, <a href="twisted.mail.smtp.SMTPClient.html" data-type="Class" class="code">twisted.mail.smtp.SMTPClient</a>, <a href="twisted.news.nntp.NNTPClient.html" data-type="Class" class="code">twisted.news.nntp.NNTPClient</a>, <a href="twisted.news.nntp.NNTPServer.html" data-type="Class" class="code">twisted.news.nntp.NNTPServer</a>, <a href="twisted.positioning.nmea.NMEAProtocol.html" data-type="Class" class="code">twisted.positioning.nmea.NMEAProtocol</a>, <a href="twisted.protocols.dict.DictClient.html" data-type="Class" class="code">twisted.protocols.dict.DictClient</a>, <a href="twisted.protocols.finger.Finger.html" data-type="Class" class="code">twisted.protocols.finger.Finger</a>, <a href="twisted.protocols.ftp.FTP.html" data-type="Class" class="code">twisted.protocols.ftp.FTP</a>, <a href="twisted.protocols.ftp.FTPClientBasic.html" data-type="Class" class="code">twisted.protocols.ftp.FTPClientBasic</a>, <a href="twisted.protocols.ftp.FTPFileListProtocol.html" data-type="Class" class="code">twisted.protocols.ftp.FTPFileListProtocol</a>, <a href="twisted.protocols.ftp.FTPOverflowProtocol.html" data-type="Class" class="code">twisted.protocols.ftp.FTPOverflowProtocol</a>, <a href="twisted.protocols.memcache.MemCacheProtocol.html" data-type="Class" class="code">twisted.protocols.memcache.MemCacheProtocol</a>, <a href="twisted.protocols.postfix.PostfixTCPMapServer.html" data-type="Class" class="code">twisted.protocols.postfix.PostfixTCPMapServer</a>, <a href="twisted.protocols.sip.MessagesParser.html" data-type="Class" class="code">twisted.protocols.sip.MessagesParser</a>, <a href="twisted.runner.procmon.LineLogger.html" data-type="Class" class="code">twisted.runner.procmon.LineLogger</a>, <a href="twisted.test.proto_helpers.LineSendingProtocol.html" data-type="Class" class="code">twisted.test.proto_helpers.LineSendingProtocol</a>, <a href="twisted.web._newclient.HTTPParser.html" data-type="Class" class="code">twisted.web._newclient.HTTPParser</a>, <a href="twisted.web.http.HTTPChannel.html" data-type="Class" class="code">twisted.web.http.HTTPChannel</a>, <a href="twisted.web.http.HTTPClient.html" data-type="Class" class="code">twisted.web.http.HTTPClient</a>, <a href="twisted.words.protocols.irc.DccChat.html" data-type="Class" class="code">twisted.words.protocols.irc.DccChat</a>, <a href="twisted.words.protocols.irc.IRCClient.html" data-type="Class" class="code">twisted.words.protocols.irc.IRCClient</a></p>
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>A protocol that receives lines and/or raw data, depending on mode.</p>
+<p>In line mode, each line that's received becomes a callback to <a href="twisted.protocols.basic.LineReceiver.html#lineReceived"><code>lineReceived</code></a>.
+In raw data mode, each chunk of raw data becomes a callback to <a href="twisted.protocols.basic.LineReceiver.html#rawDataReceived"><code>LineReceiver.rawDataReceived</code></a>.
+The <a href="twisted.protocols.basic.LineReceiver.html#setLineMode"><code>setLineMode</code></a>
+and <a href="twisted.protocols.basic.LineReceiver.html#setRawMode"><code>setRawMode</code></a>
+methods switch between the two modes.</p>
+<p>This is useful for line-oriented protocols such as IRC, HTTP, POP, 
+etc.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2041">
+  
+  <tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#delimiter" data-type="Class Variable" class="code">delimiter</a></td>
+    <td>The line-ending delimiter to use. By default this is <code>b'\r\n'</code>.</td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#MAX_LENGTH" data-type="Class Variable" class="code">MAX_LENGTH</a></td>
+    <td>The maximum length of a line to allow (If a sent line is longer than this, 
+the connection is dropped). Default is 16384.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#clearLineBuffer" data-type="Method" class="code">clearLineBuffer</a></td>
+    <td><span>Clear buffered data.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#dataReceived" data-type="Method" class="code">dataReceived</a></td>
+    <td><span>Protocol.dataReceived. Translates bytes into lines, and calls 
+lineReceived (or rawDataReceived, depending on mode.)</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#setLineMode" data-type="Method" class="code">setLineMode</a></td>
+    <td><span>Sets the line-mode of this receiver.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#setRawMode" data-type="Method" class="code">setRawMode</a></td>
+    <td><span>Sets the raw mode of this receiver. Further data received will be sent 
+to rawDataReceived rather than lineReceived.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#rawDataReceived" data-type="Method" class="code">rawDataReceived</a></td>
+    <td><span>Override this for when raw data is received.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#lineReceived" data-type="Method" class="code">lineReceived</a></td>
+    <td><span>Override this for when each line is received.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#sendLine" data-type="Method" class="code">sendLine</a></td>
+    <td><span>Sends a line to the other end of the connection.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#lineLengthExceeded" data-type="Method" class="code">lineLengthExceeded</a></td>
+    <td><span>Called when the maximum line length has been reached. Override if it 
+needs to be dealt with in some special way.</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.protocol.Protocol.html" data-type="Class" class="code">Protocol</a>:
+          </p>
+          <table class="children sortable" id="id2042">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Protocol.html#logPrefix" data-type="Method" class="code">logPrefix</a></td>
+    <td><span>Return a prefix matching the class name, to identify log messages 
+related to this protocol instance.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Protocol.html#connectionLost" data-type="Method" class="code">connectionLost</a></td>
+    <td><span>Called when the connection is shut down.</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.protocol.BaseProtocol.html" data-type="Class" class="code">BaseProtocol</a> (via <a href="twisted.internet.protocol.Protocol.html" data-type="Class" class="code">Protocol</a>):
+          </p>
+          <table class="children sortable" id="id2043">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.BaseProtocol.html#makeConnection" data-type="Method" class="code">makeConnection</a></td>
+    <td><span>Make a connection to a transport and a server.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.BaseProtocol.html#connectionMade" data-type="Method" class="code">connectionMade</a></td>
+    <td><span>Called when a connection is made.</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.protocols.basic._PauseableMixin.html" data-type="Class" class="code">_PauseableMixin</a>:
+          </p>
+          <table class="children sortable" id="id2044">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#pauseProducing" data-type="Method" class="code">pauseProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#resumeProducing" data-type="Method" class="code">resumeProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#stopProducing" data-type="Method" class="code">stopProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseclassvariable">
+  
+  <a name="twisted.protocols.basic.LineReceiver.delimiter">
+    
+  </a>
+  <a name="delimiter">
+    
+  </a>
+  <div class="functionHeader">
+    delimiter =
+  </div>
+  <div class="functionBody">
+    The line-ending delimiter to use. By default this is <code>b'\r\n'</code>.
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="twisted.protocols.basic.LineReceiver.MAX_LENGTH">
+    
+  </a>
+  <a name="MAX_LENGTH">
+    
+  </a>
+  <div class="functionHeader">
+    MAX_LENGTH =
+  </div>
+  <div class="functionBody">
+    The maximum length of a line to allow (If a sent line is longer than this, 
+the connection is dropped). Default is 16384.
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.basic.LineReceiver.clearLineBuffer">
+    
+  </a>
+  <a name="clearLineBuffer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    clearLineBuffer(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/protocols/basic.py#L531">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Clear buffered data.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">All of the cleared buffered data. (type: <code>bytes</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.basic.LineReceiver.dataReceived">
+    
+  </a>
+  <a name="dataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dataReceived(self, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/protocols/basic.py#L542">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#dataReceived" data-type="Method" class="code">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Protocol.html#dataReceived" data-type="Method" class="code">twisted.internet.protocol.Protocol.dataReceived</a></div><div class="interfaceinfo">overridden in <a href="twisted.protocols.sip.MessagesParser.html" data-type="Class" class="code">twisted.protocols.sip.MessagesParser</a>, <a href="twisted.web._newclient.HTTPClientParser.html" data-type="Class" class="code">twisted.web._newclient.HTTPClientParser</a>, <a href="twisted.web.http.HTTPChannel.html" data-type="Class" class="code">twisted.web.http.HTTPChannel</a>, <a href="twisted.words.protocols.irc.DccChat.html" data-type="Class" class="code">twisted.words.protocols.irc.DccChat</a>, <a href="twisted.words.protocols.irc.IRCClient.html" data-type="Class" class="code">twisted.words.protocols.irc.IRCClient</a></div>
+    
+    <div><p>Protocol.dataReceived. Translates bytes into lines, and calls 
+lineReceived (or rawDataReceived, depending on mode.)</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.basic.LineReceiver.setLineMode">
+    
+  </a>
+  <a name="setLineMode">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setLineMode(self, extra=''):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/protocols/basic.py#L586">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Sets the line-mode of this receiver.</p>
+<p>If you are calling this from a rawDataReceived callback, you can pass in
+extra unhandled data, and that data will be parsed for lines.  Further data
+received will be sent to lineReceived rather than rawDataReceived.</p>
+<p>Do not pass extra data if calling this function from within a 
+lineReceived callback.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.basic.LineReceiver.setRawMode">
+    
+  </a>
+  <a name="setRawMode">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setRawMode(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/protocols/basic.py#L603">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Sets the raw mode of this receiver. Further data received will be sent 
+to rawDataReceived rather than lineReceived.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.basic.LineReceiver.rawDataReceived">
+    
+  </a>
+  <a name="rawDataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    rawDataReceived(self, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/protocols/basic.py#L612">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.mail.imap4.IMAP4Client.html" data-type="Class" class="code">twisted.mail.imap4.IMAP4Client</a>, <a href="twisted.mail.imap4.IMAP4Server.html" data-type="Class" class="code">twisted.mail.imap4.IMAP4Server</a>, <a href="twisted.protocols.memcache.MemCacheProtocol.html" data-type="Class" class="code">twisted.protocols.memcache.MemCacheProtocol</a>, <a href="twisted.protocols.sip.MessagesParser.html" data-type="Class" class="code">twisted.protocols.sip.MessagesParser</a>, <a href="twisted.web._newclient.HTTPParser.html" data-type="Class" class="code">twisted.web._newclient.HTTPParser</a>, <a href="twisted.web.http.HTTPChannel.html" data-type="Class" class="code">twisted.web.http.HTTPChannel</a>, <a href="twisted.web.http.HTTPClient.html" data-type="Class" class="code">twisted.web.http.HTTPClient</a></div>
+    
+    <div><p>Override this for when raw data is received.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.basic.LineReceiver.lineReceived">
+    
+  </a>
+  <a name="lineReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    lineReceived(self, line):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/protocols/basic.py#L619">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.conch.scripts.cftp.StdioClient.html" data-type="Class" class="code">twisted.conch.scripts.cftp.StdioClient</a>, <a href="twisted.conch.telnet.StatefulTelnetProtocol.html" data-type="Class" class="code">twisted.conch.telnet.StatefulTelnetProtocol</a>, <a href="twisted.mail.imap4.IMAP4Client.html" data-type="Class" class="code">twisted.mail.imap4.IMAP4Client</a>, <a href="twisted.mail.imap4.IMAP4Server.html" data-type="Class" class="code">twisted.mail.imap4.IMAP4Server</a>, <a href="twisted.mail.smtp.SMTPClient.html" data-type="Class" class="code">twisted.mail.smtp.SMTPClient</a>, <a href="twisted.news.nntp.NNTPClient.html" data-type="Class" class="code">twisted.news.nntp.NNTPClient</a>, <a href="twisted.news.nntp.NNTPServer.html" data-type="Class" class="code">twisted.news.nntp.NNTPServer</a>, <a href="twisted.positioning.nmea.NMEAProtocol.html" data-type="Class" class="code">twisted.positioning.nmea.NMEAProtocol</a>, <a href="twisted.protocols.dict.DictClient.html" data-type="Class" class="code">twisted.protocols.dict.DictClient</a>, <a href="twisted.protocols.finger.Finger.html" data-type="Class" class="code">twisted.protocols.finger.Finger</a>, <a href="twisted.protocols.ftp.FTP.html" data-type="Class" class="code">twisted.protocols.ftp.FTP</a>, <a href="twisted.protocols.ftp.FTPClientBasic.html" data-type="Class" class="code">twisted.protocols.ftp.FTPClientBasic</a>, <a href="twisted.protocols.ftp.FTPFileListProtocol.html" data-type="Class" class="code">twisted.protocols.ftp.FTPFileListProtocol</a>, <a href="twisted.protocols.memcache.MemCacheProtocol.html" data-type="Class" class="code">twisted.protocols.memcache.MemCacheProtocol</a>, <a href="twisted.protocols.postfix.PostfixTCPMapServer.html" data-type="Class" class="code">twisted.protocols.postfix.PostfixTCPMapServer</a>, <a href="twisted.protocols.sip.MessagesParser.html" data-type="Class" class="code">twisted.protocols.sip.MessagesParser</a>, <a href="twisted.runner.procmon.LineLogger.html" data-type="Class" class="code">twisted.runner.procmon.LineLogger</a>, <a href="twisted.test.proto_helpers.LineSendingProtocol.html" data-type="Class" class="code">twisted.test.proto_helpers.LineSendingProtocol</a>, <a href="twisted.web._newclient.HTTPParser.html" data-type="Class" class="code">twisted.web._newclient.HTTPParser</a>, <a href="twisted.web.http.HTTPChannel.html" data-type="Class" class="code">twisted.web.http.HTTPChannel</a>, <a href="twisted.web.http.HTTPClient.html" data-type="Class" class="code">twisted.web.http.HTTPClient</a>, <a href="twisted.words.protocols.irc.DccChat.html" data-type="Class" class="code">twisted.words.protocols.irc.DccChat</a>, <a href="twisted.words.protocols.irc.IRCClient.html" data-type="Class" class="code">twisted.words.protocols.irc.IRCClient</a></div>
+    
+    <div><p>Override this for when each line is received.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">line</td><td>The line which was received with the delimiter removed. (type: <code>bytes</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.basic.LineReceiver.sendLine">
+    
+  </a>
+  <a name="sendLine">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    sendLine(self, line):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/protocols/basic.py#L629">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.mail.smtp.SMTPClient.html" data-type="Class" class="code">twisted.mail.smtp.SMTPClient</a>, <a href="twisted.protocols.dict.DictClient.html" data-type="Class" class="code">twisted.protocols.dict.DictClient</a>, <a href="twisted.protocols.ftp.FTP.html" data-type="Class" class="code">twisted.protocols.ftp.FTP</a>, <a href="twisted.protocols.ftp.FTPClientBasic.html" data-type="Class" class="code">twisted.protocols.ftp.FTPClientBasic</a>, <a href="twisted.protocols.memcache.MemCacheProtocol.html" data-type="Class" class="code">twisted.protocols.memcache.MemCacheProtocol</a>, <a href="twisted.words.protocols.irc.IRCClient.html" data-type="Class" class="code">twisted.words.protocols.irc.IRCClient</a></div>
+    
+    <div><p>Sends a line to the other end of the connection.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">line</td><td>The line to send, not including the delimiter. (type: <code>bytes</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.basic.LineReceiver.lineLengthExceeded">
+    
+  </a>
+  <a name="lineLengthExceeded">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    lineLengthExceeded(self, line):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/protocols/basic.py#L639">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.protocols.sip.MessagesParser.html" data-type="Class" class="code">twisted.protocols.sip.MessagesParser</a></div>
+    
+    <div><p>Called when the maximum line length has been reached. Override if it 
+needs to be dealt with in some special way.</p>
+<p>The argument 'line' contains the remainder of the buffer, starting with 
+(at least some part) of the line which is too long. This may be more than 
+one line, or may be only the initial portion of the line.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2019-06-07 00:11:44.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

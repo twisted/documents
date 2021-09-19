@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.conch.client.default : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="apidocs.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code>twisted.conch.client.default</code> <small>module documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.conch.html" data-type="Package" class="code">conch</a>.<a href="twisted.conch.client.html" data-type="Package" class="code">client</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/conch/client/default.py">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>Various classes and functions for implementing user-interaction in the 
+command-line conch client.</p>
+<p>You probably shouldn't use anything in this module directly, since it 
+assumes you are sitting at an interactive terminal.  For example, to 
+programmatically interact with a known_hosts database, use <a href="twisted.conch.client.knownhosts.html"><code>twisted.conch.client.knownhosts</code></a>.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id106">
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.conch.client.default.html#verifyHostKey" data-type="Function" class="code">verifyHostKey</a></td>
+    <td><span>Verify a host's key.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.conch.client.default.html#isInKnownHosts" data-type="Function" class="code">isInKnownHosts</a></td>
+    <td><span>Checks to see if host is in the known_hosts file for the user.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.conch.client.default.html#getHostKeyAlgorithms" data-type="Function" class="code">getHostKeyAlgorithms</a></td>
+    <td><span>Look in known_hosts for a key corresponding to <code>host</code>. This 
+can be used to change the order of supported key types in the KEXINIT 
+packet.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.client.default.SSHUserAuthClient.html" data-type="Class" class="code">SSHUserAuthClient</a></td>
+    <td><span class="undocumented">No class docstring; 2/2 class methods, 4/11 methods documented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  <a name="twisted.conch.client.default.verifyHostKey">
+    
+  </a>
+  <a name="verifyHostKey">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    verifyHostKey(transport, host, pubKey, fingerprint):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/conch/client/default.py#L42">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Verify a host's key.</p>
+<p>This function is a gross vestige of some bad factoring in the client 
+internals.  The actual implementation, and a better signature of this logic
+is in <a href="twisted.conch.client.knownhosts.KnownHostsFile.html#verifyHostKey"><code>KnownHostsFile.verifyHostKey</code></a>.
+This function is not deprecated yet because the callers have not yet been 
+rehabilitated, but they should eventually be changed to call that method 
+instead.</p>
+<p>However, this function does perform two functions not implemented by <a href="twisted.conch.client.knownhosts.KnownHostsFile.html#verifyHostKey"><code>KnownHostsFile.verifyHostKey</code></a>.
+It determines the path to the user's known_hosts file based on the options 
+(which should really be the options object's job), and it provides an 
+opener to <a href="twisted.conch.client.knownhosts.ConsoleUI.html"><code>ConsoleUI</code></a>
+which opens '/dev/tty' so that the user will be prompted on the tty of the 
+process even if the input and output of the process has been redirected.  
+This latter part is, somewhat obviously, not portable, but I don't know of 
+a portable equivalent that could be used.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">host</td><td>Due to a bug in <a href="twisted.conch.client.direct.SSHClientTransport.html#verifyHostKey"><code>SSHClientTransport.verifyHostKey</code></a>,
+this is always the dotted-quad IP address of the host being connected to. (type: <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>)</td></tr><tr><td></td><td class="fieldArg">transport</td><td>the client transport which is attempting to connect to the given host. (type: <a href="twisted.conch.client.direct.SSHClientTransport.html"><code>SSHClientTransport</code></a>)</td></tr><tr><td></td><td class="fieldArg">fingerprint</td><td>the fingerprint of the given public key, in xx:xx:xx:... format.  This is 
+ignored in favor of getting the fingerprint from the key itself. (type: <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>)</td></tr><tr><td></td><td class="fieldArg">pubKey</td><td>The public key of the server being connected to. (type: <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+which fires with <code>1</code> if the key was successfully verified, or 
+fails if the key could not be successfully verified.  Failure types may 
+include <a href="twisted.conch.error.HostKeyChanged.html"><code>HostKeyChanged</code></a>,
+<a href="twisted.conch.error.UserRejectedKey.html"><code>UserRejectedKey</code></a>,
+<a href="http://docs.python.org/library/exceptions.html#exceptions.IOError"><code>IOError</code></a>
+or <a href="http://docs.python.org/library/exceptions.html#exceptions.KeyboardInterrupt"><code>KeyboardInterrupt</code></a>.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.conch.client.default.isInKnownHosts">
+    
+  </a>
+  <a name="isInKnownHosts">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    isInKnownHosts(host, pubKey, options):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/conch/client/default.py#L93">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Checks to see if host is in the known_hosts file for the user.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">0 if it isn't, 1 if it is and is the same, 2 if it's changed. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.conch.client.default.getHostKeyAlgorithms">
+    
+  </a>
+  <a name="getHostKeyAlgorithms">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getHostKeyAlgorithms(host, options):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/conch/client/default.py#L133">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Look in known_hosts for a key corresponding to <code>host</code>. This 
+can be used to change the order of supported key types in the KEXINIT 
+packet.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">host</td><td>the host to check in known_hosts (type: <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>)</td></tr><tr><td></td><td class="fieldArg">options</td><td>options passed to client (type: <a href="twisted.conch.client.options.ConchOptions.html"><code>twisted.conch.client.options.ConchOptions</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>
+representing key types or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>.</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2017-02-11 20:06:04.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

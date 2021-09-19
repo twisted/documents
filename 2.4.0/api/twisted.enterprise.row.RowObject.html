@@ -1,0 +1,119 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.enterprise.row.RowObject&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.e.r.RowObject:</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.enterprise.row.html">twisted.enterprise.row</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.enterprise.row.RowObject">View In Hierarchy</a>
+    </p>
+    <div></div>
+    <div><p>I represent a row in a table in a relational database.</p>
+<p>My class is &quot;populated&quot; by a Reflector object. After I am 
+populated, instances of me are able to interact with a particular 
+database table.</p>
+<p>You should use a class derived from this class for each database 
+table.</p>
+<p>reflector.loadObjectsFrom() is used to create sets of instance of 
+objects of this class from database tables.</p>
+<p>Once created, the &quot;key column&quot; attributes cannot be 
+changed.</p>
+Class Attributes that users must supply:
+<pre class="literalblock">
+  rowKeyColumns     # list of key columns in form: [(columnName, typeName)]
+  rowTableName      # name of database table
+  rowColumns        # list of the columns in the table with the correct
+                    # case.this will be used to create member variables.
+  rowFactoryMethod  # method to create an instance of this class.
+                    # HACK: must be in a list!!! [factoryMethod] (optional)
+  rowForeignKeys    # keys to other tables (optional)
+</pre>
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.row.RowObject.assignKeyAttr">assignKeyAttr</a></td>
+          <td><span>Assign to a key attribute.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.row.RowObject.findAttribute">findAttribute</a></td>
+          <td><span>Find an attribute by caseless name.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.row.RowObject.__setattr__">__setattr__</a></td>
+          <td><span>Special setattr to prevent changing of key values.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.row.RowObject.createDefaultAttributes">createDefaultAttributes</a></td>
+          <td><span>Populate instance with default attributes.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.row.RowObject.setDirty">setDirty</a></td>
+          <td><span>Use this to set the 'dirty' flag.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.row.RowObject.getKeyTuple">getKeyTuple</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.enterprise.row.RowObject.assignKeyAttr"></a>
+        <div class="functionHeader">
+          def <span>assignKeyAttr(self, attrName, value):</span>
+        </div>
+        <div class="functionBody"><div><p>Assign to a key attribute.</p>
+This cannot be done through normal means to protect changing keys of 
+db objects.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.row.RowObject.findAttribute"></a>
+        <div class="functionHeader">
+          def <span>findAttribute(self, attrName):</span>
+        </div>
+        <div class="functionBody"><div>Find an attribute by caseless name.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.row.RowObject.__setattr__"></a>
+        <div class="functionHeader">
+          def <span>__setattr__(self, name, value):</span>
+        </div>
+        <div class="functionBody"><div>Special setattr to prevent changing of key values.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.row.RowObject.createDefaultAttributes"></a>
+        <div class="functionHeader">
+          def <span>createDefaultAttributes(self):</span>
+        </div>
+        <div class="functionBody"><div><p>Populate instance with default attributes.</p>
+This is used when creating a new instance NOT from the database.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.row.RowObject.setDirty"></a>
+        <div class="functionHeader">
+          def <span>setDirty(self, flag):</span>
+        </div>
+        <div class="functionBody"><div><p>Use this to set the 'dirty' flag.</p>
+(note: this avoids infinite recursion in __setattr__, and prevents the 
+'dirty' flag )
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.row.RowObject.getKeyTuple"></a>
+        <div class="functionHeader">
+          def <span>getKeyTuple(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div>    
+  </body>
+</html>

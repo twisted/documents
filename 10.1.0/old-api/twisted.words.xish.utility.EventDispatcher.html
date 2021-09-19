@@ -1,0 +1,305 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.words.xish.utility.EventDispatcher : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">t.w.x.u.EventDispatcher : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.words.html">words</a>.<a href="twisted.words.xish.html">xish</a>.<a href="twisted.words.xish.utility.html">utility</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/words/xish/utility.py#L126">View Source</a>
+      <a href="classIndex.html#twisted.words.xish.utility.EventDispatcher">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known subclasses: <a href="twisted.words.xish.xmlstream.XmlStream.html">twisted.words.xish.xmlstream.XmlStream</a></p>
+    </div>
+    <div>Event dispatching service.</p>
+<p>The <code>EventDispatcher</code> allows observers to be registered for 
+certain events that are dispatched. There are two types of events: XPath 
+events and Named events.</p>
+<p>Every dispatch is triggered by calling <a 
+href="twisted.words.xish.utility.EventDispatcher.html#dispatch"><code>dispatch</code></a>
+with a data object and, for named events, the name of the event.</p>
+<p>When an XPath type event is dispatched, the associated object is assumed
+to be an <a 
+href="twisted.words.xish.domish.Element.html"><code>Element</code></a> 
+instance, which is matched against all registered XPath queries. For every 
+match, the respective observer will be called with the data object.</p>
+<p>A named event will simply call each registered observer for that 
+particular event name, with the data object. Unlike XPath type events, the 
+data object is not restricted to <a 
+href="twisted.words.xish.domish.Element.html"><code>Element</code></a>, but
+can be anything.</p>
+<p>When registering observers, the event that is to be observed is 
+specified using an <a 
+href="twisted.words.xish.xpath.XPathQuery.html"><code>xpath.XPathQuery</code></a>
+instance or a string. In the latter case, the string can also contain the 
+string representation of an XPath expression. To distinguish these from 
+named events, each named event should start with a special prefix that is 
+stored in <code>self.prefix</code>. It defaults to 
+<code>//event/</code>.</p>
+<p>Observers registered using <a 
+href="twisted.words.xish.utility.EventDispatcher.html#addObserver"><code>addObserver</code></a>
+are persistent: after the observer has been triggered by a dispatch, it 
+remains registered for a possible next dispatch. If instead <a 
+href="twisted.words.xish.utility.EventDispatcher.html#addOnetimeObserver"><code>addOnetimeObserver</code></a>
+was used to observe an event, the observer is removed from the list of 
+observers after the first observed event.</p>
+<p>Obsevers can also prioritized, by providing an optional 
+<code>priority</code> parameter to the <a 
+href="twisted.words.xish.utility.EventDispatcher.html#addObserver"><code>addObserver</code></a>
+and <a 
+href="twisted.words.xish.utility.EventDispatcher.html#addOnetimeObserver"><code>addOnetimeObserver</code></a>
+methods. Higher priority observers are then called before lower priority 
+observers.</p>
+<p>Finally, observers can be unregistered by using <a 
+href="twisted.words.xish.utility.EventDispatcher.html#removeObserver"><code>removeObserver</code></a>.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1893">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.xish.utility.EventDispatcher.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.xish.utility.EventDispatcher.html#addOnetimeObserver">addOnetimeObserver</a></td>
+    <td><span>Register a one-time observer for an event.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.xish.utility.EventDispatcher.html#addObserver">addObserver</a></td>
+    <td><span>Register an observer for an event.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.xish.utility.EventDispatcher.html#removeObserver">removeObserver</a></td>
+    <td><span>Remove callable as observer for an event.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.xish.utility.EventDispatcher.html#dispatch">dispatch</a></td>
+    <td><span>Dispatch an event.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.xish.utility.EventDispatcher.html#_getEventAndObservers">_getEventAndObservers</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.xish.utility.EventDispatcher.html#_addObserver">_addObserver</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.words.xish.utility.EventDispatcher.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, eventprefix='//event/'):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/words/xish/utility.py#L167" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.words.xish.xmlstream.XmlStream.html">twisted.words.xish.xmlstream.XmlStream</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.xish.utility.EventDispatcher._getEventAndObservers">
+    
+  </a>
+  <a name="_getEventAndObservers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _getEventAndObservers(self, event):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/words/xish/utility.py#L176" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.xish.utility.EventDispatcher.addOnetimeObserver">
+    
+  </a>
+  <a name="addOnetimeObserver">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addOnetimeObserver(self, event, observerfn, *args, priority=0, **kwargs):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/words/xish/utility.py#L192" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Register a one-time observer for an event.</p>
+<p>Like <a 
+href="twisted.words.xish.utility.EventDispatcher.html#addObserver"><code>addObserver</code></a>,
+but is only triggered at most once. See there for a description of the 
+parameters.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.xish.utility.EventDispatcher.addObserver">
+    
+  </a>
+  <a name="addObserver">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addObserver(self, event, observerfn, *args, priority=0, **kwargs):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/words/xish/utility.py#L202" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Register an observer for an event.</p>
+<p>Each observer will be registered with a certain priority. Higher 
+priority observers get called before lower priority observers.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">event</td><td>Name or XPath query for the event to be monitored.
+ (type: <code>str</code> or <a 
+href="twisted.words.xish.xpath.XPathQuery.html"><code>xpath.XPathQuery</code></a>.
+)</td></tr><tr><td></td><td class="fieldArg">observerfn</td><td>Function to be called when the specified event has been triggered. This 
+callable takes one parameter: the data object that triggered the event. 
+When specified, the <code>*args</code> and <code>**kwargs</code> parameters
+to addObserver are being used as additional parameters to the registered 
+observer callable.
+</td></tr><tr><td></td><td class="fieldArg">priority</td><td>(Optional) priority of this observer in relation to other observer that 
+match the same event. Defaults to <code>0</code>.
+ (type: <code>int</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.xish.utility.EventDispatcher._addObserver">
+    
+  </a>
+  <a name="_addObserver">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _addObserver(self, onetime, event, observerfn, priority, *args, **kwargs):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/words/xish/utility.py#L226" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.xish.utility.EventDispatcher.removeObserver">
+    
+  </a>
+  <a name="removeObserver">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeObserver(self, event, observerfn):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/words/xish/utility.py#L249" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Remove callable as observer for an event.</p>
+<p>The observer callable is removed for all priority levels for the 
+specified event.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">event</td><td>Event for which the observer callable was registered.
+ (type: <code>str</code> or <a 
+href="twisted.words.xish.xpath.XPathQuery.html"><code>xpath.XPathQuery</code></a>
+)</td></tr><tr><td></td><td class="fieldArg">observerfn</td><td>Observer callable to be unregistered.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.xish.utility.EventDispatcher.dispatch">
+    
+  </a>
+  <a name="dispatch">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dispatch(self, obj, event=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/words/xish/utility.py#L281" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Dispatch an event.</p>
+<p>When <code>event</code> is <code>None</code>, an XPath type event is 
+triggered, and <code>obj</code> is assumed to be an instance of <a 
+href="twisted.words.xish.domish.Element.html"><code>Element</code></a>. 
+Otherwise, <code>event</code> holds the name of the named event being 
+triggered. In the latter case, <code>obj</code> can be anything.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">obj</td><td>The object to be dispatched.
+</td></tr><tr><td></td><td class="fieldArg">event</td><td>Optional event name.
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2010-07-05 15:03:32.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+  </body>
+</html>

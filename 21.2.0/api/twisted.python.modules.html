@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.python.modules : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://twistedmatrix.com/">Twisted</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><a href="twisted.html" class="code" data-type="Package">twisted</a>.<a href="twisted.python.html" class="code" data-type="Package">python</a>.<a href="twisted.python.modules.html" class="code" data-type="Module">modules</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/python/modules.py">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>This module aims to provide a unified, object-oriented view of Python's runtime hierarchy.</p><p>Python is a very dynamic language with wide variety of introspection utilities. However, these utilities can be hard to use, because there is no consistent API.  The introspection API in python is made up of attributes (__name__, __module__, func_name, etc) on instances, modules, classes and functions which vary between those four types, utility modules such as 'inspect' which provide some functionality, the 'imp' module, the "compiler" module, the semantics of PEP 302 support, and setuptools, among other things.</p><p>At the top, you have "PythonPath", an abstract representation of sys.path which includes methods to locate top-level modules, with or without loading them. The top-level exposed functions in this module for accessing the system path are "walkModules", "iterModules", and "getModule".</p><p>From most to least specific, here are the objects provided:</p><pre class="literalblock">
+                  PythonPath  # sys.path
+                      |
+                      v
+                  PathEntry   # one entry on sys.path: an importer
+                      |
+                      v
+                 PythonModule # a module or package that can be loaded
+                      |
+                      v
+                 PythonAttribute # an attribute of a module (function or class)
+                      |
+                      v
+                 PythonAttribute # an attribute of a function or class
+                      |
+                      v
+                     ...
+</pre><p>Here's an example of idiomatic usage: this is what you would do to list all of the modules outside the standard library's python-files directory:</p><pre class="literalblock">
+    import os
+    stdlibdir = os.path.dirname(os.__file__)
+
+    from twisted.python.modules import iterModules
+
+    for modinfo in iterModules():
+        if (modinfo.pathEntry.filePath.path != stdlibdir
+            and not modinfo.isPackage()):
+            print('unpackaged: %s: %s' % (
+                modinfo.name, modinfo.filePath.path))
+</pre></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2656">
+  
+  <tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.python.modules.html#theSystemPath" class="code" data-type="Variable">theSystemPath</a></td>
+    <td><span>The very top of the Python object space.</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.python.modules.html#PYTHON_EXTENSIONS" class="code" data-type="Variable">PYTHON_EXTENSIONS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.python.modules.html#OPTIMIZED_MODE" class="code" data-type="Variable">OPTIMIZED_MODE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.python.modules.PythonAttribute.html" class="code" data-type="Class">PythonAttribute</a></td>
+    <td><span>I represent a function, class, or other object that is present.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.python.modules.PythonModule.html" class="code" data-type="Class">PythonModule</a></td>
+    <td><span>Representation of a module which could be imported from sys.path.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.python.modules.PathEntry.html" class="code" data-type="Class">PathEntry</a></td>
+    <td><span>I am a proxy for a single entry on sys.path.</span></td>
+  </tr><tr class="interface">
+    
+    <td>Interface</td>
+    <td><a href="twisted.python.modules.IPathImportMapper.html" class="code" data-type="Interface">IPathImportMapper</a></td>
+    <td><span>This is an internal interface, used to map importers to factories for FilePath-like objects.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.python.modules.PythonPath.html" class="code" data-type="Class">PythonPath</a></td>
+    <td><span>I represent the very top of the Python object-space, the module list in <code>sys.path</code> and the modules list in <code>sys.modules</code>.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.python.modules.html#walkModules" class="code" data-type="Function">walkModules</a></td>
+    <td><span>Deeply iterate all modules on the global python path.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.python.modules.html#iterModules" class="code" data-type="Function">iterModules</a></td>
+    <td><span>Iterate all modules and top-level packages on the global Python path, but do not descend into packages.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.python.modules.html#getModule" class="code" data-type="Function">getModule</a></td>
+    <td><span>Retrieve a module from the system path.</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><a href="twisted.python.modules.html#_nothing" class="code" data-type="Variable">_nothing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.python.modules.html#_isPythonIdentifier" class="code" data-type="Function">_isPythonIdentifier</a></td>
+    <td><span>cheezy fake test for proper identifier-ness.</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.python.modules.html#_isPackagePath" class="code" data-type="Function">_isPackagePath</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.python.modules._ModuleIteratorHelper.html" class="code" data-type="Class">_ModuleIteratorHelper</a></td>
+    <td><span>This mixin provides common behavior between python module and path entries, since the mechanism for searching sys.path and __path__ attributes is remarkably similar.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.python.modules._DefaultMapImpl.html" class="code" data-type="Class">_DefaultMapImpl</a></td>
+    <td><span>Wrapper for the default importer, i.e. None.</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><a href="twisted.python.modules.html#_theDefaultMapper" class="code" data-type="Variable">_theDefaultMapper</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.python.modules._ZipMapImpl.html" class="code" data-type="Class">_ZipMapImpl</a></td>
+    <td><span>IPathImportMapper implementation for zipimport.ZipImporter.</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.python.modules.html#_defaultSysPathFactory" class="code" data-type="Function">_defaultSysPathFactory</a></td>
+    <td><span>Provide the default behavior of PythonPath's sys.path factory, which is to return the current value of sys.path.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basevariable">
+  
+  <a name="twisted.python.modules.theSystemPath">
+    
+  </a>
+  <a name="theSystemPath">
+    
+  </a>
+  <div class="functionHeader">
+    
+    theSystemPath =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/python/modules.py#L55">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The very top of the Python object space.</div> (type: <a href="twisted.python.modules.PythonPath.html"><code>PythonPath</code></a>)
+  </div>
+</div><div class="basevariable private">
+  
+  <a name="twisted.python.modules._nothing">
+    
+  </a>
+  <a name="_nothing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _nothing =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/python/modules.py#L78">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.python.modules.PYTHON_EXTENSIONS">
+    
+  </a>
+  <a name="PYTHON_EXTENSIONS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    PYTHON_EXTENSIONS =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/python/modules.py#L80">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="code">list</a>[<a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a>]</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.python.modules.OPTIMIZED_MODE">
+    
+  </a>
+  <a name="OPTIMIZED_MODE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    OPTIMIZED_MODE =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/python/modules.py#L81">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.python.modules._isPythonIdentifier">
+    
+  </a>
+  <a name="_isPythonIdentifier">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _isPythonIdentifier(string):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/python/modules.py#L88">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>cheezy fake test for proper identifier-ness.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">string</td><td>a <a href="https://docs.python.org/3/library/stdtypes.html#str"><code>str</code></a> which might or might not be a valid python identifier.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">True or False</td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.python.modules._isPackagePath">
+    
+  </a>
+  <a name="_isPackagePath">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _isPackagePath(fpath):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/python/modules.py#L100">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basevariable private">
+  
+  <a name="twisted.python.modules._theDefaultMapper">
+    
+  </a>
+  <a name="_theDefaultMapper">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _theDefaultMapper =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/python/modules.py#L490">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.python.modules._defaultSysPathFactory">
+    
+  </a>
+  <a name="_defaultSysPathFactory">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _defaultSysPathFactory():
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/python/modules.py#L527">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Provide the default behavior of PythonPath's sys.path factory, which is to return the current value of sys.path.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="https://docs.python.org/3/library/sys.html#sys.path"><code>sys.path</code></a></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.python.modules.walkModules">
+    
+  </a>
+  <a name="walkModules">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def walkModules(importPackages=False):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/python/modules.py#L762">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Deeply iterate all modules on the global python path.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">importPackages</td><td>Import packages as they are seen.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.python.modules.iterModules">
+    
+  </a>
+  <a name="iterModules">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def iterModules():
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/python/modules.py#L771">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Iterate all modules and top-level packages on the global Python path, but do not descend into packages.</p></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.python.modules.getModule">
+    
+  </a>
+  <a name="getModule">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def getModule(moduleName):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/python/modules.py#L779">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Retrieve a module from the system path.</p></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-02-28 19:53:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

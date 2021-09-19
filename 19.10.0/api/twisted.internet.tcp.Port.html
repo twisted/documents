@@ -1,0 +1,763 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.tcp.Port : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="apidocs.css" type="text/css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>twisted.internet.tcp.Port(<a href="twisted.internet.base.BasePort.html" data-type="Class" class="code">base.BasePort</a>, <a href="twisted.internet.tcp._SocketCloser.html" data-type="Class" class="code">_SocketCloser</a>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.internet.html" data-type="Package" class="code">internet</a>.<a href="twisted.internet.tcp.html" data-type="Module" class="code">tcp</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/tcp.py#L1238">View Source</a>
+          <a href="classIndex.html#twisted.internet.tcp.Port">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Known subclasses: <a href="twisted.internet.ssl.Port.html" data-type="Class" class="code">twisted.internet.ssl.Port</a>, <a href="twisted.internet.unix.Port.html" data-type="Class" class="code">twisted.internet.unix.Port</a></p><p>Implements interfaces: <a href="twisted.internet.interfaces.IListeningPort.html" data-type="Interface" class="code">twisted.internet.interfaces.IListeningPort</a></p>
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>A TCP server port, listening for connections.</p>
+<p>When a connection is accepted, this will call a factory's buildProtocol 
+with the incoming address as an argument, according to the specification 
+described in <a href="twisted.internet.interfaces.IProtocolFactory.html"><code>twisted.internet.interfaces.IProtocolFactory</code></a>.</p>
+<p>If you wish to change the sort of transport that will be used, the 
+<code>transport</code> attribute will be called with the signature expected
+for <code>Server.__init__</code>, so it can be replaced.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1172">
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.tcp.Port.html#deferred" data-type="Instance Variable" class="code">deferred</a></td>
+    <td>a deferred created when <a href="twisted.internet.tcp.Port.html#loseConnection"><code>stopListening</code></a>
+is called, and that will fire when connection is lost. This is not to be 
+used it directly: prefer the deferred returned by <a href="twisted.internet.tcp.Port.html#loseConnection"><code>stopListening</code></a>
+instead. (type: <a href="twisted.internet.defer.Deferred.html"><code>defer.Deferred</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.tcp.Port.html#disconnecting" data-type="Instance Variable" class="code">disconnecting</a></td>
+    <td>flag indicating that the <a href="twisted.internet.tcp.Port.html#loseConnection"><code>stopListening</code></a>
+method has been called and that no connections should be accepted anymore. (type: <code>bool</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.tcp.Port.html#connected" data-type="Instance Variable" class="code">connected</a></td>
+    <td>flag set once the listen has successfully been called on the socket. (type: <code>bool</code>)</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp.Port.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td><span>Initialize with a numeric port to listen on.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp.Port.html#__repr__" data-type="Method" class="code">__repr__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp.Port.html#createInternetSocket" data-type="Method" class="code">createInternetSocket</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp.Port.html#startListening" data-type="Method" class="code">startListening</a></td>
+    <td><span>Create and bind my socket, and begin listening on it.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp.Port.html#doRead" data-type="Method" class="code">doRead</a></td>
+    <td><span>Called when my socket is ready for reading.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp.Port.html#loseConnection" data-type="Method" class="code">loseConnection</a></td>
+    <td><span>Stop accepting connections on this port.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp.Port.html#connectionLost" data-type="Method" class="code">connectionLost</a></td>
+    <td><span>Cleans up the socket.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp.Port.html#logPrefix" data-type="Method" class="code">logPrefix</a></td>
+    <td><span>Returns the name of my class, to prefix log entries with.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp.Port.html#getHost" data-type="Method" class="code">getHost</a></td>
+    <td><span>Return an <a href="twisted.internet.address.IPv4Address.html"><code>IPv4Address</code></a>
+or <a href="twisted.internet.address.IPv6Address.html"><code>IPv6Address</code></a>
+indicating the listening address of this port.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.tcp.Port.html#_type" data-type="Instance Variable" class="code">_type</a></td>
+    <td>A string describing the connections which will be created by this port.  
+Normally this is <code>"TCP"</code>, since this is a TCP port, 
+but when the TLS implementation re-uses this class it overrides the value 
+with <code>"TLS"</code>.  Only used for logging.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.tcp.Port.html#_preexistingSocket" data-type="Instance Variable" class="code">_preexistingSocket</a></td>
+    <td>If not <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>,
+a <a href="https://docs.python.org/3/library/socket.html#socket.socket"><code>socket.socket</code></a>
+instance which was created and initialized outside of the reactor and will 
+be used to listen for connections (instead of a new socket being created by
+this <a href="twisted.internet.tcp.Port.html"><code>Port</code></a>).</td>
+  </tr><tr class="classmethod private">
+    
+    <td>Class Method</td>
+    <td><a href="twisted.internet.tcp.Port.html#_fromListeningDescriptor" data-type="Class Method" class="code">_fromListeningDescriptor</a></td>
+    <td><span>Create a new <a href="twisted.internet.tcp.Port.html"><code>Port</code></a> based on an 
+existing listening <i>SOCK_STREAM</i> socket.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp.Port.html#_buildAddr" data-type="Method" class="code">_buildAddr</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp.Port.html#_logConnectionLostMsg" data-type="Method" class="code">_logConnectionLostMsg</a></td>
+    <td><span>Log message for closing port</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.base.BasePort.html" data-type="Class" class="code">BasePort</a>:
+          </p>
+          <table class="children sortable" id="id1173">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.base.BasePort.html#doWrite" data-type="Method" class="code">doWrite</a></td>
+    <td><span>Raises a RuntimeError</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.abstract.FileDescriptor.html" data-type="Class" class="code">FileDescriptor</a> (via <a href="twisted.internet.base.BasePort.html" data-type="Class" class="code">BasePort</a>):
+          </p>
+          <table class="children sortable" id="id1174">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#writeSomeData" data-type="Method" class="code">writeSomeData</a></td>
+    <td><span>Write as much as possible of the given data, immediately.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#writeConnectionLost" data-type="Method" class="code">writeConnectionLost</a></td>
+    <td><span>Indicates write connection was lost.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#readConnectionLost" data-type="Method" class="code">readConnectionLost</a></td>
+    <td><span>Indicates read connection was lost.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#write" data-type="Method" class="code">write</a></td>
+    <td><span>Reliably write some data.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#writeSequence" data-type="Method" class="code">writeSequence</a></td>
+    <td><span>Reliably write a sequence of data.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#loseWriteConnection" data-type="Method" class="code">loseWriteConnection</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#stopReading" data-type="Method" class="code">stopReading</a></td>
+    <td><span>Stop waiting for read availability.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#stopWriting" data-type="Method" class="code">stopWriting</a></td>
+    <td><span>Stop waiting for write availability.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#startReading" data-type="Method" class="code">startReading</a></td>
+    <td><span>Start waiting for read availability.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#startWriting" data-type="Method" class="code">startWriting</a></td>
+    <td><span>Start waiting for write availability.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#stopConsuming" data-type="Method" class="code">stopConsuming</a></td>
+    <td><span>Stop consuming data.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#resumeProducing" data-type="Method" class="code">resumeProducing</a></td>
+    <td><span>Resume producing data.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#pauseProducing" data-type="Method" class="code">pauseProducing</a></td>
+    <td><span>Pause producing data.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#stopProducing" data-type="Method" class="code">stopProducing</a></td>
+    <td><span>Stop producing data.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#fileno" data-type="Method" class="code">fileno</a></td>
+    <td><span>File Descriptor number for select().</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#_postLoseConnection" data-type="Method" class="code">_postLoseConnection</a></td>
+    <td><span>Called after a loseConnection(), when all data has been written.</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#_closeWriteConnection" data-type="Method" class="code">_closeWriteConnection</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#_isSendBufferFull" data-type="Method" class="code">_isSendBufferFull</a></td>
+    <td><span>Determine whether the user-space send buffer for this transport is full 
+or not.</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#_maybePauseProducer" data-type="Method" class="code">_maybePauseProducer</a></td>
+    <td><span>Possibly pause a producer, if there is one and the send buffer is 
+full.</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.abstract._ConsumerMixin.html" data-type="Class" class="code">_ConsumerMixin</a> (via <a href="twisted.internet.base.BasePort.html" data-type="Class" class="code">BasePort</a>, <a href="twisted.internet.abstract.FileDescriptor.html" data-type="Class" class="code">FileDescriptor</a>):
+          </p>
+          <table class="children sortable" id="id1175">
+  
+  <tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.abstract._ConsumerMixin.html#producer" data-type="Instance Variable" class="code">producer</a></td>
+    <td><a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+if no producer is registered, otherwise the registered producer.</td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.abstract._ConsumerMixin.html#producerPaused" data-type="Instance Variable" class="code">producerPaused</a></td>
+    <td>A flag indicating whether the producer is currently paused. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.abstract._ConsumerMixin.html#streamingProducer%200" data-type="Instance Variable" class="code">streamingProducer 0</a></td>
+    <td>A flag indicating whether the producer was registered as a streaming (ie 
+push) producer or not (ie a pull producer).  This will determine whether 
+the consumer may ever need to pause and resume it, or if it can merely call
+<code>resumeProducing</code> on it when buffer space is available.</td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.abstract._ConsumerMixin.html#streamingProducer" data-type="Instance Variable" class="code">streamingProducer</a></td>
+    <td><code>bool</code> or <code>int</code></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract._ConsumerMixin.html#registerProducer" data-type="Method" class="code">registerProducer</a></td>
+    <td><span>Register to receive data from a producer.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract._ConsumerMixin.html#unregisterProducer" data-type="Method" class="code">unregisterProducer</a></td>
+    <td><span>Stop consuming data from a producer, without disconnecting.</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.abstract._LogOwner.html" data-type="Class" class="code">_LogOwner</a> (via <a href="twisted.internet.base.BasePort.html" data-type="Class" class="code">BasePort</a>, <a href="twisted.internet.abstract.FileDescriptor.html" data-type="Class" class="code">FileDescriptor</a>):
+          </p>
+          <table class="children sortable" id="id1176">
+  
+  <tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract._LogOwner.html#_getLogPrefix" data-type="Method" class="code">_getLogPrefix</a></td>
+    <td><span>Determine the log prefix to use for messages related to 
+<code>applicationObject</code>, which may or may not be an <a href="twisted.internet.interfaces.ILoggingContext.html"><code>interfaces.ILoggingContext</code></a>
+provider.</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.tcp._SocketCloser.html" data-type="Class" class="code">_SocketCloser</a>:
+          </p>
+          <table class="children sortable" id="id1177">
+  
+  <tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.tcp._SocketCloser.html#_shouldShutdown" data-type="Instance Variable" class="code">_shouldShutdown</a></td>
+    <td>Set to <code>True</code> if <code>shutdown</code> should be called before 
+calling <code>close</code> on the underlying socket. (type: <code>bool</code>)</td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp._SocketCloser.html#_closeSocket" data-type="Method" class="code">_closeSocket</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable">
+  
+  <a name="twisted.internet.tcp.Port.deferred">
+    
+  </a>
+  <a name="deferred">
+    
+  </a>
+  <div class="functionHeader">
+    deferred =
+  </div>
+  <div class="functionBody">
+    a deferred created when <a href="twisted.internet.tcp.Port.html#loseConnection"><code>stopListening</code></a>
+is called, and that will fire when connection is lost. This is not to be 
+used it directly: prefer the deferred returned by <a href="twisted.internet.tcp.Port.html#loseConnection"><code>stopListening</code></a>
+instead. (type: <a href="twisted.internet.defer.Deferred.html"><code>defer.Deferred</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.tcp.Port.disconnecting">
+    
+  </a>
+  <a name="disconnecting">
+    
+  </a>
+  <div class="functionHeader">
+    disconnecting =
+  </div>
+  <div class="functionBody">
+    flag indicating that the <a href="twisted.internet.tcp.Port.html#loseConnection"><code>stopListening</code></a>
+method has been called and that no connections should be accepted anymore. (type: <code>bool</code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.tcp.Port.connected">
+    
+  </a>
+  <a name="connected">
+    
+  </a>
+  <div class="functionHeader">
+    connected =
+  </div>
+  <div class="functionBody">
+    flag set once the listen has successfully been called on the socket. (type: <code>bool</code>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.internet.tcp.Port._type">
+    
+  </a>
+  <a name="_type">
+    
+  </a>
+  <div class="functionHeader">
+    _type =
+  </div>
+  <div class="functionBody">
+    A string describing the connections which will be created by this port.  
+Normally this is <code>"TCP"</code>, since this is a TCP port, 
+but when the TLS implementation re-uses this class it overrides the value 
+with <code>"TLS"</code>.  Only used for logging.
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.internet.tcp.Port._preexistingSocket">
+    
+  </a>
+  <a name="_preexistingSocket">
+    
+  </a>
+  <div class="functionHeader">
+    _preexistingSocket =
+  </div>
+  <div class="functionBody">
+    If not <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>,
+a <a href="https://docs.python.org/3/library/socket.html#socket.socket"><code>socket.socket</code></a>
+instance which was created and initialized outside of the reactor and will 
+be used to listen for connections (instead of a new socket being created by
+this <a href="twisted.internet.tcp.Port.html"><code>Port</code></a>).
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.tcp.Port.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, port, factory, backlog=50, interface='', reactor=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/tcp.py#L1295">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.internet.abstract.FileDescriptor.html#__init__" data-type="Method" class="code">twisted.internet.abstract.FileDescriptor.__init__</a></div><div class="interfaceinfo">overridden in <a href="twisted.internet.ssl.Port.html" data-type="Class" class="code">twisted.internet.ssl.Port</a>, <a href="twisted.internet.unix.Port.html" data-type="Class" class="code">twisted.internet.unix.Port</a></div>
+    
+    <div><p>Initialize with a numeric port to listen on.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="baseclassmethod private">
+  
+  <a name="twisted.internet.tcp.Port._fromListeningDescriptor">
+    
+  </a>
+  <a name="_fromListeningDescriptor">
+    
+  </a>
+  <div class="functionHeader">
+    @classmethod<br />
+    def
+    _fromListeningDescriptor(cls, reactor, fd, addressFamily, factory):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/tcp.py#L1309">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.internet.unix.Port.html" data-type="Class" class="code">twisted.internet.unix.Port</a></div>
+    
+    <div><p>Create a new <a href="twisted.internet.tcp.Port.html"><code>Port</code></a> based on an 
+existing listening <i>SOCK_STREAM</i> socket.</p>
+<p>Arguments are the same as to <a href="twisted.internet.tcp.Port.html#__init__"><code>Port.__init__</code></a>,
+except where noted.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">fd</td><td>An integer file descriptor associated with a listening socket.  The socket 
+must be in non-blocking mode.  Any additional attributes desired, such as 
+<i>FD_CLOEXEC</i>, must also be set already.</td></tr><tr><td></td><td class="fieldArg">addressFamily</td><td>The address family (sometimes called <i>domain</i>) of the existing socket.
+For example, <a href="https://docs.python.org/3/library/socket.html#socket.AF_INET"><code>socket.AF_INET</code></a>.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A new instance of <code>cls</code> wrapping the socket given by 
+<code>fd</code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.tcp.Port.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __repr__(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/tcp.py#L1332">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.internet.unix.Port.html" data-type="Class" class="code">twisted.internet.unix.Port</a></div>
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.tcp.Port.createInternetSocket">
+    
+  </a>
+  <a name="createInternetSocket">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    createInternetSocket(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/tcp.py#L1339">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.internet.base.BasePort.html#createInternetSocket" data-type="Method" class="code">twisted.internet.base.BasePort.createInternetSocket</a></div>
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.tcp.Port.startListening">
+    
+  </a>
+  <a name="startListening">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    startListening(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/tcp.py#L1346">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IListeningPort.html#startListening" data-type="Method" class="code">twisted.internet.interfaces.IListeningPort</a></div><div class="interfaceinfo">overridden in <a href="twisted.internet.unix.Port.html" data-type="Class" class="code">twisted.internet.unix.Port</a></div>
+    
+    <div><p>Create and bind my socket, and begin listening on it.</p>
+<p>This is called on unserialization, and must be called after creating a 
+server to begin listening on the specified port.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.internet.tcp.Port._buildAddr">
+    
+  </a>
+  <a name="_buildAddr">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _buildAddr(self, address):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/tcp.py#L1389">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.internet.unix.Port.html" data-type="Class" class="code">twisted.internet.unix.Port</a></div>
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.tcp.Port.doRead">
+    
+  </a>
+  <a name="doRead">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    doRead(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/tcp.py#L1392">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReadDescriptor.html#doRead" data-type="Method" class="code">twisted.internet.interfaces.IReadDescriptor</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.abstract.FileDescriptor.html#doRead" data-type="Method" class="code">twisted.internet.abstract.FileDescriptor.doRead</a></div>
+    
+    <div><p>Called when my socket is ready for reading.</p>
+<p>This accepts a connection and calls self.protocol() to handle the 
+wire-level protocol.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.tcp.Port.loseConnection">
+    
+  </a>
+  <a name="loseConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    loseConnection(self, connDone=failure.Failure(main.CONNECTION_DONE)):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/tcp.py#L1457">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.ITransport.html#loseConnection" data-type="Method" class="code">twisted.internet.interfaces.ITransport</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.abstract.FileDescriptor.html#loseConnection" data-type="Method" class="code">twisted.internet.abstract.FileDescriptor.loseConnection</a></div>
+    
+    <div><p>Stop accepting connections on this port.</p>
+<p>This will shut down the socket and call self.connectionLost().  It 
+returns a deferred which will fire successfully when the port is actually 
+closed, or with a failure if an error occurs shutting down.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.internet.tcp.Port._logConnectionLostMsg">
+    
+  </a>
+  <a name="_logConnectionLostMsg">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _logConnectionLostMsg(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/tcp.py#L1474">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.internet.unix.Port.html" data-type="Class" class="code">twisted.internet.unix.Port</a></div>
+    
+    <div><p>Log message for closing port</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.tcp.Port.connectionLost">
+    
+  </a>
+  <a name="connectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    connectionLost(self, reason):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/tcp.py#L1481">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IFileDescriptor.html#connectionLost" data-type="Method" class="code">twisted.internet.interfaces.IFileDescriptor</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.abstract.FileDescriptor.html#connectionLost" data-type="Method" class="code">twisted.internet.abstract.FileDescriptor.connectionLost</a></div><div class="interfaceinfo">overridden in <a href="twisted.internet.unix.Port.html" data-type="Class" class="code">twisted.internet.unix.Port</a></div>
+    
+    <div><p>Cleans up the socket.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.tcp.Port.logPrefix">
+    
+  </a>
+  <a name="logPrefix">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    logPrefix(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/tcp.py#L1500">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.ILoggingContext.html#logPrefix" data-type="Method" class="code">twisted.internet.interfaces.ILoggingContext</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.abstract._LogOwner.html#logPrefix" data-type="Method" class="code">twisted.internet.abstract._LogOwner.logPrefix</a></div>
+    
+    <div><p>Returns the name of my class, to prefix log entries with.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.tcp.Port.getHost">
+    
+  </a>
+  <a name="getHost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getHost(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/tcp.py#L1506">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IListeningPort.html#getHost" data-type="Method" class="code">twisted.internet.interfaces.IListeningPort</a></div>
+    
+    <div><p>Return an <a href="twisted.internet.address.IPv4Address.html"><code>IPv4Address</code></a>
+or <a href="twisted.internet.address.IPv6Address.html"><code>IPv6Address</code></a>
+indicating the listening address of this port.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2019-11-11 15:02:42.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

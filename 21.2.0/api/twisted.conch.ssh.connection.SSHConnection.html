@@ -1,0 +1,1191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.conch.ssh.connection.SSHConnection : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://twistedmatrix.com/">Twisted</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><a href="twisted.html" class="code" data-type="Package">twisted</a>.<a href="twisted.conch.html" class="code" data-type="Package">conch</a>.<a href="twisted.conch.ssh.html" class="code" data-type="Package">ssh</a>.<a href="twisted.conch.ssh.connection.html" class="code" data-type="Module">connection</a>.<a href="twisted.conch.ssh.connection.SSHConnection.html" class="code" data-type="Class">SSHConnection</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> twisted.conch.ssh.connection.SSHConnection(<a href="twisted.conch.ssh.service.SSHService.html" class="code" data-type="Class">service.SSHService</a>): <a href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L23">(source)</a></code></p><p>Known subclasses: <a href="twisted.conch.endpoints._ConnectionReady.html" class="code" data-type="Class">twisted.conch.endpoints._ConnectionReady</a>, <a href="twisted.conch.scripts.cftp.SSHConnection.html" class="code" data-type="Class">twisted.conch.scripts.cftp.SSHConnection</a>, <a href="twisted.conch.scripts.conch.SSHConnection.html" class="code" data-type="Class">twisted.conch.scripts.conch.SSHConnection</a>, <a href="twisted.conch.scripts.tkconch.SSHConnection.html" class="code" data-type="Class">twisted.conch.scripts.tkconch.SSHConnection</a></p>
+        <p><a href="classIndex.html#twisted.conch.ssh.connection.SSHConnection">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>An implementation of the 'ssh-connection' service.  It is used to multiplex multiple channels over the single SSH connection.</p></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id421">
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#localChannelID" class="code" data-type="Instance Variable">localChannelID</a></td>
+    <td><span>the next number to use as a local channel ID.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#channels" class="code" data-type="Instance Variable">channels</a></td>
+    <td><span>a <a href="https://docs.python.org/3/library/stdtypes.html#dict"><code>dict</code></a> mapping a local channel ID to <code>SSHChannel</code> subclasses.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#localToRemoteChannel" class="code" data-type="Instance Variable">localToRemoteChannel</a></td>
+    <td><span>a <a href="https://docs.python.org/3/library/stdtypes.html#dict"><code>dict</code></a> mapping a local channel ID to a remote channel ID.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#channelsToRemoteChannel" class="code" data-type="Instance Variable">channelsToRemoteChannel</a></td>
+    <td><span>a <a href="https://docs.python.org/3/library/stdtypes.html#dict"><code>dict</code></a> mapping a <code>SSHChannel</code> subclass to remote channel ID.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#deferreds" class="code" data-type="Instance Variable">deferreds</a></td>
+    <td><span>a <a href="https://docs.python.org/3/library/stdtypes.html#dict"><code>dict</code></a> mapping a local channel ID to a <code>list</code> of <code>Deferreds</code> for outstanding channel requests.  Also, the 'global' key stores the <code>list</code> of pending global request <code>Deferred</code>s.</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#name" class="code" data-type="Class Variable">name</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#__init__" class="code" data-type="Method">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#transport" class="code" data-type="Instance Variable">transport</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#serviceStarted" class="code" data-type="Method">serviceStarted</a></td>
+    <td><span>called when the service is active on the transport.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#serviceStopped" class="code" data-type="Method">serviceStopped</a></td>
+    <td><span>Called when the connection is stopped.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#ssh_GLOBAL_REQUEST" class="code" data-type="Method">ssh_GLOBAL_REQUEST</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#ssh_REQUEST_SUCCESS" class="code" data-type="Method">ssh_REQUEST_SUCCESS</a></td>
+    <td><span>Our global request succeeded.  Get the appropriate Deferred and call it back with the packet we received.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#ssh_REQUEST_FAILURE" class="code" data-type="Method">ssh_REQUEST_FAILURE</a></td>
+    <td><span>Our global request failed.  Get the appropriate Deferred and errback it with the packet we received.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#ssh_CHANNEL_OPEN" class="code" data-type="Method">ssh_CHANNEL_OPEN</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#ssh_CHANNEL_OPEN_CONFIRMATION" class="code" data-type="Method">ssh_CHANNEL_OPEN_CONFIRMATION</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#ssh_CHANNEL_OPEN_FAILURE" class="code" data-type="Method">ssh_CHANNEL_OPEN_FAILURE</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#ssh_CHANNEL_WINDOW_ADJUST" class="code" data-type="Method">ssh_CHANNEL_WINDOW_ADJUST</a></td>
+    <td><span>The other side is adding bytes to its window.  Payload:: uint32  local channel number uint32  bytes to add</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#ssh_CHANNEL_DATA" class="code" data-type="Method">ssh_CHANNEL_DATA</a></td>
+    <td><span>The other side is sending us data.  Payload:: uint32 local channel number string data</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#ssh_CHANNEL_EXTENDED_DATA" class="code" data-type="Method">ssh_CHANNEL_EXTENDED_DATA</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#ssh_CHANNEL_EOF" class="code" data-type="Method">ssh_CHANNEL_EOF</a></td>
+    <td><span>The other side is not sending any more data.  Payload:: uint32  local channel number</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#ssh_CHANNEL_CLOSE" class="code" data-type="Method">ssh_CHANNEL_CLOSE</a></td>
+    <td><span>The other side is closing its end; it does not want to receive any more data.  Payload:: uint32  local channel number</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#ssh_CHANNEL_REQUEST" class="code" data-type="Method">ssh_CHANNEL_REQUEST</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#ssh_CHANNEL_SUCCESS" class="code" data-type="Method">ssh_CHANNEL_SUCCESS</a></td>
+    <td><span>Our channel request to the other side succeeded.  Payload:: uint32  local channel number</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#ssh_CHANNEL_FAILURE" class="code" data-type="Method">ssh_CHANNEL_FAILURE</a></td>
+    <td><span>Our channel request to the other side failed.  Payload:: uint32  local channel number</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#sendGlobalRequest" class="code" data-type="Method">sendGlobalRequest</a></td>
+    <td><span>Send a global request for this connection.  Current this is only used for remote-&gt;local TCP forwarding.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#openChannel" class="code" data-type="Method">openChannel</a></td>
+    <td><span>Open a new channel on this connection.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#sendRequest" class="code" data-type="Method">sendRequest</a></td>
+    <td><span>Send a request to a channel.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#adjustWindow" class="code" data-type="Method">adjustWindow</a></td>
+    <td><span>Tell the other side that we will receive more data.  This should not normally need to be called as it is managed automatically.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#sendData" class="code" data-type="Method">sendData</a></td>
+    <td><span>Send data to a channel.  This should not normally be used: instead use channel.write(data) as it manages the window automatically.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#sendExtendedData" class="code" data-type="Method">sendExtendedData</a></td>
+    <td><span>Send extended data to a channel.  This should not normally be used: instead use channel.writeExtendedData(data, dataType) as it manages the window automatically.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#sendEOF" class="code" data-type="Method">sendEOF</a></td>
+    <td><span>Send an EOF (End of File) for a channel.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#sendClose" class="code" data-type="Method">sendClose</a></td>
+    <td><span>Close a channel.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#getChannel" class="code" data-type="Method">getChannel</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#gotGlobalRequest" class="code" data-type="Method">gotGlobalRequest</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#channelClosed" class="code" data-type="Method">channelClosed</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#_log" class="code" data-type="Class Variable">_log</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#_cleanupGlobalDeferreds" class="code" data-type="Method">_cleanupGlobalDeferreds</a></td>
+    <td><span>All pending requests that have returned a deferred must be errbacked when this service is stopped, otherwise they might be left uncalled and uncallable.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#_cbChannelRequest" class="code" data-type="Method">_cbChannelRequest</a></td>
+    <td><span>Called back if the other side wanted a reply to a channel request.  If the result is true, send a MSG_CHANNEL_SUCCESS.  Otherwise, raise a <code>error.ConchError</code></span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.connection.SSHConnection.html#_ebChannelRequest" class="code" data-type="Method">_ebChannelRequest</a></td>
+    <td><span>Called if the other wisde wanted a reply to the channel requeset and the channel request failed.</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.conch.ssh.service.SSHService.html" class="code" data-type="Class">SSHService</a>:
+          </p>
+          <table class="children sortable" id="id422">
+  
+  <tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.conch.ssh.service.SSHService.html#protocolMessages" class="code" data-type="Class Variable">protocolMessages</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.service.SSHService.html#logPrefix" class="code" data-type="Method">logPrefix</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.service.SSHService.html#packetReceived" class="code" data-type="Method">packetReceived</a></td>
+    <td><span>called when we receive a packet on the transport</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.localChannelID">
+    
+  </a>
+  <a name="localChannelID">
+    
+  </a>
+  <div class="functionHeader">
+    
+    localChannelID =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L28">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>the next number to use as a local channel ID.</div> (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.channels">
+    
+  </a>
+  <a name="channels">
+    
+  </a>
+  <div class="functionHeader">
+    
+    channels =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L30">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>a <a href="https://docs.python.org/3/library/stdtypes.html#dict"><code>dict</code></a> mapping a local channel ID to <code>SSHChannel</code> subclasses.</div> (type: <a href="https://docs.python.org/3/library/stdtypes.html#dict"><code>dict</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.localToRemoteChannel">
+    
+  </a>
+  <a name="localToRemoteChannel">
+    
+  </a>
+  <div class="functionHeader">
+    
+    localToRemoteChannel =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L33">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>a <a href="https://docs.python.org/3/library/stdtypes.html#dict"><code>dict</code></a> mapping a local channel ID to a remote channel ID.</div> (type: <a href="https://docs.python.org/3/library/stdtypes.html#dict"><code>dict</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.channelsToRemoteChannel">
+    
+  </a>
+  <a name="channelsToRemoteChannel">
+    
+  </a>
+  <div class="functionHeader">
+    
+    channelsToRemoteChannel =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L36">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>a <a href="https://docs.python.org/3/library/stdtypes.html#dict"><code>dict</code></a> mapping a <code>SSHChannel</code> subclass to remote channel ID.</div> (type: <a href="https://docs.python.org/3/library/stdtypes.html#dict"><code>dict</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.deferreds">
+    
+  </a>
+  <a name="deferreds">
+    
+  </a>
+  <div class="functionHeader">
+    
+    deferreds =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L39">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>a <a href="https://docs.python.org/3/library/stdtypes.html#dict"><code>dict</code></a> mapping a local channel ID to a <code>list</code> of <code>Deferreds</code> for outstanding channel requests.  Also, the 'global' key stores the <code>list</code> of pending global request <code>Deferred</code>s.</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="code">dict</a>[<a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a>, <a href="https://docs.python.org/3/library/stdtypes.html#list" class="code">list</a>]</code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.name">
+    
+  </a>
+  <a name="name">
+    
+  </a>
+  <div class="functionHeader">
+    
+    name =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L44">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.conch.ssh.service.SSHService.html#name" class="code" data-type="Class Variable">twisted.conch.ssh.service.SSHService.name</a></div>
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#bytes" class="code">bytes</a></code>)
+  </div>
+</div><div class="baseclassvariable private">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection._log">
+    
+  </a>
+  <a name="_log">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _log =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L45">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.conch.ssh.service.SSHService.html#_log" class="code" data-type="Class Variable">twisted.conch.ssh.service.SSHService._log</a></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def __init__(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L47">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.conch.endpoints._ConnectionReady.html" class="code" data-type="Class">twisted.conch.endpoints._ConnectionReady</a></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.transport">
+    
+  </a>
+  <a name="transport">
+    
+  </a>
+  <div class="functionHeader">
+    
+    transport =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L59">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.conch.ssh.service.SSHService.html#transport" class="code" data-type="Class Variable">twisted.conch.ssh.service.SSHService.transport</a></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.serviceStarted">
+    
+  </a>
+  <a name="serviceStarted">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def serviceStarted(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L61">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.conch.ssh.service.SSHService.html#serviceStarted" class="code" data-type="Method">twisted.conch.ssh.service.SSHService.serviceStarted</a></div><div class="interfaceinfo">overridden in <a href="twisted.conch.endpoints._ConnectionReady.html" class="code" data-type="Class">twisted.conch.endpoints._ConnectionReady</a>, <a href="twisted.conch.scripts.cftp.SSHConnection.html" class="code" data-type="Class">twisted.conch.scripts.cftp.SSHConnection</a>, <a href="twisted.conch.scripts.conch.SSHConnection.html" class="code" data-type="Class">twisted.conch.scripts.conch.SSHConnection</a>, <a href="twisted.conch.scripts.tkconch.SSHConnection.html" class="code" data-type="Class">twisted.conch.scripts.tkconch.SSHConnection</a></div>
+    
+    <div><p>called when the service is active on the transport.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.serviceStopped">
+    
+  </a>
+  <a name="serviceStopped">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def serviceStopped(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L65">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.conch.ssh.service.SSHService.html#serviceStopped" class="code" data-type="Method">twisted.conch.ssh.service.SSHService.serviceStopped</a></div><div class="interfaceinfo">overridden in <a href="twisted.conch.scripts.conch.SSHConnection.html" class="code" data-type="Class">twisted.conch.scripts.conch.SSHConnection</a></div>
+    
+    <div><p>Called when the connection is stopped.</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection._cleanupGlobalDeferreds">
+    
+  </a>
+  <a name="_cleanupGlobalDeferreds">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _cleanupGlobalDeferreds(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L80">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>All pending requests that have returned a deferred must be errbacked when this service is stopped, otherwise they might be left uncalled and uncallable.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.ssh_GLOBAL_REQUEST">
+    
+  </a>
+  <a name="ssh_GLOBAL_REQUEST">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def ssh_GLOBAL_REQUEST(self, packet):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L91">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>The other side has made a global request.  Payload:</p><pre class="literalblock">
+    string  request type
+    bool    want reply
+    &lt;request specific data&gt;
+</pre><p>This dispatches to self.gotGlobalRequest.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.ssh_REQUEST_SUCCESS">
+    
+  </a>
+  <a name="ssh_REQUEST_SUCCESS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def ssh_REQUEST_SUCCESS(self, packet):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L112">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Our global request succeeded.  Get the appropriate Deferred and call it back with the packet we received.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.ssh_REQUEST_FAILURE">
+    
+  </a>
+  <a name="ssh_REQUEST_FAILURE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def ssh_REQUEST_FAILURE(self, packet):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L120">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Our global request failed.  Get the appropriate Deferred and errback it with the packet we received.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.ssh_CHANNEL_OPEN">
+    
+  </a>
+  <a name="ssh_CHANNEL_OPEN">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def ssh_CHANNEL_OPEN(self, packet):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L130">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>The other side wants to get a channel.  Payload:</p><pre class="literalblock">
+    string  channel name
+    uint32  remote channel number
+    uint32  remote window size
+    uint32  remote maximum packet size
+    &lt;channel specific data&gt;
+</pre><p>We get a channel from self.getChannel(), give it a local channel number and notify the other side.  Then notify the channel by calling its channelOpen method.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.ssh_CHANNEL_OPEN_CONFIRMATION">
+    
+  </a>
+  <a name="ssh_CHANNEL_OPEN_CONFIRMATION">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def ssh_CHANNEL_OPEN_CONFIRMATION(self, packet):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L183">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>The other side accepted our MSG_CHANNEL_OPEN request.  Payload:</p><pre class="literalblock">
+    uint32  local channel number
+    uint32  remote channel number
+    uint32  remote window size
+    uint32  remote maximum packet size
+    &lt;channel specific data&gt;
+</pre><p>Find the channel using the local channel number and notify its channelOpen method.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.ssh_CHANNEL_OPEN_FAILURE">
+    
+  </a>
+  <a name="ssh_CHANNEL_OPEN_FAILURE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def ssh_CHANNEL_OPEN_FAILURE(self, packet):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L207">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>The other side did not accept our MSG_CHANNEL_OPEN request.  Payload:</p><pre class="literalblock">
+    uint32  local channel number
+    uint32  reason code
+    string  reason description
+</pre><p>Find the channel using the local channel number and notify it by calling its openFailed() method.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.ssh_CHANNEL_WINDOW_ADJUST">
+    
+  </a>
+  <a name="ssh_CHANNEL_WINDOW_ADJUST">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def ssh_CHANNEL_WINDOW_ADJUST(self, packet):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L225">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>The other side is adding bytes to its window.  Payload:</p><pre class="literalblock">
+    uint32  local channel number
+    uint32  bytes to add
+</pre><p>Call the channel's addWindowBytes() method to add new bytes to the remote window.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.ssh_CHANNEL_DATA">
+    
+  </a>
+  <a name="ssh_CHANNEL_DATA">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def ssh_CHANNEL_DATA(self, packet):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L238">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>The other side is sending us data.  Payload:</p><pre class="literalblock">
+    uint32 local channel number
+    string data
+</pre><p>Check to make sure the other side hasn't sent too much data (more than what's in the window, or more than the maximum packet size).  If they have, close the channel.  Otherwise, decrease the available window and pass the data to the channel's dataReceived().</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.ssh_CHANNEL_EXTENDED_DATA">
+    
+  </a>
+  <a name="ssh_CHANNEL_EXTENDED_DATA">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def ssh_CHANNEL_EXTENDED_DATA(self, packet):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L267">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>The other side is sending us exteneded data.  Payload:</p><pre class="literalblock">
+    uint32  local channel number
+    uint32  type code
+    string  data
+</pre><p>Check to make sure the other side hasn't sent too much data (more than what's in the window, or than the maximum packet size).  If they have, close the channel.  Otherwise, decrease the available window and pass the data and type code to the channel's extReceived().</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.ssh_CHANNEL_EOF">
+    
+  </a>
+  <a name="ssh_CHANNEL_EOF">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def ssh_CHANNEL_EOF(self, packet):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L294">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>The other side is not sending any more data.  Payload:</p><pre class="literalblock">
+    uint32  local channel number
+</pre><p>Notify the channel by calling its eofReceived() method.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.ssh_CHANNEL_CLOSE">
+    
+  </a>
+  <a name="ssh_CHANNEL_CLOSE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def ssh_CHANNEL_CLOSE(self, packet):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L305">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>The other side is closing its end; it does not want to receive any more data.  Payload:</p><pre class="literalblock">
+    uint32  local channel number
+</pre><p>Notify the channnel by calling its closeReceived() method.  If the channel has also sent a close message, call self.channelClosed().</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.ssh_CHANNEL_REQUEST">
+    
+  </a>
+  <a name="ssh_CHANNEL_REQUEST">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def ssh_CHANNEL_REQUEST(self, packet):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L321">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>The other side is sending a request to a channel.  Payload:</p><pre class="literalblock">
+    uint32  local channel number
+    string  request name
+    bool    want reply
+    &lt;request specific data&gt;
+</pre><p>Pass the message to the channel's requestReceived method.  If the other side wants a reply, add callbacks which will send the reply.</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection._cbChannelRequest">
+    
+  </a>
+  <a name="_cbChannelRequest">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _cbChannelRequest(self, result, localChannel):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L343">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called back if the other side wanted a reply to a channel request.  If the result is true, send a MSG_CHANNEL_SUCCESS.  Otherwise, raise a <code>error.ConchError</code></p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">result</td><td>the value returned from the channel's requestReceived() method.  If it's False, the request failed. (type: <a href="https://docs.python.org/3/library/functions.html#bool"><code>bool</code></a>)</td></tr><tr><td></td><td class="fieldArg">localChannel</td><td>the local channel ID of the channel to which the request was made. (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">ConchError</td><td>if the result is False.</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection._ebChannelRequest">
+    
+  </a>
+  <a name="_ebChannelRequest">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _ebChannelRequest(self, result, localChannel):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L364">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called if the other wisde wanted a reply to the channel requeset and the channel request failed.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">result</td><td>a Failure, but it's not used.</td></tr><tr><td></td><td class="fieldArg">localChannel</td><td>the local channel ID of the channel to which the request was made. (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.ssh_CHANNEL_SUCCESS">
+    
+  </a>
+  <a name="ssh_CHANNEL_SUCCESS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def ssh_CHANNEL_SUCCESS(self, packet):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L379">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Our channel request to the other side succeeded.  Payload:</p><pre class="literalblock">
+    uint32  local channel number
+</pre><p>Get the <code>Deferred</code> out of self.deferreds and call it back.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.ssh_CHANNEL_FAILURE">
+    
+  </a>
+  <a name="ssh_CHANNEL_FAILURE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def ssh_CHANNEL_FAILURE(self, packet):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L391">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Our channel request to the other side failed.  Payload:</p><pre class="literalblock">
+    uint32  local channel number
+</pre><p>Get the <code>Deferred</code> out of self.deferreds and errback it with a <code>error.ConchError</code>.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.sendGlobalRequest">
+    
+  </a>
+  <a name="sendGlobalRequest">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def sendGlobalRequest(self, request, data, wantReply=0):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L406">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send a global request for this connection.  Current this is only used for remote-&gt;local TCP forwarding.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">request</td><td><span class="undocumented">Undocumented</span> (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">data</td><td><span class="undocumented">Undocumented</span> (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">wantReply</td><td><span class="undocumented">Undocumented</span> (type: <a href="https://docs.python.org/3/library/functions.html#bool"><code>bool</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: <code>Deferred</code>/<a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.openChannel">
+    
+  </a>
+  <a name="openChannel">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def openChannel(self, channel, extra=b''):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L425">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Open a new channel on this connection.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">channel</td><td><span class="undocumented">Undocumented</span> (type: subclass of <code>SSHChannel</code>)</td></tr><tr><td></td><td class="fieldArg">extra</td><td><span class="undocumented">Undocumented</span> (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.sendRequest">
+    
+  </a>
+  <a name="sendRequest">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def sendRequest(self, channel, requestType, data, wantReply=0):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L453">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send a request to a channel.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">channel</td><td><span class="undocumented">Undocumented</span> (type: subclass of <code>SSHChannel</code>)</td></tr><tr><td></td><td class="fieldArg">requestType</td><td><span class="undocumented">Undocumented</span> (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">data</td><td><span class="undocumented">Undocumented</span> (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">wantReply</td><td><span class="undocumented">Undocumented</span> (type: <a href="https://docs.python.org/3/library/functions.html#bool"><code>bool</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: <code>Deferred</code>/<a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.adjustWindow">
+    
+  </a>
+  <a name="adjustWindow">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def adjustWindow(self, channel, bytesToAdd):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L478">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Tell the other side that we will receive more data.  This should not normally need to be called as it is managed automatically.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">channel</td><td><span class="undocumented">Undocumented</span> (type: subclass of <a href="twisted.conch.ssh.channel.SSHChannel.html"><code>SSHChannel</code></a>)</td></tr><tr><td></td><td class="fieldArg">bytesToAdd</td><td><span class="undocumented">Undocumented</span> (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.sendData">
+    
+  </a>
+  <a name="sendData">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def sendData(self, channel, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L498">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send data to a channel.  This should not normally be used: instead use channel.write(data) as it manages the window automatically.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">channel</td><td><span class="undocumented">Undocumented</span> (type: subclass of <a href="twisted.conch.ssh.channel.SSHChannel.html"><code>SSHChannel</code></a>)</td></tr><tr><td></td><td class="fieldArg">data</td><td><span class="undocumented">Undocumented</span> (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.sendExtendedData">
+    
+  </a>
+  <a name="sendExtendedData">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def sendExtendedData(self, channel, dataType, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L513">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send extended data to a channel.  This should not normally be used: instead use channel.writeExtendedData(data, dataType) as it manages the window automatically.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">channel</td><td><span class="undocumented">Undocumented</span> (type: subclass of <a href="twisted.conch.ssh.channel.SSHChannel.html"><code>SSHChannel</code></a>)</td></tr><tr><td></td><td class="fieldArg">dataType</td><td><span class="undocumented">Undocumented</span> (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)</td></tr><tr><td></td><td class="fieldArg">data</td><td><span class="undocumented">Undocumented</span> (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.sendEOF">
+    
+  </a>
+  <a name="sendEOF">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def sendEOF(self, channel):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L531">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send an EOF (End of File) for a channel.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">channel</td><td><span class="undocumented">Undocumented</span> (type: subclass of <a href="twisted.conch.ssh.channel.SSHChannel.html"><code>SSHChannel</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.sendClose">
+    
+  </a>
+  <a name="sendClose">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def sendClose(self, channel):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L544">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Close a channel.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">channel</td><td><span class="undocumented">Undocumented</span> (type: subclass of <a href="twisted.conch.ssh.channel.SSHChannel.html"><code>SSHChannel</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.getChannel">
+    
+  </a>
+  <a name="getChannel">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def getChannel(self, channelType, windowSize, maxPacket, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L561">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>The other side requested a channel of some sort. channelType is the type of channel being requested, windowSize is the initial size of the remote window, maxPacket is the largest packet we should send, data is any other packet data (often nothing).</p><p>We return a subclass of <a href="twisted.conch.ssh.channel.SSHChannel.html"><code>SSHChannel</code></a>.</p><p>By default, this dispatches to a method 'channel_channelType' with any non-alphanumerics in the channelType replace with _'s.  If it cannot find a suitable method, it returns an OPEN_UNKNOWN_CHANNEL_TYPE error. The method is called with arguments of windowSize, maxPacket, data.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">channelType</td><td><span class="undocumented">Undocumented</span> (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">windowSize</td><td><span class="undocumented">Undocumented</span> (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)</td></tr><tr><td></td><td class="fieldArg">maxPacket</td><td><span class="undocumented">Undocumented</span> (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)</td></tr><tr><td></td><td class="fieldArg">data</td><td><span class="undocumented">Undocumented</span> (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: subclass of <a href="twisted.conch.ssh.channel.SSHChannel.html"><code>SSHChannel</code></a>/<a href="https://docs.python.org/3/library/stdtypes.html#tuple"><code>tuple</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.gotGlobalRequest">
+    
+  </a>
+  <a name="gotGlobalRequest">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def gotGlobalRequest(self, requestType, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L601">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>We got a global request.  pretty much, this is just used by the client to request that we forward a port from the server to the client. Returns either:</p><ul><li>1: request accepted</li><li>1, &lt;data&gt;: request accepted with request specific data</li><li>0: request denied</li></ul><p>By default, this dispatches to a method 'global_requestType' with -'s in requestType replaced with _'s.  The found method is passed data. If this method cannot be found, this method returns 0.  Otherwise, it returns the return value of that method.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">requestType</td><td><span class="undocumented">Undocumented</span> (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">data</td><td><span class="undocumented">Undocumented</span> (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>/<a href="https://docs.python.org/3/library/stdtypes.html#tuple"><code>tuple</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.ssh.connection.SSHConnection.channelClosed">
+    
+  </a>
+  <a name="channelClosed">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def channelClosed(self, channel):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/ssh/connection.py#L629">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.conch.scripts.conch.SSHConnection.html" class="code" data-type="Class">twisted.conch.scripts.conch.SSHConnection</a></div>
+    
+    <div><p>Called when a channel is closed. It clears the local state related to the channel, and calls channel.closed(). MAKE SURE YOU CALL THIS METHOD, even if you subclass <a href="twisted.conch.ssh.connection.SSHConnection.html"><code>SSHConnection</code></a>. If you don't, things will break mysteriously.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">channel</td><td><span class="undocumented">Undocumented</span> (type: <a href="twisted.conch.ssh.channel.SSHChannel.html"><code>SSHChannel</code></a>)</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-02-28 19:53:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

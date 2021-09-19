@@ -1,0 +1,302 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web._flatten : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="module private">t.w._flatten : module documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web.html">web</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/_flatten.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div>Context-free flattener/serializer for rendering Python objects, possibly
+complex or arbitrarily nested, as strings.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1521">
+  
+  
+<tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.web._flatten.html#escapedData">escapedData</a></td>
+    <td><span>Escape a string for inclusion in a document.</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.web._flatten.html#escapedCDATA">escapedCDATA</a></td>
+    <td><span>Escape CDATA for inclusion in a document.</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.web._flatten.html#escapedComment">escapedComment</a></td>
+    <td><span>Escape a comment for inclusion in a document.</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.web._flatten.html#_getSlotValue">_getSlotValue</a></td>
+    <td><span>Find the value of the named slot in the given stack of slot data.</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.web._flatten.html#_flattenElement">_flattenElement</a></td>
+    <td><span>Make <code>root</code> slightly more flat by yielding all its immediate 
+contents</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.web._flatten.html#_flattenTree">_flattenTree</a></td>
+    <td><span>Make <code>root</code> into an iterable of <code>str</code> and <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> by 
+doing a</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.web._flatten.html#_writeFlattenedData">_writeFlattenedData</a></td>
+    <td><span>Take strings from an iterator and pass them to a writer function.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.web._flatten.escapedData">
+    
+  </a>
+  <a name="escapedData">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    escapedData(data, inAttribute):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/_flatten.py#L24" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Escape a string for inclusion in a document.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">data</td><td>The string to escape.
+ (type: <code>str</code> or <code>unicode</code>
+)</td></tr><tr><td></td><td class="fieldArg">inAttribute</td><td>A flag which, if set, indicates that the string should be quoted for use as
+the value of an XML tag value.
+ (type: <code>bool</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The quoted form of <code>data</code>. If <code>data</code> is unicode, 
+return a utf-8 encoded string.
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._flatten.escapedCDATA">
+    
+  </a>
+  <a name="escapedCDATA">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    escapedCDATA(data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/_flatten.py#L49" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Escape CDATA for inclusion in a document.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">data</td><td>The string to escape.
+ (type: <code>str</code> or <code>unicode</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The quoted form of <code>data</code>. If <code>data</code> is unicode, 
+return a utf-8 encoded string.
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._flatten.escapedComment">
+    
+  </a>
+  <a name="escapedComment">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    escapedComment(data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/_flatten.py#L65" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Escape a comment for inclusion in a document.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">data</td><td>The string to escape.
+ (type: <code>str</code> or <code>unicode</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The quoted form of <code>data</code>. If <code>data</code> is unicode, 
+return a utf-8 encoded string.
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._flatten._getSlotValue">
+    
+  </a>
+  <a name="_getSlotValue">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _getSlotValue(name, slotData, default=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/_flatten.py#L81" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Find the value of the named slot in the given stack of slot data.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._flatten._flattenElement">
+    
+  </a>
+  <a name="_flattenElement">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _flattenElement(request, root, slotData, renderFactory, inAttribute):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/_flatten.py#L94" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Make <code>root</code> slightly more flat by yielding all its immediate 
+contents as strings, deferreds or generators that are recursive calls to 
+itself.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">request</td><td>A request object which will be passed to <a 
+href="twisted.web.iweb.IRenderable.html#render"><code>IRenderable.render</code></a>.
+</td></tr><tr><td></td><td class="fieldArg">root</td><td>An object to be made flatter.  This may be of type <code>unicode</code>, 
+<code>str</code>, <code>slot</code>, <code>Tag</code>, <code>URL</code>, 
+<code>tuple</code>, <code>list</code>, <code>GeneratorType</code>, <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>, or 
+an object that implements <a 
+href="twisted.web.iweb.IRenderable.html"><code>IRenderable</code></a>.
+</td></tr><tr><td></td><td class="fieldArg">slotData</td><td>A <code>list</code> of <code>dict</code> mapping <code>str</code> slot 
+names to data with which those slots will be replaced.
+</td></tr><tr><td></td><td class="fieldArg">renderFactory</td><td>If not <code>None</code>, An object that provides <a 
+href="twisted.web.iweb.IRenderable.html"><code>IRenderable</code></a>.
+</td></tr><tr><td></td><td class="fieldArg">inAttribute</td><td>A flag which, if set, indicates that <code>str</code> and 
+<code>unicode</code> instances encountered must be quoted as for XML tag 
+attribute values.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An iterator which yields <code>str</code>, <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>, and 
+more iterators of the same type.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._flatten._flattenTree">
+    
+  </a>
+  <a name="_flattenTree">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _flattenTree(request, root):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/_flatten.py#L190" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Make <code>root</code> into an iterable of <code>str</code> and <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> by 
+doing a depth first traversal of the tree.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">request</td><td>A request object which will be passed to <a 
+href="twisted.web.iweb.IRenderable.html#render"><code>IRenderable.render</code></a>.
+</td></tr><tr><td></td><td class="fieldArg">root</td><td>An object to be made flatter.  This may be of type <code>unicode</code>, 
+<code>str</code>, <code>slot</code>, <code>Tag</code>, <code>tuple</code>, 
+<code>list</code>, <code>GeneratorType</code>, <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>, or 
+something providing <a 
+href="twisted.web.iweb.IRenderable.html"><code>IRenderable</code></a>.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An iterator which yields objects of type <code>str</code> and <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>. A <a
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> is 
+only yielded when one is encountered in the process of flattening 
+<code>root</code>.  The returned iterator must not be iterated again until 
+the <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> is 
+called back.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._flatten._writeFlattenedData">
+    
+  </a>
+  <a name="_writeFlattenedData">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _writeFlattenedData(state, write, result):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/_flatten.py#L235" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Take strings from an iterator and pass them to a writer function.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">state</td><td>An iterator of <code>str</code> and <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>.  
+<code>str</code> instances will be passed to <code>write</code>.  <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+instances will be waited on before resuming iteration of 
+<code>state</code>.
+</td></tr><tr><td></td><td class="fieldArg">write</td><td>A callable which will be invoked with each <code>str</code> produced by 
+iterating <code>state</code>.
+</td></tr><tr><td></td><td class="fieldArg">result</td><td>A <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+which will be called back when <code>state</code> has been completely 
+flattened into <code>write</code> or which will be errbacked if an 
+exception in a generator passed to <code>state</code> or an errback from a 
+<a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+from state occurs.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>None</code>
+</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-04-03 00:32:03.
+    </address>
+  </body>
+</html>

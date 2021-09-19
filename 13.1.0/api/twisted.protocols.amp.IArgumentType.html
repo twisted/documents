@@ -1,0 +1,151 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.protocols.amp.IArgumentType : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="interface">t.p.a.IArgumentType(<span title="zope.interface.Interface">Interface</span>) : interface documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.protocols.html">protocols</a>.<a href="twisted.protocols.amp.html">amp</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.1.0/twisted/protocols/amp.py#L220">View Source</a>
+      <a href="classIndex.html#twisted.protocols.amp.IArgumentType">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known implementations: <a href="twisted.protocols.amp.Argument.html">twisted.protocols.amp.Argument</a></p>
+    </div>
+    <div>An <a 
+href="twisted.protocols.amp.IArgumentType.html"><code>IArgumentType</code></a>
+can serialize a Python object into an AMP box and deserialize information 
+from an AMP box back into a Python object.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">9.0</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1088">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.IArgumentType.html#fromBox">fromBox</a></td>
+    <td><span>Given an argument name and an AMP box containing serialized values, 
+extract one or more Python objects and add them to the <code>objects</code>
+dictionary.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.IArgumentType.html#toBox">toBox</a></td>
+    <td><span>Given an argument name and a dictionary containing structured Python 
+objects, serialize values into one or more strings and add them to the 
+<code>strings</code> dictionary.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.protocols.amp.IArgumentType.fromBox">
+    
+  </a>
+  <a name="fromBox">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    fromBox(name, strings, objects, proto):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.1.0/twisted/protocols/amp.py#L227" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Given an argument name and an AMP box containing serialized values, 
+extract one or more Python objects and add them to the <code>objects</code>
+dictionary.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>The name associated with this argument.  Most commonly, this is the key 
+which can be used to find a serialized value in <code>strings</code> and 
+which should be used as the key in <code>objects</code> to associate with a
+structured Python object. (type: <code>str</code>)</td></tr><tr><td></td><td class="fieldArg">strings</td><td>The AMP box from which to extract one or more values. (type: <code>dict</code>)</td></tr><tr><td></td><td class="fieldArg">objects</td><td>The output dictionary to populate with the value for this argument. (type: <code>dict</code>)</td></tr><tr><td></td><td class="fieldArg">proto</td><td>The protocol instance which received the AMP box being interpreted.  Most 
+likely this is an instance of <a 
+href="twisted.protocols.amp.AMP.html"><code>AMP</code></a>, but this is not
+guaranteed.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>None</code></td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.amp.IArgumentType.toBox">
+    
+  </a>
+  <a name="toBox">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    toBox(name, strings, objects, proto):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.1.0/twisted/protocols/amp.py#L255" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Given an argument name and a dictionary containing structured Python 
+objects, serialize values into one or more strings and add them to the 
+<code>strings</code> dictionary.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>The name associated with this argument.  Most commonly, this is the key 
+which can be used to find an object in <code>objects</code> and which 
+should be used as the key in <code>strings</code> to associate with a 
+<code>str</code> giving the serialized form of that object. (type: <code>str</code>)</td></tr><tr><td></td><td class="fieldArg">strings</td><td>The AMP box into which to insert one or more strings. (type: <code>dict</code>)</td></tr><tr><td></td><td class="fieldArg">objects</td><td>The input dictionary from which to extract Python objects to serialize. (type: <code>dict</code>)</td></tr><tr><td></td><td class="fieldArg">proto</td><td>The protocol instance which will send the AMP box once it is fully 
+populated.  Most likely this is an instance of <a 
+href="twisted.protocols.amp.AMP.html"><code>AMP</code></a>, but this is not
+guaranteed.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>None</code></td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2013-11-18 18:11:01.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

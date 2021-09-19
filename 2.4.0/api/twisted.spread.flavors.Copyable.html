@@ -1,0 +1,130 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.spread.flavors.Copyable&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.s.f.Copyable(<a href="twisted.spread.flavors.Serializable.html">Serializable</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.spread.flavors.html">twisted.spread.flavors</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.spread.flavors.Copyable">View In Hierarchy</a>
+    </p>
+    <div><p>Known subclasses: <a href="twisted.spread.flavors.Cacheable.html">twisted.spread.flavors.Cacheable</a>, <a href="twisted.spread.pb.CopyableFailure.html">twisted.spread.pb.CopyableFailure</a></p></div>
+    <div><p>Subclass me to get copied each time you are returned from or passed to 
+a remote method.</p>
+<p>When I am returned from or passed to a remote method call, I will be 
+converted into data via a set of callbacks (see my methods for more 
+info). That data will then be serialized using Jelly, and sent to the 
+peer.</p>
+The peer will then look up the type to represent this with; see <a 
+href="twisted.spread.flavors.RemoteCopy.html">RemoteCopy</a> for 
+details.
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.flavors.Copyable.getStateToCopy">getStateToCopy</a></td>
+          <td><span>Gather state to send when I am serialized for a peer.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.flavors.Copyable.getStateToCopyFor">getStateToCopyFor</a></td>
+          <td><span>Gather state to send when I am serialized for a particular
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.flavors.Copyable.getTypeToCopy">getTypeToCopy</a></td>
+          <td><span>Determine what type tag to send for me.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.flavors.Copyable.getTypeToCopyFor">getTypeToCopyFor</a></td>
+          <td><span>Determine what type tag to send for me.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.flavors.Copyable.jellyFor">jellyFor</a></td>
+          <td><span>Assemble type tag and state to copy for this broker.
+</span></td>
+        </tr></table>
+    
+    
+        <p>
+          Inherited from <span><a href="twisted.spread.flavors.Serializable.html">Serializable</a></span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.spread.flavors.Serializable.html#twisted.spread.flavors.Serializable.processUniqueID">processUniqueID</a></td>
+            <td><span>Return an ID which uniquely represents this object for this 
+process.
+</span></td>
+          </tr></table>
+      
+        <p>
+          Inherited from <span><a href="twisted.spread.jelly.Jellyable.html">Jellyable</a> (via <a href="twisted.spread.flavors.Serializable.html">Serializable</a>)</span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.spread.jelly.Jellyable.html#twisted.spread.jelly.Jellyable.getStateFor">getStateFor</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr></table>
+      
+    <div class="function">
+        <a name="twisted.spread.flavors.Copyable.getStateToCopy"></a>
+        <div class="functionHeader">
+          def <span>getStateToCopy(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.spread.pb.CopyableFailure.html#twisted.spread.pb.CopyableFailure.getStateToCopy">twisted.spread.pb.CopyableFailure</a></div><div><p>Gather state to send when I am serialized for a peer.</p>
+I will default to returning self.__dict__. Override this to customize 
+this behavior.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.spread.flavors.Copyable.getStateToCopyFor"></a>
+        <div class="functionHeader">
+          def <span>getStateToCopyFor(self, perspective):</span>
+        </div>
+        <div class="functionBody"><div><p>Gather state to send when I am serialized for a particular 
+perspective.</p>
+I will default to calling <a 
+href="twisted.spread.flavors.Copyable.html#twisted.spread.flavors.Copyable.getStateToCopy">getStateToCopy</a>. 
+Override this to customize this behavior.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.spread.flavors.Copyable.getTypeToCopy"></a>
+        <div class="functionHeader">
+          def <span>getTypeToCopy(self):</span>
+        </div>
+        <div class="functionBody"><div><p>Determine what type tag to send for me.</p>
+By default, send the string representation of my class 
+(package.module.Class); normally this is adequate, but you may override 
+this to change it.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.spread.flavors.Copyable.getTypeToCopyFor"></a>
+        <div class="functionHeader">
+          def <span>getTypeToCopyFor(self, perspective):</span>
+        </div>
+        <div class="functionBody"><div><p>Determine what type tag to send for me.</p>
+By default, defer to self.<a 
+href="twisted.spread.flavors.Copyable.html#twisted.spread.flavors.Copyable.getTypeToCopy">getTypeToCopy</a>() 
+normally this is adequate, but you may override this to change it.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.spread.flavors.Copyable.jellyFor"></a>
+        <div class="functionHeader">
+          def <span>jellyFor(self, jellier):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.spread.interfaces.IJellyable.html#twisted.spread.interfaces.IJellyable.jellyFor">twisted.spread.interfaces.IJellyable</a></div><div class="interfaceinfo">overrides <a href="twisted.spread.jelly.Jellyable.html#twisted.spread.jelly.Jellyable.jellyFor">twisted.spread.jelly.Jellyable.jellyFor</a></div><div class="interfaceinfo">overridden in <a href="twisted.spread.flavors.Cacheable.html#twisted.spread.flavors.Cacheable.jellyFor">twisted.spread.flavors.Cacheable</a></div><div><p>Assemble type tag and state to copy for this broker.</p>
+This will call <a 
+href="twisted.spread.flavors.Copyable.html#twisted.spread.flavors.Copyable.getTypeToCopyFor">getTypeToCopyFor</a> 
+and <a 
+href="twisted.spread.flavors.Copyable.html#twisted.spread.flavors.Copyable.getStateToCopy">getStateToCopy</a>, 
+and return an appropriate s-expression to represent me.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

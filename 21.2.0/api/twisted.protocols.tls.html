@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.protocols.tls : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://twistedmatrix.com/">Twisted</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code><a href="twisted.html" class="code" data-type="Package">twisted</a>.<a href="twisted.protocols.html" class="code" data-type="Package">protocols</a>.<a href="twisted.protocols.tls.html" class="code" data-type="Module">tls</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        module documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <a href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/protocols/tls.py">(source)</a>
+        <p></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Implementation of a TLS transport (<a href="twisted.internet.interfaces.ISSLTransport.html"><code>ISSLTransport</code></a>) as an <a href="twisted.internet.interfaces.IProtocol.html"><code>IProtocol</code></a> layered on top of any <a href="twisted.internet.interfaces.ITransport.html"><code>ITransport</code></a> implementation, based on <a href="http://www.openssl.org" target="_top">OpenSSL</a>'s memory BIO features.</p><p><a href="twisted.protocols.tls.TLSMemoryBIOFactory.html"><code>TLSMemoryBIOFactory</code></a> is a <a href="twisted.protocols.policies.WrappingFactory.html"><code>WrappingFactory</code></a> which wraps protocols created by the factory it wraps with <a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html"><code>TLSMemoryBIOProtocol</code></a>.  <a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html"><code>TLSMemoryBIOProtocol</code></a> intercedes between the underlying transport and the wrapped protocol to implement SSL and TLS.  Typical usage of this module looks like this:</p><pre class="literalblock">
+    from twisted.protocols.tls import TLSMemoryBIOFactory
+    from twisted.internet.protocol import ServerFactory
+    from twisted.internet.ssl import PrivateCertificate
+    from twisted.internet import reactor
+
+    from someapplication import ApplicationProtocol
+
+    serverFactory = ServerFactory()
+    serverFactory.protocol = ApplicationProtocol
+    certificate = PrivateCertificate.loadPEM(certPEMData)
+    contextFactory = certificate.options()
+    tlsFactory = TLSMemoryBIOFactory(contextFactory, False, serverFactory)
+    reactor.listenTCP(12345, tlsFactory)
+    reactor.run()
+</pre><p>This API offers somewhat more flexibility than <a href="twisted.internet.interfaces.IReactorSSL.html"><code>twisted.internet.interfaces.IReactorSSL</code></a>; for example, a <a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html"><code>TLSMemoryBIOProtocol</code></a> instance can use another instance of <a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html"><code>TLSMemoryBIOProtocol</code></a> as its transport, yielding TLS over TLS - useful to implement onion routing.  It can also be used to run TLS over unusual transports, such as UNIX sockets and stdio.</p></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2473">
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html" class="code" data-type="Class">TLSMemoryBIOProtocol</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOFactory.html" class="code" data-type="Class">TLSMemoryBIOFactory</a></td>
+    <td><span><a href="twisted.protocols.tls.TLSMemoryBIOFactory.html"><code>TLSMemoryBIOFactory</code></a> adds TLS to connections.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.tls._ProducerMembrane.html" class="code" data-type="Class">_ProducerMembrane</a></td>
+    <td><span>Stand-in for producer registered with a <a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html"><code>TLSMemoryBIOProtocol</code></a> transport.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.tls._ContextFactoryToConnectionFactory.html" class="code" data-type="Class">_ContextFactoryToConnectionFactory</a></td>
+    <td><span>Adapter wrapping a <a href="twisted.internet.interfaces.IOpenSSLContextFactory.html"><code>twisted.internet.interfaces.IOpenSSLContextFactory</code></a> into a <a href="twisted.internet.interfaces.IOpenSSLClientConnectionCreator.html"><code>IOpenSSLClientConnectionCreator</code></a> or <a href="twisted.internet.interfaces.IOpenSSLServerConnectionCreator.html"><code>IOpenSSLServerConnectionCreator</code></a>.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-02-28 19:53:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

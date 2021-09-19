@@ -1,0 +1,3166 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.words.protocols.irc.IRCClient : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.w.p.i.IRCClient(<a href="twisted.protocols.basic.LineReceiver.html">basic.LineReceiver</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.words.html">words</a>.<a href="twisted.words.protocols.html">protocols</a>.<a href="twisted.words.protocols.irc.html">irc</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L486">View Source</a>
+      <a href="classIndex.html#twisted.words.protocols.irc.IRCClient">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known subclasses: <a href="twisted.words.im.ircsupport.IRCProto.html">twisted.words.im.ircsupport.IRCProto</a></p>
+    </div>
+    <div><p>Internet Relay Chat client protocol, with sprinkles.</p>
+In addition to providing an interface for an IRC client protocol, this 
+class also contains reasonable implementations of many common CTCP 
+methods.
+<h1 class="heading">TODO</h1>
+  <ul>
+    <li>
+      Limit the length of messages sent (because the IRC server probably
+      does).
+    </li>
+    <li>
+      Add flood protection/rate limiting for my CTCP replies.
+    </li>
+    <li>
+      NickServ cooperation.  (a mix-in?)
+    </li>
+    <li>
+      Heartbeat.  The transport may die in such a way that it does not 
+      realize it is dead until it is written to.  Sending something (like 
+      &quot;PING this.irc-host.net&quot;) during idle peroids would 
+      alleviate that.  If you're concerned with the stability of the host 
+      as well as that of the transport, you might care to watch for the 
+      corresponding PONG.
+    </li>
+  </ul>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">nickname</td><td>Nickname the client will use.
+</td></tr><tr><td></td><td class="fieldArg">password</td><td>Password used to log on to the server.  May be <code>None</code>.
+</td></tr><tr><td></td><td class="fieldArg">realname</td><td>Supplied to the server during login as the &quot;Real name&quot; or 
+&quot;ircname&quot;.  May be <code>None</code>.
+</td></tr><tr><td></td><td class="fieldArg">username</td><td>Supplied to the server during login as the &quot;User name&quot;. May be
+<code>None</code>
+</td></tr><tr><td></td><td class="fieldArg">userinfo</td><td>Sent in reply to a USERINFO CTCP query.  If <code>None</code>, no 
+USERINFO reply will be sent. &quot;This is used to transmit a string which 
+is settable by the user (and never should be set by the client).&quot;
+</td></tr><tr><td></td><td class="fieldArg">fingerReply</td><td>Sent in reply to a FINGER CTCP query.  If <code>None</code>, no FINGER 
+reply will be sent.
+ (type: Callable or String
+)</td></tr><tr><td></td><td class="fieldArg">versionName</td><td>CTCP VERSION reply, client name.  If <code>None</code>, no VERSION reply
+will be sent.
+</td></tr><tr><td></td><td class="fieldArg">versionNum</td><td>CTCP VERSION reply, client version,
+</td></tr><tr><td></td><td class="fieldArg">versionEnv</td><td>CTCP VERSION reply, environment the client is running in.
+</td></tr><tr><td></td><td class="fieldArg">sourceURL</td><td>CTCP SOURCE reply, a URL where the source code of this client may be 
+found.  If <code>None</code>, no SOURCE reply will be sent.
+</td></tr><tr><td></td><td class="fieldArg">lineRate</td><td>Minimum delay between lines sent to the server.  If <code>None</code>, 
+no delay will be imposed.
+ (type: Number of Seconds.
+)</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1324">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#sendLine">sendLine</a></td>
+    <td><span>Sends a line to the other end of the connection.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#created">created</a></td>
+    <td><span>Called with creation date information about the server, usually at 
+logon.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#yourHost">yourHost</a></td>
+    <td><span>Called with daemon information about the server, usually at logon.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#myInfo">myInfo</a></td>
+    <td><span>Called with information about the server, usually at logon.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#luserClient">luserClient</a></td>
+    <td><span>Called with information about the number of connections, usually at 
+logon.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#bounce">bounce</a></td>
+    <td><span>Called with information about where the client should reconnect.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#isupport">isupport</a></td>
+    <td><span>Called with various information about what the server supports.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#luserChannels">luserChannels</a></td>
+    <td><span>Called with the number of channels existant on the server.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#luserOp">luserOp</a></td>
+    <td><span>Called with the number of ops logged on to the server.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#luserMe">luserMe</a></td>
+    <td><span>Called with information about the server connected to.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#privmsg">privmsg</a></td>
+    <td><span>Called when I have a message from a user to me or a channel.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#joined">joined</a></td>
+    <td><span>Called when I finish joining a channel.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#left">left</a></td>
+    <td><span>Called when I have left a channel.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#noticed">noticed</a></td>
+    <td><span>Called when I have a notice from a user to me or a channel.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#modeChanged">modeChanged</a></td>
+    <td><span>Called when a channel's modes are changed
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#pong">pong</a></td>
+    <td><span>Called with the results of a CTCP PING query.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#signedOn">signedOn</a></td>
+    <td><span>Called after sucessfully signing on to the server.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#kickedFrom">kickedFrom</a></td>
+    <td><span>Called when I am kicked from a channel.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#nickChanged">nickChanged</a></td>
+    <td><span>Called when my nick has been changed.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#userJoined">userJoined</a></td>
+    <td><span>Called when I see another user joining a channel.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#userLeft">userLeft</a></td>
+    <td><span>Called when I see another user leaving a channel.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#userQuit">userQuit</a></td>
+    <td><span>Called when I see another user disconnect from the network.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#userKicked">userKicked</a></td>
+    <td><span>Called when I observe someone else being kicked from a channel.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#action">action</a></td>
+    <td><span>Called when I see a user perform an ACTION on a channel.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#topicUpdated">topicUpdated</a></td>
+    <td><span>In channel, user changed the topic to newTopic.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#userRenamed">userRenamed</a></td>
+    <td><span>A user changed their name from oldname to newname.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#receivedMOTD">receivedMOTD</a></td>
+    <td><span>I received a message-of-the-day banner from the server.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#join">join</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#leave">leave</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#kick">kick</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#topic">topic</a></td>
+    <td><span>Attempt to set the topic of the given channel, or ask what it is.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#mode">mode</a></td>
+    <td><span>Change the modes on a user or channel.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#say">say</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#msg">msg</a></td>
+    <td><span>Send a message to a user or channel.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#notice">notice</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#away">away</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#register">register</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#setNick">setNick</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#quit">quit</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#me">me</a></td>
+    <td><span>Strike a pose.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#ping">ping</a></td>
+    <td><span>Measure round-trip delay to another IRC client.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#dccSend">dccSend</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#dccResume">dccResume</a></td>
+    <td><span>Send a DCC RESUME request to another user.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#dccAcceptResume">dccAcceptResume</a></td>
+    <td><span>Send a DCC ACCEPT response to clients who have requested a resume.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_ERR_NICKNAMEINUSE">irc_ERR_NICKNAMEINUSE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_ERR_PASSWDMISMATCH">irc_ERR_PASSWDMISMATCH</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_RPL_WELCOME">irc_RPL_WELCOME</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_JOIN">irc_JOIN</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_PART">irc_PART</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_QUIT">irc_QUIT</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_MODE">irc_MODE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_PING">irc_PING</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_PRIVMSG">irc_PRIVMSG</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_NOTICE">irc_NOTICE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_NICK">irc_NICK</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_KICK">irc_KICK</a></td>
+    <td><span>Kicked?  Who?  Not me, I hope.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_TOPIC">irc_TOPIC</a></td>
+    <td><span>Someone in the channel set the topic.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_RPL_TOPIC">irc_RPL_TOPIC</a></td>
+    <td><span>I just joined the channel, and the server is telling me the current 
+topic.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_RPL_NOTOPIC">irc_RPL_NOTOPIC</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_RPL_MOTDSTART">irc_RPL_MOTDSTART</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_RPL_MOTD">irc_RPL_MOTD</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_RPL_ENDOFMOTD">irc_RPL_ENDOFMOTD</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_RPL_CREATED">irc_RPL_CREATED</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_RPL_YOURHOST">irc_RPL_YOURHOST</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_RPL_MYINFO">irc_RPL_MYINFO</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_RPL_BOUNCE">irc_RPL_BOUNCE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_RPL_LUSERCLIENT">irc_RPL_LUSERCLIENT</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_RPL_LUSEROP">irc_RPL_LUSEROP</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_RPL_LUSERCHANNELS">irc_RPL_LUSERCHANNELS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_RPL_LUSERME">irc_RPL_LUSERME</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#irc_unknown">irc_unknown</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#ctcpQuery">ctcpQuery</a></td>
+    <td><span>Dispatch method for any CTCP queries received.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#ctcpQuery_ACTION">ctcpQuery_ACTION</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#ctcpQuery_PING">ctcpQuery_PING</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#ctcpQuery_FINGER">ctcpQuery_FINGER</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#ctcpQuery_VERSION">ctcpQuery_VERSION</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#ctcpQuery_SOURCE">ctcpQuery_SOURCE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#ctcpQuery_USERINFO">ctcpQuery_USERINFO</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#ctcpQuery_CLIENTINFO">ctcpQuery_CLIENTINFO</a></td>
+    <td><span>A master index of what CTCP tags this client knows.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#ctcpQuery_ERRMSG">ctcpQuery_ERRMSG</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#ctcpQuery_TIME">ctcpQuery_TIME</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#ctcpQuery_DCC">ctcpQuery_DCC</a></td>
+    <td><span>Initiate a Direct Client Connection
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#dcc_SEND">dcc_SEND</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#dcc_ACCEPT">dcc_ACCEPT</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#dcc_RESUME">dcc_RESUME</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#dcc_CHAT">dcc_CHAT</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#dccDoSend">dccDoSend</a></td>
+    <td><span>Called when I receive a DCC SEND offer from a client.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#dccDoResume">dccDoResume</a></td>
+    <td><span>Called when a client is trying to resume an offered file via DCC send.  
+It should be either replied to with a DCC ACCEPT or ignored (default).
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#dccDoAcceptResume">dccDoAcceptResume</a></td>
+    <td><span>Called when a client has verified and accepted a DCC resume request made
+by us.  By default it will do nothing.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#dccDoChat">dccDoChat</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#ctcpUnknownQuery">ctcpUnknownQuery</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#ctcpMakeReply">ctcpMakeReply</a></td>
+    <td><span>Send one or more extended messages as a CTCP reply.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#ctcpMakeQuery">ctcpMakeQuery</a></td>
+    <td><span>Send one or more extended messages as a CTCP query.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#ctcpReply">ctcpReply</a></td>
+    <td><span>Dispatch method for any CTCP replies received.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#ctcpReply_PING">ctcpReply_PING</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#ctcpUnknownReply">ctcpUnknownReply</a></td>
+    <td><span>Called when a fitting ctcpReply_ method is not found.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#badMessage">badMessage</a></td>
+    <td><span>When I get a message that's so broken I can't use it.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#quirkyMessage">quirkyMessage</a></td>
+    <td><span>This is called when I receive a message which is peculiar, but not 
+wholly indecipherable.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#connectionMade">connectionMade</a></td>
+    <td><span>Called when a connection is made.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#dataReceived">dataReceived</a></td>
+    <td><span>Protocol.dataReceived. Translates bytes into lines, and calls 
+lineReceived (or rawDataReceived, depending on mode.)
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#lineReceived">lineReceived</a></td>
+    <td><span>Override this for when each line is received.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#handleCommand">handleCommand</a></td>
+    <td><span>Determine the function to call for the given command and call it with 
+the given arguments.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#__getstate__">__getstate__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#_reallySendLine">_reallySendLine</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html#_sendLine">_sendLine</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a>:
+        </p>
+        <table class="children sortable" id="id1325">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#clearLineBuffer">clearLineBuffer</a></td>
+    <td><span>Clear buffered data.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#setLineMode">setLineMode</a></td>
+    <td><span>Sets the line-mode of this receiver.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#setRawMode">setRawMode</a></td>
+    <td><span>Sets the raw mode of this receiver. Further data received will be sent 
+to rawDataReceived rather than lineReceived.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#rawDataReceived">rawDataReceived</a></td>
+    <td><span>Override this for when raw data is received.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#lineLengthExceeded">lineLengthExceeded</a></td>
+    <td><span>Called when the maximum line length has been reached. Override if it 
+needs to be dealt with in some special way.
+</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.internet.protocol.Protocol.html">Protocol</a> (via <a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a>):
+        </p>
+        <table class="children sortable" id="id1326">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Protocol.html#connectionLost">connectionLost</a></td>
+    <td><span>Called when the connection is shut down.
+</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.internet.protocol.BaseProtocol.html">BaseProtocol</a> (via <a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a>, <a href="twisted.internet.protocol.Protocol.html">Protocol</a>):
+        </p>
+        <table class="children sortable" id="id1327">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.BaseProtocol.html#makeConnection">makeConnection</a></td>
+    <td><span>Make a connection to a transport and a server.
+</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.protocols.basic._PauseableMixin.html">_PauseableMixin</a> (via <a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a>):
+        </p>
+        <table class="children sortable" id="id1328">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#pauseProducing">pauseProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#resumeProducing">resumeProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#stopProducing">stopProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient._reallySendLine">
+    
+  </a>
+  <a name="_reallySendLine">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _reallySendLine(self, line):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L565" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.sendLine">
+    
+  </a>
+  <a name="sendLine">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    sendLine(self, line):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L568" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.protocols.basic.LineReceiver.html#sendLine">twisted.protocols.basic.LineReceiver.sendLine</a></div>
+    <div>Sends a line to the other end of the connection.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient._sendLine">
+    
+  </a>
+  <a name="_sendLine">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _sendLine(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L576" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.created">
+    
+  </a>
+  <a name="created">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    created(self, when):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L591" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called with creation date information about the server, usually at 
+logon.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">when</td><td>A string describing when the server was created, probably.
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.yourHost">
+    
+  </a>
+  <a name="yourHost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    yourHost(self, info):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L598" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called with daemon information about the server, usually at logon.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">info</td><td> (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">when</td><td>A string describing what software the server is running, probably.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.myInfo">
+    
+  </a>
+  <a name="myInfo">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    myInfo(self, servername, version, umodes, cmodes):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L605" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called with information about the server, usually at logon.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">servername</td><td>The hostname of this server.
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">version</td><td>A description of what software this server runs.
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">umodes</td><td>All the available user modes.
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">cmodes</td><td>All the available channel modes.
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.luserClient">
+    
+  </a>
+  <a name="luserClient">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    luserClient(self, info):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L621" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called with information about the number of connections, usually at 
+logon.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">info</td><td>A description of the number of clients and servers connected to the 
+network, probably.
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.bounce">
+    
+  </a>
+  <a name="bounce">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    bounce(self, info):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L629" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called with information about where the client should reconnect.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">info</td><td>A plaintext description of the address that should be connected to.
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.isupport">
+    
+  </a>
+  <a name="isupport">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    isupport(self, options):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L637" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called with various information about what the server supports.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">options</td><td>Descriptions of features or limits of the server, possibly in the form 
+&quot;NAME=VALUE&quot;.
+ (type: <code>list</code> of <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.luserChannels">
+    
+  </a>
+  <a name="luserChannels">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    luserChannels(self, channels):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L645" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called with the number of channels existant on the server.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">channels</td><td> (type: <code>int</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.luserOp">
+    
+  </a>
+  <a name="luserOp">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    luserOp(self, ops):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L651" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called with the number of ops logged on to the server.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">ops</td><td> (type: <code>int</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.luserMe">
+    
+  </a>
+  <a name="luserMe">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    luserMe(self, info):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L657" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called with information about the server connected to.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">info</td><td>A plaintext string describing the number of users and servers connected 
+to this server.
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.privmsg">
+    
+  </a>
+  <a name="privmsg">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    privmsg(self, user, channel, message):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L667" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.words.im.ircsupport.IRCProto.html">twisted.words.im.ircsupport.IRCProto</a></div>
+    <div>Called when I have a message from a user to me or a channel.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.joined">
+    
+  </a>
+  <a name="joined">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    joined(self, channel):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L672" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Called when I finish joining a channel.</p>
+channel has the starting character (# or &amp;) intact.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.left">
+    
+  </a>
+  <a name="left">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    left(self, channel):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L679" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Called when I have left a channel.</p>
+channel has the starting character (# or &amp;) intact.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.noticed">
+    
+  </a>
+  <a name="noticed">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    noticed(self, user, channel, message):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L686" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.words.im.ircsupport.IRCProto.html">twisted.words.im.ircsupport.IRCProto</a></div>
+    <div><p>Called when I have a notice from a user to me or a channel.</p>
+By default, this is equivalent to IRCClient.privmsg, but if your client 
+makes any automated replies, you must override this! From the RFC:
+<pre class="literalblock">
+   The difference between NOTICE and PRIVMSG is that
+   automatic replies MUST NEVER be sent in response to a
+   NOTICE message. [...] The object of this rule is to avoid
+   loops between clients automatically sending something in
+   response to something it received.
+</pre>
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.modeChanged">
+    
+  </a>
+  <a name="modeChanged">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    modeChanged(self, user, channel, set, modes, args):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L701" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when a channel's modes are changed
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">user</td><td>The user and hostmask which instigated this change.
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">channel</td><td>The channel for which the modes are changing.
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">set</td><td>true if the mode is being added, false if it is being removed.
+ (type: <code>bool</code> or <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">modes</td><td>The mode or modes which are being changed.
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">args</td><td>Any additional information required for the mode change.
+ (type: <code>tuple</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.pong">
+    
+  </a>
+  <a name="pong">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    pong(self, user, secs):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L722" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called with the results of a CTCP PING query.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.signedOn">
+    
+  </a>
+  <a name="signedOn">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    signedOn(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L727" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called after sucessfully signing on to the server.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.kickedFrom">
+    
+  </a>
+  <a name="kickedFrom">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    kickedFrom(self, channel, kicker, message):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L732" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.words.im.ircsupport.IRCProto.html">twisted.words.im.ircsupport.IRCProto</a></div>
+    <div>Called when I am kicked from a channel.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.nickChanged">
+    
+  </a>
+  <a name="nickChanged">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    nickChanged(self, nick):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L737" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when my nick has been changed.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.userJoined">
+    
+  </a>
+  <a name="userJoined">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    userJoined(self, user, channel):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L745" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when I see another user joining a channel.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.userLeft">
+    
+  </a>
+  <a name="userLeft">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    userLeft(self, user, channel):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L750" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when I see another user leaving a channel.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.userQuit">
+    
+  </a>
+  <a name="userQuit">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    userQuit(self, user, quitMessage):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L755" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when I see another user disconnect from the network.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.userKicked">
+    
+  </a>
+  <a name="userKicked">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    userKicked(self, kickee, channel, kicker, message):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L760" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.words.im.ircsupport.IRCProto.html">twisted.words.im.ircsupport.IRCProto</a></div>
+    <div>Called when I observe someone else being kicked from a channel.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.action">
+    
+  </a>
+  <a name="action">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    action(self, user, channel, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L765" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.words.im.ircsupport.IRCProto.html">twisted.words.im.ircsupport.IRCProto</a></div>
+    <div>Called when I see a user perform an ACTION on a channel.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.topicUpdated">
+    
+  </a>
+  <a name="topicUpdated">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    topicUpdated(self, user, channel, newTopic):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L770" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>In channel, user changed the topic to newTopic.</p>
+Also called when first joining a channel.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.userRenamed">
+    
+  </a>
+  <a name="userRenamed">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    userRenamed(self, oldname, newname):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L777" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>A user changed their name from oldname to newname.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.receivedMOTD">
+    
+  </a>
+  <a name="receivedMOTD">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    receivedMOTD(self, motd):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L784" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>I received a message-of-the-day banner from the server.</p>
+motd is a list of strings, where each string was sent as a seperate 
+message from the server. To display, you might want to use:
+<pre class="literalblock">
+   string.join(motd, '\n')
+</pre>
+to get a nicely formatted string.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.join">
+    
+  </a>
+  <a name="join">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    join(self, channel, key=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L799" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.leave">
+    
+  </a>
+  <a name="leave">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    leave(self, channel, reason=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L806" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.kick">
+    
+  </a>
+  <a name="kick">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    kick(self, channel, user, reason=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L813" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.topic">
+    
+  </a>
+  <a name="topic">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    topic(self, channel, topic=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L822" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Attempt to set the topic of the given channel, or ask what it is.</p>
+If topic is None, then I sent a topic query instead of trying to set the
+topic. The server should respond with a TOPIC message containing the 
+current topic of the given channel.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.mode">
+    
+  </a>
+  <a name="mode">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    mode(self, chan, set, modes, limit=None, user=None, mask=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L836" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Change the modes on a user or channel.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.say">
+    
+  </a>
+  <a name="say">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    say(self, channel, message, length=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L851" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.msg">
+    
+  </a>
+  <a name="msg">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    msg(self, user, message, length=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L855" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Send a message to a user or channel.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">user</td><td>The username or channel name to which to direct the message.
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">message</td><td>The text to send
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">length</td><td>The maximum number of octets to send at a time.  This has the effect of 
+turning a single call to msg() into multiple commands to the server.  This 
+is useful when long messages may be sent that would otherwise cause the 
+server to kick us off or silently truncate the text we are sending.  If 
+None is passed, the entire message is always send in one command.
+ (type: <code>int</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.notice">
+    
+  </a>
+  <a name="notice">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    notice(self, user, message):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L890" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.away">
+    
+  </a>
+  <a name="away">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    away(self, message=''):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L893" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.register">
+    
+  </a>
+  <a name="register">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    register(self, nickname, hostname='foo', servername='bar'):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L896" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.setNick">
+    
+  </a>
+  <a name="setNick">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setNick(self, nickname):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L904" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.words.im.ircsupport.IRCProto.html">twisted.words.im.ircsupport.IRCProto</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.quit">
+    
+  </a>
+  <a name="quit">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    quit(self, message=''):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L908" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.me">
+    
+  </a>
+  <a name="me">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    me(self, channel, action):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L913" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Strike a pose.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.ping">
+    
+  </a>
+  <a name="ping">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ping(self, user, text=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L922" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Measure round-trip delay to another IRC client.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.dccSend">
+    
+  </a>
+  <a name="dccSend">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dccSend(self, user, file):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L944" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.dccResume">
+    
+  </a>
+  <a name="dccResume">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dccResume(self, user, fileName, port, resumePos):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L970" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Send a DCC RESUME request to another user.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.dccAcceptResume">
+    
+  </a>
+  <a name="dccAcceptResume">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dccAcceptResume(self, user, fileName, port, resumePos):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L975" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Send a DCC ACCEPT response to clients who have requested a resume.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_ERR_NICKNAMEINUSE">
+    
+  </a>
+  <a name="irc_ERR_NICKNAMEINUSE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_ERR_NICKNAMEINUSE(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L985" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_ERR_PASSWDMISMATCH">
+    
+  </a>
+  <a name="irc_ERR_PASSWDMISMATCH">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_ERR_PASSWDMISMATCH(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L988" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_RPL_WELCOME">
+    
+  </a>
+  <a name="irc_RPL_WELCOME">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_RPL_WELCOME(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L991" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_JOIN">
+    
+  </a>
+  <a name="irc_JOIN">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_JOIN(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L994" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.words.im.ircsupport.IRCProto.html">twisted.words.im.ircsupport.IRCProto</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_PART">
+    
+  </a>
+  <a name="irc_PART">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_PART(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1002" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.words.im.ircsupport.IRCProto.html">twisted.words.im.ircsupport.IRCProto</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_QUIT">
+    
+  </a>
+  <a name="irc_QUIT">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_QUIT(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1010" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.words.im.ircsupport.IRCProto.html">twisted.words.im.ircsupport.IRCProto</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_MODE">
+    
+  </a>
+  <a name="irc_MODE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_MODE(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1014" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_PING">
+    
+  </a>
+  <a name="irc_PING">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_PING(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1021" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_PRIVMSG">
+    
+  </a>
+  <a name="irc_PRIVMSG">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_PRIVMSG(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1024" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_NOTICE">
+    
+  </a>
+  <a name="irc_NOTICE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_NOTICE(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1043" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_NICK">
+    
+  </a>
+  <a name="irc_NICK">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_NICK(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1060" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.words.im.ircsupport.IRCProto.html">twisted.words.im.ircsupport.IRCProto</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_KICK">
+    
+  </a>
+  <a name="irc_KICK">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_KICK(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1067" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Kicked?  Who?  Not me, I hope.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_TOPIC">
+    
+  </a>
+  <a name="irc_TOPIC">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_TOPIC(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1080" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.words.im.ircsupport.IRCProto.html">twisted.words.im.ircsupport.IRCProto</a></div>
+    <div>Someone in the channel set the topic.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_RPL_TOPIC">
+    
+  </a>
+  <a name="irc_RPL_TOPIC">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_RPL_TOPIC(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1088" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.words.im.ircsupport.IRCProto.html">twisted.words.im.ircsupport.IRCProto</a></div>
+    <div>I just joined the channel, and the server is telling me the current 
+topic.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_RPL_NOTOPIC">
+    
+  </a>
+  <a name="irc_RPL_NOTOPIC">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_RPL_NOTOPIC(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1096" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_RPL_MOTDSTART">
+    
+  </a>
+  <a name="irc_RPL_MOTDSTART">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_RPL_MOTDSTART(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1102" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_RPL_MOTD">
+    
+  </a>
+  <a name="irc_RPL_MOTD">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_RPL_MOTD(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1107" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_RPL_ENDOFMOTD">
+    
+  </a>
+  <a name="irc_RPL_ENDOFMOTD">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_RPL_ENDOFMOTD(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1112" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_RPL_CREATED">
+    
+  </a>
+  <a name="irc_RPL_CREATED">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_RPL_CREATED(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1115" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_RPL_YOURHOST">
+    
+  </a>
+  <a name="irc_RPL_YOURHOST">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_RPL_YOURHOST(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1118" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_RPL_MYINFO">
+    
+  </a>
+  <a name="irc_RPL_MYINFO">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_RPL_MYINFO(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1121" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_RPL_BOUNCE">
+    
+  </a>
+  <a name="irc_RPL_BOUNCE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_RPL_BOUNCE(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1127" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_RPL_LUSERCLIENT">
+    
+  </a>
+  <a name="irc_RPL_LUSERCLIENT">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_RPL_LUSERCLIENT(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1134" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_RPL_LUSEROP">
+    
+  </a>
+  <a name="irc_RPL_LUSEROP">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_RPL_LUSEROP(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1137" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_RPL_LUSERCHANNELS">
+    
+  </a>
+  <a name="irc_RPL_LUSERCHANNELS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_RPL_LUSERCHANNELS(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1143" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_RPL_LUSERME">
+    
+  </a>
+  <a name="irc_RPL_LUSERME">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_RPL_LUSERME(self, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1149" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.irc_unknown">
+    
+  </a>
+  <a name="irc_unknown">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    irc_unknown(self, prefix, command, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1152" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.words.im.ircsupport.IRCProto.html">twisted.words.im.ircsupport.IRCProto</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.ctcpQuery">
+    
+  </a>
+  <a name="ctcpQuery">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpQuery(self, user, channel, messages):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1158" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Dispatch method for any CTCP queries received.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.ctcpQuery_ACTION">
+    
+  </a>
+  <a name="ctcpQuery_ACTION">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpQuery_ACTION(self, user, channel, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1168" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.ctcpQuery_PING">
+    
+  </a>
+  <a name="ctcpQuery_PING">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpQuery_PING(self, user, channel, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1171" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.ctcpQuery_FINGER">
+    
+  </a>
+  <a name="ctcpQuery_FINGER">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpQuery_FINGER(self, user, channel, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1175" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.ctcpQuery_VERSION">
+    
+  </a>
+  <a name="ctcpQuery_VERSION">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpQuery_VERSION(self, user, channel, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1190" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.ctcpQuery_SOURCE">
+    
+  </a>
+  <a name="ctcpQuery_SOURCE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpQuery_SOURCE(self, user, channel, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1202" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.ctcpQuery_USERINFO">
+    
+  </a>
+  <a name="ctcpQuery_USERINFO">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpQuery_USERINFO(self, user, channel, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1215" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.ctcpQuery_CLIENTINFO">
+    
+  </a>
+  <a name="ctcpQuery_CLIENTINFO">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpQuery_CLIENTINFO(self, user, channel, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1223" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>A master index of what CTCP tags this client knows.</p>
+If no arguments are provided, respond with a list of known tags. If an 
+argument is provided, provide human-readable help on the usage of that 
+tag.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.ctcpQuery_ERRMSG">
+    
+  </a>
+  <a name="ctcpQuery_ERRMSG">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpQuery_ERRMSG(self, user, channel, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1254" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.ctcpQuery_TIME">
+    
+  </a>
+  <a name="ctcpQuery_TIME">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpQuery_TIME(self, user, channel, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1261" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.ctcpQuery_DCC">
+    
+  </a>
+  <a name="ctcpQuery_DCC">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpQuery_DCC(self, user, channel, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1270" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Initiate a Direct Client Connection
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.dcc_SEND">
+    
+  </a>
+  <a name="dcc_SEND">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dcc_SEND(self, user, channel, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1290" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.dcc_ACCEPT">
+    
+  </a>
+  <a name="dcc_ACCEPT">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dcc_ACCEPT(self, user, channel, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1314" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.dcc_RESUME">
+    
+  </a>
+  <a name="dcc_RESUME">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dcc_RESUME(self, user, channel, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1327" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.dcc_CHAT">
+    
+  </a>
+  <a name="dcc_CHAT">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dcc_CHAT(self, user, channel, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1339" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.dccDoSend">
+    
+  </a>
+  <a name="dccDoSend">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dccDoSend(self, user, address, port, fileName, size, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1357" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Called when I receive a DCC SEND offer from a client.</p>
+By default, I do nothing here.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.dccDoResume">
+    
+  </a>
+  <a name="dccDoResume">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dccDoResume(self, user, file, port, resumePos):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1368" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when a client is trying to resume an offered file via DCC send.  
+It should be either replied to with a DCC ACCEPT or ignored (default).
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.dccDoAcceptResume">
+    
+  </a>
+  <a name="dccDoAcceptResume">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dccDoAcceptResume(self, user, file, port, resumePos):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1374" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when a client has verified and accepted a DCC resume request made
+by us.  By default it will do nothing.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.dccDoChat">
+    
+  </a>
+  <a name="dccDoChat">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dccDoChat(self, user, channel, address, port, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1379" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.ctcpUnknownQuery">
+    
+  </a>
+  <a name="ctcpUnknownQuery">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpUnknownQuery(self, user, channel, tag, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1392" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.ctcpMakeReply">
+    
+  </a>
+  <a name="ctcpMakeReply">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpMakeReply(self, user, messages):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1401" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Send one or more extended messages as a CTCP reply.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">messages</td><td> (type: a list of extended messages.  An extended message is a (tag, data) 
+tuple, where 'data' may be <code>None</code>.
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.ctcpMakeQuery">
+    
+  </a>
+  <a name="ctcpMakeQuery">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpMakeQuery(self, user, messages):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1411" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Send one or more extended messages as a CTCP query.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">messages</td><td> (type: a list of extended messages.  An extended message is a (tag, data) 
+tuple, where 'data' may be <code>None</code>.
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.ctcpReply">
+    
+  </a>
+  <a name="ctcpReply">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpReply(self, user, channel, messages):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1422" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Dispatch method for any CTCP replies received.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.ctcpReply_PING">
+    
+  </a>
+  <a name="ctcpReply_PING">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpReply_PING(self, user, channel, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1432" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.ctcpUnknownReply">
+    
+  </a>
+  <a name="ctcpUnknownReply">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpUnknownReply(self, user, channel, tag, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1441" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Called when a fitting ctcpReply_ method is not found.</p>
+XXX: If the client makes arbitrary CTCP queries, this method should 
+probably show the responses to them instead of treating them as 
+anomolies.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.badMessage">
+    
+  </a>
+  <a name="badMessage">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    badMessage(self, line, excType, excValue, tb):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1454" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>When I get a message that's so broken I can't use it.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.quirkyMessage">
+    
+  </a>
+  <a name="quirkyMessage">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    quirkyMessage(self, s):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1462" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>This is called when I receive a message which is peculiar, but not 
+wholly indecipherable.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.connectionMade">
+    
+  </a>
+  <a name="connectionMade">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    connectionMade(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1470" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#connectionMade">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.BaseProtocol.html#connectionMade">twisted.internet.protocol.BaseProtocol.connectionMade</a></div><div class="interfaceinfo">overridden in <a href="twisted.words.im.ircsupport.IRCProto.html">twisted.words.im.ircsupport.IRCProto</a></div>
+    <div><p>Called when a connection is made.</p>
+This may be considered the initializer of the protocol, because it is 
+called when the connection is completed.  For clients, this is called once 
+the connection to the server has been established; for servers, this is 
+called after an accept() call stops blocking and a socket has been 
+received.  If you need to send any greeting or initial message, do it 
+here.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.dataReceived">
+    
+  </a>
+  <a name="dataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dataReceived(self, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1475" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#dataReceived">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.protocols.basic.LineReceiver.html#dataReceived">twisted.protocols.basic.LineReceiver.dataReceived</a></div>
+    <div>Protocol.dataReceived. Translates bytes into lines, and calls 
+lineReceived (or rawDataReceived, depending on mode.)
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.lineReceived">
+    
+  </a>
+  <a name="lineReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    lineReceived(self, line):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1478" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.protocols.basic.LineReceiver.html#lineReceived">twisted.protocols.basic.LineReceiver.lineReceived</a></div>
+    <div>Override this for when each line is received.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.handleCommand">
+    
+  </a>
+  <a name="handleCommand">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    handleCommand(self, command, prefix, params):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1489" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Determine the function to call for the given command and call it with 
+the given arguments.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.irc.IRCClient.__getstate__">
+    
+  </a>
+  <a name="__getstate__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __getstate__(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/irc.py#L1503" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-10-27 15:57:47.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

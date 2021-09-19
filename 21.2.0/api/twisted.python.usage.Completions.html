@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.python.usage.Completions : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://twistedmatrix.com/">Twisted</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><a href="twisted.html" class="code" data-type="Package">twisted</a>.<a href="twisted.python.html" class="code" data-type="Package">python</a>.<a href="twisted.python.usage.html" class="code" data-type="Module">usage</a>.<a href="twisted.python.usage.Completions.html" class="code" data-type="Class">Completions</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> twisted.python.usage.Completions: <a href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/python/usage.py#L778">(source)</a></code></p>
+        <p><a href="classIndex.html#twisted.python.usage.Completions">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Extra metadata for the shell tab-completion system.</p></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2727">
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.python.usage.Completions.html#descriptions" class="code" data-type="Instance Variable">descriptions</a></td>
+    <td><span>ex. <code>{"foo" : "use this description for foo instead"}</code> A dict mapping long option names to alternate descriptions.  When this variable is defined, the descriptions contained here will override those descriptions provided in the optFlags and optParameters variables.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.python.usage.Completions.html#multiUse" class="code" data-type="Instance Variable">multiUse</a></td>
+    <td><span>ex. <code> ["foo", "bar"] </code> An iterable containing those long option names which may appear on the command line more than once. By default, options will only be completed one time.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.python.usage.Completions.html#mutuallyExclusive" class="code" data-type="Instance Variable">mutuallyExclusive</a></td>
+    <td><span>ex. <code> [("foo", "bar"), ("bar", "baz")] </code> A sequence of sequences, with each sub-sequence containing those long option names that are mutually exclusive. That is, those options that cannot appear on the command line together.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.python.usage.Completions.html#optActions" class="code" data-type="Instance Variable">optActions</a></td>
+    <td><span>A dict mapping long option names to shell "actions". These actions define what may be completed as the argument to the given option. By default, all files/dirs will be completed if no action is given. For example:<pre class="literalblock">
+    {"foo"    : CompleteFiles("*.py", descr="python files"),
+     "bar"    : CompleteList(["one", "two", "three"]),
+     "colors" : CompleteMultiList(["red", "green", "blue"])}
+</pre><p>Callables may instead be given for the values in this dict. The callable should accept no arguments, and return a <code>Completer</code> instance used as the action in the same way as the literal actions in the example above.</p><p>As you can see in the example above. The "foo" option will have files that end in .py completed when the user presses Tab. The "bar" option will have either of the strings "one", "two", or "three" completed when the user presses Tab.</p><p>"colors" will allow multiple arguments to be completed, separated by commas. The possible arguments are red, green, and blue. Examples:</p><pre class="literalblock">
+    my_command --foo some-file.foo --colors=red,green
+    my_command --colors=green
+    my_command --colors=green,blue
+</pre><p>Descriptions for the actions may be given with the optional <code>descr</code> keyword argument. This is separate from the description of the option itself.</p><p>Normally Zsh does not show these descriptions unless you have "verbose" completion turned on. Turn on verbosity with this in your ~/.zshrc:</p><pre class="literalblock">
+    zstyle ':completion:*' verbose yes
+    zstyle ':completion:*:descriptions' format '%B%d%b'
+</pre></span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.python.usage.Completions.html#extraActions" class="code" data-type="Instance Variable">extraActions</a></td>
+    <td><span>Extra arguments are those arguments typically appearing at the end of the command-line, which are not associated with any particular named option. That is, the arguments that are given to the parseArgs() method of your usage.Options subclass. For example:<pre class="literalblock">
+    [CompleteFiles(descr="file to read from"),
+     Completer(descr="book title")]
+</pre><p>In the example above, the 1st non-option argument will be described as "file to read from" and all file/dir names will be completed (*). The 2nd non-option argument will be described as "book title", but no actual completion matches will be produced.</p><p>See the various <code>Completer</code> subclasses for other types of things which may be tab-completed (users, groups, network interfaces, etc).</p><p>Also note the <code>repeat=True</code> flag which may be passed to any of the <code>Completer</code> classes. This is set to allow the <code>Completer</code> instance to be re-used for subsequent command-line words. See the <code>Completer</code> docstring for details.</p></span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.usage.Completions.html#__init__" class="code" data-type="Method">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable">
+  
+  <a name="twisted.python.usage.Completions.descriptions">
+    
+  </a>
+  <a name="descriptions">
+    
+  </a>
+  <div class="functionHeader">
+    
+    descriptions =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/python/usage.py#L782">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>ex. <code>{"foo" : "use this description for foo instead"}</code> A dict mapping long option names to alternate descriptions.  When this variable is defined, the descriptions contained here will override those descriptions provided in the optFlags and optParameters variables.</div> (type: <code>dict</code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.python.usage.Completions.multiUse">
+    
+  </a>
+  <a name="multiUse">
+    
+  </a>
+  <div class="functionHeader">
+    
+    multiUse =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/python/usage.py#L789">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>ex. <code> ["foo", "bar"] </code> An iterable containing those long option names which may appear on the command line more than once. By default, options will only be completed one time.</div> (type: <code>list</code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.python.usage.Completions.mutuallyExclusive">
+    
+  </a>
+  <a name="mutuallyExclusive">
+    
+  </a>
+  <div class="functionHeader">
+    
+    mutuallyExclusive =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/python/usage.py#L795">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>ex. <code> [("foo", "bar"), ("bar", "baz")] </code> A sequence of sequences, with each sub-sequence containing those long option names that are mutually exclusive. That is, those options that cannot appear on the command line together.</div> (type: <code>list</code> of <code>tuple</code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.python.usage.Completions.optActions">
+    
+  </a>
+  <a name="optActions">
+    
+  </a>
+  <div class="functionHeader">
+    
+    optActions =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/python/usage.py#L801">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A dict mapping long option names to shell "actions". These actions define what may be completed as the argument to the given option. By default, all files/dirs will be completed if no action is given. For example:<pre class="literalblock">
+    {"foo"    : CompleteFiles("*.py", descr="python files"),
+     "bar"    : CompleteList(["one", "two", "three"]),
+     "colors" : CompleteMultiList(["red", "green", "blue"])}
+</pre><p>Callables may instead be given for the values in this dict. The callable should accept no arguments, and return a <code>Completer</code> instance used as the action in the same way as the literal actions in the example above.</p><p>As you can see in the example above. The "foo" option will have files that end in .py completed when the user presses Tab. The "bar" option will have either of the strings "one", "two", or "three" completed when the user presses Tab.</p><p>"colors" will allow multiple arguments to be completed, separated by commas. The possible arguments are red, green, and blue. Examples:</p><pre class="literalblock">
+    my_command --foo some-file.foo --colors=red,green
+    my_command --colors=green
+    my_command --colors=green,blue
+</pre><p>Descriptions for the actions may be given with the optional <code>descr</code> keyword argument. This is separate from the description of the option itself.</p><p>Normally Zsh does not show these descriptions unless you have "verbose" completion turned on. Turn on verbosity with this in your ~/.zshrc:</p><pre class="literalblock">
+    zstyle ':completion:*' verbose yes
+    zstyle ':completion:*:descriptions' format '%B%d%b'
+</pre></div> (type: <code>dict</code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.python.usage.Completions.extraActions">
+    
+  </a>
+  <a name="extraActions">
+    
+  </a>
+  <div class="functionHeader">
+    
+    extraActions =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/python/usage.py#L839">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Extra arguments are those arguments typically appearing at the end of the command-line, which are not associated with any particular named option. That is, the arguments that are given to the parseArgs() method of your usage.Options subclass. For example:<pre class="literalblock">
+    [CompleteFiles(descr="file to read from"),
+     Completer(descr="book title")]
+</pre><p>In the example above, the 1st non-option argument will be described as "file to read from" and all file/dir names will be completed (*). The 2nd non-option argument will be described as "book title", but no actual completion matches will be produced.</p><p>See the various <code>Completer</code> subclasses for other types of things which may be tab-completed (users, groups, network interfaces, etc).</p><p>Also note the <code>repeat=True</code> flag which may be passed to any of the <code>Completer</code> classes. This is set to allow the <code>Completer</code> instance to be re-used for subsequent command-line words. See the <code>Completer</code> docstring for details.</p></div> (type: <code>list</code>)
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.usage.Completions.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def __init__(self, descriptions={}, multiUse=[], mutuallyExclusive=[], optActions={}, extraActions=[]):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/python/usage.py#L862">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-02-28 19:53:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

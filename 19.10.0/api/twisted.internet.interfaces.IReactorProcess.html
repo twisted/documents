@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.interfaces.IReactorProcess : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="apidocs.css" type="text/css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="interface"><code>twisted.internet.interfaces.IReactorProcess(<span title="zope.interface.Interface">Interface</span>)</code> <small>interface documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.internet.html" data-type="Package" class="code">internet</a>.<a href="twisted.internet.interfaces.html" data-type="Module" class="code">interfaces</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/interfaces.py#L1136">View Source</a>
+          <a href="classIndex.html#twisted.internet.interfaces.IReactorProcess">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Known implementations: <a href="twisted.internet.iocpreactor.reactor.IOCPReactor.html" data-type="Class" class="code">twisted.internet.iocpreactor.reactor.IOCPReactor</a>, <a href="twisted.internet.posixbase.PosixReactorBase.html" data-type="Class" class="code">twisted.internet.posixbase.PosixReactorBase</a></p>
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div class="undocumented">No interface docstring</div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id838">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.interfaces.IReactorProcess.html#spawnProcess" data-type="Method" class="code">spawnProcess</a></td>
+    <td><span>Spawn a process, with a process protocol.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  <a name="twisted.internet.interfaces.IReactorProcess.spawnProcess">
+    
+  </a>
+  <a name="spawnProcess">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    spawnProcess(processProtocol, executable, args=(), env={}, path=None, uid=None, gid=None, usePTY=0, childFDs=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/interfaces.py#L1138">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Spawn a process, with a process protocol.</p>
+<p>Arguments given to this function that are listed as <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+or <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>
+may be encoded or decoded depending on the platform and the argument type 
+given.  On UNIX systems (Linux, FreeBSD, macOS) and Python 2 on Windows, <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>
+arguments will be encoded down to <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+using the encoding given by <a href="http://docs.python.org/library/os.html#os.getfilesystemencoding"><code>os.getfilesystemencoding</code></a>,
+to be used with the "narrow" OS APIs.  On Python 3 on Windows, <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+arguments will be decoded up to <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>
+using the encoding given by <a href="http://docs.python.org/library/os.html#os.getfilesystemencoding"><code>os.getfilesystemencoding</code></a>
+(<code>mbcs</code> before Python 3.6, <code>utf8</code> thereafter) and 
+given to Windows's native "wide" APIs.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">processProtocol</td><td>An object which will be notified of all events related to the created 
+process. (type: <a href="twisted.internet.interfaces.IProcessProtocol.html"><code>IProcessProtocol</code></a>
+provider)</td></tr><tr><td></td><td class="fieldArg">executable</td><td>the file name to spawn - the full path should be used. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+or <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr><td></td><td class="fieldArg">args</td><td>the command line arguments to pass to the process; a sequence of strings.  
+The first string should be the executable's name. (type: <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+with <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+or <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>
+items.)</td></tr><tr><td></td><td class="fieldArg">env</td><td>the environment variables to pass to the child process. The resulting 
+behavior varies between platforms.  If:
+<ul>
+  <li>
+    <code>env</code> is not set:
+    <ul>
+      <li>
+        On POSIX: pass an empty environment.
+      </li>
+      <li>
+        On Windows: pass <a href="http://docs.python.org/library/os.html#os.environ"><code>os.environ</code></a>.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <code>env</code> is <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>:
+    <ul>
+      <li>
+        On POSIX: pass <a href="http://docs.python.org/library/os.html#os.environ"><code>os.environ</code></a>.
+      </li>
+      <li>
+        On Windows: pass <a href="http://docs.python.org/library/os.html#os.environ"><code>os.environ</code></a>.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <code>env</code> is a <a href="http://docs.python.org/library/stdtypes.html#dict"><code>dict</code></a>:
+    <ul>
+      <li>
+        On POSIX: pass the key/value pairs in <code>env</code> as the 
+        complete environment.
+      </li>
+      <li>
+        On Windows: update <a href="http://docs.python.org/library/os.html#os.environ"><code>os.environ</code></a>
+        with the key/value pairs in the <a href="http://docs.python.org/library/stdtypes.html#dict"><code>dict</code></a>
+        before passing it. As a consequence of <a target="_top" href="http://twistedmatrix.com/trac/ticket/1640">bug 
+        #1640</a>, passing keys with empty values in an effort to unset 
+        environment variables <i>won't</i> unset them.
+      </li>
+    </ul>
+  </li>
+</ul> (type: a <a href="http://docs.python.org/library/stdtypes.html#dict"><code>dict</code></a>
+mapping <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>/<a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>
+keys to <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>/<a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>
+items, or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>.)</td></tr><tr><td></td><td class="fieldArg">path</td><td>the path to run the subprocess in - defaults to the current directory. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+or <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>
+or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>)</td></tr><tr><td></td><td class="fieldArg">uid</td><td>user ID to run the subprocess as.  (Only available on POSIX systems.)</td></tr><tr><td></td><td class="fieldArg">gid</td><td>group ID to run the subprocess as.  (Only available on POSIX systems.)</td></tr><tr><td></td><td class="fieldArg">usePTY</td><td>if true, run this process in a pseudo-terminal. optionally a tuple of 
+<code>(masterfd, slavefd, ttyname)</code>, in which case use those file 
+descriptors.  (Not available on all systems.)</td></tr><tr><td></td><td class="fieldArg">childFDs</td><td>A dictionary mapping file descriptors in the new child process to an 
+integer or to the string 'r' or 'w'.
+<p>If the value is an integer, it specifies a file descriptor in the parent
+process which will be mapped to a file descriptor (specified by the key) in
+the child process.  This is useful for things like inetd and shell-like 
+file redirection.</p>
+<p>If it is the string 'r', a pipe will be created and attached to the 
+child at that file descriptor: the child will be able to write to that file
+descriptor and the parent will receive read notification via the <a href="twisted.internet.interfaces.IProcessProtocol.html#childDataReceived"><code>IProcessProtocol.childDataReceived</code></a>
+callback.  This is useful for the child's stdout and stderr.</p>
+<p>If it is the string 'w', similar setup to the previous case will occur, 
+with the pipe being readable by the child instead of writeable.  The parent
+process can write to that file descriptor using <a href="twisted.internet.interfaces.IProcessTransport.html#writeToChild"><code>IProcessTransport.writeToChild</code></a>.
+This is useful for the child's stdin.</p>
+<p>If childFDs is not passed, the default behaviour is to use a mapping 
+that opens the usual stdin/stdout/stderr pipes.</p> (type: <a href="http://docs.python.org/library/stdtypes.html#dict"><code>dict</code></a>
+of <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>
+to <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>
+or <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An object which provides <a href="twisted.internet.interfaces.IProcessTransport.html"><code>IProcessTransport</code></a>.</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">OSError</td><td>Raised with errno <code>EAGAIN</code> or <code>ENOMEM</code> if there are 
+insufficient system resources to create a new process.</td></tr><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><a href="twisted.internet.protocol.ProcessProtocol.html"><code>twisted.internet.protocol.ProcessProtocol</code></a></td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2019-11-11 15:02:42.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

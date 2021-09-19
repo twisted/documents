@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.inotify : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div style="display: none" id="current-docs-container" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code>twisted.internet.inotify</code> <small>module documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.internet.html" data-type="Package" class="code">internet</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-16.4.1/twisted/internet/inotify.py">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>This module provides support for Twisted to linux inotify API.</p>
+<p>In order to use this support, simply do the following (and start a 
+reactor at some point):</p>
+<pre class="literalblock">
+   from twisted.internet import inotify
+   from twisted.python import filepath
+
+   def notify(ignored, filepath, mask):
+       """
+       For historical reasons, an opaque handle is passed as first
+       parameter. This object should never be used.
+
+       @param filepath: FilePath on which the event happened.
+       @param mask: inotify event as hexadecimal masks
+       """
+       print("event %s on %s" % (
+           ', '.join(inotify.humanReadableMask(mask)), filepath))
+
+   notifier = inotify.INotify()
+   notifier.startReading()
+   notifier.watch(filepath.FilePath("/some/directory"), callbacks=[notify])
+   notifier.watch(filepath.FilePath(b"/some/directory2"), callbacks=[notify])
+</pre>
+<p>Note that in the above example, a <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+which is a <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+path name or <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>
+path name may be used.  However, no matter what type of <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> is 
+passed to this module, internally the <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> is 
+converted to <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+according to <a href="http://docs.python.org/library/sys.html#sys.getfilesystemencoding"><code>sys.getfilesystemencoding</code></a>.
+For any <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+returned by this module, the caller is responsible for converting from a <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+path name to a <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>
+path name.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">10.1</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id805">
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.inotify.html#humanReadableMask" data-type="Function" class="code">humanReadableMask</a></td>
+    <td><span>Auxiliary function that converts a hexadecimal mask into a series of 
+human readable flags.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.inotify.INotify.html" data-type="Class" class="code">INotify</a></td>
+    <td><span>The INotify file descriptor, it basically does everything related to 
+INotify, from reading to notifying watch points.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.inotify._Watch.html" data-type="Class" class="code">_Watch</a></td>
+    <td><span>Watch object that represents a Watch point in the filesystem. The user 
+should let INotify to create these objects</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  <a name="twisted.internet.inotify.humanReadableMask">
+    
+  </a>
+  <a name="humanReadableMask">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    humanReadableMask(mask):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.4.1/twisted/internet/inotify.py#L109">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Auxiliary function that converts a hexadecimal mask into a series of 
+human readable flags.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2016-09-15 00:53:01.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script src="//www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

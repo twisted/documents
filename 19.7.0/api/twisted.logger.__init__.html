@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.logger.__init__ : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="apidocs.css" type="text/css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code>twisted.logger.__init__</code> <small>module documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.logger.html" data-type="Package" class="code">logger</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/logger/__init__.py">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>Twisted Logger: Classes and functions to do granular logging.</p>
+<p>Example usage in a module <code>some.module</code>:</p>
+<pre class="literalblock">
+   from twisted.logger import Logger
+   log = Logger()
+
+   def handleData(data):
+       log.debug("Got data: {data!r}.", data=data)
+</pre>
+<p>Or in a class:</p>
+<pre class="literalblock">
+   from twisted.logger import Logger
+
+   class Foo(object):
+       log = Logger()
+
+       def oops(self, data):
+           self.log.error("Oops! Invalid data from server: {data!r}",
+                          data=data)
+</pre>
+<p><code>Logger</code>s have namespaces, for which logging can be 
+configured independently. Namespaces may be specified by passing in a 
+<code>namespace</code> argument to <a href="twisted.logger.Logger.html"><code>Logger</code></a> when 
+instantiating it, but if none is given, the logger will derive its own 
+namespace by using the module name of the callable that instantiated it, 
+or, in the case of a class, by using the fully qualified name of the 
+class.</p>
+<p>In the first example above, the namespace would be 
+<code>some.module</code>, and in the second example, it would be 
+<code>some.module.Foo</code>.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3665">
+  
+  <tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.logger.html#globalLogPublisher" data-type="Variable" class="code">globalLogPublisher</a></td>
+    <td>The <a href="twisted.logger.LogPublisher.html"><code>LogPublisher</code></a> that 
+all <a href="twisted.logger.Logger.html"><code>Logger</code></a> instances 
+that are not otherwise parameterized will point to by default. (type: <a href="twisted.logger.LogPublisher.html"><code>LogPublisher</code></a>)</td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.logger.html#globalLogBeginner" data-type="Variable" class="code">globalLogBeginner</a></td>
+    <td>The <a href="twisted.logger.LogBeginner.html"><code>LogBeginner</code></a> 
+used to activate the main log observer, whether it's a log file, or an 
+observer pointing at stderr. (type: <a href="twisted.logger.LogBeginner.html"><code>LogBeginner</code></a>)</td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.logger.InvalidLogLevelError.html" data-type="Class" class="code">InvalidLogLevelError</a></td>
+    <td><span>Someone tried to use a <a href="twisted.logger.LogLevel.html"><code>LogLevel</code></a> that is 
+unknown to the logging system.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.logger.LogLevel.html" data-type="Class" class="code">LogLevel</a></td>
+    <td><span>Constants describing log levels.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.logger.html#extractField" data-type="Function" class="code">extractField</a></td>
+    <td><span>Extract a given format field from the given event.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.logger.html#formatEvent" data-type="Function" class="code">formatEvent</a></td>
+    <td><span>Formats an event as a <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>,
+using the format in <code>event["log_format"]</code>.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.logger.html#formatEventAsClassicLogText" data-type="Function" class="code">formatEventAsClassicLogText</a></td>
+    <td><span>Format an event as a line of human-readable text for, e.g. traditional 
+log file output.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.logger.html#formatTime" data-type="Function" class="code">formatTime</a></td>
+    <td><span>Format a timestamp as text.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.logger.html#eventAsText" data-type="Function" class="code">eventAsText</a></td>
+    <td><span>Format an event as a unicode string.  Optionally, attach timestamp, 
+traceback, and system information.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.logger.Logger.html" data-type="Class" class="code">Logger</a></td>
+    <td><span>A <a href="twisted.logger.Logger.html"><code>Logger</code></a> emits log
+messages to an observer.  You should instantiate it as a class or module 
+attribute, as documented in <a href="twisted.logger.html"><code>this 
+module's documentation</code></a>.</span></td>
+  </tr><tr class="interface">
+    
+    <td>Interface</td>
+    <td><a href="twisted.logger.ILogObserver.html" data-type="Interface" class="code">ILogObserver</a></td>
+    <td><span>An observer which can handle log events.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.logger.LogPublisher.html" data-type="Class" class="code">LogPublisher</a></td>
+    <td><span><i>ILogObserver</i> that fans out events to other observers.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.logger.LimitedHistoryLogObserver.html" data-type="Class" class="code">LimitedHistoryLogObserver</a></td>
+    <td><span><p><a href="twisted.logger.ILogObserver.html"><code>ILogObserver</code></a>
+that stores events in a buffer of a fixed size:</p>
+<pre class="literalblock">
+
+</pre></span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.logger.FileLogObserver.html" data-type="Class" class="code">FileLogObserver</a></td>
+    <td><span>Log observer that writes to a file-like object.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.logger.html#textFileLogObserver" data-type="Function" class="code">textFileLogObserver</a></td>
+    <td><span>Create a <a href="twisted.logger.FileLogObserver.html"><code>FileLogObserver</code></a>
+that emits text to a specified (writable) file-like object.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.logger.PredicateResult.html" data-type="Class" class="code">PredicateResult</a></td>
+    <td><span>Predicate results.</span></td>
+  </tr><tr class="interface">
+    
+    <td>Interface</td>
+    <td><a href="twisted.logger.ILogFilterPredicate.html" data-type="Interface" class="code">ILogFilterPredicate</a></td>
+    <td><span>A predicate that determined whether an event should be logged.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.logger.FilteringLogObserver.html" data-type="Class" class="code">FilteringLogObserver</a></td>
+    <td><span><a href="twisted.logger.ILogObserver.html"><code>ILogObserver</code></a>
+that wraps another <a href="twisted.logger.ILogObserver.html"><code>ILogObserver</code></a>, but 
+filters out events based on applying a series of <a href="twisted.logger.ILogFilterPredicate.html"><code>ILogFilterPredicate</code></a>s.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.logger.LogLevelFilterPredicate.html" data-type="Class" class="code">LogLevelFilterPredicate</a></td>
+    <td><span><a href="twisted.logger.ILogFilterPredicate.html"><code>ILogFilterPredicate</code></a>
+that filters out events with a log level lower than the log level for the 
+event's namespace.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.logger.STDLibLogObserver.html" data-type="Class" class="code">STDLibLogObserver</a></td>
+    <td><span>Log observer that writes to the python standard library's 
+<code>logging</code> module.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.logger.LoggingFile.html" data-type="Class" class="code">LoggingFile</a></td>
+    <td><span>File-like object that turns <code>write()</code> calls into logging 
+events.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.logger.LegacyLogObserverWrapper.html" data-type="Class" class="code">LegacyLogObserverWrapper</a></td>
+    <td><span><a href="twisted.logger.ILogObserver.html"><code>ILogObserver</code></a>
+that wraps an <a href="twisted.python.log.ILogObserver.html"><code>twisted.python.log.ILogObserver</code></a>.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.logger.LogBeginner.html" data-type="Class" class="code">LogBeginner</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.logger.html#eventAsJSON" data-type="Function" class="code">eventAsJSON</a></td>
+    <td><span>Encode an event as JSON, flattening it if necessary to preserve as much 
+structure as possible.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.logger.html#eventFromJSON" data-type="Function" class="code">eventFromJSON</a></td>
+    <td><span>Decode a log event from JSON.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.logger.html#jsonFileLogObserver" data-type="Function" class="code">jsonFileLogObserver</a></td>
+    <td><span>Create a <a href="twisted.logger.FileLogObserver.html"><code>FileLogObserver</code></a>
+that emits JSON-serialized events to a specified (writable) file-like 
+object.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.logger.html#eventsFromJSONLogFile" data-type="Function" class="code">eventsFromJSONLogFile</a></td>
+    <td><span>Load events from a file previously saved with <a href="twisted.logger.html#jsonFileLogObserver"><code>jsonFileLogObserver</code></a>.
+Event records that are truncated or otherwise unreadable are ignored.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.logger.html#capturedLogs" data-type="Function" class="code">capturedLogs</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basevariable">
+  
+  <a name="twisted.logger.globalLogPublisher">
+    
+  </a>
+  <a name="globalLogPublisher">
+    
+  </a>
+  <div class="functionHeader">
+    globalLogPublisher =
+  </div>
+  <div class="functionBody">
+    The <a href="twisted.logger.LogPublisher.html"><code>LogPublisher</code></a> that 
+all <a href="twisted.logger.Logger.html"><code>Logger</code></a> instances 
+that are not otherwise parameterized will point to by default. (type: <a href="twisted.logger.LogPublisher.html"><code>LogPublisher</code></a>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.logger.globalLogBeginner">
+    
+  </a>
+  <a name="globalLogBeginner">
+    
+  </a>
+  <div class="functionHeader">
+    globalLogBeginner =
+  </div>
+  <div class="functionBody">
+    The <a href="twisted.logger.LogBeginner.html"><code>LogBeginner</code></a> 
+used to activate the main log observer, whether it's a log file, or an 
+observer pointing at stderr. (type: <a href="twisted.logger.LogBeginner.html"><code>LogBeginner</code></a>)
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.logger.extractField">
+    
+  </a>
+  <a name="extractField">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    extractField(field, event):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/logger/_flatten.py#L128">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Extract a given format field from the given event.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">field</td><td>A string describing a format field or log key.  This is the text that would
+normally fall between a pair of curly braces in a format string: for 
+example, <code>"key[2].attribute"</code>.  If a conversion is 
+specified (the thing after the <code>"!"</code> character in a 
+format field) then the result will always be <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>. (type: <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>
+(native string))</td></tr><tr><td></td><td class="fieldArg">event</td><td>A log event. (type: <a href="http://docs.python.org/library/stdtypes.html#dict"><code>dict</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A value extracted from the field. (type: <a href="http://docs.python.org/library/stdtypes.html#object"><code>object</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">KeyError</td><td>if the field is not found in the given event.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.logger.formatEvent">
+    
+  </a>
+  <a name="formatEvent">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    formatEvent(event):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/logger/_format.py#L22">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Formats an event as a <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>,
+using the format in <code>event["log_format"]</code>.</p>
+<p>This implementation should never raise an exception; if the formatting 
+cannot be done, the returned string will describe the event generically so 
+that a useful message is emitted regardless.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">event</td><td>A logging event. (type: <a href="http://docs.python.org/library/stdtypes.html#dict"><code>dict</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A formatted string. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.logger.formatEventAsClassicLogText">
+    
+  </a>
+  <a name="formatEventAsClassicLogText">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    formatEventAsClassicLogText(event, formatTime=formatTime):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/logger/_format.py#L124">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Format an event as a line of human-readable text for, e.g. traditional 
+log file output.</p>
+<p>The output format is <code>u"{timeStamp} [{system}] 
+{event}\n"</code>, where:</p>
+<ul>
+  <li>
+    <code>timeStamp</code> is computed by calling the given 
+    <code>formatTime</code> callable on the event's 
+    <code>"log_time"</code> value
+  </li>
+  <li>
+    <code>system</code> is the event's <code>"log_system"</code> 
+    value, if set, otherwise, the <code>"log_namespace"</code> 
+    and <code>"log_level"</code>, joined by a 
+    <code>u"#"</code>.  Each defaults to 
+    <code>u"-"</code> is not set.
+  </li>
+  <li>
+    <code>event</code> is the event, as formatted by <a href="twisted.logger.html#formatEvent"><code>formatEvent</code></a>.
+  </li>
+</ul>
+<p>Example:</p>
+<pre class="literalblock">
+   &gt;&gt;&gt; from __future__ import print_function
+   &gt;&gt;&gt; from time import time
+   &gt;&gt;&gt; from twisted.logger import formatEventAsClassicLogText
+   &gt;&gt;&gt; from twisted.logger import LogLevel
+   &gt;&gt;&gt;
+   &gt;&gt;&gt; formatEventAsClassicLogText(dict())  # No format, returns None
+   &gt;&gt;&gt; formatEventAsClassicLogText(dict(log_format=u"Hello!"))
+   u'- [-#-] Hello!\n'
+   &gt;&gt;&gt; formatEventAsClassicLogText(dict(
+   ...     log_format=u"Hello!",
+   ...     log_time=time(),
+   ...     log_namespace="my_namespace",
+   ...     log_level=LogLevel.info,
+   ... ))
+   u'2013-10-22T17:30:02-0700 [my_namespace#info] Hello!\n'
+   &gt;&gt;&gt; formatEventAsClassicLogText(dict(
+   ...     log_format=u"Hello!",
+   ...     log_time=time(),
+   ...     log_system="my_system",
+   ... ))
+   u'2013-11-11T17:22:06-0800 [my_system] Hello!\n'
+   &gt;&gt;&gt;
+</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">event</td><td>an event. (type: <a href="http://docs.python.org/library/stdtypes.html#dict"><code>dict</code></a>)</td></tr><tr><td></td><td class="fieldArg">formatTime</td><td>A time formatter (type: <a href="http://docs.python.org/library/functions.html#callable"><code>callable</code></a>
+that takes an <code>event</code> argument and returns a <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A formatted event, or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+if no output is appropriate. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>
+or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.logger.formatTime">
+    
+  </a>
+  <a name="formatTime">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    formatTime(when, timeFormat=timeFormatRFC3339, default=u'-'):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/logger/_format.py#L87">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Format a timestamp as text.</p>
+<p>Example:</p>
+<pre class="literalblock">
+   &gt;&gt;&gt; from time import time
+   &gt;&gt;&gt; from twisted.logger import formatTime
+   &gt;&gt;&gt;
+   &gt;&gt;&gt; t = time()
+   &gt;&gt;&gt; formatTime(t)
+   u'2013-10-22T14:19:11-0700'
+   &gt;&gt;&gt; formatTime(t, timeFormat="%Y/%W")  # Year and week number
+   u'2013/42'
+   &gt;&gt;&gt;
+</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">when</td><td>A timestamp.</td></tr><tr><td></td><td class="fieldArg">timeFormat</td><td>A time format. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>
+or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>)</td></tr><tr><td></td><td class="fieldArg">default</td><td>Text to return if <code>when</code> or <code>timeFormat</code> is <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A formatted time. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.logger.eventAsText">
+    
+  </a>
+  <a name="eventAsText">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    eventAsText(event, includeTraceback=True, includeTimestamp=True, includeSystem=True, formatTime=formatTime):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/logger/_format.py#L342">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Format an event as a unicode string.  Optionally, attach timestamp, 
+traceback, and system information.</p>
+<p>The full output format is: <code>u"{timeStamp} [{system}] 
+{event}\n{traceback}\n"</code> where:</p>
+<ul>
+  <li>
+    <code>timeStamp</code> is the event's <code>"log_time"</code>
+    value formatted with the provided <code>formatTime</code> callable.
+  </li>
+  <li>
+    <code>system</code> is the event's <code>"log_system"</code> 
+    value, if set, otherwise, the <code>"log_namespace"</code> 
+    and <code>"log_level"</code>, joined by a 
+    <code>u"#"</code>.  Each defaults to 
+    <code>u"-"</code> is not set.
+  </li>
+  <li>
+    <code>event</code> is the event, as formatted by <a href="twisted.logger.html#formatEvent"><code>formatEvent</code></a>.
+  </li>
+  <li>
+    <code>traceback</code> is the traceback if the event contains a 
+    <code>"log_failure"</code> key.  In the event the original 
+    traceback cannot be formatted, a message indicating the failure will be
+    substituted.
+  </li>
+</ul>
+<p>If the event cannot be formatted, and no traceback exists, an empty 
+string is returned, even if includeSystem or includeTimestamp are true.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">event</td><td>A logging event. (type: <a href="http://docs.python.org/library/stdtypes.html#dict"><code>dict</code></a>)</td></tr><tr><td></td><td class="fieldArg">includeTraceback</td><td>If true and a <code>"log_failure"</code> key exists, append a 
+traceback. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr><tr><td></td><td class="fieldArg">includeTimestamp</td><td>If true include a formatted timestamp before the event. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr><tr><td></td><td class="fieldArg">includeSystem</td><td>If true, include the event's <code>"log_system"</code> value. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr><tr><td></td><td class="fieldArg">formatTime</td><td>A time formatter (type: <a href="http://docs.python.org/library/functions.html#callable"><code>callable</code></a>
+that takes an <code>event</code> argument and returns a <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A formatted string with specified options. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">Twisted 18.9.0</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.logger.textFileLogObserver">
+    
+  </a>
+  <a name="textFileLogObserver">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    textFileLogObserver(outFile, timeFormat=timeFormatRFC3339):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/logger/_file.py#L64">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Create a <a href="twisted.logger.FileLogObserver.html"><code>FileLogObserver</code></a>
+that emits text to a specified (writable) file-like object.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">outFile</td><td>A file-like object.  Ideally one should be passed which accepts <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>
+data.  Otherwise, UTF-8 <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+will be used. (type: <a href="http://docs.python.org/library/io.html#io.IOBase"><code>io.IOBase</code></a>)</td></tr><tr><td></td><td class="fieldArg">timeFormat</td><td>The format to use when adding timestamp prefixes to logged events.  If <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>,
+or for events with no <code>"log_timestamp"</code> key, the 
+default timestamp prefix of <code>u"-"</code> is used. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>
+or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A file log observer. (type: <a href="twisted.logger.FileLogObserver.html"><code>FileLogObserver</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.logger.eventAsJSON">
+    
+  </a>
+  <a name="eventAsJSON">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    eventAsJSON(event):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/logger/_json.py#L171">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Encode an event as JSON, flattening it if necessary to preserve as much 
+structure as possible.</p>
+<p>Not all structure from the log event will be preserved when it is 
+serialized.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">event</td><td>A log event dictionary. (type: <a href="http://docs.python.org/library/stdtypes.html#dict"><code>dict</code></a>
+with arbitrary keys and values)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A string of the serialized JSON; note that this will contain no newline 
+characters, and may thus safely be stored in a line-delimited file. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.logger.eventFromJSON">
+    
+  </a>
+  <a name="eventFromJSON">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    eventFromJSON(eventText):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/logger/_json.py#L211">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Decode a log event from JSON.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">eventText</td><td>The output of a previous call to <a href="twisted.logger.html#eventAsJSON"><code>eventAsJSON</code></a> (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A reconstructed version of the log event. (type: <a href="http://docs.python.org/library/stdtypes.html#dict"><code>dict</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.logger.jsonFileLogObserver">
+    
+  </a>
+  <a name="jsonFileLogObserver">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    jsonFileLogObserver(outFile, recordSeparator=u'\x1e'):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/logger/_json.py#L226">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Create a <a href="twisted.logger.FileLogObserver.html"><code>FileLogObserver</code></a>
+that emits JSON-serialized events to a specified (writable) file-like 
+object.</p>
+<p>Events are written in the following form:</p>
+<pre class="literalblock">
+   RS + JSON + NL
+</pre>
+<p><code>JSON</code> is the serialized event, which is JSON text.  
+<code>NL</code> is a newline (<code>u"\n"</code>).  
+<code>RS</code> is a record separator.  By default, this is a single RS 
+character (<code>u"\x1e"</code>), which makes the default output 
+conform to the IETF draft document 
+"draft-ietf-json-text-sequence-13".</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">outFile</td><td>A file-like object.  Ideally one should be passed which accepts <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>
+data.  Otherwise, UTF-8 <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+will be used. (type: <a href="http://docs.python.org/library/io.html#io.IOBase"><code>io.IOBase</code></a>)</td></tr><tr><td></td><td class="fieldArg">recordSeparator</td><td>The record separator to use. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A file log observer. (type: <a href="twisted.logger.FileLogObserver.html"><code>FileLogObserver</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.logger.eventsFromJSONLogFile">
+    
+  </a>
+  <a name="eventsFromJSONLogFile">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    eventsFromJSONLogFile(inFile, recordSeparator=None, bufferSize=4096):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/logger/_json.py#L257">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Load events from a file previously saved with <a href="twisted.logger.html#jsonFileLogObserver"><code>jsonFileLogObserver</code></a>.
+Event records that are truncated or otherwise unreadable are ignored.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">inFile</td><td>A (readable) file-like object.  Data read from <code>inFile</code> should 
+be <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>
+or UTF-8 <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>. (type: iterable of lines)</td></tr><tr><td></td><td class="fieldArg">recordSeparator</td><td>The expected record separator. If <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>,
+attempt to automatically detect the record separator from one of 
+<code>u"\x1e"</code> or <code>u""</code>. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr><td></td><td class="fieldArg">bufferSize</td><td>The size of the read buffer used while reading from <code>inFile</code>. (type: integer)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">Log events as read from <code>inFile</code>. (type: iterable of <a href="http://docs.python.org/library/stdtypes.html#dict"><code>dict</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.logger.capturedLogs">
+    
+  </a>
+  <a name="capturedLogs">
+    
+  </a>
+  <div class="functionHeader">
+    @contextmanager<br />
+    def
+    capturedLogs():
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/logger/_capture.py#L16">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2019-08-06 12:10:50.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

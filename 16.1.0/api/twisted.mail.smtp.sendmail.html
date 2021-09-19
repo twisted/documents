@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.mail.smtp.sendmail : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div style="display: none" id="current-docs-container" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="function"><code>twisted.mail.smtp.sendmail(smtphost, from_addr, to_addrs, msg, senderDomainName=None, port=25, reactor=reactor, username=None, password=None, requireAuthentication=False, requireTransportSecurity=False)</code> <small>function documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.mail.html" data-type="Package" class="code">mail</a>.<a href="twisted.mail.smtp.html" data-type="Module" class="code">smtp</a></code>
+          <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.1.0/twisted/mail/smtp.py#L2094">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>Send an email.</p>
+<p>This interface is intended to be a replacement for 
+<code>smtplib.SMTP.sendmail</code> and related methods. To maintain 
+backwards compatibility, it will fall back to plain SMTP, if ESMTP support 
+is not available. If ESMTP support is available, it will attempt to provide
+encryption via STARTTLS and authentication if a secret is provided.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">smtphost</td><td>The host the message should be sent to. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">from_addr</td><td>The (envelope) address sending this mail. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">to_addrs</td><td>A list of addresses to send this mail to.  A string will be treated as a 
+list of one address.</td></tr><tr><td></td><td class="fieldArg">msg</td><td>The message, including headers, either as a file or a string. File-like 
+objects need to support read() and close(). Lines must be delimited by 
+'\n'. If you pass something that doesn't look like a file, we try to 
+convert it to a string (so you should be able to pass an 
+<code>email.Message</code> directly, but doing the conversion with 
+<code>email.Generator</code> manually will give you more control over the 
+process).</td></tr><tr><td></td><td class="fieldArg">senderDomainName</td><td>Name by which to identify. If None, try to pick something sane (but this 
+depends on external configuration and may not succeed). (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">port</td><td>Remote port to which to connect. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr><tr><td></td><td class="fieldArg">username</td><td>The username to use, if wanting to authenticate. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">password</td><td>The secret to use, if wanting to authenticate. If you do not specify this, 
+SMTP authentication will not occur. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">requireTransportSecurity</td><td>Whether or not STARTTLS is required. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr><tr><td></td><td class="fieldArg">requireAuthentication</td><td>Whether or not authentication is required. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr><tr><td></td><td class="fieldArg">reactor</td><td>The <a href="twisted.internet.reactor.html"><code>reactor</code></a> used 
+to make the TCP connection.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A cancellable <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>, its 
+callback will be called if a message is sent to ANY address, the errback if
+no message is sent. When the <code>cancel</code> method is called, it will 
+stop retrying and disconnect the connection immediately.
+<p>The callback will be called with a tuple (numOk, addresses) where numOk 
+is the number of successful recipient addresses and addresses is a list of 
+tuples (address, code, resp) giving the response to the RCPT command for 
+each address.</p> (type: <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>)</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2016-04-04 15:02:49.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script src="//www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,437 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web.client.HTTPConnectionPool : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div style="display: none" id="current-docs-container" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>twisted.web.client.HTTPConnectionPool(<span title="object">object</span>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.web.html" data-type="Package" class="code">web</a>.<a href="twisted.web.client.html" data-type="Module" class="code">client</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/web/client.py#L1178">View Source</a>
+          <a href="classIndex.html#twisted.web.client.HTTPConnectionPool">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>A pool of persistent HTTP connections.</p>
+<p>Features:</p>
+<ul>
+  <li>
+    Cached connections will eventually time out.
+  </li>
+  <li>
+    Limits on maximum number of persistent connections.
+  </li>
+</ul>
+<p>Connections are stored using keys, which should be chosen such that any 
+connections stored under a given key can be used interchangeably.</p>
+<p>Failed requests done using previously cached connections will be retried
+once if they use an idempotent method (e.g. GET), in case the HTTP server 
+timed them out.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">12.1</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3274">
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.client.HTTPConnectionPool.html#persistent" data-type="Instance Variable" class="code">persistent</a></td>
+    <td>Boolean indicating whether connections should be persistent. Connections 
+are persistent by default.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.client.HTTPConnectionPool.html#maxPersistentPerHost" data-type="Instance Variable" class="code">maxPersistentPerHost</a></td>
+    <td>The maximum number of cached persistent connections for a 
+<code>host:port</code> destination. (type: <code>int</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.client.HTTPConnectionPool.html#cachedConnectionTimeout" data-type="Instance Variable" class="code">cachedConnectionTimeout</a></td>
+    <td>Number of seconds a cached persistent connection will stay open before 
+disconnecting.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.client.HTTPConnectionPool.html#retryAutomatically" data-type="Instance Variable" class="code">retryAutomatically</a></td>
+    <td><code>boolean</code> indicating whether idempotent requests should be 
+retried once if no response was received.</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.HTTPConnectionPool.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.HTTPConnectionPool.html#getConnection" data-type="Method" class="code">getConnection</a></td>
+    <td><span>Supply a connection, newly created or retrieved from the pool, to be 
+used for one HTTP request.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.HTTPConnectionPool.html#closeCachedConnections" data-type="Method" class="code">closeCachedConnections</a></td>
+    <td><span>Close all persistent connections and remove them from the pool.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.client.HTTPConnectionPool.html#_factory" data-type="Instance Variable" class="code">_factory</a></td>
+    <td>The factory used to connect to the proxy.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.client.HTTPConnectionPool.html#_connections" data-type="Instance Variable" class="code">_connections</a></td>
+    <td>Map (scheme, host, port) to lists of <a href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+instances.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.client.HTTPConnectionPool.html#_timeouts" data-type="Instance Variable" class="code">_timeouts</a></td>
+    <td>Map <a href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+instances to a <code>IDelayedCall</code> instance of their timeout.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.HTTPConnectionPool.html#_newConnection" data-type="Method" class="code">_newConnection</a></td>
+    <td><span>Create a new connection.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.HTTPConnectionPool.html#_removeConnection" data-type="Method" class="code">_removeConnection</a></td>
+    <td><span>Remove a connection from the cache and disconnect it.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.HTTPConnectionPool.html#_putConnection" data-type="Method" class="code">_putConnection</a></td>
+    <td><span>Return a persistent connection to the pool. This will be called by <a href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+when the connection becomes quiescent.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable">
+  
+  <a name="twisted.web.client.HTTPConnectionPool.persistent">
+    
+  </a>
+  <a name="persistent">
+    
+  </a>
+  <div class="functionHeader">
+    persistent =
+  </div>
+  <div class="functionBody">
+    Boolean indicating whether connections should be persistent. Connections 
+are persistent by default.
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.web.client.HTTPConnectionPool.maxPersistentPerHost">
+    
+  </a>
+  <a name="maxPersistentPerHost">
+    
+  </a>
+  <div class="functionHeader">
+    maxPersistentPerHost =
+  </div>
+  <div class="functionBody">
+    The maximum number of cached persistent connections for a 
+<code>host:port</code> destination. (type: <code>int</code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.web.client.HTTPConnectionPool.cachedConnectionTimeout">
+    
+  </a>
+  <a name="cachedConnectionTimeout">
+    
+  </a>
+  <div class="functionHeader">
+    cachedConnectionTimeout =
+  </div>
+  <div class="functionBody">
+    Number of seconds a cached persistent connection will stay open before 
+disconnecting.
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.web.client.HTTPConnectionPool.retryAutomatically">
+    
+  </a>
+  <a name="retryAutomatically">
+    
+  </a>
+  <div class="functionHeader">
+    retryAutomatically =
+  </div>
+  <div class="functionBody">
+    <code>boolean</code> indicating whether idempotent requests should be 
+retried once if no response was received.
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web.client.HTTPConnectionPool._factory">
+    
+  </a>
+  <a name="_factory">
+    
+  </a>
+  <div class="functionHeader">
+    _factory =
+  </div>
+  <div class="functionBody">
+    The factory used to connect to the proxy.
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web.client.HTTPConnectionPool._connections">
+    
+  </a>
+  <a name="_connections">
+    
+  </a>
+  <div class="functionHeader">
+    _connections =
+  </div>
+  <div class="functionBody">
+    Map (scheme, host, port) to lists of <a href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+instances.
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web.client.HTTPConnectionPool._timeouts">
+    
+  </a>
+  <a name="_timeouts">
+    
+  </a>
+  <div class="functionHeader">
+    _timeouts =
+  </div>
+  <div class="functionBody">
+    Map <a href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+instances to a <code>IDelayedCall</code> instance of their timeout.
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.client.HTTPConnectionPool.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, reactor, persistent=True):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/web/client.py#L1222">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.client.HTTPConnectionPool.getConnection">
+    
+  </a>
+  <a name="getConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getConnection(self, key, endpoint):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/web/client.py#L1229">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Supply a connection, newly created or retrieved from the pool, to be 
+used for one HTTP request.</p>
+<p>The connection will remain out of the pool (not available to be returned
+from future calls to this method) until one HTTP request has been completed
+over it.</p>
+<p>Afterwards, if the connection is still open, it will automatically be 
+added to the pool.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">key</td><td>A unique key identifying connections that can be used interchangeably.</td></tr><tr><td></td><td class="fieldArg">endpoint</td><td>An endpoint that can be used to open a new connection if no cached 
+connection is available.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A <code>Deferred</code> that will fire with a <a href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+(or a wrapper) that can be used to send a single HTTP request.</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.web.client.HTTPConnectionPool._newConnection">
+    
+  </a>
+  <a name="_newConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _newConnection(self, key, endpoint):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/web/client.py#L1267">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Create a new connection.</p>
+<p>This implements the new connection code path for <a href="twisted.web.client.HTTPConnectionPool.html#getConnection"><code>getConnection</code></a>.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.web.client.HTTPConnectionPool._removeConnection">
+    
+  </a>
+  <a name="_removeConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _removeConnection(self, key, connection):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/web/client.py#L1279">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Remove a connection from the cache and disconnect it.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.web.client.HTTPConnectionPool._putConnection">
+    
+  </a>
+  <a name="_putConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _putConnection(self, key, connection):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/web/client.py#L1288">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return a persistent connection to the pool. This will be called by <a href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+when the connection becomes quiescent.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.client.HTTPConnectionPool.closeCachedConnections">
+    
+  </a>
+  <a name="closeCachedConnections">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    closeCachedConnections(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/web/client.py#L1314">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Close all persistent connections and remove them from the pool.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="twisted.internet.defer.Deferred.html"><code>defer.Deferred</code></a>
+that fires when all connections have been closed.</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2016-05-18 16:01:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script src="//www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

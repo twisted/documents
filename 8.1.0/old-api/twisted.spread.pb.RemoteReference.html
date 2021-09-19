@@ -1,0 +1,401 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.spread.pb.RemoteReference&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">Class t.s.p.RemoteReference(<a href="twisted.spread.flavors.Serializable.html">Serializable</a>, <a href="twisted.persisted.styles.Ephemeral.html">styles.Ephemeral</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.spread.html">spread</a>.<a href="twisted.spread.pb.html">pb</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/spread/pb.py#L257">View Source</a>
+      <a href="classIndex.html#twisted.spread.pb.RemoteReference">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known subclasses: <a href="twisted.words.service.AvatarReference.html">twisted.words.service.AvatarReference</a>, <a href="twisted.words.service.PBGroupReference.html">twisted.words.service.PBGroupReference</a>, <a href="twisted.words.service.PBMindReference.html">twisted.words.service.PBMindReference</a></p><p>Implements interfaces: <a href="twisted.spread.interfaces.IUnjellyable.html">twisted.spread.interfaces.IUnjellyable</a></p>
+    </div>
+    <div><p>This is a translucent reference to a remote object.</p>
+<p>I may be a reference to a <a 
+href="twisted.spread.flavors.ViewPoint.html"><code>flavors.ViewPoint</code></a>, 
+a <a 
+href="twisted.spread.flavors.Referenceable.html"><code>flavors.Referenceable</code></a>, 
+or an <a 
+href="twisted.spread.pb.IPerspective.html"><code>IPerspective</code></a> 
+implementor (e.g., pb.Avatar). From the client's perspective, it is not 
+possible to tell which except by convention.</p>
+<p>I am a &quot;translucent&quot; reference because although no 
+additional bookkeeping overhead is given to the application programmer 
+for manipulating a reference, return values are asynchronous.</p>
+See also <a 
+href="twisted.internet.defer.html"><code>twisted.internet.defer</code></a>.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">broker</td><td>The broker I am obtained through.
+ (type: <a href="twisted.spread.pb.Broker.html"><code>Broker</code></a>
+)</td></tr></table></div>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id7749">
+  
+  
+  
+  
+  <tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.RemoteReference.html#__init__">__init__</a></td>
+    <td><span>(internal) Initialize me with a broker and a locally-unique ID.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.RemoteReference.html#notifyOnDisconnect">notifyOnDisconnect</a></td>
+    <td><span>Register a callback to be called if our broker gets disconnected.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.RemoteReference.html#dontNotifyOnDisconnect">dontNotifyOnDisconnect</a></td>
+    <td><span>Remove a callback that was registered with notifyOnDisconnect.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.RemoteReference.html#jellyFor">jellyFor</a></td>
+    <td><span>If I am being sent back to where I came from, serialize as a local 
+backreference.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.RemoteReference.html#unjellyFor">unjellyFor</a></td>
+    <td><span>Unjelly myself for the jellier.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.RemoteReference.html#callRemote">callRemote</a></td>
+    <td><span>Asynchronously invoke a remote method.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.RemoteReference.html#remoteMethod">remoteMethod</a></td>
+    <td><span>Get a <a 
+href="twisted.spread.pb.RemoteMethod.html"><code>RemoteMethod</code></a> 
+for this key.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.RemoteReference.html#__cmp__">__cmp__</a></td>
+    <td><span>Compare me [to another <a 
+href="twisted.spread.pb.RemoteReference.html"><code>RemoteReference</code></a>].
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.RemoteReference.html#__hash__">__hash__</a></td>
+    <td><span>Hash me.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.RemoteReference.html#__del__">__del__</a></td>
+    <td><span>Do distributed reference counting on finalization.
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.RemoteReference.html#_disconnected">_disconnected</a></td>
+    <td><span>Called if we are disconnected and have callbacks registered.
+</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.spread.flavors.Serializable.html">Serializable</a>:
+        </p>
+        <table class="children sortable" id="id7750">
+  
+  
+  
+  
+  <tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.flavors.Serializable.html#processUniqueID">processUniqueID</a></td>
+    <td><span>Return an ID which uniquely represents this object for this 
+process.
+</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.spread.jelly.Jellyable.html">Jellyable</a> (via <a href="twisted.spread.flavors.Serializable.html">Serializable</a>):
+        </p>
+        <table class="children sortable" id="id7751">
+  
+  
+  
+  
+  <tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.jelly.Jellyable.html#getStateFor">getStateFor</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.persisted.styles.Ephemeral.html">Ephemeral</a>:
+        </p>
+        <table class="children sortable" id="id7752">
+  
+  
+  
+  
+  <tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.persisted.styles.Ephemeral.html#__getstate__">__getstate__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.persisted.styles.Ephemeral.html#__setstate__">__setstate__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.spread.pb.RemoteReference.__init__"></a>
+        <a name="__init__"></a>
+        <div class="functionHeader">
+        
+        def __init__(self, perspective, broker, luid, doRefCount):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/spread/pb.py#L277" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>(internal) Initialize me with a broker and a locally-unique ID.</p>
+The ID is unique only to the particular Perspective Broker 
+instance.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.spread.pb.RemoteReference.notifyOnDisconnect"></a>
+        <a name="notifyOnDisconnect"></a>
+        <div class="functionHeader">
+        
+        def notifyOnDisconnect(self, callback):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/spread/pb.py#L289" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Register a callback to be called if our broker gets disconnected.</p>
+This callback will be called with one argument, this instance.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.spread.pb.RemoteReference.dontNotifyOnDisconnect"></a>
+        <a name="dontNotifyOnDisconnect"></a>
+        <div class="functionHeader">
+        
+        def dontNotifyOnDisconnect(self, callback):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/spread/pb.py#L299" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Remove a callback that was registered with notifyOnDisconnect.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.spread.pb.RemoteReference._disconnected"></a>
+        <a name="_disconnected"></a>
+        <div class="functionHeader">
+        
+        def _disconnected(self):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/spread/pb.py#L305" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Called if we are disconnected and have callbacks registered.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.spread.pb.RemoteReference.jellyFor"></a>
+        <a name="jellyFor"></a>
+        <div class="functionHeader">
+        
+        def jellyFor(self, jellier):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/spread/pb.py#L311" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">from <a href="twisted.spread.interfaces.IJellyable.html#jellyFor">twisted.spread.interfaces.IJellyable</a></div><div class="interfaceinfo">overrides <a href="twisted.spread.jelly.Jellyable.html#jellyFor">twisted.spread.jelly.Jellyable.jellyFor</a></div>
+          <div>If I am being sent back to where I came from, serialize as a local 
+backreference.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.spread.pb.RemoteReference.unjellyFor"></a>
+        <a name="unjellyFor"></a>
+        <div class="functionHeader">
+        
+        def unjellyFor(self, unjellier, unjellyList):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/spread/pb.py#L320" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">from <a href="twisted.spread.interfaces.IUnjellyable.html#unjellyFor">twisted.spread.interfaces.IUnjellyable</a></div><div class="interfaceinfo">overridden in <a href="twisted.words.service.PBGroupReference.html">twisted.words.service.PBGroupReference</a></div>
+          <div>Unjelly myself for the jellier.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">jellier</td><td>A stateful object which exists for the lifetime of a single call to <a 
+href="twisted.spread.jelly.html#unjelly"><code>unjelly</code></a>.
+</td></tr><tr><td></td><td class="fieldArg">jellyList</td><td>The <code>list</code> which represents the jellied state of the object 
+to be unjellied.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The object which results from unjellying.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.spread.pb.RemoteReference.callRemote"></a>
+        <a name="callRemote"></a>
+        <div class="functionHeader">
+        
+        def callRemote(self, _name, *args, **kw):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/spread/pb.py#L324" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Asynchronously invoke a remote method.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">_name</td><td>the name of the remote method to invoke
+ (type: <code>string</code>
+)</td></tr><tr><td></td><td class="fieldArg">args</td><td>arguments to serialize for the remote function
+</td></tr><tr><td></td><td class="fieldArg">kw</td><td>keyword arguments to serialize for the remote function.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a Deferred which will be fired when the result of this remote call is 
+received.
+ (type: <a 
+href="twisted.internet.defer.Deferred.html"><code>twisted.internet.defer.Deferred</code></a>
+)</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.spread.pb.RemoteReference.remoteMethod"></a>
+        <a name="remoteMethod"></a>
+        <div class="functionHeader">
+        
+        def remoteMethod(self, key):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/spread/pb.py#L342" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Get a <a 
+href="twisted.spread.pb.RemoteMethod.html"><code>RemoteMethod</code></a> 
+for this key.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.spread.pb.RemoteReference.__cmp__"></a>
+        <a name="__cmp__"></a>
+        <div class="functionHeader">
+        
+        def __cmp__(self, other):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/spread/pb.py#L347" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Compare me [to another <a 
+href="twisted.spread.pb.RemoteReference.html"><code>RemoteReference</code></a>].
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.spread.pb.RemoteReference.__hash__"></a>
+        <a name="__hash__"></a>
+        <div class="functionHeader">
+        
+        def __hash__(self):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/spread/pb.py#L355" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Hash me.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.spread.pb.RemoteReference.__del__"></a>
+        <a name="__del__"></a>
+        <div class="functionHeader">
+        
+        def __del__(self):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/spread/pb.py#L360" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Do distributed reference counting on finalization.
+<table class="fieldTable"></table></div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2008-05-18 16:50:21.
+    </address>
+  </body>
+</html>

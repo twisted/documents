@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.protocol.ReconnectingClientFactory : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://twistedmatrix.com/">Twisted</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><a href="twisted.html" class="code" data-type="Package">twisted</a>.<a href="twisted.internet.html" class="code" data-type="Package">internet</a>.<a href="twisted.internet.protocol.html" class="code" data-type="Module">protocol</a>.<a href="twisted.internet.protocol.ReconnectingClientFactory.html" class="code" data-type="Class">ReconnectingClientFactory</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> twisted.internet.protocol.ReconnectingClientFactory(<a href="twisted.internet.protocol.ClientFactory.html" class="code" data-type="Class">ClientFactory</a>): <a href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/protocol.py#L335">(source)</a></code></p><p>Known subclasses: <a href="twisted.words.xish.xmlstream.XmlStreamFactory.html" class="code" data-type="Class">twisted.words.xish.xmlstream.XmlStreamFactory</a></p>
+        <p><a href="classIndex.html#twisted.internet.protocol.ReconnectingClientFactory">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Factory which auto-reconnects clients with an exponential back-off.</p><p>Note that clients should call my resetDelay method after they have connected successfully.</p></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1117">
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.protocol.ReconnectingClientFactory.html#maxDelay" class="code" data-type="Instance Variable">maxDelay</a></td>
+    <td><span>Maximum number of seconds between connection attempts.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.protocol.ReconnectingClientFactory.html#initialDelay" class="code" data-type="Instance Variable">initialDelay</a></td>
+    <td><span>Delay for the first reconnection attempt.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.protocol.ReconnectingClientFactory.html#factor" class="code" data-type="Instance Variable">factor</a></td>
+    <td><span>A multiplicitive factor by which the delay grows</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.protocol.ReconnectingClientFactory.html#jitter" class="code" data-type="Instance Variable">jitter</a></td>
+    <td><span>Percentage of randomness to introduce into the delay length to prevent stampeding.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.protocol.ReconnectingClientFactory.html#clock" class="code" data-type="Instance Variable">clock</a></td>
+    <td><span>The clock used to schedule reconnection. It's mainly useful to be parametrized in tests. If the factory is serialized, this attribute will not be serialized, and the default value (the reactor) will be restored when deserialized.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.protocol.ReconnectingClientFactory.html#maxRetries" class="code" data-type="Instance Variable">maxRetries</a></td>
+    <td><span>Maximum number of consecutive unsuccessful connection attempts, after which no further connection attempts will be made. If this is not explicitly set, no maximum is applied.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.protocol.ReconnectingClientFactory.html#retries" class="code" data-type="Instance Variable">retries</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.protocol.ReconnectingClientFactory.html#connector" class="code" data-type="Instance Variable">connector</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.protocol.ReconnectingClientFactory.html#continueTrying" class="code" data-type="Instance Variable">continueTrying</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.ReconnectingClientFactory.html#clientConnectionFailed" class="code" data-type="Method">clientConnectionFailed</a></td>
+    <td><span>Called when a connection has failed to connect.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.ReconnectingClientFactory.html#clientConnectionLost" class="code" data-type="Method">clientConnectionLost</a></td>
+    <td><span>Called when an established connection is lost.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.ReconnectingClientFactory.html#retry" class="code" data-type="Method">retry</a></td>
+    <td><span>Have this connector connect again, after a suitable delay.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.protocol.ReconnectingClientFactory.html#delay" class="code" data-type="Instance Variable">delay</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.ReconnectingClientFactory.html#stopTrying" class="code" data-type="Method">stopTrying</a></td>
+    <td><span>Put a stop to any attempt to reconnect in progress.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.ReconnectingClientFactory.html#resetDelay" class="code" data-type="Method">resetDelay</a></td>
+    <td><span>Call this method after a successful connection: it resets the delay and the retry counter.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.ReconnectingClientFactory.html#__getstate__" class="code" data-type="Method">__getstate__</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.protocol.ReconnectingClientFactory.html#_callID" class="code" data-type="Instance Variable">_callID</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.protocol.ClientFactory.html" class="code" data-type="Class">ClientFactory</a>:
+          </p>
+          <table class="children sortable" id="id1118">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.ClientFactory.html#startedConnecting" class="code" data-type="Method">startedConnecting</a></td>
+    <td><span>Called when a connection has been started.</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.protocol.Factory.html" class="code" data-type="Class">Factory</a> (via <a href="twisted.internet.protocol.ClientFactory.html" class="code" data-type="Class">ClientFactory</a>):
+          </p>
+          <table class="children sortable" id="id1119">
+  
+  <tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.internet.protocol.Factory.html#protocol" class="code" data-type="Class Variable">protocol</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.protocol.Factory.html#numPorts" class="code" data-type="Instance Variable">numPorts</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.internet.protocol.Factory.html#noisy" class="code" data-type="Class Variable">noisy</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseclassmethod">
+    
+    <td>Class Method</td>
+    <td><a href="twisted.internet.protocol.Factory.html#forProtocol" class="code" data-type="Class Method">forProtocol</a></td>
+    <td><span>Create a factory for the given protocol.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Factory.html#logPrefix" class="code" data-type="Method">logPrefix</a></td>
+    <td><span>Describe this factory for log messages.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Factory.html#doStart" class="code" data-type="Method">doStart</a></td>
+    <td><span>Make sure startFactory is called.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Factory.html#doStop" class="code" data-type="Method">doStop</a></td>
+    <td><span>Make sure stopFactory is called.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Factory.html#startFactory" class="code" data-type="Method">startFactory</a></td>
+    <td><span>This will be called before I begin listening on a Port or Connector.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Factory.html#stopFactory" class="code" data-type="Method">stopFactory</a></td>
+    <td><span>This will be called before I stop listening on all Ports/Connectors.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Factory.html#buildProtocol" class="code" data-type="Method">buildProtocol</a></td>
+    <td><span>Create an instance of a subclass of Protocol.</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable">
+  
+  <a name="twisted.internet.protocol.ReconnectingClientFactory.maxDelay">
+    
+  </a>
+  <a name="maxDelay">
+    
+  </a>
+  <div class="functionHeader">
+    
+    maxDelay =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/protocol.py#L342">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Maximum number of seconds between connection attempts.</div> (type: <code><a href="https://docs.python.org/3/library/functions.html#int" class="code">int</a></code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.protocol.ReconnectingClientFactory.initialDelay">
+    
+  </a>
+  <a name="initialDelay">
+    
+  </a>
+  <div class="functionHeader">
+    
+    initialDelay =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/protocol.py#L343">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Delay for the first reconnection attempt.</div> (type: <code><a href="https://docs.python.org/3/library/functions.html#float" class="code">float</a></code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.protocol.ReconnectingClientFactory.factor">
+    
+  </a>
+  <a name="factor">
+    
+  </a>
+  <div class="functionHeader">
+    
+    factor =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/protocol.py#L344">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A multiplicitive factor by which the delay grows</div> (type: <code><a href="https://docs.python.org/3/library/functions.html#float" class="code">float</a></code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.protocol.ReconnectingClientFactory.jitter">
+    
+  </a>
+  <a name="jitter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    jitter =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/protocol.py#L345">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Percentage of randomness to introduce into the delay length to prevent stampeding.</div> (type: <code><a href="https://docs.python.org/3/library/functions.html#float" class="code">float</a></code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.protocol.ReconnectingClientFactory.clock">
+    
+  </a>
+  <a name="clock">
+    
+  </a>
+  <div class="functionHeader">
+    
+    clock =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/protocol.py#L347">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The clock used to schedule reconnection. It's mainly useful to be parametrized in tests. If the factory is serialized, this attribute will not be serialized, and the default value (the reactor) will be restored when deserialized.</div> (type: <a href="twisted.internet.interfaces.IReactorTime.html"><code>IReactorTime</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.protocol.ReconnectingClientFactory.maxRetries">
+    
+  </a>
+  <a name="maxRetries">
+    
+  </a>
+  <div class="functionHeader">
+    
+    maxRetries =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/protocol.py#L352">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>Maximum number of consecutive unsuccessful connection attempts, after which no further connection attempts will be made. If this is not explicitly set, no maximum is applied.</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.protocol.ReconnectingClientFactory.retries">
+    
+  </a>
+  <a name="retries">
+    
+  </a>
+  <div class="functionHeader">
+    
+    retries =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/protocol.py#L373">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/functions.html#int" class="code">int</a></code>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.internet.protocol.ReconnectingClientFactory._callID">
+    
+  </a>
+  <a name="_callID">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _callID =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/protocol.py#L375">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.protocol.ReconnectingClientFactory.connector">
+    
+  </a>
+  <a name="connector">
+    
+  </a>
+  <div class="functionHeader">
+    
+    connector =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/protocol.py#L376">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.protocol.ReconnectingClientFactory.continueTrying">
+    
+  </a>
+  <a name="continueTrying">
+    
+  </a>
+  <div class="functionHeader">
+    
+    continueTrying =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/protocol.py#L379">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/functions.html#int" class="code">int</a></code>)
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.protocol.ReconnectingClientFactory.clientConnectionFailed">
+    
+  </a>
+  <a name="clientConnectionFailed">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def clientConnectionFailed(self, connector, reason):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/protocol.py#L381">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.internet.protocol.ClientFactory.html#clientConnectionFailed" class="code" data-type="Method">twisted.internet.protocol.ClientFactory.clientConnectionFailed</a></div>
+    
+    <div><p>Called when a connection has failed to connect.</p><p>It may be useful to call connector.connect() - this will reconnect.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">connector</td><td><span class="undocumented">Undocumented</span></td></tr><tr><td></td><td class="fieldArg">reason</td><td><span class="undocumented">Undocumented</span> (type: <a href="twisted.python.failure.Failure.html"><code>twisted.python.failure.Failure</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.protocol.ReconnectingClientFactory.clientConnectionLost">
+    
+  </a>
+  <a name="clientConnectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def clientConnectionLost(self, connector, unused_reason):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/protocol.py#L386">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.internet.protocol.ClientFactory.html#clientConnectionLost" class="code" data-type="Method">twisted.internet.protocol.ClientFactory.clientConnectionLost</a></div>
+    
+    <div><p>Called when an established connection is lost.</p><p>It may be useful to call connector.connect() - this will reconnect.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">connector</td><td><span class="undocumented">Undocumented</span></td></tr><tr><td></td><td class="fieldArg">unused_reason</td><td><span class="undocumented">Undocumented</span></td></tr><tr><td></td><td class="fieldArg">reason</td><td><span class="undocumented">Undocumented</span> (type: <a href="twisted.python.failure.Failure.html"><code>twisted.python.failure.Failure</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.protocol.ReconnectingClientFactory.retry">
+    
+  </a>
+  <a name="retry">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def retry(self, connector=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/protocol.py#L391">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Have this connector connect again, after a suitable delay.</p></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.protocol.ReconnectingClientFactory.delay">
+    
+  </a>
+  <a name="delay">
+    
+  </a>
+  <div class="functionHeader">
+    
+    delay =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/protocol.py#L412">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.protocol.ReconnectingClientFactory.stopTrying">
+    
+  </a>
+  <a name="stopTrying">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def stopTrying(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/protocol.py#L435">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Put a stop to any attempt to reconnect in progress.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.protocol.ReconnectingClientFactory.resetDelay">
+    
+  </a>
+  <a name="resetDelay">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def resetDelay(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/protocol.py#L450">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Call this method after a successful connection: it resets the delay and the retry counter.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.protocol.ReconnectingClientFactory.__getstate__">
+    
+  </a>
+  <a name="__getstate__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def __getstate__(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/protocol.py#L460">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Remove all of the state which is mutated by connection attempts and failures, returning just the state which describes how reconnections should be attempted.  This will make the unserialized instance behave just as this one did when it was first instantiated.</p></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-02-28 19:53:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

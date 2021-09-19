@@ -1,0 +1,1021 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.protocols.tls.TLSMemoryBIOProtocol : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="apidocs.css" type="text/css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>twisted.protocols.tls.TLSMemoryBIOProtocol(<a href="twisted.protocols.policies.ProtocolWrapper.html" data-type="Class" class="code">ProtocolWrapper</a>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.protocols.html" data-type="Package" class="code">protocols</a>.<a href="twisted.protocols.tls.html" data-type="Module" class="code">tls</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L115">View Source</a>
+          <a href="classIndex.html#twisted.protocols.tls.TLSMemoryBIOProtocol">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Implements interfaces: <a href="twisted.internet.interfaces.INegotiated.html" data-type="Interface" class="code">twisted.internet.interfaces.INegotiated</a>, <a href="twisted.internet.interfaces.ISystemHandle.html" data-type="Interface" class="code">twisted.internet.interfaces.ISystemHandle</a></p>
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html"><code>TLSMemoryBIOProtocol</code></a>
+is a protocol wrapper which uses OpenSSL via a memory BIO to encrypt bytes 
+written to it before sending them on to the underlying transport and 
+decrypts bytes received from the underlying transport before delivering 
+them to the wrapped protocol.</p>
+<p>In addition to producer events from the underlying transport, the need 
+to wait for reads before a write can proceed means the <a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html"><code>TLSMemoryBIOProtocol</code></a>
+may also want to pause a producer.  Pause/resume events are therefore 
+merged using the <a href="twisted.protocols.tls._ProducerMembrane.html"><code>_ProducerMembrane</code></a>
+wrapper.  Non-streaming (pull) producers are supported by wrapping them 
+with <a href="twisted.internet._producer_helpers._PullToPush.html"><code>_PullToPush</code></a>.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2399">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#getHandle" data-type="Method" class="code">getHandle</a></td>
+    <td><span>Return the <a href="https://pyopenssl.readthedocs.io/en/stable/api/ssl.html#OpenSSL.SSL.Connection"><code>OpenSSL.SSL.Connection</code></a>
+object being used to encrypt and decrypt this connection.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#makeConnection" data-type="Method" class="code">makeConnection</a></td>
+    <td><span>Connect this wrapper to the given transport and initialize the necessary
+<a href="https://pyopenssl.readthedocs.io/en/stable/api/ssl.html#OpenSSL.SSL.Connection"><code>OpenSSL.SSL.Connection</code></a>
+with a memory BIO.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#dataReceived" data-type="Method" class="code">dataReceived</a></td>
+    <td><span>Deliver any received bytes to the receive BIO and then read and deliver 
+to the application any application-level data which becomes available as a 
+result of this.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#connectionLost" data-type="Method" class="code">connectionLost</a></td>
+    <td><span>Handle the possible repetition of calls to this method (due to either 
+the underlying transport going away or due to an error at the TLS layer) 
+and make sure the base implementation only gets invoked once.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#loseConnection" data-type="Method" class="code">loseConnection</a></td>
+    <td><span>Send a TLS close alert and close the underlying connection.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#abortConnection" data-type="Method" class="code">abortConnection</a></td>
+    <td><span>Tear down TLS state so that if the connection is aborted mid-handshake 
+we don't deliver any further data from the application.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#failVerification" data-type="Method" class="code">failVerification</a></td>
+    <td><span>Abort the connection during connection setup, giving a reason that 
+certificate verification failed.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#write" data-type="Method" class="code">write</a></td>
+    <td><span>Process the given application bytes and send any resulting TLS traffic 
+which arrives in the send BIO.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#writeSequence" data-type="Method" class="code">writeSequence</a></td>
+    <td><span>Write a sequence of application bytes by joining them into one string 
+and passing them to <a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#write"><code>write</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#getPeerCertificate" data-type="Method" class="code">getPeerCertificate</a></td>
+    <td><span>Return an object with the peer's certificate info.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#negotiatedProtocol" data-type="Method" class="code">negotiatedProtocol</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#registerProducer" data-type="Method" class="code">registerProducer</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#unregisterProducer" data-type="Method" class="code">unregisterProducer</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#_tlsConnection" data-type="Instance Variable" class="code">_tlsConnection</a></td>
+    <td>The <a href="https://pyopenssl.readthedocs.io/en/stable/api/ssl.html#OpenSSL.SSL.Connection"><code>OpenSSL.SSL.Connection</code></a>
+instance which is encrypted and decrypting this connection.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#_lostTLSConnection" data-type="Instance Variable" class="code">_lostTLSConnection</a></td>
+    <td>A flag indicating whether connection loss has already been dealt with 
+(<code>True</code>) or not (<code>False</code>).  TLS disconnection is 
+distinct from the underlying connection being lost.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#_appSendBuffer" data-type="Instance Variable" class="code">_appSendBuffer</a></td>
+    <td>application-level (cleartext) data that is waiting to be transferred to the
+TLS buffer, but can't be because the TLS connection is handshaking. (type: <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#_connectWrapped" data-type="Instance Variable" class="code">_connectWrapped</a></td>
+    <td>A flag indicating whether or not to call <code>makeConnection</code> on the
+wrapped protocol.  This is for the reactor's <a href="twisted.internet.interfaces.ITLSTransport.html#startTLS"><code>twisted.internet.interfaces.ITLSTransport.startTLS</code></a>
+implementation, since it has a protocol which it has already called 
+<code>makeConnection</code> on, and which has no interest in a new 
+transport.  See #3821.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#_handshakeDone" data-type="Instance Variable" class="code">_handshakeDone</a></td>
+    <td>A flag indicating whether or not the handshake is known to have completed 
+successfully (<code>True</code>) or not (<code>False</code>).  This is used
+to control error reporting behavior.  If the handshake has not completed, 
+the underlying <a href="https://pyopenssl.readthedocs.io/en/stable/api/ssl.html#OpenSSL.SSL.Error"><code>OpenSSL.SSL.Error</code></a>
+will be passed to the application's <code>connectionLost</code> method.  If
+it has completed, any unexpected <a href="https://pyopenssl.readthedocs.io/en/stable/api/ssl.html#OpenSSL.SSL.Error"><code>OpenSSL.SSL.Error</code></a>
+will be turned into a <a href="twisted.protocols.ftp.ConnectionLost.html"><code>ConnectionLost</code></a>.
+This is weird; however, it is simply an attempt at a faithful 
+re-implementation of the behavior provided by <a href="twisted.internet.ssl.html"><code>twisted.internet.ssl</code></a>.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#_reason" data-type="Instance Variable" class="code">_reason</a></td>
+    <td>If an unexpected <a href="https://pyopenssl.readthedocs.io/en/stable/api/ssl.html#OpenSSL.SSL.Error"><code>OpenSSL.SSL.Error</code></a>
+occurs which causes the connection to be lost, it is saved here.  If 
+appropriate, this may be used as the reason passed to the application 
+protocol's <code>connectionLost</code> method.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#_producer" data-type="Instance Variable" class="code">_producer</a></td>
+    <td>The current producer registered via <code>registerProducer</code>, or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+if no producer has been registered or a previous one was unregistered.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#_aborted" data-type="Instance Variable" class="code">_aborted</a></td>
+    <td><code>abortConnection</code> has been called.  No further data will be 
+received to the wrapped protocol's <code>dataReceived</code>. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#_checkHandshakeStatus" data-type="Method" class="code">_checkHandshakeStatus</a></td>
+    <td><span>Ask OpenSSL to proceed with a handshake in progress.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#_flushSendBIO" data-type="Method" class="code">_flushSendBIO</a></td>
+    <td><span>Read any bytes out of the send BIO and write them to the underlying 
+transport.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#_flushReceiveBIO" data-type="Method" class="code">_flushReceiveBIO</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#_shutdownTLS" data-type="Method" class="code">_shutdownTLS</a></td>
+    <td><span>Initiate, or reply to, the shutdown handshake of the TLS layer.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#_tlsShutdownFinished" data-type="Method" class="code">_tlsShutdownFinished</a></td>
+    <td><span>Called when TLS connection has gone away; tell underlying transport to 
+disconnect.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#_bufferedWrite" data-type="Method" class="code">_bufferedWrite</a></td>
+    <td><span>Put the given octets into <a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#_appSendBuffer"><code>TLSMemoryBIOProtocol._appSendBuffer</code></a>,
+and tell any listening producer that it should pause because we are now 
+buffering.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#_unbufferPendingWrites" data-type="Method" class="code">_unbufferPendingWrites</a></td>
+    <td><span>Un-buffer all waiting writes in <a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#_appSendBuffer"><code>TLSMemoryBIOProtocol._appSendBuffer</code></a>.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#_write" data-type="Method" class="code">_write</a></td>
+    <td><span>Process the given application bytes and send any resulting TLS traffic 
+which arrives in the send BIO.</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.protocols.policies.ProtocolWrapper.html" data-type="Class" class="code">ProtocolWrapper</a>:
+          </p>
+          <table class="children sortable" id="id2400">
+  
+  <tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.policies.ProtocolWrapper.html#wrappedProtocol" data-type="Instance Variable" class="code">wrappedProtocol</a></td>
+    <td>An <a href="twisted.internet.interfaces.IProtocol.html"><code>IProtocol</code></a>
+provider to which <a href="twisted.internet.interfaces.IProtocol.html"><code>IProtocol</code></a>
+method calls onto this <a href="twisted.protocols.policies.ProtocolWrapper.html"><code>ProtocolWrapper</code></a>
+will be proxied.</td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.policies.ProtocolWrapper.html#factory" data-type="Instance Variable" class="code">factory</a></td>
+    <td>The <a href="twisted.protocols.policies.WrappingFactory.html"><code>WrappingFactory</code></a>
+which created this <a href="twisted.protocols.policies.ProtocolWrapper.html"><code>ProtocolWrapper</code></a>.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.policies.ProtocolWrapper.html#logPrefix" data-type="Method" class="code">logPrefix</a></td>
+    <td><span>Use a customized log prefix mentioning both the wrapped protocol and the
+current one.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.policies.ProtocolWrapper.html#getPeer" data-type="Method" class="code">getPeer</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.policies.ProtocolWrapper.html#getHost" data-type="Method" class="code">getHost</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.policies.ProtocolWrapper.html#stopConsuming" data-type="Method" class="code">stopConsuming</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.policies.ProtocolWrapper.html#__getattr__" data-type="Method" class="code">__getattr__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.protocol.BaseProtocol.html" data-type="Class" class="code">BaseProtocol</a> (via <a href="twisted.protocols.policies.ProtocolWrapper.html" data-type="Class" class="code">ProtocolWrapper</a>, <a href="twisted.internet.protocol.Protocol.html" data-type="Class" class="code">Protocol</a>):
+          </p>
+          <table class="children sortable" id="id2401">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.BaseProtocol.html#connectionMade" data-type="Method" class="code">connectionMade</a></td>
+    <td><span>Called when a connection is made.</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable private">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol._tlsConnection">
+    
+  </a>
+  <a name="_tlsConnection">
+    
+  </a>
+  <div class="functionHeader">
+    _tlsConnection =
+  </div>
+  <div class="functionBody">
+    The <a href="https://pyopenssl.readthedocs.io/en/stable/api/ssl.html#OpenSSL.SSL.Connection"><code>OpenSSL.SSL.Connection</code></a>
+instance which is encrypted and decrypting this connection.
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol._lostTLSConnection">
+    
+  </a>
+  <a name="_lostTLSConnection">
+    
+  </a>
+  <div class="functionHeader">
+    _lostTLSConnection =
+  </div>
+  <div class="functionBody">
+    A flag indicating whether connection loss has already been dealt with 
+(<code>True</code>) or not (<code>False</code>).  TLS disconnection is 
+distinct from the underlying connection being lost.
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol._appSendBuffer">
+    
+  </a>
+  <a name="_appSendBuffer">
+    
+  </a>
+  <div class="functionHeader">
+    _appSendBuffer =
+  </div>
+  <div class="functionBody">
+    application-level (cleartext) data that is waiting to be transferred to the
+TLS buffer, but can't be because the TLS connection is handshaking. (type: <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol._connectWrapped">
+    
+  </a>
+  <a name="_connectWrapped">
+    
+  </a>
+  <div class="functionHeader">
+    _connectWrapped =
+  </div>
+  <div class="functionBody">
+    A flag indicating whether or not to call <code>makeConnection</code> on the
+wrapped protocol.  This is for the reactor's <a href="twisted.internet.interfaces.ITLSTransport.html#startTLS"><code>twisted.internet.interfaces.ITLSTransport.startTLS</code></a>
+implementation, since it has a protocol which it has already called 
+<code>makeConnection</code> on, and which has no interest in a new 
+transport.  See #3821.
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol._handshakeDone">
+    
+  </a>
+  <a name="_handshakeDone">
+    
+  </a>
+  <div class="functionHeader">
+    _handshakeDone =
+  </div>
+  <div class="functionBody">
+    A flag indicating whether or not the handshake is known to have completed 
+successfully (<code>True</code>) or not (<code>False</code>).  This is used
+to control error reporting behavior.  If the handshake has not completed, 
+the underlying <a href="https://pyopenssl.readthedocs.io/en/stable/api/ssl.html#OpenSSL.SSL.Error"><code>OpenSSL.SSL.Error</code></a>
+will be passed to the application's <code>connectionLost</code> method.  If
+it has completed, any unexpected <a href="https://pyopenssl.readthedocs.io/en/stable/api/ssl.html#OpenSSL.SSL.Error"><code>OpenSSL.SSL.Error</code></a>
+will be turned into a <a href="twisted.protocols.ftp.ConnectionLost.html"><code>ConnectionLost</code></a>.
+This is weird; however, it is simply an attempt at a faithful 
+re-implementation of the behavior provided by <a href="twisted.internet.ssl.html"><code>twisted.internet.ssl</code></a>.
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol._reason">
+    
+  </a>
+  <a name="_reason">
+    
+  </a>
+  <div class="functionHeader">
+    _reason =
+  </div>
+  <div class="functionBody">
+    If an unexpected <a href="https://pyopenssl.readthedocs.io/en/stable/api/ssl.html#OpenSSL.SSL.Error"><code>OpenSSL.SSL.Error</code></a>
+occurs which causes the connection to be lost, it is saved here.  If 
+appropriate, this may be used as the reason passed to the application 
+protocol's <code>connectionLost</code> method.
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol._producer">
+    
+  </a>
+  <a name="_producer">
+    
+  </a>
+  <div class="functionHeader">
+    _producer =
+  </div>
+  <div class="functionBody">
+    The current producer registered via <code>registerProducer</code>, or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+if no producer has been registered or a previous one was unregistered.
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol._aborted">
+    
+  </a>
+  <a name="_aborted">
+    
+  </a>
+  <div class="functionHeader">
+    _aborted =
+  </div>
+  <div class="functionBody">
+    <code>abortConnection</code> has been called.  No further data will be 
+received to the wrapped protocol's <code>dataReceived</code>. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, factory, wrappedProtocol, _connectWrapped=True):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L176">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.protocols.policies.ProtocolWrapper.html#__init__" data-type="Method" class="code">twisted.protocols.policies.ProtocolWrapper.__init__</a></div>
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol.getHandle">
+    
+  </a>
+  <a name="getHandle">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getHandle(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L181">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.ISystemHandle.html#getHandle" data-type="Method" class="code">twisted.internet.interfaces.ISystemHandle</a></div>
+    
+    <div><p>Return the <a href="https://pyopenssl.readthedocs.io/en/stable/api/ssl.html#OpenSSL.SSL.Connection"><code>OpenSSL.SSL.Connection</code></a>
+object being used to encrypt and decrypt this connection.</p>
+<p>This is done for the benefit of <a href="twisted.internet.ssl.Certificate.html"><code>twisted.internet.ssl.Certificate</code></a>'s
+<code>peerFromTransport</code> and <code>hostFromTransport</code> methods 
+only.  A different system handle may be returned by future versions of this
+method.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol.makeConnection">
+    
+  </a>
+  <a name="makeConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    makeConnection(self, transport):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L194">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#makeConnection" data-type="Method" class="code">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.protocols.policies.ProtocolWrapper.html#makeConnection" data-type="Method" class="code">twisted.protocols.policies.ProtocolWrapper.makeConnection</a></div>
+    
+    <div><p>Connect this wrapper to the given transport and initialize the necessary
+<a href="https://pyopenssl.readthedocs.io/en/stable/api/ssl.html#OpenSSL.SSL.Connection"><code>OpenSSL.SSL.Connection</code></a>
+with a memory BIO.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol._checkHandshakeStatus">
+    
+  </a>
+  <a name="_checkHandshakeStatus">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _checkHandshakeStatus(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L221">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Ask OpenSSL to proceed with a handshake in progress.</p>
+<p>Initially, this just sends the ClientHello; after some bytes have been 
+stuffed in to the <code>Connection</code> object by 
+<code>dataReceived</code>, it will then respond to any 
+<code>Certificate</code> or <code>KeyExchange</code> messages.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol._flushSendBIO">
+    
+  </a>
+  <a name="_flushSendBIO">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _flushSendBIO(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L246">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Read any bytes out of the send BIO and write them to the underlying 
+transport.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol._flushReceiveBIO">
+    
+  </a>
+  <a name="_flushReceiveBIO">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _flushReceiveBIO(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L260">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Try to receive any application-level bytes which are now available 
+because of a previous write into the receive BIO.  This will take care of 
+delivering any application-level bytes which are received to the protocol, 
+as well as handling of the various exceptions which can come from trying to
+get such bytes.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol.dataReceived">
+    
+  </a>
+  <a name="dataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dataReceived(self, bytes):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L303">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#dataReceived" data-type="Method" class="code">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.protocols.policies.ProtocolWrapper.html#dataReceived" data-type="Method" class="code">twisted.protocols.policies.ProtocolWrapper.dataReceived</a></div>
+    
+    <div><p>Deliver any received bytes to the receive BIO and then read and deliver 
+to the application any application-level data which becomes available as a 
+result of this.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol._shutdownTLS">
+    
+  </a>
+  <a name="_shutdownTLS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _shutdownTLS(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L333">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Initiate, or reply to, the shutdown handshake of the TLS layer.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol._tlsShutdownFinished">
+    
+  </a>
+  <a name="_tlsShutdownFinished">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _tlsShutdownFinished(self, reason):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L354">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called when TLS connection has gone away; tell underlying transport to 
+disconnect.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">reason</td><td>a <a href="twisted.python.failure.Failure.html"><code>Failure</code></a> 
+whose value is an <a href="http://docs.python.org/library/exceptions.html#exceptions.Exception"><code>Exception</code></a>
+if we want to report that failure through to the wrapped protocol's 
+<code>connectionLost</code>, or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+if the <code>reason</code> that <code>connectionLost</code> should receive 
+should be coming from the underlying transport. (type: <a href="twisted.python.failure.Failure.html"><code>Failure</code></a> or 
+<a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol.connectionLost">
+    
+  </a>
+  <a name="connectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    connectionLost(self, reason):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L388">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#connectionLost" data-type="Method" class="code">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.protocols.policies.ProtocolWrapper.html#connectionLost" data-type="Method" class="code">twisted.protocols.policies.ProtocolWrapper.connectionLost</a></div>
+    
+    <div><p>Handle the possible repetition of calls to this method (due to either 
+the underlying transport going away or due to an error at the TLS layer) 
+and make sure the base implementation only gets invoked once.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol.loseConnection">
+    
+  </a>
+  <a name="loseConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    loseConnection(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L409">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.ITransport.html#loseConnection" data-type="Method" class="code">twisted.internet.interfaces.ITransport</a></div><div class="interfaceinfo">overrides <a href="twisted.protocols.policies.ProtocolWrapper.html#loseConnection" data-type="Method" class="code">twisted.protocols.policies.ProtocolWrapper.loseConnection</a></div>
+    
+    <div><p>Send a TLS close alert and close the underlying connection.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol.abortConnection">
+    
+  </a>
+  <a name="abortConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    abortConnection(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L428">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.ITCPTransport.html#abortConnection" data-type="Method" class="code">twisted.internet.interfaces.ITCPTransport</a></div>
+    
+    <div><p>Tear down TLS state so that if the connection is aborted mid-handshake 
+we don't deliver any further data from the application.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol.failVerification">
+    
+  </a>
+  <a name="failVerification">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    failVerification(self, reason):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L439">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Abort the connection during connection setup, giving a reason that 
+certificate verification failed.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">reason</td><td>The reason that the verification failed; reported to the application 
+protocol's <code>connectionLost</code> method. (type: <a href="twisted.python.failure.Failure.html"><code>Failure</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol.write">
+    
+  </a>
+  <a name="write">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    write(self, bytes):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L452">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.ITransport.html#write" data-type="Method" class="code">twisted.internet.interfaces.ITransport</a></div><div class="interfaceinfo">overrides <a href="twisted.protocols.policies.ProtocolWrapper.html#write" data-type="Method" class="code">twisted.protocols.policies.ProtocolWrapper.write</a></div>
+    
+    <div><p>Process the given application bytes and send any resulting TLS traffic 
+which arrives in the send BIO.</p>
+<p>If <code>loseConnection</code> was called, subsequent calls to 
+<code>write</code> will drop the bytes on the floor.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol._bufferedWrite">
+    
+  </a>
+  <a name="_bufferedWrite">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _bufferedWrite(self, octets):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L470">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Put the given octets into <a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#_appSendBuffer"><code>TLSMemoryBIOProtocol._appSendBuffer</code></a>,
+and tell any listening producer that it should pause because we are now 
+buffering.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol._unbufferPendingWrites">
+    
+  </a>
+  <a name="_unbufferPendingWrites">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _unbufferPendingWrites(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L481">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Un-buffer all waiting writes in <a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#_appSendBuffer"><code>TLSMemoryBIOProtocol._appSendBuffer</code></a>.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol._write">
+    
+  </a>
+  <a name="_write">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _write(self, bytes):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L508">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Process the given application bytes and send any resulting TLS traffic 
+which arrives in the send BIO.</p>
+<p>This may be called by <code>dataReceived</code> with bytes that were 
+buffered before <code>loseConnection</code> was called, which is why this 
+function doesn't check for disconnection but accepts the bytes 
+regardless.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol.writeSequence">
+    
+  </a>
+  <a name="writeSequence">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    writeSequence(self, iovec):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L550">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.ITransport.html#writeSequence" data-type="Method" class="code">twisted.internet.interfaces.ITransport</a></div><div class="interfaceinfo">overrides <a href="twisted.protocols.policies.ProtocolWrapper.html#writeSequence" data-type="Method" class="code">twisted.protocols.policies.ProtocolWrapper.writeSequence</a></div>
+    
+    <div><p>Write a sequence of application bytes by joining them into one string 
+and passing them to <a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html#write"><code>write</code></a>.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol.getPeerCertificate">
+    
+  </a>
+  <a name="getPeerCertificate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getPeerCertificate(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L558">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.ISSLTransport.html#getPeerCertificate" data-type="Method" class="code">twisted.internet.interfaces.ISSLTransport</a></div>
+    
+    <div><p>Return an object with the peer's certificate info.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol.negotiatedProtocol">
+    
+  </a>
+  <a name="negotiatedProtocol">
+    
+  </a>
+  <div class="functionHeader">
+    @property<br />
+    def
+    negotiatedProtocol(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L563">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.INegotiated.html#negotiatedProtocol" data-type="Attribute" class="code">twisted.internet.interfaces.INegotiated</a></div>
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><a href="twisted.internet.interfaces.INegotiated.html#negotiatedProtocol"><code>INegotiated.negotiatedProtocol</code></a></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol.registerProducer">
+    
+  </a>
+  <a name="registerProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    registerProducer(self, producer, streaming):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L590">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.protocols.policies.ProtocolWrapper.html#registerProducer" data-type="Method" class="code">twisted.protocols.policies.ProtocolWrapper.registerProducer</a></div>
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.tls.TLSMemoryBIOProtocol.unregisterProducer">
+    
+  </a>
+  <a name="unregisterProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    unregisterProducer(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/protocols/tls.py#L610">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.protocols.policies.ProtocolWrapper.html#unregisterProducer" data-type="Method" class="code">twisted.protocols.policies.ProtocolWrapper.unregisterProducer</a></div>
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2019-11-11 15:02:42.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

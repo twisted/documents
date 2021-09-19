@@ -1,0 +1,202 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet._threadedselect : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="module private">t.i._threadedselect : module documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.1.0/twisted/internet/_threadedselect.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div>Threaded select reactor</p>
+<p>The threadedselectreactor is a specialized reactor for integrating with 
+arbitrary foreign event loop, such as those you find in GUI toolkits.</p>
+<p>There are three things you'll need to do to use this reactor.</p>
+<p>Install the reactor at the beginning of your program, before importing 
+the rest of Twisted:</p>
+<pre class="literalblock">
+   | from twisted.internet import _threadedselect
+   | _threadedselect.install()
+</pre>
+<p>Interleave this reactor with your foreign event loop, at some point 
+after your event loop is initialized:</p>
+<pre class="literalblock">
+   | from twisted.internet import reactor
+   | reactor.interleave(foreignEventLoopWakerFunction)
+   | self.addSystemEventTrigger('after', 'shutdown', foreignEventLoopStop)
+</pre>
+<p>Instead of shutting down the foreign event loop directly, shut down the 
+reactor:</p>
+<pre class="literalblock">
+   | from twisted.internet import reactor
+   | reactor.stop()
+</pre>
+<p>In order for Twisted to do its work in the main thread (the thread that 
+interleave is called from), a waker function is necessary.  The waker 
+function will be called from a &quot;background&quot; thread with one 
+argument: func. The waker function's purpose is to call func() from the 
+main thread. Many GUI toolkits ship with appropriate waker functions. Some 
+examples of this are wxPython's wx.callAfter (may be wxCallAfter in older 
+versions of wxPython) or PyObjC's PyObjCTools.AppHelper.callAfter. These 
+would be used in place of &quot;foreignEventLoopWakerFunction&quot; in the 
+above example.</p>
+<p>The other integration point at which the foreign event loop and this 
+reactor must integrate is shutdown.  In order to ensure clean shutdown of 
+Twisted, you must allow for Twisted to come to a complete stop before 
+quitting the application.  Typically, you will do this by setting up an 
+after shutdown trigger to stop your foreign event loop, and call 
+reactor.stop() where you would normally have initiated the shutdown 
+procedure for the foreign event loop.  Shutdown functions that could be 
+used in place of &quot;foreignEventloopStop&quot; would be the ExitMainLoop
+method of the wxApp instance with wxPython, or the 
+PyObjCTools.AppHelper.stopEventLoop function.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1940">
+  
+  
+<tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet._threadedselect.html#dictRemove">dictRemove</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet._threadedselect.html#raiseException">raiseException</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.internet._threadedselect.ThreadedSelectReactor.html">ThreadedSelectReactor</a></td>
+    <td><span>A threaded select() based reactor - runs on all POSIX platforms and on 
+Win32.</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet._threadedselect.html#install">install</a></td>
+    <td><span>Configure the twisted mainloop to be run using the select() reactor.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.internet._threadedselect.dictRemove">
+    
+  </a>
+  <a name="dictRemove">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dictRemove(dct, value):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.1.0/twisted/internet/_threadedselect.py#L73" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._threadedselect.raiseException">
+    
+  </a>
+  <a name="raiseException">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    raiseException(e):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.1.0/twisted/internet/_threadedselect.py#L79" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._threadedselect.install">
+    
+  </a>
+  <a name="install">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    install():
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.1.0/twisted/internet/_threadedselect.py#L353" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Configure the twisted mainloop to be run using the select() reactor.<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2013-11-18 18:11:01.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

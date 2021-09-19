@@ -1,0 +1,961 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.conch.ssh.transport.SSHTransportBase : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.c.s.t.SSHTransportBase(<a href="twisted.internet.protocol.Protocol.html">protocol.Protocol</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.conch.html">conch</a>.<a href="twisted.conch.ssh.html">ssh</a>.<a href="twisted.conch.ssh.transport.html">transport</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L36">View Source</a>
+      <a href="classIndex.html#twisted.conch.ssh.transport.SSHTransportBase">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known subclasses: <a href="twisted.conch.ssh.transport.SSHClientTransport.html">twisted.conch.ssh.transport.SSHClientTransport</a>, <a href="twisted.conch.ssh.transport.SSHServerTransport.html">twisted.conch.ssh.transport.SSHServerTransport</a></p>
+    </div>
+    <div>Protocol supporting basic SSH functionality: sending/receiving packets 
+and message dispatch.  To connect to or run a server, you must use 
+SSHClientTransport or SSHServerTransport.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">protocolVersion</td><td>A string representing the version of the SSH protocol we support.  
+Currently defaults to '2.0'.
+</td></tr><tr><td></td><td class="fieldArg">version</td><td>A string representing the version of the server or client. Currently 
+defaults to 'Twisted'.
+</td></tr><tr><td></td><td class="fieldArg">comment</td><td>An optional string giving more information about the server or 
+client.
+</td></tr><tr><td></td><td class="fieldArg">supportedCiphers</td><td>A list of strings representing the encryption algorithms supported, in 
+order from most-preferred to least.
+</td></tr><tr><td></td><td class="fieldArg">supportedMACs</td><td>A list of strings representing the message authentication codes (hashes)
+supported, in order from most-preferred to least.  Both this and 
+supportedCiphers can include 'none' to use no encryption or authentication,
+but that must be done manually,
+</td></tr><tr><td></td><td class="fieldArg">supportedKeyExchanges</td><td>A list of strings representing the key exchanges supported, in order 
+from most-preferred to least.
+</td></tr><tr><td></td><td class="fieldArg">supportedPublicKeys</td><td>A list of strings representing the public key types supported, in order 
+from most-preferred to least.
+</td></tr><tr><td></td><td class="fieldArg">supportedCompressions</td><td>A list of strings representing compression types supported, from 
+most-preferred to least.
+</td></tr><tr><td></td><td class="fieldArg">supportedLanguages</td><td>A list of strings representing languages supported, from most-preferred 
+to least.
+</td></tr><tr><td></td><td class="fieldArg">isClient</td><td>A boolean indicating whether this is a client or server.
+</td></tr><tr><td></td><td class="fieldArg">gotVersion</td><td>A boolean indicating whether we have receieved the version string from 
+the other side.
+</td></tr><tr><td></td><td class="fieldArg">buf</td><td>Data we've received but hasn't been parsed into a packet.
+</td></tr><tr><td></td><td class="fieldArg">outgoingPacketSequence</td><td>the sequence number of the next packet we will send.
+</td></tr><tr><td></td><td class="fieldArg">incomingPacketSequence</td><td>the sequence number of the next packet we are expecting from the other 
+side.
+</td></tr><tr><td></td><td class="fieldArg">outgoingCompression</td><td>an object supporting the .compress(str) and .flush() methods, or None if
+there is no outgoing compression.  Used to compress outgoing data.
+</td></tr><tr><td></td><td class="fieldArg">outgoingCompressionType</td><td>A string representing the outgoing compression type.
+</td></tr><tr><td></td><td class="fieldArg">incomingCompression</td><td>an object supporting the .decompress(str) method, or None if there is no
+incoming compression.  Used to decompress incoming data.
+</td></tr><tr><td></td><td class="fieldArg">incomingCompressionType</td><td>A string representing the incoming compression type.
+</td></tr><tr><td></td><td class="fieldArg">ourVersionString</td><td>the version string that we sent to the other side. Used in the key 
+exchange.
+</td></tr><tr><td></td><td class="fieldArg">otherVersionString</td><td>the version string sent by the other side.  Used in the key 
+exchange.
+</td></tr><tr><td></td><td class="fieldArg">ourKexInitPayload</td><td>the MSG_KEXINIT payload we sent.  Used in the key exchange.
+</td></tr><tr><td></td><td class="fieldArg">otherKexInitPayload</td><td>the MSG_KEXINIT payload we received.  Used in the key exchange
+</td></tr><tr><td></td><td class="fieldArg">sessionID</td><td>a string that is unique to this SSH session.  Created as part of the key
+exchange, sessionID is used to generate the various encryption and 
+authentication keys.
+</td></tr><tr><td></td><td class="fieldArg">service</td><td>an SSHService instance, or None.  If it's set to an object, it's the 
+currently running service.
+</td></tr><tr><td></td><td class="fieldArg">kexAlg</td><td>the agreed-upon key exchange algorithm.
+</td></tr><tr><td></td><td class="fieldArg">keyAlg</td><td>the agreed-upon public key type for the key exchange.
+</td></tr><tr><td></td><td class="fieldArg">currentEncryptions</td><td>an SSHCiphers instance.  It represents the current encryption and 
+authentication options for the transport.
+</td></tr><tr><td></td><td class="fieldArg">nextEncryptions</td><td>an SSHCiphers instance.  Held here until the MSG_NEWKEYS messages are 
+exchanged, when nextEncryptions is transitioned to currentEncryptions.
+</td></tr><tr><td></td><td class="fieldArg">first</td><td>the first bytes of the next packet.  In order to avoid decrypting data 
+twice, the first bytes are decrypted and stored until the whole packet is 
+available.
+</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id874">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#connectionLost">connectionLost</a></td>
+    <td><span>Called when the connection is shut down.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#connectionMade">connectionMade</a></td>
+    <td><span>Called when the connection is made to the other side.  We sent our 
+version and the MSG_KEXINIT packet.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#sendKexInit">sendKexInit</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#sendPacket">sendPacket</a></td>
+    <td><span>Sends a packet.  If it's been set up, compress the data, encrypt it, and
+authenticate it before sending.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#getPacket">getPacket</a></td>
+    <td><span>Try to return a decrypted, authenticated, and decompressed packet out of
+the buffer.  If there is not enough data, return None.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#dataReceived">dataReceived</a></td>
+    <td><span>First, check for the version string (SSH-2.0-*).  After that has been 
+received, this method adds data to the buffer, and pulls out any 
+packets.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#dispatchMessage">dispatchMessage</a></td>
+    <td><span>Send a received message to the appropriate method.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#ssh_KEXINIT">ssh_KEXINIT</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#ssh_DISCONNECT">ssh_DISCONNECT</a></td>
+    <td><span>Called when we receive a MSG_DISCONNECT message.  Payload:: long code 
+string description
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#ssh_IGNORE">ssh_IGNORE</a></td>
+    <td><span>Called when we receieve a MSG_IGNORE message.  No payload. This means 
+nothing; we simply return.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#ssh_UNIMPLEMENTED">ssh_UNIMPLEMENTED</a></td>
+    <td><span>Called when we receieve a MSG_UNIMPLEMENTED message.  Payload:: long 
+packet
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#ssh_DEBUG">ssh_DEBUG</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#setService">setService</a></td>
+    <td><span>Set our service to service and start it running.  If we were running a 
+service previously, stop it first.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#sendDebug">sendDebug</a></td>
+    <td><span>Send a debug message to the other side.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#sendIgnore">sendIgnore</a></td>
+    <td><span>Send a message that will be ignored by the other side.  This is useful 
+to fool attacks based on guessing packet sizes in the encrypted stream.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#sendUnimplemented">sendUnimplemented</a></td>
+    <td><span>Send a message to the other side that the last packet was not 
+understood.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#sendDisconnect">sendDisconnect</a></td>
+    <td><span>Send a disconnect message to the other side and then disconnect.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#isEncrypted">isEncrypted</a></td>
+    <td><span>Return True if the connection is encrypted in the given direction. 
+Direction must be one of [&quot;out&quot;, &quot;in&quot;, 
+&quot;both&quot;].
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#isVerified">isVerified</a></td>
+    <td><span>Return True if the connecction is verified/authenticated in the given 
+direction.  Direction must be one of [&quot;out&quot;, &quot;in&quot;, 
+&quot;both&quot;].
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#loseConnection">loseConnection</a></td>
+    <td><span>Lose the connection to the other side, sending a 
+DISCONNECT_CONNECTION_LOST message.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#receiveError">receiveError</a></td>
+    <td><span>Called when we receive a disconnect error message from the other 
+side.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#receiveUnimplemented">receiveUnimplemented</a></td>
+    <td><span>Called when we receive an unimplemented packet message from the other 
+side.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#receiveDebug">receiveDebug</a></td>
+    <td><span>Called when we receive a debug message from the other side.
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#_getKey">_getKey</a></td>
+    <td><span>Get one of the keys for authentication/encryption.
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#_keySetup">_keySetup</a></td>
+    <td><span>Set up the keys for the connection and sends MSG_NEWKEYS when 
+finished,
+</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.internet.protocol.BaseProtocol.html">BaseProtocol</a> (via <a href="twisted.internet.protocol.Protocol.html">Protocol</a>):
+        </p>
+        <table class="children sortable" id="id875">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.BaseProtocol.html#makeConnection">makeConnection</a></td>
+    <td><span>Make a connection to a transport and a server.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.connectionLost">
+    
+  </a>
+  <a name="connectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    connectionLost(self, reason):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L164" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#connectionLost">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Protocol.html#connectionLost">twisted.internet.protocol.Protocol.connectionLost</a></div><div class="interfaceinfo">overridden in <a href="twisted.conch.client.direct.SSHClientTransport.html">twisted.conch.client.direct.SSHClientTransport</a></div>
+    <div><p>Called when the connection is shut down.</p>
+Clear any circular references here, and any external references to this 
+Protocol.  The connection has been closed.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">reason</td><td> (type: <a 
+href="twisted.python.failure.Failure.html"><code>twisted.python.failure.Failure</code></a>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.connectionMade">
+    
+  </a>
+  <a name="connectionMade">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    connectionMade(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L172" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#connectionMade">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.BaseProtocol.html#connectionMade">twisted.internet.protocol.BaseProtocol.connectionMade</a></div><div class="interfaceinfo">overridden in <a href="twisted.conch.ssh.transport.SSHClientTransport.html">twisted.conch.ssh.transport.SSHClientTransport</a></div>
+    <div>Called when the connection is made to the other side.  We sent our 
+version and the MSG_KEXINIT packet.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.sendKexInit">
+    
+  </a>
+  <a name="sendKexInit">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    sendKexInit(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L183" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.sendPacket">
+    
+  </a>
+  <a name="sendPacket">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    sendPacket(self, messageType, payload):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L200" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Sends a packet.  If it's been set up, compress the data, encrypt it, and
+authenticate it before sending.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">messageType</td><td>The type of the packet; generally one of the MSG_* values.
+ (type: <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">payload</td><td>The payload for the message.
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.getPacket">
+    
+  </a>
+  <a name="getPacket">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getPacket(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L232" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Try to return a decrypted, authenticated, and decompressed packet out of
+the buffer.  If there is not enough data, return None.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"> (type: <code>str</code>/<code>None</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.dataReceived">
+    
+  </a>
+  <a name="dataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dataReceived(self, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L287" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#dataReceived">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Protocol.html#dataReceived">twisted.internet.protocol.Protocol.dataReceived</a></div>
+    <div>First, check for the version string (SSH-2.0-*).  After that has been 
+received, this method adds data to the buffer, and pulls out any 
+packets.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">data</td><td> (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.dispatchMessage">
+    
+  </a>
+  <a name="dispatchMessage">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dispatchMessage(self, messageNum, payload):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L318" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Send a received message to the appropriate method.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">messageNum</td><td> (type: <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">payload</td><td> (type: c{str}
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.ssh_KEXINIT">
+    
+  </a>
+  <a name="ssh_KEXINIT">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ssh_KEXINIT(self, packet):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L343" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.conch.ssh.transport.SSHClientTransport.html">twisted.conch.ssh.transport.SSHClientTransport</a>, <a href="twisted.conch.ssh.transport.SSHServerTransport.html">twisted.conch.ssh.transport.SSHServerTransport</a></div>
+    <div>Called when we receive a MSG_KEXINIT message.  Payload:
+<pre class="literalblock">
+   bytes[16] cookie
+   string keyExchangeAlgorithms
+   string keyAlgorithms
+   string incomingEncryptions
+   string outgoingEncryptions
+   string incomingAuthentications
+   string outgoingAuthentications
+   string incomingCompressions
+   string outgoingCompressions
+   string incomingLanguages
+   string outgoingLanguages
+   bool firstPacketFollows
+   unit32 0 (reserved)
+</pre>
+Starts setting up the key exchange, keys, encryptions, and 
+authentications.  Extended by ssh_KEXINIT in SSHServerTransport and 
+SSHClientTransport.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.ssh_DISCONNECT">
+    
+  </a>
+  <a name="ssh_DISCONNECT">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ssh_DISCONNECT(self, packet):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L411" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when we receive a MSG_DISCONNECT message.  Payload:
+<pre class="literalblock">
+   long code
+   string description
+</pre>
+This means that the other side has disconnected.  Pass the message up 
+and disconnect ourselves.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.ssh_IGNORE">
+    
+  </a>
+  <a name="ssh_IGNORE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ssh_IGNORE(self, packet):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L426" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when we receieve a MSG_IGNORE message.  No payload. This means 
+nothing; we simply return.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.ssh_UNIMPLEMENTED">
+    
+  </a>
+  <a name="ssh_UNIMPLEMENTED">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ssh_UNIMPLEMENTED(self, packet):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L433" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when we receieve a MSG_UNIMPLEMENTED message.  Payload:
+<pre class="literalblock">
+   long packet
+</pre>
+This means that the other side did not implement one of our packets.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.ssh_DEBUG">
+    
+  </a>
+  <a name="ssh_DEBUG">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ssh_DEBUG(self, packet):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L444" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when we receieve a MSG_DEBUG message.  Payload:
+<pre class="literalblock">
+   bool alwaysDisplay
+   string message
+   string language
+</pre>
+This means the other side has passed along some debugging info.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.setService">
+    
+  </a>
+  <a name="setService">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setService(self, service):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L458" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.conch.client.direct.SSHClientTransport.html">twisted.conch.client.direct.SSHClientTransport</a></div>
+    <div>Set our service to service and start it running.  If we were running a 
+service previously, stop it first.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">service</td><td> (type: <code>SSHService</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.sendDebug">
+    
+  </a>
+  <a name="sendDebug">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    sendDebug(self, message, alwaysDisplay=False, language=''):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L473" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Send a debug message to the other side.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">message</td><td>the message to send.
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">alwaysDisplay</td><td>if True, tell the other side to always display this message.
+ (type: <code>bool</code>
+)</td></tr><tr><td></td><td class="fieldArg">language</td><td>optionally, the language the message is in.
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.sendIgnore">
+    
+  </a>
+  <a name="sendIgnore">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    sendIgnore(self, message):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L489" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Send a message that will be ignored by the other side.  This is useful 
+to fool attacks based on guessing packet sizes in the encrypted stream.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">message</td><td>data to send with the message
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.sendUnimplemented">
+    
+  </a>
+  <a name="sendUnimplemented">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    sendUnimplemented(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L501" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Send a message to the other side that the last packet was not 
+understood.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.sendDisconnect">
+    
+  </a>
+  <a name="sendDisconnect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    sendDisconnect(self, reason, desc):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L510" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.conch.client.direct.SSHClientTransport.html">twisted.conch.client.direct.SSHClientTransport</a>, <a href="twisted.conch.scripts.tkconch.SSHClientTransport.html">twisted.conch.scripts.tkconch.SSHClientTransport</a></div>
+    <div>Send a disconnect message to the other side and then disconnect.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">reason</td><td>the reason for the disconnect.  Should be one of the DISCONNECT_* 
+values.
+ (type: <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">desc</td><td>a descrption of the reason for the disconnection.
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase._getKey">
+    
+  </a>
+  <a name="_getKey">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _getKey(self, c, sharedSecret, exchangeHash):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L527" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Get one of the keys for authentication/encryption.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">c</td><td> (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">sharedSecret</td><td> (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">exchangeHash</td><td> (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase._keySetup">
+    
+  </a>
+  <a name="_keySetup">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _keySetup(self, sharedSecret, exchangeHash):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L541" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.conch.ssh.transport.SSHClientTransport.html">twisted.conch.ssh.transport.SSHClientTransport</a></div>
+    <div>Set up the keys for the connection and sends MSG_NEWKEYS when 
+finished,
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">sharedSecret</td><td>a secret string agreed upon using a Diffie- Hellman exchange, so it is 
+only shared between the server and the client.
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">exchangeHash</td><td>A hash of various data known by both sides.
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.isEncrypted">
+    
+  </a>
+  <a name="isEncrypted">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    isEncrypted(self, direction='out'):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L571" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Return True if the connection is encrypted in the given direction. 
+Direction must be one of [&quot;out&quot;, &quot;in&quot;, 
+&quot;both&quot;].
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.isVerified">
+    
+  </a>
+  <a name="isVerified">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    isVerified(self, direction='out'):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L586" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Return True if the connecction is verified/authenticated in the given 
+direction.  Direction must be one of [&quot;out&quot;, &quot;in&quot;, 
+&quot;both&quot;].
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.loseConnection">
+    
+  </a>
+  <a name="loseConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    loseConnection(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L601" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Lose the connection to the other side, sending a 
+DISCONNECT_CONNECTION_LOST message.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.receiveError">
+    
+  </a>
+  <a name="receiveError">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    receiveError(self, reasonCode, description):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L611" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.conch.client.direct.SSHClientTransport.html">twisted.conch.client.direct.SSHClientTransport</a>, <a href="twisted.conch.scripts.tkconch.SSHClientTransport.html">twisted.conch.scripts.tkconch.SSHClientTransport</a></div>
+    <div>Called when we receive a disconnect error message from the other 
+side.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">reasonCode</td><td>the reason for the disconnect, one of the DISCONNECT_ values.
+ (type: <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">description</td><td>a human-readable description of the disconnection.
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.receiveUnimplemented">
+    
+  </a>
+  <a name="receiveUnimplemented">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    receiveUnimplemented(self, seqnum):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L627" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when we receive an unimplemented packet message from the other 
+side.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">seqnum</td><td>the sequence number that was not understood.
+ (type: <code>int</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHTransportBase.receiveDebug">
+    
+  </a>
+  <a name="receiveDebug">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    receiveDebug(self, alwaysDisplay, message, lang):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L638" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.conch.client.direct.SSHClientTransport.html">twisted.conch.client.direct.SSHClientTransport</a>, <a href="twisted.conch.scripts.tkconch.SSHClientTransport.html">twisted.conch.scripts.tkconch.SSHClientTransport</a></div>
+    <div>Called when we receive a debug message from the other side.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">alwaysDisplay</td><td>if True, this message should always be displayed.
+ (type: <code>bool</code>
+)</td></tr><tr><td></td><td class="fieldArg">message</td><td>the debug message
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">lang</td><td>optionally the language the message is in.
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-10-27 15:57:47.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

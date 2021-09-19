@@ -1,0 +1,138 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.web.woven.interfaces.IModel&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="interface">Interface t.w.w.i.IModel(<a href="twisted.python.components.Interface.html">components.Interface</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.web.woven.interfaces.html">twisted.web.woven.interfaces</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.web.woven.interfaces.IModel">View In Hierarchy</a>
+    </p>
+    <div><p>Known implementations: <a href="twisted.web.woven.model.Model.html">twisted.web.woven.model.Model</a></p></div>
+    <div>A MVC Model.
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.interfaces.IModel.addView">addView</a></td>
+          <td><span>Add a view for the model to keep track of.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.interfaces.IModel.removeView">removeView</a></td>
+          <td><span>Remove a view that the model no longer should keep track of.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.interfaces.IModel.notify">notify</a></td>
+          <td><span>Notify all views that something was changed on me.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.interfaces.IModel.getData">getData</a></td>
+          <td><span>Return the raw data contained by this Model object, if it is a
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.interfaces.IModel.setData">setData</a></td>
+          <td><span>Set the raw data referenced by this Model object, if it is a
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.interfaces.IModel.lookupSubmodel">lookupSubmodel</a></td>
+          <td><span>Return an IModel implementor for the given submodel path
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.interfaces.IModel.getSubmodel">getSubmodel</a></td>
+          <td><span>Return an IModel implementor for the submodel named
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.interfaces.IModel.setSubmodel">setSubmodel</a></td>
+          <td><span>Set the given data as a submodel of this model. The data
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.web.woven.interfaces.IModel.addView"></a>
+        <div class="functionHeader">
+          def <span>addView(view):</span>
+        </div>
+        <div class="functionBody"><div>Add a view for the model to keep track of.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.interfaces.IModel.removeView"></a>
+        <div class="functionHeader">
+          def <span>removeView(view):</span>
+        </div>
+        <div class="functionBody"><div>Remove a view that the model no longer should keep track of.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.interfaces.IModel.notify"></a>
+        <div class="functionHeader">
+          def <span>notify(changed=None):</span>
+        </div>
+        <div class="functionBody"><div>Notify all views that something was changed on me. Passing a 
+dictionary of {'attribute': 'new value'} in changed will pass this 
+dictionary to the view for increased performance. If you don't want to do 
+this, don't, and just use the traditional MVC paradigm of querying the 
+model for things you're interested in.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.interfaces.IModel.getData"></a>
+        <div class="functionHeader">
+          def <span>getData(self):</span>
+        </div>
+        <div class="functionBody"><div>Return the raw data contained by this Model object, if it is a 
+wrapper. If not, return self.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.interfaces.IModel.setData"></a>
+        <div class="functionHeader">
+          def <span>setData(self, request, data):</span>
+        </div>
+        <div class="functionBody"><div>Set the raw data referenced by this Model object, if it is a wrapper. 
+This is done by telling our Parent model to setSubmodel the new data. If 
+this object is not a wrapper, keep the data around and return it for 
+subsequent getData calls.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.interfaces.IModel.lookupSubmodel"></a>
+        <div class="functionHeader">
+          def <span>lookupSubmodel(self, request, submodelPath):</span>
+        </div>
+        <div class="functionBody"><div>Return an IModel implementor for the given submodel path string. This 
+path may be any number of elements separated by /. The default 
+implementation splits on &quot;/&quot; and calls getSubmodel until the 
+path is exhausted. You will not normally need to override this 
+behavior.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.interfaces.IModel.getSubmodel"></a>
+        <div class="functionHeader">
+          def <span>getSubmodel(self, request, submodelName):</span>
+        </div>
+        <div class="functionBody"><div>Return an IModel implementor for the submodel named 
+&quot;submodelName&quot;. If this object contains simple data types, they 
+can be adapted to IModel using model.adaptToIModel(m, parent, name) 
+before returning.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.interfaces.IModel.setSubmodel"></a>
+        <div class="functionHeader">
+          def <span>setSubmodel(self, request, submodelName, data):</span>
+        </div>
+        <div class="functionBody"><div>Set the given data as a submodel of this model. The data need not 
+implement IModel, since getSubmodel should adapt the data to IModel 
+before returning it.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

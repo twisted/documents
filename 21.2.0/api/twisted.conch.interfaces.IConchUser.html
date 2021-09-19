@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.conch.interfaces.IConchUser : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://twistedmatrix.com/">Twisted</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="interface"><code><a href="twisted.html" class="code" data-type="Package">twisted</a>.<a href="twisted.conch.html" class="code" data-type="Package">conch</a>.<a href="twisted.conch.interfaces.html" class="code" data-type="Module">interfaces</a>.<a href="twisted.conch.interfaces.IConchUser.html" class="code" data-type="Interface">IConchUser</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        interface documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> twisted.conch.interfaces.IConchUser(<span title="zope.interface.Interface">Interface</span>): <a href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/interfaces.py#L11">(source)</a></code></p><p>Known implementations: <a href="twisted.conch.avatar.ConchUser.html" class="code" data-type="Class">twisted.conch.avatar.ConchUser</a></p>
+        <p><a href="classIndex.html#twisted.conch.interfaces.IConchUser">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A user who has been authenticated to Cred through Conch.  This is the interface between the SSH connection and the user.</p></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id283">
+  
+  <tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><a href="twisted.conch.interfaces.IConchUser.html#conn" class="code" data-type="Attribute">conn</a></td>
+    <td><span>The SSHConnection object for this user.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.IConchUser.html#lookupChannel" class="code" data-type="Method">lookupChannel</a></td>
+    <td><span>The other side requested a channel of some sort.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.IConchUser.html#lookupSubsystem" class="code" data-type="Method">lookupSubsystem</a></td>
+    <td><span>The other side requested a subsystem.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.IConchUser.html#gotGlobalRequest" class="code" data-type="Method">gotGlobalRequest</a></td>
+    <td><span>A global request was sent from the other side.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseattribute">
+  
+  <a name="twisted.conch.interfaces.IConchUser.conn">
+    
+  </a>
+  <a name="conn">
+    
+  </a>
+  <div class="functionHeader">
+    
+    conn =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/interfaces.py#L17">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>The SSHConnection object for this user.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.interfaces.IConchUser.lookupChannel">
+    
+  </a>
+  <a name="lookupChannel">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def lookupChannel(channelType, windowSize, maxPacket, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/interfaces.py#L19">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>The other side requested a channel of some sort.</p><p><code>channelType</code> is the type of channel being requested, as an ssh connection protocol channel type. <code>data</code> is any other packet data (often nothing).</p><p>We return a subclass of <a href="twisted.conch.ssh.channel.SSHChannel.html"><code>SSHChannel</code></a>.  If the channel type is unknown, we return <code>None</code>.</p><p>For other failures, we raise an exception. If a <a href="twisted.conch.error.ConchError.html"><code>ConchError</code></a> is raised, the <code>.value</code> will be the message, and the <code>.data</code> will be the error code.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">channelType</td><td>The requested channel type (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">windowSize</td><td>The initial size of the remote window (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)</td></tr><tr><td></td><td class="fieldArg">maxPacket</td><td>The largest packet we should send (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)</td></tr><tr><td></td><td class="fieldArg">data</td><td>Additional request data (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: a subclass of <a href="twisted.conch.ssh.channel.SSHChannel.html"><code>SSHChannel</code></a> or <a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.interfaces.IConchUser.lookupSubsystem">
+    
+  </a>
+  <a name="lookupSubsystem">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def lookupSubsystem(subsystem, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/interfaces.py#L45">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>The other side requested a subsystem.</p><p>We return a <a href="twisted.internet.protocol.Protocol.html"><code>Protocol</code></a> implementing the requested subsystem. If the subsystem is not available, we return <code>None</code>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">subsystem</td><td>The name of the subsystem being requested (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">data</td><td>Additional request data (often nothing) (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: <a href="twisted.internet.protocol.Protocol.html"><code>Protocol</code></a> or <a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.interfaces.IConchUser.gotGlobalRequest">
+    
+  </a>
+  <a name="gotGlobalRequest">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def gotGlobalRequest(requestType, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/interfaces.py#L59">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>A global request was sent from the other side.</p><p>We return a true value on success or a false value on failure. If we indicate success by returning a tuple, its second item will be sent to the other side as additional response data.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">requestType</td><td>The type of the request (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">data</td><td>Additional request data (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: boolean or <a href="https://docs.python.org/3/library/stdtypes.html#tuple"><code>tuple</code></a>)</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-02-28 19:53:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

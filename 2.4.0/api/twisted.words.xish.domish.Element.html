@@ -1,0 +1,357 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.words.xish.domish.Element&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.w.x.d.Element(object):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.words.xish.domish.html">twisted.words.xish.domish</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.words.xish.domish.Element">View In Hierarchy</a>
+    </p>
+    <div><p>Known subclasses: <a href="twisted.words.protocols.jabber.xmlstream.IQ.html">twisted.words.protocols.jabber.xmlstream.IQ</a>, <a href="twisted.words.protocols.jabber.client.IQ.html">twisted.words.protocols.jabber.client.IQ</a></p><p>Implements interfaces: <a href="twisted.words.xish.domish.IElement.html">twisted.words.xish.domish.IElement</a></p></div>
+    <pre>Represents an XML element node.
+
+An Element contains a series of attributes (name/value pairs), content
+(character data), and other child Element objects. When building a document
+with markup (such as HTML or XML), use this object as the starting point.
+
+Element objects fully support XML Namespaces. The fully qualified name of
+the XML Element it represents is stored in the C{uri} and C{name}
+attributes, where C{uri} holds the namespace URI. There is also a default
+namespace, for child elements. This is stored in the C{defaultUri}
+attribute. Note that C{''} means the empty namespace.
+
+Serialization of Elements through C{toXml()} will use these attributes
+for generating proper serialized XML. When both C{uri} and C{defaultUri}
+are not None in the Element and all of its descendents, serialization
+proceeds as expected:
+
+  &gt;&gt;&gt; from twisted.words.xish import domish
+  &gt;&gt;&gt; root = domish.Element(('myns', 'root'))
+  &gt;&gt;&gt; root.addElement('child', content='test')
+  &lt;twisted.words.xish.domish.Element object at 0x83002ac&gt;
+  &gt;&gt;&gt; root.toXml()
+  u"&lt;root xmlns='myns'&gt;&lt;child&gt;test&lt;/child&gt;&lt;/root&gt;"
+
+For partial serialization, needed for streaming XML, a special value for
+namespace URIs can be used: C{None}.
+
+Using C{None} as the value for C{uri} means: this element is in whatever
+namespace inherited by the closest logical ancestor when the complete XML
+document has been serialized. The serialized start tag will have a
+non-prefixed name, and no xmlns declaration will be generated.
+
+Similarly, C{None} for C{defaultUri} means: the default namespace for my
+child elements is inherited from the logical ancestors of this element,
+when the complete XML document has been serialized.
+
+To illustrate, an example from a Jabber stream. Assume the start tag of the
+root element of the stream has already been serialized, along with several
+complete child elements, and sent off, looking like this:
+
+  &lt;stream:stream xmlns:stream='http://etherx.jabber.org/streams'
+                 xmlns='jabber:client' to='example.com'&gt;
+    ...
+
+Now suppose we want to send a complete element represented by an
+object C{message} created like:
+
+  &gt;&gt;&gt; message = domish.Element((None, 'message'))
+  &gt;&gt;&gt; message['to'] = 'user@example.com'
+  &gt;&gt;&gt; message.addElement('body', content='Hi!')
+  &lt;twisted.words.xish.domish.Element object at 0x8276e8c&gt;
+  &gt;&gt;&gt; message.toXml()
+  u"&lt;message to='user@example.com'&gt;&lt;body&gt;Hi!&lt;/body&gt;&lt;/message&gt;"
+
+As, you can see, this XML snippet has no xmlns declaration. When sent
+off, it inherits the C{jabber:client} namespace from the root element.
+Note that this renders the same as using C{''} instead of C{None}:
+
+  &gt;&gt;&gt; presence = domish.Element(('', 'presence'))
+  &gt;&gt;&gt; presence.toXml()
+  u"&lt;presence/&gt;"
+
+However, if this object has a parent defined, the difference becomes
+clear:
+
+  &gt;&gt;&gt; child = message.addElement(('http://example.com/', 'envelope'))
+  &gt;&gt;&gt; child.addChild(presence)
+  &lt;twisted.words.xish.domish.Element object at 0x8276fac&gt;
+  &gt;&gt;&gt; message.toXml()
+  u"&lt;message to='user@example.com'&gt;&lt;body&gt;Hi!&lt;/body&gt;&lt;envelope xmlns='http://example.com/'&gt;&lt;presence xmlns=''/&gt;&lt;/envelope&gt;&lt;/message&gt;"
+
+As, you can see, the &lt;presence/&gt; element is now in the empty namespace, not
+in the default namespace of the parent or the streams'.
+
+@type uri: L{unicode} or None
+@ivar uri: URI of this Element's name
+
+@type name: L{unicode}
+@ivar name: Name of this Element
+
+@type defaultUri: L{unicode} or None
+@ivar defaultUri: URI this Element exists within
+
+@type children: L{list}
+@ivar children: List of child Elements and content
+
+@type parent: L{Element}
+@ivar parent: Reference to the parent Element, if any.
+
+@type attributes: L{dict}
+@ivar attributes: Dictionary of attributes associated with this Element.
+
+@type localPrefixes: L{dict}
+@ivar localPrefixes: Dictionary of namespace declarations on this
+                     element. The key is the prefix to bind the
+                     namespace uri to.</pre>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.xish.domish.Element.__init__">__init__</a></td>
+          <td><span></span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.xish.domish.Element.__getattr__">__getattr__</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.xish.domish.Element.__getitem__">__getitem__</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.xish.domish.Element.__delitem__">__delitem__</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.xish.domish.Element.__setitem__">__setitem__</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.xish.domish.Element.__str__">__str__</a></td>
+          <td><span>Retrieve the first CData (content) node
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.xish.domish.Element._dqa">_dqa</a></td>
+          <td><span>Dequalify an attribute key as needed
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.xish.domish.Element.getAttribute">getAttribute</a></td>
+          <td><span>Retrieve the value of attribname, if it exists
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.xish.domish.Element.hasAttribute">hasAttribute</a></td>
+          <td><span>Determine if the specified attribute exists
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.xish.domish.Element.compareAttribute">compareAttribute</a></td>
+          <td><span>Safely compare the value of an attribute against a provided value.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.xish.domish.Element.swapAttributeValues">swapAttributeValues</a></td>
+          <td><span>Swap the values of two attribute.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.xish.domish.Element.addChild">addChild</a></td>
+          <td><span>Add a child to this Element.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.xish.domish.Element.addContent">addContent</a></td>
+          <td><span>Add some text data to this Element.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.xish.domish.Element.addElement">addElement</a></td>
+          <td><span>Create an element and add as child.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.xish.domish.Element.addRawXml">addRawXml</a></td>
+          <td><span>Add a pre-serialized chunk o' XML as a child of this Element.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.xish.domish.Element.addUniqueId">addUniqueId</a></td>
+          <td><span>Add a unique (across a given Python session) id attribute to this
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.xish.domish.Element.elements">elements</a></td>
+          <td><span>Iterate across all children of this Element that are Elements.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.xish.domish.Element.toXml">toXml</a></td>
+          <td><span>Serialize this Element and all children to a string.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.xish.domish.Element.firstChildElement">firstChildElement</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.words.xish.domish.Element.__init__"></a>
+        <div class="functionHeader">
+          def <span>__init__(self, qname, defaultUri=None, attribs=None, localPrefixes=None):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.words.protocols.jabber.xmlstream.IQ.html#twisted.words.protocols.jabber.xmlstream.IQ.__init__">twisted.words.protocols.jabber.xmlstream.IQ</a>, <a href="twisted.words.protocols.jabber.client.IQ.html#twisted.words.protocols.jabber.client.IQ.__init__">twisted.words.protocols.jabber.client.IQ</a></div><div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">qname</td><td>Tuple of (uri, name)
+</td></tr><tr><td></td><td class="fieldArg">defaultUri</td><td>The default URI of the element; defaults to the URI specified in 
+qname
+</td></tr><tr><td></td><td class="fieldArg">attribs</td><td>Dictionary of attributes
+</td></tr><tr><td></td><td class="fieldArg">localPrefixes</td><td>Dictionary of namespace declarations on this element. The key is the 
+prefix to bind the namespace uri to.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.words.xish.domish.Element.__getattr__"></a>
+        <div class="functionHeader">
+          def <span>__getattr__(self, key):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.words.xish.domish.Element.__getitem__"></a>
+        <div class="functionHeader">
+          def <span>__getitem__(self, key):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.words.xish.domish.Element.__delitem__"></a>
+        <div class="functionHeader">
+          def <span>__delitem__(self, key):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.words.xish.domish.Element.__setitem__"></a>
+        <div class="functionHeader">
+          def <span>__setitem__(self, key, value):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.words.xish.domish.Element.__str__"></a>
+        <div class="functionHeader">
+          def <span>__str__(self):</span>
+        </div>
+        <div class="functionBody"><div>Retrieve the first CData (content) node
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.words.xish.domish.Element._dqa"></a>
+        <div class="functionHeader">
+          def <span>_dqa(self, attr):</span>
+        </div>
+        <div class="functionBody"><div>Dequalify an attribute key as needed
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.words.xish.domish.Element.getAttribute"></a>
+        <div class="functionHeader">
+          def <span>getAttribute(self, attribname, default=None):</span>
+        </div>
+        <div class="functionBody"><div>Retrieve the value of attribname, if it exists
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.words.xish.domish.Element.hasAttribute"></a>
+        <div class="functionHeader">
+          def <span>hasAttribute(self, attrib):</span>
+        </div>
+        <div class="functionBody"><div>Determine if the specified attribute exists
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.words.xish.domish.Element.compareAttribute"></a>
+        <div class="functionHeader">
+          def <span>compareAttribute(self, attrib, value):</span>
+        </div>
+        <div class="functionBody"><div><p>Safely compare the value of an attribute against a provided value.</p>
+<code>None</code>-safe.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.words.xish.domish.Element.swapAttributeValues"></a>
+        <div class="functionHeader">
+          def <span>swapAttributeValues(self, left, right):</span>
+        </div>
+        <div class="functionBody"><div>Swap the values of two attribute.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.words.xish.domish.Element.addChild"></a>
+        <div class="functionHeader">
+          def <span>addChild(self, node):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.words.xish.domish.IElement.html#twisted.words.xish.domish.IElement.addChild">twisted.words.xish.domish.IElement</a></div><div>Add a child to this Element.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.words.xish.domish.Element.addContent"></a>
+        <div class="functionHeader">
+          def <span>addContent(self, text):</span>
+        </div>
+        <div class="functionBody"><div>Add some text data to this Element.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.words.xish.domish.Element.addElement"></a>
+        <div class="functionHeader">
+          def <span>addElement(self, name, defaultUri=None, content=None):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.words.xish.domish.IElement.html#twisted.words.xish.domish.IElement.addElement">twisted.words.xish.domish.IElement</a></div><div><p>Create an element and add as child.</p>
+The new element is added to this element as a child, and will have 
+this element as its parent.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>element name. This can be either a unicode object that contains the 
+local name, or a tuple of (uri, local_name) for a fully qualified name. 
+In the former case, the namespace URI is inherited from this element.
+(type: unicode or tuple of (unicode, unicode)
+)</td></tr><tr><td></td><td class="fieldArg">defaultUri</td><td>default namespace URI for child elements. If <code>None</code>, this 
+is inherited from this element.
+(type: unicode
+)</td></tr><tr><td></td><td class="fieldArg">content</td><td>text contained by the new element.
+(type: unicode
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the created element
+(type: object providing <a 
+href="twisted.words.xish.domish.IElement.html">IElement</a>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.words.xish.domish.Element.addRawXml"></a>
+        <div class="functionHeader">
+          def <span>addRawXml(self, rawxmlstring):</span>
+        </div>
+        <div class="functionBody"><div>Add a pre-serialized chunk o' XML as a child of this Element.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.words.xish.domish.Element.addUniqueId"></a>
+        <div class="functionHeader">
+          def <span>addUniqueId(self):</span>
+        </div>
+        <div class="functionBody"><div>Add a unique (across a given Python session) id attribute to this 
+Element.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.words.xish.domish.Element.elements"></a>
+        <div class="functionHeader">
+          def <span>elements(self):</span>
+        </div>
+        <div class="functionBody"><div>Iterate across all children of this Element that are Elements.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.words.xish.domish.Element.toXml"></a>
+        <div class="functionHeader">
+          def <span>toXml(self, prefixes=None, closeElement=1, defaultUri='', prefixesInScope=None):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.words.xish.domish.IElement.html#twisted.words.xish.domish.IElement.toXml">twisted.words.xish.domish.IElement</a></div><div>Serialize this Element and all children to a string.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.words.xish.domish.Element.firstChildElement"></a>
+        <div class="functionHeader">
+          def <span>firstChildElement(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div>    
+  </body>
+</html>

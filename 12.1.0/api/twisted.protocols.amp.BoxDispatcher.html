@@ -1,0 +1,626 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.protocols.amp.BoxDispatcher : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.p.a.BoxDispatcher : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.protocols.html">protocols</a>.<a href="twisted.protocols.amp.html">amp</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.1.0/twisted/protocols/amp.py#L643">View Source</a>
+      <a href="classIndex.html#twisted.protocols.amp.BoxDispatcher">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known subclasses: <a href="twisted.protocols.amp.AMP.html">twisted.protocols.amp.AMP</a></p><p>Implements interfaces: <a href="twisted.protocols.amp.IBoxReceiver.html">twisted.protocols.amp.IBoxReceiver</a></p>
+    </div>
+    <div>A <a 
+href="twisted.protocols.amp.BoxDispatcher.html"><code>BoxDispatcher</code></a>
+dispatches '_ask', '_answer', and '_error' <a 
+href="twisted.protocols.amp.AmpBox.html"><code>AmpBox</code></a>es, both 
+incoming and outgoing, to their appropriate destinations.</p>
+<p>Outgoing commands are converted into <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>s and 
+outgoing boxes, and associated tracking state to fire those <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> when 
+'_answer' boxes come back.  Incoming '_answer' and '_error' boxes are 
+converted into callbacks and errbacks on those <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>s, 
+respectively.</p>
+<p>Incoming '_ask' boxes are converted into method calls on a supplied 
+method locator.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3345">
+  
+  
+<tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.amp.BoxDispatcher.html#locator">locator</a></td>
+    <td>an object with a <a 
+href="twisted.protocols.amp.AMP.html#locateResponder"><code>locateResponder</code></a>
+method that locates a responder function that takes a Box and returns a 
+result (either a Box or a Deferred which fires one).</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.amp.BoxDispatcher.html#boxSender">boxSender</a></td>
+    <td>an object which can send boxes, via the <code>_sendBox</code> method, such 
+as an <a href="twisted.protocols.amp.AMP.html"><code>AMP</code></a> 
+instance. (type: <a href="twisted.protocols.amp.IBoxSender.html"><code>IBoxSender</code></a>)</td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.BoxDispatcher.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.BoxDispatcher.html#startReceivingBoxes">startReceivingBoxes</a></td>
+    <td><span>The given boxSender is going to start calling boxReceived on this <a 
+href="twisted.protocols.amp.BoxDispatcher.html"><code>BoxDispatcher</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.BoxDispatcher.html#stopReceivingBoxes">stopReceivingBoxes</a></td>
+    <td><span>No further boxes will be received here.  Terminate all currently 
+oustanding command deferreds with the given reason.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.BoxDispatcher.html#failAllOutgoing">failAllOutgoing</a></td>
+    <td><span>Call the errback on all outstanding requests awaiting responses.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.BoxDispatcher.html#callRemoteString">callRemoteString</a></td>
+    <td><span>This is a low-level API, designed only for optimizing simple messages 
+for which the overhead of parsing is too great.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.BoxDispatcher.html#callRemote">callRemote</a></td>
+    <td><span>This is the primary high-level API for sending messages via AMP.  Invoke
+it with a command and appropriate arguments to send a message to this 
+connection's peer.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.BoxDispatcher.html#unhandledError">unhandledError</a></td>
+    <td><span>This is a terminal callback called after application code has had a 
+chance to quash any errors.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.BoxDispatcher.html#ampBoxReceived">ampBoxReceived</a></td>
+    <td><span>An AmpBox was received, representing a command, or an answer to a 
+previously issued command (either successful or erroneous).  Respond to it 
+according to its contents.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.BoxDispatcher.html#dispatchCommand">dispatchCommand</a></td>
+    <td><span>A box with a _command key was received.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.amp.BoxDispatcher.html#_outstandingRequests">_outstandingRequests</a></td>
+    <td>a dictionary mapping request IDs to <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>s 
+which were returned for those requests.</td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.BoxDispatcher.html#_nextTag">_nextTag</a></td>
+    <td><span>Generate protocol-local serial numbers for _ask keys.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.BoxDispatcher.html#_sendBoxCommand">_sendBoxCommand</a></td>
+    <td><span>Send a command across the wire with the given <code>amp.Box</code>.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.BoxDispatcher.html#_answerReceived">_answerReceived</a></td>
+    <td><span>An AMP box was received that answered a command previously sent with <a 
+href="twisted.protocols.amp.BoxDispatcher.html#callRemote"><code>callRemote</code></a>.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.BoxDispatcher.html#_errorReceived">_errorReceived</a></td>
+    <td><span>An AMP box was received that answered a command previously sent with <a 
+href="twisted.protocols.amp.BoxDispatcher.html#callRemote"><code>callRemote</code></a>,
+with an error.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.BoxDispatcher.html#_commandReceived">_commandReceived</a></td>
+    <td></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.BoxDispatcher.html#_safeEmit">_safeEmit</a></td>
+    <td><span>Emit a box, ignoring <a 
+href="twisted.protocols.amp.ProtocolSwitched.html"><code>ProtocolSwitched</code></a>
+and <a 
+href="twisted.internet.error.ConnectionLost.html"><code>ConnectionLost</code></a>
+errors which cannot be usefully handled.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.protocols.amp.BoxDispatcher._outstandingRequests">
+    
+  </a>
+  <a name="_outstandingRequests">
+    
+  </a>
+  <div class="functionHeader">
+    _outstandingRequests =
+  </div>
+  <div class="functionBody">
+    a dictionary mapping request IDs to <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>s 
+which were returned for those requests.
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.amp.BoxDispatcher.locator">
+    
+  </a>
+  <a name="locator">
+    
+  </a>
+  <div class="functionHeader">
+    locator =
+  </div>
+  <div class="functionBody">
+    an object with a <a 
+href="twisted.protocols.amp.AMP.html#locateResponder"><code>locateResponder</code></a>
+method that locates a responder function that takes a Box and returns a 
+result (either a Box or a Deferred which fires one).
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.amp.BoxDispatcher.boxSender">
+    
+  </a>
+  <a name="boxSender">
+    
+  </a>
+  <div class="functionHeader">
+    boxSender =
+  </div>
+  <div class="functionBody">
+    an object which can send boxes, via the <code>_sendBox</code> method, such 
+as an <a href="twisted.protocols.amp.AMP.html"><code>AMP</code></a> 
+instance. (type: <a href="twisted.protocols.amp.IBoxSender.html"><code>IBoxSender</code></a>)
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.amp.BoxDispatcher.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, locator):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.1.0/twisted/protocols/amp.py#L675" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.protocols.amp.AMP.html">twisted.protocols.amp.AMP</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.amp.BoxDispatcher.startReceivingBoxes">
+    
+  </a>
+  <a name="startReceivingBoxes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    startReceivingBoxes(self, boxSender):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.1.0/twisted/protocols/amp.py#L680" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.protocols.amp.IBoxReceiver.html#startReceivingBoxes">twisted.protocols.amp.IBoxReceiver</a></div>
+    <div>The given boxSender is going to start calling boxReceived on this <a 
+href="twisted.protocols.amp.BoxDispatcher.html"><code>BoxDispatcher</code></a>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">boxSender</td><td>The <a 
+href="twisted.protocols.amp.IBoxSender.html"><code>IBoxSender</code></a> to
+send command responses to.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.amp.BoxDispatcher.stopReceivingBoxes">
+    
+  </a>
+  <a name="stopReceivingBoxes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    stopReceivingBoxes(self, reason):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.1.0/twisted/protocols/amp.py#L690" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.protocols.amp.IBoxReceiver.html#stopReceivingBoxes">twisted.protocols.amp.IBoxReceiver</a></div>
+    <div>No further boxes will be received here.  Terminate all currently 
+oustanding command deferreds with the given reason.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.amp.BoxDispatcher.failAllOutgoing">
+    
+  </a>
+  <a name="failAllOutgoing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    failAllOutgoing(self, reason):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.1.0/twisted/protocols/amp.py#L698" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Call the errback on all outstanding requests awaiting responses.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">reason</td><td>the Failure instance to pass to those errbacks.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.amp.BoxDispatcher._nextTag">
+    
+  </a>
+  <a name="_nextTag">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _nextTag(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.1.0/twisted/protocols/amp.py#L711" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Generate protocol-local serial numbers for _ask keys.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a string that has not yet been used on this connection.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.amp.BoxDispatcher._sendBoxCommand">
+    
+  </a>
+  <a name="_sendBoxCommand">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _sendBoxCommand(self, command, box, requiresAnswer=True):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.1.0/twisted/protocols/amp.py#L721" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Send a command across the wire with the given <code>amp.Box</code>.</p>
+<p>Mutate the given box to give it any additional keys (_command, _ask) 
+required for the command and request/response machinery, then send it.</p>
+<p>If requiresAnswer is True, returns a <code>Deferred</code> which fires 
+when a response is received. The <code>Deferred</code> is fired with an 
+<code>amp.Box</code> on success, or with an <code>amp.RemoteAmpError</code>
+if an error is received.</p>
+<p>If the Deferred fails and the error is not handled by the caller of this
+method, the failure will be logged and the connection dropped.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">command</td><td>a str, the name of the command to issue.</td></tr><tr><td></td><td class="fieldArg">box</td><td>an AmpBox with the arguments for the command.</td></tr><tr><td></td><td class="fieldArg">requiresAnswer</td><td>a boolean.  Defaults to True.  If True, return a Deferred which will fire 
+when the other side responds to this command. If False, return None and do 
+not ask the other side for acknowledgement.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a Deferred which fires the AmpBox that holds the response to this command, 
+or None, as specified by requiresAnswer.</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">ProtocolSwitched</td><td>if the protocol has been switched.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.amp.BoxDispatcher.callRemoteString">
+    
+  </a>
+  <a name="callRemoteString">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    callRemoteString(self, command, requiresAnswer=True, **kw):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.1.0/twisted/protocols/amp.py#L762" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>This is a low-level API, designed only for optimizing simple messages 
+for which the overhead of parsing is too great.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">command</td><td>a str naming the command.</td></tr><tr><td></td><td class="fieldArg">kw</td><td>arguments to the amp box.</td></tr><tr><td></td><td class="fieldArg">requiresAnswer</td><td>a boolean.  Defaults to True.  If True, return a Deferred which will fire 
+when the other side responds to this command. If False, return None and do 
+not ask the other side for acknowledgement.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a Deferred which fires the AmpBox that holds the response to this command, 
+or None, as specified by requiresAnswer.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.amp.BoxDispatcher.callRemote">
+    
+  </a>
+  <a name="callRemote">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    callRemote(self, commandType, *a, **kw):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.1.0/twisted/protocols/amp.py#L782" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>This is the primary high-level API for sending messages via AMP.  Invoke
+it with a command and appropriate arguments to send a message to this 
+connection's peer.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">commandType</td><td>a subclass of Command. (type: <a href="twisted.python.failure.Failure.html#type"><code>type</code></a>)</td></tr><tr><td></td><td class="fieldArg">a</td><td>Positional (special) parameters taken by the command. Positional parameters
+will typically not be sent over the wire.  The only command included with 
+AMP which uses positional parameters is <a 
+href="twisted.protocols.amp.ProtocolSwitchCommand.html"><code>ProtocolSwitchCommand</code></a>,
+which takes the protocol that will be switched to as its first argument.</td></tr><tr><td></td><td class="fieldArg">kw</td><td>Keyword arguments taken by the command.  These are the arguments declared 
+in the command's 'arguments' attribute.  They will be encoded and sent to 
+the peer as arguments for the <a 
+href="twisted.protocols.amp.Command.html#commandType"><code>commandType</code></a>.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">If <a 
+href="twisted.protocols.amp.Command.html#commandType"><code>commandType</code></a>
+has a <code>requiresAnswer</code> attribute set to <a 
+href="http://docs.python.org/library/functions.html#False"><code>False</code></a>,
+then return <a 
+href="http://docs.python.org/library/functions.html#None"><code>None</code></a>.
+Otherwise, return a <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> which
+fires with a dictionary of objects representing the result of this call.  
+Additionally, this <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> may 
+fail with an exception representing a connection failure, with <a 
+href="twisted.protocols.amp.UnknownRemoteError.html"><code>UnknownRemoteError</code></a>
+if the other end of the connection fails for an unknown reason, or with any
+error specified as a key in <a 
+href="twisted.protocols.amp.Command.html#commandType"><code>commandType</code></a>'s
+<code>errors</code> dictionary.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.amp.BoxDispatcher.unhandledError">
+    
+  </a>
+  <a name="unhandledError">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    unhandledError(self, failure):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.1.0/twisted/protocols/amp.py#L826" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>This is a terminal callback called after application code has had a 
+chance to quash any errors.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.amp.BoxDispatcher._answerReceived">
+    
+  </a>
+  <a name="_answerReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _answerReceived(self, box):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.1.0/twisted/protocols/amp.py#L834" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>An AMP box was received that answered a command previously sent with <a 
+href="twisted.protocols.amp.BoxDispatcher.html#callRemote"><code>callRemote</code></a>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">box</td><td>an AmpBox with a value for its <code>ANSWER</code> key.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.amp.BoxDispatcher._errorReceived">
+    
+  </a>
+  <a name="_errorReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _errorReceived(self, box):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.1.0/twisted/protocols/amp.py#L846" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>An AMP box was received that answered a command previously sent with <a 
+href="twisted.protocols.amp.BoxDispatcher.html#callRemote"><code>callRemote</code></a>,
+with an error.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">box</td><td>an <a href="twisted.protocols.amp.AmpBox.html"><code>AmpBox</code></a> with
+a value for its <code>ERROR</code>, <code>ERROR_CODE</code>, and 
+<code>ERROR_DESCRIPTION</code> keys.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.amp.BoxDispatcher._commandReceived">
+    
+  </a>
+  <a name="_commandReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _commandReceived(self, box):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.1.0/twisted/protocols/amp.py#L865" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">box</td><td>an <a href="twisted.protocols.amp.AmpBox.html"><code>AmpBox</code></a> with
+a value for its <code>COMMAND</code> and <code>ASK</code> keys.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.amp.BoxDispatcher.ampBoxReceived">
+    
+  </a>
+  <a name="ampBoxReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ampBoxReceived(self, box):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.1.0/twisted/protocols/amp.py#L898" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.protocols.amp.IBoxReceiver.html#ampBoxReceived">twisted.protocols.amp.IBoxReceiver</a></div>
+    <div>An AmpBox was received, representing a command, or an answer to a 
+previously issued command (either successful or erroneous).  Respond to it 
+according to its contents.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">box</td><td>an AmpBox</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">NoEmptyBoxes</td><td>when a box is received that does not contain an '_answer', '_command' / 
+'_ask', or '_error' key; i.e. one which does not fit into the command / 
+response protocol defined by AMP.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.amp.BoxDispatcher._safeEmit">
+    
+  </a>
+  <a name="_safeEmit">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _safeEmit(self, aBox):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.1.0/twisted/protocols/amp.py#L920" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Emit a box, ignoring <a 
+href="twisted.protocols.amp.ProtocolSwitched.html"><code>ProtocolSwitched</code></a>
+and <a 
+href="twisted.internet.error.ConnectionLost.html"><code>ConnectionLost</code></a>
+errors which cannot be usefully handled.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.amp.BoxDispatcher.dispatchCommand">
+    
+  </a>
+  <a name="dispatchCommand">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dispatchCommand(self, box):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.1.0/twisted/protocols/amp.py#L931" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>A box with a _command key was received.</p>
+<p>Dispatch it to a local handler call it.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">proto</td><td>an AMP instance.</td></tr><tr><td></td><td class="fieldArg">box</td><td>an AmpBox to be dispatched.</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2012-06-04 17:20:01.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

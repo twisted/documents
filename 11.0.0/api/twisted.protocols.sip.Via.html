@@ -1,0 +1,229 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.protocols.sip.Via : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.p.s.Via(<span title="object">object</span>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.protocols.html">protocols</a>.<a href="twisted.protocols.sip.html">sip</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/protocols/sip.py#L200">View Source</a>
+      <a href="classIndex.html#twisted.protocols.sip.Via">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div><p>A <a href="twisted.protocols.sip.Via.html"><code>Via</code></a> is a SIP
+Via header, representing a segment of the path taken by the request.</p>
+See RFC 3261, sections 8.1.1.7, 18.2.2, and 20.42.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">transport</td><td>Network protocol used for this leg. (Probably either &quot;TCP&quot; or 
+&quot;UDP&quot;.)
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">branch</td><td>Unique identifier for this request.
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">host</td><td>Hostname or IP for this leg.
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">port</td><td>Port used for this leg. @type port <code>int</code>, or None.
+</td></tr><tr><td></td><td class="fieldArg">rportRequested</td><td>Whether to request RFC 3581 client processing or not.
+ (type: <code>bool</code>
+)</td></tr><tr><td></td><td class="fieldArg">rportValue</td><td>Servers wishing to honor requests for RFC 3581 processing should set 
+this parameter to the source port the request was received from.
+ (type: <code>int</code>, or None.
+)</td></tr><tr><td></td><td class="fieldArg">ttl</td><td>Time-to-live for requests on multicast paths.
+ (type: <code>int</code>, or None.
+)</td></tr><tr><td></td><td class="fieldArg">maddr</td><td>The destination multicast address, if any.
+ (type: <code>str</code>, or None.
+)</td></tr><tr><td></td><td class="fieldArg">hidden</td><td>Obsolete in SIP 2.0.
+ (type: <code>bool</code>
+)</td></tr><tr><td></td><td class="fieldArg">otherParams</td><td>Any other parameters in the header.
+ (type: <code>dict</code>
+)</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id828">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.sip.Via.html#__init__">__init__</a></td>
+    <td><span>Set parameters of this Via header. All arguments correspond to 
+attributes of the same name.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.sip.Via.html#toString">toString</a></td>
+    <td><span>Serialize this header for use in a request or response.
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.sip.Via.html#_getrport">_getrport</a></td>
+    <td><span>Returns the rport value expected by the old SIP code.
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.sip.Via.html#_setrport">_setrport</a></td>
+    <td><span><a 
+href="twisted.protocols.sip.Base.html#_fixupNAT"><code>Base._fixupNAT</code></a>
+sets <code>rport</code> directly, so this method sets 
+<code>rportValue</code> based on that.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.protocols.sip.Via.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, host, port=PORT, transport='UDP', ttl=None, hidden=False, received=None, rport=_absent, branch=None, maddr=None, **kw):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/protocols/sip.py#L233" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Set parameters of this Via header. All arguments correspond to 
+attributes of the same name.</p>
+<p>To maintain compatibility with old SIP code, the 'rport' argument is 
+used to determine the values of <code>rportRequested</code> and 
+<code>rportValue</code>. If None, <code>rportRequested</code> is set to 
+True. (The deprecated method for doing this is to pass True.) If an 
+integer, <code>rportValue</code> is set to the given value.</p>
+Any arguments not explicitly named here are collected into the 
+<code>otherParams</code> dict.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.sip.Via._getrport">
+    
+  </a>
+  <a name="_getrport">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _getrport(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/protocols/sip.py#L277" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Returns the rport value expected by the old SIP code.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.sip.Via._setrport">
+    
+  </a>
+  <a name="_setrport">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _setrport(self, newRPort):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/protocols/sip.py#L289" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><a 
+href="twisted.protocols.sip.Base.html#_fixupNAT"><code>Base._fixupNAT</code></a>
+sets <code>rport</code> directly, so this method sets 
+<code>rportValue</code> based on that.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">newRPort</td><td>The new rport value.
+ (type: <code>int</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.sip.Via.toString">
+    
+  </a>
+  <a name="toString">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    toString(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/protocols/sip.py#L303" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Serialize this header for use in a request or response.
+<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-10-27 16:27:37.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

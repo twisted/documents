@@ -1,0 +1,229 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.base._SignalReactorMixin : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class private">t.i.b._SignalReactorMixin : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a>.<a href="twisted.internet.base.html">base</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0//twisted/internet/base.py#L1074">View Source</a>
+      <a href="classIndex.html#twisted.internet.base._SignalReactorMixin">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known subclasses: <a href="twisted.internet.default.PosixReactorBase.html">twisted.internet.default.PosixReactorBase</a>, <a href="twisted.internet.iocpreactor.reactor.IOCPReactor.html">twisted.internet.iocpreactor.reactor.IOCPReactor</a></p>
+    </div>
+    <div><p>Private mixin to manage signals: it installs signal handlers at start 
+time, and define run method.</p>
+It can only be used mixed in with <a 
+href="twisted.internet.base.ReactorBase.html"><code>ReactorBase</code></a>,
+and has to be defined first in the inheritance (so that method resolution 
+order finds startRunning first).
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">_installSignalHandlers</td><td>A flag which indicates whether any signal handlers will be installed 
+during startup.  This includes handlers for SIGCHLD to monitor child 
+processes, and SIGINT, SIGTERM, and SIGBREAK to stop the reactor.
+ (type: <code>bool</code>
+)</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1603">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.base._SignalReactorMixin.html#startRunning">startRunning</a></td>
+    <td><span>Extend the base implementation in order to remember whether signal
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.base._SignalReactorMixin.html#run">run</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.base._SignalReactorMixin.html#mainLoop">mainLoop</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.base._SignalReactorMixin.html#_handleSignals">_handleSignals</a></td>
+    <td><span>Install the signal handlers for the Twisted event loop.
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.base._SignalReactorMixin.html#_handleSigchld">_handleSigchld</a></td>
+    <td><span>Reap all processes on SIGCHLD.
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.base._SignalReactorMixin.html#_reallyStartRunning">_reallyStartRunning</a></td>
+    <td><span>Extend the base implementation by also installing signal handlers, 
+if
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.internet.base._SignalReactorMixin._handleSignals">
+    
+  </a>
+  <a name="_handleSignals">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _handleSignals(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0//twisted/internet/base.py#L1092" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Install the signal handlers for the Twisted event loop.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.base._SignalReactorMixin._handleSigchld">
+    
+  </a>
+  <a name="_handleSigchld">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _handleSigchld(self, signum, frame, _threadSupport=platform.supportsThreads()):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0//twisted/internet/base.py#L1121" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Reap all processes on SIGCHLD.</p>
+This gets called on SIGCHLD. We do no processing inside a signal 
+handler, as the calls we make here could occur between any two python 
+bytecode instructions. Deferring processing to the next eventloop round 
+prevents us from violating the state constraints of arbitrary classes.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.base._SignalReactorMixin.startRunning">
+    
+  </a>
+  <a name="startRunning">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    startRunning(self, installSignalHandlers=True):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0//twisted/internet/base.py#L1138" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Extend the base implementation in order to remember whether signal 
+handlers should be installed later.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">installSignalHandlers</td><td>A flag which, if set, indicates that handlers for a number of 
+(implementation-defined) signals should be installed during startup.
+ (type: <code>bool</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.base._SignalReactorMixin._reallyStartRunning">
+    
+  </a>
+  <a name="_reallyStartRunning">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _reallyStartRunning(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0//twisted/internet/base.py#L1152" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Extend the base implementation by also installing signal handlers, if 
+<code>self._installSignalHandlers</code> is true.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.base._SignalReactorMixin.run">
+    
+  </a>
+  <a name="run">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    run(self, installSignalHandlers=True):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0//twisted/internet/base.py#L1168" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.internet._threadedselect.ThreadedSelectReactor.html">twisted.internet._threadedselect.ThreadedSelectReactor</a>, <a href="twisted.internet.cfreactor.CFReactor.html">twisted.internet.cfreactor.CFReactor</a>, <a href="twisted.internet.gtk2reactor.Gtk2Reactor.html">twisted.internet.gtk2reactor.Gtk2Reactor</a>, <a href="twisted.internet.gtk2reactor.PortableGtkReactor.html">twisted.internet.gtk2reactor.PortableGtkReactor</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.base._SignalReactorMixin.mainLoop">
+    
+  </a>
+  <a name="mainLoop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    mainLoop(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0//twisted/internet/base.py#L1173" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.internet._threadedselect.ThreadedSelectReactor.html">twisted.internet._threadedselect.ThreadedSelectReactor</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2010-03-06 12:41:43.
+    </address>
+  </body>
+</html>

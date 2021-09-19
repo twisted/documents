@@ -1,0 +1,248 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.words.protocols.jabber.client.BasicAuthenticator : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.w.p.j.c.BasicAuthenticator(<a href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html">xmlstream.ConnectAuthenticator</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.words.html">words</a>.<a href="twisted.words.protocols.html">protocols</a>.<a href="twisted.words.protocols.jabber.html">jabber</a>.<a href="twisted.words.protocols.jabber.client.html">client</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/jabber/client.py#L151">View Source</a>
+      <a href="classIndex.html#twisted.words.protocols.jabber.client.BasicAuthenticator">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div><p>Authenticates an XmlStream against a Jabber server as a Client.</p>
+<p>This only implements non-SASL authentication, per <a 
+href="http://www.jabber.org/jeps/jep-0078.html" target="_top">JEP-0078</a>.
+Additionally, this authenticator provides the ability to perform inline 
+registration, per <a href="http://www.jabber.org/jeps/jep-0077.html" 
+target="_top">JEP-0077</a>.</p>
+Under normal circumstances, the BasicAuthenticator generates the 
+<code>xmlstream.STREAM_AUTHD_EVENT</code> once the stream has 
+authenticated. However, it can also generate other events, such as:
+<ul>
+  <li>
+    <code>INVALID_USER_EVENT</code> : Authentication failed, due to 
+    invalid username
+  </li>
+  <li>
+    <code>AUTH_FAILED_EVENT</code> : Authentication failed, due to 
+    invalid password
+  </li>
+  <li>
+    <code>REGISTER_FAILED_EVENT</code> : Registration failed
+  </li>
+</ul>
+If authentication fails for any reason, you can attempt to register by 
+calling the <a 
+href="twisted.words.protocols.jabber.client.BasicAuthenticator.html#registerAccount"><code>registerAccount</code></a>
+method. If the registration succeeds, a 
+<code>xmlstream.STREAM_AUTHD_EVENT</code> will be fired. Otherwise, one of 
+the above errors will be generated (again).
+<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1279">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.jabber.client.BasicAuthenticator.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.jabber.client.BasicAuthenticator.html#associateWithStream">associateWithStream</a></td>
+    <td><span>Called by the XmlStreamFactory when a connection has been made to the 
+requested peer, and an XmlStream object has been instantiated.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.jabber.client.BasicAuthenticator.html#registerAccount">registerAccount</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.jabber.client.BasicAuthenticator.html#_registerResultEvent">_registerResultEvent</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html">ConnectAuthenticator</a>:
+        </p>
+        <table class="children sortable" id="id1280">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html#connectionMade">connectionMade</a></td>
+    <td><span>Called by the XmlStream when the underlying socket connection is in 
+place.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html#initializeStream">initializeStream</a></td>
+    <td><span>Perform stream initialization procedures.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html#streamStarted">streamStarted</a></td>
+    <td><span>Called by the XmlStream when the stream has started.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.words.protocols.jabber.client.BasicAuthenticator.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, jid, password):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/jabber/client.py#L179" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html#__init__">twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.__init__</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.jabber.client.BasicAuthenticator.associateWithStream">
+    
+  </a>
+  <a name="associateWithStream">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    associateWithStream(self, xs):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/jabber/client.py#L184" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.words.protocols.jabber.xmlstream.Authenticator.html#associateWithStream">twisted.words.protocols.jabber.xmlstream.Authenticator.associateWithStream</a></div>
+    <div><p>Called by the XmlStreamFactory when a connection has been made to the 
+requested peer, and an XmlStream object has been instantiated.</p>
+The default implementation just saves a handle to the new XmlStream.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">xmlstream</td><td>The XmlStream that will be passing events to this Authenticator.
+ (type: <a 
+href="twisted.words.protocols.jabber.xmlstream.XmlStream.html"><code>XmlStream</code></a>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.jabber.client.BasicAuthenticator.registerAccount">
+    
+  </a>
+  <a name="registerAccount">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    registerAccount(self, username=None, password=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/jabber/client.py#L199" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.jabber.client.BasicAuthenticator._registerResultEvent">
+    
+  </a>
+  <a name="_registerResultEvent">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _registerResultEvent(self, iq):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/words/protocols/jabber/client.py#L214" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-10-27 15:57:47.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

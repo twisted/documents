@@ -1,0 +1,1426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.mail.imap4 : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="apidocs.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code>twisted.mail.imap4</code> <small>module documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.mail.html" data-type="Package" class="code">mail</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>An IMAP4 protocol implementation</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Author</td><td colspan="2">Jp Calderone
+<p>To do:</p>
+<pre class="literalblock">
+ Suspend idle timeout while server is processing
+ Use an async message parser instead of buffering in memory
+ Figure out a way to not queue multi-message client requests (Flow? A simple callback?)
+ Clarify some API docs (Query, etc)
+ Make APPEND recognize (again) non-existent mailboxes before accepting the literal
+</pre></td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1320">
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.IMAP4Exception.html" data-type="Class" class="code">IMAP4Exception</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.IllegalClientResponse.html" data-type="Class" class="code">IllegalClientResponse</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.IllegalOperation.html" data-type="Class" class="code">IllegalOperation</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.MailboxException.html" data-type="Class" class="code">MailboxException</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.IllegalMailboxEncoding.html" data-type="Class" class="code">IllegalMailboxEncoding</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.MailboxCollision.html" data-type="Class" class="code">MailboxCollision</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.NoSuchMailbox.html" data-type="Class" class="code">NoSuchMailbox</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.ReadOnlyMailbox.html" data-type="Class" class="code">ReadOnlyMailbox</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.UnhandledResponse.html" data-type="Class" class="code">UnhandledResponse</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.NegativeResponse.html" data-type="Class" class="code">NegativeResponse</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.NoSupportedAuthentication.html" data-type="Class" class="code">NoSupportedAuthentication</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.IllegalIdentifierError.html" data-type="Class" class="code">IllegalIdentifierError</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.IllegalQueryError.html" data-type="Class" class="code">IllegalQueryError</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.MismatchedNesting.html" data-type="Class" class="code">MismatchedNesting</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.MismatchedQuoting.html" data-type="Class" class="code">MismatchedQuoting</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.IllegalServerResponse.html" data-type="Class" class="code">IllegalServerResponse</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.MessageSet.html" data-type="Class" class="code">MessageSet</a></td>
+    <td><span>Essentially an infinite bitfield, with some extra features.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.LiteralString.html" data-type="Class" class="code">LiteralString</a></td>
+    <td><span class="undocumented">No class docstring; 1/3 methods documented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.LiteralFile.html" data-type="Class" class="code">LiteralFile</a></td>
+    <td><span class="undocumented">No class docstring; 1/3 methods documented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.WriteBuffer.html" data-type="Class" class="code">WriteBuffer</a></td>
+    <td><span>Buffer up a bunch of writes before sending them all to a transport at 
+once.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.Command.html" data-type="Class" class="code">Command</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.IMAP4Server.html" data-type="Class" class="code">IMAP4Server</a></td>
+    <td><span>Protocol implementation for an IMAP4rev1 server.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.IMAP4Client.html" data-type="Class" class="code">IMAP4Client</a></td>
+    <td><span>IMAP4 client protocol implementation</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#parseIdList" data-type="Function" class="code">parseIdList</a></td>
+    <td><span>Parse a message set search key into a <code>MessageSet</code>.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#Query" data-type="Function" class="code">Query</a></td>
+    <td><span>Create a query string</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#Or" data-type="Function" class="code">Or</a></td>
+    <td><span>The disjunction of two or more queries</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#Not" data-type="Function" class="code">Not</a></td>
+    <td><span>The negation of a query</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#wildcardToRegexp" data-type="Function" class="code">wildcardToRegexp</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#splitQuoted" data-type="Function" class="code">splitQuoted</a></td>
+    <td><span>Split a string into whitespace delimited tokens</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#splitOn" data-type="Function" class="code">splitOn</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#collapseStrings" data-type="Function" class="code">collapseStrings</a></td>
+    <td><span>Turns a list of length-one strings and lists into a list of longer 
+strings and lists.  For example,</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#parseNestedParens" data-type="Function" class="code">parseNestedParens</a></td>
+    <td><span>Parse an s-exp-like string into a more useful data structure.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.DontQuoteMe.html" data-type="Class" class="code">DontQuoteMe</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#collapseNestedLists" data-type="Function" class="code">collapseNestedLists</a></td>
+    <td><span>Turn a nested list structure into an s-exp-like string.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.MemoryAccount.html" data-type="Class" class="code">MemoryAccount</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#statusRequestHelper" data-type="Function" class="code">statusRequestHelper</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#parseAddr" data-type="Function" class="code">parseAddr</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#getEnvelope" data-type="Function" class="code">getEnvelope</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#getLineCount" data-type="Function" class="code">getLineCount</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#unquote" data-type="Function" class="code">unquote</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#getBodyStructure" data-type="Function" class="code">getBodyStructure</a></td>
+    <td><span><p>RFC 3501, 7.4.2, BODYSTRUCTURE:</p>
+<pre class="literalblock">
+
+</pre></span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#subparts" data-type="Function" class="code">subparts</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#iterateInReactor" data-type="Function" class="code">iterateInReactor</a></td>
+    <td><span>Consume an interator at most a single iteration per reactor 
+iteration.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.MessageProducer.html" data-type="Class" class="code">MessageProducer</a></td>
+    <td><span class="undocumented">No class docstring; 1/3 methods documented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.FileProducer.html" data-type="Class" class="code">FileProducer</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#parseTime" data-type="Function" class="code">parseTime</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#modified_base64" data-type="Function" class="code">modified_base64</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#modified_unbase64" data-type="Function" class="code">modified_unbase64</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#encoder" data-type="Function" class="code">encoder</a></td>
+    <td><span>Encode the given <code>unicode</code> string using the IMAP4 specific 
+variation of UTF-7.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#decoder" data-type="Function" class="code">decoder</a></td>
+    <td><span>Decode the given <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>
+using the IMAP4 specific variation of UTF-7.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.StreamReader.html" data-type="Class" class="code">StreamReader</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4.StreamWriter.html" data-type="Class" class="code">StreamWriter</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#imap4_utf_7" data-type="Function" class="code">imap4_utf_7</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#_quote" data-type="Function" class="code">_quote</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#_literal" data-type="Function" class="code">_literal</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#_needsQuote" data-type="Function" class="code">_needsQuote</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#_prepareMailboxName" data-type="Function" class="code">_prepareMailboxName</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#_needsLiteral" data-type="Function" class="code">_needsLiteral</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#_getContentType" data-type="Function" class="code">_getContentType</a></td>
+    <td><span>Return a two-tuple of the main and subtype of the given message.</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#_getMessageStructure" data-type="Function" class="code">_getMessageStructure</a></td>
+    <td><span>Construct an appropriate type of message structure object for the given 
+message object.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4._MessageStructure.html" data-type="Class" class="code">_MessageStructure</a></td>
+    <td><span><a href="twisted.mail.imap4._MessageStructure.html"><code>_MessageStructure</code></a>
+is a helper base class for message structure classes representing the 
+structure of particular kinds of messages, as defined by their MIME 
+type.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4._SinglepartMessageStructure.html" data-type="Class" class="code">_SinglepartMessageStructure</a></td>
+    <td><span><a href="twisted.mail.imap4._SinglepartMessageStructure.html"><code>_SinglepartMessageStructure</code></a>
+represents the message structure of a non-<i>multipart/*</i> message.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4._TextMessageStructure.html" data-type="Class" class="code">_TextMessageStructure</a></td>
+    <td><span><a href="twisted.mail.imap4._TextMessageStructure.html"><code>_TextMessageStructure</code></a>
+represents the message structure of a <i>text/*</i> message.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4._RFC822MessageStructure.html" data-type="Class" class="code">_RFC822MessageStructure</a></td>
+    <td><span><a href="twisted.mail.imap4._RFC822MessageStructure.html"><code>_RFC822MessageStructure</code></a>
+represents the message structure of a <i>message/rfc822</i> message.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4._MultipartMessageStructure.html" data-type="Class" class="code">_MultipartMessageStructure</a></td>
+    <td><span><a href="twisted.mail.imap4._MultipartMessageStructure.html"><code>_MultipartMessageStructure</code></a>
+represents the message structure of a <i>multipart/*</i> message.</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.imap4.html#_formatHeaders" data-type="Function" class="code">_formatHeaders</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.imap4._FetchParser.html" data-type="Class" class="code">_FetchParser</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  <a name="twisted.mail.imap4.parseIdList">
+    
+  </a>
+  <a name="parseIdList">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    parseIdList(s, lastMessageId=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4181">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Parse a message set search key into a <code>MessageSet</code>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">s</td><td>A string description of an id list, for example "1:3, 4:*" (type: <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>)</td></tr><tr><td></td><td class="fieldArg">lastMessageId</td><td>The last message sequence id or UID, depending on whether we are parsing 
+the list in UID or sequence id context. The caller should pass in the 
+correct value. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A <code>MessageSet</code> that contains the ids defined in the list (type: <code>MessageSet</code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.Query">
+    
+  </a>
+  <a name="Query">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    Query(sorted=0, **kwarg):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4254">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Create a query string</p>
+<p>Among the accepted keywords are:</p>
+<pre class="literalblock">
+   all         : If set to a true value, search all messages in the
+                 current mailbox
+
+   answered    : If set to a true value, search messages flagged with
+                 \Answered
+
+   bcc         : A substring to search the BCC header field for
+
+   before      : Search messages with an internal date before this
+                 value.  The given date should be a string in the format
+                 of 'DD-Mon-YYYY'.  For example, '03-Mar-2003'.
+
+   body        : A substring to search the body of the messages for
+
+   cc          : A substring to search the CC header field for
+
+   deleted     : If set to a true value, search messages flagged with
+                 \Deleted
+
+   draft       : If set to a true value, search messages flagged with
+                 \Draft
+
+   flagged     : If set to a true value, search messages flagged with
+                 \Flagged
+
+   from        : A substring to search the From header field for
+
+   header      : A two-tuple of a header name and substring to search
+                 for in that header
+
+   keyword     : Search for messages with the given keyword set
+
+   larger      : Search for messages larger than this number of octets
+
+   messages    : Search only the given message sequence set.
+
+   new         : If set to a true value, search messages flagged with
+                 \Recent but not \Seen
+
+   old         : If set to a true value, search messages not flagged with
+                 \Recent
+
+   on          : Search messages with an internal date which is on this
+                 date.  The given date should be a string in the format
+                 of 'DD-Mon-YYYY'.  For example, '03-Mar-2003'.
+
+   recent      : If set to a true value, search for messages flagged with
+                 \Recent
+
+   seen        : If set to a true value, search for messages flagged with
+                 \Seen
+
+   sentbefore  : Search for messages with an RFC822 'Date' header before
+                 this date.  The given date should be a string in the format
+                 of 'DD-Mon-YYYY'.  For example, '03-Mar-2003'.
+
+   senton      : Search for messages with an RFC822 'Date' header which is
+                 on this date  The given date should be a string in the format
+                 of 'DD-Mon-YYYY'.  For example, '03-Mar-2003'.
+
+   sentsince   : Search for messages with an RFC822 'Date' header which is
+                 after this date.  The given date should be a string in the format
+                 of 'DD-Mon-YYYY'.  For example, '03-Mar-2003'.
+
+   since       : Search for messages with an internal date that is after
+                 this date..  The given date should be a string in the format
+                 of 'DD-Mon-YYYY'.  For example, '03-Mar-2003'.
+
+   smaller     : Search for messages smaller than this number of octets
+
+   subject     : A substring to search the 'subject' header for
+
+   text        : A substring to search the entire message for
+
+   to          : A substring to search the 'to' header for
+
+   uid         : Search only the messages in the given message set
+
+   unanswered  : If set to a true value, search for messages not
+                 flagged with \Answered
+
+   undeleted   : If set to a true value, search for messages not
+                 flagged with \Deleted
+
+   undraft     : If set to a true value, search for messages not
+                 flagged with \Draft
+
+   unflagged   : If set to a true value, search for messages not
+                 flagged with \Flagged
+
+   unkeyword   : Search for messages without the given keyword set
+
+   unseen      : If set to a true value, search for messages not
+                 flagged with \Seen
+</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">sorted</td><td>If true, the output will be sorted, alphabetically. The standard does not 
+require it, but it makes testing this function easier.  The default is 
+zero, and this should be acceptable for any application. (type: <code>bool</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The formatted query string (type: <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.Or">
+    
+  </a>
+  <a name="Or">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    Or(*args):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4392">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>The disjunction of two or more queries</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.Not">
+    
+  </a>
+  <a name="Not">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    Not(query):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4403">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>The negation of a query</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.wildcardToRegexp">
+    
+  </a>
+  <a name="wildcardToRegexp">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    wildcardToRegexp(wildcard, delim=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4408">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.splitQuoted">
+    
+  </a>
+  <a name="splitQuoted">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    splitQuoted(s):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4418">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Split a string into whitespace delimited tokens</p>
+<p>Tokens that would otherwise be separated but are surrounded by " 
+remain as a single token.  Any token that is not quoted and is equal to 
+"NIL" is tokenized as <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">s</td><td>The string to be split (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A list of the resulting tokens (type: <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">MismatchedQuoting</td><td>Raised if an odd number of quotes are present</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.splitOn">
+    
+  </a>
+  <a name="splitOn">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    splitOn(sequence, predicate, transformers):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4476">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.collapseStrings">
+    
+  </a>
+  <a name="collapseStrings">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    collapseStrings(results):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4493">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Turns a list of length-one strings and lists into a list of longer 
+strings and lists.  For example,</p>
+<p>['a', 'b', ['c', 'd']] is returned as ['ab', ['cd']]</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">results</td><td>The list to be collapsed (type: <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>
+and <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A new list which is the collapsed form of <code>results</code> (type: <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>
+and <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.parseNestedParens">
+    
+  </a>
+  <a name="parseNestedParens">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    parseNestedParens(s, handleLiteral=1):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4529">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Parse an s-exp-like string into a more useful data structure.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">s</td><td>The s-exp-like string to parse (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A list containing the tokens present in the input. (type: <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+and <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">MismatchedNesting</td><td>Raised if the number or placement of opening or closing parenthesis is 
+invalid.</td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.mail.imap4._quote">
+    
+  </a>
+  <a name="_quote">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _quote(s):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4588">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.mail.imap4._literal">
+    
+  </a>
+  <a name="_literal">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _literal(s):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4593">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.mail.imap4._needsQuote">
+    
+  </a>
+  <a name="_needsQuote">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _needsQuote(s):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4609">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.mail.imap4._prepareMailboxName">
+    
+  </a>
+  <a name="_prepareMailboxName">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _prepareMailboxName(name):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4621">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.mail.imap4._needsLiteral">
+    
+  </a>
+  <a name="_needsLiteral">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _needsLiteral(s):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4629">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.collapseNestedLists">
+    
+  </a>
+  <a name="collapseNestedLists">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    collapseNestedLists(items):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4635">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Turn a nested list structure into an s-exp-like string.</p>
+<p>Strings in <code>items</code> will be sent as literals if they contain 
+CR or LF, otherwise they will be quoted.  References to None in 
+<code>items</code> will be translated to the atom NIL.  Objects with a 
+'read' attribute will have it called on them with no arguments and the 
+returned string will be inserted into the output as a literal.  Integers 
+will be converted to strings and inserted into the output unquoted.  
+Instances of <code>DontQuoteMe</code> will be converted to strings and 
+inserted into the output unquoted.</p>
+<p>This function used to be much nicer, and only quote things that really 
+needed to be quoted (and <code>DontQuoteMe</code> did not exist), however, 
+many broken IMAP4 clients were unable to deal with this level of 
+sophistication, forcing the current behavior to be adopted for practical 
+reasons.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"> (type: <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.statusRequestHelper">
+    
+  </a>
+  <a name="statusRequestHelper">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    statusRequestHelper(mbox, names):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4825">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.parseAddr">
+    
+  </a>
+  <a name="parseAddr">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    parseAddr(addr):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4833">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.getEnvelope">
+    
+  </a>
+  <a name="getEnvelope">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getEnvelope(msg):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4841">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.getLineCount">
+    
+  </a>
+  <a name="getLineCount">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getLineCount(msg):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4859">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.unquote">
+    
+  </a>
+  <a name="unquote">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    unquote(s):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4869">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.mail.imap4._getContentType">
+    
+  </a>
+  <a name="_getContentType">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _getContentType(msg):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4876">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return a two-tuple of the main and subtype of the given message.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.mail.imap4._getMessageStructure">
+    
+  </a>
+  <a name="_getMessageStructure">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _getMessageStructure(message):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L4903">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Construct an appropriate type of message structure object for the given 
+message object.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">message</td><td>A <a href="twisted.mail.interfaces.IMessageIMAPPart.html"><code>IMessagePart</code></a>
+provider</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A <a href="twisted.mail.imap4._MessageStructure.html"><code>_MessageStructure</code></a>
+instance of the most specific type available for the given message, 
+determined by inspecting the MIME type of the message.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.getBodyStructure">
+    
+  </a>
+  <a name="getBodyStructure">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getBodyStructure(msg, extended=False):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L5208">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>RFC 3501, 7.4.2, BODYSTRUCTURE:</p>
+<pre class="literalblock">
+ A parenthesized list that describes the [MIME-IMB] body structure of a
+ message.  This is computed by the server by parsing the [MIME-IMB] header
+ fields, defaulting various fields as necessary.
+
+   For example, a simple text message of 48 lines and 2279 octets can have
+   a body structure of: ("TEXT" "PLAIN" ("CHARSET" "US-ASCII") NIL NIL
+   "7BIT" 2279 48)
+</pre>
+<p>This is represented as:</p>
+<pre class="literalblock">
+   ["TEXT", "PLAIN", ["CHARSET", "US-ASCII"], None, None, "7BIT", 2279, 48]
+</pre>
+<p>These basic fields are documented in the RFC as:</p>
+<ol start="1">
+  <li>
+    body type
+    <p>A string giving the content media type name as defined in 
+    [MIME-IMB].</p>
+  </li>
+  <li>
+    body subtype
+    <p>A string giving the content subtype name as defined in 
+    [MIME-IMB].</p>
+  </li>
+  <li>
+    body parameter parenthesized list
+    <p>A parenthesized list of attribute/value pairs [e.g., 
+    ("foo" "bar" "baz" "rag") where
+    "bar" is the value of "foo" and "rag" is 
+    the value of "baz"] as defined in [MIME-IMB].</p>
+  </li>
+  <li>
+    body id
+    <p>A string giving the content id as defined in [MIME-IMB].</p>
+  </li>
+  <li>
+    body description
+    <p>A string giving the content description as defined in 
+    [MIME-IMB].</p>
+  </li>
+  <li>
+    body encoding
+    <p>A string giving the content transfer encoding as defined in 
+    [MIME-IMB].</p>
+  </li>
+  <li>
+    body size
+    <p>A number giving the size of the body in octets.  Note that this size
+    is the size in its transfer encoding and not the resulting size after 
+    any decoding.</p>
+  </li>
+</ol>
+<p>Put another way, the body structure is a list of seven elements.  The 
+semantics of the elements of this list are:</p>
+<ol start="1">
+  <li>
+    Byte string giving the major MIME type
+  </li>
+  <li>
+    Byte string giving the minor MIME type
+  </li>
+  <li>
+    A list giving the Content-Type parameters of the message
+  </li>
+  <li>
+    A byte string giving the content identifier for the message part, or 
+    None if it has no content identifier.
+  </li>
+  <li>
+    A byte string giving the content description for the message part, or 
+    None if it has no content description.
+  </li>
+  <li>
+    A byte string giving the Content-Encoding of the message body
+  </li>
+  <li>
+    An integer giving the number of octets in the message body
+  </li>
+</ol>
+<p>The RFC goes on:</p>
+<pre class="literalblock">
+   Multiple parts are indicated by parenthesis nesting.  Instead of a body
+   type as the first element of the parenthesized list, there is a sequence
+   of one or more nested body structures.  The second element of the
+   parenthesized list is the multipart subtype (mixed, digest, parallel,
+   alternative, etc.).
+
+   For example, a two part message consisting of a text and a
+   BASE64-encoded text attachment can have a body structure of: (("TEXT"
+   "PLAIN" ("CHARSET" "US-ASCII") NIL NIL "7BIT" 1152 23)("TEXT" "PLAIN"
+   ("CHARSET" "US-ASCII" "NAME" "cc.diff")
+   "&lt;960723163407.20117h@cac.washington.edu&gt;" "Compiler diff" "BASE64" 4554
+   73) "MIXED")
+</pre>
+<p>This is represented as:</p>
+<pre class="literalblock">
+   [["TEXT", "PLAIN", ["CHARSET", "US-ASCII"], None, None, "7BIT", 1152,
+     23],
+    ["TEXT", "PLAIN", ["CHARSET", "US-ASCII", "NAME", "cc.diff"],
+     "&lt;960723163407.20117h@cac.washington.edu&gt;", "Compiler diff",
+     "BASE64", 4554, 73],
+    "MIXED"]
+</pre>
+<p>In other words, a list of N + 1 elements, where N is the number of parts
+in the message.  The first N elements are structures as defined by the 
+previous section.  The last element is the minor MIME subtype of the 
+multipart message.</p>
+<p>Additionally, the RFC describes extension data:</p>
+<pre class="literalblock">
+   Extension data follows the multipart subtype.  Extension data is never
+   returned with the BODY fetch, but can be returned with a BODYSTRUCTURE
+   fetch.  Extension data, if present, MUST be in the defined order.
+</pre>
+<p>The <code>extended</code> flag controls whether extension data might be 
+returned with the normal data.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.mail.imap4._formatHeaders">
+    
+  </a>
+  <a name="_formatHeaders">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _formatHeaders(headers):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L5316">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.subparts">
+    
+  </a>
+  <a name="subparts">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    subparts(m):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L5322">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.iterateInReactor">
+    
+  </a>
+  <a name="iterateInReactor">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    iterateInReactor(i):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L5333">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Consume an interator at most a single iteration per reactor 
+iteration.</p>
+<p>If the iterator produces a Deferred, the next iteration will not occur 
+until the Deferred fires, otherwise the next iteration will be taken in the
+next reactor iteration.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A deferred which fires (with None) when the iterator is exhausted or whose 
+errback is called if there is an exception. (type: <code>Deferred</code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.parseTime">
+    
+  </a>
+  <a name="parseTime">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    parseTime(s):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L5839">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.modified_base64">
+    
+  </a>
+  <a name="modified_base64">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    modified_base64(s):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L5871">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.modified_unbase64">
+    
+  </a>
+  <a name="modified_unbase64">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    modified_unbase64(s):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L5875">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.encoder">
+    
+  </a>
+  <a name="encoder">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    encoder(s, errors=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L5879">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Encode the given <code>unicode</code> string using the IMAP4 specific 
+variation of UTF-7.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">s</td><td>The text to encode. (type: <code>unicode</code>)</td></tr><tr><td></td><td class="fieldArg">errors</td><td>Policy for handling encoding errors.  Currently ignored.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>
+of a <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>
+giving the encoded bytes and an <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>
+giving the number of code units consumed from the input.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.decoder">
+    
+  </a>
+  <a name="decoder">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    decoder(s, errors=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L5915">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Decode the given <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>
+using the IMAP4 specific variation of UTF-7.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">s</td><td>The bytes to decode. (type: <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>)</td></tr><tr><td></td><td class="fieldArg">errors</td><td>Policy for handling decoding errors.  Currently ignored.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>
+of a <code>unicode</code> string giving the text which was decoded and an 
+<a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>
+giving the number of bytes consumed from the input.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.mail.imap4.imap4_utf_7">
+    
+  </a>
+  <a name="imap4_utf_7">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    imap4_utf_7(name):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.1.0/src/twisted/mail/imap4.py#L5970">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2017-02-11 20:06:04.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,2008 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.python.filepath.FilePath : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div style="display: none" id="current-docs-container" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>twisted.python.filepath.FilePath(<a href="twisted.python.filepath.AbstractFilePath.html" data-type="Class" class="code">AbstractFilePath</a>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.python.html" data-type="Package" class="code">python</a>.<a href="twisted.python.filepath.html" data-type="Module" class="code">filepath</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L661">View Source</a>
+          <a href="classIndex.html#twisted.python.filepath.FilePath">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Known subclasses: <a href="twisted.web.static.File.html" data-type="Class" class="code">twisted.web.static.File</a>, <a href="twisted.web.twcgi.CGIDirectory.html" data-type="Class" class="code">twisted.web.twcgi.CGIDirectory</a></p><p>Implements interfaces: <a href="twisted.python.filepath.IFilePath.html" data-type="Interface" class="code">twisted.python.filepath.IFilePath</a></p>
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>I am a path on the filesystem that only permits 'downwards' access.</p>
+<p>Instantiate me with a pathname (for example, 
+FilePath('/home/myuser/public_html')) and I will attempt to only provide 
+access to files which reside inside that path.  I may be a path to a file, 
+a directory, or a file which does not exist.</p>
+<p>The correct way to use me is to instantiate me, and then do ALL 
+filesystem access through me.  In other words, do not import the 'os' 
+module; if you need to open a file, call my 'open' method.  If you need to 
+list a directory, call my 'path' method.</p>
+<p>Even if you pass me a relative path, I will convert that to an absolute 
+path internally.</p>
+<p>Note: although time-related methods do return floating-point results, 
+they may still be only second resolution depending on the platform and the 
+last value passed to <a href="http://docs.python.org/library/os.html#os.stat_float_times"><code>os.stat_float_times</code></a>.
+If you want greater-than-second precision, call 
+<code>os.stat_float_times(True)</code>, or use Python 2.5. 
+Greater-than-second precision is only available in Windows on Python2.5 and
+later.</p>
+<p>The type of <code>path</code> when instantiating decides the mode of the
+<a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>. 
+That is, <code>FilePath(b"/")</code> will return a <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+mode <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>, and
+<code>FilePath(u"/")</code> will return a <a href="twisted.python.compat.html#unicode"><code>unicode</code></a> mode <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>. 
+<code>FilePath("/")</code> will return a <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+mode <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> on 
+Python 2, and a <a href="twisted.python.compat.html#unicode"><code>unicode</code></a> mode <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> on 
+Python 3.</p>
+<p>Methods that return a new <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> use 
+the type of the given subpath to decide its mode. For example, 
+<code>FilePath(b"/").child(u"tmp")</code> will return a
+<a href="twisted.python.compat.html#unicode"><code>unicode</code></a> mode 
+<a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2669">
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.python.filepath.FilePath.html#alwaysCreate" data-type="Instance Variable" class="code">alwaysCreate</a></td>
+    <td>When opening this file, only succeed if the file does not already exist. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.python.filepath.FilePath.html#path" data-type="Instance Variable" class="code">path</a></td>
+    <td>The path from which 'downward' traversal is permitted. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+or <a href="twisted.python.compat.html#unicode"><code>unicode</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.python.filepath.FilePath.html#statinfo%200" data-type="Instance Variable" class="code">statinfo 0</a></td>
+    <td>(WARNING: statinfo is deprecated as of Twisted 15.0.0 and will become a 
+private attribute) The currently cached status information about the file 
+on the filesystem that this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+points to.  This attribute is <code>None</code> if the file is in an 
+indeterminate state (either this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> has 
+not yet had cause to call <code>stat()</code> yet or <a href="twisted.python.filepath.FilePath.html#changed"><code>FilePath.changed</code></a>
+indicated that new information is required), 0 if <code>stat()</code> was 
+called and returned an error (i.e. the path did not exist when 
+<code>stat()</code> was called), or a <code>stat_result</code> object that 
+describes the last known status of the underlying file (or directory, as 
+the case may be).  Trust me when I tell you that you do not want to use 
+this attribute.  Instead, use the methods on <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+which give you information about it, like <code>getsize()</code>, 
+<code>isdir()</code>, <code>getModificationTime()</code>, and so on. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>
+or <a href="http://docs.python.org/library/types.html#types.NoneType"><code>types.NoneType</code></a>
+or <a href="http://docs.python.org/library/os.html#os.stat_result"><code>os.stat_result</code></a>)</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td><span>Convert a path string to an absolute path if necessary and initialize 
+the <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> with
+the result.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#__getstate__" data-type="Method" class="code">__getstate__</a></td>
+    <td><span>Support serialization by discarding cached <a href="http://docs.python.org/library/os.html#os.stat"><code>os.stat</code></a>
+results and returning everything else.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#sep" data-type="Method" class="code">sep</a></td>
+    <td><span>Return a filesystem separator.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#asBytesMode" data-type="Method" class="code">asBytesMode</a></td>
+    <td><span>Return this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> in 
+<a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>-mode.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#asTextMode" data-type="Method" class="code">asTextMode</a></td>
+    <td><span>Return this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> in 
+<a href="twisted.python.compat.html#unicode"><code>unicode</code></a>-mode.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#child" data-type="Method" class="code">child</a></td>
+    <td><span>Create and return a new <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+representing a path contained by <code>self</code>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#preauthChild" data-type="Method" class="code">preauthChild</a></td>
+    <td><span>Use me if <code>path</code> might have slashes in it, but you know 
+they're safe.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#childSearchPreauth" data-type="Method" class="code">childSearchPreauth</a></td>
+    <td><span>Return my first existing child with a name in <code>paths</code>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#siblingExtensionSearch" data-type="Method" class="code">siblingExtensionSearch</a></td>
+    <td><span>Attempt to return a path with my name, given multiple possible 
+extensions.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#realpath" data-type="Method" class="code">realpath</a></td>
+    <td><span>Returns the absolute target as a <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> if 
+self is a link, self otherwise.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#siblingExtension" data-type="Method" class="code">siblingExtension</a></td>
+    <td><span>Attempt to return a path with my name, given the extension at 
+<code>ext</code>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#linkTo" data-type="Method" class="code">linkTo</a></td>
+    <td><span>Creates a symlink to self to at the path in the <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+<code>linkFilePath</code>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#open" data-type="Method" class="code">open</a></td>
+    <td><span>Open this file using <code>mode</code> or for writing if 
+<code>alwaysCreate</code> is <code>True</code>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#restat" data-type="Method" class="code">restat</a></td>
+    <td><span>Re-calculate cached effects of 'stat'.  To refresh information on this 
+path after you know the filesystem may have changed, call this method.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#changed" data-type="Method" class="code">changed</a></td>
+    <td><span>Clear any cached information about the state of this path on disk.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#chmod" data-type="Method" class="code">chmod</a></td>
+    <td><span>Changes the permissions on self, if possible.  Propagates errors from <a href="http://docs.python.org/library/os.html#os.chmod"><code>os.chmod</code></a>
+up.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#getsize" data-type="Method" class="code">getsize</a></td>
+    <td><span>Retrieve the size of this file in bytes.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#getModificationTime" data-type="Method" class="code">getModificationTime</a></td>
+    <td><span>Retrieve the time of last access from this file.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#getStatusChangeTime" data-type="Method" class="code">getStatusChangeTime</a></td>
+    <td><span>Retrieve the time of the last status change for this file.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#getAccessTime" data-type="Method" class="code">getAccessTime</a></td>
+    <td><span>Retrieve the time that this file was last accessed.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#getInodeNumber" data-type="Method" class="code">getInodeNumber</a></td>
+    <td><span>Retrieve the file serial number, also called inode number, which 
+distinguishes this file from all other files on the same device.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#getDevice" data-type="Method" class="code">getDevice</a></td>
+    <td><span>Retrieves the device containing the file.  The inode number and device 
+number together uniquely identify the file, but the device number is not 
+necessarily consistent across reboots or system crashes.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#getNumberOfHardLinks" data-type="Method" class="code">getNumberOfHardLinks</a></td>
+    <td><span>Retrieves the number of hard links to the file.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#getUserID" data-type="Method" class="code">getUserID</a></td>
+    <td><span>Returns the user ID of the file's owner.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#getGroupID" data-type="Method" class="code">getGroupID</a></td>
+    <td><span>Returns the group ID of the file.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#getPermissions" data-type="Method" class="code">getPermissions</a></td>
+    <td><span>Returns the permissions of the file.  Should also work on Windows, 
+however, those permissions may not be what is expected in Windows.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#exists" data-type="Method" class="code">exists</a></td>
+    <td><span>Check if this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+exists.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#isdir" data-type="Method" class="code">isdir</a></td>
+    <td><span>Check if this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+refers to a directory.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#isfile" data-type="Method" class="code">isfile</a></td>
+    <td><span>Check if this file path refers to a regular file.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#isBlockDevice" data-type="Method" class="code">isBlockDevice</a></td>
+    <td><span>Returns whether the underlying path is a block device.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#isSocket" data-type="Method" class="code">isSocket</a></td>
+    <td><span>Returns whether the underlying path is a socket.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#islink" data-type="Method" class="code">islink</a></td>
+    <td><span>Check if this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+points to a symbolic link.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#isabs" data-type="Method" class="code">isabs</a></td>
+    <td><span>Check if this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+refers to an absolute path.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#listdir" data-type="Method" class="code">listdir</a></td>
+    <td><span>List the base names of the direct children of this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#splitext" data-type="Method" class="code">splitext</a></td>
+    <td><span>Split the file path into a pair <code>(root, ext)</code> such that 
+<code>root + ext == path</code>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#__repr__" data-type="Method" class="code">__repr__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#touch" data-type="Method" class="code">touch</a></td>
+    <td><span>Updates the access and last modification times of the file at this file 
+path to the current time. Also creates the file if it does not already 
+exist.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#remove" data-type="Method" class="code">remove</a></td>
+    <td><span>Removes the file or directory that is represented by self.  If 
+<code>self.path</code> is a directory, recursively remove all its children 
+before removing the directory. If it's a file or link, just delete it.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#makedirs" data-type="Method" class="code">makedirs</a></td>
+    <td><span>Create all directories not yet existing in <code>path</code> segments, 
+using <a href="http://docs.python.org/library/os.html#os.makedirs"><code>os.makedirs</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#globChildren" data-type="Method" class="code">globChildren</a></td>
+    <td><span>Assuming I am representing a directory, return a list of FilePaths 
+representing my children that match the given pattern.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#basename" data-type="Method" class="code">basename</a></td>
+    <td><span>Retrieve the final component of the file path's path (everything after 
+the final path separator).</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#dirname" data-type="Method" class="code">dirname</a></td>
+    <td><span>Retrieve all of the components of the <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>'s 
+path except the last one (everything up to the final path separator).</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#parent" data-type="Method" class="code">parent</a></td>
+    <td><span>A file path for the directory containing the file at this file path.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#setContent" data-type="Method" class="code">setContent</a></td>
+    <td><span>Replace the file at this path with a new file that contains the given 
+bytes, trying to avoid data-loss in the meanwhile.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#__cmp__" data-type="Method" class="code">__cmp__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#createDirectory" data-type="Method" class="code">createDirectory</a></td>
+    <td><span>Create the directory the <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+refers to.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#requireCreate" data-type="Method" class="code">requireCreate</a></td>
+    <td><span>Sets the <code>alwaysCreate</code> variable.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#create" data-type="Method" class="code">create</a></td>
+    <td><span>Exclusively create a file, only if this file previously did not 
+exist.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#temporarySibling" data-type="Method" class="code">temporarySibling</a></td>
+    <td><span>Construct a path referring to a sibling of this path.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#copyTo" data-type="Method" class="code">copyTo</a></td>
+    <td><span>Copies self to destination.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#moveTo" data-type="Method" class="code">moveTo</a></td>
+    <td><span>Move self to destination - basically renaming self to whatever 
+destination is named.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#statinfo" data-type="Method" class="code">statinfo</a></td>
+    <td><span>FilePath.statinfo is deprecated.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#_asBytesPath" data-type="Method" class="code">_asBytesPath</a></td>
+    <td><span>Return the path of this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> as 
+bytes.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#_asTextPath" data-type="Method" class="code">_asTextPath</a></td>
+    <td><span>Return the path of this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> as 
+text.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.FilePath.html#_getPathAsSameTypeAs" data-type="Method" class="code">_getPathAsSameTypeAs</a></td>
+    <td><span>If <code>pattern</code> is <code>bytes</code>, return <a href="twisted.python.filepath.FilePath.html#path"><code>FilePath.path</code></a>
+as <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>.
+Otherwise, return <a href="twisted.python.filepath.FilePath.html#path"><code>FilePath.path</code></a>
+as <a href="twisted.python.compat.html#unicode"><code>unicode</code></a>.</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.python.filepath.AbstractFilePath.html" data-type="Class" class="code">AbstractFilePath</a>:
+          </p>
+          <table class="children sortable" id="id2670">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.AbstractFilePath.html#getContent" data-type="Method" class="code">getContent</a></td>
+    <td><span>Retrieve the file-like object for this file path.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.AbstractFilePath.html#parents" data-type="Method" class="code">parents</a></td>
+    <td><span>Retrieve an iterator of all the ancestors of this path.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.AbstractFilePath.html#children" data-type="Method" class="code">children</a></td>
+    <td><span>List the children of this path object.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.AbstractFilePath.html#walk" data-type="Method" class="code">walk</a></td>
+    <td><span>Yield myself, then each of my children, and each of those children's 
+children in turn.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.AbstractFilePath.html#sibling" data-type="Method" class="code">sibling</a></td>
+    <td><span>Return a <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> with
+the same directory as this instance but with a basename of 
+<code>path</code>.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.AbstractFilePath.html#descendant" data-type="Method" class="code">descendant</a></td>
+    <td><span>Retrieve a child or child's child of this path.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.AbstractFilePath.html#segmentsFrom" data-type="Method" class="code">segmentsFrom</a></td>
+    <td><span>Return a list of segments between a child and its ancestor.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.AbstractFilePath.html#__hash__" data-type="Method" class="code">__hash__</a></td>
+    <td><span>Hash the same as another <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> with
+the same path as mine.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.AbstractFilePath.html#getmtime" data-type="Method" class="code">getmtime</a></td>
+    <td><span>Deprecated.  Use getModificationTime instead.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.AbstractFilePath.html#getatime" data-type="Method" class="code">getatime</a></td>
+    <td><span>Deprecated.  Use getAccessTime instead.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.filepath.AbstractFilePath.html#getctime" data-type="Method" class="code">getctime</a></td>
+    <td><span>Deprecated.  Use getStatusChangeTime instead.</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable">
+  
+  <a name="twisted.python.filepath.FilePath.alwaysCreate">
+    
+  </a>
+  <a name="alwaysCreate">
+    
+  </a>
+  <div class="functionHeader">
+    alwaysCreate =
+  </div>
+  <div class="functionBody">
+    When opening this file, only succeed if the file does not already exist. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.python.filepath.FilePath.path">
+    
+  </a>
+  <a name="path">
+    
+  </a>
+  <div class="functionHeader">
+    path =
+  </div>
+  <div class="functionBody">
+    The path from which 'downward' traversal is permitted. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+or <a href="twisted.python.compat.html#unicode"><code>unicode</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.python.filepath.FilePath.statinfo 0">
+    
+  </a>
+  <a name="statinfo 0">
+    
+  </a>
+  <div class="functionHeader">
+    statinfo 0 =
+  </div>
+  <div class="functionBody">
+    (WARNING: statinfo is deprecated as of Twisted 15.0.0 and will become a 
+private attribute) The currently cached status information about the file 
+on the filesystem that this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+points to.  This attribute is <code>None</code> if the file is in an 
+indeterminate state (either this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> has 
+not yet had cause to call <code>stat()</code> yet or <a href="twisted.python.filepath.FilePath.html#changed"><code>FilePath.changed</code></a>
+indicated that new information is required), 0 if <code>stat()</code> was 
+called and returned an error (i.e. the path did not exist when 
+<code>stat()</code> was called), or a <code>stat_result</code> object that 
+describes the last known status of the underlying file (or directory, as 
+the case may be).  Trust me when I tell you that you do not want to use 
+this attribute.  Instead, use the methods on <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+which give you information about it, like <code>getsize()</code>, 
+<code>isdir()</code>, <code>getModificationTime()</code>, and so on. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>
+or <a href="http://docs.python.org/library/types.html#types.NoneType"><code>types.NoneType</code></a>
+or <a href="http://docs.python.org/library/os.html#os.stat_result"><code>os.stat_result</code></a>)
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, path, alwaysCreate=False):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L722">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.web.static.File.html" data-type="Class" class="code">twisted.web.static.File</a>, <a href="twisted.web.twcgi.CGIDirectory.html" data-type="Class" class="code">twisted.web.twcgi.CGIDirectory</a></div>
+    
+    <div><p>Convert a path string to an absolute path if necessary and initialize 
+the <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> with
+the result.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.__getstate__">
+    
+  </a>
+  <a name="__getstate__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __getstate__(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L731">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Support serialization by discarding cached <a href="http://docs.python.org/library/os.html#os.stat"><code>os.stat</code></a>
+results and returning everything else.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.sep">
+    
+  </a>
+  <a name="sep">
+    
+  </a>
+  <div class="functionHeader">
+    @property<br />
+    def
+    sep(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L743">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.python.filepath.IFilePath.html#sep" data-type="Attribute" class="code">twisted.python.filepath.IFilePath</a></div>
+    
+    <div><p>Return a filesystem separator.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The native filesystem separator. (type: The same type as <code>self.path</code>.)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.python.filepath.FilePath._asBytesPath">
+    
+  </a>
+  <a name="_asBytesPath">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _asBytesPath(self, encoding=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L753">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return the path of this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> as 
+bytes.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">encoding</td><td>The encoding to use if coercing to <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>.
+If none is given, <a href="http://docs.python.org/library/sys.html#sys.getfilesystemencoding"><code>sys.getfilesystemencoding</code></a>
+is used.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.python.filepath.FilePath._asTextPath">
+    
+  </a>
+  <a name="_asTextPath">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _asTextPath(self, encoding=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L765">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return the path of this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> as 
+text.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">encoding</td><td>The encoding to use if coercing to <a href="twisted.python.compat.html#unicode"><code>unicode</code></a>. If none
+is given, <a href="http://docs.python.org/library/sys.html#sys.getfilesystemencoding"><code>sys.getfilesystemencoding</code></a>
+is used.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="twisted.python.compat.html#unicode"><code>unicode</code></a></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.asBytesMode">
+    
+  </a>
+  <a name="asBytesMode">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    asBytesMode(self, encoding=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L777">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> in 
+<a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>-mode.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">encoding</td><td>The encoding to use if coercing to <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>.
+If none is given, <a href="http://docs.python.org/library/sys.html#sys.getfilesystemencoding"><code>sys.getfilesystemencoding</code></a>
+is used.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+mode <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.asTextMode">
+    
+  </a>
+  <a name="asTextMode">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    asTextMode(self, encoding=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L791">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> in 
+<a href="twisted.python.compat.html#unicode"><code>unicode</code></a>-mode.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">encoding</td><td>The encoding to use if coercing to <a href="twisted.python.compat.html#unicode"><code>unicode</code></a>. If none
+is given, <a href="http://docs.python.org/library/sys.html#sys.getfilesystemencoding"><code>sys.getfilesystemencoding</code></a>
+is used.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="twisted.python.compat.html#unicode"><code>unicode</code></a> mode 
+<a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.python.filepath.FilePath._getPathAsSameTypeAs">
+    
+  </a>
+  <a name="_getPathAsSameTypeAs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _getPathAsSameTypeAs(self, pattern):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L805">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>If <code>pattern</code> is <code>bytes</code>, return <a href="twisted.python.filepath.FilePath.html#path"><code>FilePath.path</code></a>
+as <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>.
+Otherwise, return <a href="twisted.python.filepath.FilePath.html#path"><code>FilePath.path</code></a>
+as <a href="twisted.python.compat.html#unicode"><code>unicode</code></a>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">pattern</td><td>The new element of the path that <a href="twisted.python.filepath.FilePath.html#path"><code>FilePath.path</code></a>
+may need to be coerced to match.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.child">
+    
+  </a>
+  <a name="child">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    child(self, path):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L819">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.python.filepath.IFilePath.html#child" data-type="Method" class="code">twisted.python.filepath.IFilePath</a></div>
+    
+    <div><p>Create and return a new <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+representing a path contained by <code>self</code>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">path</td><td>The base name of the new <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>.  If
+this contains directory separators or parent references it will be 
+rejected. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+or <a href="twisted.python.compat.html#unicode"><code>unicode</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The child path. (type: <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+with a mode equal to the type of <code>path</code>.)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">InsecurePath</td><td>If the result of combining this path with <code>path</code> would result in
+a path which is not a direct child of this path.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.preauthChild">
+    
+  </a>
+  <a name="preauthChild">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    preauthChild(self, path):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L854">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Use me if <code>path</code> might have slashes in it, but you know 
+they're safe.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">path</td><td>A relative path (ie, a path not starting with <code>"/"</code>) 
+which will be interpreted as a child or descendant of this path. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+or <a href="twisted.python.compat.html#unicode"><code>unicode</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The child path. (type: <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+with a mode equal to the type of <code>path</code>.)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.childSearchPreauth">
+    
+  </a>
+  <a name="childSearchPreauth">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    childSearchPreauth(self, *paths):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L874">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return my first existing child with a name in <code>paths</code>.</p>
+<p><code>paths</code> is expected to be a list of *pre-secured* path 
+fragments; in most cases this will be specified by a system administrator 
+and not an arbitrary user.</p>
+<p>If no appropriately-named children exist, this will return 
+<code>None</code>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>None</code> or the child path. (type: <a href="http://docs.python.org/library/types.html#types.NoneType"><code>types.NoneType</code></a>
+or <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.siblingExtensionSearch">
+    
+  </a>
+  <a name="siblingExtensionSearch">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    siblingExtensionSearch(self, *exts):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L894">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Attempt to return a path with my name, given multiple possible 
+extensions.</p>
+<p>Each extension in <code>exts</code> will be tested and the first path 
+which exists will be returned.  If no path exists, <code>None</code> will 
+be returned. If <code>''</code> is in <code>exts</code>, then if the file 
+referred to by this path exists, <code>self</code> will be returned.</p>
+<p>The extension '*' has a magic meaning, which means "any path that 
+begins with <code>self.path + '.'</code> is acceptable".</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.realpath">
+    
+  </a>
+  <a name="realpath">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    realpath(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L925">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns the absolute target as a <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> if 
+self is a link, self otherwise.</p>
+<p>The absolute link is the ultimate file or directory the link refers to 
+(for instance, if the link refers to another link, and another...).  If the
+filesystem does not support symlinks, or if the link is cyclical, raises a 
+<a href="twisted.python.filepath.LinkError.html"><code>LinkError</code></a>.</p>
+<p>Behaves like <a href="http://docs.python.org/library/os.path.html#os.path.realpath"><code>os.path.realpath</code></a>
+in that it does not resolve link names in the middle (ex. /x/y/z, y is a 
+link to w - realpath on z will return /x/y/z, not /x/w/z).</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+of the target path. (type: <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">LinkError</td><td>if links are not supported or links are cyclical.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.siblingExtension">
+    
+  </a>
+  <a name="siblingExtension">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    siblingExtension(self, ext):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L951">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Attempt to return a path with my name, given the extension at 
+<code>ext</code>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">ext</td><td>File-extension to search for. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+or <a href="twisted.python.compat.html#unicode"><code>unicode</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The sibling path. (type: <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+with the same mode as the type of <code>ext</code>.)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.linkTo">
+    
+  </a>
+  <a name="linkTo">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    linkTo(self, linkFilePath):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L965">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Creates a symlink to self to at the path in the <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+<code>linkFilePath</code>.</p>
+<p>Only works on posix systems due to its dependence on <a href="http://docs.python.org/library/os.html#os.symlink"><code>os.symlink</code></a>.
+Propagates <a href="http://docs.python.org/library/exceptions.html#exceptions.OSError"><code>OSError</code></a>s
+up from <a href="http://docs.python.org/library/os.html#os.symlink"><code>os.symlink</code></a>
+if <code>linkFilePath.parent()</code> does not exist, or 
+<code>linkFilePath</code> already exists.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">linkFilePath</td><td>a FilePath representing the link to be created. (type: <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.open">
+    
+  </a>
+  <a name="open">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    open(self, mode='r'):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L981">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.python.filepath.IFilePath.html#open" data-type="Method" class="code">twisted.python.filepath.IFilePath</a></div>
+    
+    <div><p>Open this file using <code>mode</code> or for writing if 
+<code>alwaysCreate</code> is <code>True</code>.</p>
+<p>In all cases the file is opened in binary mode, so it is not necessary 
+to include <code>"b"</code> in <code>mode</code>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">mode</td><td>The mode to open the file in.  Default is <code>"r"</code>. (type: <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An open <a href="http://docs.python.org/library/stdtypes.html#file"><code>file</code></a>
+object. (type: <a href="http://docs.python.org/library/stdtypes.html#file"><code>file</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">AssertionError</td><td>If <code>"a"</code> is included in the mode and 
+<code>alwaysCreate</code> is <code>True</code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.restat">
+    
+  </a>
+  <a name="restat">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    restat(self, reraise=True):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1007">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Re-calculate cached effects of 'stat'.  To refresh information on this 
+path after you know the filesystem may have changed, call this method.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">reraise</td><td>a boolean.  If true, re-raise exceptions from <a href="http://docs.python.org/library/os.html#os.stat"><code>os.stat</code></a>;
+otherwise, mark this path as not existing, and remove any cached stat 
+information.</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">Exception</td><td>If <code>reraise</code> is <code>True</code> and an exception occurs while 
+reloading metadata.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.changed">
+    
+  </a>
+  <a name="changed">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    changed(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1027">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.python.filepath.IFilePath.html#changed" data-type="Method" class="code">twisted.python.filepath.IFilePath</a></div>
+    
+    <div><p>Clear any cached information about the state of this path on disk.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">10.1.0</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.chmod">
+    
+  </a>
+  <a name="chmod">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    chmod(self, mode):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1036">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Changes the permissions on self, if possible.  Propagates errors from <a href="http://docs.python.org/library/os.html#os.chmod"><code>os.chmod</code></a>
+up.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">mode</td><td>integer representing the new permissions desired (same as the command line 
+chmod) (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.getsize">
+    
+  </a>
+  <a name="getsize">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getsize(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1048">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.python.filepath.IFilePath.html#getsize" data-type="Method" class="code">twisted.python.filepath.IFilePath</a></div>
+    
+    <div><p>Retrieve the size of this file in bytes.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The size of the file at this file path in bytes. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">Exception</td><td>if the size cannot be obtained.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.getModificationTime">
+    
+  </a>
+  <a name="getModificationTime">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getModificationTime(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1063">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.python.filepath.IFilePath.html#getModificationTime" data-type="Method" class="code">twisted.python.filepath.IFilePath</a></div>
+    
+    <div><p>Retrieve the time of last access from this file.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a number of seconds from the epoch. (type: <a href="http://docs.python.org/library/stdtypes.html#float"><code>float</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.getStatusChangeTime">
+    
+  </a>
+  <a name="getStatusChangeTime">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getStatusChangeTime(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1077">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.python.filepath.IFilePath.html#getStatusChangeTime" data-type="Method" class="code">twisted.python.filepath.IFilePath</a></div>
+    
+    <div><p>Retrieve the time of the last status change for this file.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a number of seconds from the epoch. (type: <a href="http://docs.python.org/library/stdtypes.html#float"><code>float</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.getAccessTime">
+    
+  </a>
+  <a name="getAccessTime">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getAccessTime(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1091">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.python.filepath.IFilePath.html#getAccessTime" data-type="Method" class="code">twisted.python.filepath.IFilePath</a></div>
+    
+    <div><p>Retrieve the time that this file was last accessed.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a number of seconds from the epoch. (type: <a href="http://docs.python.org/library/stdtypes.html#float"><code>float</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.getInodeNumber">
+    
+  </a>
+  <a name="getInodeNumber">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getInodeNumber(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1105">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Retrieve the file serial number, also called inode number, which 
+distinguishes this file from all other files on the same device.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a number representing the file serial number (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">NotImplementedError</td><td>if the platform is Windows, since the inode number would be a dummy value 
+for all files in Windows</td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">11.0</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.getDevice">
+    
+  </a>
+  <a name="getDevice">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getDevice(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1126">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Retrieves the device containing the file.  The inode number and device 
+number together uniquely identify the file, but the device number is not 
+necessarily consistent across reboots or system crashes.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a number representing the device (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">NotImplementedError</td><td>if the platform is Windows, since the device number would be 0 for all 
+partitions on a Windows platform</td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">11.0</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.getNumberOfHardLinks">
+    
+  </a>
+  <a name="getNumberOfHardLinks">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getNumberOfHardLinks(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1150">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Retrieves the number of hard links to the file.</p>
+<p>This count keeps track of how many directories have entries for this 
+file. If the count is ever decremented to zero then the file itself is 
+discarded as soon as no process still holds it open.  Symbolic links are 
+not counted in the total.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the number of hard links to the file (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">NotImplementedError</td><td>if the platform is Windows, since Windows doesn't maintain a link count for
+directories, and <a href="http://docs.python.org/library/os.html#os.stat"><code>os.stat</code></a>
+does not set <code>st_nlink</code> on Windows anyway.</td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">11.0</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.getUserID">
+    
+  </a>
+  <a name="getUserID">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getUserID(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1176">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns the user ID of the file's owner.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the user ID of the file's owner (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">NotImplementedError</td><td>if the platform is Windows, since the UID is always 0 on Windows</td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">11.0</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.getGroupID">
+    
+  </a>
+  <a name="getGroupID">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getGroupID(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1196">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns the group ID of the file.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the group ID of the file (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">NotImplementedError</td><td>if the platform is Windows, since the GID is always 0 on windows</td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">11.0</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.getPermissions">
+    
+  </a>
+  <a name="getPermissions">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getPermissions(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1216">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns the permissions of the file.  Should also work on Windows, 
+however, those permissions may not be what is expected in Windows.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the permissions for the file (type: <a href="twisted.python.filepath.Permissions.html"><code>Permissions</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">11.1</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.exists">
+    
+  </a>
+  <a name="exists">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    exists(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1232">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.python.filepath.IFilePath.html#exists" data-type="Method" class="code">twisted.python.filepath.IFilePath</a></div>
+    
+    <div><p>Check if this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+exists.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>True</code> if the stats of <code>path</code> can be retrieved 
+successfully, <code>False</code> in the other cases. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.isdir">
+    
+  </a>
+  <a name="isdir">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    isdir(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1250">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.python.filepath.IFilePath.html#isdir" data-type="Method" class="code">twisted.python.filepath.IFilePath</a></div>
+    
+    <div><p>Check if this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+refers to a directory.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>True</code> if this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+refers to a directory, <code>False</code> otherwise. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.isfile">
+    
+  </a>
+  <a name="isfile">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    isfile(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1267">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.python.filepath.IFilePath.html#isfile" data-type="Method" class="code">twisted.python.filepath.IFilePath</a></div>
+    
+    <div><p>Check if this file path refers to a regular file.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>True</code> if this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+points to a regular file (not a directory, socket, named pipe, etc), 
+<code>False</code> otherwise. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.isBlockDevice">
+    
+  </a>
+  <a name="isBlockDevice">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    isBlockDevice(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1284">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns whether the underlying path is a block device.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>True</code> if it is a block device, <code>False</code> otherwise (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">11.1</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.isSocket">
+    
+  </a>
+  <a name="isSocket">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    isSocket(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1301">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns whether the underlying path is a socket.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>True</code> if it is a socket, <code>False</code> otherwise (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">11.1</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.islink">
+    
+  </a>
+  <a name="islink">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    islink(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1318">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Check if this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+points to a symbolic link.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>True</code> if this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+points to a symbolic link, <code>False</code> otherwise. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.isabs">
+    
+  </a>
+  <a name="isabs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    isabs(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1333">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Check if this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+refers to an absolute path.</p>
+<p>This always returns <code>True</code>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>True</code>, always. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.listdir">
+    
+  </a>
+  <a name="listdir">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    listdir(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1345">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>List the base names of the direct children of this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>/<a href="twisted.python.compat.html#unicode"><code>unicode</code></a> giving 
+the names of the contents of the directory this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+refers to. These names are relative to this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>. (type: <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td colspan="2">Anything the platform <a href="http://docs.python.org/library/os.html#os.listdir"><code>os.listdir</code></a>
+implementation might raise (typically <a href="http://docs.python.org/library/exceptions.html#exceptions.OSError"><code>OSError</code></a>).</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.splitext">
+    
+  </a>
+  <a name="splitext">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    splitext(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1360">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Split the file path into a pair <code>(root, ext)</code> such that 
+<code>root + ext == path</code>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">Tuple where the first item is the filename and second item is the file 
+extension. See Python docs for <a href="http://docs.python.org/library/os.path.html#os.path.splitext"><code>os.path.splitext</code></a>. (type: <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __repr__(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1372">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.touch">
+    
+  </a>
+  <a name="touch">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    touch(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1376">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Updates the access and last modification times of the file at this file 
+path to the current time. Also creates the file if it does not already 
+exist.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">Exception</td><td>if unable to create or modify the last modification time of the file.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.remove">
+    
+  </a>
+  <a name="remove">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    remove(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1392">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Removes the file or directory that is represented by self.  If 
+<code>self.path</code> is a directory, recursively remove all its children 
+before removing the directory. If it's a file or link, just delete it.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.makedirs">
+    
+  </a>
+  <a name="makedirs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    makedirs(self, ignoreExistingDirectory=False):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1407">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Create all directories not yet existing in <code>path</code> segments, 
+using <a href="http://docs.python.org/library/os.html#os.makedirs"><code>os.makedirs</code></a>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">ignoreExistingDirectory</td><td>Don't raise <a href="http://docs.python.org/library/exceptions.html#exceptions.OSError"><code>OSError</code></a>
+if directory already exists. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>None</code></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.globChildren">
+    
+  </a>
+  <a name="globChildren">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    globChildren(self, pattern):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1428">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Assuming I am representing a directory, return a list of FilePaths 
+representing my children that match the given pattern.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">pattern</td><td>A glob pattern to use to match child paths. (type: <a href="twisted.python.compat.html#unicode"><code>unicode</code></a> or <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of matching children. (type: <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>, 
+with the mode of <code>pattern</code>'s type)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.basename">
+    
+  </a>
+  <a name="basename">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    basename(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1448">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.python.filepath.IFilePath.html#basename" data-type="Method" class="code">twisted.python.filepath.IFilePath</a></div>
+    
+    <div><p>Retrieve the final component of the file path's path (everything after 
+the final path separator).</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The final component of the <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>'s 
+path (Everything after the final path separator). (type: the same type as this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>'s 
+<code>path</code> attribute)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.dirname">
+    
+  </a>
+  <a name="dirname">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dirname(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1460">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Retrieve all of the components of the <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>'s 
+path except the last one (everything up to the final path separator).</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">All of the components of the <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>'s 
+path except the last one (everything up to the final path separator). (type: the same type as this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>'s 
+<code>path</code> attribute)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.parent">
+    
+  </a>
+  <a name="parent">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    parent(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1472">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.python.filepath.IFilePath.html#parent" data-type="Method" class="code">twisted.python.filepath.IFilePath</a></div>
+    
+    <div><p>A file path for the directory containing the file at this file path.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>
+representing the path which directly contains this <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>. (type: <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.setContent">
+    
+  </a>
+  <a name="setContent">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setContent(self, content, ext='.new'):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1483">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Replace the file at this path with a new file that contains the given 
+bytes, trying to avoid data-loss in the meanwhile.</p>
+<p>On UNIX-like platforms, this method does its best to ensure that by the 
+time this method returns, either the old contents <i>or</i> the new 
+contents of the file will be present at this path for subsequent readers 
+regardless of premature device removal, program crash, or power loss, 
+making the following assumptions:</p>
+<ul>
+  <li>
+    your filesystem is journaled (i.e. your filesystem will not 
+    <i>itself</i> lose data due to power loss)
+  </li>
+  <li>
+    your filesystem's <code>rename()</code> is atomic
+  </li>
+  <li>
+    your filesystem will not discard new data while preserving new metadata
+    (see <a target="_top" href="http://mjg59.livejournal.com/108257.html">http://mjg59.livejournal.com/108257.html</a> for more 
+    detail)
+  </li>
+</ul>
+<p>On most versions of Windows there is no atomic <code>rename()</code> 
+(see <a target="_top" href="http://bit.ly/win32-overwrite">http://bit.ly/win32-overwrite</a> for more information), so 
+this method is slightly less helpful.  There is a small window where the 
+file at this path may be deleted before the new file is moved to replace 
+it: however, the new file will be fully written and flushed beforehand so 
+in the unlikely event that there is a crash at that point, it should be 
+possible for the user to manually recover the new version of their data.  
+In the future, Twisted will support atomic file moves on those versions of 
+Windows which <i>do</i> support them: see <a target="_top" href="http://twistedmatrix.com/trac/ticket/3004">Twisted 
+ticket 3004</a>.</p>
+<p>This method should be safe for use by multiple concurrent processes, but
+note that it is not easy to predict which process's contents will 
+ultimately end up on disk if they invoke this method at close to the same 
+time.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">content</td><td>The desired contents of the file at this path. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">ext</td><td>An extension to append to the temporary filename used to store the bytes 
+while they are being written.  This can be used to make sure that temporary
+files can be identified by their suffix, for cleanup in case of crashes. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.__cmp__">
+    
+  </a>
+  <a name="__cmp__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __cmp__(self, other):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1539">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.createDirectory">
+    
+  </a>
+  <a name="createDirectory">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    createDirectory(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1545">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Create the directory the <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+refers to.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">OSError</td><td>If the directory cannot be created.</td></tr><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><a href="twisted.python.filepath.FilePath.html#makedirs"><code>makedirs</code></a></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.requireCreate">
+    
+  </a>
+  <a name="requireCreate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    requireCreate(self, val=1):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1556">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Sets the <code>alwaysCreate</code> variable.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">val</td><td><code>True</code> or <code>False</code>, indicating whether opening this 
+path will be required to create the file or not. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>None</code></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.create">
+    
+  </a>
+  <a name="create">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    create(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1569">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Exclusively create a file, only if this file previously did not 
+exist.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A file-like object opened from this path.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.temporarySibling">
+    
+  </a>
+  <a name="temporarySibling">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    temporarySibling(self, extension=''):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1584">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Construct a path referring to a sibling of this path.</p>
+<p>The resulting path will be unpredictable, so that other subprocesses 
+should neither accidentally attempt to refer to the same path before it is 
+created, nor they should other processes be able to guess its name in 
+advance.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">extension</td><td>A suffix to append to the created filename.  (Note that if you want an 
+extension with a '.' you must include the '.' yourself.) (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+or <a href="twisted.python.compat.html#unicode"><code>unicode</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a path object with the given extension suffix, <code>alwaysCreate</code> 
+set to True. (type: <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+with a mode equal to the type of <code>extension</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.copyTo">
+    
+  </a>
+  <a name="copyTo">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    copyTo(self, destination, followLinks=True):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1611">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Copies self to destination.</p>
+<p>If self doesn't exist, an OSError is raised.</p>
+<p>If self is a directory, this method copies its children (but not itself)
+recursively to destination - if destination does not exist as a directory, 
+this method creates it.  If destination is a file, an IOError will be 
+raised.</p>
+<p>If self is a file, this method copies it to destination.  If destination
+is a file, this method overwrites it.  If destination is a directory, an 
+IOError will be raised.</p>
+<p>If self is a link (and followLinks is False), self will be copied over 
+as a new symlink with the same target as returned by os.readlink. That 
+means that if it is absolute, both the old and new symlink will link to the
+same thing.  If it's relative, then perhaps not (and it's also possible 
+that this relative link will be broken).</p>
+<p>File/directory permissions and ownership will NOT be copied over.</p>
+<p>If followLinks is True, symlinks are followed so that they're treated as
+their targets.  In other words, if self is a link, the link's target will 
+be copied.  If destination is a link, self will be copied to the 
+destination's target (the actual destination will be destination's target).
+Symlinks under self (if self is a directory) will be followed and its 
+target's children be copied recursively.</p>
+<p>If followLinks is False, symlinks will be copied over as symlinks.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">destination</td><td>the destination (a FilePath) to which self should be copied</td></tr><tr><td></td><td class="fieldArg">followLinks</td><td>whether symlinks in self should be treated as links or as their targets</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.moveTo">
+    
+  </a>
+  <a name="moveTo">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    moveTo(self, destination, followLinks=True):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1691">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Move self to destination - basically renaming self to whatever 
+destination is named.</p>
+<p>If destination is an already-existing directory, moves all children to 
+destination if destination is empty.  If destination is a non-empty 
+directory, or destination is a file, an OSError will be raised.</p>
+<p>If moving between filesystems, self needs to be copied, and everything 
+that applies to copyTo applies to moveTo.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">destination</td><td>the destination (a FilePath) to which self should be copied</td></tr><tr><td></td><td class="fieldArg">followLinks</td><td>whether symlinks in self should be treated as links or as their targets 
+(only applicable when moving between filesystems)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.filepath.FilePath.statinfo">
+    
+  </a>
+  <a name="statinfo">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    statinfo(self, value=_SpecialNoValue):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/filepath.py#L1737">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>FilePath.statinfo is deprecated.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">value</td><td>value to set statinfo to, if setting a value</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>_statinfo</code> if getting, <code>None</code> if setting</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2016-05-18 16:01:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script src="//www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.protocols.amp.CommandLocator&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">Class t.p.a.CommandLocator:</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.protocols.html">protocols</a>.<a href="twisted.protocols.amp.html">amp</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.1/twisted/protocols/amp.py#L853">View Source</a>
+      <a href="classIndex.html#twisted.protocols.amp.CommandLocator">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known subclasses: <a href="twisted.protocols.amp.AMP.html">twisted.protocols.amp.AMP</a></p><p>Implements interfaces: <a href="twisted.protocols.amp.IResponderLocator.html">twisted.protocols.amp.IResponderLocator</a></p>
+    </div>
+    <div>A <a 
+href="twisted.protocols.amp.CommandLocator.html"><code>CommandLocator</code></a> 
+is a collection of responders to AMP <a 
+href="twisted.protocols.amp.Command.html"><code>Command</code></a>s, with 
+the help of the <a 
+href="twisted.protocols.amp.Command.html#responder"><code>Command.responder</code></a> 
+decorator.
+<table class="fieldTable"></table></div>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id674">
+  
+  
+  
+  
+  <tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.CommandLocator.__metaclass__.html">__metaclass__</a></td>
+    <td><span>This metaclass keeps track of all of the 
+Command.responder-decorated
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.CommandLocator.html#lookupFunction">lookupFunction</a></td>
+    <td><span>Deprecated synonym for <a 
+href="twisted.protocols.amp.CommandLocator.html#locateResponder"><code>locateResponder</code></a>
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.CommandLocator.html#locateResponder">locateResponder</a></td>
+    <td><span>Locate a callable to invoke when executing the named command.
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.CommandLocator.html#_wrapWithSerialization">_wrapWithSerialization</a></td>
+    <td><span>Wrap aCallable with its command's argument de-serialization
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.protocols.amp.CommandLocator._wrapWithSerialization"></a>
+        <a name="_wrapWithSerialization"></a>
+        <div class="functionHeader">
+        
+        def _wrapWithSerialization(self, aCallable, command):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.1/twisted/protocols/amp.py#L904" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Wrap aCallable with its command's argument de-serialization and result 
+serialization logic.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">aCallable</td><td>a callable with a 'command' attribute, designed to be called with 
+keyword arguments.
+</td></tr><tr><td></td><td class="fieldArg">command</td><td>the command class whose serialization to use.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a 1-arg callable which, when invoked with an AmpBox, will deserialize 
+the argument list and invoke appropriate user code for the callable's 
+command, returning a Deferred which fires with the result or fails with 
+an error.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.protocols.amp.CommandLocator.lookupFunction"></a>
+        <a name="lookupFunction"></a>
+        <div class="functionHeader">
+        
+        def lookupFunction(self, name):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.1/twisted/protocols/amp.py#L945" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Deprecated synonym for <a 
+href="twisted.protocols.amp.CommandLocator.html#locateResponder"><code>locateResponder</code></a>
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.protocols.amp.CommandLocator.locateResponder"></a>
+        <a name="locateResponder"></a>
+        <div class="functionHeader">
+        
+        def locateResponder(self, name):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.1/twisted/protocols/amp.py#L958" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">from <a href="twisted.protocols.amp.IResponderLocator.html#locateResponder">twisted.protocols.amp.IResponderLocator</a></div><div class="interfaceinfo">overridden in <a href="twisted.protocols.amp.AMP.html">twisted.protocols.amp.AMP</a></div>
+          <div>Locate a callable to invoke when executing the named command.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>the normalized name (from the wire) of the command.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a 1-argument function that takes a Box and returns a box or a Deferred 
+which fires a Box, for handling the command identified by the given name, 
+or None, if no appropriate responder can be found.
+</td></tr></table></div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2008-05-18 16:42:17.
+    </address>
+  </body>
+</html>

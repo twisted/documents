@@ -1,0 +1,291 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.cred.strcred.AuthOptionMixin : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.c.s.AuthOptionMixin : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.cred.html">cred</a>.<a href="twisted.cred.strcred.html">strcred</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/cred/strcred.py#L131">View Source</a>
+      <a href="classIndex.html#twisted.cred.strcred.AuthOptionMixin">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known subclasses: <a href="twisted.words.tap.Options.html">twisted.words.tap.Options</a></p>
+    </div>
+    <div><p>Defines helper methods that can be added on to any <a 
+href="twisted.python.usage.Options.html"><code>usage.Options</code></a> 
+subclass that needs authentication.</p>
+<p>This mixin implements three new options methods:</p>
+<p>The opt_auth method (--auth) will write two new values to the 'self' 
+dictionary: <code>credInterfaces</code> (a dict of lists) and 
+<code>credCheckers</code> (a list).</p>
+<p>The opt_help_auth method (--help-auth) will search for all available 
+checker plugins and list them for the user; it will exit when finished.</p>
+The opt_help_auth_type method (--help-auth-type) will display detailed 
+help for a particular checker plugin.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Class Variables</td><td class="fieldArg">supportedInterfaces</td><td>An iterable object that returns credential interfaces which this 
+application is able to support.
+</td></tr><tr><td></td><td class="fieldArg">authOutput</td><td>A writeable object to which this options class will send all 
+help-related output. Default: <code>sys.stdout</code>
+</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3271">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.cred.strcred.AuthOptionMixin.html#supportsInterface">supportsInterface</a></td>
+    <td><span>Returns whether a particular credentials interface is supported.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.cred.strcred.AuthOptionMixin.html#supportsCheckerFactory">supportsCheckerFactory</a></td>
+    <td><span>Returns whether a checker factory will provide at least one of the 
+credentials interfaces that we care about.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.cred.strcred.AuthOptionMixin.html#addChecker">addChecker</a></td>
+    <td><span>Supply a supplied credentials checker to the Options class.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.cred.strcred.AuthOptionMixin.html#opt_auth">opt_auth</a></td>
+    <td><span>Specify an authentication method for the server.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.cred.strcred.AuthOptionMixin.html#opt_help_auth">opt_help_auth</a></td>
+    <td><span>Show all authentication methods available.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.cred.strcred.AuthOptionMixin.html#opt_help_auth_type">opt_help_auth_type</a></td>
+    <td><span>Show help for a particular authentication type.
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.cred.strcred.AuthOptionMixin.html#_checkerFactoriesForOptHelpAuth">_checkerFactoriesForOptHelpAuth</a></td>
+    <td><span>Return a list of which authTypes will be displayed by --help-auth. This 
+makes it a lot easier to test this module.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.cred.strcred.AuthOptionMixin.supportsInterface">
+    
+  </a>
+  <a name="supportsInterface">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    supportsInterface(self, interface):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/cred/strcred.py#L160" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Returns whether a particular credentials interface is supported.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.cred.strcred.AuthOptionMixin.supportsCheckerFactory">
+    
+  </a>
+  <a name="supportsCheckerFactory">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    supportsCheckerFactory(self, factory):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/cred/strcred.py#L168" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Returns whether a checker factory will provide at least one of the 
+credentials interfaces that we care about.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.cred.strcred.AuthOptionMixin.addChecker">
+    
+  </a>
+  <a name="addChecker">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addChecker(self, checker):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/cred/strcred.py#L179" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Supply a supplied credentials checker to the Options class.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.cred.strcred.AuthOptionMixin.opt_auth">
+    
+  </a>
+  <a name="opt_auth">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    opt_auth(self, description):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/cred/strcred.py#L203" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Specify an authentication method for the server.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.cred.strcred.AuthOptionMixin._checkerFactoriesForOptHelpAuth">
+    
+  </a>
+  <a name="_checkerFactoriesForOptHelpAuth">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _checkerFactoriesForOptHelpAuth(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/cred/strcred.py#L219" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Return a list of which authTypes will be displayed by --help-auth. This 
+makes it a lot easier to test this module.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.cred.strcred.AuthOptionMixin.opt_help_auth">
+    
+  </a>
+  <a name="opt_help_auth">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    opt_help_auth(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/cred/strcred.py#L231" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Show all authentication methods available.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.cred.strcred.AuthOptionMixin.opt_help_auth_type">
+    
+  </a>
+  <a name="opt_help_auth_type">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    opt_help_auth_type(self, authType):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/cred/strcred.py#L253" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Show help for a particular authentication type.
+<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-10-27 16:17:34.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

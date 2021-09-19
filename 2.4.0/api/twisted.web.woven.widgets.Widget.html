@@ -1,0 +1,550 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.web.woven.widgets.Widget&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.w.w.w.Widget(<a href="twisted.web.woven.view.View.html">view.View</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.web.woven.widgets.html">twisted.web.woven.widgets</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.web.woven.widgets.Widget">View In Hierarchy</a>
+    </p>
+    <div><p>Known subclasses: <a href="twisted.web.woven.form.FormFillerWidget.html">twisted.web.woven.form.FormFillerWidget</a>, <a href="twisted.web.woven.widgets.DefaultWidget.html">twisted.web.woven.widgets.DefaultWidget</a>, <a href="twisted.web.woven.widgets.Attributes.html">twisted.web.woven.widgets.Attributes</a>, <a href="twisted.web.woven.widgets.Text.html">twisted.web.woven.widgets.Text</a>, <a href="twisted.web.woven.widgets.ParagraphText.html">twisted.web.woven.widgets.ParagraphText</a>, <a href="twisted.web.woven.widgets.Image.html">twisted.web.woven.widgets.Image</a>, <a href="twisted.web.woven.widgets.Error.html">twisted.web.woven.widgets.Error</a>, <a href="twisted.web.woven.widgets.Div.html">twisted.web.woven.widgets.Div</a>, <a href="twisted.web.woven.widgets.Span.html">twisted.web.woven.widgets.Span</a>, <a href="twisted.web.woven.widgets.Br.html">twisted.web.woven.widgets.Br</a>, <a href="twisted.web.woven.widgets.Input.html">twisted.web.woven.widgets.Input</a>, <a href="twisted.web.woven.widgets.Option.html">twisted.web.woven.widgets.Option</a>, <a href="twisted.web.woven.widgets.Anchor.html">twisted.web.woven.widgets.Anchor</a>, <a href="twisted.web.woven.widgets.List.html">twisted.web.woven.widgets.List</a>, <a href="twisted.web.woven.widgets.ColumnList.html">twisted.web.woven.widgets.ColumnList</a>, <a href="twisted.web.woven.widgets.Bold.html">twisted.web.woven.widgets.Bold</a>, <a href="twisted.web.woven.widgets.Table.html">twisted.web.woven.widgets.Table</a>, <a href="twisted.web.woven.widgets.Row.html">twisted.web.woven.widgets.Row</a>, <a href="twisted.web.woven.widgets.Cell.html">twisted.web.woven.widgets.Cell</a>, <a href="twisted.web.woven.widgets.RawText.html">twisted.web.woven.widgets.RawText</a>, <a href="twisted.web.woven.widgets.Link.html">twisted.web.woven.widgets.Link</a>, <a href="twisted.web.woven.widgets.ExpandMacro.html">twisted.web.woven.widgets.ExpandMacro</a>, <a href="twisted.web.woven.widgets.DeferredWidget.html">twisted.web.woven.widgets.DeferredWidget</a>, <a href="twisted.web.woven.widgets.Break.html">twisted.web.woven.widgets.Break</a></p></div>
+    <div><p>A Widget wraps an object, its model, for display. The model can be a 
+simple Python object (string, list, etc.) or it can be an instance of <a 
+href="twisted.web.woven.model.Model.html">model.Model</a>. (The former 
+case is for interface purposes, so that the rest of the code does not 
+have to treat simple objects differently from Model instances.)</p>
+If the model is-a Model, there are two possibilities:
+<ul>
+  <li>
+    we are being called to enable an operation on the model
+  </li>
+  <li>
+    we are really being called to enable an operation on an attribute 
+    of the model, which we will call the submodel
+  </li>
+</ul>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">model</td><td>If the current model is an <a 
+href="twisted.web.woven.model.Model.html">model.Model</a>, then the 
+result of model.getData(). Otherwise the original object itself.
+</td></tr><tr class="fieldStart"><td class="fieldName">Class Variables</td><td class="fieldArg">tagName</td><td>The tag name of the element that this widget creates. If this is None, 
+then the original Node will be cloned.
+</td></tr><tr><td></td><td class="fieldArg">wantsAllNotifications</td><td>Indicate that this widget wants to recieve every change notification 
+from the main model, not just notifications that affect its model.
+</td></tr></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.__init__">__init__</a></td>
+          <td><span></span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget._reset">_reset</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.initialize">initialize</a></td>
+          <td><span>Use this method instead of __init__ to initialize your Widget, so 
+you
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.setSubmodel">setSubmodel</a></td>
+          <td><span>I use the submodel to know which attribute in self.model I am 
+responsible for
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.getData">getData</a></td>
+          <td><span>I have a model; however since I am a widget I am only responsible
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.setData">setData</a></td>
+          <td><span>If the return value of <a 
+href="twisted.web.woven.widgets.Widget.html#twisted.web.woven.widgets.Widget.getData">getData</a> 
+is a Deferred, I am called
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.add">add</a></td>
+          <td><span>Add `item' to the children of the resultant DOM Node of this 
+widget.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.appendChild">appendChild</a></td>
+          <td><span>Add `item' to the children of the resultant DOM Node of this 
+widget.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.insert">insert</a></td>
+          <td><span>Insert `item' at `index' in the children list of the resultant DOM 
+Node
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.setNode">setNode</a></td>
+          <td><span>Set a node for this widget to use instead of creating one 
+programatically.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.cleanNode">cleanNode</a></td>
+          <td><span>Do your part, prevent infinite recursion!
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.generate">generate</a></td>
+          <td><span>Allow a view to be used like a widget. Will look up the template
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget._regenerate">_regenerate</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.setDataCallback">setDataCallback</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.setUp">setUp</a></td>
+          <td><span>Override this method to set up your Widget prior to generateDOM. 
+This
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.generateDOM">generateDOM</a></td>
+          <td><span></span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.modelChanged">modelChanged</a></td>
+          <td><span>Dispatch changed messages to any update_* methods which
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.__setitem__">__setitem__</a></td>
+          <td><span>Convenience syntax for adding attributes to the resultant DOM Node 
+of
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.__getitem__">__getitem__</a></td>
+          <td><span>Convenience syntax for getting an attribute from the resultant DOM 
+Node
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.setError">setError</a></td>
+          <td><span>Convenience method for allowing a Controller to report an error to 
+the
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.getTopModel">getTopModel</a></td>
+          <td><span>Get a reference to this page's top model object.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.getAllPatterns">getAllPatterns</a></td>
+          <td><span>Get all nodes below this one which have a matching pattern 
+attribute.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.getPattern">getPattern</a></td>
+          <td><span>Get a named slot from the incoming template node. Returns a copy
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.addUpdateMethod">addUpdateMethod</a></td>
+          <td><span>Add a method to this widget that will be called when the widget
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.addEventHandler">addEventHandler</a></td>
+          <td><span>Add an event handler to this widget. eventName is a string
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.widgets.Widget.onEvent">onEvent</a></td>
+          <td><span>Dispatch a client-side event to an event handler that was
+</span></td>
+        </tr></table>
+    
+    
+        <p>
+          Inherited from <span><a href="twisted.web.woven.view.View.html">View</a></span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.getChild">getChild</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.getChildWithDefault">getChildWithDefault</a></td>
+            <td><span>Return a child with the given name for the given request.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.setupAllStacks">setupAllStacks</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.setupViewStack">setupViewStack</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.importViewLibrary">importViewLibrary</a></td>
+            <td><span>Import the given object or module into this View's view namespace
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.render">render</a></td>
+            <td><span>Render a request. This is called on the leaf resource for
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.getTemplate">getTemplate</a></td>
+            <td><span>Override this if you want to have your subclass look up its 
+template
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.lookupTemplate">lookupTemplate</a></td>
+            <td><span>Use acquisition to look up the template named by 
+self.templateFile,
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.handleDocument">handleDocument</a></td>
+            <td><span>Handle the root node, and send the page if there are no
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.handleOutstanding">handleOutstanding</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.recurseChildren">recurseChildren</a></td>
+            <td><span>If this node has children, handle them.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.dispatchResult">dispatchResult</a></td>
+            <td><span>Check a given result from handling a node and look up a 
+NodeMutator
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.setController">setController</a></td>
+            <td><span>Set the controller that this view is related to.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.getNodeModel">getNodeModel</a></td>
+            <td><span>Get the model object associated with this node. If this node has a
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.getNodeController">getNodeController</a></td>
+            <td><span>Get a controller object to handle this node. If the node has no
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.getSubview">getSubview</a></td>
+            <td><span>Get a sub-view from me.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.getNodeView">getNodeView</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.handleNode">handleNode</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.handleControllerResults">handleControllerResults</a></td>
+            <td><span>Handle a deferred from a controller.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.handleNewNode">handleNewNode</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.sendPage">sendPage</a></td>
+            <td><span>Check to see if handlers recorded any errors before sending the 
+page
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.setSubviewFactory">setSubviewFactory</a></td>
+            <td><span>Set the callable &quot;factory&quot;, which takes a model and 
+should
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.unlinkViews">unlinkViews</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.dispatchResultCallback">dispatchResultCallback</a></td>
+            <td><span>Deal with a callback from a deferred, checking to see if it is
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.renderFailure">renderFailure</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr></table>
+      
+    <div class="function">
+        <a name="twisted.web.woven.widgets.Widget.__init__"></a>
+        <div class="functionHeader">
+          def <span>__init__(self, *args, model=None, submodel=None, setup=None, controller=None, viewStack=None, **kwargs):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.web.woven.interfaces.IView.html#twisted.web.woven.interfaces.IView.__init__">twisted.web.woven.interfaces.IView</a></div><div class="interfaceinfo">overrides <a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.__init__">twisted.web.woven.view.View.__init__</a></div><div class="interfaceinfo">overridden in <a href="twisted.web.woven.widgets.Text.html#twisted.web.woven.widgets.Text.__init__">twisted.web.woven.widgets.Text</a>, <a href="twisted.web.woven.widgets.Error.html#twisted.web.woven.widgets.Error.__init__">twisted.web.woven.widgets.Error</a>, <a href="twisted.web.woven.widgets.ColumnList.html#twisted.web.woven.widgets.ColumnList.__init__">twisted.web.woven.widgets.ColumnList</a>, <a href="twisted.web.woven.widgets.ExpandMacro.html#twisted.web.woven.widgets.ExpandMacro.__init__">twisted.web.woven.widgets.ExpandMacro</a></div><div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">model</td><td>(type: <a 
+href="twisted.web.woven.interfaces.IModel.html">interfaces.IModel</a>
+)</td></tr><tr><td></td><td class="fieldArg">submodel</td><td>see <a 
+href="twisted.web.woven.widgets.Widget.html#twisted.web.woven.widgets.Widget.setSubmodel">Widget.setSubmodel</a>
+(type: String
+)</td></tr><tr><td></td><td class="fieldArg">setup</td><td>(type: Callable
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget._reset"></a>
+        <div class="functionHeader">
+          def <span>_reset(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.initialize"></a>
+        <div class="functionHeader">
+          def <span>initialize(self, *args, **kwargs):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.web.woven.widgets.Option.html#twisted.web.woven.widgets.Option.initialize">twisted.web.woven.widgets.Option</a>, <a href="twisted.web.woven.widgets.Anchor.html#twisted.web.woven.widgets.Anchor.initialize">twisted.web.woven.widgets.Anchor</a></div><div>Use this method instead of __init__ to initialize your Widget, so you 
+don't have to deal with calling the __init__ of the superclass.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.setSubmodel"></a>
+        <div class="functionHeader">
+          def <span>setSubmodel(self, submodel):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.setSubmodel">twisted.web.woven.view.View.setSubmodel</a></div><div class="interfaceinfo">overridden in <a href="twisted.web.woven.widgets.Input.html#twisted.web.woven.widgets.Input.setSubmodel">twisted.web.woven.widgets.Input</a></div><div>I use the submodel to know which attribute in self.model I am 
+responsible for
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.getData"></a>
+        <div class="functionHeader">
+          def <span>getData(self, request=None):</span>
+        </div>
+        <div class="functionBody"><div><p>I have a model; however since I am a widget I am only responsible for 
+a portion of that model. This method returns the portion I am responsible 
+for.</p>
+The return value of this may be a Deferred; if it is, then <a 
+href="twisted.web.woven.widgets.Widget.html#twisted.web.woven.widgets.Widget.setData">setData</a> 
+will be called once the result is available.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.setData"></a>
+        <div class="functionHeader">
+          def <span>setData(self, request=None, data=None):</span>
+        </div>
+        <div class="functionBody"><div>If the return value of <a 
+href="twisted.web.woven.widgets.Widget.html#twisted.web.woven.widgets.Widget.getData">getData</a> 
+is a Deferred, I am called when the result of the Deferred is 
+available.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.add"></a>
+        <div class="functionHeader">
+          def <span>add(self, item):</span>
+        </div>
+        <div class="functionBody"><div>Add `item' to the children of the resultant DOM Node of this 
+widget.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">item</td><td>(type: A DOM node or <a 
+href="twisted.web.woven.widgets.Widget.html">Widget</a>.
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.appendChild"></a>
+        <div class="functionHeader">
+          def <span>appendChild(self, item):</span>
+        </div>
+        <div class="functionBody"><div>Add `item' to the children of the resultant DOM Node of this 
+widget.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">item</td><td>(type: A DOM node or <a 
+href="twisted.web.woven.widgets.Widget.html">Widget</a>.
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.insert"></a>
+        <div class="functionHeader">
+          def <span>insert(self, index, item):</span>
+        </div>
+        <div class="functionBody"><div>Insert `item' at `index' in the children list of the resultant DOM 
+Node of this widget.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">item</td><td>(type: A DOM node or <a 
+href="twisted.web.woven.widgets.Widget.html">Widget</a>.
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.setNode"></a>
+        <div class="functionHeader">
+          def <span>setNode(self, node):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.setNode">twisted.web.woven.view.View.setNode</a></div><div>Set a node for this widget to use instead of creating one 
+programatically. Useful for looking up a node in a template and using 
+that.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.cleanNode"></a>
+        <div class="functionHeader">
+          def <span>cleanNode(self, node):</span>
+        </div>
+        <div class="functionBody"><div>Do your part, prevent infinite recursion!
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.generate"></a>
+        <div class="functionHeader">
+          def <span>generate(self, request, node):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.generate">twisted.web.woven.view.View.generate</a></div><div class="interfaceinfo">overridden in <a href="twisted.web.woven.widgets.DefaultWidget.html#twisted.web.woven.widgets.DefaultWidget.generate">twisted.web.woven.widgets.DefaultWidget</a>, <a href="twisted.web.woven.widgets.Text.html#twisted.web.woven.widgets.Text.generate">twisted.web.woven.widgets.Text</a>, <a href="twisted.web.woven.widgets.ExpandMacro.html#twisted.web.woven.widgets.ExpandMacro.generate">twisted.web.woven.widgets.ExpandMacro</a></div><div>Allow a view to be used like a widget. Will look up the template file 
+and return it in place of the incoming node.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget._regenerate"></a>
+        <div class="functionHeader">
+          def <span>_regenerate(self, request, node, data):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.setDataCallback"></a>
+        <div class="functionHeader">
+          def <span>setDataCallback(self, result, request, node):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.web.woven.widgets.DeferredWidget.html#twisted.web.woven.widgets.DeferredWidget.setDataCallback">twisted.web.woven.widgets.DeferredWidget</a></div><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.setUp"></a>
+        <div class="functionHeader">
+          def <span>setUp(self, request, node, data):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.setUp">twisted.web.woven.view.View.setUp</a></div><div class="interfaceinfo">overridden in <a href="twisted.web.woven.form.FormFillerWidget.html#twisted.web.woven.form.FormFillerWidget.setUp">twisted.web.woven.form.FormFillerWidget</a>, <a href="twisted.web.woven.widgets.Attributes.html#twisted.web.woven.widgets.Attributes.setUp">twisted.web.woven.widgets.Attributes</a>, <a href="twisted.web.woven.widgets.Text.html#twisted.web.woven.widgets.Text.setUp">twisted.web.woven.widgets.Text</a>, <a href="twisted.web.woven.widgets.ParagraphText.html#twisted.web.woven.widgets.ParagraphText.setUp">twisted.web.woven.widgets.ParagraphText</a>, <a href="twisted.web.woven.widgets.Image.html#twisted.web.woven.widgets.Image.setUp">twisted.web.woven.widgets.Image</a>, <a href="twisted.web.woven.widgets.Input.html#twisted.web.woven.widgets.Input.setUp">twisted.web.woven.widgets.Input</a>, <a href="twisted.web.woven.widgets.Option.html#twisted.web.woven.widgets.Option.setUp">twisted.web.woven.widgets.Option</a>, <a href="twisted.web.woven.widgets.Anchor.html#twisted.web.woven.widgets.Anchor.setUp">twisted.web.woven.widgets.Anchor</a>, <a href="twisted.web.woven.widgets.ColumnList.html#twisted.web.woven.widgets.ColumnList.setUp">twisted.web.woven.widgets.ColumnList</a>, <a href="twisted.web.woven.widgets.Link.html#twisted.web.woven.widgets.Link.setUp">twisted.web.woven.widgets.Link</a>, <a href="twisted.web.woven.widgets.Break.html#twisted.web.woven.widgets.Break.setUp">twisted.web.woven.widgets.Break</a></div><div><p>Override this method to set up your Widget prior to generateDOM. This 
+is a good place to call methods like <a 
+href="twisted.web.woven.widgets.Widget.html#twisted.web.woven.widgets.Widget.add">add</a>, 
+<a 
+href="twisted.web.woven.widgets.Widget.html#twisted.web.woven.widgets.Widget.insert">insert</a>, 
+<a 
+href="twisted.web.woven.widgets.Widget.html#twisted.web.woven.widgets.Widget.__setitem__">__setitem__</a> 
+and <a 
+href="twisted.web.woven.widgets.Widget.html#twisted.web.woven.widgets.Widget.__getitem__">__getitem__</a>.</p>
+Overriding this method obsoletes overriding generateDOM directly, in 
+most cases.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">request</td><td>(type: <a 
+href="twisted.web.server.Request.html">twisted.web.server.Request</a>.
+)</td></tr><tr><td></td><td class="fieldArg">node</td><td>The DOM node which this Widget is operating on.
+</td></tr><tr><td></td><td class="fieldArg">data</td><td>The Model data this Widget is meant to operate upon.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.generateDOM"></a>
+        <div class="functionHeader">
+          def <span>generateDOM(self, request, node):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.web.woven.widgets.Error.html#twisted.web.woven.widgets.Error.generateDOM">twisted.web.woven.widgets.Error</a>, <a href="twisted.web.woven.widgets.List.html#twisted.web.woven.widgets.List.generateDOM">twisted.web.woven.widgets.List</a>, <a href="twisted.web.woven.widgets.RawText.html#twisted.web.woven.widgets.RawText.generateDOM">twisted.web.woven.widgets.RawText</a></div><div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A DOM Node to replace the Node in the template that this Widget 
+handles. This Node is created based on tagName, children, and attributes 
+(You should populate these in <a 
+href="twisted.web.woven.widgets.Widget.html#twisted.web.woven.widgets.Widget.setUp">setUp</a>, 
+probably).
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.modelChanged"></a>
+        <div class="functionHeader">
+          def <span>modelChanged(self, payload):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.web.woven.interfaces.IView.html#twisted.web.woven.interfaces.IView.modelChanged">twisted.web.woven.interfaces.IView</a></div><div class="interfaceinfo">overrides <a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.modelChanged">twisted.web.woven.view.View.modelChanged</a></div><div class="interfaceinfo">overridden in <a href="twisted.web.woven.widgets.DefaultWidget.html#twisted.web.woven.widgets.DefaultWidget.modelChanged">twisted.web.woven.widgets.DefaultWidget</a></div><div>Dispatch changed messages to any update_* methods which may have been 
+defined, then pass the update notification on to the controller.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.__setitem__"></a>
+        <div class="functionHeader">
+          def <span>__setitem__(self, item, value):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.web.woven.view.View.html#twisted.web.woven.view.View.__setitem__">twisted.web.woven.view.View.__setitem__</a></div><div>Convenience syntax for adding attributes to the resultant DOM Node of 
+this widget.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.__getitem__"></a>
+        <div class="functionHeader">
+          def <span>__getitem__(self, item):</span>
+        </div>
+        <div class="functionBody"><div>Convenience syntax for getting an attribute from the resultant DOM 
+Node of this widget.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.setError"></a>
+        <div class="functionHeader">
+          def <span>setError(self, request, message):</span>
+        </div>
+        <div class="functionBody"><div>Convenience method for allowing a Controller to report an error to the 
+user. When this is called, a Widget of class self.errorFactory is 
+instanciated and set to self.become. When generate is subsequently 
+called, self.become will be responsible for mutating the DOM instead of 
+this widget.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.getTopModel"></a>
+        <div class="functionHeader">
+          def <span>getTopModel(self):</span>
+        </div>
+        <div class="functionBody"><div>Get a reference to this page's top model object.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.getAllPatterns"></a>
+        <div class="functionHeader">
+          def <span>getAllPatterns(self, name, default=missingPattern, clone=1, deep=1):</span>
+        </div>
+        <div class="functionBody"><div>Get all nodes below this one which have a matching pattern 
+attribute.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.getPattern"></a>
+        <div class="functionHeader">
+          def <span>getPattern(self, name, default=missingPattern, clone=1, deep=1):</span>
+        </div>
+        <div class="functionBody"><div>Get a named slot from the incoming template node. Returns a copy of 
+the node and all its children. If there was more than one node with the 
+same slot identifier, they will be returned in a round-robin fashion.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.addUpdateMethod"></a>
+        <div class="functionHeader">
+          def <span>addUpdateMethod(self, updateMethod):</span>
+        </div>
+        <div class="functionBody"><div>Add a method to this widget that will be called when the widget is 
+being rendered. The signature for this method should be 
+updateMethod(request, widget, data) where widget will be the instance you 
+are calling addUpdateMethod on.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.addEventHandler"></a>
+        <div class="functionHeader">
+          def <span>addEventHandler(self, eventName, handler, *args):</span>
+        </div>
+        <div class="functionBody"><div>Add an event handler to this widget. eventName is a string indicating 
+which javascript event handler should cause this handler to fire. Handler 
+is a callable that has the signature handler(request, widget, *args).
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.widgets.Widget.onEvent"></a>
+        <div class="functionHeader">
+          def <span>onEvent(self, request, eventName, *args):</span>
+        </div>
+        <div class="functionBody"><div>Dispatch a client-side event to an event handler that was registered 
+using addEventHandler.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

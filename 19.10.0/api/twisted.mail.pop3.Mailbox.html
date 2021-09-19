@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.mail.pop3.Mailbox : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="apidocs.css" type="text/css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>twisted.mail.pop3.Mailbox</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.mail.html" data-type="Package" class="code">mail</a>.<a href="twisted.mail.pop3.html" data-type="Module" class="code">pop3</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/mail/pop3.py#L1367">View Source</a>
+          <a href="classIndex.html#twisted.mail.pop3.Mailbox">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Known subclasses: <a href="twisted.mail.maildir.MaildirMailbox.html" data-type="Class" class="code">twisted.mail.maildir.MaildirMailbox</a></p><p>Implements interfaces: <a href="twisted.mail.interfaces.IMailboxPOP3.html" data-type="Interface" class="code">twisted.mail.interfaces.IMailboxPOP3</a></p>
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>A base class for mailboxes.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1475">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.pop3.Mailbox.html#listMessages" data-type="Method" class="code">listMessages</a></td>
+    <td><span>Retrieve the size of a message, or, if none is specified, the size of 
+each message in the mailbox.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.pop3.Mailbox.html#getMessage" data-type="Method" class="code">getMessage</a></td>
+    <td><span>Retrieve a file containing the contents of a message.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.pop3.Mailbox.html#getUidl" data-type="Method" class="code">getUidl</a></td>
+    <td><span>Get a unique identifier for a message.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.pop3.Mailbox.html#deleteMessage" data-type="Method" class="code">deleteMessage</a></td>
+    <td><span>Mark a message for deletion.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.pop3.Mailbox.html#undeleteMessages" data-type="Method" class="code">undeleteMessages</a></td>
+    <td><span>Undelete all messages marked for deletion.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.pop3.Mailbox.html#sync" data-type="Method" class="code">sync</a></td>
+    <td><span>Discard the contents of any message marked for deletion.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  <a name="twisted.mail.pop3.Mailbox.listMessages">
+    
+  </a>
+  <a name="listMessages">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    listMessages(self, i=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/mail/pop3.py#L1371">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.mail.interfaces.IMailboxPOP3.html#listMessages" data-type="Method" class="code">twisted.mail.interfaces.IMailboxPOP3</a></div><div class="interfaceinfo">overridden in <a href="twisted.mail.maildir.MaildirMailbox.html" data-type="Class" class="code">twisted.mail.maildir.MaildirMailbox</a></div>
+    
+    <div><p>Retrieve the size of a message, or, if none is specified, the size of 
+each message in the mailbox.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">i</td><td>The 0-based index of the message. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>
+or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The number of octets in the specified message, or, if an index is not 
+specified, a sequence of the number of octets for all messages in the 
+mailbox or a deferred which fires with one of those. Any value which 
+corresponds to a deleted message is set to 0. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>,
+sequence of <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>,
+or <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">ValueError or IndexError</td><td>When the index does not correspond to a message in the mailbox.  The use of
+ValueError is preferred.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.pop3.Mailbox.getMessage">
+    
+  </a>
+  <a name="getMessage">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getMessage(self, i):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/mail/pop3.py#L1392">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.mail.interfaces.IMailboxPOP3.html#getMessage" data-type="Method" class="code">twisted.mail.interfaces.IMailboxPOP3</a></div><div class="interfaceinfo">overridden in <a href="twisted.mail.maildir.MaildirMailbox.html" data-type="Class" class="code">twisted.mail.maildir.MaildirMailbox</a></div>
+    
+    <div><p>Retrieve a file containing the contents of a message.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">i</td><td>The 0-based index of a message. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A file containing the message. (type: file-like object)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">ValueError or IndexError</td><td>When the index does not correspond to a message in the mailbox.  The use of
+ValueError is preferred.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.pop3.Mailbox.getUidl">
+    
+  </a>
+  <a name="getUidl">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getUidl(self, i):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/mail/pop3.py#L1408">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.mail.interfaces.IMailboxPOP3.html#getUidl" data-type="Method" class="code">twisted.mail.interfaces.IMailboxPOP3</a></div><div class="interfaceinfo">overridden in <a href="twisted.mail.maildir.MaildirMailbox.html" data-type="Class" class="code">twisted.mail.maildir.MaildirMailbox</a></div>
+    
+    <div><p>Get a unique identifier for a message.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">i</td><td>The 0-based index of a message. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A string of printable characters uniquely identifying the message for all 
+time. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">ValueError or IndexError</td><td>When the index does not correspond to a message in the mailbox.  The use of
+ValueError is preferred.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.pop3.Mailbox.deleteMessage">
+    
+  </a>
+  <a name="deleteMessage">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    deleteMessage(self, i):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/mail/pop3.py#L1425">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.mail.interfaces.IMailboxPOP3.html#deleteMessage" data-type="Method" class="code">twisted.mail.interfaces.IMailboxPOP3</a></div><div class="interfaceinfo">overridden in <a href="twisted.mail.maildir.MaildirMailbox.html" data-type="Class" class="code">twisted.mail.maildir.MaildirMailbox</a></div>
+    
+    <div><p>Mark a message for deletion.</p>
+<p>This must not change the number of messages in this mailbox.  Further 
+requests for the size of the deleted message should return 0.  Further 
+requests for the message itself may raise an exception.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">i</td><td>The 0-based index of a message. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">ValueError or IndexError</td><td>When the index does not correspond to a message in the mailbox.  The use of
+ValueError is preferred.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.pop3.Mailbox.undeleteMessages">
+    
+  </a>
+  <a name="undeleteMessages">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    undeleteMessages(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/mail/pop3.py#L1442">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.mail.interfaces.IMailboxPOP3.html#undeleteMessages" data-type="Method" class="code">twisted.mail.interfaces.IMailboxPOP3</a></div><div class="interfaceinfo">overridden in <a href="twisted.mail.maildir.MaildirMailbox.html" data-type="Class" class="code">twisted.mail.maildir.MaildirMailbox</a></div>
+    
+    <div><p>Undelete all messages marked for deletion.</p>
+<p>Any message which can be undeleted should be returned to its original 
+position in the message sequence and retain its original UID.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.pop3.Mailbox.sync">
+    
+  </a>
+  <a name="sync">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    sync(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/mail/pop3.py#L1452">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.mail.interfaces.IMailboxPOP3.html#sync" data-type="Method" class="code">twisted.mail.interfaces.IMailboxPOP3</a></div>
+    
+    <div><p>Discard the contents of any message marked for deletion.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2019-11-11 15:02:42.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

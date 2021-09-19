@@ -1,0 +1,93 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.internet.win32eventreactor&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="module">Module t.i.win32eventreactor</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.internet.html">twisted.internet</a></span>
+      <a></a>
+      <a></a>
+    </p>
+    <div></div>
+    <div><p>A win32event based implementation of the Twisted main loop.</p>
+<p>This requires win32all or ActivePython to be installed.</p>
+<p>API Stability: semi-stable</p>
+<p>Maintainer: <a href="mailto:twisted&#64;itamarst.org">Itamar 
+Shtull-Trauring</a></p>
+LIMITATIONS:
+<ol start="1">
+  <li>
+    WaitForMultipleObjects and thus the event loop can only handle 64 
+    objects.
+  </li>
+  <li>
+    Process running has some problems (see Process docstring).
+  </li>
+</ol>
+TODO:
+<ol start="1">
+  <li>
+    Event loop handling of writes is *very* problematic (this is 
+    causing failed tests). Switch to doing it the correct way, whatever 
+    that means (see below).
+  </li>
+  <li>
+    Replace icky socket loopback waker with event based waker (use 
+    dummyEvent object)
+  </li>
+  <li>
+    Switch everyone to using Free Software so we don't have to deal 
+    with proprietary APIs.
+  </li>
+</ol>
+ALTERNATIVE SOLUTIONS:
+<ul>
+  <li>
+    IIRC, sockets can only be registered once. So we switch to a 
+    structure like the poll() reactor, thus allowing us to deal with 
+    write events in a decent fashion. This should allow us to pass tests, 
+    but we're still limited to 64 events.
+  </li>
+</ul>
+Or:
+<ul>
+  <li>
+    Instead of doing a reactor, we make this an addon to the select 
+    reactor. The WFMO event loop runs in a separate thread. This means no 
+    need to maintain separate code for networking, 64 event limit doesn't 
+    apply to sockets, we can run processes and other win32 stuff in 
+    default event loop. The only problem is that we're stuck with the 
+    icky socket based waker. Another benefit is that this could be 
+    extended to support &gt;64 events in a simpler manner than the 
+    previous solution.
+  </li>
+</ul>
+The 2nd solution is probably what will get implemented.
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.internet.win32eventreactor.Win32Reactor.html">Win32Reactor</a></td>
+          <td><span>Reactor that uses Win32 event APIs.
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.internet.win32eventreactor.install">install</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.internet.win32eventreactor.install"></a>
+        <div class="functionHeader">
+          def <span>install():</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div>    
+  </body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.python.hook&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="module">Module t.p.hook</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.python.html">twisted.python</a></span>
+      <a></a>
+      <a></a>
+    </p>
+    <div></div>
+    <div><p>I define support for hookable instance methods.</p>
+<p>These are methods which you can register pre-call and post-call 
+external functions to augment their functionality. People familiar with 
+more esoteric languages may think of these as &quot;method 
+combinations&quot;.</p>
+<p>This could be used to add optional preconditions, user-extensible 
+callbacks (a-la emacs) or a thread-safety mechanism.</p>
+The four exported calls are:
+<ul>
+  <li>
+    <a 
+    href="twisted.python.hook.html#twisted.python.hook.addPre">addPre</a>
+  </li>
+  <li>
+    <a 
+    href="twisted.python.hook.html#twisted.python.hook.addPost">addPost</a>
+  </li>
+  <li>
+    <a 
+    href="twisted.python.hook.html#twisted.python.hook.removePre">removePre</a>
+  </li>
+  <li>
+    <a 
+    href="twisted.python.hook.html#twisted.python.hook.removePost">removePost</a>
+  </li>
+</ul>
+<p>All have the signature (class, methodName, callable), and the callable 
+they take must always have the signature (instance, *args, **kw) unless 
+the particular signature of the method they hook is known.</p>
+Hooks should typically not throw exceptions, however, no effort will 
+be made by this module to prevent them from doing so. Pre-hooks will 
+always be called, but post-hooks will only be called if the pre-hooks do 
+not raise any exceptions (they will still be called if the main method 
+raises an exception). The return values and exception status of the main 
+method will be propogated (assuming none of the hooks raise an 
+exception). Hooks will be executed in the order in which they are 
+added.
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.python.hook.HookError.html">HookError</a></td>
+          <td><span>An error which will fire when an invariant is violated.
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.hook.addPre">addPre</a></td>
+          <td><span>hook.addPre(klass, name, func) -&gt; None
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.hook.addPost">addPost</a></td>
+          <td><span>hook.addPost(klass, name, func) -&gt; None
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.hook.removePre">removePre</a></td>
+          <td><span>hook.removePre(klass, name, func) -&gt; None
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.hook.removePost">removePost</a></td>
+          <td><span>hook.removePre(klass, name, func) -&gt; None
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.hook._XXX">_XXX</a></td>
+          <td><span>string manipulation garbage
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.hook.PRE">PRE</a></td>
+          <td><span>(private) munging to turn a method name into a 
+pre-hook-method-name
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.hook.POST">POST</a></td>
+          <td><span>(private) munging to turn a method name into a 
+post-hook-method-name
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.hook.ORIG">ORIG</a></td>
+          <td><span>(private) munging to turn a method name into an `original' 
+identifier
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.hook._addHook">_addHook</a></td>
+          <td><span>(private) adds a hook to a method on a class
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.hook._removeHook">_removeHook</a></td>
+          <td><span>(private) removes a hook from a method on a class
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.hook._enhook">_enhook</a></td>
+          <td><span>(private) causes a certain method name to be hooked on a class
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.hook._dehook">_dehook</a></td>
+          <td><span>(private) causes a certain method name no longer to be hooked on a 
+class
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.python.hook.addPre"></a>
+        <div class="functionHeader">
+          def <span>addPre(klass, name, func):</span>
+        </div>
+        <div class="functionBody"><div><p>hook.addPre(klass, name, func) -&gt; None</p>
+Add a function to be called before the method klass.name is 
+invoked.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.hook.addPost"></a>
+        <div class="functionHeader">
+          def <span>addPost(klass, name, func):</span>
+        </div>
+        <div class="functionBody"><div><p>hook.addPost(klass, name, func) -&gt; None</p>
+Add a function to be called after the method klass.name is 
+invoked.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.hook.removePre"></a>
+        <div class="functionHeader">
+          def <span>removePre(klass, name, func):</span>
+        </div>
+        <div class="functionBody"><div><p>hook.removePre(klass, name, func) -&gt; None</p>
+Remove a function (previously registered with addPre) so that it is no 
+longer executed before klass.name.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.hook.removePost"></a>
+        <div class="functionHeader">
+          def <span>removePost(klass, name, func):</span>
+        </div>
+        <div class="functionBody"><div><p>hook.removePre(klass, name, func) -&gt; None</p>
+Remove a function (previously registered with addPost) so that it is 
+no longer executed after klass.name.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.hook._XXX"></a>
+        <div class="functionHeader">
+          def <span>_XXX(k, n, s):</span>
+        </div>
+        <div class="functionBody"><div>string manipulation garbage
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.hook.PRE"></a>
+        <div class="functionHeader">
+          def <span>PRE(k, n):</span>
+        </div>
+        <div class="functionBody"><div>(private) munging to turn a method name into a 
+pre-hook-method-name
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.hook.POST"></a>
+        <div class="functionHeader">
+          def <span>POST(k, n):</span>
+        </div>
+        <div class="functionBody"><div>(private) munging to turn a method name into a 
+post-hook-method-name
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.hook.ORIG"></a>
+        <div class="functionHeader">
+          def <span>ORIG(k, n):</span>
+        </div>
+        <div class="functionBody"><div>(private) munging to turn a method name into an `original' 
+identifier
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.hook._addHook"></a>
+        <div class="functionHeader">
+          def <span>_addHook(klass, name, phase, func):</span>
+        </div>
+        <div class="functionBody"><div>(private) adds a hook to a method on a class
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.hook._removeHook"></a>
+        <div class="functionHeader">
+          def <span>_removeHook(klass, name, phase, func):</span>
+        </div>
+        <div class="functionBody"><div>(private) removes a hook from a method on a class
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.hook._enhook"></a>
+        <div class="functionHeader">
+          def <span>_enhook(klass, name):</span>
+        </div>
+        <div class="functionBody"><div>(private) causes a certain method name to be hooked on a class
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.hook._dehook"></a>
+        <div class="functionHeader">
+          def <span>_dehook(klass, name):</span>
+        </div>
+        <div class="functionBody"><div>(private) causes a certain method name no longer to be hooked on a 
+class
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.mail.imap4.MessageSet : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link rel="stylesheet" href="bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="apidocs.css" type="text/css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div class="container" id="current-docs-container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>twisted.mail.imap4.MessageSet(<span title="object">object</span>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.mail.html" data-type="Package" class="code">mail</a>.<a href="twisted.mail.imap4.html" data-type="Module" class="code">imap4</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-18.7.0/src/twisted/mail/imap4.py#L117">View Source</a>
+          <a href="classIndex.html#twisted.mail.imap4.MessageSet">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>A set of message identifiers usable by both <a href="twisted.mail.imap4.IMAP4Client.html"><code>IMAP4Client</code></a> and
+<a href="twisted.mail.imap4.IMAP4Server.html"><code>IMAP4Server</code></a> 
+via <a href="twisted.mail.interfaces.IMailboxIMAP.html#store"><code>IMailboxIMAP.store</code></a>
+and <a href="twisted.mail.interfaces.IMailboxIMAP.html#fetch"><code>IMailboxIMAP.fetch</code></a>.</p>
+<p>These identifiers can be either message sequence numbers or unique 
+identifiers.  See Section 2.3.1, "Message Numbers", RFC 3501.</p>
+<p>This represents the <code>sequence-set</code> described in Section 9, 
+"Formal Syntax" of RFC 3501:</p>
+<ul>
+  <li>
+    A <a href="twisted.mail.imap4.MessageSet.html"><code>MessageSet</code></a> 
+    can describe a single identifier, e.g. <code>MessageSet(1)</code>
+  </li>
+  <li>
+    A <a href="twisted.mail.imap4.MessageSet.html"><code>MessageSet</code></a> 
+    can describe <code>*</code> via <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>,
+    e.g. <code>MessageSet(None)</code>
+  </li>
+  <li>
+    A <a href="twisted.mail.imap4.MessageSet.html"><code>MessageSet</code></a> 
+    can describe a range of identifiers, e.g. <code>MessageSet(1, 
+    2)</code>.  The range is inclusive and unordered (see 
+    <code>seq-range</code> in RFC 3501, Section 9), so that 
+    <code>Message(2, 1)</code> is equivalent to <code>MessageSet(1, 
+    2)</code>, and both describe messages 1 and 2.  Ranges can include 
+    <code>*</code> by specifying <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>,
+    e.g. <code>MessageSet(None, 1)</code>.  In all cases ranges are 
+    normalized so that the smallest identifier comes first, and <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+    always comes last; <code>Message(2, 1)</code> becomes 
+    <code>MessageSet(1, 2)</code> and <code>MessageSet(None, 1)</code> 
+    becomes <code>MessageSet(1, None)</code>
+  </li>
+  <li>
+    A <a href="twisted.mail.imap4.MessageSet.html"><code>MessageSet</code></a> 
+    can describe a sequence of single identifiers and ranges, constructed 
+    by addition. <code>MessageSet(1) + MessageSet(5, 10)</code> refers the 
+    message identified by <code>1</code> and the messages identified by 
+    <code>5</code> through <code>10</code>.
+  </li>
+</ul>
+<p><b>NB: The meaning of * varies, but it always represents the largest 
+number in use</b>.</p>
+<p><b>For servers</b>: Your <a href="twisted.mail.interfaces.IMailboxIMAP.html"><code>IMailboxIMAP</code></a>
+provider must set <a href="twisted.mail.imap4.MessageSet.html#last"><code>MessageSet.last</code></a>
+to the highest-valued identifier (unique or message sequence) before 
+iterating over it.</p>
+<p><b>For clients</b>: <code>*</code> consumes ranges smaller than it, e.g.
+<code>MessageSet(1, 100) + MessageSet(50, None)</code> is equivalent to 
+<code>1:*</code>.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1318">
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.imap4.MessageSet.html#getnext" data-type="Instance Variable" class="code">getnext</a></td>
+    <td>A function that returns the next message number, used when iterating 
+through the <a href="twisted.mail.imap4.MessageSet.html"><code>MessageSet</code></a>.  By 
+default, a function returning the next integer is supplied, but as this can
+be rather inefficient for sparse UID iterations, it is recommended to 
+supply one when messages are requested by UID. The argument is provided as 
+a hint to the implementation and may be ignored if it makes sense to do so 
+(eg, if an iterator is being used that maintains its own state, it is 
+guaranteed that it will not be called out-of-order). (type: Function taking <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>
+returning <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.MessageSet.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td><span>Create a new MessageSet()</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.MessageSet.html#last" data-type="Method" class="code">last</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.MessageSet.html#add" data-type="Method" class="code">add</a></td>
+    <td><span>Add another range</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.MessageSet.html#__add__" data-type="Method" class="code">__add__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.MessageSet.html#extend" data-type="Method" class="code">extend</a></td>
+    <td><span>Extend our messages with another message or set of messages.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.MessageSet.html#clean" data-type="Method" class="code">clean</a></td>
+    <td><span>Clean ranges list, combining adjacent ranges</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.MessageSet.html#__contains__" data-type="Method" class="code">__contains__</a></td>
+    <td><span>May raise TypeError if we encounter an open-ended range</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.MessageSet.html#__iter__" data-type="Method" class="code">__iter__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.MessageSet.html#__len__" data-type="Method" class="code">__len__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.MessageSet.html#__str__" data-type="Method" class="code">__str__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.MessageSet.html#__repr__" data-type="Method" class="code">__repr__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.MessageSet.html#__eq__" data-type="Method" class="code">__eq__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.MessageSet.html#__ne__" data-type="Method" class="code">__ne__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.MessageSet.html#_noneInRanges" data-type="Method" class="code">_noneInRanges</a></td>
+    <td><span>Is there a <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+in our ranges?</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.MessageSet.html#_iterator" data-type="Method" class="code">_iterator</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable">
+  
+  <a name="twisted.mail.imap4.MessageSet.getnext">
+    
+  </a>
+  <a name="getnext">
+    
+  </a>
+  <div class="functionHeader">
+    getnext =
+  </div>
+  <div class="functionBody">
+    A function that returns the next message number, used when iterating 
+through the <a href="twisted.mail.imap4.MessageSet.html"><code>MessageSet</code></a>.  By 
+default, a function returning the next integer is supplied, but as this can
+be rather inefficient for sparse UID iterations, it is recommended to 
+supply one when messages are requested by UID. The argument is provided as 
+a hint to the implementation and may be ignored if it makes sense to do so 
+(eg, if an iterator is being used that maintains its own state, it is 
+guaranteed that it will not be called out-of-order). (type: Function taking <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>
+returning <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.imap4.MessageSet.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, start=_empty, end=_empty):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.7.0/src/twisted/mail/imap4.py#L177">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Create a new MessageSet()</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">start</td><td>Start of range, or only message number (type: Optional <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr><tr><td></td><td class="fieldArg">end</td><td>End of range. (type: Optional <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.imap4.MessageSet.last">
+    
+  </a>
+  <a name="last">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    last():
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.7.0/src/twisted/mail/imap4.py#L203">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.imap4.MessageSet.add">
+    
+  </a>
+  <a name="add">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    add(self, start, end=_empty):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.7.0/src/twisted/mail/imap4.py#L234">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Add another range</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">start</td><td>Start of range, or only message number (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr><tr><td></td><td class="fieldArg">end</td><td>End of range. (type: Optional <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.imap4.MessageSet.__add__">
+    
+  </a>
+  <a name="__add__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __add__(self, other):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.7.0/src/twisted/mail/imap4.py#L260">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.imap4.MessageSet.extend">
+    
+  </a>
+  <a name="extend">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    extend(self, other):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.7.0/src/twisted/mail/imap4.py#L275">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Extend our messages with another message or set of messages.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">other</td><td>The messages to include. (type: <a href="twisted.mail.imap4.MessageSet.html"><code>MessageSet</code></a>, 
+<a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>
+of two <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>s,
+or a single <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.imap4.MessageSet.clean">
+    
+  </a>
+  <a name="clean">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    clean(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.7.0/src/twisted/mail/imap4.py#L295">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Clean ranges list, combining adjacent ranges</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.mail.imap4.MessageSet._noneInRanges">
+    
+  </a>
+  <a name="_noneInRanges">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _noneInRanges(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.7.0/src/twisted/mail/imap4.py#L322">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Is there a <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+in our ranges?</p>
+<p><a href="twisted.mail.imap4.MessageSet.html#clean"><code>MessageSet.clean</code></a>
+merges overlapping or consecutive ranges. None is represents a value larger
+than any number.  There are thus two cases:</p>
+<ol start="1">
+  <li>
+    <code>(x, *) + (y, z)</code> such that <code>x</code> is smaller than 
+    <code>y</code>
+  </li>
+  <li>
+    <code>(z, *) + (x, y)</code> such that <code>z</code> is larger than 
+    <code>y</code>
+  </li>
+</ol>
+<p>(Other cases, such as <code>y &lt; x &lt; z</code>, can be split into 
+these two cases; for example <code>(y - 1, y)</code> + <code>(x, x) + (z, z
++ 1)</code>)</p>
+<p>In case 1, <code>* &gt; y</code> and <code>* &gt; z</code>, so <code>(x,
+*) + (y, z) = (x, *)</code></p>
+<p>In case 2, <code>z &gt; x and z &gt; y</code>, so the intervals do not 
+merge, and the ranges are sorted as <code>[(x, y), (z, *)]</code>.  
+<code>*</code> is represented as <code>(*, *)</code>, so this is the same 
+as 2.  but with a <code>z</code> that is greater than everything.</p>
+<p>The result is that there is a maximum of two <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>s,
+and one of them has to be the high element in the last tuple in 
+<code>self.ranges</code>.  That means checking if 
+<code>self.ranges[-1][-1]</code> is <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+suffices to check if <i>any</i> element is <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="http://docs.python.org/library/constants.html#True"><code>True</code></a>
+if <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+is in some range in ranges and <a href="http://docs.python.org/library/constants.html#False"><code>False</code></a>
+if otherwise.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.imap4.MessageSet.__contains__">
+    
+  </a>
+  <a name="__contains__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __contains__(self, value):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.7.0/src/twisted/mail/imap4.py#L356">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>May raise TypeError if we encounter an open-ended range</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">value</td><td>Is this in our ranges? (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.mail.imap4.MessageSet._iterator">
+    
+  </a>
+  <a name="_iterator">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _iterator(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.7.0/src/twisted/mail/imap4.py#L375">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.imap4.MessageSet.__iter__">
+    
+  </a>
+  <a name="__iter__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __iter__(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.7.0/src/twisted/mail/imap4.py#L383">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.imap4.MessageSet.__len__">
+    
+  </a>
+  <a name="__len__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __len__(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.7.0/src/twisted/mail/imap4.py#L390">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.imap4.MessageSet.__str__">
+    
+  </a>
+  <a name="__str__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __str__(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.7.0/src/twisted/mail/imap4.py#L403">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.imap4.MessageSet.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __repr__(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.7.0/src/twisted/mail/imap4.py#L418">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.imap4.MessageSet.__eq__">
+    
+  </a>
+  <a name="__eq__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __eq__(self, other):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.7.0/src/twisted/mail/imap4.py#L422">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.imap4.MessageSet.__ne__">
+    
+  </a>
+  <a name="__ne__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __ne__(self, other):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.7.0/src/twisted/mail/imap4.py#L427">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2018-07-14 04:53:34.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script src="//www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

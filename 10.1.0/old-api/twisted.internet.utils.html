@@ -1,0 +1,286 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.utils : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="module">t.i.utils : module documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/internet/utils.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div>Utility methods.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id2559">
+  
+  
+<tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.utils.html#getProcessOutput">getProcessOutput</a></td>
+    <td><span>Spawn a process and return its output as a deferred returning a 
+string.</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.utils.html#getProcessValue">getProcessValue</a></td>
+    <td><span>Spawn a process and return its exit code as a Deferred.</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.utils.html#getProcessOutputAndValue">getProcessOutputAndValue</a></td>
+    <td><span>Spawn a process and returns a Deferred that will be called back with</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.utils.html#runWithWarningsSuppressed">runWithWarningsSuppressed</a></td>
+    <td><span>Run the function <code>f</code>, but with some warnings suppressed.</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.utils.html#suppressWarnings">suppressWarnings</a></td>
+    <td><span>Wrap <code>f</code> in a callable which suppresses the indicated 
+warnings before</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.utils.html#_callProtocolWithDeferred">_callProtocolWithDeferred</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.utils._UnexpectedErrorOutput.html">_UnexpectedErrorOutput</a></td>
+    <td><span>Standard error data was received where it was not expected.  This is 
+a</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.utils._BackRelay.html">_BackRelay</a></td>
+    <td><span>Trivial protocol for communicating with a process and turning its 
+output</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.utils._ValueGetter.html">_ValueGetter</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.utils._EverythingGetter.html">_EverythingGetter</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.utils.html#_resetWarningFilters">_resetWarningFilters</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.internet.utils._callProtocolWithDeferred">
+    
+  </a>
+  <a name="_callProtocolWithDeferred">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _callProtocolWithDeferred(protocol, executable, args, env, path, reactor=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/internet/utils.py#L19" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.utils.getProcessOutput">
+    
+  </a>
+  <a name="getProcessOutput">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getProcessOutput(executable, args=(), env={}, path=None, reactor=None, errortoo=0):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/internet/utils.py#L95" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Spawn a process and return its output as a deferred returning a 
+string.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">executable</td><td>The file name to run and get the output of - the full path should be used.
+</td></tr><tr><td></td><td class="fieldArg">args</td><td>the command line arguments to pass to the process; a sequence of strings. 
+The first string should *NOT* be the executable's name.
+</td></tr><tr><td></td><td class="fieldArg">env</td><td>the environment variables to pass to the processs; a dictionary of strings.
+</td></tr><tr><td></td><td class="fieldArg">path</td><td>the path to run the subprocess in - defaults to the current directory.
+</td></tr><tr><td></td><td class="fieldArg">reactor</td><td>the reactor to use - defaults to the default reactor
+</td></tr><tr><td></td><td class="fieldArg">errortoo</td><td>If true, include stderr in the result.  If false, if stderr is received the
+returned <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> will 
+errback with an <code>IOError</code> instance with a 
+<code>processEnded</code> attribute.  The <code>processEnded</code> 
+attribute refers to a <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> which
+fires when the executed process ends.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.utils.getProcessValue">
+    
+  </a>
+  <a name="getProcessValue">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getProcessValue(executable, args=(), env={}, path=None, reactor=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/internet/utils.py#L136" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Spawn a process and return its exit code as a Deferred.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.utils.getProcessOutputAndValue">
+    
+  </a>
+  <a name="getProcessOutputAndValue">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getProcessOutputAndValue(executable, args=(), env={}, path=None, reactor=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/internet/utils.py#L161" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Spawn a process and returns a Deferred that will be called back with its
+output (from stdout and stderr) and it's exit code as (out, err, code) If a
+signal is raised, the Deferred will errback with the stdout and stderr up 
+to that point, along with the signal, as (out, err, signalNum)<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.utils._resetWarningFilters">
+    
+  </a>
+  <a name="_resetWarningFilters">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _resetWarningFilters(passthrough, addedFilters):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/internet/utils.py#L171" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.utils.runWithWarningsSuppressed">
+    
+  </a>
+  <a name="runWithWarningsSuppressed">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    runWithWarningsSuppressed(suppressedWarnings, f, *a, **kw):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/internet/utils.py#L180" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Run the function <code>f</code>, but with some warnings suppressed.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">suppressedWarnings</td><td>A list of arguments to pass to filterwarnings. Must be a sequence of 
+2-tuples (args, kwargs).
+</td></tr><tr><td></td><td class="fieldArg">f</td><td>A callable, followed by its arguments and keyword arguments
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.utils.suppressWarnings">
+    
+  </a>
+  <a name="suppressWarnings">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    suppressWarnings(f, *suppressedWarnings):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/internet/utils.py#L204" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Wrap <code>f</code> in a callable which suppresses the indicated 
+warnings before invoking <code>f</code> and unsuppresses them afterwards.  
+If f returns a Deferred, warnings will remain suppressed until the Deferred
+fires.<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2010-07-05 15:03:32.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+  </body>
+</html>

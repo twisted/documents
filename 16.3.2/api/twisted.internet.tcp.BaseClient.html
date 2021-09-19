@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.tcp.BaseClient : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="http://twistedmatrix.com/">Twisted</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>twisted.internet.tcp.BaseClient(<a href="twisted.internet.tcp._BaseBaseClient.html" data-type="Class" class="code">_BaseBaseClient</a>, <a href="twisted.internet.tcp._TLSClientMixin.html" data-type="Class" class="code">_TLSClientMixin</a>, <a href="twisted.internet.tcp.Connection.html" data-type="Class" class="code">Connection</a>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.internet.html" data-type="Package" class="code">internet</a>.<a href="twisted.internet.tcp.html" data-type="Module" class="code">tcp</a></code>
+          <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.2/twisted/internet/tcp.py#L484">View Source</a>
+          <a href="classIndex.html#twisted.internet.tcp.BaseClient">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Known subclasses: <a href="twisted.internet.tcp.Client.html" data-type="Class" class="code">twisted.internet.tcp.Client</a>, <a href="twisted.internet.unix.Client.html" data-type="Class" class="code">twisted.internet.unix.Client</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A base class for client TCP (and similiar) sockets.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1104">
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.tcp.BaseClient.html#realAddress" data-type="Instance Variable" class="code">realAddress</a></td>
+    <td>The address object that will be used for socket.connect; this address is an
+address tuple (the number of elements dependent upon the address family) 
+which does not contain any names which need to be resolved. (type: <code>tuple</code>)</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp.BaseClient.html#createInternetSocket" data-type="Method" class="code">createInternetSocket</a></td>
+    <td><span>(internal) Create a non-blocking socket using self.addressFamily, 
+self.socketType.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp.BaseClient.html#doConnect" data-type="Method" class="code">doConnect</a></td>
+    <td><span>Initiate the outgoing connection attempt.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.tcp.BaseClient.html#_base" data-type="Instance Variable" class="code">_base</a></td>
+    <td><a href="twisted.internet.tcp.Connection.html"><code>Connection</code></a>,
+which is the base class of this class which has all of the useful file 
+descriptor methods.  This is used by <a href="twisted.internet.tcp._TLSServerMixin.html"><code>_TLSServerMixin</code></a>
+to call the right methods to directly manipulate the transport, as is 
+necessary for writing TLS-encrypted bytes (whereas those methods on <a href="twisted.internet.tcp.Server.html"><code>Server</code></a> will go 
+through another layer of TLS if it has been enabled).</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp.BaseClient.html#_stopReadingAndWriting" data-type="Method" class="code">_stopReadingAndWriting</a></td>
+    <td><span>Implement the POSIX-ish (i.e. <a href="twisted.internet.interfaces.IReactorFDSet.html"><code>twisted.internet.interfaces.IReactorFDSet</code></a>)
+method of detaching this socket from the reactor for <a href="twisted.internet.tcp._BaseBaseClient.html"><code>_BaseBaseClient</code></a>.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp.BaseClient.html#_collectSocketDetails" data-type="Method" class="code">_collectSocketDetails</a></td>
+    <td><span>Clean up references to the socket and its file descriptor.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp.BaseClient.html#_connectDone" data-type="Method" class="code">_connectDone</a></td>
+    <td><span>This is a hook for when a connection attempt has succeeded.</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.tcp._AbortingMixin.html" data-type="Class" class="code">_AbortingMixin</a> (via <a href="twisted.internet.tcp.Connection.html" data-type="Class" class="code">Connection</a>):
+          </p>
+          <table class="children sortable" id="id1111">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp._AbortingMixin.html#abortConnection" data-type="Method" class="code">abortConnection</a></td>
+    <td><span>Aborts the connection immediately, dropping any buffered data.</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.tcp._AbortingMixin.html#_aborting" data-type="Instance Variable" class="code">_aborting</a></td>
+    <td>Set to <code>True</code> when <code>abortConnection</code> is called. (type: <code>bool</code>)</td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.tcp._AbortingMixin.html" data-type="Class" class="code">_AbortingMixin</a> (via <a href="twisted.internet.tcp.Connection.html" data-type="Class" class="code">Connection</a>):
+          </p>
+          <table class="children sortable" id="id1111">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp._AbortingMixin.html#abortConnection" data-type="Method" class="code">abortConnection</a></td>
+    <td><span>Aborts the connection immediately, dropping any buffered data.</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.tcp._AbortingMixin.html#_aborting" data-type="Instance Variable" class="code">_aborting</a></td>
+    <td>Set to <code>True</code> when <code>abortConnection</code> is called. (type: <code>bool</code>)</td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.tcp._AbortingMixin.html" data-type="Class" class="code">_AbortingMixin</a> (via <a href="twisted.internet.tcp.Connection.html" data-type="Class" class="code">Connection</a>):
+          </p>
+          <table class="children sortable" id="id1111">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp._AbortingMixin.html#abortConnection" data-type="Method" class="code">abortConnection</a></td>
+    <td><span>Aborts the connection immediately, dropping any buffered data.</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.tcp._AbortingMixin.html#_aborting" data-type="Instance Variable" class="code">_aborting</a></td>
+    <td>Set to <code>True</code> when <code>abortConnection</code> is called. (type: <code>bool</code>)</td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.tcp._AbortingMixin.html" data-type="Class" class="code">_AbortingMixin</a> (via <a href="twisted.internet.tcp.Connection.html" data-type="Class" class="code">Connection</a>):
+          </p>
+          <table class="children sortable" id="id1111">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp._AbortingMixin.html#abortConnection" data-type="Method" class="code">abortConnection</a></td>
+    <td><span>Aborts the connection immediately, dropping any buffered data.</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.tcp._AbortingMixin.html#_aborting" data-type="Instance Variable" class="code">_aborting</a></td>
+    <td>Set to <code>True</code> when <code>abortConnection</code> is called. (type: <code>bool</code>)</td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.tcp._AbortingMixin.html" data-type="Class" class="code">_AbortingMixin</a> (via <a href="twisted.internet.tcp.Connection.html" data-type="Class" class="code">Connection</a>):
+          </p>
+          <table class="children sortable" id="id1111">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp._AbortingMixin.html#abortConnection" data-type="Method" class="code">abortConnection</a></td>
+    <td><span>Aborts the connection immediately, dropping any buffered data.</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.tcp._AbortingMixin.html#_aborting" data-type="Instance Variable" class="code">_aborting</a></td>
+    <td>Set to <code>True</code> when <code>abortConnection</code> is called. (type: <code>bool</code>)</td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.tcp._AbortingMixin.html" data-type="Class" class="code">_AbortingMixin</a> (via <a href="twisted.internet.tcp.Connection.html" data-type="Class" class="code">Connection</a>):
+          </p>
+          <table class="children sortable" id="id1111">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp._AbortingMixin.html#abortConnection" data-type="Method" class="code">abortConnection</a></td>
+    <td><span>Aborts the connection immediately, dropping any buffered data.</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.tcp._AbortingMixin.html#_aborting" data-type="Instance Variable" class="code">_aborting</a></td>
+    <td>Set to <code>True</code> when <code>abortConnection</code> is called. (type: <code>bool</code>)</td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.tcp._AbortingMixin.html" data-type="Class" class="code">_AbortingMixin</a> (via <a href="twisted.internet.tcp.Connection.html" data-type="Class" class="code">Connection</a>):
+          </p>
+          <table class="children sortable" id="id1111">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.tcp._AbortingMixin.html#abortConnection" data-type="Method" class="code">abortConnection</a></td>
+    <td><span>Aborts the connection immediately, dropping any buffered data.</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.tcp._AbortingMixin.html#_aborting" data-type="Instance Variable" class="code">_aborting</a></td>
+    <td>Set to <code>True</code> when <code>abortConnection</code> is called. (type: <code>bool</code>)</td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable">
+  
+  <a name="twisted.internet.tcp.BaseClient.realAddress">
+    
+  </a>
+  <a name="realAddress">
+    
+  </a>
+  <div class="functionHeader">
+    realAddress =
+  </div>
+  <div class="functionBody">
+    The address object that will be used for socket.connect; this address is an
+address tuple (the number of elements dependent upon the address family) 
+which does not contain any names which need to be resolved. (type: <code>tuple</code>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.internet.tcp.BaseClient._base">
+    
+  </a>
+  <a name="_base">
+    
+  </a>
+  <div class="functionHeader">
+    _base =
+  </div>
+  <div class="functionBody">
+    <a href="twisted.internet.tcp.Connection.html"><code>Connection</code></a>,
+which is the base class of this class which has all of the useful file 
+descriptor methods.  This is used by <a href="twisted.internet.tcp._TLSServerMixin.html"><code>_TLSServerMixin</code></a>
+to call the right methods to directly manipulate the transport, as is 
+necessary for writing TLS-encrypted bytes (whereas those methods on <a href="twisted.internet.tcp.Server.html"><code>Server</code></a> will go 
+through another layer of TLS if it has been enabled).
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.internet.tcp.BaseClient._stopReadingAndWriting">
+    
+  </a>
+  <a name="_stopReadingAndWriting">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _stopReadingAndWriting(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.2/twisted/internet/tcp.py#L505">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.internet.tcp._BaseBaseClient.html#_stopReadingAndWriting" data-type="Instance Variable" class="code">twisted.internet.tcp._BaseBaseClient._stopReadingAndWriting</a></div>
+    
+    <div><p>Implement the POSIX-ish (i.e. <a href="twisted.internet.interfaces.IReactorFDSet.html"><code>twisted.internet.interfaces.IReactorFDSet</code></a>)
+method of detaching this socket from the reactor for <a href="twisted.internet.tcp._BaseBaseClient.html"><code>_BaseBaseClient</code></a>.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.internet.tcp.BaseClient._collectSocketDetails">
+    
+  </a>
+  <a name="_collectSocketDetails">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _collectSocketDetails(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.2/twisted/internet/tcp.py#L517">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.internet.tcp._BaseBaseClient.html#_collectSocketDetails" data-type="Instance Variable" class="code">twisted.internet.tcp._BaseBaseClient._collectSocketDetails</a></div>
+    
+    <div><p>Clean up references to the socket and its file descriptor.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><a href="twisted.internet.tcp._BaseBaseClient.html"><code>_BaseBaseClient</code></a></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.tcp.BaseClient.createInternetSocket">
+    
+  </a>
+  <a name="createInternetSocket">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    createInternetSocket(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.2/twisted/internet/tcp.py#L526">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>(internal) Create a non-blocking socket using self.addressFamily, 
+self.socketType.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.tcp.BaseClient.doConnect">
+    
+  </a>
+  <a name="doConnect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    doConnect(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.2/twisted/internet/tcp.py#L536">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Initiate the outgoing connection attempt.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Note</td><td colspan="2">Applications do not need to call this method; it will be invoked internally
+as part of <a href="twisted.internet.interfaces.IReactorTCP.html#connectTCP"><code>IReactorTCP.connectTCP</code></a>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.internet.tcp.BaseClient._connectDone">
+    
+  </a>
+  <a name="_connectDone">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _connectDone(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.2/twisted/internet/tcp.py#L590">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.internet.ssl.Client.html" data-type="Class" class="code">twisted.internet.ssl.Client</a></div>
+    
+    <div><p>This is a hook for when a connection attempt has succeeded.</p>
+<p>Here, we build the protocol from the <a href="twisted.internet.protocol.ClientFactory.html"><code>twisted.internet.protocol.ClientFactory</code></a>
+that was passed in, compute a log string, begin reading so as to send 
+traffic to the newly built protocol, and finally hook up the protocol 
+itself.</p>
+<p>This hook is overridden by <a href="twisted.internet.ssl.Client.html"><code>ssl.Client</code></a> to 
+initiate the TLS protocol.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2016-08-19 14:28:43.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

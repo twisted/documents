@@ -1,0 +1,137 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.conch.interfaces.IConchUser&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="interface">Interface t.c.i.IConchUser(Interface):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.conch.html">conch</a>.<a href="twisted.conch.interfaces.html">interfaces</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/conch/interfaces.py#L3">View Source</a>
+      <a href="classIndex.html#twisted.conch.interfaces.IConchUser">View In Hierarchy</a>
+    </p>
+    <div>
+      Known implementations: <a href="twisted.conch.avatar.ConchUser.html">twisted.conch.avatar.ConchUser</a>
+    </div>
+    <div>A user who has been authenticated to Cred through Conch. This is the 
+interface between the SSH connection and the user.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">conn</td><td>The SSHConnection object for this user.
+</td></tr></table></div>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1046">
+  
+  
+  
+  
+  <tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.IConchUser.html#lookupChannel">lookupChannel</a></td>
+    <td><span>The other side requested a channel of some sort.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.IConchUser.html#lookupSubsystem">lookupSubsystem</a></td>
+    <td><span>The other side requested a subsystem.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.IConchUser.html#gotGlobalRequest">gotGlobalRequest</a></td>
+    <td><span>A global request was sent from the other side.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.conch.interfaces.IConchUser.lookupChannel"></a>
+        <a name="lookupChannel"></a>
+        <div class="functionHeader">
+        def lookupChannel(channelType, windowSize, maxPacket, data):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/conch/interfaces.py#L10" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>The other side requested a channel of some sort. channelType is the 
+type of channel being requested, windowSize is the initial size of the 
+remote window, maxPacket is the largest packet we should send, data is 
+any other packet data (often nothing).</p>
+We return a subclass of <a 
+href="twisted.conch.ssh.channel.SSHChannel.html"><code>SSHChannel</code></a>. 
+If an appropriate channel can not be found, an exception will be raised. 
+If a <a 
+href="twisted.conch.error.ConchError.html"><code>ConchError</code></a> is 
+raised, the .value will be the message, and the .data will be the error 
+code.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">channelType</td><td>(type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">windowSize</td><td>(type: <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">maxPacket</td><td>(type: <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">data</td><td>(type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">(type: subclass of <code>SSHChannel</code>/<code>tuple</code>
+)</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.interfaces.IConchUser.lookupSubsystem"></a>
+        <a name="lookupSubsystem"></a>
+        <div class="functionHeader">
+        def lookupSubsystem(subsystem, data):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/conch/interfaces.py#L30" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>The other side requested a subsystem. subsystem is the name of the 
+subsystem being requested. data is any other packet data (often 
+nothing).</p>
+We return a <code>Protocol</code>.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.interfaces.IConchUser.gotGlobalRequest"></a>
+        <a name="gotGlobalRequest"></a>
+        <div class="functionHeader">
+        def gotGlobalRequest(requestType, data):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/conch/interfaces.py#L39" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>A global request was sent from the other side.</p>
+By default, this dispatches to a method 'channel_channelType' with any 
+non-alphanumerics in the channelType replace with _'s. If it cannot find 
+a suitable method, it returns an OPEN_UNKNOWN_CHANNEL_TYPE error. The 
+method is called with arguments of windowSize, maxPacket, data.
+<table class="fieldTable"></table></div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for twisted, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a>.
+    </address>
+  </body>
+</html>

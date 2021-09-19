@@ -1,0 +1,470 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.web.woven.input.DictAggregator&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">Class t.w.w.i.DictAggregator(<a href="twisted.web.woven.input.Anything.html">Anything</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web.html">web</a>.<a href="twisted.web.woven.html">woven</a>.<a href="twisted.web.woven.input.html">input</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/web/woven/input.py#L225">View Source</a>
+      <a href="classIndex.html#twisted.web.woven.input.DictAggregator">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div><p>An InputHandler for a &lt;form&gt; tag, for triggering a function when 
+all of the form's individual inputs have been validated. Also for use 
+gathering a dict of arguments to pass to a parent's aggregateValid if no 
+commit function is passed.</p>
+Usage example:
+<pre class="literalblock">
+   &lt;form controller=&quot;theForm&quot; action=&quot;&quot;&gt;
+       &lt;input controller=&quot;Integer&quot; 
+           view=&quot;InputText&quot; model=&quot;anInteger&quot; /&gt;
+       &lt;input controller=&quot;Anything&quot; 
+           view=&quot;InputText&quot; model=&quot;aString&quot; /&gt;
+       &lt;input type=&quot;submit&quot; /&gt;
+   &lt;/form&gt;
+   
+   def theCommitFunction(anInteger=None, aString=None):
+       '''Note how the keyword arguments match up with the leaf model
+       names above
+       '''
+       print &quot;Yay&quot;, anInteger, aString
+   
+   class CMyController(controller.Controller):
+       def wcfactory_theForm(self, request, node, m):
+           return input.FormAggregator(m, commit=theCommitFunction)
+</pre>
+<table class="fieldTable"></table></div>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id255">
+  
+  
+  
+  
+  <tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.input.DictAggregator.html#aggregateValid">aggregateValid</a></td>
+    <td><span>Aggregate valid input from inputhandlers below us, into a 
+dictionary.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.input.DictAggregator.html#aggregateInvalid">aggregateInvalid</a></td>
+    <td><span>By default we just pass this method call all the way up to the root
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.input.DictAggregator.html#exit">exit</a></td>
+    <td><span>This is the node complete message
+</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.web.woven.input.Anything.html">Anything</a>:
+        </p>
+        <table class="children sortable" id="id256">
+  
+  
+  
+  
+  <tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.input.Anything.html#check">check</a></td>
+    <td><span>Check whether the input in the request is valid for this handler
+</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.web.woven.input.SingleValue.html">SingleValue</a> (via <a href="twisted.web.woven.input.Anything.html">Anything</a>):
+        </p>
+        <table class="children sortable" id="id257">
+  
+  
+  
+  
+  <tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.input.SingleValue.html#getInput">getInput</a></td>
+    <td><span>Return the data associated with this handler from the request, if 
+any.
+</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.web.woven.input.InputHandler.html">InputHandler</a> (via <a href="twisted.web.woven.input.Anything.html">Anything</a>, <a href="twisted.web.woven.input.SingleValue.html">SingleValue</a>):
+        </p>
+        <table class="children sortable" id="id258">
+  
+  
+  
+  
+  <tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.input.InputHandler.html#__init__">__init__</a></td>
+    <td><span>Initialize.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.input.InputHandler.html#initialize">initialize</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.input.InputHandler.html#setNode">setNode</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.input.InputHandler.html#handle">handle</a></td>
+    <td><span>By default, we don't do anything
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.input.InputHandler.html#dispatchCheckResult">dispatchCheckResult</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.input.InputHandler.html#handleValid">handleValid</a></td>
+    <td><span>It has been determined that the input for this handler is valid;
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.input.InputHandler.html#handleInvalid">handleInvalid</a></td>
+    <td><span>Once it has been determined that the input is invalid, we should
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.input.InputHandler.html#commit">commit</a></td>
+    <td><span>It has been determined that the input for the entire form is 
+completely
+</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.web.woven.controller.Controller.html">Controller</a> (via <a href="twisted.web.woven.input.Anything.html">Anything</a>, <a href="twisted.web.woven.input.SingleValue.html">SingleValue</a>, <a href="twisted.web.woven.input.InputHandler.html">InputHandler</a>):
+        </p>
+        <table class="children sortable" id="id259">
+  
+  
+  
+  
+  <tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.controller.Controller.html#setupControllerStack">setupControllerStack</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.controller.Controller.html#importControllerLibrary">importControllerLibrary</a></td>
+    <td><span>Import the given object or module into this Controllers's
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.controller.Controller.html#getSubcontroller">getSubcontroller</a></td>
+    <td><span>Look for a controller named &quot;controllerName&quot; to handle the 
+node
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.controller.Controller.html#setSubcontrollerFactory">setSubcontrollerFactory</a></td>
+    <td><span>Set the callable &quot;factory&quot;, which takes a model and should
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.controller.Controller.html#setView">setView</a></td>
+    <td><span>Set the view that this controller is related to.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.controller.Controller.html#setUp">setUp</a></td>
+    <td></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.controller.Controller.html#getChild">getChild</a></td>
+    <td><span>Look for a factory method to create the object to handle the
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.controller.Controller.html#getDynamicChild">getDynamicChild</a></td>
+    <td><span>This method is called when getChild cannot find a matching wchild_*
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.controller.Controller.html#wchild_index">wchild_index</a></td>
+    <td><span>By default, we return ourself as the index.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.controller.Controller.html#render">render</a></td>
+    <td><span>Trigger any inputhandlers that were passed in to this Page,
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.controller.Controller.html#makeView">makeView</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.controller.Controller.html#renderView">renderView</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.controller.Controller.html#gatheredControllers">gatheredControllers</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.controller.Controller.html#process">process</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.controller.Controller.html#setSubmodel">setSubmodel</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.controller.Controller.html#domChanged">domChanged</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.woven.controller.Controller.html#pageRenderComplete">pageRenderComplete</a></td>
+    <td><span>Override this to recieve notification when the view rendering
+</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.web.resource.Resource.html">Resource</a> (via <a href="twisted.web.woven.input.Anything.html">Anything</a>, <a href="twisted.web.woven.input.SingleValue.html">SingleValue</a>, <a href="twisted.web.woven.input.InputHandler.html">InputHandler</a>, <a href="twisted.web.woven.controller.Controller.html">Controller</a>):
+        </p>
+        <table class="children sortable" id="id260">
+  
+  
+  
+  
+  <tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.resource.Resource.html#listStaticNames">listStaticNames</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.resource.Resource.html#listStaticEntities">listStaticEntities</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.resource.Resource.html#listNames">listNames</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.resource.Resource.html#listEntities">listEntities</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.resource.Resource.html#listDynamicNames">listDynamicNames</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.resource.Resource.html#listDynamicEntities">listDynamicEntities</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.resource.Resource.html#getStaticEntity">getStaticEntity</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.resource.Resource.html#getDynamicEntity">getDynamicEntity</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.resource.Resource.html#delEntity">delEntity</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.resource.Resource.html#reallyPutEntity">reallyPutEntity</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.resource.Resource.html#getChildWithDefault">getChildWithDefault</a></td>
+    <td><span>Retrieve a static or dynamically generated child resource from me.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.resource.Resource.html#getChildForRequest">getChildForRequest</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.resource.Resource.html#putChild">putChild</a></td>
+    <td><span>Register a static child.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.resource.Resource.html#render_HEAD">render_HEAD</a></td>
+    <td><span>Default handling of HEAD method.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.web.woven.input.DictAggregator.aggregateValid"></a>
+        <a name="aggregateValid"></a>
+        <div class="functionHeader">
+        
+        def aggregateValid(self, request, inputhandler, data):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/web/woven/input.py#L250" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">overrides <a href="twisted.web.woven.input.InputHandler.html#aggregateValid">twisted.web.woven.input.InputHandler.aggregateValid</a></div>
+          <div>Aggregate valid input from inputhandlers below us, into a 
+dictionary.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web.woven.input.DictAggregator.aggregateInvalid"></a>
+        <a name="aggregateInvalid"></a>
+        <div class="functionHeader">
+        
+        def aggregateInvalid(self, request, inputhandler, data):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/web/woven/input.py#L255" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">overrides <a href="twisted.web.woven.input.InputHandler.html#aggregateInvalid">twisted.web.woven.input.InputHandler.aggregateInvalid</a></div>
+          <div>By default we just pass this method call all the way up to the root 
+Controller.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web.woven.input.DictAggregator.exit"></a>
+        <a name="exit"></a>
+        <div class="functionHeader">
+        
+        def exit(self, request):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/web/woven/input.py#L258" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">overrides <a href="twisted.web.woven.controller.Controller.html#exit">twisted.web.woven.controller.Controller.exit</a></div>
+          <div>This is the node complete message
+<table class="fieldTable"></table></div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2008-03-25 17:55:10.
+    </address>
+  </body>
+</html>

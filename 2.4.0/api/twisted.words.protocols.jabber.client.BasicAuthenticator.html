@@ -1,0 +1,143 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.words.protocols.jabber.client.BasicAuthenticator&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.w.p.j.c.BasicAuthenticator(<a href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html">xmlstream.ConnectAuthenticator</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.words.protocols.jabber.client.html">twisted.words.protocols.jabber.client</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.words.protocols.jabber.client.BasicAuthenticator">View In Hierarchy</a>
+    </p>
+    <div></div>
+    <div><p>Authenticates an XmlStream against a Jabber server as a Client</p>
+<p>This only implements non-SASL authentication, per <a 
+href="http://www.jabber.org/jeps/jep-0078.html">JEP-0078</a>. 
+Additionally, this authenticator provides the ability to perform inline 
+registration, per <a 
+href="http://www.jabber.org/jeps/jep-0077.html">JEP-0077</a>.</p>
+Under normal circumstances, the BasicAuthenticator generates the 
+xmlstream.STREAM_AUTHD_EVENT once the stream has authenticated. However, 
+it can also generate other events, such as:
+<ul>
+  <li>
+    INVALID_USER_EVENT : Authentication failed, due to invalid 
+    username
+  </li>
+  <li>
+    AUTH_FAILED_EVENT : Authentication failed, due to invalid 
+    password
+  </li>
+  <li>
+    REGISTER_FAILED_EVENT : Registration failed
+  </li>
+</ul>
+If authentication fails for any reason, you can attempt to register by 
+calling the <a 
+href="twisted.words.protocols.jabber.client.BasicAuthenticator.html#twisted.words.protocols.jabber.client.BasicAuthenticator.registerAccount">registerAccount</a> 
+method. If the registration succeeds, a xmlstream.STREAM_AUTHD_EVENT will 
+be fired. Otherwise, one of the above errors will be generated 
+(again).
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.protocols.jabber.client.BasicAuthenticator.__init__">__init__</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.protocols.jabber.client.BasicAuthenticator.streamStarted">streamStarted</a></td>
+          <td><span>Called by the XmlStream when the stream has started.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.protocols.jabber.client.BasicAuthenticator.associateWithStream">associateWithStream</a></td>
+          <td><span>Called by the XmlStreamFactory when a connection has been made
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.protocols.jabber.client.BasicAuthenticator._authQueryResultEvent">_authQueryResultEvent</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.protocols.jabber.client.BasicAuthenticator._authResultEvent">_authResultEvent</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.protocols.jabber.client.BasicAuthenticator.registerAccount">registerAccount</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.protocols.jabber.client.BasicAuthenticator._registerResultEvent">_registerResultEvent</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr></table>
+    
+    
+        <p>
+          Inherited from <span><a href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html">ConnectAuthenticator</a></span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html#twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.connectionMade">connectionMade</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr></table>
+      
+    <div class="function">
+        <a name="twisted.words.protocols.jabber.client.BasicAuthenticator.__init__"></a>
+        <div class="functionHeader">
+          def <span>__init__(self, jid, password):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html#twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.__init__">twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.__init__</a></div><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.words.protocols.jabber.client.BasicAuthenticator.streamStarted"></a>
+        <div class="functionHeader">
+          def <span>streamStarted(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.words.protocols.jabber.xmlstream.Authenticator.html#twisted.words.protocols.jabber.xmlstream.Authenticator.streamStarted">twisted.words.protocols.jabber.xmlstream.Authenticator.streamStarted</a></div><div><p>Called by the XmlStream when the stream has started.</p>
+A stream is considered to have started when the root element has been 
+received and, if applicable, the feature set has been received.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.words.protocols.jabber.client.BasicAuthenticator.associateWithStream"></a>
+        <div class="functionHeader">
+          def <span>associateWithStream(self, xs):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.words.protocols.jabber.xmlstream.Authenticator.html#twisted.words.protocols.jabber.xmlstream.Authenticator.associateWithStream">twisted.words.protocols.jabber.xmlstream.Authenticator.associateWithStream</a></div><div><p>Called by the XmlStreamFactory when a connection has been made to the 
+requested peer, and an XmlStream object has been instantiated.</p>
+The default implementation just saves a handle to the new 
+XmlStream.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">xmlstream</td><td>The XmlStream that will be passing events to this Authenticator.
+(type: <a 
+href="twisted.words.protocols.jabber.xmlstream.XmlStream.html">XmlStream</a>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.words.protocols.jabber.client.BasicAuthenticator._authQueryResultEvent"></a>
+        <div class="functionHeader">
+          def <span>_authQueryResultEvent(self, iq):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.words.protocols.jabber.client.BasicAuthenticator._authResultEvent"></a>
+        <div class="functionHeader">
+          def <span>_authResultEvent(self, iq):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.words.protocols.jabber.client.BasicAuthenticator.registerAccount"></a>
+        <div class="functionHeader">
+          def <span>registerAccount(self, username=None, password=None):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.words.protocols.jabber.client.BasicAuthenticator._registerResultEvent"></a>
+        <div class="functionHeader">
+          def <span>_registerResultEvent(self, iq):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div>    
+  </body>
+</html>

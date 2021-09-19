@@ -1,0 +1,144 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.trial.util&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="module">Module t.t.util</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.trial.html">twisted.trial</a></span>
+      <a></a>
+      <a></a>
+    </p>
+    <div></div>
+    <div><p>A collection of utility functions and classes, used internally by 
+Trial.</p>
+<p>API Stability: Unstable</p>
+<p>This code is for Trial's internal use. Do NOT use this code if you are 
+writing tests. It is subject to change at the Trial maintainer's whim. 
+There is nothing here in this module for you to use unless you are 
+maintaining Trial.</p>
+<p>Any non-Trial Twisted code that uses this module will be shot.</p>
+Maintainer: <a href="mailto:jml&#64;twistedmatrix.com">Jonathan 
+Lange</a>
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.trial.util.FailureError.html">FailureError</a></td>
+          <td><span>Wraps around a Failure so it can get re-raised as an Exception
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.trial.util.DirtyReactorError.html">DirtyReactorError</a></td>
+          <td><span>emitted when the reactor has been left in an unclean state
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.trial.util.DirtyReactorWarning.html">DirtyReactorWarning</a></td>
+          <td><span>emitted when the reactor has been left in an unclean state
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.trial.util.PendingTimedCallsError.html">PendingTimedCallsError</a></td>
+          <td><span>raised when timed calls are left in the reactor
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.trial.util._Janitor.html">_Janitor</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.trial.util.suppress">suppress</a></td>
+          <td><span>sets up the .suppress tuple properly, pass options to this method
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.trial.util.profiled">profiled</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.trial.util.getPythonContainers">getPythonContainers</a></td>
+          <td><span>Walk up the Python tree from method 'meth', finding its class, its 
+module
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.trial.util.acquireAttribute">acquireAttribute</a></td>
+          <td><span>Go through the list 'objects' sequentially until we find one which 
+has
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.trial.util.findObject">findObject</a></td>
+          <td><span>Get a fully-named package, module, module-global object or 
+attribute.
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.trial.util.suppress"></a>
+        <div class="functionHeader">
+          def <span>suppress(action='ignore', **kwarg):</span>
+        </div>
+        <div class="functionBody"><div><p>sets up the .suppress tuple properly, pass options to this method as 
+you would the stdlib warnings.filterwarnings()</p>
+so to use this with a .suppress magic attribute you would do the 
+following:
+<pre class="doctestblock">
+<span class="py-src"><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> twisted.trial <span class="py-keyword">import</span> unittest, util
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">import</span> warnings
+<span class="py-prompt">&gt;&gt;&gt;
+</span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">class</span> TestFoo(unittest.TestCase):
+<span class="py-prompt">... </span>    <span class="py-keyword">def</span> testFooBar(self):
+<span class="py-prompt">... </span>        warnings.warn(<span class="py-string">&quot;i am deprecated&quot;</span>, DeprecationWarning)
+<span class="py-prompt">... </span>    testFooBar.suppress = [util.suppress(message=<span class="py-string">'i am deprecated'</span>)]
+<span class="py-prompt">...
+</span><span class="py-prompt">&gt;&gt;&gt;
+</span></span></pre>
+note that as with the todo and timeout attributes: the module level 
+attribute acts as a default for the class attribute which acts as a 
+default for the method attribute. The suppress attribute can be 
+overridden at any level by specifying .suppress = []
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.trial.util.profiled"></a>
+        <div class="functionHeader">
+          def <span>profiled(f, outputFile):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.trial.util.getPythonContainers"></a>
+        <div class="functionHeader">
+          def <span>getPythonContainers(meth):</span>
+        </div>
+        <div class="functionBody"><div>Walk up the Python tree from method 'meth', finding its class, its 
+module and all containing packages.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.trial.util.acquireAttribute"></a>
+        <div class="functionHeader">
+          def <span>acquireAttribute(objects, attr, default=_DEFAULT):</span>
+        </div>
+        <div class="functionBody"><div>Go through the list 'objects' sequentially until we find one which has 
+attribute 'attr', then return the value of that attribute. If not found, 
+return 'default' if set, otherwise, raise AttributeError.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.trial.util.findObject"></a>
+        <div class="functionHeader">
+          def <span>findObject(name):</span>
+        </div>
+        <div class="functionBody"><div><p>Get a fully-named package, module, module-global object or attribute. 
+Forked from twisted.python.reflect.namedAny.</p>
+Returns a tuple of (bool, obj). If bool is True, the named object 
+exists and is returned as obj. If bool is False, the named object does 
+not exist and the value of obj is unspecified.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

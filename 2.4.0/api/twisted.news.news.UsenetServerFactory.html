@@ -1,0 +1,118 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.news.news.UsenetServerFactory&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.n.n.UsenetServerFactory(<a href="twisted.news.news.NNTPFactory.html">NNTPFactory</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.news.news.html">twisted.news.news</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.news.news.UsenetServerFactory">View In Hierarchy</a>
+    </p>
+    <div></div>
+    <div>A factory for NNTP Usenet server protocols.
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.news.news.UsenetServerFactory.__init__">__init__</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.news.news.UsenetServerFactory.startFactory">startFactory</a></td>
+          <td><span>This will be called before I begin listening on a Port or 
+Connector.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.news.news.UsenetServerFactory.stopFactory">stopFactory</a></td>
+          <td><span>This will be called before I stop listening on all 
+Ports/Connectors.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.news.news.UsenetServerFactory.buildProtocol">buildProtocol</a></td>
+          <td><span>Called when a connection has been established to addr.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.news.news.UsenetServerFactory.syncWithRemotes">syncWithRemotes</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr></table>
+    
+    
+        <p>
+          Inherited from <span><a href="twisted.internet.protocol.Factory.html">Factory</a> (via <a href="twisted.news.news.NNTPFactory.html">NNTPFactory</a>, <a href="twisted.internet.protocol.ServerFactory.html">ServerFactory</a>)</span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.internet.protocol.Factory.html#twisted.internet.protocol.Factory.doStart">doStart</a></td>
+            <td><span>Make sure startFactory is called.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.internet.protocol.Factory.html#twisted.internet.protocol.Factory.doStop">doStop</a></td>
+            <td><span>Make sure stopFactory is called.
+</span></td>
+          </tr></table>
+      
+    <div class="function">
+        <a name="twisted.news.news.UsenetServerFactory.__init__"></a>
+        <div class="functionHeader">
+          def <span>__init__(self, backend, remoteHosts=None, updatePeriod=60):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.news.news.NNTPFactory.html#twisted.news.news.NNTPFactory.__init__">twisted.news.news.NNTPFactory.__init__</a></div><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.news.news.UsenetServerFactory.startFactory"></a>
+        <div class="functionHeader">
+          def <span>startFactory(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Factory.html#twisted.internet.protocol.Factory.startFactory">twisted.internet.protocol.Factory.startFactory</a></div><div><p>This will be called before I begin listening on a Port or 
+Connector.</p>
+<p>It will only be called once, even if the factory is connected to 
+multiple ports.</p>
+This can be used to perform 'unserialization' tasks that are best put 
+off until things are actually running, such as connecting to a database, 
+opening files, etcetera.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.news.news.UsenetServerFactory.stopFactory"></a>
+        <div class="functionHeader">
+          def <span>stopFactory(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Factory.html#twisted.internet.protocol.Factory.stopFactory">twisted.internet.protocol.Factory.stopFactory</a></div><div><p>This will be called before I stop listening on all 
+Ports/Connectors.</p>
+<p>This can be overridden to perform 'shutdown' tasks such as 
+disconnecting database connections, closing files, etc.</p>
+It will be called, for example, before an application shuts down, if 
+it was connected to a port. User code should not call this function 
+directly.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.news.news.UsenetServerFactory.buildProtocol"></a>
+        <div class="functionHeader">
+          def <span>buildProtocol(self, connection):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocolFactory.html#twisted.internet.interfaces.IProtocolFactory.buildProtocol">twisted.internet.interfaces.IProtocolFactory</a></div><div class="interfaceinfo">overrides <a href="twisted.news.news.NNTPFactory.html#twisted.news.news.NNTPFactory.buildProtocol">twisted.news.news.NNTPFactory.buildProtocol</a></div><div><p>Called when a connection has been established to addr.</p>
+If None is returned, the connection is assumed to have been refused, 
+and the Port will close the connection.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">addr</td><td>The address of the newly-established connection
+(type: (host, port)
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">None if the connection was refused, otherwise an object implementing 
+IProtocol.
+(type: None or <a 
+href="twisted.internet.interfaces.IProtocol.html">IProtocol</a>.
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.news.news.UsenetServerFactory.syncWithRemotes"></a>
+        <div class="functionHeader">
+          def <span>syncWithRemotes(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div>    
+  </body>
+</html>

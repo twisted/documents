@@ -1,0 +1,240 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.conch.checkers.SSHPublicKeyDatabase : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.c.c.SSHPublicKeyDatabase : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.conch.html">conch</a>.<a href="twisted.conch.checkers.html">checkers</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.0/twisted/conch/checkers.py#L122">View Source</a>
+      <a href="classIndex.html#twisted.conch.checkers.SSHPublicKeyDatabase">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Implements interfaces: <a href="twisted.cred.checkers.ICredentialsChecker.html">twisted.cred.checkers.ICredentialsChecker</a></p>
+    </div>
+    <div>Checker that authenticates SSH public keys, based on public keys listed 
+in authorized_keys and authorized_keys2 files in user .ssh/ 
+directories.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id55">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.checkers.SSHPublicKeyDatabase.html#requestAvatarId">requestAvatarId</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.checkers.SSHPublicKeyDatabase.html#getAuthorizedKeysFiles">getAuthorizedKeysFiles</a></td>
+    <td><span>Return a list of <a 
+href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+instances for <i>authorized_keys</i> files which might contain information 
+about authorized keys for the given credentials.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.checkers.SSHPublicKeyDatabase.html#checkKey">checkKey</a></td>
+    <td><span>Retrieve files containing authorized keys and check against user 
+credentials.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.checkers.SSHPublicKeyDatabase.html#_cbRequestAvatarId">_cbRequestAvatarId</a></td>
+    <td><span>Check whether the credentials themselves are valid, now that we know if 
+the key matches the user.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.checkers.SSHPublicKeyDatabase.html#_ebRequestAvatarId">_ebRequestAvatarId</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.conch.checkers.SSHPublicKeyDatabase.requestAvatarId">
+    
+  </a>
+  <a name="requestAvatarId">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    requestAvatarId(self, credentials):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.0/twisted/conch/checkers.py#L133" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.cred.checkers.ICredentialsChecker.html#requestAvatarId">twisted.cred.checkers.ICredentialsChecker</a></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">credentials</td><td>something which implements one of the interfaces in 
+self.credentialInterfaces.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a Deferred which will fire a string which identifies an avatar, an empty 
+tuple to specify an authenticated anonymous user (provided as 
+checkers.ANONYMOUS) or fire a Failure(UnauthorizedLogin). Alternatively, 
+return the result itself.</td></tr><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><a 
+href="twisted.cred.credentials.html"><code>twisted.cred.credentials</code></a></td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.checkers.SSHPublicKeyDatabase._cbRequestAvatarId">
+    
+  </a>
+  <a name="_cbRequestAvatarId">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _cbRequestAvatarId(self, validKey, credentials):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.0/twisted/conch/checkers.py#L139" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Check whether the credentials themselves are valid, now that we know if 
+the key matches the user.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">validKey</td><td>A boolean indicating whether or not the public key matches a key in the 
+user's authorized_keys file.</td></tr><tr><td></td><td class="fieldArg">credentials</td><td>The credentials offered by the user. (type: <a 
+href="twisted.cred.credentials.ISSHPrivateKey.html"><code>ISSHPrivateKey</code></a>
+provider)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The user's username, if authentication was successful.</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">UnauthorizedLogin</td><td>(as a failure) if the key does not match the user in 
+<code>credentials</code>. Also raised if the user provides an invalid 
+signature.</td></tr><tr><td></td><td class="fieldArg">ValidPublicKey</td><td>(as a failure) if the key matches the user but the credentials do not 
+include a signature. See <a 
+href="twisted.conch.error.ValidPublicKey.html"><code>error.ValidPublicKey</code></a>
+for more information.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.checkers.SSHPublicKeyDatabase.getAuthorizedKeysFiles">
+    
+  </a>
+  <a name="getAuthorizedKeysFiles">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getAuthorizedKeysFiles(self, credentials):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.0/twisted/conch/checkers.py#L175" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Return a list of <a 
+href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+instances for <i>authorized_keys</i> files which might contain information 
+about authorized keys for the given credentials.</p>
+<p>On OpenSSH servers, the default location of the file containing the list
+of authorized public keys is <a 
+href="http://www.openbsd.org/cgi-bin/man.cgi?query=sshd_config" 
+target="_top">$HOME/.ssh/authorized_keys</a>.</p>
+<p><i>$HOME/.ssh/authorized_keys2</i> is also returned, though it has been 
+<a href="http://marc.info/?m=100508718416162" target="_top">deprecated by 
+OpenSSH since 2001</a>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A list of <a 
+href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+instances to files with the authorized keys.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.checkers.SSHPublicKeyDatabase.checkKey">
+    
+  </a>
+  <a name="checkKey">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    checkKey(self, credentials):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.0/twisted/conch/checkers.py#L197" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Retrieve files containing authorized keys and check against user 
+credentials.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.checkers.SSHPublicKeyDatabase._ebRequestAvatarId">
+    
+  </a>
+  <a name="_ebRequestAvatarId">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _ebRequestAvatarId(self, f):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.0/twisted/conch/checkers.py#L224" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2014-05-12 18:27:00.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="//www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

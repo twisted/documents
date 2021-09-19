@@ -1,0 +1,155 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.web.woven.interfaces.IView&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="interface">Interface t.w.w.i.IView(<a href="twisted.python.components.Interface.html">components.Interface</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.web.woven.interfaces.html">twisted.web.woven.interfaces</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.web.woven.interfaces.IView">View In Hierarchy</a>
+    </p>
+    <div><p>Known implementations: <a href="twisted.web.woven.view.View.html">twisted.web.woven.view.View</a></p></div>
+    <div>A MVC View
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.interfaces.IView.__init__">__init__</a></td>
+          <td><span>A view must be told what its model is, and may be told what its
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.interfaces.IView.modelChanged">modelChanged</a></td>
+          <td><span>Dispatch changed messages to any update_* methods which
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.interfaces.IView.controllerFactory">controllerFactory</a></td>
+          <td><span>Hook for subclasses to customize the controller that is associated
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.interfaces.IView.setController">setController</a></td>
+          <td><span>Set the controller that this view is related to.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.interfaces.IView.importViewLibrary">importViewLibrary</a></td>
+          <td><span>Import the given object or module into this View's view namespace
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.interfaces.IView.getSubview">getSubview</a></td>
+          <td><span>Look for a view named &quot;viewName&quot; to handle the node 
+&quot;node&quot;.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.interfaces.IView.setSubviewFactory">setSubviewFactory</a></td>
+          <td><span>Set the callable &quot;factory&quot;, which takes a model and 
+should
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web.woven.interfaces.IView.__adapt__">__adapt__</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.web.woven.interfaces.IView.__init__"></a>
+        <div class="functionHeader">
+          def <span>__init__(model, controller=None):</span>
+        </div>
+        <div class="functionBody"><div>A view must be told what its model is, and may be told what its 
+controller is, but can also look up its controller if none specified.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.interfaces.IView.modelChanged"></a>
+        <div class="functionHeader">
+          def <span>modelChanged(changed):</span>
+        </div>
+        <div class="functionBody"><div>Dispatch changed messages to any update_* methods which may have been 
+defined, then pass the update notification on to the controller.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.interfaces.IView.controllerFactory"></a>
+        <div class="functionHeader">
+          def <span>controllerFactory():</span>
+        </div>
+        <div class="functionBody"><div><p>Hook for subclasses to customize the controller that is associated 
+with the model associated with this view.</p>
+Default behavior: Look up a component that implements IController for 
+the self.model instance.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.interfaces.IView.setController"></a>
+        <div class="functionHeader">
+          def <span>setController(controller):</span>
+        </div>
+        <div class="functionBody"><div>Set the controller that this view is related to.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.interfaces.IView.importViewLibrary"></a>
+        <div class="functionHeader">
+          def <span>importViewLibrary(moduleOrObject):</span>
+        </div>
+        <div class="functionBody"><div>Import the given object or module into this View's view namespace 
+stack. If the given object or module has a getSubview function or method, 
+it will be called when a node has a view=&quot;foo&quot; attribute. If no 
+getSubview method is defined, a default one will be provided which looks 
+for the literal name in the namespace.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.interfaces.IView.getSubview"></a>
+        <div class="functionHeader">
+          def <span>getSubview(request, node, model, viewName):</span>
+        </div>
+        <div class="functionBody"><div><p>Look for a view named &quot;viewName&quot; to handle the node 
+&quot;node&quot;. When a node &lt;div view=&quot;foo&quot; /&gt; is 
+present in the template, this method will be called with viewName set to 
+&quot;foo&quot;.</p>
+Return None if this View doesn't want to provide a Subview for the 
+given name.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.interfaces.IView.setSubviewFactory"></a>
+        <div class="functionHeader">
+          def <span>setSubviewFactory(self, name, factory, setup=None):</span>
+        </div>
+        <div class="functionBody"><div><p>Set the callable &quot;factory&quot;, which takes a model and should 
+return a Widget, to be called by the default implementation of getSubview 
+when the viewName &quot;name&quot; is present in the template.</p>
+<p>This would generally be used like this:</p>
+<p>view.setSubviewFactory(&quot;foo&quot;, MyFancyWidgetClass)</p>
+This is equivalent to:
+<pre class="literalblock">
+   def wvfactory_foo(self, request, node, m):
+       return MyFancyWidgetClass(m)
+</pre>
+<p>Which will cause an instance of MyFancyWidgetClass to be instanciated 
+when template node &lt;div view=&quot;foo&quot; /&gt; is encountered.</p>
+<p>If setup is passed, it will be passed to new instances returned from 
+this factory as a setup method. The setup method is called each time the 
+Widget is generated. Setup methods take (request, widget, model) as 
+arguments.</p>
+This is equivalent to:
+<pre class="literalblock">
+   def wvupdate_foo(self, request, widget, model):
+       # whatever you want
+</pre>
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web.woven.interfaces.IView.__adapt__"></a>
+        <div class="functionHeader">
+          def <span>__adapt__(adaptable, default):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div>    
+  </body>
+</html>

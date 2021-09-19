@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.mail.maildir._MaildirMailboxAppendMessageTask : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div style="display: none" id="current-docs-container" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class private"><code>twisted.mail.maildir._MaildirMailboxAppendMessageTask</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.mail.html" data-type="Package" class="code">mail</a>.<a href="twisted.mail.maildir.html" data-type="Module" class="code">maildir</a></code>
+          <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.0.0/twisted/mail/maildir.py#L320">View Source</a>
+          <a href="classIndex.html#twisted.mail.maildir._MaildirMailboxAppendMessageTask">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Implements interfaces: <a href="twisted.internet.interfaces.IConsumer.html" data-type="Interface" class="code">twisted.internet.interfaces.IConsumer</a></p>
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>A task which adds a message to a maildir mailbox.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1369">
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#mbox" data-type="Instance Variable" class="code">mbox</a></td>
+    <td>See <a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#__init__"><code>__init__</code></a>.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#defer" data-type="Instance Variable" class="code">defer</a></td>
+    <td>A deferred which fires when the task has completed. (type: <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+which successfully returns <a href="http://docs.python.org/library/types.html#types.NoneType"><code>NoneType</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#opencall" data-type="Instance Variable" class="code">opencall</a></td>
+    <td>A scheduled call to <a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#prodProducer"><code>prodProducer</code></a>. (type: <a href="twisted.internet.interfaces.IDelayedCall.html"><code>IDelayedCall</code></a>
+provider or <a href="http://docs.python.org/library/types.html#types.NoneType"><code>NoneType</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#msg" data-type="Instance Variable" class="code">msg</a></td>
+    <td>The message to add. (type: file-like object)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#tmpname" data-type="Instance Variable" class="code">tmpname</a></td>
+    <td>The pathname of the temporary file holding the message while it is being 
+transferred. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#fh" data-type="Instance Variable" class="code">fh</a></td>
+    <td>The new maildir file. (type: file)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#filesender" data-type="Instance Variable" class="code">filesender</a></td>
+    <td>A file sender which sends the message. (type: <a href="twisted.protocols.basic.FileSender.html"><code>FileSender</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#myproducer" data-type="Instance Variable" class="code">myproducer</a></td>
+    <td>The registered producer. (type: <a href="twisted.internet.interfaces.IProducer.html"><code>IProducer</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#streaming" data-type="Instance Variable" class="code">streaming</a></td>
+    <td>Indicates whether the registered producer provides a streaming interface. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#startUp" data-type="Method" class="code">startUp</a></td>
+    <td><span>Start transferring the message to the mailbox.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#registerProducer" data-type="Method" class="code">registerProducer</a></td>
+    <td><span>Register a producer and start asking it for data if it is 
+non-streaming.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#prodProducer" data-type="Method" class="code">prodProducer</a></td>
+    <td><span>Repeatedly prod a non-streaming producer to produce data.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#unregisterProducer" data-type="Method" class="code">unregisterProducer</a></td>
+    <td><span>Finish transferring the message to the mailbox.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#write" data-type="Method" class="code">write</a></td>
+    <td><span>Write data to the maildir file.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#fail" data-type="Method" class="code">fail</a></td>
+    <td><span>Fire the deferred to indicate the task completed with a failure.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#moveFileToNew" data-type="Method" class="code">moveFileToNew</a></td>
+    <td><span>Place the message in the <i>new/</i> directory, add it to the mailbox 
+and fire the deferred to indicate that the task has completed 
+successfully.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#createTempFile" data-type="Method" class="code">createTempFile</a></td>
+    <td><span>Create a temporary file to hold the message as it is being 
+transferred.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable">
+  
+  <a name="twisted.mail.maildir._MaildirMailboxAppendMessageTask.mbox">
+    
+  </a>
+  <a name="mbox">
+    
+  </a>
+  <div class="functionHeader">
+    mbox =
+  </div>
+  <div class="functionBody">
+    See <a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#__init__"><code>__init__</code></a>.
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.mail.maildir._MaildirMailboxAppendMessageTask.defer">
+    
+  </a>
+  <a name="defer">
+    
+  </a>
+  <div class="functionHeader">
+    defer =
+  </div>
+  <div class="functionBody">
+    A deferred which fires when the task has completed. (type: <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+which successfully returns <a href="http://docs.python.org/library/types.html#types.NoneType"><code>NoneType</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.mail.maildir._MaildirMailboxAppendMessageTask.opencall">
+    
+  </a>
+  <a name="opencall">
+    
+  </a>
+  <div class="functionHeader">
+    opencall =
+  </div>
+  <div class="functionBody">
+    A scheduled call to <a href="twisted.mail.maildir._MaildirMailboxAppendMessageTask.html#prodProducer"><code>prodProducer</code></a>. (type: <a href="twisted.internet.interfaces.IDelayedCall.html"><code>IDelayedCall</code></a>
+provider or <a href="http://docs.python.org/library/types.html#types.NoneType"><code>NoneType</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.mail.maildir._MaildirMailboxAppendMessageTask.msg">
+    
+  </a>
+  <a name="msg">
+    
+  </a>
+  <div class="functionHeader">
+    msg =
+  </div>
+  <div class="functionBody">
+    The message to add. (type: file-like object)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.mail.maildir._MaildirMailboxAppendMessageTask.tmpname">
+    
+  </a>
+  <a name="tmpname">
+    
+  </a>
+  <div class="functionHeader">
+    tmpname =
+  </div>
+  <div class="functionBody">
+    The pathname of the temporary file holding the message while it is being 
+transferred. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.mail.maildir._MaildirMailboxAppendMessageTask.fh">
+    
+  </a>
+  <a name="fh">
+    
+  </a>
+  <div class="functionHeader">
+    fh =
+  </div>
+  <div class="functionBody">
+    The new maildir file. (type: file)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.mail.maildir._MaildirMailboxAppendMessageTask.filesender">
+    
+  </a>
+  <a name="filesender">
+    
+  </a>
+  <div class="functionHeader">
+    filesender =
+  </div>
+  <div class="functionBody">
+    A file sender which sends the message. (type: <a href="twisted.protocols.basic.FileSender.html"><code>FileSender</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.mail.maildir._MaildirMailboxAppendMessageTask.myproducer">
+    
+  </a>
+  <a name="myproducer">
+    
+  </a>
+  <div class="functionHeader">
+    myproducer =
+  </div>
+  <div class="functionBody">
+    The registered producer. (type: <a href="twisted.internet.interfaces.IProducer.html"><code>IProducer</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.mail.maildir._MaildirMailboxAppendMessageTask.streaming">
+    
+  </a>
+  <a name="streaming">
+    
+  </a>
+  <div class="functionHeader">
+    streaming =
+  </div>
+  <div class="functionBody">
+    Indicates whether the registered producer provides a streaming interface. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.maildir._MaildirMailboxAppendMessageTask.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, mbox, msg):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.0.0/twisted/mail/maildir.py#L359">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">mbox</td><td>A maildir mailbox. (type: <a href="twisted.mail.maildir.MaildirMailbox.html"><code>MaildirMailbox</code></a>)</td></tr><tr><td></td><td class="fieldArg">msg</td><td>The message to add. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+or file-like object)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.maildir._MaildirMailboxAppendMessageTask.startUp">
+    
+  </a>
+  <a name="startUp">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    startUp(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.0.0/twisted/mail/maildir.py#L375">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Start transferring the message to the mailbox.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.maildir._MaildirMailboxAppendMessageTask.registerProducer">
+    
+  </a>
+  <a name="registerProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    registerProducer(self, producer, streaming):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.0.0/twisted/mail/maildir.py#L385">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#registerProducer" data-type="Method" class="code">twisted.internet.interfaces.IConsumer</a></div>
+    
+    <div><p>Register a producer and start asking it for data if it is 
+non-streaming.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">producer</td><td>A producer. (type: <a href="twisted.internet.interfaces.IProducer.html"><code>IProducer</code></a>)</td></tr><tr><td></td><td class="fieldArg">streaming</td><td>A flag indicating whether the producer provides a streaming interface. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.maildir._MaildirMailboxAppendMessageTask.prodProducer">
+    
+  </a>
+  <a name="prodProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    prodProducer(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.0.0/twisted/mail/maildir.py#L403">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Repeatedly prod a non-streaming producer to produce data.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.maildir._MaildirMailboxAppendMessageTask.unregisterProducer">
+    
+  </a>
+  <a name="unregisterProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    unregisterProducer(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.0.0/twisted/mail/maildir.py#L413">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#unregisterProducer" data-type="Method" class="code">twisted.internet.interfaces.IConsumer</a></div>
+    
+    <div><p>Finish transferring the message to the mailbox.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.maildir._MaildirMailboxAppendMessageTask.write">
+    
+  </a>
+  <a name="write">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    write(self, data):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.0.0/twisted/mail/maildir.py#L423">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#write" data-type="Method" class="code">twisted.internet.interfaces.IConsumer</a></div>
+    
+    <div><p>Write data to the maildir file.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">data</td><td>Data to be written to the file. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.maildir._MaildirMailboxAppendMessageTask.fail">
+    
+  </a>
+  <a name="fail">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    fail(self, err=None):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.0.0/twisted/mail/maildir.py#L436">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Fire the deferred to indicate the task completed with a failure.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">err</td><td>The error that occurred. (type: <a href="twisted.python.failure.Failure.html"><code>Failure</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.maildir._MaildirMailboxAppendMessageTask.moveFileToNew">
+    
+  </a>
+  <a name="moveFileToNew">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    moveFileToNew(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.0.0/twisted/mail/maildir.py#L451">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Place the message in the <i>new/</i> directory, add it to the mailbox 
+and fire the deferred to indicate that the task has completed 
+successfully.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.mail.maildir._MaildirMailboxAppendMessageTask.createTempFile">
+    
+  </a>
+  <a name="createTempFile">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    createTempFile(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.0.0/twisted/mail/maildir.py#L475">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Create a temporary file to hold the message as it is being 
+transferred.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2016-03-15 13:07:51.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script src="//www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

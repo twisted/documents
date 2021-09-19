@@ -1,0 +1,755 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.names.server.DNSServerFactory : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="apidocs.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" style="display: none" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>twisted.names.server.DNSServerFactory(<a href="twisted.internet.protocol.ServerFactory.html" data-type="Class" class="code">protocol.ServerFactory</a>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.names.html" data-type="Package" class="code">names</a>.<a href="twisted.names.server.html" data-type="Module" class="code">server</a></code>
+          <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/names/server.py#L27">View Source</a>
+          <a href="classIndex.html#twisted.names.server.DNSServerFactory">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      <div class="moduleDocstring">
+        <pre>Server factory and tracker for L{DNSProtocol} connections.  This class also
+provides records for responses to DNS queries.
+
+@ivar cache: A L{Cache&lt;twisted.names.cache.Cache&gt;} instance whose
+    C{cacheResult} method is called when a response is received from one of
+    C{clients}. Defaults to L{None} if no caches are specified. See
+    C{caches} of L{__init__} for more details.
+@type cache: L{Cache&lt;twisted.names.cache.Cache} or L{None}
+
+@ivar canRecurse: A flag indicating whether this server is capable of
+    performing recursive DNS resolution.
+@type canRecurse: L{bool}
+
+@ivar resolver: A L{resolve.ResolverChain} containing an ordered list of
+    C{authorities}, C{caches} and C{clients} to which queries will be
+    dispatched.
+@type resolver: L{resolve.ResolverChain}
+
+@ivar verbose: See L{__init__}
+
+@ivar connections: A list of all the connected L{DNSProtocol} instances
+    using this object as their controller.
+@type connections: C{list} of L{DNSProtocol} instances
+
+@ivar protocol: A callable used for building a DNS stream protocol. Called
+    by L{DNSServerFactory.buildProtocol} and passed the L{DNSServerFactory}
+    instance as the one and only positional argument.  Defaults to
+    L{dns.DNSProtocol}.
+@type protocol: L{IProtocolFactory} constructor
+
+@ivar _messageFactory: A response message constructor with an initializer
+     signature matching L{dns.Message.__init__}.
+@type _messageFactory: C{callable}</pre>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1872">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.names.server.DNSServerFactory.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.names.server.DNSServerFactory.html#buildProtocol" data-type="Method" class="code">buildProtocol</a></td>
+    <td><span>Create an instance of a subclass of Protocol.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.names.server.DNSServerFactory.html#connectionMade" data-type="Method" class="code">connectionMade</a></td>
+    <td><span>Track a newly connected <a href="twisted.names.dns.DNSProtocol.html"><code>DNSProtocol</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.names.server.DNSServerFactory.html#connectionLost" data-type="Method" class="code">connectionLost</a></td>
+    <td><span>Stop tracking a no-longer connected <a href="twisted.names.dns.DNSProtocol.html"><code>DNSProtocol</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.names.server.DNSServerFactory.html#sendReply" data-type="Method" class="code">sendReply</a></td>
+    <td><span>Send a response <code>message</code> to a given <code>address</code> via
+the supplied <code>protocol</code>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.names.server.DNSServerFactory.html#gotResolverResponse" data-type="Method" class="code">gotResolverResponse</a></td>
+    <td><span>A callback used by <a href="twisted.names.server.DNSServerFactory.html#handleQuery"><code>DNSServerFactory.handleQuery</code></a>
+for handling the deferred response from 
+<code>self.resolver.query</code>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.names.server.DNSServerFactory.html#gotResolverError" data-type="Method" class="code">gotResolverError</a></td>
+    <td><span>A callback used by <a href="twisted.names.server.DNSServerFactory.html#handleQuery"><code>DNSServerFactory.handleQuery</code></a>
+for handling deferred errors from <code>self.resolver.query</code>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.names.server.DNSServerFactory.html#handleQuery" data-type="Method" class="code">handleQuery</a></td>
+    <td><span>Called by <a href="twisted.names.server.DNSServerFactory.html#messageReceived"><code>DNSServerFactory.messageReceived</code></a>
+when a query message is received.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.names.server.DNSServerFactory.html#handleInverseQuery" data-type="Method" class="code">handleInverseQuery</a></td>
+    <td><span>Called by <a href="twisted.names.server.DNSServerFactory.html#messageReceived"><code>DNSServerFactory.messageReceived</code></a>
+when an inverse query message is received.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.names.server.DNSServerFactory.html#handleStatus" data-type="Method" class="code">handleStatus</a></td>
+    <td><span>Called by <a href="twisted.names.server.DNSServerFactory.html#messageReceived"><code>DNSServerFactory.messageReceived</code></a>
+when a status message is received.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.names.server.DNSServerFactory.html#handleNotify" data-type="Method" class="code">handleNotify</a></td>
+    <td><span>Called by <a href="twisted.names.server.DNSServerFactory.html#messageReceived"><code>DNSServerFactory.messageReceived</code></a>
+when a notify message is received.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.names.server.DNSServerFactory.html#handleOther" data-type="Method" class="code">handleOther</a></td>
+    <td><span>Called by <a href="twisted.names.server.DNSServerFactory.html#messageReceived"><code>DNSServerFactory.messageReceived</code></a>
+when a message with unrecognised <i>OPCODE</i> is received.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.names.server.DNSServerFactory.html#messageReceived" data-type="Method" class="code">messageReceived</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.names.server.DNSServerFactory.html#allowQuery" data-type="Method" class="code">allowQuery</a></td>
+    <td><span>Called by <a href="twisted.names.server.DNSServerFactory.html#messageReceived"><code>DNSServerFactory.messageReceived</code></a>
+to decide whether to process a received message or to reply with 
+<code>dns.EREFUSED</code>.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.names.server.DNSServerFactory.html#_verboseLog" data-type="Method" class="code">_verboseLog</a></td>
+    <td><span>Log a message only if verbose logging is enabled.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.names.server.DNSServerFactory.html#_responseFromMessage" data-type="Method" class="code">_responseFromMessage</a></td>
+    <td><span>Generate a <a href="twisted.names.dns.Message.html"><code>Message</code></a> instance 
+suitable for use as the response to <code>message</code>.</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.protocol.Factory.html" data-type="Class" class="code">Factory</a> (via <a href="twisted.internet.protocol.ServerFactory.html" data-type="Class" class="code">ServerFactory</a>):
+          </p>
+          <table class="children sortable" id="id1873">
+  
+  <tr class="baseclassmethod">
+    
+    <td>Class Method</td>
+    <td><a href="twisted.internet.protocol.Factory.html#forProtocol" data-type="Class Method" class="code">forProtocol</a></td>
+    <td><span>Create a factory for the given protocol.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Factory.html#logPrefix" data-type="Method" class="code">logPrefix</a></td>
+    <td><span>Describe this factory for log messages.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Factory.html#doStart" data-type="Method" class="code">doStart</a></td>
+    <td><span>Make sure startFactory is called.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Factory.html#doStop" data-type="Method" class="code">doStop</a></td>
+    <td><span>Make sure stopFactory is called.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Factory.html#startFactory" data-type="Method" class="code">startFactory</a></td>
+    <td><span>This will be called before I begin listening on a Port or Connector.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Factory.html#stopFactory" data-type="Method" class="code">stopFactory</a></td>
+    <td><span>This will be called before I stop listening on all Ports/Connectors.</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  <a name="twisted.names.server.DNSServerFactory.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, authorities=None, caches=None, clients=None, verbose=0):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/names/server.py#L69">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <pre>@param authorities: Resolvers which provide authoritative answers.
+@type authorities: L{list} of L{IResolver} providers
+
+@param caches: Resolvers which provide cached non-authoritative
+    answers. The first cache instance is assigned to
+    C{DNSServerFactory.cache} and its C{cacheResult} method will be
+    called when a response is received from one of C{clients}.
+@type caches: L{list} of L{Cache&lt;twisted.names.cache.Cache} instances
+
+@param clients: Resolvers which are capable of performing recursive DNS
+    lookups.
+@type clients: L{list} of L{IResolver} providers
+
+@param verbose: An integer controlling the verbosity of logging of
+    queries and responses. Default is C{0} which means no logging. Set
+    to C{2} to enable logging of full query and response messages.
+@param verbose: L{int}</pre>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.names.server.DNSServerFactory._verboseLog">
+    
+  </a>
+  <a name="_verboseLog">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _verboseLog(self, *args, **kwargs):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/names/server.py#L105">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Log a message only if verbose logging is enabled.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">args</td><td>Positional arguments which will be passed to <code>log.msg</code></td></tr><tr><td></td><td class="fieldArg">kwargs</td><td>Keyword arguments which will be passed to <code>log.msg</code></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.names.server.DNSServerFactory.buildProtocol">
+    
+  </a>
+  <a name="buildProtocol">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    buildProtocol(self, addr):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/names/server.py#L116">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocolFactory.html#buildProtocol" data-type="Method" class="code">twisted.internet.interfaces.IProtocolFactory</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Factory.html#buildProtocol" data-type="Method" class="code">twisted.internet.protocol.Factory.buildProtocol</a></div>
+    <div><p>Create an instance of a subclass of Protocol.</p>
+<p>The returned instance will handle input on an incoming server 
+connection, and an attribute "factory" pointing to the creating 
+factory.</p>
+<p>Alternatively, <code>None</code> may be returned to immediately close 
+the new connection.</p>
+<p>Override this method to alter how Protocol instances get created.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">addr</td><td>an object implementing <a href="twisted.internet.interfaces.IAddress.html"><code>twisted.internet.interfaces.IAddress</code></a></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.names.server.DNSServerFactory.connectionMade">
+    
+  </a>
+  <a name="connectionMade">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    connectionMade(self, protocol):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/names/server.py#L122">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Track a newly connected <a href="twisted.names.dns.DNSProtocol.html"><code>DNSProtocol</code></a>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">protocol</td><td>The protocol instance to be tracked. (type: <a href="twisted.names.dns.DNSProtocol.html"><code>dns.DNSProtocol</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.names.server.DNSServerFactory.connectionLost">
+    
+  </a>
+  <a name="connectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    connectionLost(self, protocol):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/names/server.py#L132">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Stop tracking a no-longer connected <a href="twisted.names.dns.DNSProtocol.html"><code>DNSProtocol</code></a>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">protocol</td><td>The tracked protocol instance to be which has been lost. (type: <a href="twisted.names.dns.DNSProtocol.html"><code>dns.DNSProtocol</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.names.server.DNSServerFactory.sendReply">
+    
+  </a>
+  <a name="sendReply">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    sendReply(self, protocol, message, address):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/names/server.py#L143">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Send a response <code>message</code> to a given <code>address</code> via
+the supplied <code>protocol</code>.</p>
+<p>Message payload will be logged if <code>DNSServerFactory.verbose</code> 
+is <code>&gt;1</code>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">protocol</td><td>The DNS protocol instance to which to send the message. (type: <a href="twisted.names.dns.DNSDatagramProtocol.html"><code>dns.DNSDatagramProtocol</code></a>
+or <a href="twisted.names.dns.DNSProtocol.html"><code>dns.DNSProtocol</code></a>)</td></tr><tr><td></td><td class="fieldArg">message</td><td>The DNS message to be sent. (type: <a href="twisted.names.dns.Message.html"><code>dns.Message</code></a>)</td></tr><tr><td></td><td class="fieldArg">address</td><td>The address to which the message will be sent or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+if <code>protocol</code> is a stream protocol. (type: <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>
+or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.names.server.DNSServerFactory._responseFromMessage">
+    
+  </a>
+  <a name="_responseFromMessage">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _responseFromMessage(self, message, rCode=dns.OK, answers=None, authority=None, additional=None):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/names/server.py#L181">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Generate a <a href="twisted.names.dns.Message.html"><code>Message</code></a> instance 
+suitable for use as the response to <code>message</code>.</p>
+<p><code>queries</code> will be copied from the request to the 
+response.</p>
+<p><code>rCode</code>, <code>answers</code>, <code>authority</code> and 
+<code>additional</code> will be assigned to the response, if supplied.</p>
+<p>The <code>recAv</code> flag will be set on the response if the 
+<code>canRecurse</code> flag on this <a href="twisted.names.server.DNSServerFactory.html"><code>DNSServerFactory</code></a>
+is set to <a href="http://docs.python.org/library/constants.html#True"><code>True</code></a>.</p>
+<p>The <code>auth</code> flag will be set on the response if *any* of the 
+supplied <code>answers</code> have their <code>auth</code> flag set to <a href="http://docs.python.org/library/constants.html#True"><code>True</code></a>.</p>
+<p>The response will have the same <code>maxSize</code> as the request.</p>
+<p>Additionally, the response will have a <code>timeReceived</code> 
+attribute whose value is that of the original request and the</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">message</td><td>The request message (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr><tr><td></td><td class="fieldArg">rCode</td><td>The response code which will be assigned to the response.</td></tr><tr><td></td><td class="fieldArg">answers</td><td>An optional list of answer records which will be assigned to the response. (type: <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="twisted.names.dns.RRHeader.html"><code>dns.RRHeader</code></a>)</td></tr><tr><td></td><td class="fieldArg">authority</td><td>An optional list of authority records which will be assigned to the 
+response. (type: <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="twisted.names.dns.RRHeader.html"><code>dns.RRHeader</code></a>)</td></tr><tr><td></td><td class="fieldArg">additional</td><td>An optional list of additional records which will be assigned to the 
+response. (type: <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="twisted.names.dns.RRHeader.html"><code>dns.RRHeader</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A response <a href="twisted.names.dns.Message.html"><code>Message</code></a> instance. (type: <a href="twisted.names.dns.Message.html"><code>Message</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><a href="twisted.names.dns.html#_responseFromMessage"><code>dns._responseFromMessage</code></a></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.names.server.DNSServerFactory.gotResolverResponse">
+    
+  </a>
+  <a name="gotResolverResponse">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    gotResolverResponse(self, (ans, auth, add), protocol, message, address):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/names/server.py#L263">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>A callback used by <a href="twisted.names.server.DNSServerFactory.html#handleQuery"><code>DNSServerFactory.handleQuery</code></a>
+for handling the deferred response from 
+<code>self.resolver.query</code>.</p>
+<p>Constructs a response message by combining the original query message 
+with the resolved answer, authority and additional records.</p>
+<p>Marks the response message as authoritative if any of the resolved 
+answers are found to be authoritative.</p>
+<p>The resolved answers count will be logged if 
+<code>DNSServerFactory.verbose</code> is <code>&gt;1</code>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">ans</td><td>A list of answer records (type: <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="twisted.names.dns.RRHeader.html"><code>dns.RRHeader</code></a> 
+instances)</td></tr><tr><td></td><td class="fieldArg">auth</td><td>A list of authority records (type: <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="twisted.names.dns.RRHeader.html"><code>dns.RRHeader</code></a> 
+instances)</td></tr><tr><td></td><td class="fieldArg">add</td><td>A list of additional records (type: <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="twisted.names.dns.RRHeader.html"><code>dns.RRHeader</code></a> 
+instances)</td></tr><tr><td></td><td class="fieldArg">protocol</td><td>The DNS protocol instance to which to send a response message. (type: <a href="twisted.names.dns.DNSDatagramProtocol.html"><code>dns.DNSDatagramProtocol</code></a>
+or <a href="twisted.names.dns.DNSProtocol.html"><code>dns.DNSProtocol</code></a>)</td></tr><tr><td></td><td class="fieldArg">message</td><td>The original DNS query message for which a response message will be 
+constructed. (type: <a href="twisted.names.dns.Message.html"><code>dns.Message</code></a>)</td></tr><tr><td></td><td class="fieldArg">address</td><td>The address to which the response message will be sent or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+if <code>protocol</code> is a stream protocol. (type: <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>
+or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.names.server.DNSServerFactory.gotResolverError">
+    
+  </a>
+  <a name="gotResolverError">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    gotResolverError(self, failure, protocol, message, address):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/names/server.py#L312">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>A callback used by <a href="twisted.names.server.DNSServerFactory.html#handleQuery"><code>DNSServerFactory.handleQuery</code></a>
+for handling deferred errors from <code>self.resolver.query</code>.</p>
+<p>Constructs a response message from the original query message by 
+assigning a suitable error code to <code>rCode</code>.</p>
+<p>An error message will be logged if <code>DNSServerFactory.verbose</code>
+is <code>&gt;1</code>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">failure</td><td>The reason for the failed resolution (as reported by 
+<code>self.resolver.query</code>). (type: <a href="twisted.python.failure.Failure.html"><code>Failure</code></a>)</td></tr><tr><td></td><td class="fieldArg">protocol</td><td>The DNS protocol instance to which to send a response message. (type: <a href="twisted.names.dns.DNSDatagramProtocol.html"><code>dns.DNSDatagramProtocol</code></a>
+or <a href="twisted.names.dns.DNSProtocol.html"><code>dns.DNSProtocol</code></a>)</td></tr><tr><td></td><td class="fieldArg">message</td><td>The original DNS query message for which a response message will be 
+constructed. (type: <a href="twisted.names.dns.Message.html"><code>dns.Message</code></a>)</td></tr><tr><td></td><td class="fieldArg">address</td><td>The address to which the response message will be sent or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+if <code>protocol</code> is a stream protocol. (type: <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>
+or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.names.server.DNSServerFactory.handleQuery">
+    
+  </a>
+  <a name="handleQuery">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    handleQuery(self, message, protocol, address):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/names/server.py#L350">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Called by <a href="twisted.names.server.DNSServerFactory.html#messageReceived"><code>DNSServerFactory.messageReceived</code></a>
+when a query message is received.</p>
+<p>Takes the first query from the received message and dispatches it to 
+<code>self.resolver.query</code>.</p>
+<p>Adds callbacks <a href="twisted.names.server.DNSServerFactory.html#gotResolverResponse"><code>DNSServerFactory.gotResolverResponse</code></a>
+and <a href="twisted.names.server.DNSServerFactory.html#gotResolverError"><code>DNSServerFactory.gotResolverError</code></a>
+to the resulting deferred.</p>
+<p>Note: Multiple queries in a single message are not supported because 
+there is no standard way to respond with multiple rCodes, auth, etc. This 
+is consistent with other DNS server implementations. See <a href="http://tools.ietf.org/html/draft-ietf-dnsext-edns1-03" target="_top">http://tools.ietf.org/html/draft-ietf-dnsext-edns1-03</a> for
+a proposed solution.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">protocol</td><td>The DNS protocol instance to which to send a response message. (type: <a href="twisted.names.dns.DNSDatagramProtocol.html"><code>dns.DNSDatagramProtocol</code></a>
+or <a href="twisted.names.dns.DNSProtocol.html"><code>dns.DNSProtocol</code></a>)</td></tr><tr><td></td><td class="fieldArg">message</td><td>The original DNS query message for which a response message will be 
+constructed. (type: <a href="twisted.names.dns.Message.html"><code>dns.Message</code></a>)</td></tr><tr><td></td><td class="fieldArg">address</td><td>The address to which the response message will be sent or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+if <code>protocol</code> is a stream protocol. (type: <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>
+or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A <code>deferred</code> which fires with the resolved result or error of 
+the first query in <code>message</code>. (type: <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.names.server.DNSServerFactory.handleInverseQuery">
+    
+  </a>
+  <a name="handleInverseQuery">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    handleInverseQuery(self, message, protocol, address):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/names/server.py#L392">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Called by <a href="twisted.names.server.DNSServerFactory.html#messageReceived"><code>DNSServerFactory.messageReceived</code></a>
+when an inverse query message is received.</p>
+<p>Replies with a <i>Not Implemented</i> error by default.</p>
+<p>An error message will be logged if <code>DNSServerFactory.verbose</code>
+is <code>&gt;1</code>.</p>
+<p>Override in a subclass.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">protocol</td><td>The DNS protocol instance to which to send a response message. (type: <a href="twisted.names.dns.DNSDatagramProtocol.html"><code>dns.DNSDatagramProtocol</code></a>
+or <a href="twisted.names.dns.DNSProtocol.html"><code>dns.DNSProtocol</code></a>)</td></tr><tr><td></td><td class="fieldArg">message</td><td>The original DNS query message for which a response message will be 
+constructed. (type: <a href="twisted.names.dns.Message.html"><code>dns.Message</code></a>)</td></tr><tr><td></td><td class="fieldArg">address</td><td>The address to which the response message will be sent or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+if <code>protocol</code> is a stream protocol. (type: <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>
+or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.names.server.DNSServerFactory.handleStatus">
+    
+  </a>
+  <a name="handleStatus">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    handleStatus(self, message, protocol, address):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/names/server.py#L420">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Called by <a href="twisted.names.server.DNSServerFactory.html#messageReceived"><code>DNSServerFactory.messageReceived</code></a>
+when a status message is received.</p>
+<p>Replies with a <i>Not Implemented</i> error by default.</p>
+<p>An error message will be logged if <code>DNSServerFactory.verbose</code>
+is <code>&gt;1</code>.</p>
+<p>Override in a subclass.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">protocol</td><td>The DNS protocol instance to which to send a response message. (type: <a href="twisted.names.dns.DNSDatagramProtocol.html"><code>dns.DNSDatagramProtocol</code></a>
+or <a href="twisted.names.dns.DNSProtocol.html"><code>dns.DNSProtocol</code></a>)</td></tr><tr><td></td><td class="fieldArg">message</td><td>The original DNS query message for which a response message will be 
+constructed. (type: <a href="twisted.names.dns.Message.html"><code>dns.Message</code></a>)</td></tr><tr><td></td><td class="fieldArg">address</td><td>The address to which the response message will be sent or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+if <code>protocol</code> is a stream protocol. (type: <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>
+or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.names.server.DNSServerFactory.handleNotify">
+    
+  </a>
+  <a name="handleNotify">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    handleNotify(self, message, protocol, address):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/names/server.py#L448">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Called by <a href="twisted.names.server.DNSServerFactory.html#messageReceived"><code>DNSServerFactory.messageReceived</code></a>
+when a notify message is received.</p>
+<p>Replies with a <i>Not Implemented</i> error by default.</p>
+<p>An error message will be logged if <code>DNSServerFactory.verbose</code>
+is <code>&gt;1</code>.</p>
+<p>Override in a subclass.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">protocol</td><td>The DNS protocol instance to which to send a response message. (type: <a href="twisted.names.dns.DNSDatagramProtocol.html"><code>dns.DNSDatagramProtocol</code></a>
+or <a href="twisted.names.dns.DNSProtocol.html"><code>dns.DNSProtocol</code></a>)</td></tr><tr><td></td><td class="fieldArg">message</td><td>The original DNS query message for which a response message will be 
+constructed. (type: <a href="twisted.names.dns.Message.html"><code>dns.Message</code></a>)</td></tr><tr><td></td><td class="fieldArg">address</td><td>The address to which the response message will be sent or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+if <code>protocol</code> is a stream protocol. (type: <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>
+or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.names.server.DNSServerFactory.handleOther">
+    
+  </a>
+  <a name="handleOther">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    handleOther(self, message, protocol, address):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/names/server.py#L476">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Called by <a href="twisted.names.server.DNSServerFactory.html#messageReceived"><code>DNSServerFactory.messageReceived</code></a>
+when a message with unrecognised <i>OPCODE</i> is received.</p>
+<p>Replies with a <i>Not Implemented</i> error by default.</p>
+<p>An error message will be logged if <code>DNSServerFactory.verbose</code>
+is <code>&gt;1</code>.</p>
+<p>Override in a subclass.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">protocol</td><td>The DNS protocol instance to which to send a response message. (type: <a href="twisted.names.dns.DNSDatagramProtocol.html"><code>dns.DNSDatagramProtocol</code></a>
+or <a href="twisted.names.dns.DNSProtocol.html"><code>dns.DNSProtocol</code></a>)</td></tr><tr><td></td><td class="fieldArg">message</td><td>The original DNS query message for which a response message will be 
+constructed. (type: <a href="twisted.names.dns.Message.html"><code>dns.Message</code></a>)</td></tr><tr><td></td><td class="fieldArg">address</td><td>The address to which the response message will be sent or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+if <code>protocol</code> is a stream protocol. (type: <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>
+or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.names.server.DNSServerFactory.messageReceived">
+    
+  </a>
+  <a name="messageReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    messageReceived(self, message, proto, address=None):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/names/server.py#L505">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p><a href="twisted.names.server.DNSServerFactory.html#messageReceived"><code>DNSServerFactory.messageReceived</code></a>
+is called by protocols which are under the control of this <a href="twisted.names.server.DNSServerFactory.html"><code>DNSServerFactory</code></a>
+whenever they receive a DNS query message or an unexpected / duplicate / 
+late DNS response message.</p>
+<p><a href="twisted.names.server.DNSServerFactory.html#allowQuery"><code>DNSServerFactory.allowQuery</code></a>
+is called with the received message, protocol and origin address. If it 
+returns <a href="http://docs.python.org/library/constants.html#False"><code>False</code></a>,
+a <code>dns.EREFUSED</code> response is sent back to the client.</p>
+<p>Otherwise the received message is dispatched to one of <a href="twisted.names.server.DNSServerFactory.html#handleQuery"><code>DNSServerFactory.handleQuery</code></a>,
+<a href="twisted.names.server.DNSServerFactory.html#handleInverseQuery"><code>DNSServerFactory.handleInverseQuery</code></a>,
+<a href="twisted.names.server.DNSServerFactory.html#handleStatus"><code>DNSServerFactory.handleStatus</code></a>,
+<a href="twisted.names.server.DNSServerFactory.html#handleNotify"><code>DNSServerFactory.handleNotify</code></a>,
+or <a href="twisted.names.server.DNSServerFactory.html#handleOther"><code>DNSServerFactory.handleOther</code></a>
+depending on the <i>OPCODE</i> of the received message.</p>
+<p>If <code>DNSServerFactory.verbose</code> is <code>&gt;0</code> all 
+received messages will be logged in more or less detail depending on the 
+value of <code>verbose</code>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">message</td><td>The DNS message that was received. (type: <a href="twisted.names.dns.Message.html"><code>dns.Message</code></a>)</td></tr><tr><td></td><td class="fieldArg">proto</td><td>The DNS protocol instance which received the message (type: <a href="twisted.names.dns.DNSDatagramProtocol.html"><code>dns.DNSDatagramProtocol</code></a>
+or <a href="twisted.names.dns.DNSProtocol.html"><code>dns.DNSProtocol</code></a>)</td></tr><tr><td></td><td class="fieldArg">address</td><td>The address from which the message was received. Only provided for messages
+received by datagram protocols. The origin of Messages received from stream
+protocols can be gleaned from the protocol <code>transport</code> 
+attribute. (type: <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>
+or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.names.server.DNSServerFactory.allowQuery">
+    
+  </a>
+  <a name="allowQuery">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    allowQuery(self, message, protocol, address):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/names/server.py#L569">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Called by <a href="twisted.names.server.DNSServerFactory.html#messageReceived"><code>DNSServerFactory.messageReceived</code></a>
+to decide whether to process a received message or to reply with 
+<code>dns.EREFUSED</code>.</p>
+<p>This default implementation permits anything but empty queries.</p>
+<p>Override in a subclass to implement alternative policies.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">message</td><td>The DNS message that was received. (type: <a href="twisted.names.dns.Message.html"><code>dns.Message</code></a>)</td></tr><tr><td></td><td class="fieldArg">protocol</td><td>The DNS protocol instance which received the message (type: <a href="twisted.names.dns.DNSDatagramProtocol.html"><code>dns.DNSDatagramProtocol</code></a>
+or <a href="twisted.names.dns.DNSProtocol.html"><code>dns.DNSProtocol</code></a>)</td></tr><tr><td></td><td class="fieldArg">address</td><td>The address from which the message was received. Only provided for messages
+received by datagram protocols. The origin of Messages received from stream
+protocols can be gleaned from the protocol <code>transport</code> 
+attribute. (type: <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>
+or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="http://docs.python.org/library/constants.html#True"><code>True</code></a>
+if the received message contained one or more queries, else <a href="http://docs.python.org/library/constants.html#False"><code>False</code></a>. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2015-08-04 16:20:17.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="http://www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

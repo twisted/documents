@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.logger.LimitedHistoryLogObserver : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="apidocs.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" style="display: none" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>twisted.logger.LimitedHistoryLogObserver(<span title="object">object</span>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.logger.html" data-type="Package" class="code">logger</a></code>
+          <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/logger/_buffer.py#L21">View Source</a>
+          <a href="classIndex.html#twisted.logger.LimitedHistoryLogObserver">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Implements interfaces: <a href="twisted.logger.ILogObserver.html" data-type="Interface" class="code">twisted.logger.ILogObserver</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p><a href="twisted.logger.ILogObserver.html"><code>ILogObserver</code></a>
+that stores events in a buffer of a fixed size:</p>
+<pre class="literalblock">
+   &gt;&gt;&gt; from twisted.logger import LimitedHistoryLogObserver
+   &gt;&gt;&gt; history = LimitedHistoryLogObserver(5)
+   &gt;&gt;&gt; for n in range(10): history({'n': n})
+   ...
+   &gt;&gt;&gt; repeats = []
+   &gt;&gt;&gt; history.replayTo(repeats.append)
+   &gt;&gt;&gt; len(repeats)
+   5
+   &gt;&gt;&gt; repeats
+   [{'n': 5}, {'n': 6}, {'n': 7}, {'n': 8}, {'n': 9}]
+   &gt;&gt;&gt;
+</pre><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1210">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.logger.LimitedHistoryLogObserver.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.logger.LimitedHistoryLogObserver.html#__call__" data-type="Method" class="code">__call__</a></td>
+    <td><span>Log an event.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.logger.LimitedHistoryLogObserver.html#replayTo" data-type="Method" class="code">replayTo</a></td>
+    <td><span>Re-play the buffered events to another log observer.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  <a name="twisted.logger.LimitedHistoryLogObserver.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, size=_DEFAULT_BUFFER_MAXIMUM):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/logger/_buffer.py#L38">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">size</td><td>The maximum number of events to buffer.  If <code>None</code>, the buffer 
+is unbounded. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.logger.LimitedHistoryLogObserver.__call__">
+    
+  </a>
+  <a name="__call__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __call__(self, event):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/logger/_buffer.py#L47">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.logger.ILogObserver.html#__call__" data-type="Method" class="code">twisted.logger.ILogObserver</a></div>
+    <div><p>Log an event.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">event</td><td>A dictionary with arbitrary keys as defined by the application emitting 
+logging events, as well as keys added by the logging system.  The logging 
+system reserves the right to set any key beginning with the prefix 
+<code>"log_"</code>; applications should not use any key so 
+named.  Currently, the following keys are used by the logging system in 
+some way, if they are present (they are all optional):
+<ul>
+  <li>
+    <code>"log_format"</code>: a PEP-3101-style format string 
+    which draws upon the keys in the event as its values, used to format 
+    the event for human consumption.
+  </li>
+  <li>
+    <code>"log_flattened"</code>: a dictionary mapping keys 
+    derived from the names and format values used in the 
+    <code>"log_format"</code> string to their values.  This is 
+    used to preserve some structured information for use with <a href="twisted.logger.html#extractField"><code>twisted.logger.extractField</code></a>.
+  </li>
+  <li>
+    <code>"log_trace"</code>: A <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+    designed to capture information about which <a href="twisted.logger.LogPublisher.html"><code>LogPublisher</code></a>s 
+    have observed the event.
+  </li>
+  <li>
+    <code>"log_level"</code>: a <a href="twisted.logger.LogLevel.html"><code>log level</code></a> 
+    constant, indicating the importance of and audience for this event.
+  </li>
+  <li>
+    <code>"log_namespace"</code>: a namespace for the emitter of 
+    the event, given as a unicode string.
+  </li>
+  <li>
+    <code>"log_system"</code>: a string indicating the network 
+    event or method call which resulted in the message being logged.
+  </li>
+</ul> (type: <code>dict</code> with (native) <code>str</code> keys.)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.logger.LimitedHistoryLogObserver.replayTo">
+    
+  </a>
+  <a name="replayTo">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    replayTo(self, otherObserver):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/logger/_buffer.py#L51">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Re-play the buffered events to another log observer.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">otherObserver</td><td>An observer to replay events to. (type: <a href="twisted.logger.ILogObserver.html"><code>ILogObserver</code></a>)</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2015-08-04 16:20:17.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="http://www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

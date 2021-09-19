@@ -1,0 +1,228 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.flow.stage.Callback&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">Class t.f.s.Callback(<a href="twisted.flow.base.Stage.html">Stage</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.flow.html">flow</a>.<a href="twisted.flow.stage.html">stage</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/flow/stage.py#L188">View Source</a>
+      <a href="classIndex.html#twisted.flow.stage.Callback">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div><p>Converts a single-thread push interface into a pull interface.</p>
+<p>Once this stage is constructed, its result, errback, and finish member 
+variables may be called by a producer.  The results of which can be 
+obtained by yielding the Callback and then calling next().</p>
+For example:
+<pre class="literalblock">
+   source = flow.Callback()
+   reactor.callLater(0, lambda: source.result(&quot;one&quot;))
+   reactor.callLater(.5, lambda: source.result(&quot;two&quot;))
+   reactor.callLater(1, lambda: source.finish())
+   printFlow(source)
+</pre>
+<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3606">
+  
+  
+<tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.flow.stage.Callback.Instruction.html">Instruction</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.flow.stage.Callback.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.flow.stage.Callback.html#result">result</a></td>
+    <td><span>called by the producer to indicate a successful result
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.flow.stage.Callback.html#finish">finish</a></td>
+    <td><span>called by producer to indicate successful stream completion
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.flow.stage.Callback.html#errback">errback</a></td>
+    <td><span>called by the producer in case of Failure
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.flow.stage.Callback.html#_yield">_yield</a></td>
+    <td><span>executed during a yield statement by previous stage
+</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.flow.base.Stage.html">Stage</a>:
+        </p>
+        <table class="children sortable" id="id3607">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.flow.base.Stage.html#__iter__">__iter__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.flow.base.Stage.html#next">next</a></td>
+    <td><span>return current result
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.flow.stage.Callback.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, *trap):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/flow/stage.py#L213" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.flow.base.Stage.html#__init__">twisted.flow.base.Stage.__init__</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.flow.stage.Callback.result">
+    
+  </a>
+  <a name="result">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    result(self, result):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/flow/stage.py#L217" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>called by the producer to indicate a successful result
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.flow.stage.Callback.finish">
+    
+  </a>
+  <a name="finish">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    finish(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/flow/stage.py#L221" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>called by producer to indicate successful stream completion
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.flow.stage.Callback.errback">
+    
+  </a>
+  <a name="errback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    errback(self, fail):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/flow/stage.py#L226" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>called by the producer in case of Failure
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.flow.stage.Callback._yield">
+    
+  </a>
+  <a name="_yield">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _yield(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/flow/stage.py#L230" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.flow.base.Stage.html#_yield">twisted.flow.base.Stage._yield</a></div>
+    <div><p>executed during a yield statement by previous stage</p>
+This method is private within the scope of the flow module, it is used 
+by one stage in the flow to ask a subsequent stage to produce its value.  
+The result of the yield is then stored in self.result and is an instance of
+Failure if a problem occurred.
+<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2009-01-01 15:43:32.
+    </address>
+  </body>
+</html>

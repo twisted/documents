@@ -1,0 +1,3786 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.words.protocols.irc : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="apidocs.css" type="text/css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code>twisted.words.protocols.irc</code> <small>module documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.words.html" data-type="Package" class="code">words</a>.<a href="twisted.words.protocols.html" data-type="Package" class="code">protocols</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-20.3.0/src/twisted/words/protocols/irc.py">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>Internet Relay Chat protocol for client and server.</p><h1>Future Plans</h1><p>The way the IRCClient class works here encourages people to implement IRC clients by subclassing the ephemeral protocol class, and it tends to end up with way more state than it should for an object which will be destroyed as soon as the TCP transport drops.  Someone oughta do something about that, ya know?</p><p>The DCC support needs to have more hooks for the client for it to be able to ask the user things like "Do you want to accept this session?" and "Transfer #2 is 67% done." and otherwise manage the DCC sessions.</p><p>Test coverage needs to be better.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Author</td><td colspan="2">Kevin Turner</td></tr><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2">RFC 1459: Internet Relay Chat Protocol</td></tr><tr><td></td><td colspan="2">RFC 2812: Internet Relay Chat: Client Protocol</td></tr><tr><td></td><td colspan="2"><a href="http://www.irchelp.org/irchelp/rfc/ctcpspec.html" target="_top">The Client-To-Client-Protocol</a></td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3792">
+  
+  <tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#MAX_COMMAND_LENGTH" data-type="Variable" class="code">MAX_COMMAND_LENGTH</a></td>
+    <td><span>The maximum length of a command, as defined by RFC 2812 section 2.3.</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#attributes" data-type="Variable" class="code">attributes</a></td>
+    <td><span>Singleton instance of <a href="twisted.words.protocols.irc._CharacterAttributes.html"><code>_CharacterAttributes</code></a>, used for constructing formatted text information.</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#NUL" data-type="Variable" class="code">NUL</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#CR" data-type="Variable" class="code">CR</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#NL" data-type="Variable" class="code">NL</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#SPC" data-type="Variable" class="code">SPC</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#CHANNEL_PREFIXES" data-type="Variable" class="code">CHANNEL_PREFIXES</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.words.protocols.irc.IRCBadMessage.html" data-type="Class" class="code">IRCBadMessage</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.words.protocols.irc.IRCPasswordMismatch.html" data-type="Class" class="code">IRCPasswordMismatch</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.words.protocols.irc.IRCBadModes.html" data-type="Class" class="code">IRCBadModes</a></td>
+    <td><span>A malformed mode was encountered while attempting to parse a mode string.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.words.protocols.irc.html#parsemsg" data-type="Function" class="code">parsemsg</a></td>
+    <td><span>Breaks a message from an IRC server into its prefix, command, and arguments.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.words.protocols.irc.html#split" data-type="Function" class="code">split</a></td>
+    <td><span>Split a string into multiple lines.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.words.protocols.irc.UnhandledCommand.html" data-type="Class" class="code">UnhandledCommand</a></td>
+    <td><span>A command dispatcher could not locate an appropriate command handler.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.words.protocols.irc.html#parseModes" data-type="Function" class="code">parseModes</a></td>
+    <td><span>Parse an IRC mode string.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.words.protocols.irc.IRC.html" data-type="Class" class="code">IRC</a></td>
+    <td><span>Internet Relay Chat server protocol.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.words.protocols.irc.ServerSupportedFeatures.html" data-type="Class" class="code">ServerSupportedFeatures</a></td>
+    <td><span>Handle ISUPPORT messages.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.words.protocols.irc.IRCClient.html" data-type="Class" class="code">IRCClient</a></td>
+    <td><span>Internet Relay Chat client protocol, with sprinkles.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.words.protocols.irc.html#dccParseAddress" data-type="Function" class="code">dccParseAddress</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.words.protocols.irc.DccFileReceiveBasic.html" data-type="Class" class="code">DccFileReceiveBasic</a></td>
+    <td><span>Bare protocol to receive a Direct Client Connection SEND stream.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.words.protocols.irc.DccSendProtocol.html" data-type="Class" class="code">DccSendProtocol</a></td>
+    <td><span>Protocol for an outgoing Direct Client Connection SEND.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.words.protocols.irc.DccSendFactory.html" data-type="Class" class="code">DccSendFactory</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.words.protocols.irc.html#fileSize" data-type="Function" class="code">fileSize</a></td>
+    <td><span>I'll try my damndest to determine the size of this file object.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.words.protocols.irc.DccChat.html" data-type="Class" class="code">DccChat</a></td>
+    <td><span>Direct Client Connection protocol type CHAT.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.words.protocols.irc.DccChatFactory.html" data-type="Class" class="code">DccChatFactory</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.words.protocols.irc.html#dccDescribe" data-type="Function" class="code">dccDescribe</a></td>
+    <td><span>Given the data chunk from a DCC query, return a descriptive string.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.words.protocols.irc.DccFileReceive.html" data-type="Class" class="code">DccFileReceive</a></td>
+    <td><span>Higher-level coverage for getting a file from DCC SEND.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.words.protocols.irc.html#parseFormattedText" data-type="Function" class="code">parseFormattedText</a></td>
+    <td><span>Parse text containing IRC formatting codes into structured information.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.words.protocols.irc.html#assembleFormattedText" data-type="Function" class="code">assembleFormattedText</a></td>
+    <td><span>Assemble formatted text from structured information.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.words.protocols.irc.html#stripFormatting" data-type="Function" class="code">stripFormatting</a></td>
+    <td><span>Remove all formatting codes from <code>text</code>, leaving only the text.</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#X_DELIM" data-type="Variable" class="code">X_DELIM</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.words.protocols.irc.html#ctcpExtract" data-type="Function" class="code">ctcpExtract</a></td>
+    <td><span>Extract CTCP data from a string.</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#M_QUOTE" data-type="Variable" class="code">M_QUOTE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#mQuoteTable" data-type="Variable" class="code">mQuoteTable</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#mDequoteTable" data-type="Variable" class="code">mDequoteTable</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#mEscape_re" data-type="Variable" class="code">mEscape_re</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.words.protocols.irc.html#lowQuote" data-type="Function" class="code">lowQuote</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.words.protocols.irc.html#lowDequote" data-type="Function" class="code">lowDequote</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#X_QUOTE" data-type="Variable" class="code">X_QUOTE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#xQuoteTable" data-type="Variable" class="code">xQuoteTable</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#xDequoteTable" data-type="Variable" class="code">xDequoteTable</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#xEscape_re" data-type="Variable" class="code">xEscape_re</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.words.protocols.irc.html#ctcpQuote" data-type="Function" class="code">ctcpQuote</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.words.protocols.irc.html#ctcpDequote" data-type="Function" class="code">ctcpDequote</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.words.protocols.irc.html#ctcpStringify" data-type="Function" class="code">ctcpStringify</a></td>
+    <td><span></span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_WELCOME" data-type="Variable" class="code">RPL_WELCOME</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_YOURHOST" data-type="Variable" class="code">RPL_YOURHOST</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_CREATED" data-type="Variable" class="code">RPL_CREATED</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_MYINFO" data-type="Variable" class="code">RPL_MYINFO</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_ISUPPORT" data-type="Variable" class="code">RPL_ISUPPORT</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_BOUNCE" data-type="Variable" class="code">RPL_BOUNCE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_USERHOST" data-type="Variable" class="code">RPL_USERHOST</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_ISON" data-type="Variable" class="code">RPL_ISON</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_AWAY" data-type="Variable" class="code">RPL_AWAY</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_UNAWAY" data-type="Variable" class="code">RPL_UNAWAY</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_NOWAWAY" data-type="Variable" class="code">RPL_NOWAWAY</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_WHOISUSER" data-type="Variable" class="code">RPL_WHOISUSER</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_WHOISSERVER" data-type="Variable" class="code">RPL_WHOISSERVER</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_WHOISOPERATOR" data-type="Variable" class="code">RPL_WHOISOPERATOR</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_WHOISIDLE" data-type="Variable" class="code">RPL_WHOISIDLE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_ENDOFWHOIS" data-type="Variable" class="code">RPL_ENDOFWHOIS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_WHOISCHANNELS" data-type="Variable" class="code">RPL_WHOISCHANNELS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_WHOWASUSER" data-type="Variable" class="code">RPL_WHOWASUSER</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_ENDOFWHOWAS" data-type="Variable" class="code">RPL_ENDOFWHOWAS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_LISTSTART" data-type="Variable" class="code">RPL_LISTSTART</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_LIST" data-type="Variable" class="code">RPL_LIST</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_LISTEND" data-type="Variable" class="code">RPL_LISTEND</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_UNIQOPIS" data-type="Variable" class="code">RPL_UNIQOPIS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_CHANNELMODEIS" data-type="Variable" class="code">RPL_CHANNELMODEIS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_NOTOPIC" data-type="Variable" class="code">RPL_NOTOPIC</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_TOPIC" data-type="Variable" class="code">RPL_TOPIC</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_INVITING" data-type="Variable" class="code">RPL_INVITING</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_SUMMONING" data-type="Variable" class="code">RPL_SUMMONING</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_INVITELIST" data-type="Variable" class="code">RPL_INVITELIST</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_ENDOFINVITELIST" data-type="Variable" class="code">RPL_ENDOFINVITELIST</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_EXCEPTLIST" data-type="Variable" class="code">RPL_EXCEPTLIST</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_ENDOFEXCEPTLIST" data-type="Variable" class="code">RPL_ENDOFEXCEPTLIST</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_VERSION" data-type="Variable" class="code">RPL_VERSION</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_WHOREPLY" data-type="Variable" class="code">RPL_WHOREPLY</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_ENDOFWHO" data-type="Variable" class="code">RPL_ENDOFWHO</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_NAMREPLY" data-type="Variable" class="code">RPL_NAMREPLY</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_ENDOFNAMES" data-type="Variable" class="code">RPL_ENDOFNAMES</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_LINKS" data-type="Variable" class="code">RPL_LINKS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_ENDOFLINKS" data-type="Variable" class="code">RPL_ENDOFLINKS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_BANLIST" data-type="Variable" class="code">RPL_BANLIST</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_ENDOFBANLIST" data-type="Variable" class="code">RPL_ENDOFBANLIST</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_INFO" data-type="Variable" class="code">RPL_INFO</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_ENDOFINFO" data-type="Variable" class="code">RPL_ENDOFINFO</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_MOTDSTART" data-type="Variable" class="code">RPL_MOTDSTART</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_MOTD" data-type="Variable" class="code">RPL_MOTD</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_ENDOFMOTD" data-type="Variable" class="code">RPL_ENDOFMOTD</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_YOUREOPER" data-type="Variable" class="code">RPL_YOUREOPER</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_REHASHING" data-type="Variable" class="code">RPL_REHASHING</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_YOURESERVICE" data-type="Variable" class="code">RPL_YOURESERVICE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_TIME" data-type="Variable" class="code">RPL_TIME</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_USERSSTART" data-type="Variable" class="code">RPL_USERSSTART</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_USERS" data-type="Variable" class="code">RPL_USERS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_ENDOFUSERS" data-type="Variable" class="code">RPL_ENDOFUSERS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_NOUSERS" data-type="Variable" class="code">RPL_NOUSERS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_TRACELINK" data-type="Variable" class="code">RPL_TRACELINK</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_TRACECONNECTING" data-type="Variable" class="code">RPL_TRACECONNECTING</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_TRACEHANDSHAKE" data-type="Variable" class="code">RPL_TRACEHANDSHAKE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_TRACEUNKNOWN" data-type="Variable" class="code">RPL_TRACEUNKNOWN</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_TRACEOPERATOR" data-type="Variable" class="code">RPL_TRACEOPERATOR</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_TRACEUSER" data-type="Variable" class="code">RPL_TRACEUSER</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_TRACESERVER" data-type="Variable" class="code">RPL_TRACESERVER</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_TRACESERVICE" data-type="Variable" class="code">RPL_TRACESERVICE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_TRACENEWTYPE" data-type="Variable" class="code">RPL_TRACENEWTYPE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_TRACECLASS" data-type="Variable" class="code">RPL_TRACECLASS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_TRACERECONNECT" data-type="Variable" class="code">RPL_TRACERECONNECT</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_TRACELOG" data-type="Variable" class="code">RPL_TRACELOG</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_TRACEEND" data-type="Variable" class="code">RPL_TRACEEND</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_STATSLINKINFO" data-type="Variable" class="code">RPL_STATSLINKINFO</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_STATSCOMMANDS" data-type="Variable" class="code">RPL_STATSCOMMANDS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_ENDOFSTATS" data-type="Variable" class="code">RPL_ENDOFSTATS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_STATSUPTIME" data-type="Variable" class="code">RPL_STATSUPTIME</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_STATSOLINE" data-type="Variable" class="code">RPL_STATSOLINE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_UMODEIS" data-type="Variable" class="code">RPL_UMODEIS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_SERVLIST" data-type="Variable" class="code">RPL_SERVLIST</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_SERVLISTEND" data-type="Variable" class="code">RPL_SERVLISTEND</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_LUSERCLIENT" data-type="Variable" class="code">RPL_LUSERCLIENT</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_LUSEROP" data-type="Variable" class="code">RPL_LUSEROP</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_LUSERUNKNOWN" data-type="Variable" class="code">RPL_LUSERUNKNOWN</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_LUSERCHANNELS" data-type="Variable" class="code">RPL_LUSERCHANNELS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_LUSERME" data-type="Variable" class="code">RPL_LUSERME</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_ADMINME" data-type="Variable" class="code">RPL_ADMINME</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_ADMINLOC1" data-type="Variable" class="code">RPL_ADMINLOC1</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_ADMINLOC2" data-type="Variable" class="code">RPL_ADMINLOC2</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_ADMINEMAIL" data-type="Variable" class="code">RPL_ADMINEMAIL</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#RPL_TRYAGAIN" data-type="Variable" class="code">RPL_TRYAGAIN</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NOSUCHNICK" data-type="Variable" class="code">ERR_NOSUCHNICK</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NOSUCHSERVER" data-type="Variable" class="code">ERR_NOSUCHSERVER</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NOSUCHCHANNEL" data-type="Variable" class="code">ERR_NOSUCHCHANNEL</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_CANNOTSENDTOCHAN" data-type="Variable" class="code">ERR_CANNOTSENDTOCHAN</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_TOOMANYCHANNELS" data-type="Variable" class="code">ERR_TOOMANYCHANNELS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_WASNOSUCHNICK" data-type="Variable" class="code">ERR_WASNOSUCHNICK</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_TOOMANYTARGETS" data-type="Variable" class="code">ERR_TOOMANYTARGETS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NOSUCHSERVICE" data-type="Variable" class="code">ERR_NOSUCHSERVICE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NOORIGIN" data-type="Variable" class="code">ERR_NOORIGIN</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NORECIPIENT" data-type="Variable" class="code">ERR_NORECIPIENT</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NOTEXTTOSEND" data-type="Variable" class="code">ERR_NOTEXTTOSEND</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NOTOPLEVEL" data-type="Variable" class="code">ERR_NOTOPLEVEL</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_WILDTOPLEVEL" data-type="Variable" class="code">ERR_WILDTOPLEVEL</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_BADMASK" data-type="Variable" class="code">ERR_BADMASK</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_TOOMANYMATCHES" data-type="Variable" class="code">ERR_TOOMANYMATCHES</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_UNKNOWNCOMMAND" data-type="Variable" class="code">ERR_UNKNOWNCOMMAND</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NOMOTD" data-type="Variable" class="code">ERR_NOMOTD</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NOADMININFO" data-type="Variable" class="code">ERR_NOADMININFO</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_FILEERROR" data-type="Variable" class="code">ERR_FILEERROR</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NONICKNAMEGIVEN" data-type="Variable" class="code">ERR_NONICKNAMEGIVEN</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_ERRONEUSNICKNAME" data-type="Variable" class="code">ERR_ERRONEUSNICKNAME</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NICKNAMEINUSE" data-type="Variable" class="code">ERR_NICKNAMEINUSE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NICKCOLLISION" data-type="Variable" class="code">ERR_NICKCOLLISION</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_UNAVAILRESOURCE" data-type="Variable" class="code">ERR_UNAVAILRESOURCE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_USERNOTINCHANNEL" data-type="Variable" class="code">ERR_USERNOTINCHANNEL</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NOTONCHANNEL" data-type="Variable" class="code">ERR_NOTONCHANNEL</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_USERONCHANNEL" data-type="Variable" class="code">ERR_USERONCHANNEL</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NOLOGIN" data-type="Variable" class="code">ERR_NOLOGIN</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_SUMMONDISABLED" data-type="Variable" class="code">ERR_SUMMONDISABLED</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_USERSDISABLED" data-type="Variable" class="code">ERR_USERSDISABLED</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NOTREGISTERED" data-type="Variable" class="code">ERR_NOTREGISTERED</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NEEDMOREPARAMS" data-type="Variable" class="code">ERR_NEEDMOREPARAMS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_ALREADYREGISTRED" data-type="Variable" class="code">ERR_ALREADYREGISTRED</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NOPERMFORHOST" data-type="Variable" class="code">ERR_NOPERMFORHOST</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_PASSWDMISMATCH" data-type="Variable" class="code">ERR_PASSWDMISMATCH</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_YOUREBANNEDCREEP" data-type="Variable" class="code">ERR_YOUREBANNEDCREEP</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_YOUWILLBEBANNED" data-type="Variable" class="code">ERR_YOUWILLBEBANNED</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_KEYSET" data-type="Variable" class="code">ERR_KEYSET</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_CHANNELISFULL" data-type="Variable" class="code">ERR_CHANNELISFULL</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_UNKNOWNMODE" data-type="Variable" class="code">ERR_UNKNOWNMODE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_INVITEONLYCHAN" data-type="Variable" class="code">ERR_INVITEONLYCHAN</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_BANNEDFROMCHAN" data-type="Variable" class="code">ERR_BANNEDFROMCHAN</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_BADCHANNELKEY" data-type="Variable" class="code">ERR_BADCHANNELKEY</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_BADCHANMASK" data-type="Variable" class="code">ERR_BADCHANMASK</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NOCHANMODES" data-type="Variable" class="code">ERR_NOCHANMODES</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_BANLISTFULL" data-type="Variable" class="code">ERR_BANLISTFULL</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NOPRIVILEGES" data-type="Variable" class="code">ERR_NOPRIVILEGES</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_CHANOPRIVSNEEDED" data-type="Variable" class="code">ERR_CHANOPRIVSNEEDED</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_CANTKILLSERVER" data-type="Variable" class="code">ERR_CANTKILLSERVER</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_RESTRICTED" data-type="Variable" class="code">ERR_RESTRICTED</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_UNIQOPPRIVSNEEDED" data-type="Variable" class="code">ERR_UNIQOPPRIVSNEEDED</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NOOPERHOST" data-type="Variable" class="code">ERR_NOOPERHOST</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_NOSERVICEHOST" data-type="Variable" class="code">ERR_NOSERVICEHOST</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_UMODEUNKNOWNFLAG" data-type="Variable" class="code">ERR_UMODEUNKNOWNFLAG</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#ERR_USERSDONTMATCH" data-type="Variable" class="code">ERR_USERSDONTMATCH</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#symbolic_to_numeric" data-type="Variable" class="code">symbolic_to_numeric</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#numeric_to_symbolic" data-type="Variable" class="code">numeric_to_symbolic</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.words.protocols.irc.html#_intOrDefault" data-type="Function" class="code">_intOrDefault</a></td>
+    <td><span>Convert a value to an integer if possible.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.words.protocols.irc._CommandDispatcherMixin.html" data-type="Class" class="code">_CommandDispatcherMixin</a></td>
+    <td><span>Dispatch commands to handlers based on their name.</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#_OFF" data-type="Variable" class="code">_OFF</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#_BOLD" data-type="Variable" class="code">_BOLD</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#_COLOR" data-type="Variable" class="code">_COLOR</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#_REVERSE_VIDEO" data-type="Variable" class="code">_REVERSE_VIDEO</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#_UNDERLINE" data-type="Variable" class="code">_UNDERLINE</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#_IRC_COLORS" data-type="Variable" class="code">_IRC_COLORS</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="variable private">
+    
+    <td>Variable</td>
+    <td><a href="twisted.words.protocols.irc.html#_IRC_COLOR_NAMES" data-type="Variable" class="code">_IRC_COLOR_NAMES</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.words.protocols.irc._CharacterAttributes.html" data-type="Class" class="code">_CharacterAttributes</a></td>
+    <td><span>Factory for character attributes, including foreground and background color and non-color attributes such as bold, reverse video and underline.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.words.protocols.irc._FormattingState.html" data-type="Class" class="code">_FormattingState</a></td>
+    <td><span>Formatting state/attributes of a single character.</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.words.protocols.irc.html#_foldr" data-type="Function" class="code">_foldr</a></td>
+    <td><span>Apply a function of two arguments cumulatively to the items of a sequence, from right to left, so as to reduce the sequence to a single value.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.words.protocols.irc._FormattingParser.html" data-type="Class" class="code">_FormattingParser</a></td>
+    <td><span>A finite-state machine that parses formatted IRC text.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.MAX_COMMAND_LENGTH">
+    
+  </a>
+  <a name="MAX_COMMAND_LENGTH">
+    
+  </a>
+  <div class="functionHeader">
+    MAX_COMMAND_LENGTH =
+  </div>
+  <div class="functionBody">
+    <div>The maximum length of a command, as defined by RFC 2812 section 2.3.</div> (type: <code>int</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.attributes">
+    
+  </a>
+  <a name="attributes">
+    
+  </a>
+  <div class="functionHeader">
+    attributes =
+  </div>
+  <div class="functionBody">
+    <div>Singleton instance of <a href="twisted.words.protocols.irc._CharacterAttributes.html"><code>_CharacterAttributes</code></a>, used for constructing formatted text information.</div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.NUL">
+    
+  </a>
+  <a name="NUL">
+    
+  </a>
+  <div class="functionHeader">
+    NUL =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.CR">
+    
+  </a>
+  <a name="CR">
+    
+  </a>
+  <div class="functionHeader">
+    CR =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.NL">
+    
+  </a>
+  <a name="NL">
+    
+  </a>
+  <div class="functionHeader">
+    NL =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.SPC">
+    
+  </a>
+  <a name="SPC">
+    
+  </a>
+  <div class="functionHeader">
+    SPC =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.CHANNEL_PREFIXES">
+    
+  </a>
+  <a name="CHANNEL_PREFIXES">
+    
+  </a>
+  <div class="functionHeader">
+    CHANNEL_PREFIXES =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.words.protocols.irc.parsemsg">
+    
+  </a>
+  <a name="parsemsg">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    parsemsg(s):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-20.3.0/src/twisted/words/protocols/irc.py#L77">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Breaks a message from an IRC server into its prefix, command, and arguments.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">s</td><td>The message to break. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A tuple of (prefix, command, args). (type: <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.words.protocols.irc.split">
+    
+  </a>
+  <a name="split">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    split(str, length=80):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-20.3.0/src/twisted/words/protocols/irc.py#L105">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Split a string into multiple lines.</p><p>Whitespace near <code>str[length]</code> will be preferred as a breaking point. <code>"\n"</code> will also be used as a breaking point.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">str</td><td>The string to split. (type: <code>str</code>)</td></tr><tr><td></td><td class="fieldArg">length</td><td>The maximum length which will be allowed for any string in the result. (type: <code>int</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>list</code> of <code>str</code></td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.words.protocols.irc._intOrDefault">
+    
+  </a>
+  <a name="_intOrDefault">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _intOrDefault(value, default=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-20.3.0/src/twisted/words/protocols/irc.py#L126">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Convert a value to an integer if possible.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An integer when <code>value</code> can be converted to an integer, otherwise return <code>default</code> (type: <code>int</code> or type of <a href="twisted.internet.default.html"><code>default</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.words.protocols.irc.parseModes">
+    
+  </a>
+  <a name="parseModes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    parseModes(modes, params, paramModes=('', '')):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-20.3.0/src/twisted/words/protocols/irc.py#L189">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Parse an IRC mode string.</p><p>The mode string is parsed into two lists of mode changes (added and removed), with each mode change represented as <code>(mode, param)</code> where mode is the mode character, and param is the parameter passed for that mode, or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a> if no parameter is required.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">modes</td><td>Modes string to parse. (type: <code>str</code>)</td></tr><tr><td></td><td class="fieldArg">params</td><td>Parameters specified along with <a href="twisted.conch.insults.insults.modes.html"><code>modes</code></a>. (type: <code>list</code>)</td></tr><tr><td></td><td class="fieldArg">paramModes</td><td>A pair of strings (<code>(add, remove)</code>) that indicate which modes take parameters when added or removed. (type: <code>(str, str)</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">Two lists of mode changes, one for modes added and the other for modes removed respectively, mode changes in each list are represented as <code>(mode, param)</code>.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.words.protocols.irc.dccParseAddress">
+    
+  </a>
+  <a name="dccParseAddress">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dccParseAddress(address):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-20.3.0/src/twisted/words/protocols/irc.py#L2713">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.words.protocols.irc.fileSize">
+    
+  </a>
+  <a name="fileSize">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    fileSize(file):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-20.3.0/src/twisted/words/protocols/irc.py#L2851">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>I'll try my damndest to determine the size of this file object.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">file</td><td>The file object to determine the size of. (type: <a href="http://docs.python.org/library/stdtypes.html#file"><code>file</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The size of the file object as an integer if it can be determined, otherwise return <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a> or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.words.protocols.irc.dccDescribe">
+    
+  </a>
+  <a name="dccDescribe">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dccDescribe(data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-20.3.0/src/twisted/words/protocols/irc.py#L2972">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Given the data chunk from a DCC query, return a descriptive string.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">data</td><td>The data from a DCC query. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A descriptive string. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basevariable private">
+  
+  <a name="twisted.words.protocols.irc._OFF">
+    
+  </a>
+  <a name="_OFF">
+    
+  </a>
+  <div class="functionHeader">
+    _OFF =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable private">
+  
+  <a name="twisted.words.protocols.irc._BOLD">
+    
+  </a>
+  <a name="_BOLD">
+    
+  </a>
+  <div class="functionHeader">
+    _BOLD =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable private">
+  
+  <a name="twisted.words.protocols.irc._COLOR">
+    
+  </a>
+  <a name="_COLOR">
+    
+  </a>
+  <div class="functionHeader">
+    _COLOR =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable private">
+  
+  <a name="twisted.words.protocols.irc._REVERSE_VIDEO">
+    
+  </a>
+  <a name="_REVERSE_VIDEO">
+    
+  </a>
+  <div class="functionHeader">
+    _REVERSE_VIDEO =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable private">
+  
+  <a name="twisted.words.protocols.irc._UNDERLINE">
+    
+  </a>
+  <a name="_UNDERLINE">
+    
+  </a>
+  <div class="functionHeader">
+    _UNDERLINE =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable private">
+  
+  <a name="twisted.words.protocols.irc._IRC_COLORS">
+    
+  </a>
+  <a name="_IRC_COLORS">
+    
+  </a>
+  <div class="functionHeader">
+    _IRC_COLORS =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basevariable private">
+  
+  <a name="twisted.words.protocols.irc._IRC_COLOR_NAMES">
+    
+  </a>
+  <a name="_IRC_COLOR_NAMES">
+    
+  </a>
+  <div class="functionHeader">
+    _IRC_COLOR_NAMES =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.words.protocols.irc._foldr">
+    
+  </a>
+  <a name="_foldr">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _foldr(f, z, xs):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-20.3.0/src/twisted/words/protocols/irc.py#L3349">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Apply a function of two arguments cumulatively to the items of a sequence, from right to left, so as to reduce the sequence to a single value.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">z</td><td>Initial value.</td></tr><tr><td></td><td class="fieldArg">xs</td><td>Sequence to reduce.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">Single value resulting from reducing <code>xs</code>.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.words.protocols.irc.parseFormattedText">
+    
+  </a>
+  <a name="parseFormattedText">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    parseFormattedText(text):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-20.3.0/src/twisted/words/protocols/irc.py#L3552">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Parse text containing IRC formatting codes into structured information.</p><p>Color codes are mapped from 0 to 15 and wrap around if greater than 15.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">text</td><td>Formatted text to parse. (type: <code>str</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">Structured text and attributes.</td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">13.1</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.words.protocols.irc.assembleFormattedText">
+    
+  </a>
+  <a name="assembleFormattedText">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    assembleFormattedText(formatted):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-20.3.0/src/twisted/words/protocols/irc.py#L3572">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Assemble formatted text from structured information.</p><p>Currently handled formatting includes: bold, reverse, underline, mIRC color codes and the ability to remove all current formatting.</p><p>It is worth noting that assembled text will always begin with the control code to disable other attributes for the sake of correctness.</p><p>For example:</p><pre class="literalblock">
+    from twisted.words.protocols.irc import attributes as A
+    assembleFormattedText(
+        A.normal[A.bold['Time: '], A.fg.lightRed['Now!']])
+</pre><p>Would produce "Time: " in bold formatting, followed by "Now!" with a foreground color of light red and without any additional formatting.</p><p>Available attributes are:</p><ul><li>bold</li><li>reverseVideo</li><li>underline</li></ul><p>Available colors are:</p><ol start="0"><li>white</li><li>black</li><li>blue</li><li>green</li><li>light red</li><li>red</li><li>magenta</li><li>orange</li><li>yellow</li><li>light green</li><li>cyan</li><li>light cyan</li><li>light blue</li><li>light magenta</li><li>gray</li><li>light gray</li></ol><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">formatted</td><td>Structured text and attributes.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">String containing mIRC control sequences that mimic those specified by <i>formatted</i>. (type: <code>str</code>)</td></tr><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><a href="http://www.mirc.co.uk/help/color.txt" target="_top">http://www.mirc.co.uk/help/color.txt</a></td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">13.1</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.words.protocols.irc.stripFormatting">
+    
+  </a>
+  <a name="stripFormatting">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    stripFormatting(text):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-20.3.0/src/twisted/words/protocols/irc.py#L3629">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Remove all formatting codes from <code>text</code>, leaving only the text.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">text</td><td>Formatted text to parse. (type: <code>str</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">Plain text without any control sequences. (type: <code>str</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">13.1</td></tr></table></div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.X_DELIM">
+    
+  </a>
+  <a name="X_DELIM">
+    
+  </a>
+  <div class="functionHeader">
+    X_DELIM =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.words.protocols.irc.ctcpExtract">
+    
+  </a>
+  <a name="ctcpExtract">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpExtract(message):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-20.3.0/src/twisted/words/protocols/irc.py#L3651">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Extract CTCP data from a string.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A <code>dict</code> containing two keys:<ul><li><code>'extended'</code>: A list of CTCP (tag, data) tuples.</li><li><code>'normal'</code>: A list of strings which were not inside a CTCP delimiter.</li></ul></td></tr></table></div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.M_QUOTE">
+    
+  </a>
+  <a name="M_QUOTE">
+    
+  </a>
+  <div class="functionHeader">
+    M_QUOTE =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.mQuoteTable">
+    
+  </a>
+  <a name="mQuoteTable">
+    
+  </a>
+  <div class="functionHeader">
+    mQuoteTable =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.mDequoteTable">
+    
+  </a>
+  <a name="mDequoteTable">
+    
+  </a>
+  <div class="functionHeader">
+    mDequoteTable =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>Dict</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.mEscape_re">
+    
+  </a>
+  <a name="mEscape_re">
+    
+  </a>
+  <div class="functionHeader">
+    mEscape_re =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.words.protocols.irc.lowQuote">
+    
+  </a>
+  <a name="lowQuote">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    lowQuote(s):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-20.3.0/src/twisted/words/protocols/irc.py#L3709">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.words.protocols.irc.lowDequote">
+    
+  </a>
+  <a name="lowDequote">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    lowDequote(s):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-20.3.0/src/twisted/words/protocols/irc.py#L3714">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.X_QUOTE">
+    
+  </a>
+  <a name="X_QUOTE">
+    
+  </a>
+  <div class="functionHeader">
+    X_QUOTE =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.xQuoteTable">
+    
+  </a>
+  <a name="xQuoteTable">
+    
+  </a>
+  <div class="functionHeader">
+    xQuoteTable =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.xDequoteTable">
+    
+  </a>
+  <a name="xDequoteTable">
+    
+  </a>
+  <div class="functionHeader">
+    xDequoteTable =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>Dict</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.xEscape_re">
+    
+  </a>
+  <a name="xEscape_re">
+    
+  </a>
+  <div class="functionHeader">
+    xEscape_re =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.words.protocols.irc.ctcpQuote">
+    
+  </a>
+  <a name="ctcpQuote">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpQuote(s):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-20.3.0/src/twisted/words/protocols/irc.py#L3739">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.words.protocols.irc.ctcpDequote">
+    
+  </a>
+  <a name="ctcpDequote">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpDequote(s):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-20.3.0/src/twisted/words/protocols/irc.py#L3744">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.words.protocols.irc.ctcpStringify">
+    
+  </a>
+  <a name="ctcpStringify">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ctcpStringify(messages):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-20.3.0/src/twisted/words/protocols/irc.py#L3755">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">String</td></tr></table></div>
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_WELCOME">
+    
+  </a>
+  <a name="RPL_WELCOME">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_WELCOME =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_YOURHOST">
+    
+  </a>
+  <a name="RPL_YOURHOST">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_YOURHOST =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_CREATED">
+    
+  </a>
+  <a name="RPL_CREATED">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_CREATED =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_MYINFO">
+    
+  </a>
+  <a name="RPL_MYINFO">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_MYINFO =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_ISUPPORT">
+    
+  </a>
+  <a name="RPL_ISUPPORT">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_ISUPPORT =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_BOUNCE">
+    
+  </a>
+  <a name="RPL_BOUNCE">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_BOUNCE =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_USERHOST">
+    
+  </a>
+  <a name="RPL_USERHOST">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_USERHOST =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_ISON">
+    
+  </a>
+  <a name="RPL_ISON">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_ISON =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_AWAY">
+    
+  </a>
+  <a name="RPL_AWAY">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_AWAY =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_UNAWAY">
+    
+  </a>
+  <a name="RPL_UNAWAY">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_UNAWAY =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_NOWAWAY">
+    
+  </a>
+  <a name="RPL_NOWAWAY">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_NOWAWAY =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_WHOISUSER">
+    
+  </a>
+  <a name="RPL_WHOISUSER">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_WHOISUSER =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_WHOISSERVER">
+    
+  </a>
+  <a name="RPL_WHOISSERVER">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_WHOISSERVER =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_WHOISOPERATOR">
+    
+  </a>
+  <a name="RPL_WHOISOPERATOR">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_WHOISOPERATOR =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_WHOISIDLE">
+    
+  </a>
+  <a name="RPL_WHOISIDLE">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_WHOISIDLE =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_ENDOFWHOIS">
+    
+  </a>
+  <a name="RPL_ENDOFWHOIS">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_ENDOFWHOIS =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_WHOISCHANNELS">
+    
+  </a>
+  <a name="RPL_WHOISCHANNELS">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_WHOISCHANNELS =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_WHOWASUSER">
+    
+  </a>
+  <a name="RPL_WHOWASUSER">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_WHOWASUSER =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_ENDOFWHOWAS">
+    
+  </a>
+  <a name="RPL_ENDOFWHOWAS">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_ENDOFWHOWAS =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_LISTSTART">
+    
+  </a>
+  <a name="RPL_LISTSTART">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_LISTSTART =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_LIST">
+    
+  </a>
+  <a name="RPL_LIST">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_LIST =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_LISTEND">
+    
+  </a>
+  <a name="RPL_LISTEND">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_LISTEND =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_UNIQOPIS">
+    
+  </a>
+  <a name="RPL_UNIQOPIS">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_UNIQOPIS =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_CHANNELMODEIS">
+    
+  </a>
+  <a name="RPL_CHANNELMODEIS">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_CHANNELMODEIS =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_NOTOPIC">
+    
+  </a>
+  <a name="RPL_NOTOPIC">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_NOTOPIC =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_TOPIC">
+    
+  </a>
+  <a name="RPL_TOPIC">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_TOPIC =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_INVITING">
+    
+  </a>
+  <a name="RPL_INVITING">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_INVITING =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_SUMMONING">
+    
+  </a>
+  <a name="RPL_SUMMONING">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_SUMMONING =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_INVITELIST">
+    
+  </a>
+  <a name="RPL_INVITELIST">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_INVITELIST =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_ENDOFINVITELIST">
+    
+  </a>
+  <a name="RPL_ENDOFINVITELIST">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_ENDOFINVITELIST =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_EXCEPTLIST">
+    
+  </a>
+  <a name="RPL_EXCEPTLIST">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_EXCEPTLIST =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_ENDOFEXCEPTLIST">
+    
+  </a>
+  <a name="RPL_ENDOFEXCEPTLIST">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_ENDOFEXCEPTLIST =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_VERSION">
+    
+  </a>
+  <a name="RPL_VERSION">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_VERSION =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_WHOREPLY">
+    
+  </a>
+  <a name="RPL_WHOREPLY">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_WHOREPLY =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_ENDOFWHO">
+    
+  </a>
+  <a name="RPL_ENDOFWHO">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_ENDOFWHO =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_NAMREPLY">
+    
+  </a>
+  <a name="RPL_NAMREPLY">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_NAMREPLY =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_ENDOFNAMES">
+    
+  </a>
+  <a name="RPL_ENDOFNAMES">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_ENDOFNAMES =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_LINKS">
+    
+  </a>
+  <a name="RPL_LINKS">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_LINKS =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_ENDOFLINKS">
+    
+  </a>
+  <a name="RPL_ENDOFLINKS">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_ENDOFLINKS =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_BANLIST">
+    
+  </a>
+  <a name="RPL_BANLIST">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_BANLIST =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_ENDOFBANLIST">
+    
+  </a>
+  <a name="RPL_ENDOFBANLIST">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_ENDOFBANLIST =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_INFO">
+    
+  </a>
+  <a name="RPL_INFO">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_INFO =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_ENDOFINFO">
+    
+  </a>
+  <a name="RPL_ENDOFINFO">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_ENDOFINFO =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_MOTDSTART">
+    
+  </a>
+  <a name="RPL_MOTDSTART">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_MOTDSTART =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_MOTD">
+    
+  </a>
+  <a name="RPL_MOTD">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_MOTD =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_ENDOFMOTD">
+    
+  </a>
+  <a name="RPL_ENDOFMOTD">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_ENDOFMOTD =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_YOUREOPER">
+    
+  </a>
+  <a name="RPL_YOUREOPER">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_YOUREOPER =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_REHASHING">
+    
+  </a>
+  <a name="RPL_REHASHING">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_REHASHING =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_YOURESERVICE">
+    
+  </a>
+  <a name="RPL_YOURESERVICE">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_YOURESERVICE =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_TIME">
+    
+  </a>
+  <a name="RPL_TIME">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_TIME =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_USERSSTART">
+    
+  </a>
+  <a name="RPL_USERSSTART">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_USERSSTART =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_USERS">
+    
+  </a>
+  <a name="RPL_USERS">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_USERS =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_ENDOFUSERS">
+    
+  </a>
+  <a name="RPL_ENDOFUSERS">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_ENDOFUSERS =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_NOUSERS">
+    
+  </a>
+  <a name="RPL_NOUSERS">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_NOUSERS =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_TRACELINK">
+    
+  </a>
+  <a name="RPL_TRACELINK">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_TRACELINK =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_TRACECONNECTING">
+    
+  </a>
+  <a name="RPL_TRACECONNECTING">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_TRACECONNECTING =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_TRACEHANDSHAKE">
+    
+  </a>
+  <a name="RPL_TRACEHANDSHAKE">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_TRACEHANDSHAKE =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_TRACEUNKNOWN">
+    
+  </a>
+  <a name="RPL_TRACEUNKNOWN">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_TRACEUNKNOWN =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_TRACEOPERATOR">
+    
+  </a>
+  <a name="RPL_TRACEOPERATOR">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_TRACEOPERATOR =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_TRACEUSER">
+    
+  </a>
+  <a name="RPL_TRACEUSER">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_TRACEUSER =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_TRACESERVER">
+    
+  </a>
+  <a name="RPL_TRACESERVER">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_TRACESERVER =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_TRACESERVICE">
+    
+  </a>
+  <a name="RPL_TRACESERVICE">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_TRACESERVICE =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_TRACENEWTYPE">
+    
+  </a>
+  <a name="RPL_TRACENEWTYPE">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_TRACENEWTYPE =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_TRACECLASS">
+    
+  </a>
+  <a name="RPL_TRACECLASS">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_TRACECLASS =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_TRACERECONNECT">
+    
+  </a>
+  <a name="RPL_TRACERECONNECT">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_TRACERECONNECT =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_TRACELOG">
+    
+  </a>
+  <a name="RPL_TRACELOG">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_TRACELOG =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_TRACEEND">
+    
+  </a>
+  <a name="RPL_TRACEEND">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_TRACEEND =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_STATSLINKINFO">
+    
+  </a>
+  <a name="RPL_STATSLINKINFO">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_STATSLINKINFO =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_STATSCOMMANDS">
+    
+  </a>
+  <a name="RPL_STATSCOMMANDS">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_STATSCOMMANDS =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_ENDOFSTATS">
+    
+  </a>
+  <a name="RPL_ENDOFSTATS">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_ENDOFSTATS =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_STATSUPTIME">
+    
+  </a>
+  <a name="RPL_STATSUPTIME">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_STATSUPTIME =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_STATSOLINE">
+    
+  </a>
+  <a name="RPL_STATSOLINE">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_STATSOLINE =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_UMODEIS">
+    
+  </a>
+  <a name="RPL_UMODEIS">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_UMODEIS =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_SERVLIST">
+    
+  </a>
+  <a name="RPL_SERVLIST">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_SERVLIST =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_SERVLISTEND">
+    
+  </a>
+  <a name="RPL_SERVLISTEND">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_SERVLISTEND =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_LUSERCLIENT">
+    
+  </a>
+  <a name="RPL_LUSERCLIENT">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_LUSERCLIENT =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_LUSEROP">
+    
+  </a>
+  <a name="RPL_LUSEROP">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_LUSEROP =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_LUSERUNKNOWN">
+    
+  </a>
+  <a name="RPL_LUSERUNKNOWN">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_LUSERUNKNOWN =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_LUSERCHANNELS">
+    
+  </a>
+  <a name="RPL_LUSERCHANNELS">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_LUSERCHANNELS =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_LUSERME">
+    
+  </a>
+  <a name="RPL_LUSERME">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_LUSERME =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_ADMINME">
+    
+  </a>
+  <a name="RPL_ADMINME">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_ADMINME =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_ADMINLOC1">
+    
+  </a>
+  <a name="RPL_ADMINLOC1">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_ADMINLOC1 =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_ADMINLOC2">
+    
+  </a>
+  <a name="RPL_ADMINLOC2">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_ADMINLOC2 =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_ADMINEMAIL">
+    
+  </a>
+  <a name="RPL_ADMINEMAIL">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_ADMINEMAIL =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.RPL_TRYAGAIN">
+    
+  </a>
+  <a name="RPL_TRYAGAIN">
+    
+  </a>
+  <div class="functionHeader">
+    RPL_TRYAGAIN =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NOSUCHNICK">
+    
+  </a>
+  <a name="ERR_NOSUCHNICK">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NOSUCHNICK =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NOSUCHSERVER">
+    
+  </a>
+  <a name="ERR_NOSUCHSERVER">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NOSUCHSERVER =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NOSUCHCHANNEL">
+    
+  </a>
+  <a name="ERR_NOSUCHCHANNEL">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NOSUCHCHANNEL =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_CANNOTSENDTOCHAN">
+    
+  </a>
+  <a name="ERR_CANNOTSENDTOCHAN">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_CANNOTSENDTOCHAN =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_TOOMANYCHANNELS">
+    
+  </a>
+  <a name="ERR_TOOMANYCHANNELS">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_TOOMANYCHANNELS =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_WASNOSUCHNICK">
+    
+  </a>
+  <a name="ERR_WASNOSUCHNICK">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_WASNOSUCHNICK =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_TOOMANYTARGETS">
+    
+  </a>
+  <a name="ERR_TOOMANYTARGETS">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_TOOMANYTARGETS =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NOSUCHSERVICE">
+    
+  </a>
+  <a name="ERR_NOSUCHSERVICE">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NOSUCHSERVICE =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NOORIGIN">
+    
+  </a>
+  <a name="ERR_NOORIGIN">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NOORIGIN =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NORECIPIENT">
+    
+  </a>
+  <a name="ERR_NORECIPIENT">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NORECIPIENT =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NOTEXTTOSEND">
+    
+  </a>
+  <a name="ERR_NOTEXTTOSEND">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NOTEXTTOSEND =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NOTOPLEVEL">
+    
+  </a>
+  <a name="ERR_NOTOPLEVEL">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NOTOPLEVEL =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_WILDTOPLEVEL">
+    
+  </a>
+  <a name="ERR_WILDTOPLEVEL">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_WILDTOPLEVEL =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_BADMASK">
+    
+  </a>
+  <a name="ERR_BADMASK">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_BADMASK =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_TOOMANYMATCHES">
+    
+  </a>
+  <a name="ERR_TOOMANYMATCHES">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_TOOMANYMATCHES =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_UNKNOWNCOMMAND">
+    
+  </a>
+  <a name="ERR_UNKNOWNCOMMAND">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_UNKNOWNCOMMAND =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NOMOTD">
+    
+  </a>
+  <a name="ERR_NOMOTD">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NOMOTD =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NOADMININFO">
+    
+  </a>
+  <a name="ERR_NOADMININFO">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NOADMININFO =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_FILEERROR">
+    
+  </a>
+  <a name="ERR_FILEERROR">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_FILEERROR =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NONICKNAMEGIVEN">
+    
+  </a>
+  <a name="ERR_NONICKNAMEGIVEN">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NONICKNAMEGIVEN =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_ERRONEUSNICKNAME">
+    
+  </a>
+  <a name="ERR_ERRONEUSNICKNAME">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_ERRONEUSNICKNAME =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NICKNAMEINUSE">
+    
+  </a>
+  <a name="ERR_NICKNAMEINUSE">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NICKNAMEINUSE =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NICKCOLLISION">
+    
+  </a>
+  <a name="ERR_NICKCOLLISION">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NICKCOLLISION =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_UNAVAILRESOURCE">
+    
+  </a>
+  <a name="ERR_UNAVAILRESOURCE">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_UNAVAILRESOURCE =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_USERNOTINCHANNEL">
+    
+  </a>
+  <a name="ERR_USERNOTINCHANNEL">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_USERNOTINCHANNEL =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NOTONCHANNEL">
+    
+  </a>
+  <a name="ERR_NOTONCHANNEL">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NOTONCHANNEL =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_USERONCHANNEL">
+    
+  </a>
+  <a name="ERR_USERONCHANNEL">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_USERONCHANNEL =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NOLOGIN">
+    
+  </a>
+  <a name="ERR_NOLOGIN">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NOLOGIN =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_SUMMONDISABLED">
+    
+  </a>
+  <a name="ERR_SUMMONDISABLED">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_SUMMONDISABLED =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_USERSDISABLED">
+    
+  </a>
+  <a name="ERR_USERSDISABLED">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_USERSDISABLED =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NOTREGISTERED">
+    
+  </a>
+  <a name="ERR_NOTREGISTERED">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NOTREGISTERED =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NEEDMOREPARAMS">
+    
+  </a>
+  <a name="ERR_NEEDMOREPARAMS">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NEEDMOREPARAMS =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_ALREADYREGISTRED">
+    
+  </a>
+  <a name="ERR_ALREADYREGISTRED">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_ALREADYREGISTRED =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NOPERMFORHOST">
+    
+  </a>
+  <a name="ERR_NOPERMFORHOST">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NOPERMFORHOST =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_PASSWDMISMATCH">
+    
+  </a>
+  <a name="ERR_PASSWDMISMATCH">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_PASSWDMISMATCH =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_YOUREBANNEDCREEP">
+    
+  </a>
+  <a name="ERR_YOUREBANNEDCREEP">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_YOUREBANNEDCREEP =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_YOUWILLBEBANNED">
+    
+  </a>
+  <a name="ERR_YOUWILLBEBANNED">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_YOUWILLBEBANNED =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_KEYSET">
+    
+  </a>
+  <a name="ERR_KEYSET">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_KEYSET =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_CHANNELISFULL">
+    
+  </a>
+  <a name="ERR_CHANNELISFULL">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_CHANNELISFULL =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_UNKNOWNMODE">
+    
+  </a>
+  <a name="ERR_UNKNOWNMODE">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_UNKNOWNMODE =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_INVITEONLYCHAN">
+    
+  </a>
+  <a name="ERR_INVITEONLYCHAN">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_INVITEONLYCHAN =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_BANNEDFROMCHAN">
+    
+  </a>
+  <a name="ERR_BANNEDFROMCHAN">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_BANNEDFROMCHAN =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_BADCHANNELKEY">
+    
+  </a>
+  <a name="ERR_BADCHANNELKEY">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_BADCHANNELKEY =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_BADCHANMASK">
+    
+  </a>
+  <a name="ERR_BADCHANMASK">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_BADCHANMASK =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NOCHANMODES">
+    
+  </a>
+  <a name="ERR_NOCHANMODES">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NOCHANMODES =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_BANLISTFULL">
+    
+  </a>
+  <a name="ERR_BANLISTFULL">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_BANLISTFULL =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NOPRIVILEGES">
+    
+  </a>
+  <a name="ERR_NOPRIVILEGES">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NOPRIVILEGES =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_CHANOPRIVSNEEDED">
+    
+  </a>
+  <a name="ERR_CHANOPRIVSNEEDED">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_CHANOPRIVSNEEDED =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_CANTKILLSERVER">
+    
+  </a>
+  <a name="ERR_CANTKILLSERVER">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_CANTKILLSERVER =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_RESTRICTED">
+    
+  </a>
+  <a name="ERR_RESTRICTED">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_RESTRICTED =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_UNIQOPPRIVSNEEDED">
+    
+  </a>
+  <a name="ERR_UNIQOPPRIVSNEEDED">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_UNIQOPPRIVSNEEDED =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NOOPERHOST">
+    
+  </a>
+  <a name="ERR_NOOPERHOST">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NOOPERHOST =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_NOSERVICEHOST">
+    
+  </a>
+  <a name="ERR_NOSERVICEHOST">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_NOSERVICEHOST =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_UMODEUNKNOWNFLAG">
+    
+  </a>
+  <a name="ERR_UMODEUNKNOWNFLAG">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_UMODEUNKNOWNFLAG =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.ERR_USERSDONTMATCH">
+    
+  </a>
+  <a name="ERR_USERSDONTMATCH">
+    
+  </a>
+  <div class="functionHeader">
+    ERR_USERSDONTMATCH =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>str</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.symbolic_to_numeric">
+    
+  </a>
+  <a name="symbolic_to_numeric">
+    
+  </a>
+  <div class="functionHeader">
+    symbolic_to_numeric =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>Dict[str, str]</code>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.words.protocols.irc.numeric_to_symbolic">
+    
+  </a>
+  <a name="numeric_to_symbolic">
+    
+  </a>
+  <div class="functionHeader">
+    numeric_to_symbolic =
+  </div>
+  <div class="functionBody">
+    <div class="undocumented">Undocumented</div> (type: <code>Dict</code>)
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2020-03-20 23:54:06.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,183 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.protocols.amp.Decimal : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.p.a.Decimal(<a href="twisted.protocols.amp.Argument.html">Argument</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.protocols.html">protocols</a>.<a href="twisted.protocols.amp.html">amp</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/amp.py#L2588">View Source</a>
+      <a href="classIndex.html#twisted.protocols.amp.Decimal">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>Encodes <code>decimal.Decimal</code> instances.</p>
+<p>There are several ways in which a decimal value might be encoded.</p>
+<p>Special values are encoded as special strings:</p>
+<pre class="literalblock">
+ - Positive infinity is encoded as C{&quot;Infinity&quot;}
+ - Negative infinity is encoded as C{&quot;-Infinity&quot;}
+ - Quiet not-a-number is encoded as either C{&quot;NaN&quot;} or C{&quot;-NaN&quot;}
+ - Signalling not-a-number is encoded as either C{&quot;sNaN&quot;} or C{&quot;-sNaN&quot;}
+</pre>
+<p>Normal values are encoded using the base ten string representation, 
+using engineering notation to indicate magnitude without precision, and 
+&quot;normal&quot; digits to indicate precision.  For example:</p>
+<pre class="literalblock">
+ - C{&quot;1&quot;} represents the value I{1} with precision to one place.
+ - C{&quot;-1&quot;} represents the value I{-1} with precision to one place.
+ - C{&quot;1.0&quot;} represents the value I{1} with precision to two places.
+ - C{&quot;10&quot;} represents the value I{10} with precision to two places.
+ - C{&quot;1E+2&quot;} represents the value I{10} with precision to one place.
+ - C{&quot;1E-1&quot;} represents the value I{0.1} with precision to one place.
+ - C{&quot;1.5E+2&quot;} represents the value I{15} with precision to two places.
+</pre>
+<p><a href="http://speleotrove.com/decimal/" 
+target="_top">http://speleotrove.com/decimal/</a> should be considered the 
+authoritative specification for the format.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3457">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Decimal.html#toString">toString</a></td>
+    <td><span>Serialize a <code>decimal.Decimal</code> instance to the specified wire 
+format.</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.protocols.amp.Argument.html">Argument</a>:
+        </p>
+        <table class="children sortable" id="id3458">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#__init__">__init__</a></td>
+    <td><span>Create an Argument.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#retrieve">retrieve</a></td>
+    <td><span>Retrieve the given key from the given dictionary, removing it if 
+found.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#fromBox">fromBox</a></td>
+    <td><span>Populate an 'out' dictionary with mapping names to Python values decoded
+from an 'in' AmpBox mapping strings to string values.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#toBox">toBox</a></td>
+    <td><span>Populate an 'out' AmpBox with strings encoded from an 'in' dictionary 
+mapping names to Python values.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#fromStringProto">fromStringProto</a></td>
+    <td><span>Convert a string to a Python value.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#toStringProto">toStringProto</a></td>
+    <td><span>Convert a Python object to a string.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#fromString">fromString</a></td>
+    <td><span>Convert a string to a Python object.  Subclasses must implement 
+this.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.protocols.amp.Decimal.toString">
+    
+  </a>
+  <a name="toString">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    toString(self, inObject):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/amp.py#L2618" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.protocols.amp.Argument.html#toString">twisted.protocols.amp.Argument.toString</a></div>
+    <div>Serialize a <code>decimal.Decimal</code> instance to the specified wire 
+format.<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2013-04-03 11:20:05.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

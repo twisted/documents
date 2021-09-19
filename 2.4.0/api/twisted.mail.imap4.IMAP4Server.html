@@ -1,0 +1,1770 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.mail.imap4.IMAP4Server&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.m.i.IMAP4Server(<a href="twisted.protocols.basic.LineReceiver.html">basic.LineReceiver</a>, <a href="twisted.protocols.policies.TimeoutMixin.html">policies.TimeoutMixin</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.mail.imap4.html">twisted.mail.imap4</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.mail.imap4.IMAP4Server">View In Hierarchy</a>
+    </p>
+    <div><p>Implements interfaces: <a href="twisted.mail.imap4.IMailboxListener.html">twisted.mail.imap4.IMailboxListener</a></p></div>
+    <div><p>Protocol implementation for an IMAP4rev1 server.</p>
+The server can be in any of four states:
+<ul>
+  <li>
+    Non-authenticated
+  </li>
+  <li>
+    Authenticated
+  </li>
+  <li>
+    Selected
+  </li>
+  <li>
+    Logout
+  </li>
+</ul>
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__init__">__init__</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.capabilities">capabilities</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.connectionMade">connectionMade</a></td>
+          <td><span>Called when a connection is made.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.connectionLost">connectionLost</a></td>
+          <td><span>Called when the connection is shut down.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.timeoutConnection">timeoutConnection</a></td>
+          <td><span>Called when the connection times out.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.rawDataReceived">rawDataReceived</a></td>
+          <td><span>Override this for when raw data is received.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server._unblock">_unblock</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.lineReceived">lineReceived</a></td>
+          <td><span>Override this for when each line is received.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.parse_command">parse_command</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.parse_pending">parse_pending</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.dispatchCommand">dispatchCommand</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.lookupCommand">lookupCommand</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__doCommand">__doCommand</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__cbDispatch">__cbDispatch</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__ebDispatch">__ebDispatch</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server._stringLiteral">_stringLiteral</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server._fileLiteral">_fileLiteral</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.arg_astring">arg_astring</a></td>
+          <td><span>Parse an astring from the line, return (arg, rest), possibly
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.arg_atom">arg_atom</a></td>
+          <td><span>Parse an atom from the line
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.arg_plist">arg_plist</a></td>
+          <td><span>Parse a (non-nested) parenthesised list from the line
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.arg_literal">arg_literal</a></td>
+          <td><span>Parse a literal from the line
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.arg_searchkeys">arg_searchkeys</a></td>
+          <td><span>searchkeys
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.arg_seqset">arg_seqset</a></td>
+          <td><span>sequence-set
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.arg_fetchatt">arg_fetchatt</a></td>
+          <td><span>fetch-att
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.arg_flaglist">arg_flaglist</a></td>
+          <td><span>Flag part of store-att-flag
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.arg_line">arg_line</a></td>
+          <td><span>Command line of UID command
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.opt_plist">opt_plist</a></td>
+          <td><span>Optional parenthesised list
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.opt_datetime">opt_datetime</a></td>
+          <td><span>Optional date-time string
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.opt_charset">opt_charset</a></td>
+          <td><span>Optional charset of SEARCH command
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.sendServerGreeting">sendServerGreeting</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.sendBadResponse">sendBadResponse</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.sendPositiveResponse">sendPositiveResponse</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.sendNegativeResponse">sendNegativeResponse</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.sendUntaggedResponse">sendUntaggedResponse</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.sendContinuationRequest">sendContinuationRequest</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server._respond">_respond</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.listCapabilities">listCapabilities</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_CAPABILITY">do_CAPABILITY</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_LOGOUT">do_LOGOUT</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_NOOP">do_NOOP</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_AUTHENTICATE">do_AUTHENTICATE</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.authenticate">authenticate</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server._setupChallenge">_setupChallenge</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__cbAuthChunk">__cbAuthChunk</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__cbAuthResp">__cbAuthResp</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__ebAuthResp">__ebAuthResp</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__ebAuthChunk">__ebAuthChunk</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_STARTTLS">do_STARTTLS</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_LOGIN">do_LOGIN</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.authenticateLogin">authenticateLogin</a></td>
+          <td><span>Lookup the account associated with the given parameters
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__cbLogin">__cbLogin</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__ebLogin">__ebLogin</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_NAMESPACE">do_NAMESPACE</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server._parseMbox">_parseMbox</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server._selectWork">_selectWork</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server._ebSelectWork">_ebSelectWork</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server._cbSelectWork">_cbSelectWork</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_IDLE">do_IDLE</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.parse_idle">parse_idle</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_CREATE">do_CREATE</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_DELETE">do_DELETE</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_RENAME">do_RENAME</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_SUBSCRIBE">do_SUBSCRIBE</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_UNSUBSCRIBE">do_UNSUBSCRIBE</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server._listWork">_listWork</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server._cbListWork">_cbListWork</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server._ebListWork">_ebListWork</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_STATUS">do_STATUS</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server._cbStatusGotMailbox">_cbStatusGotMailbox</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server._ebStatusGotMailbox">_ebStatusGotMailbox</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__cbStatus">__cbStatus</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__ebStatus">__ebStatus</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_APPEND">do_APPEND</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server._cbAppendGotMailbox">_cbAppendGotMailbox</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server._ebAppendGotMailbox">_ebAppendGotMailbox</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__cbAppend">__cbAppend</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__ebAppend">__ebAppend</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_CHECK">do_CHECK</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__cbCheck">__cbCheck</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__ebCheck">__ebCheck</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.checkpoint">checkpoint</a></td>
+          <td><span>Called when the client issues a CHECK command.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_CLOSE">do_CLOSE</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__cbClose">__cbClose</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__ebClose">__ebClose</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_EXPUNGE">do_EXPUNGE</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__cbExpunge">__cbExpunge</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__ebExpunge">__ebExpunge</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_SEARCH">do_SEARCH</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__cbSearch">__cbSearch</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__cbManualSearch">__cbManualSearch</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.searchFilter">searchFilter</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.singleSearchStep">singleSearchStep</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_ALL">search_ALL</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_ANSWERED">search_ANSWERED</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_BCC">search_BCC</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_BEFORE">search_BEFORE</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_BODY">search_BODY</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_CC">search_CC</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_DELETED">search_DELETED</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_DRAFT">search_DRAFT</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_FLAGGED">search_FLAGGED</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_FROM">search_FROM</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_HEADER">search_HEADER</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_KEYWORD">search_KEYWORD</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_LARGER">search_LARGER</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_NEW">search_NEW</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_NOT">search_NOT</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_OLD">search_OLD</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_ON">search_ON</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_OR">search_OR</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_RECENT">search_RECENT</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_SEEN">search_SEEN</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_SENTBEFORE">search_SENTBEFORE</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_SENTON">search_SENTON</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_SENTSINCE">search_SENTSINCE</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_SINCE">search_SINCE</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_SMALLER">search_SMALLER</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_SUBJECT">search_SUBJECT</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_TEXT">search_TEXT</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_TO">search_TO</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_UID">search_UID</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_UNANSWERED">search_UNANSWERED</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_UNDELETED">search_UNDELETED</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_UNDRAFT">search_UNDRAFT</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_UNFLAGGED">search_UNFLAGGED</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_UNKEYWORD">search_UNKEYWORD</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.search_UNSEEN">search_UNSEEN</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__ebSearch">__ebSearch</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_FETCH">do_FETCH</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__cbFetch">__cbFetch</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__ebSpewMessage">__ebSpewMessage</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.spew_envelope">spew_envelope</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.spew_flags">spew_flags</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.spew_internaldate">spew_internaldate</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.spew_rfc822header">spew_rfc822header</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.spew_rfc822text">spew_rfc822text</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.spew_rfc822size">spew_rfc822size</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.spew_rfc822">spew_rfc822</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.spew_uid">spew_uid</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.spew_bodystructure">spew_bodystructure</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.spew_body">spew_body</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.spewMessage">spewMessage</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__ebFetch">__ebFetch</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_STORE">do_STORE</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__cbStore">__cbStore</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__ebStore">__ebStore</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_COPY">do_COPY</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server._cbCopySelectedMailbox">_cbCopySelectedMailbox</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server._ebCopySelectedMailbox">_ebCopySelectedMailbox</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__cbCopy">__cbCopy</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__cbCopied">__cbCopied</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.__ebCopy">__ebCopy</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.do_UID">do_UID</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.modeChanged">modeChanged</a></td>
+          <td><span>Indicates that the write status of a mailbox has changed.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.flagsChanged">flagsChanged</a></td>
+          <td><span>Indicates that the flags of one or more messages have changed.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.imap4.IMAP4Server.newMessages">newMessages</a></td>
+          <td><span>Indicates that the number of messages in a mailbox has changed.
+</span></td>
+        </tr></table>
+    
+    
+        <p>
+          Inherited from <span><a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a></span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic.LineReceiver.html#twisted.protocols.basic.LineReceiver.clearLineBuffer">clearLineBuffer</a></td>
+            <td><span>Clear buffered data.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic.LineReceiver.html#twisted.protocols.basic.LineReceiver.dataReceived">dataReceived</a></td>
+            <td><span>Protocol.dataReceived.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic.LineReceiver.html#twisted.protocols.basic.LineReceiver.setLineMode">setLineMode</a></td>
+            <td><span>Sets the line-mode of this receiver.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic.LineReceiver.html#twisted.protocols.basic.LineReceiver.setRawMode">setRawMode</a></td>
+            <td><span>Sets the raw mode of this receiver.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic.LineReceiver.html#twisted.protocols.basic.LineReceiver.sendLine">sendLine</a></td>
+            <td><span>Sends a line to the other end of the connection.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic.LineReceiver.html#twisted.protocols.basic.LineReceiver.lineLengthExceeded">lineLengthExceeded</a></td>
+            <td><span>Called when the maximum line length has been reached.
+</span></td>
+          </tr></table>
+      
+        <p>
+          Inherited from <span><a href="twisted.internet.protocol.BaseProtocol.html">BaseProtocol</a> (via <a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a>, <a href="twisted.internet.protocol.Protocol.html">Protocol</a>)</span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.internet.protocol.BaseProtocol.html#twisted.internet.protocol.BaseProtocol.makeConnection">makeConnection</a></td>
+            <td><span>Make a connection to a transport and a server.
+</span></td>
+          </tr></table>
+      
+        <p>
+          Inherited from <span><a href="twisted.protocols.basic._PauseableMixin.html">_PauseableMixin</a> (via <a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a>)</span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic._PauseableMixin.html#twisted.protocols.basic._PauseableMixin.pauseProducing">pauseProducing</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic._PauseableMixin.html#twisted.protocols.basic._PauseableMixin.resumeProducing">resumeProducing</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic._PauseableMixin.html#twisted.protocols.basic._PauseableMixin.stopProducing">stopProducing</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr></table>
+      
+        <p>
+          Inherited from <span><a href="twisted.protocols.policies.TimeoutMixin.html">TimeoutMixin</a></span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.policies.TimeoutMixin.html#twisted.protocols.policies.TimeoutMixin.callLater">callLater</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.policies.TimeoutMixin.html#twisted.protocols.policies.TimeoutMixin.resetTimeout">resetTimeout</a></td>
+            <td><span>Reset the timeout count down
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.policies.TimeoutMixin.html#twisted.protocols.policies.TimeoutMixin.setTimeout">setTimeout</a></td>
+            <td><span>Change the timeout period
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.policies.TimeoutMixin.html#twisted.protocols.policies.TimeoutMixin.__timedOut">__timedOut</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr></table>
+      
+    <div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__init__"></a>
+        <div class="functionHeader">
+          def <span>__init__(self, chal=None, contextFactory=None):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.capabilities"></a>
+        <div class="functionHeader">
+          def <span>capabilities(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.connectionMade"></a>
+        <div class="functionHeader">
+          def <span>connectionMade(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#twisted.internet.interfaces.IProtocol.connectionMade">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.BaseProtocol.html#twisted.internet.protocol.BaseProtocol.connectionMade">twisted.internet.protocol.BaseProtocol.connectionMade</a></div><div><p>Called when a connection is made.</p>
+This may be considered the initializer of the protocol, because it is 
+called when the connection is completed. For clients, this is called once 
+the connection to the server has been established; for servers, this is 
+called after an accept() call stops blocking and a socket has been 
+received. If you need to send any greeting or initial message, do it 
+here.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.connectionLost"></a>
+        <div class="functionHeader">
+          def <span>connectionLost(self, reason):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#twisted.internet.interfaces.IProtocol.connectionLost">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Protocol.html#twisted.internet.protocol.Protocol.connectionLost">twisted.internet.protocol.Protocol.connectionLost</a></div><div><p>Called when the connection is shut down.</p>
+Clear any circular references here, and any external references to 
+this Protocol. The connection has been closed. The reason Failure wraps a 
+<a 
+href="twisted.internet.error.ConnectionDone.html">twisted.internet.error.ConnectionDone</a> 
+or <a 
+href="twisted.internet.error.ConnectionLost.html">twisted.internet.error.ConnectionLost</a> 
+instance (or a subclass of one of those).
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">reason</td><td>(type: <a 
+href="twisted.python.failure.Failure.html">twisted.python.failure.Failure</a>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.timeoutConnection"></a>
+        <div class="functionHeader">
+          def <span>timeoutConnection(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.protocols.policies.TimeoutMixin.html#twisted.protocols.policies.TimeoutMixin.timeoutConnection">twisted.protocols.policies.TimeoutMixin.timeoutConnection</a></div><div>Called when the connection times out. Override to define behavior 
+other than dropping the connection.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.rawDataReceived"></a>
+        <div class="functionHeader">
+          def <span>rawDataReceived(self, data):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.protocols.basic.LineReceiver.html#twisted.protocols.basic.LineReceiver.rawDataReceived">twisted.protocols.basic.LineReceiver.rawDataReceived</a></div><div>Override this for when raw data is received.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server._unblock"></a>
+        <div class="functionHeader">
+          def <span>_unblock(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.lineReceived"></a>
+        <div class="functionHeader">
+          def <span>lineReceived(self, line):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.protocols.basic.LineReceiver.html#twisted.protocols.basic.LineReceiver.lineReceived">twisted.protocols.basic.LineReceiver.lineReceived</a></div><div>Override this for when each line is received.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.parse_command"></a>
+        <div class="functionHeader">
+          def <span>parse_command(self, line):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.parse_pending"></a>
+        <div class="functionHeader">
+          def <span>parse_pending(self, line):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.dispatchCommand"></a>
+        <div class="functionHeader">
+          def <span>dispatchCommand(self, tag, cmd, rest, uid=None):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.lookupCommand"></a>
+        <div class="functionHeader">
+          def <span>lookupCommand(self, cmd):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__doCommand"></a>
+        <div class="functionHeader">
+          def <span>__doCommand(self, tag, handler, args, parseargs, line, uid):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__cbDispatch"></a>
+        <div class="functionHeader">
+          def <span>__cbDispatch(self, (arg, rest), tag, fn, args, parseargs, uid):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__ebDispatch"></a>
+        <div class="functionHeader">
+          def <span>__ebDispatch(self, failure, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server._stringLiteral"></a>
+        <div class="functionHeader">
+          def <span>_stringLiteral(self, size):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server._fileLiteral"></a>
+        <div class="functionHeader">
+          def <span>_fileLiteral(self, size):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.arg_astring"></a>
+        <div class="functionHeader">
+          def <span>arg_astring(self, line):</span>
+        </div>
+        <div class="functionBody"><div>Parse an astring from the line, return (arg, rest), possibly via a 
+deferred (to handle literals)
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.arg_atom"></a>
+        <div class="functionHeader">
+          def <span>arg_atom(self, line):</span>
+        </div>
+        <div class="functionBody"><div>Parse an atom from the line
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.arg_plist"></a>
+        <div class="functionHeader">
+          def <span>arg_plist(self, line):</span>
+        </div>
+        <div class="functionBody"><div>Parse a (non-nested) parenthesised list from the line
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.arg_literal"></a>
+        <div class="functionHeader">
+          def <span>arg_literal(self, line):</span>
+        </div>
+        <div class="functionBody"><div>Parse a literal from the line
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.arg_searchkeys"></a>
+        <div class="functionHeader">
+          def <span>arg_searchkeys(self, line):</span>
+        </div>
+        <div class="functionBody"><div>searchkeys
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.arg_seqset"></a>
+        <div class="functionHeader">
+          def <span>arg_seqset(self, line):</span>
+        </div>
+        <div class="functionBody"><div>sequence-set
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.arg_fetchatt"></a>
+        <div class="functionHeader">
+          def <span>arg_fetchatt(self, line):</span>
+        </div>
+        <div class="functionBody"><div>fetch-att
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.arg_flaglist"></a>
+        <div class="functionHeader">
+          def <span>arg_flaglist(self, line):</span>
+        </div>
+        <div class="functionBody"><div>Flag part of store-att-flag
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.arg_line"></a>
+        <div class="functionHeader">
+          def <span>arg_line(self, line):</span>
+        </div>
+        <div class="functionBody"><div>Command line of UID command
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.opt_plist"></a>
+        <div class="functionHeader">
+          def <span>opt_plist(self, line):</span>
+        </div>
+        <div class="functionBody"><div>Optional parenthesised list
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.opt_datetime"></a>
+        <div class="functionHeader">
+          def <span>opt_datetime(self, line):</span>
+        </div>
+        <div class="functionBody"><div>Optional date-time string
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.opt_charset"></a>
+        <div class="functionHeader">
+          def <span>opt_charset(self, line):</span>
+        </div>
+        <div class="functionBody"><div>Optional charset of SEARCH command
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.sendServerGreeting"></a>
+        <div class="functionHeader">
+          def <span>sendServerGreeting(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.sendBadResponse"></a>
+        <div class="functionHeader">
+          def <span>sendBadResponse(self, tag=None, message=''):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.sendPositiveResponse"></a>
+        <div class="functionHeader">
+          def <span>sendPositiveResponse(self, tag=None, message=''):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.sendNegativeResponse"></a>
+        <div class="functionHeader">
+          def <span>sendNegativeResponse(self, tag=None, message=''):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.sendUntaggedResponse"></a>
+        <div class="functionHeader">
+          def <span>sendUntaggedResponse(self, message, async=False):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.sendContinuationRequest"></a>
+        <div class="functionHeader">
+          def <span>sendContinuationRequest(self, msg='Ready for additional command text'):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server._respond"></a>
+        <div class="functionHeader">
+          def <span>_respond(self, state, tag, message):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.listCapabilities"></a>
+        <div class="functionHeader">
+          def <span>listCapabilities(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_CAPABILITY"></a>
+        <div class="functionHeader">
+          def <span>do_CAPABILITY(self, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_LOGOUT"></a>
+        <div class="functionHeader">
+          def <span>do_LOGOUT(self, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_NOOP"></a>
+        <div class="functionHeader">
+          def <span>do_NOOP(self, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_AUTHENTICATE"></a>
+        <div class="functionHeader">
+          def <span>do_AUTHENTICATE(self, tag, args):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.authenticate"></a>
+        <div class="functionHeader">
+          def <span>authenticate(self, chal, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server._setupChallenge"></a>
+        <div class="functionHeader">
+          def <span>_setupChallenge(self, chal, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__cbAuthChunk"></a>
+        <div class="functionHeader">
+          def <span>__cbAuthChunk(self, result, chal, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__cbAuthResp"></a>
+        <div class="functionHeader">
+          def <span>__cbAuthResp(self, (iface, avatar, logout), tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__ebAuthResp"></a>
+        <div class="functionHeader">
+          def <span>__ebAuthResp(self, failure, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__ebAuthChunk"></a>
+        <div class="functionHeader">
+          def <span>__ebAuthChunk(self, failure, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_STARTTLS"></a>
+        <div class="functionHeader">
+          def <span>do_STARTTLS(self, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_LOGIN"></a>
+        <div class="functionHeader">
+          def <span>do_LOGIN(self, tag, user, passwd):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.authenticateLogin"></a>
+        <div class="functionHeader">
+          def <span>authenticateLogin(self, user, passwd):</span>
+        </div>
+        <div class="functionBody"><div><p>Lookup the account associated with the given parameters</p>
+<p>Override this method to define the desired authentication 
+behavior.</p>
+The default behavior is to defer authentication to 
+<code>self.portal</code> if it is not None, or to deny the login 
+otherwise.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">user</td><td>The username to lookup
+(type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">passwd</td><td>The password to login with
+(type: <code>str</code>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__cbLogin"></a>
+        <div class="functionHeader">
+          def <span>__cbLogin(self, (iface, avatar, logout), tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__ebLogin"></a>
+        <div class="functionHeader">
+          def <span>__ebLogin(self, failure, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_NAMESPACE"></a>
+        <div class="functionHeader">
+          def <span>do_NAMESPACE(self, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server._parseMbox"></a>
+        <div class="functionHeader">
+          def <span>_parseMbox(self, name):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server._selectWork"></a>
+        <div class="functionHeader">
+          def <span>_selectWork(self, tag, name, rw, cmdName):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server._ebSelectWork"></a>
+        <div class="functionHeader">
+          def <span>_ebSelectWork(self, failure, cmdName, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server._cbSelectWork"></a>
+        <div class="functionHeader">
+          def <span>_cbSelectWork(self, mbox, cmdName, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_IDLE"></a>
+        <div class="functionHeader">
+          def <span>do_IDLE(self, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.parse_idle"></a>
+        <div class="functionHeader">
+          def <span>parse_idle(self, *args):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_CREATE"></a>
+        <div class="functionHeader">
+          def <span>do_CREATE(self, tag, name):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_DELETE"></a>
+        <div class="functionHeader">
+          def <span>do_DELETE(self, tag, name):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_RENAME"></a>
+        <div class="functionHeader">
+          def <span>do_RENAME(self, tag, oldname, newname):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_SUBSCRIBE"></a>
+        <div class="functionHeader">
+          def <span>do_SUBSCRIBE(self, tag, name):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_UNSUBSCRIBE"></a>
+        <div class="functionHeader">
+          def <span>do_UNSUBSCRIBE(self, tag, name):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server._listWork"></a>
+        <div class="functionHeader">
+          def <span>_listWork(self, tag, ref, mbox, sub, cmdName):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server._cbListWork"></a>
+        <div class="functionHeader">
+          def <span>_cbListWork(self, mailboxes, tag, sub, cmdName):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server._ebListWork"></a>
+        <div class="functionHeader">
+          def <span>_ebListWork(self, failure, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_STATUS"></a>
+        <div class="functionHeader">
+          def <span>do_STATUS(self, tag, mailbox, names):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server._cbStatusGotMailbox"></a>
+        <div class="functionHeader">
+          def <span>_cbStatusGotMailbox(self, mbox, tag, mailbox, names):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server._ebStatusGotMailbox"></a>
+        <div class="functionHeader">
+          def <span>_ebStatusGotMailbox(self, failure, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__cbStatus"></a>
+        <div class="functionHeader">
+          def <span>__cbStatus(self, status, tag, box):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__ebStatus"></a>
+        <div class="functionHeader">
+          def <span>__ebStatus(self, failure, tag, box):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_APPEND"></a>
+        <div class="functionHeader">
+          def <span>do_APPEND(self, tag, mailbox, flags, date, message):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server._cbAppendGotMailbox"></a>
+        <div class="functionHeader">
+          def <span>_cbAppendGotMailbox(self, mbox, tag, flags, date, message):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server._ebAppendGotMailbox"></a>
+        <div class="functionHeader">
+          def <span>_ebAppendGotMailbox(self, failure, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__cbAppend"></a>
+        <div class="functionHeader">
+          def <span>__cbAppend(self, result, tag, mbox):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__ebAppend"></a>
+        <div class="functionHeader">
+          def <span>__ebAppend(self, failure, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_CHECK"></a>
+        <div class="functionHeader">
+          def <span>do_CHECK(self, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__cbCheck"></a>
+        <div class="functionHeader">
+          def <span>__cbCheck(self, result, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__ebCheck"></a>
+        <div class="functionHeader">
+          def <span>__ebCheck(self, failure, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.checkpoint"></a>
+        <div class="functionHeader">
+          def <span>checkpoint(self):</span>
+        </div>
+        <div class="functionBody"><div><p>Called when the client issues a CHECK command.</p>
+This should perform any checkpoint operations required by the server. 
+It may be a long running operation, but may not block. If it returns a 
+deferred, the client will only be informed of success (or failure) when 
+the deferred's callback (or errback) is invoked.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_CLOSE"></a>
+        <div class="functionHeader">
+          def <span>do_CLOSE(self, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__cbClose"></a>
+        <div class="functionHeader">
+          def <span>__cbClose(self, result, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__ebClose"></a>
+        <div class="functionHeader">
+          def <span>__ebClose(self, failure, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_EXPUNGE"></a>
+        <div class="functionHeader">
+          def <span>do_EXPUNGE(self, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__cbExpunge"></a>
+        <div class="functionHeader">
+          def <span>__cbExpunge(self, result, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__ebExpunge"></a>
+        <div class="functionHeader">
+          def <span>__ebExpunge(self, failure, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_SEARCH"></a>
+        <div class="functionHeader">
+          def <span>do_SEARCH(self, tag, charset, query, uid=0):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__cbSearch"></a>
+        <div class="functionHeader">
+          def <span>__cbSearch(self, result, tag, mbox, uid):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__cbManualSearch"></a>
+        <div class="functionHeader">
+          def <span>__cbManualSearch(self, result, tag, mbox, query, uid, searchResults=None):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.searchFilter"></a>
+        <div class="functionHeader">
+          def <span>searchFilter(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.singleSearchStep"></a>
+        <div class="functionHeader">
+          def <span>singleSearchStep(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_ALL"></a>
+        <div class="functionHeader">
+          def <span>search_ALL(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_ANSWERED"></a>
+        <div class="functionHeader">
+          def <span>search_ANSWERED(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_BCC"></a>
+        <div class="functionHeader">
+          def <span>search_BCC(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_BEFORE"></a>
+        <div class="functionHeader">
+          def <span>search_BEFORE(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_BODY"></a>
+        <div class="functionHeader">
+          def <span>search_BODY(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_CC"></a>
+        <div class="functionHeader">
+          def <span>search_CC(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_DELETED"></a>
+        <div class="functionHeader">
+          def <span>search_DELETED(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_DRAFT"></a>
+        <div class="functionHeader">
+          def <span>search_DRAFT(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_FLAGGED"></a>
+        <div class="functionHeader">
+          def <span>search_FLAGGED(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_FROM"></a>
+        <div class="functionHeader">
+          def <span>search_FROM(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_HEADER"></a>
+        <div class="functionHeader">
+          def <span>search_HEADER(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_KEYWORD"></a>
+        <div class="functionHeader">
+          def <span>search_KEYWORD(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_LARGER"></a>
+        <div class="functionHeader">
+          def <span>search_LARGER(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_NEW"></a>
+        <div class="functionHeader">
+          def <span>search_NEW(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_NOT"></a>
+        <div class="functionHeader">
+          def <span>search_NOT(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_OLD"></a>
+        <div class="functionHeader">
+          def <span>search_OLD(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_ON"></a>
+        <div class="functionHeader">
+          def <span>search_ON(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_OR"></a>
+        <div class="functionHeader">
+          def <span>search_OR(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_RECENT"></a>
+        <div class="functionHeader">
+          def <span>search_RECENT(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_SEEN"></a>
+        <div class="functionHeader">
+          def <span>search_SEEN(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_SENTBEFORE"></a>
+        <div class="functionHeader">
+          def <span>search_SENTBEFORE(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_SENTON"></a>
+        <div class="functionHeader">
+          def <span>search_SENTON(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_SENTSINCE"></a>
+        <div class="functionHeader">
+          def <span>search_SENTSINCE(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_SINCE"></a>
+        <div class="functionHeader">
+          def <span>search_SINCE(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_SMALLER"></a>
+        <div class="functionHeader">
+          def <span>search_SMALLER(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_SUBJECT"></a>
+        <div class="functionHeader">
+          def <span>search_SUBJECT(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_TEXT"></a>
+        <div class="functionHeader">
+          def <span>search_TEXT(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_TO"></a>
+        <div class="functionHeader">
+          def <span>search_TO(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_UID"></a>
+        <div class="functionHeader">
+          def <span>search_UID(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_UNANSWERED"></a>
+        <div class="functionHeader">
+          def <span>search_UNANSWERED(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_UNDELETED"></a>
+        <div class="functionHeader">
+          def <span>search_UNDELETED(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_UNDRAFT"></a>
+        <div class="functionHeader">
+          def <span>search_UNDRAFT(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_UNFLAGGED"></a>
+        <div class="functionHeader">
+          def <span>search_UNFLAGGED(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_UNKEYWORD"></a>
+        <div class="functionHeader">
+          def <span>search_UNKEYWORD(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.search_UNSEEN"></a>
+        <div class="functionHeader">
+          def <span>search_UNSEEN(self, query, id, msg):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__ebSearch"></a>
+        <div class="functionHeader">
+          def <span>__ebSearch(self, failure, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_FETCH"></a>
+        <div class="functionHeader">
+          def <span>do_FETCH(self, tag, messages, query, uid=0):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__cbFetch"></a>
+        <div class="functionHeader">
+          def <span>__cbFetch(self, results, tag, query, uid):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__ebSpewMessage"></a>
+        <div class="functionHeader">
+          def <span>__ebSpewMessage(self, failure):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.spew_envelope"></a>
+        <div class="functionHeader">
+          def <span>spew_envelope(self, id, msg, _w=None, _f=None):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.spew_flags"></a>
+        <div class="functionHeader">
+          def <span>spew_flags(self, id, msg, _w=None, _f=None):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.spew_internaldate"></a>
+        <div class="functionHeader">
+          def <span>spew_internaldate(self, id, msg, _w=None, _f=None):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.spew_rfc822header"></a>
+        <div class="functionHeader">
+          def <span>spew_rfc822header(self, id, msg, _w=None, _f=None):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.spew_rfc822text"></a>
+        <div class="functionHeader">
+          def <span>spew_rfc822text(self, id, msg, _w=None, _f=None):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.spew_rfc822size"></a>
+        <div class="functionHeader">
+          def <span>spew_rfc822size(self, id, msg, _w=None, _f=None):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.spew_rfc822"></a>
+        <div class="functionHeader">
+          def <span>spew_rfc822(self, id, msg, _w=None, _f=None):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.spew_uid"></a>
+        <div class="functionHeader">
+          def <span>spew_uid(self, id, msg, _w=None, _f=None):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.spew_bodystructure"></a>
+        <div class="functionHeader">
+          def <span>spew_bodystructure(self, id, msg, _w=None, _f=None):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.spew_body"></a>
+        <div class="functionHeader">
+          def <span>spew_body(self, part, id, msg, _w=None, _f=None):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.spewMessage"></a>
+        <div class="functionHeader">
+          def <span>spewMessage(self, id, msg, query, uid):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__ebFetch"></a>
+        <div class="functionHeader">
+          def <span>__ebFetch(self, failure, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_STORE"></a>
+        <div class="functionHeader">
+          def <span>do_STORE(self, tag, messages, mode, flags, uid=0):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__cbStore"></a>
+        <div class="functionHeader">
+          def <span>__cbStore(self, result, tag, mbox, uid, silent):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__ebStore"></a>
+        <div class="functionHeader">
+          def <span>__ebStore(self, failure, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_COPY"></a>
+        <div class="functionHeader">
+          def <span>do_COPY(self, tag, messages, mailbox, uid=0):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server._cbCopySelectedMailbox"></a>
+        <div class="functionHeader">
+          def <span>_cbCopySelectedMailbox(self, mbox, tag, messages, mailbox, uid):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server._ebCopySelectedMailbox"></a>
+        <div class="functionHeader">
+          def <span>_ebCopySelectedMailbox(self, failure, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__cbCopy"></a>
+        <div class="functionHeader">
+          def <span>__cbCopy(self, messages, tag, mbox):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__cbCopied"></a>
+        <div class="functionHeader">
+          def <span>__cbCopied(self, deferredIds, tag, mbox):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.__ebCopy"></a>
+        <div class="functionHeader">
+          def <span>__ebCopy(self, failure, tag):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.do_UID"></a>
+        <div class="functionHeader">
+          def <span>do_UID(self, tag, command, line):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.modeChanged"></a>
+        <div class="functionHeader">
+          def <span>modeChanged(self, writeable):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.mail.imap4.IMailboxListener.html#twisted.mail.imap4.IMailboxListener.modeChanged">twisted.mail.imap4.IMailboxListener</a></div><div>Indicates that the write status of a mailbox has changed.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">writeable</td><td>A true value if write is now allowed, false otherwise.
+(type: <code>bool</code>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.flagsChanged"></a>
+        <div class="functionHeader">
+          def <span>flagsChanged(self, newFlags):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.mail.imap4.IMailboxListener.html#twisted.mail.imap4.IMailboxListener.flagsChanged">twisted.mail.imap4.IMailboxListener</a></div><div>Indicates that the flags of one or more messages have changed.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">newFlags</td><td>A mapping of message identifiers to tuples of flags now set on that 
+message.
+(type: <code>dict</code>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.imap4.IMAP4Server.newMessages"></a>
+        <div class="functionHeader">
+          def <span>newMessages(self, exists, recent):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.mail.imap4.IMailboxListener.html#twisted.mail.imap4.IMailboxListener.newMessages">twisted.mail.imap4.IMailboxListener</a></div><div>Indicates that the number of messages in a mailbox has changed.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">exists</td><td>The total number of messages now in this mailbox. If the total number 
+of messages has not changed, this should be <code>None</code>.
+(type: <code>int</code> or <code>None</code>
+)</td></tr><tr><td></td><td class="fieldArg">recent</td><td>The number of messages now flagged \Recent. If the number of recent 
+messages has not changed, this should be <code>None</code>.
+(type: <code>int</code>
+)</td></tr></table></div></div>
+      </div>    
+  </body>
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.web2.dav.resource.DAVPropertyMixIn&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">Class t.w.d.r.DAVPropertyMixIn(<a href="twisted.web2.static.MetaDataMixin.html">MetaDataMixin</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web2.html">web2</a>.<a href="twisted.web2.dav.html">dav</a>.<a href="twisted.web2.dav.resource.html">resource</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/resource.py#L55">View Source</a>
+      <a href="classIndex.html#twisted.web2.dav.resource.DAVPropertyMixIn">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known subclasses: <a href="twisted.web2.dav.resource.DAVResource.html">twisted.web2.dav.resource.DAVResource</a></p>
+    </div>
+    <pre>Mix-in class which implements the DAV property access API in
+L{IDAVResource}.
+
+There are three categories of DAV properties, for the purposes of how this
+class manages them.  A X{property} is either a X{live property} or a
+X{dead property}, and live properties are split into two categories:
+
+1. Dead properties.  There are properties that the server simply stores as
+   opaque data.  These are store in the X{dead property store}, which is
+   provided by subclasses via the L{deadProperties} method.
+
+2. Live properties which are always computed.  These properties aren't
+   stored anywhere (by this class) but instead are derived from the resource
+   state or from data that is persisted elsewhere.  These are listed in the
+   L{liveProperties} attribute and are handled explicitly by the
+   L{readProperty} method.
+
+3. Live properties may be acted on specially and are stored in the X{dead
+   property store}.  These are not listed in the L{liveProperties} attribute,
+   but may be handled specially by the property access methods.  For
+   example, L{writeProperty} might validate the data and refuse to write
+   data it deems inappropriate for a given property.
+
+There are two sets of property access methods.  The first group
+(L{hasProperty}, etc.) provides access to all properties.  They
+automatically figure out which category a property falls into and act
+accordingly.
+
+The second group (L{hasDeadProperty}, etc.) accesses the dead property store
+directly and bypasses any live property logic that exists in the first group
+of methods.  These methods are used by the first group of methods, and there
+are cases where they may be needed by other methods.  I{Accessing dead
+properties directly should be done with caution.}  Bypassing the live
+property logic means that values may not be the correct ones for use in
+DAV requests such as PROPFIND, and may be bypassing security checks.  In
+general, one should never bypass the live property logic as part of a client
+request for property data.
+
+Properties in the L{twisted_private_namespace} namespace are internal to the
+server and should not be exposed to clients.  They can only be accessed via
+the dead property store.</pre>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1748">
+  
+  
+  
+  
+  <tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.dav.resource.DAVPropertyMixIn.html#deadProperties">deadProperties</a></td>
+    <td><span>Provides internal access to the WebDAV dead property store. You
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.dav.resource.DAVPropertyMixIn.html#hasProperty">hasProperty</a></td>
+    <td><span>See <a 
+href="twisted.web2.dav.idav.IDAVResource.html#hasProperty"><code>IDAVResource.hasProperty</code></a>.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.dav.resource.DAVPropertyMixIn.html#readProperty">readProperty</a></td>
+    <td><span>See <a 
+href="twisted.web2.dav.idav.IDAVResource.html#readProperty"><code>IDAVResource.readProperty</code></a>.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.dav.resource.DAVPropertyMixIn.html#writeProperty">writeProperty</a></td>
+    <td><span>See <a 
+href="twisted.web2.dav.idav.IDAVResource.html#writeProperty"><code>IDAVResource.writeProperty</code></a>.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.dav.resource.DAVPropertyMixIn.html#removeProperty">removeProperty</a></td>
+    <td><span>See <a 
+href="twisted.web2.dav.idav.IDAVResource.html#removeProperty"><code>IDAVResource.removeProperty</code></a>.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.dav.resource.DAVPropertyMixIn.html#listProperties">listProperties</a></td>
+    <td><span>See <a 
+href="twisted.web2.dav.idav.IDAVResource.html#listProperties"><code>IDAVResource.listProperties</code></a>.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.dav.resource.DAVPropertyMixIn.html#listAllprop">listAllprop</a></td>
+    <td><span>Some DAV properties should not be returned to a 
+<code>DAV:allprop</code> query.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.dav.resource.DAVPropertyMixIn.html#hasDeadProperty">hasDeadProperty</a></td>
+    <td><span>Same as <a 
+href="twisted.web2.dav.resource.DAVPropertyMixIn.html#hasProperty"><code>hasProperty</code></a>, 
+but bypasses the live property store and checks
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.dav.resource.DAVPropertyMixIn.html#readDeadProperty">readDeadProperty</a></td>
+    <td><span>Same as <a 
+href="twisted.web2.dav.resource.DAVPropertyMixIn.html#readProperty"><code>readProperty</code></a>, 
+but bypasses the live property store and reads
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.dav.resource.DAVPropertyMixIn.html#writeDeadProperty">writeDeadProperty</a></td>
+    <td><span>Same as <a 
+href="twisted.web2.dav.resource.DAVPropertyMixIn.html#writeProperty"><code>writeProperty</code></a>, 
+but bypasses the live property store and
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.dav.resource.DAVPropertyMixIn.html#removeDeadProperty">removeDeadProperty</a></td>
+    <td><span>Same as <a 
+href="twisted.web2.dav.resource.DAVPropertyMixIn.html#removeProperty"><code>removeProperty</code></a>, 
+but bypasses the live property store and acts
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.dav.resource.DAVPropertyMixIn.html#contentType">contentType</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.dav.resource.DAVPropertyMixIn.html#displayName">displayName</a></td>
+    <td></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.web2.static.MetaDataMixin.html">MetaDataMixin</a>:
+        </p>
+        <table class="children sortable" id="id1749">
+  
+  
+  
+  
+  <tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.static.MetaDataMixin.html#etag">etag</a></td>
+    <td></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.static.MetaDataMixin.html#lastModified">lastModified</a></td>
+    <td></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.static.MetaDataMixin.html#creationDate">creationDate</a></td>
+    <td></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.static.MetaDataMixin.html#contentLength">contentLength</a></td>
+    <td></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.static.MetaDataMixin.html#contentEncoding">contentEncoding</a></td>
+    <td></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.static.MetaDataMixin.html#exists">exists</a></td>
+    <td></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.web2.dav.resource.DAVPropertyMixIn.deadProperties"></a>
+        <a name="deadProperties"></a>
+        <div class="functionHeader">
+        def deadProperties(self):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/resource.py#L126" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">overridden in <a href="twisted.web2.dav.static.DAVFile.html">twisted.web2.dav.static.DAVFile</a></div>
+          <div><p>Provides internal access to the WebDAV dead property store. You 
+probably shouldn't be calling this directly if you can use the property 
+accessors in the <a 
+href="twisted.web2.dav.idav.IDAVResource.html"><code>IDAVResource</code></a> 
+API instead. However, a subclass must override this method to provide 
+it's own dead property store.</p>
+This implementation returns an instance of <a 
+href="twisted.web2.dav.noneprops.NonePropertyStore.html"><code>NonePropertyStore</code></a>, 
+which cannot store dead properties. Subclasses must override this method 
+if they wish to store dead properties.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a dict-like object from which one can read and to which one can write 
+dead properties. Keys are qname tuples (ie. <code>(namespace, 
+name)</code>) as returned by <code>davxml.WebDAVElement.qname()</code> 
+and values are <code>davxml.WebDAVElement</code> instances.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.resource.DAVPropertyMixIn.hasProperty"></a>
+        <a name="hasProperty"></a>
+        <div class="functionHeader">
+        def hasProperty(self, property, request):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/resource.py#L146" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>See <a 
+href="twisted.web2.dav.idav.IDAVResource.html#hasProperty"><code>IDAVResource.hasProperty</code></a>.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.resource.DAVPropertyMixIn.readProperty"></a>
+        <a name="readProperty"></a>
+        <div class="functionHeader">
+        def readProperty(self, property, request):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/resource.py#L160" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">overridden in <a href="twisted.web2.dav.acl.DAVPrincipalResource.html">twisted.web2.dav.acl.DAVPrincipalResource</a></div>
+          <div>See <a 
+href="twisted.web2.dav.idav.IDAVResource.html#readProperty"><code>IDAVResource.readProperty</code></a>.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.resource.DAVPropertyMixIn.writeProperty"></a>
+        <a name="writeProperty"></a>
+        <div class="functionHeader">
+        def writeProperty(self, property, request):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/resource.py#L230" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>See <a 
+href="twisted.web2.dav.idav.IDAVResource.html#writeProperty"><code>IDAVResource.writeProperty</code></a>.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.resource.DAVPropertyMixIn.removeProperty"></a>
+        <a name="removeProperty"></a>
+        <div class="functionHeader">
+        def removeProperty(self, property, request):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/resource.py#L253" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>See <a 
+href="twisted.web2.dav.idav.IDAVResource.html#removeProperty"><code>IDAVResource.removeProperty</code></a>.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.resource.DAVPropertyMixIn.listProperties"></a>
+        <a name="listProperties"></a>
+        <div class="functionHeader">
+        def listProperties(self, request):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/resource.py#L281" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>See <a 
+href="twisted.web2.dav.idav.IDAVResource.html#listProperties"><code>IDAVResource.listProperties</code></a>.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.resource.DAVPropertyMixIn.listAllprop"></a>
+        <a name="listAllprop"></a>
+        <div class="functionHeader">
+        def listAllprop(self, request):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/resource.py#L294" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Some DAV properties should not be returned to a 
+<code>DAV:allprop</code> query. RFC 3253 defines several such properties. 
+This method computes a subset of the property qnames returned by <a 
+href="twisted.web2.dav.resource.DAVPropertyMixIn.html#listProperties"><code>listProperties</code></a> 
+by filtering out elements whose class have the <code>.hidden</code> 
+attribute set to <code>True</code>.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a list of qnames of properties which are defined and are appropriate 
+for use in response to a <code>DAV:allprop</code> query.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.resource.DAVPropertyMixIn.hasDeadProperty"></a>
+        <a name="hasDeadProperty"></a>
+        <div class="functionHeader">
+        def hasDeadProperty(self, property):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/resource.py#L320" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Same as <a 
+href="twisted.web2.dav.resource.DAVPropertyMixIn.html#hasProperty"><code>hasProperty</code></a>, 
+but bypasses the live property store and checks directly from the dead 
+property store.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.resource.DAVPropertyMixIn.readDeadProperty"></a>
+        <a name="readDeadProperty"></a>
+        <div class="functionHeader">
+        def readDeadProperty(self, property):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/resource.py#L332" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Same as <a 
+href="twisted.web2.dav.resource.DAVPropertyMixIn.html#readProperty"><code>readProperty</code></a>, 
+but bypasses the live property store and reads directly from the dead 
+property store.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.resource.DAVPropertyMixIn.writeDeadProperty"></a>
+        <a name="writeDeadProperty"></a>
+        <div class="functionHeader">
+        def writeDeadProperty(self, property):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/resource.py#L344" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Same as <a 
+href="twisted.web2.dav.resource.DAVPropertyMixIn.html#writeProperty"><code>writeProperty</code></a>, 
+but bypasses the live property store and writes directly to the dead 
+property store. Note that this should not be used unless you know that 
+you are writing to an overrideable live property, as this bypasses the 
+logic which protects protected properties. The result of writing to a 
+non-overrideable live property with this method is undefined; the value 
+in the dead property store may or may not be ignored when reading the 
+property with <a 
+href="twisted.web2.dav.resource.DAVPropertyMixIn.html#readProperty"><code>readProperty</code></a>.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.resource.DAVPropertyMixIn.removeDeadProperty"></a>
+        <a name="removeDeadProperty"></a>
+        <div class="functionHeader">
+        def removeDeadProperty(self, property):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/resource.py#L357" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Same as <a 
+href="twisted.web2.dav.resource.DAVPropertyMixIn.html#removeProperty"><code>removeProperty</code></a>, 
+but bypasses the live property store and acts directly on the dead 
+property store.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.resource.DAVPropertyMixIn.contentType"></a>
+        <a name="contentType"></a>
+        <div class="functionHeader">
+        def contentType(self):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/resource.py#L374" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">overrides <a href="twisted.web2.static.MetaDataMixin.html#contentType">twisted.web2.static.MetaDataMixin.contentType</a></div>
+          <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The MIME type of the resource if available, None otherwise.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.resource.DAVPropertyMixIn.displayName"></a>
+        <a name="displayName"></a>
+        <div class="functionHeader">
+        def displayName(self):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/resource.py#L380" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">overrides <a href="twisted.web2.static.MetaDataMixin.html#displayName">twisted.web2.static.MetaDataMixin.displayName</a></div>
+          <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The display name of the resource if available, None otherwise.
+</td></tr></table></div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for twisted, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a>.
+    </address>
+  </body>
+</html>

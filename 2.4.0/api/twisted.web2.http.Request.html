@@ -1,0 +1,160 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.web2.http.Request&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.w.h.Request(object):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.web2.http.html">twisted.web2.http</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.web2.http.Request">View In Hierarchy</a>
+    </p>
+    <div><p>Known subclasses: <a href="twisted.web2.server.Request.html">twisted.web2.server.Request</a>, <a href="twisted.web2.proxy.ProxyRequest.html">twisted.web2.proxy.ProxyRequest</a>, <a href="twisted.web2.proxy.ReverseProxyRequest.html">twisted.web2.proxy.ReverseProxyRequest</a></p><p>Implements interfaces: <a href="twisted.web2.iweb.IRequest.html">twisted.web2.iweb.IRequest</a>, <a href="twisted.internet.interfaces.IConsumer.html">twisted.internet.interfaces.IConsumer</a></p></div>
+    <div><p>A HTTP request.</p>
+Subclasses should override the process() method to determine how the 
+request will be processed.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">method</td><td>The HTTP method that was used.
+</td></tr><tr><td></td><td class="fieldArg">uri</td><td>The full URI that was requested (includes arguments).
+</td></tr><tr><td></td><td class="fieldArg">headers</td><td>All received headers
+</td></tr><tr><td></td><td class="fieldArg">clientproto</td><td>client HTTP version
+</td></tr><tr><td></td><td class="fieldArg">stream</td><td>incoming data stream.
+</td></tr></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.http.Request.__init__">__init__</a></td>
+          <td><span></span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.http.Request.checkExpect">checkExpect</a></td>
+          <td><span>Ensure there are no expectations that cannot be met.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.http.Request.process">process</a></td>
+          <td><span>Called by channel to let you process the request.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.http.Request.handleContentChunk">handleContentChunk</a></td>
+          <td><span>Callback from channel when a piece of data has been received.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.http.Request.handleContentComplete">handleContentComplete</a></td>
+          <td><span>Callback from channel when all data has been received.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.http.Request.connectionLost">connectionLost</a></td>
+          <td><span>connection was lost
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.http.Request.__repr__">__repr__</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.http.Request._sendContinue">_sendContinue</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.http.Request._finished">_finished</a></td>
+          <td><span>We are finished writing data.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.http.Request._error">_error</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.http.Request.writeResponse">writeResponse</a></td>
+          <td><span>Write a response.
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.web2.http.Request.__init__"></a>
+        <div class="functionHeader">
+          def <span>__init__(self, chanRequest, command, path, version, contentLength, headers):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.web2.server.Request.html#twisted.web2.server.Request.__init__">twisted.web2.server.Request</a></div><div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">chanRequest</td><td>the channel request we're associated with.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.http.Request.checkExpect"></a>
+        <div class="functionHeader">
+          def <span>checkExpect(self):</span>
+        </div>
+        <div class="functionBody"><div>Ensure there are no expectations that cannot be met. Checks Expect 
+header against self.known_expects.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.http.Request.process"></a>
+        <div class="functionHeader">
+          def <span>process(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.web2.server.Request.html#twisted.web2.server.Request.process">twisted.web2.server.Request</a>, <a href="twisted.web2.proxy.ProxyRequest.html#twisted.web2.proxy.ProxyRequest.process">twisted.web2.proxy.ProxyRequest</a>, <a href="twisted.web2.proxy.ReverseProxyRequest.html#twisted.web2.proxy.ReverseProxyRequest.process">twisted.web2.proxy.ReverseProxyRequest</a></div><div><p>Called by channel to let you process the request.</p>
+Can be overridden by a subclass to do something useful.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.http.Request.handleContentChunk"></a>
+        <div class="functionHeader">
+          def <span>handleContentChunk(self, data):</span>
+        </div>
+        <div class="functionBody"><div>Callback from channel when a piece of data has been received. Puts the 
+data in .stream
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.http.Request.handleContentComplete"></a>
+        <div class="functionHeader">
+          def <span>handleContentComplete(self):</span>
+        </div>
+        <div class="functionBody"><div>Callback from channel when all data has been received.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.http.Request.connectionLost"></a>
+        <div class="functionHeader">
+          def <span>connectionLost(self, reason):</span>
+        </div>
+        <div class="functionBody"><div>connection was lost
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.http.Request.__repr__"></a>
+        <div class="functionHeader">
+          def <span>__repr__(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.web2.http.Request._sendContinue"></a>
+        <div class="functionHeader">
+          def <span>_sendContinue(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.web2.http.Request._finished"></a>
+        <div class="functionHeader">
+          def <span>_finished(self, x):</span>
+        </div>
+        <div class="functionBody"><div>We are finished writing data.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.http.Request._error"></a>
+        <div class="functionHeader">
+          def <span>_error(self, reason):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.web2.http.Request.writeResponse"></a>
+        <div class="functionHeader">
+          def <span>writeResponse(self, response):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.web2.iweb.IRequest.html#twisted.web2.iweb.IRequest.writeResponse">twisted.web2.iweb.IRequest</a></div><div>Write a response.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

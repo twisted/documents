@@ -1,0 +1,215 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.application.service : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="module">t.a.service : module documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.application.html">application</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/application/service.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div><p>Service architecture for Twisted</p>
+<p>Services are arranged in a hierarchy. At the leafs of the hierarchy, the
+services which actually interact with the outside world are started. 
+Services can be named or anonymous -- usually, they will be named if there 
+is need to access them through the hierarchy (from a parent or a 
+sibling).</p>
+Maintainer: <a href="mailto:moshez@twistedmatrix.com" 
+target="_top">Moshe Zadka</a>
+<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id2037">
+  
+  
+<tr class="interface">
+    
+    
+    <td>Interface</td>
+    <td><a href="twisted.application.service.IServiceMaker.html">IServiceMaker</a></td>
+    <td><span>An object which can be used to construct services in a flexible way.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.application.service.ServiceMaker.html">ServiceMaker</a></td>
+    <td><span>Utility class to simplify the definition of <a 
+href="twisted.application.service.IServiceMaker.html"><code>IServiceMaker</code></a>
+plugins.
+</span></td>
+  </tr><tr class="interface">
+    
+    
+    <td>Interface</td>
+    <td><a href="twisted.application.service.IService.html">IService</a></td>
+    <td><span>A service.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.application.service.Service.html">Service</a></td>
+    <td><span>Base class for services
+</span></td>
+  </tr><tr class="interface">
+    
+    
+    <td>Interface</td>
+    <td><a href="twisted.application.service.IServiceCollection.html">IServiceCollection</a></td>
+    <td><span>Collection of services.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.application.service.MultiService.html">MultiService</a></td>
+    <td><span>Straightforward Service Container
+</span></td>
+  </tr><tr class="interface">
+    
+    
+    <td>Interface</td>
+    <td><a href="twisted.application.service.IProcess.html">IProcess</a></td>
+    <td><span>Process running parameters
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.application.service.Process.html">Process</a></td>
+    <td><span>Process running parameters
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.application.service.html#Application">Application</a></td>
+    <td><span>Return a compound class.
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.application.service.html#loadApplication">loadApplication</a></td>
+    <td><span>Load Application from a given file.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.application.service.Application">
+    
+  </a>
+  <a name="Application">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    Application(name, uid=None, gid=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/application/service.py#L339" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Return a compound class.</p>
+Return an object supporting the <a 
+href="twisted.application.service.IService.html"><code>IService</code></a>,
+<a 
+href="twisted.application.service.IServiceCollection.html"><code>IServiceCollection</code></a>,
+<a 
+href="twisted.application.service.IProcess.html"><code>IProcess</code></a> 
+and <a 
+href="twisted.persisted.sob.IPersistable.html"><code>sob.IPersistable</code></a>
+interfaces, with the given parameters. Always access the return value by 
+explicit casting to one of the interfaces.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.application.service.loadApplication">
+    
+  </a>
+  <a name="loadApplication">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    loadApplication(filename, kind, passphrase=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/application/service.py#L355" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Load Application from a given file.</p>
+The serialization format it was saved in should be given as 
+<code>kind</code>, and is one of 'pickle', 'source', 'xml' or 'python'. If 
+<code>passphrase</code> is given, the application was encrypted with the 
+given passphrase.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">filename</td><td> (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">kind</td><td> (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">passphrase</td><td> (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-10-27 15:57:47.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

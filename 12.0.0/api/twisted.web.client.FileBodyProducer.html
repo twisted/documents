@@ -1,0 +1,305 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web.client.FileBodyProducer : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.w.c.FileBodyProducer(<span title="object">object</span>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web.html">web</a>.<a href="twisted.web.client.html">client</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/client.py#L682">View Source</a>
+      <a href="classIndex.html#twisted.web.client.FileBodyProducer">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Implements interfaces: <a href="twisted.web.iweb.IBodyProducer.html">twisted.web.iweb.IBodyProducer</a></p>
+    </div>
+    <div><a 
+href="twisted.web.client.FileBodyProducer.html"><code>FileBodyProducer</code></a>
+produces bytes from an input file object incrementally and writes them to a
+consumer.</p>
+<p>Since file-like objects cannot be read from in an event-driven manner, 
+<a 
+href="twisted.web.client.FileBodyProducer.html"><code>FileBodyProducer</code></a>
+uses a <a 
+href="twisted.internet.task.Cooperator.html"><code>Cooperator</code></a> 
+instance to schedule reads from the file.  This process is also paused and 
+resumed based on notifications from the <code>IConsumer</code> provider 
+being written to.</p>
+<p>The file is closed after it has been read, or if the producer is stopped
+early.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">_inputFile</td><td>Any file-like object, bytes read from which will be written to a consumer.
+</td></tr><tr><td></td><td class="fieldArg">_cooperate</td><td>A method like <a 
+href="twisted.internet.task.Cooperator.html#cooperate"><code>Cooperator.cooperate</code></a>
+which is used to schedule all reads.
+</td></tr><tr><td></td><td class="fieldArg">_readSize</td><td>The number of bytes to read from <code>_inputFile</code> at a time.
+</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id2006">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.FileBodyProducer.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.FileBodyProducer.html#stopProducing">stopProducing</a></td>
+    <td><span>Permanently stop writing bytes from the file to the consumer by stopping
+the underlying <a 
+href="twisted.internet.task.CooperativeTask.html"><code>CooperativeTask</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.FileBodyProducer.html#startProducing">startProducing</a></td>
+    <td><span>Start a cooperative task which will read bytes from the input file and 
+write them to <code>consumer</code>.  Return a <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> which
+fires after all bytes have been written.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.FileBodyProducer.html#pauseProducing">pauseProducing</a></td>
+    <td><span>Temporarily suspend copying bytes from the input file to the consumer by
+pausing the <a 
+href="twisted.internet.task.CooperativeTask.html"><code>CooperativeTask</code></a>
+which drives that activity.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.FileBodyProducer.html#resumeProducing">resumeProducing</a></td>
+    <td><span>Undo the effects of a previous <code>pauseProducing</code> and resume 
+copying bytes to the consumer by resuming the <a 
+href="twisted.internet.task.CooperativeTask.html"><code>CooperativeTask</code></a>
+which drives the write activity.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.FileBodyProducer.html#_determineLength">_determineLength</a></td>
+    <td><span>Determine how many bytes can be read out of <code>fObj</code> (assuming 
+it is not modified from this point on).  If the determination cannot be 
+made, return <code>UNKNOWN_LENGTH</code>.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.FileBodyProducer.html#_writeloop">_writeloop</a></td>
+    <td><span>Return an iterator which reads one chunk of bytes from the input file 
+and writes them to the consumer for each time it is iterated.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.web.client.FileBodyProducer.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, inputFile, cooperator=task, readSize=216):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/client.py#L709" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.FileBodyProducer._determineLength">
+    
+  </a>
+  <a name="_determineLength">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _determineLength(self, fObj):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/client.py#L716" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Determine how many bytes can be read out of <code>fObj</code> (assuming 
+it is not modified from this point on).  If the determination cannot be 
+made, return <code>UNKNOWN_LENGTH</code>.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.FileBodyProducer.stopProducing">
+    
+  </a>
+  <a name="stopProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    stopProducing(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/client.py#L734" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.web.iweb.IBodyProducer.html#stopProducing">twisted.web.iweb.IBodyProducer</a></div>
+    <div>Permanently stop writing bytes from the file to the consumer by stopping
+the underlying <a 
+href="twisted.internet.task.CooperativeTask.html"><code>CooperativeTask</code></a>.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.FileBodyProducer.startProducing">
+    
+  </a>
+  <a name="startProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    startProducing(self, consumer):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/client.py#L743" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.web.iweb.IBodyProducer.html#startProducing">twisted.web.iweb.IBodyProducer</a></div>
+    <div>Start a cooperative task which will read bytes from the input file and 
+write them to <code>consumer</code>.  Return a <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> which
+fires after all bytes have been written.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">consumer</td><td>Any <code>IConsumer</code> provider
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.FileBodyProducer._writeloop">
+    
+  </a>
+  <a name="_writeloop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _writeloop(self, consumer):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/client.py#L762" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Return an iterator which reads one chunk of bytes from the input file 
+and writes them to the consumer for each time it is iterated.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.FileBodyProducer.pauseProducing">
+    
+  </a>
+  <a name="pauseProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    pauseProducing(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/client.py#L776" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Temporarily suspend copying bytes from the input file to the consumer by
+pausing the <a 
+href="twisted.internet.task.CooperativeTask.html"><code>CooperativeTask</code></a>
+which drives that activity.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.FileBodyProducer.resumeProducing">
+    
+  </a>
+  <a name="resumeProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    resumeProducing(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/client.py#L784" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Undo the effects of a previous <code>pauseProducing</code> and resume 
+copying bytes to the consumer by resuming the <a 
+href="twisted.internet.task.CooperativeTask.html"><code>CooperativeTask</code></a>
+which drives the write activity.<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2012-02-14 18:17:43.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

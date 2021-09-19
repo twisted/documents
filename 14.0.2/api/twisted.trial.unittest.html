@@ -1,0 +1,185 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.trial.unittest : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="module">t.t.unittest : module documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.trial.html">trial</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/trial/unittest.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div>Things likely to be used by writers of unit tests.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3130">
+  
+  
+<tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.trial.unittest.FailTest.html">FailTest</a></td>
+    <td><span>Raised to indicate the current test has failed to pass.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.trial.unittest.SkipTest.html">SkipTest</a></td>
+    <td><span>Raise this (with a reason) to skip the current test. You may also set 
+method.skip to a reason string to skip it, or set class.skip to skip the 
+entire TestCase.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html">SynchronousTestCase</a></td>
+    <td><span>A unit test. The atom of the unit testing universe.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.trial.unittest.Todo.html">Todo</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.trial.unittest.html#makeTodo">makeTodo</a></td>
+    <td><span>Return a <a 
+href="twisted.trial.unittest.Todo.html"><code>Todo</code></a> object built 
+from <code>value</code>.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.trial.unittest.TestCase.html">TestCase</a></td>
+    <td><span>A unit test. The atom of the unit testing universe.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.trial.unittest.TestSuite.html">TestSuite</a></td>
+    <td><span>Extend the standard library's <code>TestSuite</code> with a consistently
+overrideable <code>run</code> method.</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.trial.unittest.html#decorate">decorate</a></td>
+    <td><span>Decorate all test cases in <code>test</code> with 
+<code>decorator</code>.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.trial.unittest.makeTodo">
+    
+  </a>
+  <a name="makeTodo">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    makeTodo(value):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/trial/_synctest.py#L83" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Return a <a 
+href="twisted.trial.unittest.Todo.html"><code>Todo</code></a> object built 
+from <code>value</code>.</p>
+<p>If <code>value</code> is a string, return a Todo that expects any 
+exception with <code>value</code> as a reason. If <code>value</code> is a 
+tuple, the second element is used as the reason and the first element as 
+the excepted error(s).<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">value</td><td>A string or a tuple of <code>(errors, reason)</code>, where 
+<code>errors</code> is either a single exception class or an iterable of 
+exception classes.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A <a href="twisted.trial.unittest.Todo.html"><code>Todo</code></a> object.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial.unittest.decorate">
+    
+  </a>
+  <a name="decorate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    decorate(test, decorator):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/trial/_asyncrunner.py#L84" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Decorate all test cases in <code>test</code> with 
+<code>decorator</code>.</p>
+<p><code>test</code> can be a test case or a test suite. If it is a test 
+suite, then the structure of the suite is preserved.</p>
+<p><a href="twisted.trial.unittest.html#decorate"><code>decorate</code></a>
+tries to preserve the class of the test suites it finds, but assumes the 
+presence of the <code>_tests</code> attribute on the suite.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">test</td><td>The <code>TestCase</code> or <code>TestSuite</code> to decorate.</td></tr><tr><td></td><td class="fieldArg">decorator</td><td>A unary callable used to decorate <code>TestCase</code>s.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A decorated <code>TestCase</code> or a <code>TestSuite</code> containing 
+decorated <code>TestCase</code>s.</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2014-09-18 22:01:49.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.ssl.CertificateOptions.__init__ : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div style="display: none" id="current-docs-container" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="method"><code>twisted.internet.ssl.CertificateOptions.__init__(self, privateKey=None, certificate=None, method=None, verify=False, caCerts=None, verifyDepth=9, requireCertificate=True, verifyOnce=True, enableSingleUseKeys=True, enableSessions=True, fixBrokenPeers=False, enableSessionTickets=False, extraCertChain=None, acceptableCiphers=None, dhParameters=None, trustRoot=None)</code> <small>method documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" class="code">twisted</a>.<a href="twisted.internet.html" class="code">internet</a>.<a href="twisted.internet.ssl.html" class="code">ssl</a>.<a href="twisted.internet.ssl.CertificateOptions.html" class="code">CertificateOptions</a></code>
+          <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.0/twisted/internet/_sslverify.py#L1268">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Create an OpenSSL context SSL connection context factory.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">privateKey</td><td>A PKey object holding the private key.</td></tr><tr><td></td><td class="fieldArg">certificate</td><td>An X509 object holding the certificate.</td></tr><tr><td></td><td class="fieldArg">method</td><td>The SSL protocol to use, one of SSLv23_METHOD, SSLv2_METHOD, SSLv3_METHOD, 
+TLSv1_METHOD (or any other method constants provided by pyOpenSSL).  By 
+default, a setting will be used which allows TLSv1.0, TLSv1.1, and TLSv1.2.</td></tr><tr><td></td><td class="fieldArg">verify</td><td>Please use a <code>trustRoot</code> keyword argument instead, since it 
+provides the same functionality in a less error-prone way. By default this 
+is <a href="http://docs.python.org/library/constants.html#False"><code>False</code></a>.
+<p>If <a href="http://docs.python.org/library/constants.html#True"><code>True</code></a>,
+verify certificates received from the peer and fail the handshake if 
+verification fails.  Otherwise, allow anonymous sessions and sessions with 
+certificates which fail validation.</p></td></tr><tr><td></td><td class="fieldArg">caCerts</td><td>Please use a <code>trustRoot</code> keyword argument instead, since it 
+provides the same functionality in a less error-prone way.
+<p>List of certificate authority certificate objects to use to verify the 
+peer's certificate.  Only used if verify is <a href="http://docs.python.org/library/constants.html#True"><code>True</code></a>
+and will be ignored otherwise.  Since verify is <a href="http://docs.python.org/library/constants.html#False"><code>False</code></a>
+by default, this is <code>None</code> by default.</p> (type: <code>list</code> of <code>OpenSSL.crypto.X509</code>)</td></tr><tr><td></td><td class="fieldArg">verifyDepth</td><td>Depth in certificate chain down to which to verify. If unspecified, use the
+underlying default (9).</td></tr><tr><td></td><td class="fieldArg">requireCertificate</td><td>Please use a <code>trustRoot</code> keyword argument instead, since it 
+provides the same functionality in a less error-prone way.
+<p>If <a href="http://docs.python.org/library/constants.html#True"><code>True</code></a>,
+do not allow anonymous sessions; defaults to <a href="http://docs.python.org/library/constants.html#True"><code>True</code></a>.</p></td></tr><tr><td></td><td class="fieldArg">verifyOnce</td><td>If True, do not re-verify the certificate on session resumption.</td></tr><tr><td></td><td class="fieldArg">enableSingleUseKeys</td><td>If <a href="http://docs.python.org/library/constants.html#True"><code>True</code></a>,
+generate a new key whenever ephemeral DH and ECDH parameters are used to 
+prevent small subgroup attacks and to ensure perfect forward secrecy.</td></tr><tr><td></td><td class="fieldArg">enableSessions</td><td>If True, set a session ID on each context.  This allows a shortened 
+handshake to be used when a known client reconnects.</td></tr><tr><td></td><td class="fieldArg">fixBrokenPeers</td><td>If True, enable various non-spec protocol fixes for broken SSL 
+implementations.  This should be entirely safe, according to the OpenSSL 
+documentation, but YMMV.  This option is now off by default, because it 
+causes problems with connections between peers using OpenSSL 0.9.8a.</td></tr><tr><td></td><td class="fieldArg">enableSessionTickets</td><td>If <a href="http://docs.python.org/library/constants.html#True"><code>True</code></a>,
+enable session ticket extension for session resumption per RFC 5077.  Note 
+there is no support for controlling session tickets.  This option is off by
+default, as some server implementations don't correctly process incoming 
+empty session ticket extensions in the hello.</td></tr><tr><td></td><td class="fieldArg">extraCertChain</td><td>List of certificates that <i>complete</i> your verification chain if the 
+certificate authority that signed your <code>certificate</code> isn't 
+widely supported.  Do <i>not</i> add <code>certificate</code> to it. (type: <code>list</code> of <code>OpenSSL.crypto.X509</code>)</td></tr><tr><td></td><td class="fieldArg">acceptableCiphers</td><td>Ciphers that are acceptable for connections. Uses a secure default if left 
+<a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>. (type: <a href="twisted.internet.interfaces.IAcceptableCiphers.html"><code>IAcceptableCiphers</code></a>)</td></tr><tr><td></td><td class="fieldArg">dhParameters</td><td>Key generation parameters that are required for Diffie-Hellman key 
+exchange.  If this argument is left <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>,
+<code>EDH</code> ciphers are <i>disabled</i> regardless of 
+<code>acceptableCiphers</code>. (type: <a href="twisted.internet.ssl.DiffieHellmanParameters.html"><code>DiffieHellmanParameters</code></a>)</td></tr><tr><td></td><td class="fieldArg">trustRoot</td><td>Specification of trust requirements of peers.  If this argument is 
+specified, the peer is verified.  It requires a certificate, and that 
+certificate must be signed by one of the certificate authorities specified 
+by this object.
+<p>Note that since this option specifies the same information as 
+<code>caCerts</code>, <code>verify</code>, and 
+<code>requireCertificate</code>, specifying any of those options in 
+combination with this one will raise a <a href="http://docs.python.org/library/exceptions.html#exceptions.TypeError"><code>TypeError</code></a>.</p> (type: <a href="twisted.internet._sslverify.IOpenSSLTrustRoot.html"><code>IOpenSSLTrustRoot</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">ValueError</td><td>when <code>privateKey</code> or <code>certificate</code> are set without 
+setting the respective other.</td></tr><tr><td></td><td class="fieldArg">ValueError</td><td>when <code>verify</code> is <a href="http://docs.python.org/library/constants.html#True"><code>True</code></a>
+but <code>caCerts</code> doesn't specify any CA certificates.</td></tr><tr><td></td><td class="fieldArg">ValueError</td><td>when <code>extraCertChain</code> is passed without specifying 
+<code>privateKey</code> or <code>certificate</code>.</td></tr><tr><td></td><td class="fieldArg">ValueError</td><td>when <code>acceptableCiphers</code> doesn't yield any usable ciphers for 
+the current platform.</td></tr><tr><td></td><td class="fieldArg">TypeError</td><td>if <code>trustRoot</code> is passed in combination with 
+<code>caCert</code>, <code>verify</code>, or 
+<code>requireCertificate</code>.  Please prefer <code>trustRoot</code> in 
+new code, as its semantics are less tricky.</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2015-05-19 13:11:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

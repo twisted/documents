@@ -1,0 +1,547 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.conch.ssh.transport.SSHServerTransport : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.c.s.t.SSHServerTransport(<a href="twisted.conch.ssh.transport.SSHTransportBase.html">SSHTransportBase</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.conch.html">conch</a>.<a href="twisted.conch.ssh.html">ssh</a>.<a href="twisted.conch.ssh.transport.html">transport</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/conch/ssh/transport.py#L820">View Source</a>
+      <a href="classIndex.html#twisted.conch.ssh.transport.SSHServerTransport">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>SSHServerTransport implements the server side of the SSH protocol.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">isClient</td><td>since we are never the client, this is always False.
+</td></tr><tr><td></td><td class="fieldArg">ignoreNextPacket</td><td>if True, ignore the next key exchange packet.  This is set when the client 
+sends a guessed key exchange packet but with an incorrect guess.
+</td></tr><tr><td></td><td class="fieldArg">dhGexRequest</td><td>the KEX_DH_GEX_REQUEST(_OLD) that the client sent. The key generation needs
+this to be stored.
+</td></tr><tr><td></td><td class="fieldArg">g</td><td>the Diffie-Hellman group generator.
+</td></tr><tr><td></td><td class="fieldArg">p</td><td>the Diffie-Hellman group prime.
+</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id489">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHServerTransport.html#ssh_KEXINIT">ssh_KEXINIT</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHServerTransport.html#ssh_KEX_DH_GEX_REQUEST_OLD">ssh_KEX_DH_GEX_REQUEST_OLD</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHServerTransport.html#ssh_KEX_DH_GEX_REQUEST">ssh_KEX_DH_GEX_REQUEST</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHServerTransport.html#ssh_KEX_DH_GEX_INIT">ssh_KEX_DH_GEX_INIT</a></td>
+    <td><span>Called when we get a MSG_KEX_DH_GEX_INIT message.  Payload:: integer e 
+(client DH public key)</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHServerTransport.html#ssh_NEWKEYS">ssh_NEWKEYS</a></td>
+    <td><span>Called when we get a MSG_NEWKEYS message.  No payload. When we get this,
+the keys have been set on both sides, and we start using them to encrypt 
+and authenticate the connection.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHServerTransport.html#ssh_SERVICE_REQUEST">ssh_SERVICE_REQUEST</a></td>
+    <td><span>Called when we get a MSG_SERVICE_REQUEST message.  Payload:: string 
+serviceName</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHServerTransport.html#_ssh_KEXDH_INIT">_ssh_KEXDH_INIT</a></td>
+    <td><span>Called to handle the beginning of a diffie-hellman-group1-sha1 key 
+exchange.</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.conch.ssh.transport.SSHTransportBase.html">SSHTransportBase</a>:
+        </p>
+        <table class="children sortable" id="id490">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#connectionLost">connectionLost</a></td>
+    <td><span>Called when the connection is shut down.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#connectionMade">connectionMade</a></td>
+    <td><span>Called when the connection is made to the other side.  We sent our 
+version and the MSG_KEXINIT packet.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#sendKexInit">sendKexInit</a></td>
+    <td><span>Send a <i>KEXINIT</i> message to initiate key exchange or to respond to 
+a key exchange initiated by the peer.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#sendPacket">sendPacket</a></td>
+    <td><span>Sends a packet.  If it's been set up, compress the data, encrypt it, and
+authenticate it before sending.  If key exchange is in progress and the 
+message is not part of key exchange, queue it to be sent later.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#getPacket">getPacket</a></td>
+    <td><span>Try to return a decrypted, authenticated, and decompressed packet out of
+the buffer.  If there is not enough data, return None.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#dataReceived">dataReceived</a></td>
+    <td><span>First, check for the version string (SSH-2.0-*).  After that has been 
+received, this method adds data to the buffer, and pulls out any 
+packets.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#dispatchMessage">dispatchMessage</a></td>
+    <td><span>Send a received message to the appropriate method.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#ssh_DISCONNECT">ssh_DISCONNECT</a></td>
+    <td><span>Called when we receive a MSG_DISCONNECT message.  Payload:: long code 
+string description</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#ssh_IGNORE">ssh_IGNORE</a></td>
+    <td><span>Called when we receieve a MSG_IGNORE message.  No payload. This means 
+nothing; we simply return.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#ssh_UNIMPLEMENTED">ssh_UNIMPLEMENTED</a></td>
+    <td><span>Called when we receieve a MSG_UNIMPLEMENTED message.  Payload:: long 
+packet</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#ssh_DEBUG">ssh_DEBUG</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#setService">setService</a></td>
+    <td><span>Set our service to service and start it running.  If we were running a 
+service previously, stop it first.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#sendDebug">sendDebug</a></td>
+    <td><span>Send a debug message to the other side.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#sendIgnore">sendIgnore</a></td>
+    <td><span>Send a message that will be ignored by the other side.  This is useful 
+to fool attacks based on guessing packet sizes in the encrypted stream.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#sendUnimplemented">sendUnimplemented</a></td>
+    <td><span>Send a message to the other side that the last packet was not 
+understood.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#sendDisconnect">sendDisconnect</a></td>
+    <td><span>Send a disconnect message to the other side and then disconnect.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#isEncrypted">isEncrypted</a></td>
+    <td><span>Return True if the connection is encrypted in the given direction. 
+Direction must be one of [&quot;out&quot;, &quot;in&quot;, 
+&quot;both&quot;].</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#isVerified">isVerified</a></td>
+    <td><span>Return True if the connecction is verified/authenticated in the given 
+direction.  Direction must be one of [&quot;out&quot;, &quot;in&quot;, 
+&quot;both&quot;].</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#loseConnection">loseConnection</a></td>
+    <td><span>Lose the connection to the other side, sending a 
+DISCONNECT_CONNECTION_LOST message.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#receiveError">receiveError</a></td>
+    <td><span>Called when we receive a disconnect error message from the other 
+side.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#receiveUnimplemented">receiveUnimplemented</a></td>
+    <td><span>Called when we receive an unimplemented packet message from the other 
+side.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#receiveDebug">receiveDebug</a></td>
+    <td><span>Called when we receive a debug message from the other side.</span></td>
+  </tr><tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#_allowedKeyExchangeMessageType">_allowedKeyExchangeMessageType</a></td>
+    <td><span>Determine if the given message type may be sent while key exchange is in
+progress.</span></td>
+  </tr><tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#_unsupportedVersionReceived">_unsupportedVersionReceived</a></td>
+    <td><span>Called when an unsupported version of the ssh protocol is received from 
+the remote endpoint.</span></td>
+  </tr><tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#_getKey">_getKey</a></td>
+    <td><span>Get one of the keys for authentication/encryption.</span></td>
+  </tr><tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#_keySetup">_keySetup</a></td>
+    <td><span>Set up the keys for the connection and sends MSG_NEWKEYS when 
+finished,</span></td>
+  </tr><tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html#_newKeys">_newKeys</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.internet.protocol.Protocol.html">Protocol</a> (via <a href="twisted.conch.ssh.transport.SSHTransportBase.html">SSHTransportBase</a>):
+        </p>
+        <table class="children sortable" id="id491">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Protocol.html#logPrefix">logPrefix</a></td>
+    <td><span>Return a prefix matching the class name, to identify log messages 
+related to this protocol instance.</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.internet.protocol.BaseProtocol.html">BaseProtocol</a> (via <a href="twisted.conch.ssh.transport.SSHTransportBase.html">SSHTransportBase</a>, <a href="twisted.internet.protocol.Protocol.html">Protocol</a>):
+        </p>
+        <table class="children sortable" id="id492">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.BaseProtocol.html#makeConnection">makeConnection</a></td>
+    <td><span>Make a connection to a transport and a server.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.conch.ssh.transport.SSHServerTransport.ssh_KEXINIT">
+    
+  </a>
+  <a name="ssh_KEXINIT">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ssh_KEXINIT(self, packet):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/conch/ssh/transport.py#L841" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.conch.ssh.transport.SSHTransportBase.html#ssh_KEXINIT">twisted.conch.ssh.transport.SSHTransportBase.ssh_KEXINIT</a></div>
+    <div>Called when we receive a MSG_KEXINIT message.  For a description of the 
+packet, see SSHTransportBase.ssh_KEXINIT().  Additionally, this method 
+checks if a guessed key exchange packet was sent.  If it was sent, and it 
+guessed incorrectly, the next key exchange packet MUST be ignored.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHServerTransport._ssh_KEXDH_INIT">
+    
+  </a>
+  <a name="_ssh_KEXDH_INIT">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _ssh_KEXDH_INIT(self, packet):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/conch/ssh/transport.py#L860" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Called to handle the beginning of a diffie-hellman-group1-sha1 key 
+exchange.</p>
+<p>Unlike other message types, this is not dispatched automatically.  It is
+called from <code>ssh_KEX_DH_GEX_REQUEST_OLD</code> because an extra check 
+is required to determine if this is really a KEXDH_INIT message or if it is
+a KEX_DH_GEX_REQUEST_OLD message.</p>
+<p>The KEXDH_INIT (for diffie-hellman-group1-sha1 exchanges) payload:</p>
+<pre class="literalblock">
+       integer e (the client's Diffie-Hellman public key)
+
+   We send the KEXDH_REPLY with our host key and signature.
+</pre>
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHServerTransport.ssh_KEX_DH_GEX_REQUEST_OLD">
+    
+  </a>
+  <a name="ssh_KEX_DH_GEX_REQUEST_OLD">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ssh_KEX_DH_GEX_REQUEST_OLD(self, packet):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/conch/ssh/transport.py#L898" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>This represents two different key exchange methods that share the same 
+integer value.  If the message is determined to be a KEXDH_INIT, 
+<code>_ssh_KEXDH_INIT</code> is called to handle it.  Otherwise, for 
+KEX_DH_GEX_REQUEST_OLD (for diffie-hellman-group-exchange-sha1) 
+payload:</p>
+<pre class="literalblock">
+       integer ideal (ideal size for the Diffie-Hellman prime)
+
+   We send the KEX_DH_GEX_GROUP message with the group that is
+   closest in size to ideal.
+</pre>
+<p>If we were told to ignore the next key exchange packet by ssh_KEXINIT, 
+drop it on the floor and return.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHServerTransport.ssh_KEX_DH_GEX_REQUEST">
+    
+  </a>
+  <a name="ssh_KEX_DH_GEX_REQUEST">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ssh_KEX_DH_GEX_REQUEST(self, packet):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/conch/ssh/transport.py#L931" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when we receive a MSG_KEX_DH_GEX_REQUEST message.  Payload:</p>
+<pre class="literalblock">
+   integer minimum
+   integer ideal
+   integer maximum
+</pre>
+<p>The client is asking for a Diffie-Hellman group between minimum and 
+maximum size, and close to ideal if possible.  We reply with a 
+MSG_KEX_DH_GEX_GROUP message.</p>
+<p>If we were told to ignore the next key exchange packet by ssh_KEXINIT, 
+drop it on the floor and return.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHServerTransport.ssh_KEX_DH_GEX_INIT">
+    
+  </a>
+  <a name="ssh_KEX_DH_GEX_INIT">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ssh_KEX_DH_GEX_INIT(self, packet):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/conch/ssh/transport.py#L954" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when we get a MSG_KEX_DH_GEX_INIT message.  Payload:</p>
+<pre class="literalblock">
+   integer e (client DH public key)
+</pre>
+<p>We send the MSG_KEX_DH_GEX_REPLY message with our host key and 
+signature.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHServerTransport.ssh_NEWKEYS">
+    
+  </a>
+  <a name="ssh_NEWKEYS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ssh_NEWKEYS(self, packet):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/conch/ssh/transport.py#L996" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when we get a MSG_NEWKEYS message.  No payload. When we get this,
+the keys have been set on both sides, and we start using them to encrypt 
+and authenticate the connection.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport.SSHServerTransport.ssh_SERVICE_REQUEST">
+    
+  </a>
+  <a name="ssh_SERVICE_REQUEST">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ssh_SERVICE_REQUEST(self, packet):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/conch/ssh/transport.py#L1009" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when we get a MSG_SERVICE_REQUEST message.  Payload:</p>
+<pre class="literalblock">
+   string serviceName
+</pre>
+<p>The client has requested a service.  If we can start the service, start 
+it; otherwise, disconnect with DISCONNECT_SERVICE_NOT_AVAILABLE.<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-11-17 13:59:56.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

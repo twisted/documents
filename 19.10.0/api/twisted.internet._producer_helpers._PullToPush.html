@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet._producer_helpers._PullToPush : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="apidocs.css" type="text/css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class private"><code>twisted.internet._producer_helpers._PullToPush(<span title="object">object</span>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.internet.html" data-type="Package" class="code">internet</a>.<a href="twisted.internet._producer_helpers.html" data-type="Module" class="code">_producer_helpers</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/_producer_helpers.py#L23">View Source</a>
+          <a href="classIndex.html#twisted.internet._producer_helpers._PullToPush">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Implements interfaces: <a href="twisted.internet.interfaces.IPushProducer.html" data-type="Interface" class="code">twisted.internet.interfaces.IPushProducer</a></p>
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>An adapter that converts a non-streaming to a streaming producer.</p>
+<p>Because of limitations of the producer API, this adapter requires the 
+cooperation of the consumer. When the consumer's 
+<code>registerProducer</code> is called with a non-streaming producer, it 
+must wrap it with <a href="twisted.internet._producer_helpers._PullToPush.html"><code>_PullToPush</code></a>
+and then call <code>startStreaming</code> on the resulting object. When the
+consumer's <code>unregisterProducer</code> is called, it must call 
+<code>stopStreaming</code> on the <a href="twisted.internet._producer_helpers._PullToPush.html"><code>_PullToPush</code></a>
+instance.</p>
+<p>If the underlying producer throws an exception from 
+<code>resumeProducing</code>, the producer will be unregistered from the 
+consumer.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id583">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._producer_helpers._PullToPush.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._producer_helpers._PullToPush.html#startStreaming" data-type="Method" class="code">startStreaming</a></td>
+    <td><span>This should be called by the consumer when the producer is 
+registered.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._producer_helpers._PullToPush.html#stopStreaming" data-type="Method" class="code">stopStreaming</a></td>
+    <td><span>This should be called by the consumer when the producer is 
+unregistered.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._producer_helpers._PullToPush.html#pauseProducing" data-type="Method" class="code">pauseProducing</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._producer_helpers._PullToPush.html#resumeProducing" data-type="Method" class="code">resumeProducing</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._producer_helpers._PullToPush.html#stopProducing" data-type="Method" class="code">stopProducing</a></td>
+    <td></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet._producer_helpers._PullToPush.html#_producer" data-type="Instance Variable" class="code">_producer</a></td>
+    <td>the underling non-streaming producer.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet._producer_helpers._PullToPush.html#_consumer" data-type="Instance Variable" class="code">_consumer</a></td>
+    <td>the consumer with which the underlying producer was registered.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet._producer_helpers._PullToPush.html#_finished" data-type="Instance Variable" class="code">_finished</a></td>
+    <td><code>bool</code> indicating whether the producer has finished.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet._producer_helpers._PullToPush.html#_coopTask" data-type="Instance Variable" class="code">_coopTask</a></td>
+    <td>the result of calling <a href="twisted.internet.task.html#cooperate"><code>cooperate</code></a>, the
+task driving the streaming producer.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._producer_helpers._PullToPush.html#_pull" data-type="Method" class="code">_pull</a></td>
+    <td><span>A generator that calls <code>resumeProducing</code> on the underlying 
+producer forever.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable private">
+  
+  <a name="twisted.internet._producer_helpers._PullToPush._producer">
+    
+  </a>
+  <a name="_producer">
+    
+  </a>
+  <div class="functionHeader">
+    _producer =
+  </div>
+  <div class="functionBody">
+    the underling non-streaming producer.
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.internet._producer_helpers._PullToPush._consumer">
+    
+  </a>
+  <a name="_consumer">
+    
+  </a>
+  <div class="functionHeader">
+    _consumer =
+  </div>
+  <div class="functionBody">
+    the consumer with which the underlying producer was registered.
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.internet._producer_helpers._PullToPush._finished">
+    
+  </a>
+  <a name="_finished">
+    
+  </a>
+  <div class="functionHeader">
+    _finished =
+  </div>
+  <div class="functionBody">
+    <code>bool</code> indicating whether the producer has finished.
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.internet._producer_helpers._PullToPush._coopTask">
+    
+  </a>
+  <a name="_coopTask">
+    
+  </a>
+  <div class="functionHeader">
+    _coopTask =
+  </div>
+  <div class="functionBody">
+    the result of calling <a href="twisted.internet.task.html#cooperate"><code>cooperate</code></a>, the
+task driving the streaming producer.
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._producer_helpers._PullToPush.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, pullProducer, consumer):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/_producer_helpers.py#L51">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.internet._producer_helpers._PullToPush._pull">
+    
+  </a>
+  <a name="_pull">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _pull(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/_producer_helpers.py#L56">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>A generator that calls <code>resumeProducing</code> on the underlying 
+producer forever.</p>
+<p>If <code>resumeProducing</code> throws an exception, the producer is 
+unregistered, which should result in streaming stopping.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._producer_helpers._PullToPush.startStreaming">
+    
+  </a>
+  <a name="startStreaming">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    startStreaming(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/_producer_helpers.py#L84">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>This should be called by the consumer when the producer is 
+registered.</p>
+<p>Start streaming data to the consumer.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._producer_helpers._PullToPush.stopStreaming">
+    
+  </a>
+  <a name="stopStreaming">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    stopStreaming(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/_producer_helpers.py#L93">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>This should be called by the consumer when the producer is 
+unregistered.</p>
+<p>Stop streaming data to the consumer.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._producer_helpers._PullToPush.pauseProducing">
+    
+  </a>
+  <a name="pauseProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    pauseProducing(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/_producer_helpers.py#L106">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IPushProducer.html#pauseProducing" data-type="Method" class="code">twisted.internet.interfaces.IPushProducer</a></div>
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><code>IPushProducer.pauseProducing</code></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._producer_helpers._PullToPush.resumeProducing">
+    
+  </a>
+  <a name="resumeProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    resumeProducing(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/_producer_helpers.py#L113">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IPushProducer.html#resumeProducing" data-type="Method" class="code">twisted.internet.interfaces.IPushProducer</a></div>
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><code>IPushProducer.resumeProducing</code></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._producer_helpers._PullToPush.stopProducing">
+    
+  </a>
+  <a name="stopProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    stopProducing(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/internet/_producer_helpers.py#L120">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProducer.html#stopProducing" data-type="Method" class="code">twisted.internet.interfaces.IProducer</a></div>
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><code>IPushProducer.stopProducing</code></td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2019-11-11 15:02:42.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

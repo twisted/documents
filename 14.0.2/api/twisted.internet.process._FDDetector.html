@@ -1,0 +1,259 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.process._FDDetector : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class private">t.i.p._FDDetector(<span title="object">object</span>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a>.<a href="twisted.internet.process.html">process</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/internet/process.py#L464">View Source</a>
+      <a href="classIndex.html#twisted.internet.process._FDDetector">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>This class contains the logic necessary to decide which of the available
+system techniques should be used to detect the open file descriptors for 
+the current process. The chosen technique gets monkey-patched into the 
+_listOpenFDs method of this class so that the detection only needs to occur
+once.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Unknown Field: ivars</td><td class="fieldArg">listdir</td><td>The implementation of listdir to use. This gets overwritten by the test 
+cases.</td></tr><tr><td></td><td class="fieldArg">getpid</td><td>The implementation of getpid to use, returns the PID of the running 
+process.</td></tr><tr><td></td><td class="fieldArg">openfile</td><td>The implementation of open() to use, by default the Python builtin.</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id948">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.process._FDDetector.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.process._FDDetector.html#_listOpenFDs">_listOpenFDs</a></td>
+    <td><span>Return an iterable of file descriptors which <i>may</i> be open in this 
+process.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.process._FDDetector.html#_getImplementation">_getImplementation</a></td>
+    <td><span>Pick a method which gives correct results for <code>_listOpenFDs</code> 
+in this runtime environment.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.process._FDDetector.html#_devFDImplementation">_devFDImplementation</a></td>
+    <td><span>Simple implementation for systems where /dev/fd actually works. See: 
+http://www.freebsd.org/cgi/man.cgi?fdescfs</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.process._FDDetector.html#_procFDImplementation">_procFDImplementation</a></td>
+    <td><span>Simple implementation for systems where /proc/pid/fd exists (we assume 
+it works).</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.process._FDDetector.html#_fallbackFDImplementation">_fallbackFDImplementation</a></td>
+    <td><span>Fallback implementation where either the resource module can inform us 
+about the upper bound of how many FDs to expect, or where we just guess a 
+constant maximum if there is no resource module.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.internet.process._FDDetector.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/internet/process.py#L484" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.process._FDDetector._listOpenFDs">
+    
+  </a>
+  <a name="_listOpenFDs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _listOpenFDs(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/internet/process.py#L490" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Return an iterable of file descriptors which <i>may</i> be open in this 
+process.</p>
+<p>This will try to return the fewest possible descriptors without missing 
+any.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.process._FDDetector._getImplementation">
+    
+  </a>
+  <a name="_getImplementation">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _getImplementation(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/internet/process.py#L502" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Pick a method which gives correct results for <code>_listOpenFDs</code> 
+in this runtime environment.</p>
+<p>This involves a lot of very platform-specific checks, some of which may 
+be relatively expensive.  Therefore the returned method should be saved and
+re-used, rather than always calling this method to determine what it 
+is.</p>
+<p>See the implementation for the details of how a method is selected.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.process._FDDetector._devFDImplementation">
+    
+  </a>
+  <a name="_devFDImplementation">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _devFDImplementation(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/internet/process.py#L535" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Simple implementation for systems where /dev/fd actually works. See: 
+http://www.freebsd.org/cgi/man.cgi?fdescfs<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.process._FDDetector._procFDImplementation">
+    
+  </a>
+  <a name="_procFDImplementation">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _procFDImplementation(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/internet/process.py#L545" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Simple implementation for systems where /proc/pid/fd exists (we assume 
+it works).<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.process._FDDetector._fallbackFDImplementation">
+    
+  </a>
+  <a name="_fallbackFDImplementation">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _fallbackFDImplementation(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/internet/process.py#L554" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Fallback implementation where either the resource module can inform us 
+about the upper bound of how many FDs to expect, or where we just guess a 
+constant maximum if there is no resource module.</p>
+<p>All possible file descriptors from 0 to that upper bound are returned 
+with no attempt to exclude invalid file descriptor values.<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2014-09-18 22:01:49.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

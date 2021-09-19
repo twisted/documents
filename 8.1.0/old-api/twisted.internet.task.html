@@ -1,0 +1,166 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.internet.task&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="module">Module t.i.task</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/internet/task.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div>Scheduling utility methods and classes.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Author</td><td colspan="2"><a href="mailto:exarkun&#64;twistedmatrix.com">Jp Calderone</a>
+</td></tr></table></div>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id7124">
+  
+  
+  
+  
+  <tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.task.LoopingCall.html">LoopingCall</a></td>
+    <td><span>Call a function repeatedly.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.task.SchedulerStopped.html">SchedulerStopped</a></td>
+    <td><span>The operation could not complete because the scheduler was stopped 
+in
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.task.Cooperator.html">Cooperator</a></td>
+    <td><span>Cooperative task scheduler.
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.task.html#coiterate">coiterate</a></td>
+    <td><span>Cooperatively iterate over the given iterator, dividing runtime 
+between it
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.task.Clock.html">Clock</a></td>
+    <td><span>Provide a deterministic, easily-controlled implementation of
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.task.html#deferLater">deferLater</a></td>
+    <td><span>Call the given function after a certain period of time has passed.
+</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.task._Timer.html">_Timer</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.task.html#_defaultScheduler">_defaultScheduler</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.internet.task._defaultScheduler"></a>
+        <a name="_defaultScheduler"></a>
+        <div class="functionHeader">
+        
+        def _defaultScheduler(x):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/internet/task.py#L176" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.task.coiterate"></a>
+        <a name="coiterate"></a>
+        <div class="functionHeader">
+        
+        def coiterate(iterator):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/internet/task.py#L303" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Cooperatively iterate over the given iterator, dividing runtime 
+between it and all other iterators which have been passed to this 
+function and not yet exhausted.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.task.deferLater"></a>
+        <a name="deferLater"></a>
+        <div class="functionHeader">
+        
+        def deferLater(clock, delay, callable, *args, **kw):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/internet/task.py#L383" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Call the given function after a certain period of time has passed.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">clock</td><td>The object which will be used to schedule the delayed call.
+ (type: <a 
+href="twisted.internet.interfaces.IReactorTime.html"><code>IReactorTime</code></a> 
+provider
+)</td></tr><tr><td></td><td class="fieldArg">delay</td><td>The number of seconds to wait before calling the function.
+ (type: <code>float</code> or <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">callable</td><td>The object to call after the delay.
+</td></tr><tr><td></td><td class="fieldArg">*args</td><td>The positional arguments to pass to <code>callable</code>.
+</td></tr><tr><td></td><td class="fieldArg">**kw</td><td>The keyword arguments to pass to <code>callable</code>.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A deferred that fires with the result of the callable when the 
+specified time has elapsed.
+ (type: <a 
+href="twisted.internet.defer.Deferred.html"><code>defer.Deferred</code></a>
+)</td></tr></table></div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2008-05-18 16:50:21.
+    </address>
+  </body>
+</html>

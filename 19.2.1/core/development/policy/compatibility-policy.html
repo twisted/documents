@@ -1,0 +1,678 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="Description" content="An event-driven networking engine written in Python and MIT licensed." />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Twisted Compatibility Policy &mdash; Twisted 19.2.1 documentation</title>
+    <link rel="stylesheet" href="../../../_static/twistedtrac.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '19.2.1',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="top" title="Twisted 19.2.1 documentation" href="../../../index.html" />
+    <link rel="up" title="Twisted Development Policy" href="index.html" />
+    <link rel="next" title="Working from Twisted’s code repository" href="code-dev.html" />
+    <link rel="prev" title="Unit Tests in Twisted" href="test-standard.html" /> 
+
+  </head>
+  
+  
+<body>
+
+<div id="banner">
+<div id="top_grad">
+         
+</div>
+<div id="tab">
+        <a href="http://twistedmatrix.com/trac/wiki">HOME</a>
+    <a href="http://twistedmatrix.com/trac/wiki/FrequentlyAskedQuestions">FAQ</a>
+    <a href="/">DOCS</a>
+    <a href="http://twistedmatrix.com/trac/wiki/Downloads">DOWNLOAD</a>
+
+</div>
+      <div id="header">
+        <a id="logo" href="http://twistedmatrix.com/trac/"><img src="../../../_static/trac_banner.png" alt="Twisted" /></a>
+      </div>
+      <!-- taking this out for now, but might use 
+           the space for something else later 
+      -->
+      <!--
+      <form id="topsearch" action="/trac/search" method="get"><div>
+        <label for="proj-search">Search:</label>
+        <input type="text" id="proj-search" name="q" size="10" value="" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="wiki" value="on" />
+
+        <input type="hidden" name="changeset" value="on" />
+        <input type="hidden" name="ticket" value="on" />
+      </div></form>
+      -->
+      <div id="metanav" class="nav">
+    <ul>
+      <li> </li>
+      <!-- taking this out for now, but might use 
+           the space for something else later 
+      -->
+      <!--
+      <li class="first">logged in as khorn</li><li class=""><a href="/trac/logout">Logout</a></li><li class=""><a href="/trac/wiki/TracGuide">Help/Guide</a></li><li class=""><a href="/trac/about">About Trac</a></li><li class="last"><a href="/trac/account">My Account</a></li>
+      -->
+    </ul>
+  </div>
+    </div>
+
+<!-- mainnav -->
+    <div id="mainnav" class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="code-dev.html" title="Working from Twisted’s code repository"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="test-standard.html" title="Unit Tests in Twisted"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../index.html">Twisted 19.2.1 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Twisted Core</a> &raquo;</li>
+          <li><a href="../index.html" >Development of Twisted</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Twisted Development Policy</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div id="main">
+    <div id="ctxtnav" class="nav">
+      <h2>Wiki Navigation</h2>
+      <ul>
+        <li>
+        
+        </li>
+        <!-- taking this out for now, but might use 
+             the space for something else later 
+        -->
+        <!--
+        <li><a href="/trac/wiki/WikiStart">Start Page</a></li>
+        <li><a href="/trac/wiki/TitleIndex">Index by Title</a></li>
+
+        <li><a href="/trac/wiki/RecentChanges">Index by Date</a></li>
+        <li class="last">
+          <a href="/trac/wiki/Documentation?action=diff&amp;version=15">Last Change</a>
+        </li>
+        -->
+      </ul>
+      <hr />
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div id="current-docs-container" style="display: none">
+            <em>
+              <a id="current-docs-link">
+                Go to the latest version of this document.
+              </a>
+            </em>
+          </div>
+          <div class="body">
+            
+  <div class="section" id="twisted-compatibility-policy">
+<h1>Twisted Compatibility Policy<a class="headerlink" href="#twisted-compatibility-policy" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="motivation">
+<h2>Motivation<a class="headerlink" href="#motivation" title="Permalink to this headline">¶</a></h2>
+<p>The Twisted project has a small development team, and we cannot afford to provide anything but critical bug-fix support for multiple version branches of Twisted.
+However, we all want Twisted to provide a positive experience during development, deployment, and usage.
+Therefore we need to provide the most trouble-free upgrade process possible, so that Twisted application developers will not shy away from upgrades that include necessary bugfixes and feature enhancements.</p>
+<p>Twisted is used by a wide variety of applications, many of which are proprietary or otherwise inaccessible to the Twisted development team.
+Each of these applications is developed against a particular version of Twisted.
+The most important compatibility to preserve is at the Python API level.
+Python does not provide us with a strict way to partition <strong>public</strong> and <strong>private</strong> objects (methods, classes, modules), so it is unfortunately quite likely that many of those applications are using arbitrary parts of Twisted.
+Our compatibility strategy needs to take this into account, and be comprehensive across our entire codebase.</p>
+<p>Exceptions can be made for modules aggressively marked <strong>unstable</strong> or <strong>experimental</strong>, but even experimental modules will start being used in production code if they have been around for long enough.</p>
+<p>The purpose of this document is to to lay out rules for Twisted application developers who wish to weather the changes when Twisted upgrades, and procedures for Twisted engine developers - both contributors and core team members - to follow when who want to make changes which may be incompatible to Twisted itself.</p>
+</div>
+<div class="section" id="defining-compatibility">
+<h2>Defining Compatibility<a class="headerlink" href="#defining-compatibility" title="Permalink to this headline">¶</a></h2>
+<p>The word “compatibility” is itself difficult to define.
+While comprehensive compatibility is good, total compatibility is neither feasible nor desirable.
+Total compatibility requires that nothing ever change, since any change to Python code is detectable by a sufficiently determined program.
+There is some folk knowledge around which kind of changes <strong>obviously</strong> won’t break other programs, but this knowledge is spotty and inconsistent.
+Rather than attempt to disallow specific kinds of changes, here we will lay out a list of changes which are considered compatible.</p>
+<p>Throughout this document, <strong>compatible</strong> changes are those which meet these specific criteria.
+Although a change may be broadly considered backward compatible, as long as it does not meet this official standard, it will be officially deemed <strong>incompatible</strong> and put through the process for incompatible changes.</p>
+<p>The compatibility policy described here is 99% about changes to <strong>interface</strong>,
+not changes to functionality.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Ultimately we want to make the user happy but we cannot put every possible thing that will make every possible user happy into this policy.</p>
+</div>
+</div>
+<div class="section" id="brief-notes-for-developers">
+<h2>Brief notes for developers<a class="headerlink" href="#brief-notes-for-developers" title="Permalink to this headline">¶</a></h2>
+<p>Here is a summary of the things that need to be done for deprecating code.
+This is not an exhaustive read and beside this list you should continue reading the rest of this document:</p>
+<ul class="simple">
+<li>Do not change the function’s behavior as part of the deprecation process.</li>
+<li>Cause imports or usage of the class/function/method to emit a DeprecationWarning either call warnings.warn or use one of the helper APIs</li>
+<li>The warning text must include the version of Twisted in which the function is first deprecated (which will always be a version in the future)</li>
+<li>The warning text should recommend a replacement, if one exists.</li>
+<li>The warning must “point to” the code which called the function. For example, in the normal case, this means stacklevel=2 passed to warnings.warn.</li>
+<li>There must be a unit test which verifies the deprecation warning.</li>
+<li>A .removal news fragment must be added to announce the deprecation.</li>
+</ul>
+</div>
+<div class="section" id="procedure-for-incompatible-changes">
+<h2>Procedure for Incompatible Changes<a class="headerlink" href="#procedure-for-incompatible-changes" title="Permalink to this headline">¶</a></h2>
+<p>Any change specifically described in the next section as <strong>compatible</strong> may be made at any time, in any release.</p>
+<div class="section" id="the-first-one-s-always-free">
+<h3>The First One’s Always Free<a class="headerlink" href="#the-first-one-s-always-free" title="Permalink to this headline">¶</a></h3>
+<p>The general purpose of this document is to provide a pleasant upgrade experience for Twisted application developers and users.</p>
+<p>The specific purpose of this procedure is to achieve that experience by making sure that any application which runs without warnings may be upgraded one minor version of twisted (y to y+1 in x.y.z) or from the last minor revision of a major release to the first minor revision of the next major release (x to x + 1 in x.y.z to x.0.z, when there will be no x.y+1.z).</p>
+<p>In other words, any application which runs its tests without triggering any warnings from Twisted should be able to have its Twisted version upgraded at least once with no ill effects except the possible production of new warnings.</p>
+</div>
+<div class="section" id="incompatible-changes">
+<h3>Incompatible Changes<a class="headerlink" href="#incompatible-changes" title="Permalink to this headline">¶</a></h3>
+<p>Any change which is not specifically described as <strong>compatible</strong> must be made in 2 phases.
+If a change is made in release R, the timeline is:</p>
+<ol class="arabic simple">
+<li>Release R: New functionality is added and old functionality is deprecated with a DeprecationWarning.</li>
+<li>At the earliest, release R+2 and one year after release R, but often much later: Old functionality is completely removed.</li>
+</ol>
+<p>Removal should happen once the deprecated API becomes an additional maintenance burden.</p>
+<p>For example, if it makes implementation of a new feature more difficult, if it makes documentation of non-deprecated APIs more confusing, or if its unit tests become an undue burden on the continuous integration system.</p>
+<p>Removal should not be undertaken just to follow a timeline. Twisted should strive, as much as practical, not to break applications relying on it.</p>
+</div>
+</div>
+<div class="section" id="procedure-for-exceptions-to-this-policy">
+<h2>Procedure for Exceptions to this Policy<a class="headerlink" href="#procedure-for-exceptions-to-this-policy" title="Permalink to this headline">¶</a></h2>
+<p><strong>Every change is unique.</strong></p>
+<p>Sometimes, we’ll want to make a change that fits with this spirit of this document (keeping Twisted working for applications which rely upon it) but may not fit with the letter of the procedure described above (the change modifies behavior of an existing API sufficiently that something might break).
+Generally, the reason that one would want to do this is to give applications a performance enhancement or bug fix that could break behavior that unanticipated, hypothetical uses of an existing API, but we don’t want well-behaved applications to pay the penalty of a deprecation/adopt-a-new-API/removal cycle in order to get the benefits of the improvement if they don’t need to.</p>
+<p>If this is the case for your change, it’s possible to make such a modification without a deprecation/removal cycle.
+However, we must give users an opportunity to discover whether a particular incompatible change affects them: we should not trust our own assessments of how code uses the API.
+In order to propose an incompatible change, start a discussion on the mailing list.
+Make sure that it is eye-catching so those who don’t read all list messages in depth will notice it, by prefixing the subject with <strong>INCOMPATIBLE CHANGE:</strong> (capitalized like so).
+Always include a link to the ticket, and branch (if relevant).</p>
+<p>In order to <strong>conclude</strong> such a discussion, there must be a branch available so that developers can run their unit tests against it to mechanically verify that their understanding of their own code is correct.
+If nobody can produce a failing test or broken application within <strong>a week’s time</strong> from such a branch being both 1. available and 2. announced, and at least <strong>three committers</strong> agree that the change is worthwhile, then the branch can be considered approved for the incompatible change in question.</p>
+<p>Since some codebases that use Twisted are presumably proprietary and confidential, there should be a good-faith presumption if someone says they have broken tests but cannot immediately produce code to share.</p>
+<p>The branch must be available for one week’s time.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">The announcement forum for incompatible changes and the waiting period required are subject to change as we discover how effective this method is; the important aspect of this policy is that users have some way of finding out in advance about changes which might affect them.</p>
+</div>
+</div>
+<div class="section" id="compatible-changes-changed-not-covered-by-the-compatibility-policy">
+<h2>Compatible Changes. Changed not Covered by the Compatibility Policy<a class="headerlink" href="#compatible-changes-changed-not-covered-by-the-compatibility-policy" title="Permalink to this headline">¶</a></h2>
+<p>Here is a non-exhaustive list of changes which are not covered by the compatibility policy.
+These changes can be made without having to worry about the compatibility policy.</p>
+<div class="section" id="test-changes">
+<h3>Test Changes<a class="headerlink" href="#test-changes" title="Permalink to this headline">¶</a></h3>
+<p>No code or data in a test package should be imported or used by a non-test package within Twisted.
+By doing so, there’s no chance anything could access these objects by going through the public API.</p>
+<p>Test code and test helpers are considered private API and should not be imported outside
+of the Twisted testing infrastructure.
+As an exception to this, <a class="api reference external" href="https://twistedmatrix.com/documents/19.2.1/api/twisted.test.proto_helpers.html">twisted.test.proto_helpers</a> is considered a public API
+(see <a class="reference external" href="https://twistedmatrix.com/trac/ticket/6435">#6435</a> for more discussion).</p>
+</div>
+<div class="section" id="private-changes">
+<h3>Private Changes<a class="headerlink" href="#private-changes" title="Permalink to this headline">¶</a></h3>
+<p>Code is considered <em>private</em> if the user would have to type a leading underscore to access it.
+In other words, a function, module, method, attribute or class whose name begins with an underscore may be arbitrarily changed.</p>
+</div>
+<div class="section" id="bug-fixes-and-gross-violation-of-specifications">
+<h3>Bug Fixes and Gross Violation of Specifications<a class="headerlink" href="#bug-fixes-and-gross-violation-of-specifications" title="Permalink to this headline">¶</a></h3>
+<p>If Twisted documents an object as complying with a published specification, and there are inputs which can cause Twisted to behave in obvious violation of that specification, then changes may be made to correct the behavior in the face of those inputs.</p>
+<p>If application code must support multiple versions of Twisted, and work around violations of such specifications, then it must test for the presence of such a bug before compensating for it.</p>
+<p>For example, Twisted supplies a DOM implementation in twisted.web.microdom.
+If an issue were discovered where parsing the string <cite>&lt;xml&gt;Hello&lt;/xml&gt;</cite> and then serializing it again resulted in <cite>&gt;xml&lt;Hello&gt;/xml&lt;</cite>, that would grossly violate the XML specification for well-formedness.
+Such code could be fixed with no warning other than release notes detailing that this error is now fixed.</p>
+</div>
+<div class="section" id="raw-source-code">
+<h3>Raw Source Code<a class="headerlink" href="#raw-source-code" title="Permalink to this headline">¶</a></h3>
+<p>The most basic thing that can happen between Twisted versions, of course, is that the code may change.
+That means that no application may ever rely on, for example, the value of any <strong>func_code</strong> object’s <strong>co_code</strong> attribute remaining stable, or the <strong>checksum</strong> of a .py file remaining stable.</p>
+<p><strong>Docstrings</strong> may also change at any time.
+No application code may expect any Twisted class, module, or method’s __doc__ attribute to remain the same.</p>
+</div>
+<div class="section" id="new-attributes">
+<h3>New Attributes<a class="headerlink" href="#new-attributes" title="Permalink to this headline">¶</a></h3>
+<p>New code may also be added.
+No application may ever rely on the output of the <code class="docutils literal notranslate"><span class="pre">dir()</span></code> function on any object remaining stable, nor on any object’s <code class="docutils literal notranslate"><span class="pre">__all__</span></code> attribute, nor on any object’s <code class="docutils literal notranslate"><span class="pre">__dict__</span></code> not having new keys added to it.
+These may happen in any maintenance or bugfix release, no matter how minor.</p>
+</div>
+<div class="section" id="pickling">
+<h3>Pickling<a class="headerlink" href="#pickling" title="Permalink to this headline">¶</a></h3>
+<p>Even though Python objects can be pickled and unpickled without explicit support for this, whether a particular pickled object can be unpickled after any particular change to the implementation of that object is less certain.
+Because of this, no application may depend on any object defined by Twisted to provide pickle compatibility between any release unless the object explicitly documents this as a feature it has.</p>
+</div>
+</div>
+<div class="section" id="changes-covered-by-the-compatibility-policy">
+<h2>Changes Covered by the Compatibility Policy<a class="headerlink" href="#changes-covered-by-the-compatibility-policy" title="Permalink to this headline">¶</a></h2>
+<p>Here is a non-exhaustive list of changes which are not covered by the compatibility policy.</p>
+<p>Some changes appear to be in keeping with the above rules describing what is compatible, but are in fact not.</p>
+<div class="section" id="interface-changes">
+<h3>Interface Changes<a class="headerlink" href="#interface-changes" title="Permalink to this headline">¶</a></h3>
+<p>Although methods may be added to implementations, adding those methods to interfaces may introduce an unexpected requirement in user code.</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>There is currently no way to express, in zope.interface, that an interface may optionally provide certain features which need to be tested for. Although we can add new code, we can’t add new requirements on user code to implement new methods.</p>
+<p class="last">This is easier to deal with in a system which uses abstract base classes because new requirements can provide default implementations which provide warnings.
+Something could also be put in place to do the same with interfaces, since they already install a metaclass, but this is tricky territory. The only example I’m aware of here is the Microsoft tradition of ISomeInterfaceN where N is a monotonically ascending number for each release.</p>
+</div>
+</div>
+<div class="section" id="private-objects-available-via-public-entry-points">
+<h3>Private Objects Available via Public Entry Points<a class="headerlink" href="#private-objects-available-via-public-entry-points" title="Permalink to this headline">¶</a></h3>
+<p>If a <strong>public</strong> entry point returns a <strong>private</strong> object, that <strong>private</strong> object must preserve its <strong>public</strong> attributes.</p>
+<p>In the following example, <code class="docutils literal notranslate"><span class="pre">_ProtectedClass</span></code> can no longer be arbitrarily changed.
+Specifically, <code class="docutils literal notranslate"><span class="pre">getUsers()</span></code> is now a public method, thanks to <code class="docutils literal notranslate"><span class="pre">get_users_database()</span></code> exposing it.
+However, <code class="docutils literal notranslate"><span class="pre">_checkPassword()</span></code> can still be arbitrarily changed or removed.</p>
+<p>For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">_ProtectedClass</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A private class which is initialized only by an entry point.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">getUsers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A public method covered by the compatibility policy.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">_checkPassword</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A private method not covered by the compatibility policy.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">False</span>
+
+
+
+<span class="k">def</span> <span class="nf">get_users_database</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A method guarding the initialization of the private class.</span>
+
+<span class="sd">    Since the method is public and it returns an instance of the</span>
+<span class="sd">    C{_ProtectedClass}, this makes the _ProtectedClass a public class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">_ProtectedClass</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="private-class-inherited-by-public-subclass">
+<h3>Private Class Inherited by Public Subclass<a class="headerlink" href="#private-class-inherited-by-public-subclass" title="Permalink to this headline">¶</a></h3>
+<p>A <strong>private</strong> class which is inherited or exposed in any way by <strong>public</strong> subclass will make
+the inherited class <strong>public</strong>.</p>
+<p>The <strong>private</strong>  is still protected against direct instantiation.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">_Base</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class which should not be directly instantiated.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">getActiveUsers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+    <span class="k">def</span> <span class="nf">getExpiredusers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="p">[]</span>
+
+<span class="k">class</span> <span class="nc">Users</span><span class="p">(</span><span class="n">_Base</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Public class inheriting from a private class.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span>
+</pre></div>
+</div>
+<p>In the following example <code class="docutils literal notranslate"><span class="pre">_Base</span></code> is effectively <strong>public</strong>, since <code class="docutils literal notranslate"><span class="pre">getActiveUsers()</span></code> and <code class="docutils literal notranslate"><span class="pre">getExpiredusers()</span></code> are both exposed via the <strong>public</strong> <code class="docutils literal notranslate"><span class="pre">Users</span></code> class.</p>
+</div>
+<div class="section" id="documented-and-tested-gross-violation-of-specifications">
+<h3>Documented and Tested Gross Violation of Specifications<a class="headerlink" href="#documented-and-tested-gross-violation-of-specifications" title="Permalink to this headline">¶</a></h3>
+<p>If the behaviour of a what was later found as a bug was documented, or fixing it caused existing tests to break, then the change should be considered incompatible, regardless of how gross its violation.
+It may be that such violations are introduced specifically to deal with other grossly non-compliant implementations of said specification.
+If it is determined that those reasons are invalid or ought to be exposed through a different API, the change is compatible.</p>
+</div>
+</div>
+<div class="section" id="application-developer-upgrade-procedure">
+<h2>Application Developer Upgrade Procedure<a class="headerlink" href="#application-developer-upgrade-procedure" title="Permalink to this headline">¶</a></h2>
+<p>When an application wants to be upgraded to a new version of Twisted, it can do so immediately.</p>
+<p>However, if the application wants to get the same <strong>for free</strong> behavior for the next upgrade, the application’s tests should be run treating warnings as errors, and fixed.</p>
+</div>
+<div class="section" id="supporting-and-de-supporting-python-versions">
+<h2>Supporting and de-supporting Python versions<a class="headerlink" href="#supporting-and-de-supporting-python-versions" title="Permalink to this headline">¶</a></h2>
+<p>Twisted does not have a formal policy around supporting new versions of Python or de-supporting old versions of Python.
+We strive to support Twisted on any version of Python that is the default Python for a vendor-supported release from a major platform, namely Debian, Ubuntu, the latest release of Windows, or the latest release of macOS.
+The versions of Python currently supported are listed in the ​INSTALL file for each release.</p>
+<p>A distribution release + Python version is only considered supported when a <a class="reference external" href="http://buildbot.twistedmatrix.com">buildbot builder</a> exists for it.</p>
+<p>Removing support for a Python version will be announced at least 1 release prior to the removal.</p>
+</div>
+<div class="section" id="how-to-deprecate-apis">
+<h2>How to deprecate APIs<a class="headerlink" href="#how-to-deprecate-apis" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="classes">
+<h3>Classes<a class="headerlink" href="#classes" title="Permalink to this headline">¶</a></h3>
+<p>Classes are deprecated by raising a warning when they are access from within their module, using the <a class="api reference external" href="https://twistedmatrix.com/documents/19.2.1/api/twisted.python.deprecate.deprecatedModuleAttribute.html">deprecatedModuleAttribute</a> helper.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">class</span> <span class="nc">SSLContextFactory</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An SSL context factory.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">deprecatedModuleAttribute</span><span class="p">(</span>
+        <span class="n">Version</span><span class="p">(</span><span class="s2">&quot;Twisted&quot;</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="s2">&quot;Use twisted.internet.ssl.DefaultOpenSSLContextFactory instead.&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;twisted.mail.protocols&quot;</span><span class="p">,</span> <span class="s2">&quot;SSLContextFactory&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="functions-and-methods">
+<h3>Functions and methods<a class="headerlink" href="#functions-and-methods" title="Permalink to this headline">¶</a></h3>
+<p>To deprecate a function or a method, add a call to warnings.warn to the beginning of the implementation of that method.
+The warning should be of type <code class="docutils literal notranslate"><span class="pre">DeprecationWarning</span></code> and the stack level should be set so that the warning refers to the code which is invoking the deprecated function or method.
+The deprecation message must include the name of the function which is deprecated, the version of Twisted in which it was first deprecated, and a suggestion for a replacement.
+If the API provides functionality which it is determined is beyond the scope of Twisted or it has no replacement, then it may be deprecated without a replacement.</p>
+<p>There is also a <a class="api reference external" href="https://twistedmatrix.com/documents/19.2.1/api/twisted.python.deprecate.deprecated.html">deprecated</a> decorator which works for new-style classes.</p>
+<p>For example:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">warnings</span>
+
+<span class="kn">from</span> <span class="nn">twisted.python.deprecate</span> <span class="kn">import</span> <span class="n">deprecated</span>
+<span class="kn">from</span> <span class="nn">twisted.python.versions</span> <span class="kn">import</span> <span class="n">Version</span>
+
+
+<span class="nd">@deprecated</span><span class="p">(</span><span class="n">Version</span><span class="p">(</span><span class="s2">&quot;Twisted&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="s2">&quot;twisted.baz&quot;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">some_function</span><span class="p">(</span><span class="n">bar</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function deprecated using a decorator.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">bar</span> <span class="o">*</span> <span class="mi">3</span>
+
+
+
+<span class="nd">@deprecated</span><span class="p">(</span><span class="n">Version</span><span class="p">(</span><span class="s2">&quot;Twisted&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">some_function</span><span class="p">(</span><span class="n">bar</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function deprecated using a decorator and which has no replacement.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">return</span> <span class="n">bar</span> <span class="o">*</span> <span class="mi">3</span>
+
+
+
+<span class="k">def</span> <span class="nf">some_function</span><span class="p">(</span><span class="n">bar</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Function with a direct call to warnings.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">warnings</span><span class="o">.</span><span class="n">warn</span><span class="p">(</span>
+        <span class="s1">&#39;some_function is deprecated since Twisted 1.2.0. &#39;</span>
+        <span class="s1">&#39;Use twisted.baz instead.&#39;</span><span class="p">,</span>
+        <span class="n">category</span><span class="o">=</span><span class="ne">DeprecationWarning</span><span class="p">,</span>
+        <span class="n">stacklevel</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">bar</span> <span class="o">*</span> <span class="mi">3</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="instance-attributes">
+<h3>Instance attributes<a class="headerlink" href="#instance-attributes" title="Permalink to this headline">¶</a></h3>
+<p>To deprecate an attribute on instances of a new-type class, make the attribute into a property and call <code class="docutils literal notranslate"><span class="pre">warnings.warn</span></code> from the getter and/or setter function for that property.
+You can also use the <a class="api reference external" href="https://twistedmatrix.com/documents/19.2.1/api/twisted.python.deprecate.deprecatedProperty.html">deprecatedProperty</a> decorator which works for new-style classes.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">twisted.python.deprecate</span> <span class="kn">import</span> <span class="n">deprecated</span>
+<span class="kn">from</span> <span class="nn">twisted.python.versions</span> <span class="kn">import</span> <span class="n">Version</span>
+
+
+<span class="k">class</span> <span class="nc">SomeThing</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class for which the C{user} ivar is not yet deprecated.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">user</span> <span class="o">=</span> <span class="n">user</span>
+
+
+
+<span class="k">class</span> <span class="nc">SomeThingWithDeprecation</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A class for which the C{user} ivar is now deprecated.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="bp">None</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_user</span> <span class="o">=</span> <span class="n">user</span>
+
+
+    <span class="nd">@deprecatedProperty</span><span class="p">(</span><span class="n">Version</span><span class="p">(</span><span class="s2">&quot;Twisted&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+    <span class="k">def</span> <span class="nf">user</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_user</span>
+
+
+    <span class="nd">@user.setter</span>
+    <span class="k">def</span> <span class="nf">user</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_user</span> <span class="o">=</span> <span class="n">value</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="module-attributes">
+<h3>Module attributes<a class="headerlink" href="#module-attributes" title="Permalink to this headline">¶</a></h3>
+<p>Modules cannot have properties, so module attributes should be deprecated using the <a class="api reference external" href="https://twistedmatrix.com/documents/19.2.1/api/twisted.python.deprecate.deprecatedModuleAttribute.html">deprecatedModuleAttribute</a> helper.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">twisted.python</span> <span class="kn">import</span> <span class="n">_textattributes</span>
+<span class="kn">from</span> <span class="nn">twisted.python.deprecate</span> <span class="kn">import</span> <span class="n">deprecatedModuleAttribute</span>
+<span class="kn">from</span> <span class="nn">twisted.python.versions</span> <span class="kn">import</span> <span class="n">Version</span>
+
+<span class="n">flatten</span> <span class="o">=</span> <span class="n">_textattributes</span><span class="o">.</span><span class="n">flatten</span>
+
+<span class="n">deprecatedModuleAttribute</span><span class="p">(</span>
+    <span class="n">Version</span><span class="p">(</span><span class="s1">&#39;Twisted&#39;</span><span class="p">,</span> <span class="mi">13</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+    <span class="s1">&#39;Use twisted.conch.insults.text.assembleFormattedText instead.&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;twisted.conch.insults.text&#39;</span><span class="p">,</span>
+    <span class="s1">&#39;flatten&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="modules">
+<h3>Modules<a class="headerlink" href="#modules" title="Permalink to this headline">¶</a></h3>
+<p>To deprecate an entire module, <a class="api reference external" href="https://twistedmatrix.com/documents/19.2.1/api/twisted.python.deprecate.deprecatedModuleAttribute.html">deprecatedModuleAttribute</a> can be used on the parent package’s <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>.</p>
+<p>There are two other options:</p>
+<ul class="simple">
+<li>Put a warnings.warn() call into the top-level code of the module.</li>
+<li>Deprecate all of the attributes of the module.</li>
+</ul>
+</div>
+</div>
+<div class="section" id="testing-deprecation-code">
+<h2>Testing Deprecation Code<a class="headerlink" href="#testing-deprecation-code" title="Permalink to this headline">¶</a></h2>
+<p>Like all changes in Twisted, deprecations must come with associated automated tested.
+There are several options for checking that a code is deprecated and that using it raises a <code class="docutils literal notranslate"><span class="pre">DeprecationWarning</span></code>.</p>
+<p>In order of decreasing preference:</p>
+<ul class="simple">
+<li><a class="api reference external" href="https://twistedmatrix.com/documents/19.2.1/api/twisted.trial.unittest.SynchronousTestCase.flushWarnings.html">flushWarnings</a></li>
+<li><a class="api reference external" href="https://twistedmatrix.com/documents/19.2.1/api/twisted.trial.unittest.SynchronousTestCase.assertWarns.html">assertWarns</a></li>
+<li><a class="api reference external" href="https://twistedmatrix.com/documents/19.2.1/api/twisted.trial.unittest.SynchronousTestCase.callDeprecated.html">callDeprecated</a></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">twisted.trial</span> <span class="kn">import</span> <span class="n">unittest</span>
+
+
+<span class="k">class</span> <span class="nc">DeprecationTests</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Tests for deprecated code.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+
+    <span class="k">def</span> <span class="nf">test_deprecationUsingFlushWarnings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        flushWarnings() is the recommended way of checking for deprecations.</span>
+<span class="sd">        Make sure you only flushWarning from the targeted code, and not all</span>
+<span class="sd">        warnings.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">db</span><span class="o">.</span><span class="n">getUser</span><span class="p">(</span><span class="s1">&#39;some-user&#39;</span><span class="p">)</span>
+
+        <span class="n">message</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="s1">&#39;twisted.Identity.getUser was deprecated in Twisted 15.0.0: &#39;</span>
+            <span class="s1">&#39;Use twisted.get_user instead.&#39;</span>
+            <span class="p">)</span>
+        <span class="n">warnings</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flushWarnings</span><span class="p">(</span>
+            <span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">test_deprecationUsingFlushWarnings</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nb">len</span><span class="p">(</span><span class="n">warnings</span><span class="p">))</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="ne">DeprecationWarning</span><span class="p">,</span> <span class="n">warnings</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;category&#39;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">message</span><span class="p">,</span> <span class="n">warnings</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">&#39;message&#39;</span><span class="p">])</span>
+
+
+    <span class="k">def</span> <span class="nf">test_deprecationUsingAssertWarns</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        assertWarns() is designed as a general helper to check any</span>
+<span class="sd">        type of warnings and can be used for DeprecationsWarnings.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertWarns</span><span class="p">(</span>
+            <span class="ne">DeprecationWarning</span><span class="p">,</span>
+            <span class="s1">&#39;twisted.Identity.getUser was deprecated in Twisted 15.0.0 &#39;</span>
+            <span class="s1">&#39;Use twisted.get_user instead.&#39;</span><span class="p">,</span>
+            <span class="vm">__file__</span><span class="p">,</span>
+            <span class="n">db</span><span class="o">.</span><span class="n">getUser</span><span class="p">,</span> <span class="s1">&#39;some-user&#39;</span><span class="p">)</span>
+
+
+    <span class="k">def</span> <span class="nf">test_deprecationUsingCallDeprecated</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Avoid using self.callDeprecated() just to check the deprecation</span>
+<span class="sd">        call.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">callDeprecated</span><span class="p">(</span>
+            <span class="n">Version</span><span class="p">(</span><span class="s2">&quot;Twisted&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">db</span><span class="o">.</span><span class="n">getUser</span><span class="p">,</span> <span class="s1">&#39;some-user&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>When code is deprecated, all previous tests in which the code is called and tested will now raise <code class="docutils literal notranslate"><span class="pre">DeprecationWarning</span></code>s.
+Making calls to the deprecated code without raising these warnings can be done using the <a class="api reference external" href="https://twistedmatrix.com/documents/19.2.1/api/twisted.trial.unittest.TestCase.callDeprecated.html">callDeprecated</a> helper.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">twisted.trial</span> <span class="kn">import</span> <span class="n">unittest</span>
+
+
+<span class="k">class</span> <span class="nc">IdentityTests</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Tests for our Identity behavior.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">test_getUserHomePath</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        This is a test in which we check the returned value of C{getUser}</span>
+<span class="sd">        but we also explicitly handle the deprecations warnings emitted</span>
+<span class="sd">        during its execution.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">user</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">callDeprecated</span><span class="p">(</span>
+            <span class="n">Version</span><span class="p">(</span><span class="s2">&quot;Twisted&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span> <span class="n">db</span><span class="o">.</span><span class="n">getUser</span><span class="p">,</span> <span class="s1">&#39;some-user&#39;</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="s1">&#39;some-value&#39;</span><span class="p">,</span> <span class="n">user</span><span class="o">.</span><span class="n">homePath</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Due to a bug in Trial (<a class="reference external" href="https://twistedmatrix.com/trac/ticket/6348">#6348</a>), unhandled deprecation warnings will not cause test failures or show in test results.</p>
+<p>While the Trial bug is not fixed, to trigger test failures on unhandled deprecation warnings use:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">python -Werror::DeprecationWarning ./bin/trial twisted.conch</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../../../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference internal" href="#">Twisted Compatibility Policy</a><ul>
+<li><a class="reference internal" href="#motivation">Motivation</a></li>
+<li><a class="reference internal" href="#defining-compatibility">Defining Compatibility</a></li>
+<li><a class="reference internal" href="#brief-notes-for-developers">Brief notes for developers</a></li>
+<li><a class="reference internal" href="#procedure-for-incompatible-changes">Procedure for Incompatible Changes</a><ul>
+<li><a class="reference internal" href="#the-first-one-s-always-free">The First One’s Always Free</a></li>
+<li><a class="reference internal" href="#incompatible-changes">Incompatible Changes</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#procedure-for-exceptions-to-this-policy">Procedure for Exceptions to this Policy</a></li>
+<li><a class="reference internal" href="#compatible-changes-changed-not-covered-by-the-compatibility-policy">Compatible Changes. Changed not Covered by the Compatibility Policy</a><ul>
+<li><a class="reference internal" href="#test-changes">Test Changes</a></li>
+<li><a class="reference internal" href="#private-changes">Private Changes</a></li>
+<li><a class="reference internal" href="#bug-fixes-and-gross-violation-of-specifications">Bug Fixes and Gross Violation of Specifications</a></li>
+<li><a class="reference internal" href="#raw-source-code">Raw Source Code</a></li>
+<li><a class="reference internal" href="#new-attributes">New Attributes</a></li>
+<li><a class="reference internal" href="#pickling">Pickling</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#changes-covered-by-the-compatibility-policy">Changes Covered by the Compatibility Policy</a><ul>
+<li><a class="reference internal" href="#interface-changes">Interface Changes</a></li>
+<li><a class="reference internal" href="#private-objects-available-via-public-entry-points">Private Objects Available via Public Entry Points</a></li>
+<li><a class="reference internal" href="#private-class-inherited-by-public-subclass">Private Class Inherited by Public Subclass</a></li>
+<li><a class="reference internal" href="#documented-and-tested-gross-violation-of-specifications">Documented and Tested Gross Violation of Specifications</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#application-developer-upgrade-procedure">Application Developer Upgrade Procedure</a></li>
+<li><a class="reference internal" href="#supporting-and-de-supporting-python-versions">Supporting and de-supporting Python versions</a></li>
+<li><a class="reference internal" href="#how-to-deprecate-apis">How to deprecate APIs</a><ul>
+<li><a class="reference internal" href="#classes">Classes</a></li>
+<li><a class="reference internal" href="#functions-and-methods">Functions and methods</a></li>
+<li><a class="reference internal" href="#instance-attributes">Instance attributes</a></li>
+<li><a class="reference internal" href="#module-attributes">Module attributes</a></li>
+<li><a class="reference internal" href="#modules">Modules</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#testing-deprecation-code">Testing Deprecation Code</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="test-standard.html"
+                                  title="previous chapter">Unit Tests in Twisted</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="code-dev.html"
+                                  title="next chapter">Working from Twisted’s code repository</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../../../_sources/core/development/policy/compatibility-policy.rst.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../../../search.html" method="get">
+                <p>
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+                </p>
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    </div>
+    <div id="footer"><hr />
+      <div>
+
+</div>
+      <p class="left2">
+        Site design<br />
+        By <a href="http://huw.ugbox.net/">huw.wilkins.</a>
+
+      </p>
+      <p class="right"></p>
+    </div>
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+/, '/current');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = '';
+          delete link;
+          delete container;
+      }
+    </script>
+  </body>
+</html>

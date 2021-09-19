@@ -1,0 +1,309 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.persisted.journal.rowjournal.RowJournal : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">t.p.j.r.RowJournal(<a href="twisted.persisted.journal.base.Journal.html">base.Journal</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.persisted.html">persisted</a>.<a href="twisted.persisted.journal.html">journal</a>.<a href="twisted.persisted.journal.rowjournal.html">rowjournal</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/persisted/journal/rowjournal.py#L31">View Source</a>
+      <a href="classIndex.html#twisted.persisted.journal.rowjournal.RowJournal">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>Journal that stores data 'snapshot' in using twisted.enterprise.row.</p>
+<p>Use this as the reflector instead of the original reflector.</p>
+<p>It may block on creation, if it has to run recovery.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3361">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.persisted.journal.rowjournal.RowJournal.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.persisted.journal.rowjournal.RowJournal.html#updateRow">updateRow</a></td>
+    <td><span>Mark on object for updating when sync()ing.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.persisted.journal.rowjournal.RowJournal.html#insertRow">insertRow</a></td>
+    <td><span>Mark on object for inserting when sync()ing.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.persisted.journal.rowjournal.RowJournal.html#deleteRow">deleteRow</a></td>
+    <td><span>Mark on object for deleting when sync()ing.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.persisted.journal.rowjournal.RowJournal.html#loadObjectsFrom">loadObjectsFrom</a></td>
+    <td><span>Flush all objects to the database and then load objects.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.persisted.journal.rowjournal.RowJournal.html#sync">sync</a></td>
+    <td><span>Commit changes to database.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.persisted.journal.rowjournal.RowJournal.html#getLastSnapshot">getLastSnapshot</a></td>
+    <td><span>Return command index of last snapshot.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.persisted.journal.rowjournal.RowJournal.html#_sync">_sync</a></td>
+    <td><span>Do the actual database synchronization.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.persisted.journal.rowjournal.RowJournal.html#_syncDone">_syncDone</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.persisted.journal.base.Journal.html">Journal</a>:
+        </p>
+        <table class="children sortable" id="id3362">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.persisted.journal.base.Journal.html#updateFromLog">updateFromLog</a></td>
+    <td><span>Run all commands from log that haven't been run yet.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.persisted.journal.base.Journal.html#executeCommand">executeCommand</a></td>
+    <td><span>Log and execute a command.</span></td>
+  </tr><tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.persisted.journal.base.Journal.html#_reallyExecute">_reallyExecute</a></td>
+    <td><span>Callback called when logging command is done.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.persisted.journal.rowjournal.RowJournal.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, log, journaledService, reflector):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/persisted/journal/rowjournal.py#L39" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.persisted.journal.base.Journal.html#__init__">twisted.persisted.journal.base.Journal.__init__</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.persisted.journal.rowjournal.RowJournal.updateRow">
+    
+  </a>
+  <a name="updateRow">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    updateRow(self, obj):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/persisted/journal/rowjournal.py#L45" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Mark on object for updating when sync()ing.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.persisted.journal.rowjournal.RowJournal.insertRow">
+    
+  </a>
+  <a name="insertRow">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    insertRow(self, obj):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/persisted/journal/rowjournal.py#L49" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Mark on object for inserting when sync()ing.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.persisted.journal.rowjournal.RowJournal.deleteRow">
+    
+  </a>
+  <a name="deleteRow">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    deleteRow(self, obj):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/persisted/journal/rowjournal.py#L53" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Mark on object for deleting when sync()ing.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.persisted.journal.rowjournal.RowJournal.loadObjectsFrom">
+    
+  </a>
+  <a name="loadObjectsFrom">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    loadObjectsFrom(self, tableName, parentRow=None, data=None, whereClause=None, forceChildren=0):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/persisted/journal/rowjournal.py#L57" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Flush all objects to the database and then load objects.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.persisted.journal.rowjournal.RowJournal.sync">
+    
+  </a>
+  <a name="sync">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    sync(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/persisted/journal/rowjournal.py#L65" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.persisted.journal.base.Journal.html#sync">twisted.persisted.journal.base.Journal.sync</a></div>
+    <div>Commit changes to database.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.persisted.journal.rowjournal.RowJournal._sync">
+    
+  </a>
+  <a name="_sync">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _sync(self, txn, index, commands):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/persisted/journal/rowjournal.py#L84" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Do the actual database synchronization.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.persisted.journal.rowjournal.RowJournal._syncDone">
+    
+  </a>
+  <a name="_syncDone">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _syncDone(self, result):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/persisted/journal/rowjournal.py#L90" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.persisted.journal.rowjournal.RowJournal.getLastSnapshot">
+    
+  </a>
+  <a name="getLastSnapshot">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getLastSnapshot(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/persisted/journal/rowjournal.py#L94" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.persisted.journal.base.Journal.html#getLastSnapshot">twisted.persisted.journal.base.Journal.getLastSnapshot</a></div>
+    <div>Return command index of last snapshot.<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-04-03 00:32:03.
+    </address>
+  </body>
+</html>

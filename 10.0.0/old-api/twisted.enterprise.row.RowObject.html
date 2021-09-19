@@ -1,0 +1,264 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.enterprise.row.RowObject : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">t.e.r.RowObject : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.enterprise.html">enterprise</a>.<a href="twisted.enterprise.row.html">row</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0//twisted/enterprise/row.py#L21">View Source</a>
+      <a href="classIndex.html#twisted.enterprise.row.RowObject">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div><p>I represent a row in a table in a relational database.</p>
+<p>My class is &quot;populated&quot; by a Reflector object. After I am 
+populated, instances of me are able to interact with a particular database 
+table.</p>
+<p>You should use a class derived from this class for each database 
+table.</p>
+<p>reflector.loadObjectsFrom() is used to create sets of instance of 
+objects of this class from database tables.</p>
+<p>Once created, the &quot;key column&quot; attributes cannot be 
+changed.</p>
+Class Attributes that users must supply:
+<pre class="literalblock">
+  rowKeyColumns     # list of key columns in form: [(columnName, typeName)]
+  rowTableName      # name of database table
+  rowColumns        # list of the columns in the table with the correct
+                    # case.this will be used to create member variables.
+  rowFactoryMethod  # method to create an instance of this class.
+                    # HACK: must be in a list!!! [factoryMethod] (optional)
+  rowForeignKeys    # keys to other tables (optional)
+</pre>
+<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id16">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.enterprise.row.RowObject.html#__init__">__init__</a></td>
+    <td><span>DEPRECATED.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.enterprise.row.RowObject.html#assignKeyAttr">assignKeyAttr</a></td>
+    <td><span>Assign to a key attribute.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.enterprise.row.RowObject.html#findAttribute">findAttribute</a></td>
+    <td><span>Find an attribute by caseless name.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.enterprise.row.RowObject.html#__setattr__">__setattr__</a></td>
+    <td><span>Special setattr to prevent changing of key values.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.enterprise.row.RowObject.html#createDefaultAttributes">createDefaultAttributes</a></td>
+    <td><span>Populate instance with default attributes.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.enterprise.row.RowObject.html#setDirty">setDirty</a></td>
+    <td><span>Use this to set the 'dirty' flag.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.enterprise.row.RowObject.html#getKeyTuple">getKeyTuple</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.enterprise.row.RowObject.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0//twisted/enterprise/row.py#L52" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>DEPRECATED.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.enterprise.row.RowObject.assignKeyAttr">
+    
+  </a>
+  <a name="assignKeyAttr">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    assignKeyAttr(self, attrName, value):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0//twisted/enterprise/row.py#L59" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Assign to a key attribute.</p>
+This cannot be done through normal means to protect changing keys of db 
+objects.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.enterprise.row.RowObject.findAttribute">
+    
+  </a>
+  <a name="findAttribute">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    findAttribute(self, attrName):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0//twisted/enterprise/row.py#L73" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Find an attribute by caseless name.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.enterprise.row.RowObject.__setattr__">
+    
+  </a>
+  <a name="__setattr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __setattr__(self, name, value):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0//twisted/enterprise/row.py#L81" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Special setattr to prevent changing of key values.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.enterprise.row.RowObject.createDefaultAttributes">
+    
+  </a>
+  <a name="createDefaultAttributes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    createDefaultAttributes(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0//twisted/enterprise/row.py#L94" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Populate instance with default attributes.</p>
+This is used when creating a new instance NOT from the database.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.enterprise.row.RowObject.setDirty">
+    
+  </a>
+  <a name="setDirty">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setDirty(self, flag):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0//twisted/enterprise/row.py#L111" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Use this to set the 'dirty' flag.</p>
+(note: this avoids infinite recursion in __setattr__, and prevents the 
+'dirty' flag )
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.enterprise.row.RowObject.getKeyTuple">
+    
+  </a>
+  <a name="getKeyTuple">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getKeyTuple(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0//twisted/enterprise/row.py#L119" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2010-03-06 12:41:43.
+    </address>
+  </body>
+</html>

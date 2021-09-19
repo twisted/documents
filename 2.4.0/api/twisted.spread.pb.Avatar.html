@@ -1,0 +1,54 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.spread.pb.Avatar&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.s.p.Avatar:</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.spread.pb.html">twisted.spread.pb</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.spread.pb.Avatar">View In Hierarchy</a>
+    </p>
+    <div><p>Known subclasses: <a href="twisted.spread.pb.Perspective.html">twisted.spread.pb.Perspective</a>, <a href="twisted.manhole.service.Perspective.html">twisted.manhole.service.Perspective</a></p><p>Implements interfaces: <a href="twisted.spread.pb.IPerspective.html">twisted.spread.pb.IPerspective</a></p></div>
+    <div><p>A default IPerspective implementor.</p>
+<p>This class is intended to be subclassed, and a realm should return an 
+instance of such a subclass when IPerspective is requested of it.</p>
+A peer requesting a perspective will receive only a <a 
+href="twisted.spread.pb.RemoteReference.html">RemoteReference</a> to a 
+pb.Avatar. When a method is called on that <a 
+href="twisted.spread.pb.RemoteReference.html">RemoteReference</a>, it 
+will translate to a method on the remote perspective named 
+'perspective_methodname'. (For more information on invoking methods on 
+other objects, see <a 
+href="twisted.spread.flavors.ViewPoint.html">flavors.ViewPoint</a>.)
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.pb.Avatar.perspectiveMessageReceived">perspectiveMessageReceived</a></td>
+          <td><span>This method is called when a network message is received.
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.spread.pb.Avatar.perspectiveMessageReceived"></a>
+        <div class="functionHeader">
+          def <span>perspectiveMessageReceived(self, broker, message, args, kw):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.spread.pb.IPerspective.html#twisted.spread.pb.IPerspective.perspectiveMessageReceived">twisted.spread.pb.IPerspective</a></div><div><p>This method is called when a network message is received.</p>
+I will call:
+<pre class="literalblock">
+ |  self.perspective_%(message)s(*broker.unserialize(args),
+ |                               **broker.unserialize(kw))
+</pre>
+to handle the method; subclasses of Avatar are expected to implement 
+methods of this naming convention.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

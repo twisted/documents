@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.protocols.basic.IntNStringReceiver : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://twistedmatrix.com/">Twisted</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><a href="twisted.html" class="code" data-type="Package">twisted</a>.<a href="twisted.protocols.html" class="code" data-type="Package">protocols</a>.<a href="twisted.protocols.basic.html" class="code" data-type="Module">basic</a>.<a href="twisted.protocols.basic.IntNStringReceiver.html" class="code" data-type="Class">IntNStringReceiver</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> twisted.protocols.basic.IntNStringReceiver(<a href="twisted.internet.protocol.Protocol.html" class="code" data-type="Class">protocol.Protocol</a>, <a href="twisted.protocols.basic._PauseableMixin.html" class="code" data-type="Class">_PauseableMixin</a>): <a href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/protocols/basic.py#L649">(source)</a></code></p><p>Known subclasses: <a href="twisted.protocols.basic.Int16StringReceiver.html" class="code" data-type="Class">twisted.protocols.basic.Int16StringReceiver</a>, <a href="twisted.protocols.basic.Int32StringReceiver.html" class="code" data-type="Class">twisted.protocols.basic.Int32StringReceiver</a>, <a href="twisted.protocols.basic.Int8StringReceiver.html" class="code" data-type="Class">twisted.protocols.basic.Int8StringReceiver</a></p>
+        <p><a href="classIndex.html#twisted.protocols.basic.IntNStringReceiver">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Generic class for length prefixed protocols.</p></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2171">
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.basic.IntNStringReceiver.html#structFormat" class="code" data-type="Instance Variable">structFormat</a></td>
+    <td><span>format used for struct packing/unpacking. Define it in subclass.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.basic.IntNStringReceiver.html#prefixLength" class="code" data-type="Instance Variable">prefixLength</a></td>
+    <td><span>length of the prefix, in bytes. Define it in subclass, using <code>struct.calcsize(structFormat)</code></span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.protocols.basic.IntNStringReceiver.html#MAX_LENGTH" class="code" data-type="Class Variable">MAX_LENGTH</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.protocols.basic.IntNStringReceiver.html#recvd" class="code" data-type="Class Variable">recvd</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.IntNStringReceiver.html#stringReceived" class="code" data-type="Method">stringReceived</a></td>
+    <td><span>Override this for notification when each complete string is received.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.IntNStringReceiver.html#lengthLimitExceeded" class="code" data-type="Method">lengthLimitExceeded</a></td>
+    <td><span>Callback invoked when a length prefix greater than <code>MAX_LENGTH</code> is received.  The default implementation disconnects the transport. Override this.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.IntNStringReceiver.html#dataReceived" class="code" data-type="Method">dataReceived</a></td>
+    <td><span>Convert int prefixed strings into calls to stringReceived.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.IntNStringReceiver.html#sendString" class="code" data-type="Method">sendString</a></td>
+    <td><span>Send a prefixed string to the other end of the connection.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.basic.IntNStringReceiver.html#_unprocessed" class="code" data-type="Instance Variable">_unprocessed</a></td>
+    <td><span>bytes received, but not yet broken up into messages / sent to stringReceived.  _compatibilityOffset must be updated when this value is updated so that the <code>recvd</code> attribute can be generated correctly.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.basic.IntNStringReceiver.html#_compatibilityOffset" class="code" data-type="Instance Variable">_compatibilityOffset</a></td>
+    <td><span>the offset within <code>_unprocessed</code> to the next message to be parsed. (used to generate the recvd attribute)</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.protocol.Protocol.html" class="code" data-type="Class">Protocol</a>:
+          </p>
+          <table class="children sortable" id="id2172">
+  
+  <tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.internet.protocol.Protocol.html#factory" class="code" data-type="Class Variable">factory</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Protocol.html#logPrefix" class="code" data-type="Method">logPrefix</a></td>
+    <td><span>Return a prefix matching the class name, to identify log messages related to this protocol instance.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Protocol.html#connectionLost" class="code" data-type="Method">connectionLost</a></td>
+    <td><span>Called when the connection is shut down.</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.protocol.BaseProtocol.html" class="code" data-type="Class">BaseProtocol</a> (via <a href="twisted.internet.protocol.Protocol.html" class="code" data-type="Class">Protocol</a>):
+          </p>
+          <table class="children sortable" id="id2173">
+  
+  <tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.protocol.BaseProtocol.html#connected" class="code" data-type="Instance Variable">connected</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.protocol.BaseProtocol.html#transport" class="code" data-type="Instance Variable">transport</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.BaseProtocol.html#makeConnection" class="code" data-type="Method">makeConnection</a></td>
+    <td><span>Make a connection to a transport and a server.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.BaseProtocol.html#connectionMade" class="code" data-type="Method">connectionMade</a></td>
+    <td><span>Called when a connection is made.</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.protocols.basic._PauseableMixin.html" class="code" data-type="Class">_PauseableMixin</a>:
+          </p>
+          <table class="children sortable" id="id2174">
+  
+  <tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#paused" class="code" data-type="Instance Variable">paused</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#pauseProducing" class="code" data-type="Method">pauseProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#resumeProducing" class="code" data-type="Method">resumeProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#stopProducing" class="code" data-type="Method">stopProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable private">
+  
+  <a name="twisted.protocols.basic.IntNStringReceiver._unprocessed">
+    
+  </a>
+  <a name="_unprocessed">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _unprocessed =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/protocols/basic.py#L653">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>bytes received, but not yet broken up into messages / sent to stringReceived.  _compatibilityOffset must be updated when this value is updated so that the <code>recvd</code> attribute can be generated correctly.</div> (type: <code>bytes</code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.protocols.basic.IntNStringReceiver.structFormat">
+    
+  </a>
+  <a name="structFormat">
+    
+  </a>
+  <div class="functionHeader">
+    
+    structFormat =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/protocols/basic.py#L659">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.protocols.basic.Int16StringReceiver.html" class="code" data-type="Class">twisted.protocols.basic.Int16StringReceiver</a>, <a href="twisted.protocols.basic.Int32StringReceiver.html" class="code" data-type="Class">twisted.protocols.basic.Int32StringReceiver</a>, <a href="twisted.protocols.basic.Int8StringReceiver.html" class="code" data-type="Class">twisted.protocols.basic.Int8StringReceiver</a></div>
+    
+    <div>format used for struct packing/unpacking. Define it in subclass.</div> (type: <code>str</code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.protocols.basic.IntNStringReceiver.prefixLength">
+    
+  </a>
+  <a name="prefixLength">
+    
+  </a>
+  <div class="functionHeader">
+    
+    prefixLength =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/protocols/basic.py#L663">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.protocols.basic.Int16StringReceiver.html" class="code" data-type="Class">twisted.protocols.basic.Int16StringReceiver</a>, <a href="twisted.protocols.basic.Int32StringReceiver.html" class="code" data-type="Class">twisted.protocols.basic.Int32StringReceiver</a>, <a href="twisted.protocols.basic.Int8StringReceiver.html" class="code" data-type="Class">twisted.protocols.basic.Int8StringReceiver</a></div>
+    
+    <div>length of the prefix, in bytes. Define it in subclass, using <code>struct.calcsize(structFormat)</code></div> (type: <code>int</code>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.protocols.basic.IntNStringReceiver._compatibilityOffset">
+    
+  </a>
+  <a name="_compatibilityOffset">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _compatibilityOffset =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/protocols/basic.py#L667">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>the offset within <code>_unprocessed</code> to the next message to be parsed. (used to generate the recvd attribute)</div> (type: <code>int</code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="twisted.protocols.basic.IntNStringReceiver.MAX_LENGTH">
+    
+  </a>
+  <a name="MAX_LENGTH">
+    
+  </a>
+  <div class="functionHeader">
+    
+    MAX_LENGTH =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/protocols/basic.py#L672">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.protocols.amp.BinaryBoxProtocol.html" class="code" data-type="Class">twisted.protocols.amp.BinaryBoxProtocol</a></div>
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/functions.html#int" class="code">int</a></code>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="twisted.protocols.basic.IntNStringReceiver.recvd">
+    
+  </a>
+  <a name="recvd">
+    
+  </a>
+  <div class="functionHeader">
+    
+    recvd =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/protocols/basic.py#L678">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.protocols.amp.BinaryBoxProtocol.html" class="code" data-type="Class">twisted.protocols.amp.BinaryBoxProtocol</a></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.basic.IntNStringReceiver.stringReceived">
+    
+  </a>
+  <a name="stringReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def stringReceived(self, string):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/protocols/basic.py#L680">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Override this for notification when each complete string is received.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">string</td><td>The complete string which was received with all framing (length prefix, etc) removed. (type: <code>bytes</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.basic.IntNStringReceiver.lengthLimitExceeded">
+    
+  </a>
+  <a name="lengthLimitExceeded">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def lengthLimitExceeded(self, length):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/protocols/basic.py#L690">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.protocols.amp.BinaryBoxProtocol.html" class="code" data-type="Class">twisted.protocols.amp.BinaryBoxProtocol</a></div>
+    
+    <div><p>Callback invoked when a length prefix greater than <code>MAX_LENGTH</code> is received.  The default implementation disconnects the transport. Override this.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">length</td><td>The length prefix which was received. (type: <code>int</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.basic.IntNStringReceiver.dataReceived">
+    
+  </a>
+  <a name="dataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def dataReceived(self, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/protocols/basic.py#L701">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#dataReceived" class="code" data-type="Method">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Protocol.html#dataReceived" class="code" data-type="Method">twisted.internet.protocol.Protocol.dataReceived</a></div><div class="interfaceinfo">overridden in <a href="twisted.protocols.amp.BinaryBoxProtocol.html" class="code" data-type="Class">twisted.protocols.amp.BinaryBoxProtocol</a></div>
+    
+    <div><p>Convert int prefixed strings into calls to stringReceived.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.basic.IntNStringReceiver.sendString">
+    
+  </a>
+  <a name="sendString">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def sendString(self, string):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/protocols/basic.py#L750">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send a prefixed string to the other end of the connection.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">string</td><td>The string to send.  The necessary framing (length prefix, etc) will be added. (type: <code>bytes</code>)</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-02-28 19:53:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

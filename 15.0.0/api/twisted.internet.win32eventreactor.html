@@ -1,0 +1,210 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.win32eventreactor : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="module">t.i.win32eventreactor : module documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.0.0/twisted/internet/win32eventreactor.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div>A win32event based implementation of the Twisted main loop.</p>
+<p>This requires pywin32 (formerly win32all) or ActivePython to be 
+installed.</p>
+<p>To install the event loop (and you should do this before any 
+connections, listeners or connectors are added):</p>
+<pre class="literalblock">
+   from twisted.internet import win32eventreactor
+   win32eventreactor.install()
+</pre>
+<p>LIMITATIONS:</p>
+<ol start="1">
+  <li>
+    WaitForMultipleObjects and thus the event loop can only handle 64 
+    objects.
+  </li>
+  <li>
+    Process running has some problems (see <a 
+    href="twisted.internet.process.Process.html"><code>Process</code></a> 
+    docstring).
+  </li>
+</ol>
+<p>TODO:</p>
+<ol start="1">
+  <li>
+    Event loop handling of writes is *very* problematic (this is causing 
+    failed tests). Switch to doing it the correct way, whatever that means 
+    (see below).
+  </li>
+  <li>
+    Replace icky socket loopback waker with event based waker (use 
+    dummyEvent object)
+  </li>
+  <li>
+    Switch everyone to using Free Software so we don't have to deal with 
+    proprietary APIs.
+  </li>
+</ol>
+<p>ALTERNATIVE SOLUTIONS:</p>
+<ul>
+  <li>
+    IIRC, sockets can only be registered once. So we switch to a structure 
+    like the poll() reactor, thus allowing us to deal with write events in 
+    a decent fashion. This should allow us to pass tests, but we're still 
+    limited to 64 events.
+  </li>
+</ul>
+<p>Or:</p>
+<ul>
+  <li>
+    Instead of doing a reactor, we make this an addon to the select 
+    reactor. The WFMO event loop runs in a separate thread. This means no 
+    need to maintain separate code for networking, 64 event limit doesn't 
+    apply to sockets, we can run processes and other win32 stuff in default
+    event loop. The only problem is that we're stuck with the icky socket 
+    based waker. Another benefit is that this could be extended to support 
+    &gt;64 events in a simpler manner than the previous solution.
+  </li>
+</ul>
+<p>The 2nd solution is probably what will get implemented.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1184">
+  
+  
+<tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.win32eventreactor.html#WSAEnumNetworkEvents">WSAEnumNetworkEvents</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.win32eventreactor.Win32Reactor.html">Win32Reactor</a></td>
+    <td><span>Reactor that uses Win32 event APIs.</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.win32eventreactor.html#install">install</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.win32eventreactor._ThreadFDWrapper.html">_ThreadFDWrapper</a></td>
+    <td><span>This wraps an event handler and translates notification in the helper <a
+href="twisted.internet.win32eventreactor.Win32Reactor.html"><code>Win32Reactor</code></a>
+thread into a notification in the primary reactor thread.</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.win32eventreactor._ThreadedWin32EventsMixin.html">_ThreadedWin32EventsMixin</a></td>
+    <td><span>This mixin implements <a 
+href="twisted.internet.interfaces.IReactorWin32Events.html"><code>IReactorWin32Events</code></a>
+for another reactor by running a <a 
+href="twisted.internet.win32eventreactor.Win32Reactor.html"><code>Win32Reactor</code></a>
+in a separate thread and dispatching work to it.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.internet.win32eventreactor.WSAEnumNetworkEvents">
+    
+  </a>
+  <a name="WSAEnumNetworkEvents">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    WSAEnumNetworkEvents(fd, event):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.0.0/twisted/internet/win32eventreactor.py#L65" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.win32eventreactor.install">
+    
+  </a>
+  <a name="install">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    install():
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.0.0/twisted/internet/win32eventreactor.py#L423" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2015-01-30 14:14:53.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

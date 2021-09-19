@@ -1,0 +1,595 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="Description" content="An event-driven networking engine written in Python and MIT licensed." />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Twisted Release Process &mdash; Twisted 18.9.0 documentation</title>
+    <link rel="stylesheet" href="../../../_static/twistedtrac.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../../',
+        VERSION:     '18.9.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+    <link rel="top" title="Twisted 18.9.0 documentation" href="../../../index.html" />
+    <link rel="up" title="Twisted Development Policy" href="index.html" />
+    <link rel="next" title="Twisted Conch (SSH and Telnet)" href="../../../conch/index.html" />
+    <link rel="prev" title="Working from Twisted’s code repository" href="code-dev.html" /> 
+
+  </head>
+  
+  
+<body>
+
+<div id="banner">
+<div id="top_grad">
+         
+</div>
+<div id="tab">
+        <a href="http://twistedmatrix.com/trac/wiki">HOME</a>
+    <a href="http://twistedmatrix.com/trac/wiki/FrequentlyAskedQuestions">FAQ</a>
+    <a href="/">DOCS</a>
+    <a href="http://twistedmatrix.com/trac/wiki/Downloads">DOWNLOAD</a>
+
+</div>
+      <div id="header">
+        <a id="logo" href="http://twistedmatrix.com/trac/"><img src="../../../_static/trac_banner.png" alt="Twisted" /></a>
+      </div>
+      <!-- taking this out for now, but might use 
+           the space for something else later 
+      -->
+      <!--
+      <form id="topsearch" action="/trac/search" method="get"><div>
+        <label for="proj-search">Search:</label>
+        <input type="text" id="proj-search" name="q" size="10" value="" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="wiki" value="on" />
+
+        <input type="hidden" name="changeset" value="on" />
+        <input type="hidden" name="ticket" value="on" />
+      </div></form>
+      -->
+      <div id="metanav" class="nav">
+    <ul>
+      <li> </li>
+      <!-- taking this out for now, but might use 
+           the space for something else later 
+      -->
+      <!--
+      <li class="first">logged in as khorn</li><li class=""><a href="/trac/logout">Logout</a></li><li class=""><a href="/trac/wiki/TracGuide">Help/Guide</a></li><li class=""><a href="/trac/about">About Trac</a></li><li class="last"><a href="/trac/account">My Account</a></li>
+      -->
+    </ul>
+  </div>
+    </div>
+
+<!-- mainnav -->
+    <div id="mainnav" class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../../../conch/index.html" title="Twisted Conch (SSH and Telnet)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="code-dev.html" title="Working from Twisted’s code repository"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../../index.html">Twisted 18.9.0 documentation</a> &raquo;</li>
+          <li><a href="../../index.html" >Twisted Core</a> &raquo;</li>
+          <li><a href="../index.html" >Development of Twisted</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Twisted Development Policy</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div id="main">
+    <div id="ctxtnav" class="nav">
+      <h2>Wiki Navigation</h2>
+      <ul>
+        <li>
+        
+        </li>
+        <!-- taking this out for now, but might use 
+             the space for something else later 
+        -->
+        <!--
+        <li><a href="/trac/wiki/WikiStart">Start Page</a></li>
+        <li><a href="/trac/wiki/TitleIndex">Index by Title</a></li>
+
+        <li><a href="/trac/wiki/RecentChanges">Index by Date</a></li>
+        <li class="last">
+          <a href="/trac/wiki/Documentation?action=diff&amp;version=15">Last Change</a>
+        </li>
+        -->
+      </ul>
+      <hr />
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div id="current-docs-container" style="display: none">
+            <em>
+              <a id="current-docs-link">
+                Go to the latest version of this document.
+              </a>
+            </em>
+          </div>
+          <div class="body">
+            
+  <div class="section" id="twisted-release-process">
+<h1>Twisted Release Process<a class="headerlink" href="#twisted-release-process" title="Permalink to this headline">¶</a></h1>
+<p>This document describes the Twisted release process.
+Although it is still incomplete, every effort has been made to ensure that it is accurate and up-to-date.</p>
+<p>This process has only been tested on Linux or macOS, so we recommend that you do the release on Linux or macOS.</p>
+<p>If you want to make changes to the release process, follow the normal Twisted development process (contribute release automation software that has documentation and unit tests demonstrating that it works).</p>
+<div class="section" id="outcomes">
+<h2>Outcomes<a class="headerlink" href="#outcomes" title="Permalink to this headline">¶</a></h2>
+<p>By the end of a Twisted release we’ll have:</p>
+<ul class="simple">
+<li>Tarballs for Twisted as a whole, and for each of its sub-projects</li>
+<li>Windows installers for the whole Twisted project</li>
+<li>Updated documentation (API &amp; howtos) on the twistedmatrix.com site</li>
+<li>Updated documentation on Read The Docs</li>
+<li>Updated download links on the twistedmatrix.com site</li>
+<li>Announcement emails sent to major Python lists</li>
+<li>Announcement post on <a class="reference external" href="http://labs.twistedmatrix.com">the Twisted blog</a></li>
+<li>A tag in our Git repository marking the release</li>
+</ul>
+</div>
+<div class="section" id="prerequisites">
+<h2>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>To release Twisted, you will need:</p>
+<ul class="simple">
+<li>Commit privileges to Twisted</li>
+<li>Access to <code class="docutils literal notranslate"><span class="pre">dornkirk.twistedmatrix.com</span></code> as t-web</li>
+<li>Permissions to edit the Downloads wiki page</li>
+<li>Channel operator permissions for <code class="docutils literal notranslate"><span class="pre">#twisted</span></code></li>
+<li>Admin privileges for Twisted’s PyPI packages</li>
+<li>Contributor status for <a class="reference external" href="http://labs.twistedmatrix.com">the Twisted blog</a></li>
+<li>Read The Docs access for the Twisted project</li>
+</ul>
+</div>
+<div class="section" id="version-numbers">
+<h2>Version numbers<a class="headerlink" href="#version-numbers" title="Permalink to this headline">¶</a></h2>
+<p>Twisted releases use a time-based numbering scheme.
+Releases versions like YY.MM.mm, where YY is the last two digits of the year of the release, MM is the month of release, and mm is the number of the patch release.</p>
+<p>For example:</p>
+<ul class="simple">
+<li>A release in Jan 2017 is 17.1.0</li>
+<li>A release in Nov 2017 is 17.11.0</li>
+<li>If 17.11.0 has some critical defects, then a patch release would be numbered 17.11.1</li>
+<li>The first release candidate of 17.1.0 is 17.1.0rc1, the second is 17.1.0rc2</li>
+</ul>
+<p>Every release of Twisted includes the whole project.</p>
+<p>Throughout this document, we’ll refer to the version number of the release as $RELEASE. Examples of $RELEASE include 10.0.0, 10.1.0, 10.1.1 etc.</p>
+<p>We’ll refer to the first two components of the release as $API, since all releases that share those numbers are mutually API compatible.
+e.g. for 10.0.0, $API is 10.0; for 10.1.0 and 10.1.1, $API is 10.1.</p>
+<p>Incremental automatically picks the correct version number for you.
+Please retrieve it after you run it.</p>
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>To release Twisted, we</p>
+<ol class="arabic simple">
+<li>Prepare for a release</li>
+<li>Release one or more release candidates</li>
+<li>Release the final release</li>
+</ol>
+</div>
+<div class="section" id="prepare-for-a-release">
+<h2>Prepare for a release<a class="headerlink" href="#prepare-for-a-release" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Check the milestone for the upcoming release<ul>
+<li>Get rid of any non-critical bugs</li>
+<li>Get any critical bugs fixed</li>
+<li>Check the release manager notes in case anyone has left anything which can only be done during the release.</li>
+</ul>
+</li>
+<li>Check for any ​regressions</li>
+<li>Read through the <code class="docutils literal notranslate"><span class="pre">INSTALL.rst</span></code> and <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> files to make sure things like the supported Python versions are correct<ul>
+<li>Check the required Python version.</li>
+<li>Check that the list matches the current set of buildbots.</li>
+<li>Any mistakes should be fixed in trunk before making the release branch</li>
+</ul>
+</li>
+<li>Choose a version number.</li>
+<li>File a ticket<ul>
+<li>Assign it to the upcoming release milestone</li>
+<li>Assign it to yourself</li>
+<li>Call it “Release $RELEASE”</li>
+</ul>
+</li>
+<li>Make a branch and attach it to the ticket:<ul>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">fetch</span> <span class="pre">origin</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">origin/trunk</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">-b</span> <span class="pre">release-$RELEASE-4290</span></code></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="how-to-do-a-release-candidate">
+<h2>How to do a release candidate<a class="headerlink" href="#how-to-do-a-release-candidate" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>Check ​buildbot to make sure all supported platforms are green (wait for pending builds if necessary).</li>
+<li>If a previously supported platform does not currently have a buildbot, move from supported platforms to “expected to work” in <code class="docutils literal notranslate"><span class="pre">INSTALL.rst</span></code>.</li>
+<li>In your Git repo, fetch and check out the new release branch.</li>
+<li>Run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">incremental.update</span> <span class="pre">Twisted</span> <span class="pre">--rc</span></code></li>
+<li>Commit the changes made by Incremental.</li>
+<li>Run <code class="docutils literal notranslate"><span class="pre">towncrier</span></code>.</li>
+<li>Commit the changes made by towncrier - this automatically removes the NEWS newsfragments.</li>
+<li>Bump copyright dates in <code class="docutils literal notranslate"><span class="pre">LICENSE</span></code>, <code class="docutils literal notranslate"><span class="pre">twisted/copyright.py</span></code>, and <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> if required</li>
+<li>Push the changes up to GitHub.</li>
+<li>Run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">sdist</span> <span class="pre">--formats=bztar</span> <span class="pre">-d</span> <span class="pre">/tmp/twisted-release</span></code> to build the tarballs.</li>
+<li>Copy <code class="docutils literal notranslate"><span class="pre">NEWS.rst</span></code> to <code class="docutils literal notranslate"><span class="pre">/tmp/twisted-release/</span></code> for people to view without having to download the tarballs.
+(e.g. <code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">NEWS.rst</span> <span class="pre">/tmp/twisted-release/NEWS.rst</span></code>)</li>
+<li>Upload the tarballs to <code class="docutils literal notranslate"><span class="pre">twistedmatrix.com/Releases/rc/$RELEASE</span></code> (see #4353)<ul>
+<li>You can use <code class="docutils literal notranslate"><span class="pre">rsync</span> <span class="pre">--rsh=ssh</span> <span class="pre">--partial</span> <span class="pre">--progress</span> <span class="pre">-av</span> <span class="pre">/tmp/twisted-release/</span> <span class="pre">t-web&#64;dornkirk.twistedmatrix.com:/srv/t-web/data/releases/rc/&lt;RELEASE&gt;/</span></code> to do this.</li>
+</ul>
+</li>
+<li>Write the release candidate announcement<ul>
+<li>Read through the NEWS file and summarize the interesting changes for the release</li>
+<li>Get someone else to look over the announcement before doing it</li>
+</ul>
+</li>
+<li>Announce the release candidate on<ul>
+<li>the twisted-python mailing list</li>
+<li>on IRC in the <code class="docutils literal notranslate"><span class="pre">#twisted</span></code> topic</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="release-candidate-announcement">
+<h2>Release candidate announcement<a class="headerlink" href="#release-candidate-announcement" title="Permalink to this headline">¶</a></h2>
+<p>The release candidate announcement should mention the important changes since the last release, and exhort readers to test this release candidate.</p>
+<p>Here’s what the $RELEASErc1 release announcement might look like:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>Live from PyCon Atlanta, I&#39;m pleased to herald the approaching
+footsteps of the $API release.
+
+Tarballs for the first Twisted $RELEASE release candidate are now available at:
+ http://people.canonical.com/~jml/Twisted/
+
+Highlights include:
+
+ * Improved documentation, including &quot;Twisted Web in 60 seconds&quot;
+
+ * Faster Perspective Broker applications
+
+ * A new Windows installer that ships without zope.interface
+
+ * Twisted no longer supports Python 2.3
+
+ * Over one hundred closed tickets
+
+For more information, see the NEWS file.
+
+Please download the tarballs and test them as much as possible.
+
+Thanks,
+jml
+</pre></div>
+</div>
+<p>A week is a generally good length of time to wait before doing the final release.</p>
+</div>
+<div class="section" id="how-to-do-a-final-release">
+<h2>How to do a final release<a class="headerlink" href="#how-to-do-a-final-release" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="prepare-the-branch">
+<h3>Prepare the branch<a class="headerlink" href="#prepare-the-branch" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Have the release branch, previously used to generate a release candidate, checked out</li>
+<li>Run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">incremental.update</span> <span class="pre">Twisted</span></code>.</li>
+<li>Revert the release candidate newsfile changes, in order.</li>
+<li>Run <code class="docutils literal notranslate"><span class="pre">towncrier</span></code> to make the final newsfile.</li>
+<li>Add the quote of the release to the <code class="docutils literal notranslate"><span class="pre">README.rst</span></code></li>
+<li>Make a new quote file for the next version<ul>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">mv</span> <span class="pre">docs/fun/Twisted.Quotes</span> <span class="pre">docs/historic/Quotes/Twisted-$API;</span> <span class="pre">echo</span> <span class="pre">''</span> <span class="pre">&gt;</span> <span class="pre">docs/fun/Twisted.Quotes;</span> <span class="pre">git</span> <span class="pre">add</span> <span class="pre">docs/fun/Twisted.Quotes</span></code></li>
+</ul>
+</li>
+<li>Commit the version and <code class="docutils literal notranslate"><span class="pre">README.rst</span></code> changes.</li>
+<li>Submit the ticket for review</li>
+<li>Pause until the ticket is reviewed and accepted.</li>
+<li>Tag the release.<ul>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">tag</span> <span class="pre">-s</span> <span class="pre">twisted-$RELEASE</span> <span class="pre">-m</span> <span class="pre">&quot;Tag</span> <span class="pre">$RELEASE</span> <span class="pre">release&quot;</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">--tags</span></code></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="cut-the-tarballs-installers">
+<h3>Cut the tarballs &amp; installers<a class="headerlink" href="#cut-the-tarballs-installers" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Using a checkout of the release branch or the release tag (with no local changes!), build the tarballs:<ul>
+<li><code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">sdist</span> <span class="pre">--formats=bztar</span> <span class="pre">-d</span> <span class="pre">/tmp/twisted-release</span></code></li>
+</ul>
+</li>
+<li>Build Windows wheel<ul>
+<li>Download the latest <code class="docutils literal notranslate"><span class="pre">.whl</span></code> files from <a class="reference external" href="https://buildbot.twistedmatrix.com/builds/twisted-packages/">Buildbot</a> and save them in the staging directory</li>
+</ul>
+</li>
+<li>Sign the tarballs and Windows installers.
+(You will need a PGP key for this - use something like Seahorse to generate one, if you don’t have one.)<ul>
+<li>MD5: <code class="docutils literal notranslate"><span class="pre">md5sum</span> <span class="pre">Tw*</span> <span class="pre">|</span> <span class="pre">gpg</span> <span class="pre">-a</span> <span class="pre">--clearsign</span> <span class="pre">&gt;</span> <span class="pre">/tmp/twisted-release/twisted-$RELEASE-md5sums.txt</span></code></li>
+<li>SHA512: <code class="docutils literal notranslate"><span class="pre">shasum</span> <span class="pre">-a</span> <span class="pre">512</span> <span class="pre">Tw*</span> <span class="pre">|</span> <span class="pre">gpg</span> <span class="pre">-a</span> <span class="pre">--clearsign</span> <span class="pre">&gt;</span> <span class="pre">/tmp/twisted-release/twisted-$RELEASE-shasums.txt</span></code></li>
+<li>Compare these to an ​example of <code class="docutils literal notranslate"><span class="pre">twisted-$RELEASE-md5sums.txt</span></code> - they should look the same.</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="update-documentation">
+<h3>Update documentation<a class="headerlink" href="#update-documentation" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Get the dependencies<ul>
+<li>PyDoctor (from PyPI)</li>
+</ul>
+</li>
+<li>Build the documentation<ul>
+<li><code class="docutils literal notranslate"><span class="pre">./bin/admin/build-docs</span> <span class="pre">.</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">cp</span> <span class="pre">-R</span> <span class="pre">doc</span> <span class="pre">/tmp/twisted-release/</span></code></li>
+</ul>
+</li>
+<li>Run the build-apidocs script to build the API docs and then upload them (See also #2891).<ul>
+<li>Copy the pydoctor directory from the twisted branch into your Git checkout.</li>
+<li><code class="docutils literal notranslate"><span class="pre">./bin/admin/build-apidocs</span> <span class="pre">.</span> <span class="pre">/tmp/twisted-release/api</span></code></li>
+<li>Documentation will be generated in a directory called <code class="docutils literal notranslate"><span class="pre">/tmp/twisted-release/api</span></code></li>
+</ul>
+</li>
+<li>Update the Read The Docs default to point to the release branch (via the <a class="reference external" href="https://readthedocs.org/projects/twisted/">dashboard</a>).</li>
+</ol>
+</div>
+<div class="section" id="distribute">
+<h3>Distribute<a class="headerlink" href="#distribute" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Create a tarball with the contents of the release directory: <code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">/tmp/twisted-release;</span> <span class="pre">tar</span> <span class="pre">-cvjf</span> <span class="pre">../release.tar.bz2</span> <span class="pre">*</span></code></li>
+<li>Upload to the official upload locations (see #2888)<ul>
+<li><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~;</span> <span class="pre">git</span> <span class="pre">clone</span> <span class="pre">https://github.com/twisted-infra/braid</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">braid</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">virtualenv</span> <span class="pre">~/dev/braid;</span> <span class="pre">source</span> <span class="pre">~/dev/braid/bin/activate;</span> <span class="pre">cd</span> <span class="pre">~/braid;</span> <span class="pre">python</span> <span class="pre">setup.py</span> <span class="pre">develop;</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">cd</span> <span class="pre">~/braid;</span> <span class="pre">fab</span> <span class="pre">config.production</span> <span class="pre">t-web.uploadRelease:$RELEASE,/tmp/release.tar.bz2</span></code></li>
+</ul>
+</li>
+<li>Test the generated docs<ul>
+<li>Browse to <code class="docutils literal notranslate"><span class="pre">http://twistedmatrix.com/documents/$RELEASE/</span></code></li>
+<li>Make sure that there is content in each of the directories and that it looks good</li>
+<li>Follow each link on <a class="reference external" href="https://twistedmatrix.com/trac/wiki/Documentation">the documentation page</a>, replace current with <code class="docutils literal notranslate"><span class="pre">$RELEASE</span></code> (e.g. 10.0.0) and look for any obvious breakage</li>
+</ul>
+</li>
+<li>Change the “current” symlink<ul>
+<li>Upload release: <code class="docutils literal notranslate"><span class="pre">fab</span> <span class="pre">config.production</span> <span class="pre">t-web.updateCurrentDocumentation:$RELEASE</span></code></li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="announce">
+<h3>Announce<a class="headerlink" href="#announce" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic simple">
+<li>Update Downloads pages<ul>
+<li>The following updates are automatic, due to the use of the ​ProjectVersion wiki macro throughout most of the Downloads page.<ul>
+<li>Text references to the old version to refer to the new version</li>
+<li>The link to the NEWS file to point to the new version</li>
+<li>Links and text to the main tarball</li>
+</ul>
+</li>
+<li>Add a new md5sum link</li>
+<li>Add a new shasum link</li>
+<li>Save the page, check all links</li>
+</ul>
+</li>
+<li>Update PyPI records &amp; upload files<ul>
+<li><code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">-U</span> <span class="pre">twine</span></code></li>
+<li><code class="docutils literal notranslate"><span class="pre">twine</span> <span class="pre">upload</span> <span class="pre">/tmp/twisted-release/Twisted-$RELEASE*</span></code></li>
+</ul>
+</li>
+<li>Write the release announcement (see below)</li>
+<li>Announce the release<ul>
+<li>Send a text version of the announcement to: <a class="reference external" href="mailto:twisted-python&#37;&#52;&#48;twistedmatrix&#46;com">twisted-python<span>&#64;</span>twistedmatrix<span>&#46;</span>com</a>, <a class="reference external" href="mailto:python-announce-list&#37;&#52;&#48;python&#46;org">python-announce-list<span>&#64;</span>python<span>&#46;</span>org</a>, <a class="reference external" href="mailto:python-list&#37;&#52;&#48;python&#46;org">python-list<span>&#64;</span>python<span>&#46;</span>org</a>, <a class="reference external" href="mailto:twisted-web&#37;&#52;&#48;twistedmatrix&#46;com">twisted-web<span>&#64;</span>twistedmatrix<span>&#46;</span>com</a></li>
+<li>​http://labs.twistedmatrix.com (Post a web version of the announcements, with links instead of literal URLs)</li>
+<li>Twitter, if you feel like it</li>
+<li><code class="docutils literal notranslate"><span class="pre">#twisted</span></code> topic on IRC (you’ll need ops)</li>
+</ul>
+</li>
+<li>Run <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">-m</span> <span class="pre">incremental</span> <span class="pre">Twisted</span> <span class="pre">--dev</span></code> to add a <cite>dev0</cite> postfix.</li>
+<li>Commit the dev0 update change.</li>
+<li>Merge the release branch into trunk, closing the release ticket at the same time.</li>
+<li>Close the release milestone (which should have no tickets in it).</li>
+<li>Open a milestone for the next release.</li>
+</ol>
+</div>
+<div class="section" id="release-announcement">
+<h3>Release announcement<a class="headerlink" href="#release-announcement" title="Permalink to this headline">¶</a></h3>
+<p>The final release announcement should:</p>
+<ul class="simple">
+<li>Mention the version number</li>
+<li>Include links to where the release can be downloaded</li>
+<li>Summarize the significant changes in the release</li>
+<li>Consider including the quote of the release</li>
+<li>Thank the contributors to the release</li>
+</ul>
+<p>Here’s an example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>On behalf of Twisted Matrix Laboratories, I am honoured to announce
+the release of Twisted 13.2!
+
+The highlights of this release are:
+
+ * Twisted now includes a HostnameEndpoint implementation which uses
+IPv4 and IPv6 in parallel, speeding up the connection by using
+whichever connects first (the &#39;Happy Eyeballs&#39;/RFC 6555 algorithm).
+(#4859)
+
+ * Improved support for Cancellable Deferreds by kaizhang, our GSoC
+student. (#4320, #6532, #6572, #6639)
+
+ * Improved Twisted.Mail documentation by shira, our Outreach Program
+for Women intern. (#6649, #6652)
+
+ * twistd now waits for the application to start successfully before
+exiting after daemonization. (#823)
+
+ * SSL server endpoint string descriptions now support the
+specification of chain certificates. (#6499)
+
+ * Over 70 closed tickets since 13.1.0.
+
+For more information, check the NEWS file (link provided below).
+
+You can find the downloads at &lt;https://pypi.python.org/pypi/Twisted&gt;
+(or alternatively &lt;http://twistedmatrix.com/trac/wiki/Downloads&gt;) .
+The NEWS file is also available at
+&lt;http://twistedmatrix.com/Releases/Twisted/13.2/NEWS.txt&gt;.
+
+Many thanks to everyone who had a part in this release - the
+supporters of the Twisted Software Foundation, the developers who
+contributed code as well as documentation, and all the people building
+great things with Twisted!
+
+Twisted Regards,
+HawkOwl
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="when-things-go-wrong">
+<h2>When things go wrong<a class="headerlink" href="#when-things-go-wrong" title="Permalink to this headline">¶</a></h2>
+<p>If you discover a showstopper bug during the release process, you have three options.</p>
+<ol class="arabic simple">
+<li>Abort the release, make a new point release (e.g. abort 10.0.0, make 10.0.1 after the bug is fixed)</li>
+<li>Abort the release, make a new release candidate (e.g. abort 10.0.0, make 10.0.0pre3 after the bug is fixed)</li>
+<li>Interrupt the release, fix the bug, then continue with it (e.g. release 10.0.0 with the bug fix)</li>
+</ol>
+<p>If you choose the third option, then you should:</p>
+<ul class="simple">
+<li>Delete the tag for the release</li>
+<li>Recreate the tag from the release branch once the fix has been applied to that branch</li>
+</ul>
+</div>
+<div class="section" id="bug-fix-releases">
+<h2>Bug fix releases<a class="headerlink" href="#bug-fix-releases" title="Permalink to this headline">¶</a></h2>
+<p>Sometimes, bugs happen, and sometimes these are regressions in the current released version.
+This section goes over doing these “point” releases.</p>
+<ol class="arabic simple">
+<li>Ensure all bugfixes are in trunk.</li>
+<li>Make a branch off the affected version.</li>
+<li>Cherry-pick the merge commits that merge the bugfixes into trunk, onto the new release branch.</li>
+<li>Go through the rest of the process for a full release from “How to do a release candidate”, merging the release branch into trunk as normal as the end of the process.<ul>
+<li>Instead of just <code class="docutils literal notranslate"><span class="pre">--rc</span></code> when running the change-versions script, add the patch flag, making it <code class="docutils literal notranslate"><span class="pre">--patch</span> <span class="pre">--rc</span></code>.</li>
+<li>Instead of waiting a week, a shorter pause is acceptable for a patch release.</li>
+</ul>
+</li>
+</ol>
+</div>
+<div class="section" id="open-questions">
+<h2>Open questions<a class="headerlink" href="#open-questions" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>How do we manage the case where there are untested builds in trunk?</li>
+<li>Should picking a release quote be part of the release or the release candidate?</li>
+<li>What bugs should be considered release blockers?<ul>
+<li>All bugs with a type from the release blocker family</li>
+<li>Anybody can create/submit a new ticket with a release blocker type</li>
+<li>Ultimately it’s the RM’s discretion to accept a ticket as a release blocker</li>
+</ul>
+</li>
+<li>Should news fragments contain information about who made the changes?</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../../../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference internal" href="#">Twisted Release Process</a><ul>
+<li><a class="reference internal" href="#outcomes">Outcomes</a></li>
+<li><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li><a class="reference internal" href="#version-numbers">Version numbers</a></li>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#prepare-for-a-release">Prepare for a release</a></li>
+<li><a class="reference internal" href="#how-to-do-a-release-candidate">How to do a release candidate</a></li>
+<li><a class="reference internal" href="#release-candidate-announcement">Release candidate announcement</a></li>
+<li><a class="reference internal" href="#how-to-do-a-final-release">How to do a final release</a><ul>
+<li><a class="reference internal" href="#prepare-the-branch">Prepare the branch</a></li>
+<li><a class="reference internal" href="#cut-the-tarballs-installers">Cut the tarballs &amp; installers</a></li>
+<li><a class="reference internal" href="#update-documentation">Update documentation</a></li>
+<li><a class="reference internal" href="#distribute">Distribute</a></li>
+<li><a class="reference internal" href="#announce">Announce</a></li>
+<li><a class="reference internal" href="#release-announcement">Release announcement</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#when-things-go-wrong">When things go wrong</a></li>
+<li><a class="reference internal" href="#bug-fix-releases">Bug fix releases</a></li>
+<li><a class="reference internal" href="#open-questions">Open questions</a></li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="code-dev.html"
+                                  title="previous chapter">Working from Twisted’s code repository</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="../../../conch/index.html"
+                                  title="next chapter">Twisted Conch (SSH and Telnet)</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../../../_sources/core/development/policy/release-process.rst.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../../../search.html" method="get">
+                <p>
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+                </p>
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    </div>
+    <div id="footer"><hr />
+      <div>
+
+</div>
+      <p class="left2">
+        Site design<br />
+        By <a href="http://huw.ugbox.net/">huw.wilkins.</a>
+
+      </p>
+      <p class="right"></p>
+    </div>
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+/, '/current');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = '';
+          delete link;
+          delete container;
+      }
+    </script>
+  </body>
+</html>

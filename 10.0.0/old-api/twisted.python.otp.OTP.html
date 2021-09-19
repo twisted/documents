@@ -1,0 +1,209 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.python.otp.OTP : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">t.p.o.OTP(<a href="twisted.python.otp.OTPAuthenticator.html">OTPAuthenticator</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.python.html">python</a>.<a href="twisted.python.otp.html">otp</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0//twisted/python/otp.py#L190">View Source</a>
+      <a href="classIndex.html#twisted.python.otp.OTP">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div><p>An automatic version of the OTP-Authenticator</p>
+<p>Updates the sequence and the keeps last approved password on success On 
+the next authentication, the stored password is hashed and checked up 
+against the one given by the user. If they match, the sequencecounter is 
+decreased and the circle is closed.</p>
+<p>This object should be glued to each user</p>
+Note: It does NOT reset the sequence when the combinations left approach
+zero, This has to be done manuelly by instancing a new object
+<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id41">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.otp.OTP.html#__init__">__init__</a></td>
+    <td><span>Initialize the OTP-Sequence, and discard the password
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.otp.OTP.html#challenge">challenge</a></td>
+    <td><span>Return a challenge string
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.otp.OTP.html#authenticate">authenticate</a></td>
+    <td><span>Test the phrase against the last challenge issued
+</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.python.otp.OTPAuthenticator.html">OTPAuthenticator</a>:
+        </p>
+        <table class="children sortable" id="id42">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.otp.OTPAuthenticator.html#generateSeed">generateSeed</a></td>
+    <td><span>Return a 10 char random seed, with 6 lowercase chars and 4 digits
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.otp.OTPAuthenticator.html#foldDigest">foldDigest</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.otp.OTPAuthenticator.html#foldDigest128">foldDigest128</a></td>
+    <td><span>Fold a 128 bit digest to 64 bit
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.otp.OTPAuthenticator.html#foldDigest160">foldDigest160</a></td>
+    <td><span>Fold a 160 bit digest to 64 bit
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.otp.OTPAuthenticator.html#hashUpdate">hashUpdate</a></td>
+    <td><span>Run through the hash and fold to 64 bit
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.otp.OTPAuthenticator.html#generateOTP">generateOTP</a></td>
+    <td><span>Return a 64 bit OTP based on inputs
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.otp.OTPAuthenticator.html#calculateParity">calculateParity</a></td>
+    <td><span>Calculate the parity from a 64bit OTP
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.otp.OTPAuthenticator.html#makeReadable">makeReadable</a></td>
+    <td><span>Returns a 6 word pass-phrase from a 64bit OTP
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.otp.OTPAuthenticator.html#parsePhrase">parsePhrase</a></td>
+    <td><span>Decode the phrase, and return a 64bit OTP
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.python.otp.OTP.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, passwd, sequence=INITIALSEQUENCE, hash=md5):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0//twisted/python/otp.py#L208" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.python.otp.OTPAuthenticator.html#__init__">twisted.python.otp.OTPAuthenticator.__init__</a></div>
+    <div>Initialize the OTP-Sequence, and discard the password
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.otp.OTP.challenge">
+    
+  </a>
+  <a name="challenge">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    challenge(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0//twisted/python/otp.py#L217" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.python.otp.OTPAuthenticator.html#challenge">twisted.python.otp.OTPAuthenticator.challenge</a></div>
+    <div>Return a challenge string
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.otp.OTP.authenticate">
+    
+  </a>
+  <a name="authenticate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    authenticate(self, phrase):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0//twisted/python/otp.py#L222" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Test the phrase against the last challenge issued
+<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2010-03-06 12:41:43.
+    </address>
+  </body>
+</html>

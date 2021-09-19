@@ -1,0 +1,224 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.python.zshcomp&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="module">Module t.p.zshcomp</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.python.html">twisted.python</a></span>
+      <a></a>
+      <a></a>
+    </p>
+    <div></div>
+    <div><p>This module implements a zsh code generator which generates completion 
+code for commands that use twisted.python.usage. This is the stuff that 
+makes pressing Tab at the command line work.</p>
+API Stability: API? what API?
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Unknown Field: maintainer</td><td class="fieldArg"><span style="font-size: xx-large; font-weight: bold; color: red; border: thick solid red;">None</span></td><td><p><a href="mailto:teratorn&#64;twistedmatrix.com">Eric Mangold</a></p>
+To build completion functions for your own commands, and not Twisted 
+commands, then just do something like this:
+<pre class="literalblock">
+   o = mymodule.MyOptions()
+   f = file('_mycommand', 'w')
+   Builder(&quot;mycommand&quot;, o, f).write()
+</pre>
+<p>Then all you have to do is place the generated file somewhere in your 
+<code>$fpath</code>, and restart zsh. Note the &quot;site-functions&quot; 
+directory in your <code>$fpath</code> where you may install 3rd-party 
+completion functions (like the one you're building). Use the 
+<code>siteFunctionsPath</code> function below to locate this directory 
+programmatically.</p>
+SPECIAL CLASS VARIABLES. You may set these on your usage.Options 
+subclass:
+<pre class="literalblock">
+   zsh_altArgDescr
+   zsh_multiUse
+   zsh_mutuallyExclusive
+   zsh_actions
+   zsh_actionDescr
+   zsh_extras
+</pre>
+Here is what they mean (with examples):
+<pre class="literalblock">
+   zsh_altArgDescr = {&quot;foo&quot;:&quot;use this description for foo instead&quot;}
+       A dict mapping long option names to alternate descriptions.  When this
+       variable is present, the descriptions contained here will override
+       those descriptions provided in the optFlags and optParameters
+       variables.
+
+   zsh_multiUse = [&quot;foo&quot;, &quot;bar&quot;]
+       A sequence containing those long option names which may appear on the
+       command line more than once. By default, options will only be completed
+       one time.
+
+   zsh_mutuallyExclusive = [(&quot;foo&quot;, &quot;bar&quot;), (&quot;bar&quot;, &quot;baz&quot;)]
+       A sequence of sequences, with each sub-sequence containing those long
+       option names that are mutually exclusive. That is, those options that
+       cannot appear on the command line together.
+
+   zsh_actions = {&quot;foo&quot;:'_files -g &quot;*.foo&quot;', &quot;bar&quot;:&quot;(one two three)&quot;,
+           &quot;colors&quot;:&quot;_values -s , 'colors to use' red green blue&quot;}
+       A dict mapping long option names to Zsh &quot;actions&quot;. These actions
+       define what will be completed as the argument to the given option.  By
+       default, all files/dirs will be completed if no action is given.
+
+       As you can see in the example above. The &quot;foo&quot; option will have files
+       that end in .foo completed when the user presses Tab. The &quot;bar&quot;
+       option will have either of the strings &quot;one&quot;, &quot;two&quot;, or &quot;three&quot;
+       compelted when the user presses Tab.
+
+       &quot;colors&quot; will allow multiple arguments to be completed, seperated by
+       commas. The possible arguments are red, green, and blue. Examples::
+
+           my_command --foo some-file.foo --colors=red,green
+           my_command --colors=green
+           my_command --colors=green,blue
+
+       Actions may take many forms, and it is beyond the scope of this
+       document to illustrate them all. Please refer to the documention for
+       the Zsh _arguments function. zshcomp is basically a front-end to Zsh's
+       _arguments completion function.
+
+       That documentation is available on the zsh web site at this URL:
+       U{http://zsh.sunsite.dk/Doc/Release/zsh_19.html#SEC124}
+
+   zsh_actionDescr = {&quot;logfile&quot;:&quot;log file name&quot;, &quot;random&quot;:&quot;random seed&quot;}
+       A dict mapping long option names to a description for the corresponding
+       zsh &quot;action&quot;. These descriptions are show above the generated matches
+       when the user is doing completions for this option.
+
+       Normally Zsh does not show these descriptions unless you have
+       &quot;verbose&quot; completion turned on. Turn on verbosity with this in your
+       ~/.zshrc::
+
+           zstyle ':completion:*' verbose yes
+           zstyle ':completion:*:descriptions' format '%B%d%b'
+
+   zsh_extras = [&quot;:file to read from:action&quot;, &quot;:file to write to:action&quot;]
+       A sequence of extra arguments that will be passed verbatim to Zsh's
+       _arguments completion function. The _arguments function does all the
+       hard work of doing command line completions. You can see how zshcomp
+       invokes the _arguments call by looking at the generated completion
+       files that this module creates.
+
+  *** NOTE ***
+
+       You will need to use this variable to describe completions for normal
+       command line arguments. That is, those arguments that are not
+       associated with an option. That is, the arguments that are given to the
+       parseArgs method of your usage.Options subclass.
+
+       In the example above, the 1st non-option argument will be described as
+       &quot;file to read from&quot; and completion options will be generated in
+       accordance with the &quot;action&quot;. (See above about zsh &quot;actions&quot;) The
+       2nd non-option argument will be described as &quot;file to write to&quot; and
+       the action will be interpreted likewise.
+
+       Things you can put here are all documented under the _arguments
+       function here: U{http://zsh.sunsite.dk/Doc/Release/zsh_19.html#SEC124}
+</pre>
+<p>Zsh Notes:</p>
+To enable advanced completion add something like this to your 
+~/.zshrc:
+<pre class="literalblock">
+   autoload -U compinit
+   compinit
+</pre>
+For some extra verbosity, and general niceness add these lines 
+too:
+<pre class="literalblock">
+   zstyle ':completion:*' verbose yes
+   zstyle ':completion:*:descriptions' format '%B%d%b'
+   zstyle ':completion:*:messages' format '%d'
+   zstyle ':completion:*:warnings' format 'No matches for: %d'
+</pre>
+Have fun!
+</td></tr></table></div>
+    
+      <table class="children"><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.python.zshcomp.MyOptions.html">MyOptions</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.python.zshcomp.Builder.html">Builder</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.python.zshcomp.MktapBuilder.html">MktapBuilder</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.python.zshcomp.ArgumentsGenerator.html">ArgumentsGenerator</a></td>
+          <td><span>generate a call to the zsh _arguments completion function
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.zshcomp.descrFromDoc">descrFromDoc</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.zshcomp.firstLine">firstLine</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.zshcomp.escape">escape</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.zshcomp.siteFunctionsPath">siteFunctionsPath</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.zshcomp.makeCompFunctionFiles">makeCompFunctionFiles</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.zshcomp.run">run</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.python.zshcomp.descrFromDoc"></a>
+        <div class="functionHeader">
+          def <span>descrFromDoc(obj):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.python.zshcomp.firstLine"></a>
+        <div class="functionHeader">
+          def <span>firstLine(s):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.python.zshcomp.escape"></a>
+        <div class="functionHeader">
+          def <span>escape(str):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.python.zshcomp.siteFunctionsPath"></a>
+        <div class="functionHeader">
+          def <span>siteFunctionsPath():</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.python.zshcomp.makeCompFunctionFiles"></a>
+        <div class="functionHeader">
+          def <span>makeCompFunctionFiles(out_path):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.python.zshcomp.run"></a>
+        <div class="functionHeader">
+          def <span>run():</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div>    
+  </body>
+</html>

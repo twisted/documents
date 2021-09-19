@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.cred._digest : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="apidocs.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module private"><code>twisted.cred._digest</code> <small>module documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.cred.html" data-type="Package" class="code">cred</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-17.9.0/src/twisted/cred/_digest.py">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>Calculations for HTTP Digest authentication.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><a href="http://www.faqs.org/rfcs/rfc2617.html" target="_top">http://www.faqs.org/rfcs/rfc2617.html</a></td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id518">
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.cred._digest.html#calcHA1" data-type="Function" class="code">calcHA1</a></td>
+    <td><span>Compute H(A1) from RFC 2617.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.cred._digest.html#calcHA2" data-type="Function" class="code">calcHA2</a></td>
+    <td><span>Compute H(A2) from RFC 2617.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.cred._digest.html#calcResponse" data-type="Function" class="code">calcResponse</a></td>
+    <td><span>Compute the digest for the given parameters.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  <a name="twisted.cred._digest.calcHA1">
+    
+  </a>
+  <a name="calcHA1">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    calcHA1(pszAlg, pszUserName, pszRealm, pszPassword, pszNonce, pszCNonce, preHA1=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.9.0/src/twisted/cred/_digest.py#L36">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Compute H(A1) from RFC 2617.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">pszAlg</td><td>The name of the algorithm to use to calculate the digest. Currently 
+supported are md5, md5-sess, and sha.</td></tr><tr><td></td><td class="fieldArg">pszUserName</td><td>The username</td></tr><tr><td></td><td class="fieldArg">pszRealm</td><td>The realm</td></tr><tr><td></td><td class="fieldArg">pszPassword</td><td>The password</td></tr><tr><td></td><td class="fieldArg">pszNonce</td><td>The nonce</td></tr><tr><td></td><td class="fieldArg">pszCNonce</td><td>The cnonce</td></tr><tr><td></td><td class="fieldArg">preHA1</td><td>If available this is a str containing a previously calculated H(A1) as a 
+hex string.  If this is given then the values for pszUserName, pszRealm, 
+and pszPassword must be <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+and are ignored.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.cred._digest.calcHA2">
+    
+  </a>
+  <a name="calcHA2">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    calcHA2(algo, pszMethod, pszDigestUri, pszQop, pszHEntity):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.9.0/src/twisted/cred/_digest.py#L83">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Compute H(A2) from RFC 2617.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">pszAlg</td><td>The name of the algorithm to use to calculate the digest. Currently 
+supported are md5, md5-sess, and sha.</td></tr><tr><td></td><td class="fieldArg">pszMethod</td><td>The request method.</td></tr><tr><td></td><td class="fieldArg">pszDigestUri</td><td>The request URI.</td></tr><tr><td></td><td class="fieldArg">pszQop</td><td>The Quality-of-Protection value.</td></tr><tr><td></td><td class="fieldArg">pszHEntity</td><td>The hash of the entity body or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+if <code>pszQop</code> is not <code>'auth-int'</code>.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The hash of the A2 value for the calculation of the response digest.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.cred._digest.calcResponse">
+    
+  </a>
+  <a name="calcResponse">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    calcResponse(HA1, HA2, algo, pszNonce, pszNonceCount, pszCNonce, pszQop):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.9.0/src/twisted/cred/_digest.py#L107">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Compute the digest for the given parameters.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">HA1</td><td>The H(A1) value, as computed by <a href="twisted.cred._digest.html#calcHA1"><code>calcHA1</code></a>.</td></tr><tr><td></td><td class="fieldArg">HA2</td><td>The H(A2) value, as computed by <a href="twisted.cred._digest.html#calcHA2"><code>calcHA2</code></a>.</td></tr><tr><td></td><td class="fieldArg">pszNonce</td><td>The challenge nonce.</td></tr><tr><td></td><td class="fieldArg">pszNonceCount</td><td>The (client) nonce count value for this response.</td></tr><tr><td></td><td class="fieldArg">pszCNonce</td><td>The client nonce.</td></tr><tr><td></td><td class="fieldArg">pszQop</td><td>The Quality-of-Protection value.</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2017-09-23 19:45:03.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

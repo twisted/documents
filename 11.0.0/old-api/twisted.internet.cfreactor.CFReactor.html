@@ -1,0 +1,724 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.cfreactor.CFReactor : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">t.i.c.CFReactor(<span title="twisted.internet.posixbase.PosixReactorBase">PosixReactorBase</span>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a>.<a href="twisted.internet.cfreactor.html">cfreactor</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L75">View Source</a>
+      <a href="classIndex.html#twisted.internet.cfreactor.CFReactor">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Implements interfaces: <a href="twisted.internet.interfaces.IReactorFDSet.html">twisted.internet.interfaces.IReactorFDSet</a></p>
+    </div>
+    <div>The CoreFoundation reactor.</p>
+<p>You probably want to use this via the <a 
+href="twisted.internet.cfreactor.html#install"><code>install</code></a> 
+API.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">_fdmap</td><td>a dictionary, mapping an integer (a file descriptor) to a 4-tuple of:
+<ul>
+  <li>
+    source: a <code>CFRunLoopSource</code>; the source associated with this
+    socket.
+  </li>
+  <li>
+    socket: a <code>CFSocket</code> wrapping the file descriptor.
+  </li>
+  <li>
+    descriptor: an <a 
+    href="twisted.internet.interfaces.IReadDescriptor.html"><code>IReadDescriptor</code></a>
+    and/or <a 
+    href="twisted.internet.interfaces.IWriteDescriptor.html"><code>IWriteDescriptor</code></a>
+    provider.
+  </li>
+  <li>
+    read-write: a 2-<code>list</code> of booleans: respectively, whether 
+    this descriptor is currently registered for reading or registered for 
+    writing.
+  </li>
+</ul>
+</td></tr><tr><td></td><td class="fieldArg">_idmap</td><td>a dictionary, mapping the id() of an <a 
+href="twisted.internet.interfaces.IReadDescriptor.html"><code>IReadDescriptor</code></a>
+or <a 
+href="twisted.internet.interfaces.IWriteDescriptor.html"><code>IWriteDescriptor</code></a>
+to a <code>fd</code> in <code>_fdmap</code>.  Implemented in this manner so
+that we don't have to rely (even more) on the hashability of <a 
+href="twisted.internet.interfaces.IReadDescriptor.html"><code>IReadDescriptor</code></a>
+providers, and we know that they won't be collected since these are kept in
+sync with <code>_fdmap</code>.  Necessary because the .fileno() of a file 
+descriptor may change at will, so we need to be able to look up what its 
+file descriptor <i>used</i> to be, so that we can look it up in 
+<code>_fdmap</code>
+</td></tr><tr><td></td><td class="fieldArg">_cfrunloop</td><td>the <code>CFRunLoop</code> pyobjc object wrapped by this reactor.
+</td></tr><tr><td></td><td class="fieldArg">_inCFLoop</td><td>Is <code>CFRunLoopRun</code> currently running?
+ (type: <code>bool</code>
+)</td></tr><tr><td></td><td class="fieldArg">_currentSimulator</td><td>if a CFTimer is currently scheduled with the CF run loop to run Twisted 
+callLater calls, this is a reference to it. Otherwise, it is 
+<code>None</code>
+</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id16">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#installWaker">installWaker</a></td>
+    <td><span>Override <code>installWaker</code> in order to use <a 
+href="twisted.internet.cfreactor._WakerPlus.html"><code>_WakerPlus</code></a>;
+otherwise this</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#addReader">addReader</a></td>
+    <td><span>Implement <a 
+href="twisted.internet.interfaces.IReactorFDSet.html#addReader"><code>IReactorFDSet.addReader</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#addWriter">addWriter</a></td>
+    <td><span>Implement <a 
+href="twisted.internet.interfaces.IReactorFDSet.html#addWriter"><code>IReactorFDSet.addWriter</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#removeReader">removeReader</a></td>
+    <td><span>Implement <a 
+href="twisted.internet.interfaces.IReactorFDSet.html#removeReader"><code>IReactorFDSet.removeReader</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#removeWriter">removeWriter</a></td>
+    <td><span>Implement <a 
+href="twisted.internet.interfaces.IReactorFDSet.html#removeWriter"><code>IReactorFDSet.removeWriter</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#removeAll">removeAll</a></td>
+    <td><span>Implement <a 
+href="twisted.internet.interfaces.IReactorFDSet.html#removeAll"><code>IReactorFDSet.removeAll</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#getReaders">getReaders</a></td>
+    <td><span>Implement <a 
+href="twisted.internet.interfaces.IReactorFDSet.html#getReaders"><code>IReactorFDSet.getReaders</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#getWriters">getWriters</a></td>
+    <td><span>Implement <a 
+href="twisted.internet.interfaces.IReactorFDSet.html#getWriters"><code>IReactorFDSet.getWriters</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#mainLoop">mainLoop</a></td>
+    <td><span>Run the runner (<code>CFRunLoopRun</code> or something that calls it), 
+which runs</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#callLater">callLater</a></td>
+    <td><span>Implement <a 
+href="twisted.internet.interfaces.IReactorTime.html#callLater"><code>IReactorTime.callLater</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#stop">stop</a></td>
+    <td><span>Implement <a 
+href="twisted.internet.interfaces.IReactorCore.html#stop"><code>IReactorCore.stop</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#crash">crash</a></td>
+    <td><span>Implement <a 
+href="twisted.internet.interfaces.IReactorCore.html#crash"><code>IReactorCore.crash</code></a></span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#iterate">iterate</a></td>
+    <td><span>Emulate the behavior of <code>iterate()</code> for things that want to 
+call it,</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#_socketCallback">_socketCallback</a></td>
+    <td><span>The socket callback issued by CFRunLoop.  This will issue 
+<code>doRead</code> or</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#_watchFD">_watchFD</a></td>
+    <td><span>Register a file descriptor with the <code>CFRunLoop</code>, or modify 
+its state</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#_flag2idx">_flag2idx</a></td>
+    <td><span>Convert a <code>kCFSocket...</code> constant to an index into the 
+read/write</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#_unwatchFD">_unwatchFD</a></td>
+    <td><span>Unregister a file descriptor with the <code>CFRunLoop</code>, or modify 
+its state</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#_moveCallLaterSooner">_moveCallLaterSooner</a></td>
+    <td><span>Override <code>PosixReactorBase</code>'s implementation of <a 
+href="twisted.internet.interfaces.IDelayedCall.html#reset"><code>IDelayedCall.reset</code></a></span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#_scheduleSimulate">_scheduleSimulate</a></td>
+    <td><span>Schedule a call to <code>self.runUntilCurrent</code>.  This will cancel 
+the</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor.CFReactor.html#_stopNow">_stopNow</a></td>
+    <td><span>Immediately stop the CFRunLoop (which must be running!).</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, runLoop=None, runner=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L115" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor.installWaker">
+    
+  </a>
+  <a name="installWaker">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    installWaker(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L128" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Override <code>installWaker</code> in order to use <a 
+href="twisted.internet.cfreactor._WakerPlus.html"><code>_WakerPlus</code></a>;
+otherwise this should be exactly the same as the parent implementation.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor._socketCallback">
+    
+  </a>
+  <a name="_socketCallback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _socketCallback(self, cfSocket, callbackType, ignoredAddress, ignoredData, context):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L139" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>The socket callback issued by CFRunLoop.  This will issue 
+<code>doRead</code> or <code>doWrite</code> calls to the <a 
+href="twisted.internet.interfaces.IReadDescriptor.html"><code>IReadDescriptor</code></a>
+and <a 
+href="twisted.internet.interfaces.IWriteDescriptor.html"><code>IWriteDescriptor</code></a>
+registered with the file descriptor that we are being notified of.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">cfSocket</td><td>The <code>CFSocket</code> which has got some activity.
+</td></tr><tr><td></td><td class="fieldArg">callbackType</td><td>The type of activity that we are being notified of.  Either 
+<code>kCFSocketReadCallBack</code> or <code>kCFSocketWriteCallBack</code>.
+</td></tr><tr><td></td><td class="fieldArg">ignoredAddress</td><td>Unused, because this is not used for either of the callback types we 
+register for.
+</td></tr><tr><td></td><td class="fieldArg">ignoredData</td><td>Unused, because this is not used for either of the callback types we 
+register for.
+</td></tr><tr><td></td><td class="fieldArg">context</td><td>The data associated with this callback by 
+<code>CFSocketCreateWithNative</code> (in <a 
+href="twisted.internet.cfreactor.CFReactor.html#_watchFD"><code>CFReactor._watchFD</code></a>).
+A 2-tuple of <code>(int, CFRunLoopSource)</code>.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor._watchFD">
+    
+  </a>
+  <a name="_watchFD">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _watchFD(self, fd, descr, flag):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L204" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Register a file descriptor with the <code>CFRunLoop</code>, or modify 
+its state so that it's listening for both notifications (read and write) 
+rather than just one; used to implement <code>addReader</code> and 
+<code>addWriter</code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">fd</td><td>The file descriptor.
+ (type: <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">descr</td><td>the <a 
+href="twisted.internet.interfaces.IReadDescriptor.html"><code>IReadDescriptor</code></a>
+or <a 
+href="twisted.internet.interfaces.IWriteDescriptor.html"><code>IWriteDescriptor</code></a>
+</td></tr><tr><td></td><td class="fieldArg">flag</td><td>the flag to register for callbacks on, either 
+<code>kCFSocketReadCallBack</code> or <code>kCFSocketWriteCallBack</code>
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor._flag2idx">
+    
+  </a>
+  <a name="_flag2idx">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _flag2idx(self, flag):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L260" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Convert a <code>kCFSocket...</code> constant to an index into the 
+read/write state list (<code>_READ</code> or <code>_WRITE</code>) (the 4th 
+element of the value of <code>self._fdmap</code>).<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">flag</td><td><code>kCFSocketReadCallBack</code> or <code>kCFSocketWriteCallBack</code>
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>_READ</code> or <code>_WRITE</code>
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor._unwatchFD">
+    
+  </a>
+  <a name="_unwatchFD">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _unwatchFD(self, fd, descr, flag):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L274" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Unregister a file descriptor with the <code>CFRunLoop</code>, or modify 
+its state so that it's listening for only one notification (read or write) 
+as opposed to both; used to implement <code>removeReader</code> and 
+<code>removeWriter</code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">fd</td><td>a file descriptor
+ (type: <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">descr</td><td>an <a 
+href="twisted.internet.interfaces.IReadDescriptor.html"><code>IReadDescriptor</code></a>
+or <a 
+href="twisted.internet.interfaces.IWriteDescriptor.html"><code>IWriteDescriptor</code></a>
+</td></tr><tr><td></td><td class="fieldArg">flag</td><td><code>kCFSocketWriteCallBack</code> <code>kCFSocketReadCallBack</code>
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor.addReader">
+    
+  </a>
+  <a name="addReader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addReader(self, reader):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L305" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#addReader">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Implement <a 
+href="twisted.internet.interfaces.IReactorFDSet.html#addReader"><code>IReactorFDSet.addReader</code></a>.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor.addWriter">
+    
+  </a>
+  <a name="addWriter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addWriter(self, writer):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L312" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#addWriter">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Implement <a 
+href="twisted.internet.interfaces.IReactorFDSet.html#addWriter"><code>IReactorFDSet.addWriter</code></a>.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor.removeReader">
+    
+  </a>
+  <a name="removeReader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeReader(self, reader):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L319" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#removeReader">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Implement <a 
+href="twisted.internet.interfaces.IReactorFDSet.html#removeReader"><code>IReactorFDSet.removeReader</code></a>.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor.removeWriter">
+    
+  </a>
+  <a name="removeWriter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeWriter(self, writer):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L326" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#removeWriter">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Implement <a 
+href="twisted.internet.interfaces.IReactorFDSet.html#removeWriter"><code>IReactorFDSet.removeWriter</code></a>.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor.removeAll">
+    
+  </a>
+  <a name="removeAll">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeAll(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L333" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#removeAll">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Implement <a 
+href="twisted.internet.interfaces.IReactorFDSet.html#removeAll"><code>IReactorFDSet.removeAll</code></a>.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor.getReaders">
+    
+  </a>
+  <a name="getReaders">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getReaders(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L345" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#getReaders">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Implement <a 
+href="twisted.internet.interfaces.IReactorFDSet.html#getReaders"><code>IReactorFDSet.getReaders</code></a>.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor.getWriters">
+    
+  </a>
+  <a name="getWriters">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getWriters(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L353" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#getWriters">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Implement <a 
+href="twisted.internet.interfaces.IReactorFDSet.html#getWriters"><code>IReactorFDSet.getWriters</code></a>.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor._moveCallLaterSooner">
+    
+  </a>
+  <a name="_moveCallLaterSooner">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _moveCallLaterSooner(self, tple):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L361" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Override <code>PosixReactorBase</code>'s implementation of <a 
+href="twisted.internet.interfaces.IDelayedCall.html#reset"><code>IDelayedCall.reset</code></a>
+so that it will immediately reschedule.  Normally 
+<code>_moveCallLaterSooner</code> depends on the fact that 
+<code>runUntilCurrent</code> is always run before the mainloop goes back to
+sleep, so this forces it to immediately recompute how long the loop needs 
+to stay asleep.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor.mainLoop">
+    
+  </a>
+  <a name="mainLoop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    mainLoop(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L376" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Run the runner (<code>CFRunLoopRun</code> or something that calls it), 
+which runs the run loop until <code>crash()</code> is called.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor._scheduleSimulate">
+    
+  </a>
+  <a name="_scheduleSimulate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _scheduleSimulate(self, force=False):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L390" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Schedule a call to <code>self.runUntilCurrent</code>.  This will cancel 
+the currently scheduled call if it is already scheduled.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">force</td><td>Even if there are no timed calls, make sure that 
+<code>runUntilCurrent</code> runs immediately (in a 0-seconds-from-now 
+{CFRunLoopTimer}).  This is necessary for calls which need to trigger 
+behavior of <code>runUntilCurrent</code> other than running timed calls, 
+such as draining the thread call queue or calling <code>crash()</code> when
+the appropriate flags are set.
+ (type: <code>bool</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor.callLater">
+    
+  </a>
+  <a name="callLater">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    callLater(self, _seconds, _f, *args, **kw):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L423" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Implement <a 
+href="twisted.internet.interfaces.IReactorTime.html#callLater"><code>IReactorTime.callLater</code></a>.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor.stop">
+    
+  </a>
+  <a name="stop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    stop(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L434" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Implement <a 
+href="twisted.internet.interfaces.IReactorCore.html#stop"><code>IReactorCore.stop</code></a>.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor.crash">
+    
+  </a>
+  <a name="crash">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    crash(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L442" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Implement <a 
+href="twisted.internet.interfaces.IReactorCore.html#crash"><code>IReactorCore.crash</code></a><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor._stopNow">
+    
+  </a>
+  <a name="_stopNow">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _stopNow(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L455" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Immediately stop the CFRunLoop (which must be running!).<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.cfreactor.CFReactor.iterate">
+    
+  </a>
+  <a name="iterate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    iterate(self, delay=0):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/internet/cfreactor.py#L462" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Emulate the behavior of <code>iterate()</code> for things that want to 
+call it, by letting the loop run for a little while and then scheduling a 
+timed call to exit it.<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-04-03 00:32:03.
+    </address>
+  </body>
+</html>

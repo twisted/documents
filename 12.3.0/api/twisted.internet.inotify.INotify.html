@@ -1,0 +1,659 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.inotify.INotify : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.i.i.INotify(<a href="twisted.internet.abstract.FileDescriptor.html">FileDescriptor</a>, <span title="object">object</span>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a>.<a href="twisted.internet.inotify.html">inotify</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/inotify.py#L143">View Source</a>
+      <a href="classIndex.html#twisted.internet.inotify.INotify">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>The INotify file descriptor, it basically does everything related to 
+INotify, from reading to notifying watch points.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1540">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.inotify.INotify.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.inotify.INotify.html#connectionLost">connectionLost</a></td>
+    <td><span>Release the inotify file descriptor and do the necessary cleanup</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.inotify.INotify.html#fileno">fileno</a></td>
+    <td><span>Get the underlying file descriptor from this inotify observer. Required 
+by <a 
+href="twisted.internet.abstract.FileDescriptor.html"><code>abstract.FileDescriptor</code></a>
+subclasses.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.inotify.INotify.html#doRead">doRead</a></td>
+    <td><span>Read some data from the observed file descriptors</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.inotify.INotify.html#watch">watch</a></td>
+    <td><span>Watch the 'mask' events in given path. Can raise 
+<code>INotifyError</code> when there's a problem while adding a 
+directory.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.inotify.INotify.html#ignore">ignore</a></td>
+    <td><span>Remove the watch point monitoring the given path</span></td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.inotify.INotify.html#_buffer">_buffer</a></td>
+    <td>a <code>str</code> containing the data read from the inotify fd.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.inotify.INotify.html#_watchpoints">_watchpoints</a></td>
+    <td>a <code>dict</code> that maps from inotify watch ids to watchpoints objects</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.inotify.INotify.html#_watchpaths">_watchpaths</a></td>
+    <td>a <code>dict</code> that maps from watched paths to the inotify watch ids</td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.inotify.INotify.html#_addWatch">_addWatch</a></td>
+    <td><span>Private helper that abstracts the use of ctypes.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.inotify.INotify.html#_rmWatch">_rmWatch</a></td>
+    <td><span>Private helper that abstracts the use of ctypes.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.inotify.INotify.html#_doRead">_doRead</a></td>
+    <td><span>Work on the data just read from the file descriptor.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.inotify.INotify.html#_addChildren">_addChildren</a></td>
+    <td><span>This is a very private method, please don't even think about using 
+it.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.inotify.INotify.html#_isWatched">_isWatched</a></td>
+    <td><span>Helper function that checks if the path is already monitored and returns
+its watchdescriptor if so or None otherwise.</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.internet.abstract.FileDescriptor.html">FileDescriptor</a>:
+        </p>
+        <table class="children sortable" id="id1541">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#writeSomeData">writeSomeData</a></td>
+    <td><span>Write as much as possible of the given data, immediately.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#doWrite">doWrite</a></td>
+    <td><span>Called when data can be written.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#writeConnectionLost">writeConnectionLost</a></td>
+    <td><span>Indicates write connection was lost.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#readConnectionLost">readConnectionLost</a></td>
+    <td><span>Indicates read connection was lost.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#write">write</a></td>
+    <td><span>Reliably write some data.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#writeSequence">writeSequence</a></td>
+    <td><span>Reliably write a sequence of data.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#loseConnection">loseConnection</a></td>
+    <td><span>Close the connection at the next available opportunity.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#loseWriteConnection">loseWriteConnection</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#stopReading">stopReading</a></td>
+    <td><span>Stop waiting for read availability.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#stopWriting">stopWriting</a></td>
+    <td><span>Stop waiting for write availability.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#startReading">startReading</a></td>
+    <td><span>Start waiting for read availability.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#startWriting">startWriting</a></td>
+    <td><span>Start waiting for write availability.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#stopConsuming">stopConsuming</a></td>
+    <td><span>Stop consuming data.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#resumeProducing">resumeProducing</a></td>
+    <td><span>Resume producing data.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#pauseProducing">pauseProducing</a></td>
+    <td><span>Pause producing data.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#stopProducing">stopProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#_postLoseConnection">_postLoseConnection</a></td>
+    <td><span>Called after a loseConnection(), when all data has been written.</span></td>
+  </tr><tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#_closeWriteConnection">_closeWriteConnection</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#_isSendBufferFull">_isSendBufferFull</a></td>
+    <td><span>Determine whether the user-space send buffer for this transport is full 
+or not.</span></td>
+  </tr><tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract.FileDescriptor.html#_maybePauseProducer">_maybePauseProducer</a></td>
+    <td><span>Possibly pause a producer, if there is one and the send buffer is 
+full.</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.internet.abstract._ConsumerMixin.html">_ConsumerMixin</a> (via <a href="twisted.internet.abstract.FileDescriptor.html">FileDescriptor</a>):
+        </p>
+        <table class="children sortable" id="id1542">
+  
+  
+<tr class="baseinstancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.abstract._ConsumerMixin.html#producer">producer</a></td>
+    <td><code>None</code> if no producer is registered, otherwise the registered 
+producer.</td>
+  </tr><tr class="baseinstancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.abstract._ConsumerMixin.html#producerPaused">producerPaused</a></td>
+    <td>A flag indicating whether the producer is currently paused. (type: <code>bool</code> or <code>int</code>)</td>
+  </tr><tr class="baseinstancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.abstract._ConsumerMixin.html#streamingProducer%200">streamingProducer 0</a></td>
+    <td>A flag indicating whether the producer was registered as a streaming (ie 
+push) producer or not (ie a pull producer).  This will determine whether 
+the consumer may ever need to pause and resume it, or if it can merely call
+<code>resumeProducing</code> on it when buffer space is available.</td>
+  </tr><tr class="baseinstancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.abstract._ConsumerMixin.html#streamingProducer">streamingProducer</a></td>
+    <td><code>bool</code> or <code>int</code></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract._ConsumerMixin.html#registerProducer">registerProducer</a></td>
+    <td><span>Register to receive data from a producer.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract._ConsumerMixin.html#unregisterProducer">unregisterProducer</a></td>
+    <td><span>Stop consuming data from a producer, without disconnecting.</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.internet.abstract._LogOwner.html">_LogOwner</a> (via <a href="twisted.internet.abstract.FileDescriptor.html">FileDescriptor</a>):
+        </p>
+        <table class="children sortable" id="id1543">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract._LogOwner.html#logPrefix">logPrefix</a></td>
+    <td><span>Override this method to insert custom logging behavior.  Its return 
+value will be inserted in front of every line.  It may be called more times
+than the number of output lines.</span></td>
+  </tr><tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract._LogOwner.html#_getLogPrefix">_getLogPrefix</a></td>
+    <td><span>Determine the log prefix to use for messages related to 
+<code>applicationObject</code>, which may or may not be an <a 
+href="twisted.internet.interfaces.ILoggingContext.html"><code>interfaces.ILoggingContext</code></a>
+provider.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.internet.inotify.INotify._buffer">
+    
+  </a>
+  <a name="_buffer">
+    
+  </a>
+  <div class="functionHeader">
+    _buffer =
+  </div>
+  <div class="functionBody">
+    a <code>str</code> containing the data read from the inotify fd.
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.inotify.INotify._watchpoints">
+    
+  </a>
+  <a name="_watchpoints">
+    
+  </a>
+  <div class="functionHeader">
+    _watchpoints =
+  </div>
+  <div class="functionBody">
+    a <code>dict</code> that maps from inotify watch ids to watchpoints objects
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.inotify.INotify._watchpaths">
+    
+  </a>
+  <a name="_watchpaths">
+    
+  </a>
+  <div class="functionHeader">
+    _watchpaths =
+  </div>
+  <div class="functionBody">
+    a <code>dict</code> that maps from watched paths to the inotify watch ids
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.inotify.INotify.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, reactor=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/inotify.py#L158" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.internet.abstract.FileDescriptor.html#__init__">twisted.internet.abstract.FileDescriptor.__init__</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.inotify.INotify._addWatch">
+    
+  </a>
+  <a name="_addWatch">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _addWatch(self, path, mask, autoAdd, callbacks):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/inotify.py#L180" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Private helper that abstracts the use of ctypes.</p>
+<p>Calls the internal inotify API and checks for any errors after the call.
+If there's an error <a 
+href="twisted.internet.inotify.INotify.html#_addWatch"><code>INotify._addWatch</code></a>
+can raise an INotifyError. If there's no error it proceeds creating a 
+watchpoint and adding a watchpath for inverse lookup of the file descriptor
+from the path.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.inotify.INotify._rmWatch">
+    
+  </a>
+  <a name="_rmWatch">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _rmWatch(self, wd):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/inotify.py#L200" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Private helper that abstracts the use of ctypes.</p>
+<p>Calls the internal inotify API to remove an fd from inotify then removes
+the corresponding watchpoint from the internal mapping together with the 
+file descriptor from the watchpath.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.inotify.INotify.connectionLost">
+    
+  </a>
+  <a name="connectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    connectionLost(self, reason):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/inotify.py#L213" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.internet.abstract.FileDescriptor.html#connectionLost">twisted.internet.abstract.FileDescriptor.connectionLost</a></div>
+    <div>Release the inotify file descriptor and do the necessary cleanup<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.inotify.INotify.fileno">
+    
+  </a>
+  <a name="fileno">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    fileno(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/inotify.py#L225" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.internet.abstract.FileDescriptor.html#fileno">twisted.internet.abstract.FileDescriptor.fileno</a></div>
+    <div>Get the underlying file descriptor from this inotify observer. Required 
+by <a 
+href="twisted.internet.abstract.FileDescriptor.html"><code>abstract.FileDescriptor</code></a>
+subclasses.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.inotify.INotify.doRead">
+    
+  </a>
+  <a name="doRead">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    doRead(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/inotify.py#L233" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.internet.abstract.FileDescriptor.html#doRead">twisted.internet.abstract.FileDescriptor.doRead</a></div>
+    <div>Read some data from the observed file descriptors<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.inotify.INotify._doRead">
+    
+  </a>
+  <a name="_doRead">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _doRead(self, in_):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/inotify.py#L240" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Work on the data just read from the file descriptor.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.inotify.INotify._addChildren">
+    
+  </a>
+  <a name="_addChildren">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _addChildren(self, iwp):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/inotify.py#L286" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>This is a very private method, please don't even think about using 
+it.</p>
+<p>Note that this is a fricking hack... it's because we cannot be fast 
+enough in adding a watch to a directory and so we basically end up getting 
+here too late if some operations have already been going on in the subdir, 
+we basically need to catchup.  This eventually ends up meaning that we 
+generate double events, your app must be resistant.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.inotify.INotify.watch">
+    
+  </a>
+  <a name="watch">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    watch(self, path, mask=IN_WATCH_MASK, autoAdd=False, callbacks=None, recursive=False):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/inotify.py#L325" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Watch the 'mask' events in given path. Can raise 
+<code>INotifyError</code> when there's a problem while adding a 
+directory.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">path</td><td>The path needing monitoring (type: <code>FilePath</code>)</td></tr><tr><td></td><td class="fieldArg">mask</td><td>The events that should be watched (type: <code>int</code>)</td></tr><tr><td></td><td class="fieldArg">autoAdd</td><td>if True automatically add newly created subdirectories (type: <code>boolean</code>)</td></tr><tr><td></td><td class="fieldArg">callbacks</td><td>A list of callbacks that should be called when an event happens in the 
+given path. The callback should accept 3 arguments: (ignored, filepath, 
+mask) (type: <code>list</code> of callables)</td></tr><tr><td></td><td class="fieldArg">recursive</td><td>Also add all the subdirectories in this path (type: <code>boolean</code>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.inotify.INotify.ignore">
+    
+  </a>
+  <a name="ignore">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ignore(self, path):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/inotify.py#L371" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Remove the watch point monitoring the given path<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">path</td><td>The path that should be ignored (type: <code>FilePath</code>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.inotify.INotify._isWatched">
+    
+  </a>
+  <a name="_isWatched">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _isWatched(self, path):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/inotify.py#L385" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Helper function that checks if the path is already monitored and returns
+its watchdescriptor if so or None otherwise.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">path</td><td>The path that should be checked (type: <code>FilePath</code>)</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2012-12-26 12:18:15.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

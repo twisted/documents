@@ -1,0 +1,177 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.flow.protocol&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="module">Module t.f.protocol</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.flow.html">flow</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/flow/protocol.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div><p>flow.protocol</p>
+This allows one to use flow module to create protocols, a protocol is 
+actually a controller, but it is specialized enough to deserve its own 
+module.
+<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3628">
+  
+  
+<tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.flow.protocol.html#makeProtocol">makeProtocol</a></td>
+    <td><span>Construct a flow based protocol
+</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.flow.protocol.html#_NotImplController">_NotImplController</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.flow.protocol.makeProtocol">
+    
+  </a>
+  <a name="makeProtocol">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    makeProtocol(controller, *callbacks, baseClass=protocol.Protocol, **kwargs):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/flow/protocol.py#L22" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Construct a flow based protocol</p>
+This takes a base protocol class, and a set of callbacks and creates a 
+connection flow based on the two.  For example, the following would build a
+simple 'echo' protocol:
+<pre class="literalblock">
+   from __future__ import generators
+   from twisted.internet import reactor, protocol
+   from twisted.flow import flow
+   PORT = 8392
+
+   def echoServer(conn):
+       yield conn
+       for data in conn:
+           conn.write(data)
+           yield conn
+
+   def echoClient(conn):
+       conn.write(&quot;hello, world!&quot;)
+       yield conn
+       print &quot;server said: &quot;, conn.next()
+       reactor.callLater(0,reactor.stop)
+
+   server = protocol.ServerFactory()
+   server.protocol = flow.makeProtocol(echoServer)
+   reactor.listenTCP(PORT,server)
+   client = protocol.ClientFactory()
+   client.protocol = flow.makeProtocol(echoClient)
+   reactor.connectTCP(&quot;localhost&quot;, PORT, client)
+   reactor.run()
+</pre>
+Of course, the best part about flow is that you can nest stages.  
+Therefore it is quite easy to make a lineBreaker generator which takes an 
+input connection and produces and output connection.  Anyway, the code is 
+almost identical as far as the client/server is concerned:
+<pre class="literalblock">
+   # this is a filter generator, it consumes from the
+   # incoming connection, and yields results to
+   # the next stage, the echoServer below
+   def lineBreaker(conn, lineEnding = &quot;\n&quot;):
+       lst = []
+       yield conn
+       for chunk in conn:
+          pos = chunk.find(lineEnding)
+          if pos &gt; -1:
+              lst.append(chunk[:pos])
+              yield &quot;&quot;.join(lst)
+              lst = [chunk[pos+1:]]
+          else:
+              lst.append(chunk)
+          yield conn
+       yield &quot;&quot;.join(lst)
+
+   # note that this class is only slightly modified,
+   # simply comment out the line breaker line to see
+   # how the server behaves without the filter...
+   def echoServer(conn):
+       lines = flow.wrap(lineBreaker(conn))
+       yield lines
+       for data in lines:
+           conn.write(data)
+           yield lines
+
+   # and the only thing that is changed is that we
+   # are sending data in strange chunks, and even
+   # putting the last chunk on hold for 2 seconds.
+   def echoClient(conn):
+       conn.write(&quot;Good Morning!\nPlease &quot;)
+       yield conn
+       print &quot;server said: &quot;, conn.next()
+       conn.write(&quot;do not disregard &quot;)
+       reactor.callLater(2, conn.write, &quot;this.\n&quot;)
+       yield conn
+       print &quot;server said: &quot;, conn.next()
+       reactor.callLater(0,reactor.stop)
+</pre>
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.flow.protocol._NotImplController">
+    
+  </a>
+  <a name="_NotImplController">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _NotImplController(protocol):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/flow/protocol.py#L147" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2009-01-01 15:43:32.
+    </address>
+  </body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.internet.interfaces.IHalfCloseableProtocol&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="interface">Interface t.i.i.IHalfCloseableProtocol(<a href="twisted.python.components.Interface.html">Interface</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.internet.interfaces.html">twisted.internet.interfaces</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.internet.interfaces.IHalfCloseableProtocol">View In Hierarchy</a>
+    </p>
+    <div><p>Known implementations: <a href="twisted.web2.channel.http.HTTPChannel.html">twisted.web2.channel.http.HTTPChannel</a>, <a href="twisted.web2.channel.cgi.BaseCGIChannelRequest.html">twisted.web2.channel.cgi.BaseCGIChannelRequest</a></p></div>
+    <div><p>Implemented to indicate they want notification of half-closes.</p>
+TCP supports the notion of half-closing the connection, e.g. closing 
+the write side but still not stopping reading. A protocol that implements 
+this interface will be notified of such events, instead of having 
+connectionLost called.
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.internet.interfaces.IHalfCloseableProtocol.readConnectionLost">readConnectionLost</a></td>
+          <td><span>Notification of the read connection being closed.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.internet.interfaces.IHalfCloseableProtocol.writeConnectionLost">writeConnectionLost</a></td>
+          <td><span>Notification of the write connection being closed.
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.internet.interfaces.IHalfCloseableProtocol.readConnectionLost"></a>
+        <div class="functionHeader">
+          def <span>readConnectionLost():</span>
+        </div>
+        <div class="functionBody"><div><p>Notification of the read connection being closed.</p>
+<p>This indicates peer did half-close of write side. It is now the 
+responsiblity of the this protocol to call loseConnection(). In addition, 
+the protocol MUST make sure a reference to it still exists (i.e. by doing 
+a callLater with one of its methods, etc.) as the reactor will only have 
+a reference to it if it is writing.</p>
+If the protocol does not do so, it might get garbage collected without 
+the connectionLost method ever being called.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.internet.interfaces.IHalfCloseableProtocol.writeConnectionLost"></a>
+        <div class="functionHeader">
+          def <span>writeConnectionLost():</span>
+        </div>
+        <div class="functionBody"><div><p>Notification of the write connection being closed.</p>
+This will never be called for TCP connections as TCP does not support 
+notification of this type of half-close.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

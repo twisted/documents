@@ -1,0 +1,324 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web._newclient : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="module private">t.w._newclient : module documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web.html">web</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/web/_newclient.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div><p>An <a href="http://www.w3.org/Protocols/rfc2616/rfc2616.html" 
+target="_top">HTTP 1.1</a> client.</p>
+<p>The way to use the functionality provided by this module is to:</p>
+<ul>
+  <li>
+    Connect a <a 
+    href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+    to an HTTP server
+  </li>
+  <li>
+    Create a <a 
+    href="twisted.web._newclient.Request.html"><code>Request</code></a> 
+    with the appropriate data
+  </li>
+  <li>
+    Pass the request to <a 
+    href="twisted.web._newclient.HTTP11ClientProtocol.html#request"><code>HTTP11ClientProtocol.request</code></a>
+  </li>
+  <li>
+    The returned Deferred will fire with a <a 
+    href="twisted.web.client.Response.html"><code>Response</code></a> 
+    object
+  </li>
+  <li>
+    Create a <code>IProtocol</code> provider which can handle the response 
+    body
+  </li>
+  <li>
+    Connect it to the response with <a 
+    href="twisted.web.client.Response.html#deliverBody"><code>Response.deliverBody</code></a>
+  </li>
+  <li>
+    When the protocol's <code>connectionLost</code> method is called, the 
+    response is complete.  See <a 
+    href="twisted.web.client.Response.html#deliverBody"><code>Response.deliverBody</code></a>
+    for details.
+  </li>
+</ul>
+<p>Various other classes in this module support this usage:</p>
+<ul>
+  <li>
+    HTTPParser is the basic HTTP parser.  It can handle the parts of HTTP 
+    which are symmetric between requests and responses.
+  </li>
+  <li>
+    HTTPClientParser extends HTTPParser to handle response-specific parts 
+    of HTTP.  One instance is created for each request to parse the 
+    corresponding response.
+  </li>
+</ul><table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id2502">
+  
+  
+<tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web._newclient.BadHeaders.html">BadHeaders</a></td>
+    <td><span>Headers passed to <a 
+href="twisted.web._newclient.Request.html"><code>Request</code></a> were in
+some way invalid.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web._newclient.ExcessWrite.html">ExcessWrite</a></td>
+    <td><span>The body <a 
+href="twisted.web.iweb.IBodyProducer.html"><code>IBodyProducer</code></a> 
+for a request tried to write data after indicating it had finished writing 
+data.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web._newclient.ParseError.html">ParseError</a></td>
+    <td><span>Some received data could not be parsed.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web._newclient.BadResponseVersion.html">BadResponseVersion</a></td>
+    <td><span>The version string in a status line was unparsable.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web._newclient.RequestGenerationFailed.html">RequestGenerationFailed</a></td>
+    <td><span>There was an error while creating the bytes which make up a request.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web._newclient.RequestTransmissionFailed.html">RequestTransmissionFailed</a></td>
+    <td><span>There was an error while sending the bytes which make up a request.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web._newclient.ConnectionAborted.html">ConnectionAborted</a></td>
+    <td><span>The connection was explicitly aborted by application code.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web._newclient.WrongBodyLength.html">WrongBodyLength</a></td>
+    <td><span>An <a 
+href="twisted.web.iweb.IBodyProducer.html"><code>IBodyProducer</code></a> 
+declared the number of bytes it was going to produce (via its 
+<code>length</code> attribute) and then produced a different number of 
+bytes.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web._newclient.ResponseNeverReceived.html">ResponseNeverReceived</a></td>
+    <td><span>A <a 
+href="twisted.web.client.ResponseFailed.html"><code>ResponseFailed</code></a>
+that knows no response bytes at all have been received.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web._newclient.RequestNotSent.html">RequestNotSent</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web._newclient.HTTPParser.html">HTTPParser</a></td>
+    <td><span><a 
+href="twisted.web._newclient.HTTPParser.html"><code>HTTPParser</code></a> 
+handles the parsing side of HTTP processing. With a suitable subclass, it 
+can parse either the client side or the server side of the connection.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web._newclient.HTTPClientParser.html">HTTPClientParser</a></td>
+    <td><span>An HTTP parser which only handles HTTP responses.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web._newclient.Request.html">Request</a></td>
+    <td><span>A <a href="twisted.web._newclient.Request.html"><code>Request</code></a>
+instance describes an HTTP request to be sent to an HTTP server.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web._newclient.LengthEnforcingConsumer.html">LengthEnforcingConsumer</a></td>
+    <td><span>An <a 
+href="twisted.internet.interfaces.IConsumer.html"><code>IConsumer</code></a>
+proxy which enforces an exact length requirement on the total data written 
+to it.</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.web._newclient.html#makeStatefulDispatcher">makeStatefulDispatcher</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web._newclient.ChunkedEncoder.html">ChunkedEncoder</a></td>
+    <td><span>Helper object which exposes <a 
+href="twisted.internet.interfaces.IConsumer.html"><code>IConsumer</code></a>
+on top of <a 
+href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+for streaming request bodies to the server.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web._newclient.TransportProxyProducer.html">TransportProxyProducer</a></td>
+    <td><span>An <a 
+href="twisted.internet.interfaces.IPushProducer.html"><code>IPushProducer</code></a>
+implementation which wraps another such thing and proxies calls to it until
+it is told to stop.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html">HTTP11ClientProtocol</a></td>
+    <td><span><a 
+href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+is an implementation of the HTTP 1.1 client protocol.  It supports as few 
+features as possible.</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web._newclient._WrapperException.html">_WrapperException</a></td>
+    <td><span><a 
+href="twisted.web._newclient._WrapperException.html"><code>_WrapperException</code></a>
+is the base exception type for exceptions which include one or more other 
+exceptions as the low-level causes.</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.web._newclient.html#_callAppFunction">_callAppFunction</a></td>
+    <td><span>Call <code>function</code>.  If it raises an exception, log it with a 
+minimal description of the source.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.web._newclient._callAppFunction">
+    
+  </a>
+  <a name="_callAppFunction">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _callAppFunction(function):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/web/_newclient.py#L183" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Call <code>function</code>.  If it raises an exception, log it with a 
+minimal description of the source.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>None</code></td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.makeStatefulDispatcher">
+    
+  </a>
+  <a name="makeStatefulDispatcher">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    makeStatefulDispatcher(name, template):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/web/_newclient.py#L838" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Given a <i>dispatch</i> name and a function, return a function which can
+be used as a method and which, when called, will call another method 
+defined on the instance and return the result.  The other method which is 
+called is determined by the value of the <code>_state</code> attribute of 
+the instance.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>A string which is used to construct the name of the subsidiary method to 
+invoke.  The subsidiary method is named like <code>'_%s_%s' % (name, 
+_state)</code>.</td></tr><tr><td></td><td class="fieldArg">template</td><td>A function object which is used to give the returned function a docstring.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The dispatcher function.</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2012-12-26 12:18:15.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

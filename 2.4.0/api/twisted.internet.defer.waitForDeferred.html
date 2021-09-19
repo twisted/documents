@@ -1,0 +1,96 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.internet.defer.waitForDeferred&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.i.d.waitForDeferred:</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.internet.defer.html">twisted.internet.defer</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.internet.defer.waitForDeferred">View In Hierarchy</a>
+    </p>
+    <div></div>
+    <div><p>API Stability: semi-stable</p>
+<p>Maintainer: <a href="mailto:radix&#64;twistedmatrix.com">Christopher 
+Armstrong</a></p>
+<p>waitForDeferred and deferredGenerator help you write Deferred-using 
+code that looks like it's blocking (but isn't really), with the help of 
+generators.</p>
+There are two important functions involved: waitForDeferred, and 
+deferredGenerator. They are used together, like this:
+<pre class="literalblock">
+   def thingummy():
+       thing = waitForDeferred(makeSomeRequestResultingInDeferred())
+       yield thing
+       thing = thing.getResult()
+       print thing #the result! hoorj!
+   thingummy = deferredGenerator(thingummy)
+</pre>
+<p>waitForDeferred returns something that you should immediately yield; 
+when your generator is resumed, calling thing.getResult() will either 
+give you the result of the Deferred if it was a success, or raise an 
+exception if it was a failure. Calling <code>getResult</code> is 
+<b>absolutely mandatory</b>. If you do not call it, <i>your program will 
+not work</i>.</p>
+<p>deferredGenerator takes one of these waitForDeferred-using generator 
+functions and converts it into a function that returns a Deferred. The 
+result of the Deferred will be the last value that your generator yielded 
+unless the last value is a waitForDeferred instance, in which case the 
+result will be <code>None</code>. If the function raises an unhandled 
+exception, the Deferred will errback instead. Remember that 'return 
+result' won't work; use 'yield result; return' in place of that.</p>
+<p>Note that not yielding anything from your generator will make the 
+Deferred result in None. Yielding a Deferred from your generator is also 
+an error condition; always yield waitForDeferred(d) instead.</p>
+The Deferred returned from your deferred generator may also errback if 
+your generator raised an exception. For example:
+<pre class="literalblock">
+   def thingummy():
+       thing = waitForDeferred(makeSomeRequestResultingInDeferred())
+       yield thing
+       thing = thing.getResult()
+       if thing == 'I love Twisted':
+           # will become the result of the Deferred
+           yield 'TWISTED IS GREAT!'
+           return
+       else:
+           # will trigger an errback
+           raise Exception('DESTROY ALL LIFE')
+   thingummy = deferredGenerator(thingummy)
+</pre>
+Put succinctly, these functions connect deferred-using code with this 
+'fake blocking' style in both directions: waitForDeferred converts from a 
+Deferred to the 'blocking' style, and deferredGenerator converts from the 
+'blocking' style to a Deferred.
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.internet.defer.waitForDeferred.__init__">__init__</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.internet.defer.waitForDeferred.getResult">getResult</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.internet.defer.waitForDeferred.__init__"></a>
+        <div class="functionHeader">
+          def <span>__init__(self, d):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.internet.defer.waitForDeferred.getResult"></a>
+        <div class="functionHeader">
+          def <span>getResult(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div>    
+  </body>
+</html>

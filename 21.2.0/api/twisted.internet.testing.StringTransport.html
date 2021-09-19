@@ -1,0 +1,747 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.testing.StringTransport : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://twistedmatrix.com/">Twisted</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><a href="twisted.html" class="code" data-type="Package">twisted</a>.<a href="twisted.internet.html" class="code" data-type="Package">internet</a>.<a href="twisted.internet.testing.html" class="code" data-type="Module">testing</a>.<a href="twisted.internet.testing.StringTransport.html" class="code" data-type="Class">StringTransport</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> twisted.internet.testing.StringTransport: <a href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L137">(source)</a></code></p><p>Known subclasses: <a href="twisted.internet.testing.StringTransportWithDisconnection.html" class="code" data-type="Class">twisted.internet.testing.StringTransportWithDisconnection</a></p><p>Implements interfaces: <a href="twisted.internet.interfaces.IConsumer.html" class="code" data-type="Interface">twisted.internet.interfaces.IConsumer</a>, <a href="twisted.internet.interfaces.IPushProducer.html" class="code" data-type="Interface">twisted.internet.interfaces.IPushProducer</a>, <a href="twisted.internet.interfaces.ITransport.html" class="code" data-type="Interface">twisted.internet.interfaces.ITransport</a></p>
+        <p><a href="classIndex.html#twisted.internet.testing.StringTransport">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A transport implementation which buffers data in memory and keeps track of its other state without providing any behavior.</p><p><a href="twisted.internet.testing.StringTransport.html"><code>StringTransport</code></a> has a number of attributes which are not part of any of the interfaces it claims to implement.  These attributes are provided for testing purposes.  Implementation code should not use any of these attributes; they are not provided by other transports.</p></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1273">
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#disconnecting" class="code" data-type="Instance Variable">disconnecting</a></td>
+    <td><span>A <code>bool</code> which is <code>False</code> until <a href="twisted.internet.testing.StringTransport.html#loseConnection"><code>loseConnection</code></a> is called, then <code>True</code>.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#disconnected" class="code" data-type="Instance Variable">disconnected</a></td>
+    <td><span>A <code>bool</code> which is <code>False</code> until <a href="twisted.internet.testing.StringTransport.html#abortConnection"><code>abortConnection</code></a> is called, then <code>True</code>.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#producer" class="code" data-type="Instance Variable">producer</a></td>
+    <td><span>If a producer is currently registered, <code>producer</code> is a reference to it.  Otherwise, <a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#streaming" class="code" data-type="Instance Variable">streaming</a></td>
+    <td><span>If a producer is currently registered, <code>streaming</code> refers to the value of the second parameter passed to <code>registerProducer</code>.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#hostAddr" class="code" data-type="Instance Variable">hostAddr</a></td>
+    <td><span><a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a> or an object which will be returned as the host address of this transport.  If <a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>, a nasty tuple will be returned instead.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#peerAddr" class="code" data-type="Instance Variable">peerAddr</a></td>
+    <td><span><a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a> or an object which will be returned as the peer address of this transport.  If <a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>, a nasty tuple will be returned instead.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#producerState" class="code" data-type="Instance Variable">producerState</a></td>
+    <td><span>The state of this <a href="twisted.internet.testing.StringTransport.html"><code>StringTransport</code></a> in its capacity as an <a href="twisted.internet.interfaces.IPushProducer.html"><code>IPushProducer</code></a>.  One of <code>'producing'</code>, <code>'paused'</code>, or <code>'stopped'</code>.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#io" class="code" data-type="Instance Variable">io</a></td>
+    <td><span>A <a href="https://docs.python.org/3/library/io.html#io.BytesIO"><code>io.BytesIO</code></a> which holds the data which has been written to this transport since the last call to <a href="twisted.internet.testing.StringTransport.html#clear"><code>clear</code></a>.  Use <a href="twisted.internet.testing.StringTransport.html#value"><code>value</code></a> instead of accessing this directly.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#__init__" class="code" data-type="Method">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#connected" class="code" data-type="Instance Variable">connected</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#clear" class="code" data-type="Method">clear</a></td>
+    <td><span>Discard all data written to this transport so far.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#value" class="code" data-type="Method">value</a></td>
+    <td><span>Retrieve all data which has been buffered by this transport.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#write" class="code" data-type="Method">write</a></td>
+    <td><span>Write some data to the physical connection, in sequence, in a non-blocking fashion.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#writeSequence" class="code" data-type="Method">writeSequence</a></td>
+    <td><span>Write an iterable of byte strings to the physical connection.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#loseConnection" class="code" data-type="Method">loseConnection</a></td>
+    <td><span>Close the connection. Does nothing besides toggle the <code>disconnecting</code> instance variable to <code>True</code>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#abortConnection" class="code" data-type="Method">abortConnection</a></td>
+    <td><span>Abort the connection. Same as <code>loseConnection</code>, but also toggles the <code>aborted</code> instance variable to <code>True</code>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#getPeer" class="code" data-type="Method">getPeer</a></td>
+    <td><span>Get the remote address of this connection.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#getHost" class="code" data-type="Method">getHost</a></td>
+    <td><span>Similar to getPeer, but returns an address describing this side of the connection.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#registerProducer" class="code" data-type="Method">registerProducer</a></td>
+    <td><span>Register to receive data from a producer.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#unregisterProducer" class="code" data-type="Method">unregisterProducer</a></td>
+    <td><span>Stop consuming data from a producer, without disconnecting.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#pauseProducing" class="code" data-type="Method">pauseProducing</a></td>
+    <td><span>Pause producing data.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#stopProducing" class="code" data-type="Method">stopProducing</a></td>
+    <td><span>Stop producing data.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#resumeProducing" class="code" data-type="Method">resumeProducing</a></td>
+    <td><span>Resume producing data.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#_lenient" class="code" data-type="Instance Variable">_lenient</a></td>
+    <td><span>By default <a href="twisted.internet.testing.StringTransport.html"><code>StringTransport</code></a> enforces that <a href="twisted.internet.testing.StringTransport.html#resumeProducing"><code>resumeProducing</code></a> is not called after the connection is lost. This is to ensure that any code that does call <a href="twisted.internet.testing.StringTransport.html#resumeProducing"><code>resumeProducing</code></a> after the connection is lost is not blindly expecting <a href="twisted.internet.testing.StringTransport.html#resumeProducing"><code>resumeProducing</code></a> to have any impact.<p>However, if your test case is calling <a href="twisted.internet.testing.StringTransport.html#resumeProducing"><code>resumeProducing</code></a> after connection close on purpose, and you know it won't block expecting further data to show up, this flag may safely be set to <a href="https://docs.python.org/3/library/constants.html#True"><code>True</code></a>.</p><p>Defaults to <a href="https://docs.python.org/3/library/constants.html#False"><code>False</code></a>.</p></span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.testing.StringTransport.html#_checkState" class="code" data-type="Method">_checkState</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.StringTransport.disconnecting">
+    
+  </a>
+  <a name="disconnecting">
+    
+  </a>
+  <div class="functionHeader">
+    
+    disconnecting =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L148">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A <code>bool</code> which is <code>False</code> until <a href="twisted.internet.testing.StringTransport.html#loseConnection"><code>loseConnection</code></a> is called, then <code>True</code>.</div> (type: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="code">bool</a></code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.StringTransport.disconnected">
+    
+  </a>
+  <a name="disconnected">
+    
+  </a>
+  <div class="functionHeader">
+    
+    disconnected =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L151">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A <code>bool</code> which is <code>False</code> until <a href="twisted.internet.testing.StringTransport.html#abortConnection"><code>abortConnection</code></a> is called, then <code>True</code>.</div> (type: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="code">bool</a></code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.StringTransport.producer">
+    
+  </a>
+  <a name="producer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    producer =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L154">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>If a producer is currently registered, <code>producer</code> is a reference to it.  Otherwise, <a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>.</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.StringTransport.streaming">
+    
+  </a>
+  <a name="streaming">
+    
+  </a>
+  <div class="functionHeader">
+    
+    streaming =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L157">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>If a producer is currently registered, <code>streaming</code> refers to the value of the second parameter passed to <code>registerProducer</code>.</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.StringTransport.hostAddr">
+    
+  </a>
+  <a name="hostAddr">
+    
+  </a>
+  <div class="functionHeader">
+    
+    hostAddr =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L160">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a> or an object which will be returned as the host address of this transport.  If <a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>, a nasty tuple will be returned instead.</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.StringTransport.peerAddr">
+    
+  </a>
+  <a name="peerAddr">
+    
+  </a>
+  <div class="functionHeader">
+    
+    peerAddr =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L164">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a> or an object which will be returned as the peer address of this transport.  If <a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>, a nasty tuple will be returned instead.</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.StringTransport.producerState">
+    
+  </a>
+  <a name="producerState">
+    
+  </a>
+  <div class="functionHeader">
+    
+    producerState =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L168">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The state of this <a href="twisted.internet.testing.StringTransport.html"><code>StringTransport</code></a> in its capacity as an <a href="twisted.internet.interfaces.IPushProducer.html"><code>IPushProducer</code></a>.  One of <code>'producing'</code>, <code>'paused'</code>, or <code>'stopped'</code>.</div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.StringTransport.io">
+    
+  </a>
+  <a name="io">
+    
+  </a>
+  <div class="functionHeader">
+    
+    io =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L172">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A <a href="https://docs.python.org/3/library/io.html#io.BytesIO"><code>io.BytesIO</code></a> which holds the data which has been written to this transport since the last call to <a href="twisted.internet.testing.StringTransport.html#clear"><code>clear</code></a>.  Use <a href="twisted.internet.testing.StringTransport.html#value"><code>value</code></a> instead of accessing this directly.</div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.internet.testing.StringTransport._lenient">
+    
+  </a>
+  <a name="_lenient">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _lenient =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L176">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>By default <a href="twisted.internet.testing.StringTransport.html"><code>StringTransport</code></a> enforces that <a href="twisted.internet.testing.StringTransport.html#resumeProducing"><code>resumeProducing</code></a> is not called after the connection is lost. This is to ensure that any code that does call <a href="twisted.internet.testing.StringTransport.html#resumeProducing"><code>resumeProducing</code></a> after the connection is lost is not blindly expecting <a href="twisted.internet.testing.StringTransport.html#resumeProducing"><code>resumeProducing</code></a> to have any impact.<p>However, if your test case is calling <a href="twisted.internet.testing.StringTransport.html#resumeProducing"><code>resumeProducing</code></a> after connection close on purpose, and you know it won't block expecting further data to show up, this flag may safely be set to <a href="https://docs.python.org/3/library/constants.html#True"><code>True</code></a>.</p><p>Defaults to <a href="https://docs.python.org/3/library/constants.html#False"><code>False</code></a>.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.StringTransport.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def __init__(self, hostAddress=None, peerAddress=None, lenient=False):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L201">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.testing.StringTransport.connected">
+    
+  </a>
+  <a name="connected">
+    
+  </a>
+  <div class="functionHeader">
+    
+    connected =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L207">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.internet.testing.StringTransportWithDisconnection.html" class="code" data-type="Class">twisted.internet.testing.StringTransportWithDisconnection</a></div>
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="code">bool</a></code>)
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.StringTransport.clear">
+    
+  </a>
+  <a name="clear">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def clear(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L210">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Discard all data written to this transport so far.</p><p>This is not a transport method.  It is intended for tests.  Do not use it in implementation code.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.StringTransport.value">
+    
+  </a>
+  <a name="value">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def value(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L219">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Retrieve all data which has been buffered by this transport.</p><p>This is not a transport method.  It is intended for tests.  Do not use it in implementation code.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A <code>bytes</code> giving all data written to this transport since the last call to <a href="twisted.internet.testing.StringTransport.html#clear"><code>clear</code></a>. (type: <code>bytes</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.StringTransport.write">
+    
+  </a>
+  <a name="write">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def write(self, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L233">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.ITransport.html#write" class="code" data-type="Method">twisted.internet.interfaces.ITransport</a></div>
+    
+    <div><p>Write some data to the physical connection, in sequence, in a non-blocking fashion.</p><p>If possible, make sure that it is all written.  No data will ever be lost, although (obviously) the connection may be closed before it all gets through.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">data</td><td>The data to write.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.StringTransport.writeSequence">
+    
+  </a>
+  <a name="writeSequence">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def writeSequence(self, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L237">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.ITransport.html#writeSequence" class="code" data-type="Method">twisted.internet.interfaces.ITransport</a></div>
+    
+    <div><p>Write an iterable of byte strings to the physical connection.</p><p>If possible, make sure that all of the data is written to the socket at once, without first copying it all into a single byte string.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">data</td><td>The data to write.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.StringTransport.loseConnection">
+    
+  </a>
+  <a name="loseConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def loseConnection(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L240">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.ITransport.html#loseConnection" class="code" data-type="Method">twisted.internet.interfaces.ITransport</a></div><div class="interfaceinfo">overridden in <a href="twisted.internet.testing.StringTransportWithDisconnection.html" class="code" data-type="Class">twisted.internet.testing.StringTransportWithDisconnection</a></div>
+    
+    <div><p>Close the connection. Does nothing besides toggle the <code>disconnecting</code> instance variable to <code>True</code>.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.StringTransport.abortConnection">
+    
+  </a>
+  <a name="abortConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def abortConnection(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L247">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Abort the connection. Same as <code>loseConnection</code>, but also toggles the <code>aborted</code> instance variable to <code>True</code>.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.StringTransport.getPeer">
+    
+  </a>
+  <a name="getPeer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def getPeer(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L255">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.ITransport.html#getPeer" class="code" data-type="Method">twisted.internet.interfaces.ITransport</a></div>
+    
+    <div><p>Get the remote address of this connection.</p><p>Treat this method with caution.  It is the unfortunate result of the CGI and Jabber standards, but should not be considered reliable for the usual host of reasons; port forwarding, proxying, firewalls, IP masquerading, etc.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An <a href="twisted.internet.interfaces.IAddress.html"><code>IAddress</code></a> provider.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.StringTransport.getHost">
+    
+  </a>
+  <a name="getHost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def getHost(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L260">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.ITransport.html#getHost" class="code" data-type="Method">twisted.internet.interfaces.ITransport</a></div>
+    
+    <div><p>Similar to getPeer, but returns an address describing this side of the connection.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An <a href="twisted.internet.interfaces.IAddress.html"><code>IAddress</code></a> provider.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.StringTransport.registerProducer">
+    
+  </a>
+  <a name="registerProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def registerProducer(self, producer, streaming):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L266">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#registerProducer" class="code" data-type="Method">twisted.internet.interfaces.IConsumer</a></div>
+    
+    <div><p>Register to receive data from a producer.</p><p>This sets self to be a consumer for a producer.  When this object runs out of data (as when a send(2) call on a socket succeeds in moving the last data from a userspace buffer into a kernelspace buffer), it will ask the producer to resumeProducing().</p><p>For <a href="twisted.internet.interfaces.IPullProducer.html"><code>IPullProducer</code></a> providers, <code>resumeProducing</code> will be called once each time data is required.</p><p>For <a href="twisted.internet.interfaces.IPushProducer.html"><code>IPushProducer</code></a> providers, <code>pauseProducing</code> will be called whenever the write buffer fills up and <code>resumeProducing</code> will only be called when it empties.  The consumer will only call <code>resumeProducing</code> to balance a previous <code>pauseProducing</code> call; the producer is assumed to start in an un-paused state.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">producer</td><td><span class="undocumented">Undocumented</span></td></tr><tr><td></td><td class="fieldArg">streaming</td><td><code>True</code> if <code>producer</code> provides <a href="twisted.internet.interfaces.IPushProducer.html"><code>IPushProducer</code></a>, <code>False</code> if <code>producer</code> provides <a href="twisted.internet.interfaces.IPullProducer.html"><code>IPullProducer</code></a>.</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">RuntimeError</td><td>If a producer is already registered.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.StringTransport.unregisterProducer">
+    
+  </a>
+  <a name="unregisterProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def unregisterProducer(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L272">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#unregisterProducer" class="code" data-type="Method">twisted.internet.interfaces.IConsumer</a></div>
+    
+    <div><p>Stop consuming data from a producer, without disconnecting.</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.internet.testing.StringTransport._checkState">
+    
+  </a>
+  <a name="_checkState">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _checkState(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L279">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.StringTransport.pauseProducing">
+    
+  </a>
+  <a name="pauseProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def pauseProducing(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L285">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IPushProducer.html#pauseProducing" class="code" data-type="Method">twisted.internet.interfaces.IPushProducer</a></div>
+    
+    <div><p>Pause producing data.</p><p>Tells a producer that it has produced too much data to process for the time being, and to stop until <code>resumeProducing()</code> is called.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.StringTransport.stopProducing">
+    
+  </a>
+  <a name="stopProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def stopProducing(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L289">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProducer.html#stopProducing" class="code" data-type="Method">twisted.internet.interfaces.IProducer</a></div>
+    
+    <div><p>Stop producing data.</p><p>This tells a producer that its consumer has died, so it must stop producing data for good.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.testing.StringTransport.resumeProducing">
+    
+  </a>
+  <a name="resumeProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def resumeProducing(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/testing.py#L292">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IPushProducer.html#resumeProducing" class="code" data-type="Method">twisted.internet.interfaces.IPushProducer</a></div>
+    
+    <div><p>Resume producing data.</p><p>This tells a producer to re-add itself to the main loop and produce more data for its consumer.</p></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-02-28 19:53:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

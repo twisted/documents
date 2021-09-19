@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.ssl.optionsForClientTLS : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="apidocs.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="function"><code>twisted.internet.ssl.optionsForClientTLS(hostname, trustRoot=None, clientCertificate=None, acceptableProtocols=None, **kw)</code> <small>function documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.internet.html" data-type="Package" class="code">internet</a>.<a href="twisted.internet.ssl.html" data-type="Module" class="code">ssl</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-17.5.0/src/twisted/internet/_sslverify.py#L1209">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>Create a <a href="twisted.internet.interfaces.IOpenSSLClientConnectionCreator.html"><code>client
+connection creator</code></a> for use with APIs such as <a href="twisted.internet.endpoints.SSL4ClientEndpoint.html"><code>SSL4ClientEndpoint</code></a>,
+<a href="twisted.internet.interfaces.IReactorSSL.html#connectSSL"><code>connectSSL</code></a>,
+and <a href="twisted.internet.interfaces.ITLSTransport.html#startTLS"><code>startTLS</code></a>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">hostname</td><td>The expected name of the remote host. This serves two purposes: first, and 
+most importantly, it verifies that the certificate received from the server
+correctly identifies the specified hostname. The second purpose is to use 
+the <a href="https://en.wikipedia.org/wiki/Server_Name_Indication" target="_top">Server Name Indication extension</a> to indicate to the 
+server which certificate should be used. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr><td></td><td class="fieldArg">trustRoot</td><td>Specification of trust requirements of peers. This may be a <a href="twisted.internet.ssl.Certificate.html"><code>Certificate</code></a> 
+or the result of <a href="twisted.internet.ssl.html#platformTrust"><code>platformTrust</code></a>.
+By default it is <a href="twisted.internet.ssl.html#platformTrust"><code>platformTrust</code></a>
+and you probably shouldn't adjust it unless you really know what you're 
+doing. Be aware that clients using this interface <i>must</i> verify the 
+server; you cannot explicitly pass <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+since that just means to use <a href="twisted.internet.ssl.html#platformTrust"><code>platformTrust</code></a>. (type: <a href="twisted.internet._sslverify.IOpenSSLTrustRoot.html"><code>IOpenSSLTrustRoot</code></a>)</td></tr><tr><td></td><td class="fieldArg">clientCertificate</td><td>The certificate and private key that the client will use to authenticate to
+the server. If unspecified, the client will not authenticate. (type: <a href="twisted.internet.ssl.PrivateCertificate.html"><code>PrivateCertificate</code></a>)</td></tr><tr><td></td><td class="fieldArg">acceptableProtocols</td><td>The protocols this peer is willing to speak after the TLS negotiation has 
+completed, advertised over both ALPN and NPN. If this argument is 
+specified, and no overlap can be found with the other peer, the connection 
+will fail to be established. If the remote peer does not offer NPN or ALPN,
+the connection will be established, but no protocol wil be negotiated. 
+Protocols earlier in the list are preferred over those later in the list. (type: <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">extraCertificateOptions</td><td>keyword-only argument; this is a dictionary of additional keyword arguments
+to be presented to <a href="twisted.internet.ssl.CertificateOptions.html"><code>CertificateOptions</code></a>.
+Please avoid using this unless you absolutely need to; any time you need to
+pass an option here that is a bug in this interface. (type: <a href="http://docs.python.org/library/stdtypes.html#dict"><code>dict</code></a>)</td></tr><tr><td></td><td class="fieldArg">kw</td><td>(Backwards compatibility hack to allow keyword-only arguments on Python 2. 
+Please ignore; arbitrary keyword arguments will be errors.) (type: <a href="http://docs.python.org/library/stdtypes.html#dict"><code>dict</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A client connection creator. (type: <a href="twisted.internet.interfaces.IOpenSSLClientConnectionCreator.html"><code>IOpenSSLClientConnectionCreator</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">14.0</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2017-06-11 10:59:01.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,1001 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web.iweb.IRequest : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="apidocs.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" style="display: none" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="interface"><code>twisted.web.iweb.IRequest(<span title="zope.interface.Interface">Interface</span>)</code> <small>interface documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.web.html" data-type="Package" class="code">web</a>.<a href="twisted.web.iweb.html" data-type="Module" class="code">iweb</a></code>
+          <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L19">View Source</a>
+          <a href="classIndex.html#twisted.web.iweb.IRequest">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Known implementations: <a href="twisted.web.server.Request.html" data-type="Class" class="code">twisted.web.server.Request</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>An HTTP request.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">9.0</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3310">
+  
+  <tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><a href="twisted.web.iweb.IRequest.html#method" data-type="Attribute" class="code">method</a></td>
+    <td><span>A <code>str</code> giving the HTTP method that was used.</span></td>
+  </tr><tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><a href="twisted.web.iweb.IRequest.html#uri" data-type="Attribute" class="code">uri</a></td>
+    <td><span>A <code>str</code> giving the full encoded URI which was requested 
+(including query arguments).</span></td>
+  </tr><tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><a href="twisted.web.iweb.IRequest.html#path" data-type="Attribute" class="code">path</a></td>
+    <td><span>A <code>str</code> giving the encoded query path of the request URI.</span></td>
+  </tr><tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><a href="twisted.web.iweb.IRequest.html#args" data-type="Attribute" class="code">args</a></td>
+    <td><span>A mapping of decoded query argument names as <code>str</code> to 
+corresponding query argument values as <code>list</code>s of 
+<code>str</code>.  For example, for a URI with 
+<code>'foo=bar&amp;foo=baz&amp;quux=spam'</code> for its query part, 
+<code>args</code> will be <code>{'foo': ['bar', 'baz'], 'quux': 
+['spam']}</code>.</span></td>
+  </tr><tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><a href="twisted.web.iweb.IRequest.html#received_headers" data-type="Attribute" class="code">received_headers</a></td>
+    <td><span>Backwards-compatibility access to <code>requestHeaders</code>, 
+deprecated in Twisted 13.2.0.  Use <code>requestHeaders</code> instead.  
+<code>received_headers</code> behaves mostly like a <code>dict</code> and 
+does not provide access to all header values.</span></td>
+  </tr><tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><a href="twisted.web.iweb.IRequest.html#requestHeaders" data-type="Attribute" class="code">requestHeaders</a></td>
+    <td><span>A <a href="twisted.web.http_headers.Headers.html"><code>http_headers.Headers</code></a>
+instance giving all received HTTP request headers.</span></td>
+  </tr><tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><a href="twisted.web.iweb.IRequest.html#content" data-type="Attribute" class="code">content</a></td>
+    <td><span>A file-like object giving the request body.  This may be a file on disk,
+a <code>StringIO</code>, or some other type.  The implementation is free to
+decide on a per-request basis.</span></td>
+  </tr><tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><a href="twisted.web.iweb.IRequest.html#headers" data-type="Attribute" class="code">headers</a></td>
+    <td><span>Backwards-compatibility access to <code>responseHeaders</code>, 
+deprecated in Twisted 13.2.0.  Use <code>responseHeaders</code> instead.  
+<code>headers</code> behaves mostly like a <code>dict</code> and does not 
+provide access to all header values nor does it allow multiple values for 
+one header to be set.</span></td>
+  </tr><tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><a href="twisted.web.iweb.IRequest.html#responseHeaders" data-type="Attribute" class="code">responseHeaders</a></td>
+    <td><span>A <a href="twisted.web.http_headers.Headers.html"><code>http_headers.Headers</code></a>
+instance holding all HTTP response headers to be sent.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#getHeader" data-type="Method" class="code">getHeader</a></td>
+    <td><span>Get an HTTP request header.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#getCookie" data-type="Method" class="code">getCookie</a></td>
+    <td><span>Get a cookie that was sent from the network.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#getAllHeaders" data-type="Method" class="code">getAllHeaders</a></td>
+    <td><span>Return dictionary mapping the names of all received headers to the last 
+value received for each.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#getRequestHostname" data-type="Method" class="code">getRequestHostname</a></td>
+    <td><span>Get the hostname that the user passed in to the request.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#getHost" data-type="Method" class="code">getHost</a></td>
+    <td><span>Get my originally requesting transport's host.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#getClientIP" data-type="Method" class="code">getClientIP</a></td>
+    <td><span>Return the IP address of the client who submitted this request.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#getClient" data-type="Method" class="code">getClient</a></td>
+    <td><span>Return the hostname of the IP address of the client who submitted this 
+request, if possible.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#getUser" data-type="Method" class="code">getUser</a></td>
+    <td><span>Return the HTTP user sent with this request, if any.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#getPassword" data-type="Method" class="code">getPassword</a></td>
+    <td><span>Return the HTTP password sent with this request, if any.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#isSecure" data-type="Method" class="code">isSecure</a></td>
+    <td><span>Return True if this request is using a secure transport.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#getSession" data-type="Method" class="code">getSession</a></td>
+    <td><span>Look up the session associated with this request or create a new one if 
+there is not one.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#URLPath" data-type="Method" class="code">URLPath</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#prePathURL" data-type="Method" class="code">prePathURL</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#rememberRootURL" data-type="Method" class="code">rememberRootURL</a></td>
+    <td><span>Remember the currently-processed part of the URL for later 
+recalling.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#getRootURL" data-type="Method" class="code">getRootURL</a></td>
+    <td><span>Get a previously-remembered URL.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#finish" data-type="Method" class="code">finish</a></td>
+    <td><span>Indicate that the response to this request is complete.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#write" data-type="Method" class="code">write</a></td>
+    <td><span>Write some data to the body of the response to this request.  Response 
+headers are written the first time this method is called, after which new 
+response headers may not be added.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#addCookie" data-type="Method" class="code">addCookie</a></td>
+    <td><span>Set an outgoing HTTP cookie.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#setResponseCode" data-type="Method" class="code">setResponseCode</a></td>
+    <td><span>Set the HTTP response code.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#setHeader" data-type="Method" class="code">setHeader</a></td>
+    <td><span>Set an HTTP response header.  Overrides any previously set values for 
+this header.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#redirect" data-type="Method" class="code">redirect</a></td>
+    <td><span>Utility function that does a redirect.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#setLastModified" data-type="Method" class="code">setLastModified</a></td>
+    <td><span>Set the <code>Last-Modified</code> time for the response to this 
+request.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#setETag" data-type="Method" class="code">setETag</a></td>
+    <td><span>Set an <code>entity tag</code> for the outgoing response.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IRequest.html#setHost" data-type="Method" class="code">setHost</a></td>
+    <td><span>Change the host and port the request thinks it's using.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseattribute">
+  
+  <a name="twisted.web.iweb.IRequest.method">
+    
+  </a>
+  <a name="method">
+    
+  </a>
+  <div class="functionHeader">
+    method =
+  </div>
+  <div class="functionBody">
+    <div><p>A <code>str</code> giving the HTTP method that was used.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="baseattribute">
+  
+  <a name="twisted.web.iweb.IRequest.uri">
+    
+  </a>
+  <a name="uri">
+    
+  </a>
+  <div class="functionHeader">
+    uri =
+  </div>
+  <div class="functionBody">
+    <div><p>A <code>str</code> giving the full encoded URI which was requested 
+(including query arguments).</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="baseattribute">
+  
+  <a name="twisted.web.iweb.IRequest.path">
+    
+  </a>
+  <a name="path">
+    
+  </a>
+  <div class="functionHeader">
+    path =
+  </div>
+  <div class="functionBody">
+    <div><p>A <code>str</code> giving the encoded query path of the request URI.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="baseattribute">
+  
+  <a name="twisted.web.iweb.IRequest.args">
+    
+  </a>
+  <a name="args">
+    
+  </a>
+  <div class="functionHeader">
+    args =
+  </div>
+  <div class="functionBody">
+    <div><p>A mapping of decoded query argument names as <code>str</code> to 
+corresponding query argument values as <code>list</code>s of 
+<code>str</code>.  For example, for a URI with 
+<code>'foo=bar&amp;foo=baz&amp;quux=spam'</code> for its query part, 
+<code>args</code> will be <code>{'foo': ['bar', 'baz'], 'quux': 
+['spam']}</code>.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="baseattribute">
+  
+  <a name="twisted.web.iweb.IRequest.received_headers">
+    
+  </a>
+  <a name="received_headers">
+    
+  </a>
+  <div class="functionHeader">
+    received_headers =
+  </div>
+  <div class="functionBody">
+    <div><p>Backwards-compatibility access to <code>requestHeaders</code>, 
+deprecated in Twisted 13.2.0.  Use <code>requestHeaders</code> instead.  
+<code>received_headers</code> behaves mostly like a <code>dict</code> and 
+does not provide access to all header values.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="baseattribute">
+  
+  <a name="twisted.web.iweb.IRequest.requestHeaders">
+    
+  </a>
+  <a name="requestHeaders">
+    
+  </a>
+  <div class="functionHeader">
+    requestHeaders =
+  </div>
+  <div class="functionBody">
+    <div><p>A <a href="twisted.web.http_headers.Headers.html"><code>http_headers.Headers</code></a>
+instance giving all received HTTP request headers.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="baseattribute">
+  
+  <a name="twisted.web.iweb.IRequest.content">
+    
+  </a>
+  <a name="content">
+    
+  </a>
+  <div class="functionHeader">
+    content =
+  </div>
+  <div class="functionBody">
+    <div><p>A file-like object giving the request body.  This may be a file on disk,
+a <code>StringIO</code>, or some other type.  The implementation is free to
+decide on a per-request basis.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="baseattribute">
+  
+  <a name="twisted.web.iweb.IRequest.headers">
+    
+  </a>
+  <a name="headers">
+    
+  </a>
+  <div class="functionHeader">
+    headers =
+  </div>
+  <div class="functionBody">
+    <div><p>Backwards-compatibility access to <code>responseHeaders</code>, 
+deprecated in Twisted 13.2.0.  Use <code>responseHeaders</code> instead.  
+<code>headers</code> behaves mostly like a <code>dict</code> and does not 
+provide access to all header values nor does it allow multiple values for 
+one header to be set.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="baseattribute">
+  
+  <a name="twisted.web.iweb.IRequest.responseHeaders">
+    
+  </a>
+  <a name="responseHeaders">
+    
+  </a>
+  <div class="functionHeader">
+    responseHeaders =
+  </div>
+  <div class="functionBody">
+    <div><p>A <a href="twisted.web.http_headers.Headers.html"><code>http_headers.Headers</code></a>
+instance holding all HTTP response headers to be sent.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.getHeader">
+    
+  </a>
+  <a name="getHeader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getHeader(key):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L64">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Get an HTTP request header.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">key</td><td>The name of the header to get the value of. (type: <code>str</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The value of the specified header, or <code>None</code> if that header was 
+not present in the request. (type: <code>str</code> or <code>NoneType</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.getCookie">
+    
+  </a>
+  <a name="getCookie">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getCookie(key):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L77">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Get a cookie that was sent from the network.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.getAllHeaders">
+    
+  </a>
+  <a name="getAllHeaders">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getAllHeaders():
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L83">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Return dictionary mapping the names of all received headers to the last 
+value received for each.</p>
+<p>Since this method does not return all header information, 
+<code>requestHeaders.getAllRawHeaders()</code> may be preferred.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.getRequestHostname">
+    
+  </a>
+  <a name="getRequestHostname">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getRequestHostname():
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L93">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Get the hostname that the user passed in to the request.</p>
+<p>This will either use the Host: header (if it is available) or the host 
+we are listening on if the header is unavailable.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the requested hostname (type: <code>str</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.getHost">
+    
+  </a>
+  <a name="getHost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getHost():
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L105">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Get my originally requesting transport's host.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An <a href="twisted.internet.interfaces.IAddress.html"><code>IAddress</code></a>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.getClientIP">
+    
+  </a>
+  <a name="getClientIP">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getClientIP():
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L113">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Return the IP address of the client who submitted this request.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the client IP address or <code>None</code> if the request was submitted 
+over a transport where IP addresses do not make sense. (type: <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>
+or <code>NoneType</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.getClient">
+    
+  </a>
+  <a name="getClient">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getClient():
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L123">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Return the hostname of the IP address of the client who submitted this 
+request, if possible.</p>
+<p>This method is <b>deprecated</b>.  See <a href="twisted.web.iweb.IRequest.html#getClientIP"><code>getClientIP</code></a>
+instead.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The canonical hostname of the client, as determined by performing a name 
+lookup on the IP address of the client. (type: <code>NoneType</code> or <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.getUser">
+    
+  </a>
+  <a name="getUser">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getUser():
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L136">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Return the HTTP user sent with this request, if any.</p>
+<p>If no user was supplied, return the empty string.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the HTTP user, if any (type: <code>str</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.getPassword">
+    
+  </a>
+  <a name="getPassword">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getPassword():
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L147">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Return the HTTP password sent with this request, if any.</p>
+<p>If no password was supplied, return the empty string.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the HTTP password, if any (type: <code>str</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.isSecure">
+    
+  </a>
+  <a name="isSecure">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    isSecure():
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L158">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Return True if this request is using a secure transport.</p>
+<p>Normally this method returns True if this request's HTTPChannel instance
+is using a transport that implements ISSLTransport.</p>
+<p>This will also return True if setHost() has been called with 
+ssl=True.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">True if this request is secure (type: <code>bool</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.getSession">
+    
+  </a>
+  <a name="getSession">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getSession(sessionInterface=None):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L173">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Look up the session associated with this request or create a new one if 
+there is not one.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The <a href="twisted.web.server.Session.html"><code>Session</code></a> 
+instance identified by the session cookie in the request, or the 
+<code>sessionInterface</code> component of that session if 
+<code>sessionInterface</code> is specified.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.URLPath">
+    
+  </a>
+  <a name="URLPath">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    URLPath():
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L184">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A <a href="twisted.web.iweb.IRequest.html#URLPath"><code>URLPath</code></a>
+instance which identifies the URL for which this request is.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.prePathURL">
+    
+  </a>
+  <a name="prePathURL">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    prePathURL():
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L191">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">At any time during resource traversal, a <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>
+giving an absolute URL to the most nested resource which has yet been 
+reached.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.rememberRootURL">
+    
+  </a>
+  <a name="rememberRootURL">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    rememberRootURL():
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L199">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Remember the currently-processed part of the URL for later 
+recalling.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.getRootURL">
+    
+  </a>
+  <a name="getRootURL">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getRootURL():
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L206">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Get a previously-remembered URL.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.finish">
+    
+  </a>
+  <a name="finish">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    finish():
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L213">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Indicate that the response to this request is complete.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.write">
+    
+  </a>
+  <a name="write">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    write(data):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L219">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Write some data to the body of the response to this request.  Response 
+headers are written the first time this method is called, after which new 
+response headers may not be added.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.addCookie">
+    
+  </a>
+  <a name="addCookie">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addCookie(k, v, expires=None, domain=None, path=None, max_age=None, comment=None, secure=None):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L227">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Set an outgoing HTTP cookie.</p>
+<p>In general, you should consider using sessions instead of cookies, see 
+<a href="twisted.web.server.Request.html#getSession"><code>twisted.web.server.Request.getSession</code></a>
+and the <a href="twisted.web.server.Session.html"><code>twisted.web.server.Session</code></a>
+class for details.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.setResponseCode">
+    
+  </a>
+  <a name="setResponseCode">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setResponseCode(code, message=None):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L237">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Set the HTTP response code.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.setHeader">
+    
+  </a>
+  <a name="setHeader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setHeader(k, v):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L243">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Set an HTTP response header.  Overrides any previously set values for 
+this header.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>The name of the header for which to set the value. (type: <code>str</code>)</td></tr><tr><td></td><td class="fieldArg">value</td><td>The value to set for the named header. (type: <code>str</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.redirect">
+    
+  </a>
+  <a name="redirect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    redirect(url):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L256">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Utility function that does a redirect.</p>
+<p>The request should have finish() called after this.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.setLastModified">
+    
+  </a>
+  <a name="setLastModified">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setLastModified(when):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L264">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Set the <code>Last-Modified</code> time for the response to this 
+request.</p>
+<p>If I am called more than once, I ignore attempts to set Last-Modified 
+earlier, only replacing the Last-Modified time if it is to a later 
+value.</p>
+<p>If I am a conditional request, I may modify my response code to <a href="twisted.web.http.html#NOT_MODIFIED"><code>NOT_MODIFIED</code></a> if 
+appropriate for the time given.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">when</td><td>The last time the resource being returned was modified, in seconds since 
+the epoch. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>,
+<a href="http://docs.python.org/library/stdtypes.html#long"><code>long</code></a>
+or <a href="http://docs.python.org/library/stdtypes.html#float"><code>float</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">If I am a <code>If-Modified-Since</code> conditional request and the time 
+given is not newer than the condition, I return <a href="twisted.web.http.html#CACHED"><code>CACHED</code></a> to indicate 
+that you should write no body. Otherwise, I return a false value.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.setETag">
+    
+  </a>
+  <a name="setETag">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setETag(etag):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L286">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Set an <code>entity tag</code> for the outgoing response.</p>
+<p>That's "entity tag" as in the HTTP/1.1 <i>ETag</i> header, 
+"used for comparing two or more entities from the same requested 
+resource."</p>
+<p>If I am a conditional request, I may modify my response code to <a href="twisted.web.http.html#NOT_MODIFIED"><code>NOT_MODIFIED</code></a> or 
+<a href="twisted.web.http.html#PRECONDITION_FAILED"><code>PRECONDITION_FAILED</code></a>,
+if appropriate for the tag given.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">etag</td><td>The entity tag for the resource being returned. (type: <code>str</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">If I am a <code>If-None-Match</code> conditional request and the tag 
+matches one in the request, I return <a href="twisted.web.http.html#CACHED"><code>CACHED</code></a> to indicate 
+that you should write no body.  Otherwise, I return a false value.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IRequest.setHost">
+    
+  </a>
+  <a name="setHost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setHost(host, port, ssl=0):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/web/iweb.py#L308">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Change the host and port the request thinks it's using.</p>
+<p>This method is useful for working with reverse HTTP proxies (e.g.  both 
+Squid and Apache's mod_proxy can do this), when the address the HTTP client
+is using is different than the one we're listening on.</p>
+<p>For example, Apache may be listening on https://www.example.com, and 
+then forwarding requests to http://localhost:8080, but we don't want HTML 
+produced by Twisted to say 'http://localhost:8080', they should say 
+'https://www.example.com', so we do:</p>
+<pre class="literalblock">
+  request.setHost('www.example.com', 443, ssl=1)
+</pre><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2015-08-04 16:20:17.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="http://www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

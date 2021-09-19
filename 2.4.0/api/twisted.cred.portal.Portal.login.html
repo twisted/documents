@@ -1,0 +1,47 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.cred.portal.Portal.login&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="function">Function t.c.p.P.login(self, credentials, mind, *interfaces):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.cred.portal.Portal.html">twisted.cred.portal.Portal</a></span>
+      <a></a>
+      <a></a>
+    </p>
+    <div></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">credentials</td><td>an implementor of twisted.cred.credentials.ICredentials
+</td></tr><tr><td></td><td class="fieldArg">mind</td><td>an object which implements a client-side interface for your particular 
+realm. In many cases, this may be None, so if the word 'mind' confuses 
+you, just ignore it.
+</td></tr><tr><td></td><td class="fieldArg">interfaces</td><td>list of interfaces for the perspective that the mind wishes to attach 
+to. Usually, this will be only one interface, for example IMailAccount. 
+For highly dynamic protocols, however, this may be a list like 
+(IMailAccount, IUserChooser, IServiceInfo). To expand: if we are speaking 
+to the system over IMAP, any information that will be relayed to the user 
+MUST be returned as an IMailAccount implementor; IMAP clients would not 
+be able to understand anything else. Any information about unusual status 
+would have to be relayed as a single mail message in an otherwise-empty 
+mailbox. However, in a web-based mail system, or a PB-based client, the 
+``mind'' object inside the web server (implemented with a dynamic 
+page-viewing mechanism such as woven) or on the user's client program may 
+be intelligent enough to respond to several ``server''-side 
+interfaces.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A deferred which will fire a tuple of (interface, avatarAspect, 
+logout). The interface will be one of the interfaces passed in the 
+'interfaces' argument. The 'avatarAspect' will implement that interface. 
+The 'logout' object is a callable which will detach the mind from the 
+avatar. It must be called when the user has conceptually disconnected 
+from the service. Although in some cases this will not be in 
+connectionLost (such as in a web-based session), it will always be at the 
+end of a user's interactive session.
+</td></tr></table></div>
+    
+    
+        
+  </body>
+</html>

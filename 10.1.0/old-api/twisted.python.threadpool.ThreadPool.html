@@ -1,0 +1,509 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.python.threadpool.ThreadPool : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">t.p.t.ThreadPool : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.python.html">python</a>.<a href="twisted.python.threadpool.html">threadpool</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/threadpool.py#L29">View Source</a>
+      <a href="classIndex.html#twisted.python.threadpool.ThreadPool">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>This class (hopefully) generalizes the functionality of a pool of 
+threads to which work can be dispatched.</p>
+<p>callInThread() and stop() should only be called from a single thread, 
+unless you make a subclass where stop() and _startSomeWorkers() are 
+synchronized.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id603">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.threadpool.ThreadPool.html#__init__">__init__</a></td>
+    <td><span>Create a new threadpool.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.threadpool.ThreadPool.html#start">start</a></td>
+    <td><span>Start the threadpool.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.threadpool.ThreadPool.html#startAWorker">startAWorker</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.threadpool.ThreadPool.html#stopAWorker">stopAWorker</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.threadpool.ThreadPool.html#__setstate__">__setstate__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.threadpool.ThreadPool.html#__getstate__">__getstate__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.threadpool.ThreadPool.html#dispatch">dispatch</a></td>
+    <td><span>DEPRECATED: use <a 
+href="twisted.python.threadpool.ThreadPool.html#callInThread"><code>callInThread</code></a>
+instead.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.threadpool.ThreadPool.html#callInThread">callInThread</a></td>
+    <td><span>Call a callable object in a separate thread.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.threadpool.ThreadPool.html#callInThreadWithCallback">callInThreadWithCallback</a></td>
+    <td><span>Call a callable object in a separate thread and call onResult</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.threadpool.ThreadPool.html#dispatchWithCallback">dispatchWithCallback</a></td>
+    <td><span>DEPRECATED: use <a 
+href="twisted.internet.threads.html#deferToThread"><code>twisted.internet.threads.deferToThread</code></a>
+instead.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.threadpool.ThreadPool.html#stop">stop</a></td>
+    <td><span>Shutdown the threads in the threadpool.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.threadpool.ThreadPool.html#adjustPoolsize">adjustPoolsize</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.threadpool.ThreadPool.html#dumpStats">dumpStats</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.threadpool.ThreadPool.html#_startSomeWorkers">_startSomeWorkers</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.threadpool.ThreadPool.html#_runWithCallback">_runWithCallback</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.threadpool.ThreadPool.html#_worker">_worker</a></td>
+    <td><span>Method used as target of the created threads: retrieve task to run</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.python.threadpool.ThreadPool.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, minthreads=5, maxthreads=20, name=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/threadpool.py#L48" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Create a new threadpool.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">minthreads</td><td>minimum number of threads in the pool
+</td></tr><tr><td></td><td class="fieldArg">maxthreads</td><td>maximum number of threads in the pool
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.threadpool.ThreadPool.start">
+    
+  </a>
+  <a name="start">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    start(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/threadpool.py#L66" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Start the threadpool.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.threadpool.ThreadPool.startAWorker">
+    
+  </a>
+  <a name="startAWorker">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    startAWorker(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/threadpool.py#L75" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.threadpool.ThreadPool.stopAWorker">
+    
+  </a>
+  <a name="stopAWorker">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    stopAWorker(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/threadpool.py#L82" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.threadpool.ThreadPool.__setstate__">
+    
+  </a>
+  <a name="__setstate__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __setstate__(self, state):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/threadpool.py#L86" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.threadpool.ThreadPool.__getstate__">
+    
+  </a>
+  <a name="__getstate__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __getstate__(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/threadpool.py#L90" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.threadpool.ThreadPool._startSomeWorkers">
+    
+  </a>
+  <a name="_startSomeWorkers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _startSomeWorkers(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/threadpool.py#L96" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.threadpool.ThreadPool.dispatch">
+    
+  </a>
+  <a name="dispatch">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dispatch(self, owner, func, *args, **kw):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/threadpool.py#L103" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>DEPRECATED: use <a 
+href="twisted.python.threadpool.ThreadPool.html#callInThread"><code>callInThread</code></a>
+instead.</p>
+<p>Dispatch a function to be a run in a thread.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.threadpool.ThreadPool.callInThread">
+    
+  </a>
+  <a name="callInThread">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    callInThread(self, func, *args, **kw):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/threadpool.py#L115" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Call a callable object in a separate thread.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">func</td><td>callable object to be called in separate thread
+</td></tr><tr><td></td><td class="fieldArg">*args</td><td>positional arguments to be passed to func
+</td></tr><tr><td></td><td class="fieldArg">**kw</td><td>keyword args to be passed to func
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.threadpool.ThreadPool.callInThreadWithCallback">
+    
+  </a>
+  <a name="callInThreadWithCallback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    callInThreadWithCallback(self, onResult, func, *args, **kw):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/threadpool.py#L128" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Call a callable object in a separate thread and call onResult with the 
+return value, or a <a 
+href="twisted.python.failure.Failure.html"><code>twisted.python.failure.Failure</code></a>
+if the callable raises an exception.</p>
+<p>The callable is allowed to block, but the onResult function must not 
+block and should perform as little work as possible.</p>
+<p>A typical action for onResult for a threadpool used with a Twisted 
+reactor would be to schedule a Deferred to fire in the main reactor thread 
+using <code>.callFromThread</code>.  Note that onResult is called inside 
+the separate thread, not inside the reactor thread.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">onResult</td><td>a callable with the signature (success, result). If the callable returns 
+normally, onResult is called with (True, result) where result is the return
+value of the callable. If the callable throws an exception, onResult is 
+called with (False, failure).
+<p>Optionally, onResult may be None, in which case it is not called at 
+all.</p>
+</td></tr><tr><td></td><td class="fieldArg">func</td><td>callable object to be called in separate thread
+</td></tr><tr><td></td><td class="fieldArg">*args</td><td>positional arguments to be passed to func
+</td></tr><tr><td></td><td class="fieldArg">**kwargs</td><td>keyword arguments to be passed to func
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.threadpool.ThreadPool._runWithCallback">
+    
+  </a>
+  <a name="_runWithCallback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _runWithCallback(self, callback, errback, func, args, kwargs):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/threadpool.py#L167" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.threadpool.ThreadPool.dispatchWithCallback">
+    
+  </a>
+  <a name="dispatchWithCallback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dispatchWithCallback(self, owner, callback, errback, func, *args, **kw):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/threadpool.py#L176" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>DEPRECATED: use <a 
+href="twisted.internet.threads.html#deferToThread"><code>twisted.internet.threads.deferToThread</code></a>
+instead.</p>
+<p>Dispatch a function, returning the result to a callback function.</p>
+<p>The callback function will be called in the thread - make sure it is 
+thread-safe.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.threadpool.ThreadPool._worker">
+    
+  </a>
+  <a name="_worker">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _worker(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/threadpool.py#L193" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Method used as target of the created threads: retrieve task to run from 
+the threadpool, run it, and proceed to the next task until threadpool is 
+stopped.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.threadpool.ThreadPool.stop">
+    
+  </a>
+  <a name="stop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    stop(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/threadpool.py#L235" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Shutdown the threads in the threadpool.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.threadpool.ThreadPool.adjustPoolsize">
+    
+  </a>
+  <a name="adjustPoolsize">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    adjustPoolsize(self, minthreads=None, maxthreads=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/threadpool.py#L250" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.threadpool.ThreadPool.dumpStats">
+    
+  </a>
+  <a name="dumpStats">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dumpStats(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/threadpool.py#L273" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2010-07-05 15:03:32.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+  </body>
+</html>

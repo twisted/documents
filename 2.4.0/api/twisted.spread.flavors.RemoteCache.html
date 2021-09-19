@@ -1,0 +1,149 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.spread.flavors.RemoteCache&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.s.f.RemoteCache(<a href="twisted.spread.flavors.RemoteCopy.html">RemoteCopy</a>, <a href="twisted.spread.flavors.Serializable.html">Serializable</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.spread.flavors.html">twisted.spread.flavors</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.spread.flavors.RemoteCache">View In Hierarchy</a>
+    </p>
+    <div><p>Known subclasses: <a href="twisted.spread.publish.RemotePublished.html">twisted.spread.publish.RemotePublished</a></p></div>
+    <div><p>A cache is a local representation of a remote <a 
+href="twisted.spread.flavors.Cacheable.html">Cacheable</a> object.</p>
+<p>This represents the last known state of this object. It may also have 
+methods invoked on it -- in order to update caches, the cached class 
+generates a <a 
+href="twisted.spread.pb.RemoteReference.html">pb.RemoteReference</a> to 
+this object as it is originally sent.</p>
+Much like copy, I will be invoked with no arguments. Do not implement 
+a constructor that requires arguments in one of my subclasses.
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.flavors.RemoteCache.remoteMessageReceived">remoteMessageReceived</a></td>
+          <td><span>A remote message has been received. Dispatch it appropriately.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.flavors.RemoteCache.jellyFor">jellyFor</a></td>
+          <td><span>serialize me (only for the broker I'm for) as the original cached 
+reference
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.flavors.RemoteCache.unjellyFor">unjellyFor</a></td>
+          <td><span>Unjelly myself for the jellier.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.flavors.RemoteCache.__cmp__">__cmp__</a></td>
+          <td><span>Compare me [to another RemoteCache.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.flavors.RemoteCache.__hash__">__hash__</a></td>
+          <td><span>Hash me.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.flavors.RemoteCache.__del__">__del__</a></td>
+          <td><span>Do distributed reference counting on finalize.
+</span></td>
+        </tr></table>
+    
+    
+        <p>
+          Inherited from <span><a href="twisted.spread.flavors.RemoteCopy.html">RemoteCopy</a></span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.spread.flavors.RemoteCopy.html#twisted.spread.flavors.RemoteCopy.setCopyableState">setCopyableState</a></td>
+            <td><span>I will be invoked with the state to copy locally.
+</span></td>
+          </tr></table>
+      
+        <p>
+          Inherited from <span><a href="twisted.spread.jelly.Unjellyable.html">Unjellyable</a> (via <a href="twisted.spread.flavors.RemoteCopy.html">RemoteCopy</a>)</span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.spread.jelly.Unjellyable.html#twisted.spread.jelly.Unjellyable.setStateFor">setStateFor</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr></table>
+      
+        <p>
+          Inherited from <span><a href="twisted.spread.flavors.Serializable.html">Serializable</a></span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.spread.flavors.Serializable.html#twisted.spread.flavors.Serializable.processUniqueID">processUniqueID</a></td>
+            <td><span>Return an ID which uniquely represents this object for this 
+process.
+</span></td>
+          </tr></table>
+      
+        <p>
+          Inherited from <span><a href="twisted.spread.jelly.Jellyable.html">Jellyable</a> (via <a href="twisted.spread.flavors.Serializable.html">Serializable</a>)</span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.spread.jelly.Jellyable.html#twisted.spread.jelly.Jellyable.getStateFor">getStateFor</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr></table>
+      
+    <div class="function">
+        <a name="twisted.spread.flavors.RemoteCache.remoteMessageReceived"></a>
+        <div class="functionHeader">
+          def <span>remoteMessageReceived(self, broker, message, args, kw):</span>
+        </div>
+        <div class="functionBody"><div><p>A remote message has been received. Dispatch it appropriately.</p>
+The default implementation is to dispatch to a method called 
+'<code>observe_messagename</code>' and call it on my with the same 
+arguments.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.spread.flavors.RemoteCache.jellyFor"></a>
+        <div class="functionHeader">
+          def <span>jellyFor(self, jellier):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.spread.interfaces.IJellyable.html#twisted.spread.interfaces.IJellyable.jellyFor">twisted.spread.interfaces.IJellyable</a></div><div class="interfaceinfo">overrides <a href="twisted.spread.jelly.Jellyable.html#twisted.spread.jelly.Jellyable.jellyFor">twisted.spread.jelly.Jellyable.jellyFor</a></div><div>serialize me (only for the broker I'm for) as the original cached 
+reference
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.spread.flavors.RemoteCache.unjellyFor"></a>
+        <div class="functionHeader">
+          def <span>unjellyFor(self, unjellier, jellyList):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.spread.interfaces.IUnjellyable.html#twisted.spread.interfaces.IUnjellyable.unjellyFor">twisted.spread.interfaces.IUnjellyable</a></div><div class="interfaceinfo">overrides <a href="twisted.spread.flavors.RemoteCopy.html#twisted.spread.flavors.RemoteCopy.unjellyFor">twisted.spread.flavors.RemoteCopy.unjellyFor</a></div><div>Unjelly myself for the jellier.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.spread.flavors.RemoteCache.__cmp__"></a>
+        <div class="functionHeader">
+          def <span>__cmp__(self, other):</span>
+        </div>
+        <div class="functionBody"><div>Compare me [to another RemoteCache.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.spread.flavors.RemoteCache.__hash__"></a>
+        <div class="functionHeader">
+          def <span>__hash__(self):</span>
+        </div>
+        <div class="functionBody"><div>Hash me.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.spread.flavors.RemoteCache.__del__"></a>
+        <div class="functionHeader">
+          def <span>__del__(self):</span>
+        </div>
+        <div class="functionBody"><div>Do distributed reference counting on finalize.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

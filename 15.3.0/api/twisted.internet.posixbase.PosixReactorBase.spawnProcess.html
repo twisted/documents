@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.posixbase.PosixReactorBase.spawnProcess : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="apidocs.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" style="display: none" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="method"><code>twisted.internet.posixbase.PosixReactorBase.spawnProcess(self, processProtocol, executable, args=(), env={}, path=None, uid=None, gid=None, usePTY=0, childFDs=None)</code> <small>method documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.internet.html" data-type="Package" class="code">internet</a>.<a href="twisted.internet.posixbase.html" data-type="Module" class="code">posixbase</a>.<a href="twisted.internet.posixbase.PosixReactorBase.html" data-type="Class" class="code">PosixReactorBase</a></code>
+          <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/internet/posixbase.py#L328">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Spawn a process, with a process protocol.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">processProtocol</td><td>An object which will be notified of all events related to the created 
+process. (type: <a href="twisted.internet.interfaces.IProcessProtocol.html"><code>IProcessProtocol</code></a>
+provider)</td></tr><tr><td></td><td class="fieldArg">executable</td><td>the file name to spawn - the full path should be used.</td></tr><tr><td></td><td class="fieldArg">args</td><td>the command line arguments to pass to the process; a sequence of strings. 
+The first string should be the executable's name.</td></tr><tr><td></td><td class="fieldArg">env</td><td>the environment variables to pass to the child process. The resulting 
+behavior varies between platforms. If
+<ul>
+  <li>
+    <code>env</code> is not set:
+    <ul>
+      <li>
+        On POSIX: pass an empty environment.
+      </li>
+      <li>
+        On Windows: pass <code>os.environ</code>.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <code>env</code> is <code>None</code>:
+    <ul>
+      <li>
+        On POSIX: pass <code>os.environ</code>.
+      </li>
+      <li>
+        On Windows: pass <code>os.environ</code>.
+      </li>
+    </ul>
+  </li>
+  <li>
+    <code>env</code> is a <code>dict</code>:
+    <ul>
+      <li>
+        On POSIX: pass the key/value pairs in <code>env</code> as the 
+        complete environment.
+      </li>
+      <li>
+        On Windows: update <code>os.environ</code> with the key/value pairs
+        in the <code>dict</code> before passing it. As a consequence of <a href="http://twistedmatrix.com/trac/ticket/1640" target="_top">bug 
+        #1640</a>, passing keys with empty values in an effort to unset 
+        environment variables <i>won't</i> unset them.
+      </li>
+    </ul>
+  </li>
+</ul> (type: a <code>dict</code> mapping <code>str</code> to <code>str</code>, or 
+<code>None</code>.)</td></tr><tr><td></td><td class="fieldArg">path</td><td>the path to run the subprocess in - defaults to the current directory.</td></tr><tr><td></td><td class="fieldArg">uid</td><td>user ID to run the subprocess as. (Only available on POSIX systems.)</td></tr><tr><td></td><td class="fieldArg">gid</td><td>group ID to run the subprocess as. (Only available on POSIX systems.)</td></tr><tr><td></td><td class="fieldArg">usePTY</td><td>if true, run this process in a pseudo-terminal. optionally a tuple of 
+<code>(masterfd, slavefd, ttyname)</code>, in which case use those file 
+descriptors. (Not available on all systems.)</td></tr><tr><td></td><td class="fieldArg">childFDs</td><td>A dictionary mapping file descriptors in the new child process to an 
+integer or to the string 'r' or 'w'.
+<p>If the value is an integer, it specifies a file descriptor in the parent
+process which will be mapped to a file descriptor (specified by the key) in
+the child process.  This is useful for things like inetd and shell-like 
+file redirection.</p>
+<p>If it is the string 'r', a pipe will be created and attached to the 
+child at that file descriptor: the child will be able to write to that file
+descriptor and the parent will receive read notification via the <a href="twisted.internet.interfaces.IProcessProtocol.html#childDataReceived"><code>IProcessProtocol.childDataReceived</code></a>
+callback.  This is useful for the child's stdout and stderr.</p>
+<p>If it is the string 'w', similar setup to the previous case will occur, 
+with the pipe being readable by the child instead of writeable.  The parent
+process can write to that file descriptor using <a href="twisted.internet.interfaces.IProcessTransport.html#writeToChild"><code>IProcessTransport.writeToChild</code></a>.
+This is useful for the child's stdin.</p>
+<p>If childFDs is not passed, the default behaviour is to use a mapping 
+that opens the usual stdin/stdout/stderr pipes.</p></td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An object which provides <a href="twisted.internet.interfaces.IProcessTransport.html"><code>IProcessTransport</code></a>.</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">OSError</td><td>Raised with errno <code>EAGAIN</code> or <code>ENOMEM</code> if there are 
+insufficient system resources to create a new process.</td></tr><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><a href="twisted.internet.protocol.ProcessProtocol.html"><code>twisted.internet.protocol.ProcessProtocol</code></a></td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2015-08-04 16:20:17.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="http://www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

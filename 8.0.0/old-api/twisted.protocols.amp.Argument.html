@@ -1,0 +1,278 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.protocols.amp.Argument&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">Class t.p.a.Argument:</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.protocols.html">protocols</a>.<a href="twisted.protocols.amp.html">amp</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/protocols/amp.py#L1042">View Source</a>
+      <a href="classIndex.html#twisted.protocols.amp.Argument">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known subclasses: <a href="twisted.protocols.amp.AmpList.html">twisted.protocols.amp.AmpList</a>, <a href="twisted.protocols.amp.Boolean.html">twisted.protocols.amp.Boolean</a>, <a href="twisted.protocols.amp.Float.html">twisted.protocols.amp.Float</a>, <a href="twisted.protocols.amp.Integer.html">twisted.protocols.amp.Integer</a>, <a href="twisted.protocols.amp.String.html">twisted.protocols.amp.String</a></p>
+    </div>
+    <div>Base-class of all objects that take values from Amp packets and convert 
+them into objects for Python functions.
+<table class="fieldTable"></table></div>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1542">
+  
+  
+  
+  
+  <tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#__init__">__init__</a></td>
+    <td><span>Create an Argument.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#retrieve">retrieve</a></td>
+    <td><span>Retrieve the given key from the given dictionary, removing it if 
+found.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#fromBox">fromBox</a></td>
+    <td><span>Populate an 'out' dictionary with mapping names to Python values
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#toBox">toBox</a></td>
+    <td><span>Populate an 'out' AmpBox with strings encoded from an 'in' 
+dictionary
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#fromStringProto">fromStringProto</a></td>
+    <td><span>Convert a string to a Python value.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#toStringProto">toStringProto</a></td>
+    <td><span>Convert a Python object to a string.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#fromString">fromString</a></td>
+    <td><span>Convert a string to a Python object.  Subclasses must implement 
+this.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#toString">toString</a></td>
+    <td><span>Convert a Python object into a string for passing over the network.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.protocols.amp.Argument.__init__"></a>
+        <a name="__init__"></a>
+        <div class="functionHeader">
+        
+        def __init__(self, optional=False):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/protocols/amp.py#L1050" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">overridden in <a href="twisted.protocols.amp.AmpList.html">twisted.protocols.amp.AmpList</a></div>
+          <div>Create an Argument.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">optional</td><td>a boolean indicating whether this argument can be omitted in the 
+protocol.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.protocols.amp.Argument.retrieve"></a>
+        <a name="retrieve"></a>
+        <div class="functionHeader">
+        
+        def retrieve(self, d, name, proto):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/protocols/amp.py#L1060" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Retrieve the given key from the given dictionary, removing it if 
+found.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">d</td><td>a dictionary.
+</td></tr><tr><td></td><td class="fieldArg">name</td><td>a key in <code>d</code>.
+</td></tr><tr><td></td><td class="fieldArg">proto</td><td>an instance of an AMP.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">d[name].
+</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">KeyError</td><td>if I am not optional and no value was found.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.protocols.amp.Argument.fromBox"></a>
+        <a name="fromBox"></a>
+        <div class="functionHeader">
+        
+        def fromBox(self, name, strings, objects, proto):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/protocols/amp.py#L1083" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Populate an 'out' dictionary with mapping names to Python values decoded
+from an 'in' AmpBox mapping strings to string values.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>the argument name to retrieve
+ (type: str
+)</td></tr><tr><td></td><td class="fieldArg">strings</td><td>The AmpBox to read string(s) from, a mapping of argument names to string
+values.
+ (type: AmpBox
+)</td></tr><tr><td></td><td class="fieldArg">objects</td><td>The dictionary to write object(s) to, a mapping of names to Python 
+objects.
+ (type: dict
+)</td></tr><tr><td></td><td class="fieldArg">proto</td><td>an AMP instance.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.protocols.amp.Argument.toBox"></a>
+        <a name="toBox"></a>
+        <div class="functionHeader">
+        
+        def toBox(self, name, strings, objects, proto):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/protocols/amp.py#L1109" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Populate an 'out' AmpBox with strings encoded from an 'in' dictionary 
+mapping names to Python values.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>the argument name to retrieve
+ (type: str
+)</td></tr><tr><td></td><td class="fieldArg">strings</td><td>The AmpBox to write string(s) to, a mapping of argument names to string 
+values.
+ (type: AmpBox
+)</td></tr><tr><td></td><td class="fieldArg">objects</td><td>The dictionary to read object(s) from, a mapping of names to Python 
+objects.
+ (type: dict
+)</td></tr><tr><td></td><td class="fieldArg">proto</td><td>the protocol we are converting for.
+ (type: AMP
+)</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.protocols.amp.Argument.fromStringProto"></a>
+        <a name="fromStringProto"></a>
+        <div class="functionHeader">
+        
+        def fromStringProto(self, inString, proto):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/protocols/amp.py#L1137" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">overridden in <a href="twisted.protocols.amp.AmpList.html">twisted.protocols.amp.AmpList</a></div>
+          <div>Convert a string to a Python value.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">inString</td><td>the string to convert.
+</td></tr><tr><td></td><td class="fieldArg">proto</td><td>the protocol we are converting for.
+ (type: AMP
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a Python object.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.protocols.amp.Argument.toStringProto"></a>
+        <a name="toStringProto"></a>
+        <div class="functionHeader">
+        
+        def toStringProto(self, inObject, proto):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/protocols/amp.py#L1151" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">overridden in <a href="twisted.protocols.amp.AmpList.html">twisted.protocols.amp.AmpList</a></div>
+          <div>Convert a Python object to a string.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">inObject</td><td>the object to convert.
+</td></tr><tr><td></td><td class="fieldArg">proto</td><td>the protocol we are converting for.
+ (type: AMP
+)</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.protocols.amp.Argument.fromString"></a>
+        <a name="fromString"></a>
+        <div class="functionHeader">
+        
+        def fromString(self, inString):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/protocols/amp.py#L1163" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">overridden in <a href="twisted.protocols.amp.Boolean.html">twisted.protocols.amp.Boolean</a>, <a href="twisted.protocols.amp.String.html">twisted.protocols.amp.String</a></div>
+          <div>Convert a string to a Python object.  Subclasses must implement 
+this.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">inString</td><td>the string to convert.
+ (type: str
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the decoded value from inString
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.protocols.amp.Argument.toString"></a>
+        <a name="toString"></a>
+        <div class="functionHeader">
+        
+        def toString(self, inObject):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/protocols/amp.py#L1174" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">overridden in <a href="twisted.protocols.amp.Boolean.html">twisted.protocols.amp.Boolean</a>, <a href="twisted.protocols.amp.Integer.html">twisted.protocols.amp.Integer</a>, <a href="twisted.protocols.amp.String.html">twisted.protocols.amp.String</a></div>
+          <div>Convert a Python object into a string for passing over the network.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">inObject</td><td>an object of the type that this Argument is intended to deal with.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the wire encoding of inObject
+ (type: str
+)</td></tr></table></div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2008-03-25 17:55:10.
+    </address>
+  </body>
+</html>

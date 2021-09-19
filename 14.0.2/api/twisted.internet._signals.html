@@ -1,0 +1,160 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet._signals : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="module private">t.i._signals : module documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/internet/_signals.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div>This module is used to integrate child process termination into a 
+reactor event loop.  This is a challenging feature to provide because most 
+platforms indicate process termination via SIGCHLD and do not provide a way
+to wait for that signal and arbitrary I/O events at the same time.  The 
+naive implementation involves installing a Python SIGCHLD handler; 
+unfortunately this leads to other syscalls being interrupted (whenever 
+SIGCHLD is received) and failing with EINTR (which almost no one is 
+prepared to handle).  This interruption can be disabled via siginterrupt(2)
+(or one of the equivalent mechanisms); however, if the SIGCHLD is delivered
+by the platform to a non-main thread (not a common occurrence, but 
+difficult to prove impossible), the main thread (waiting on select() or 
+another event notification API) may not wake up leading to an arbitrary 
+delay before the child termination is noticed.</p>
+<p>The basic solution to all these issues involves enabling SA_RESTART (ie,
+disabling system call interruption) and registering a C signal handler 
+which writes a byte to a pipe.  The other end of the pipe is registered 
+with the event loop, allowing it to wake up shortly after SIGCHLD is 
+received.  See <a 
+href="twisted.internet.posixbase._SIGCHLDWaker.html"><code>twisted.internet.posixbase._SIGCHLDWaker</code></a>
+for the implementation of the event loop side of this solution.  The use of
+a pipe this way is known as the <a 
+href="http://cr.yp.to/docs/selfpipe.html" target="_top">self-pipe 
+trick</a>.</p>
+<p>From Python version 2.6, <code>signal.siginterrupt</code> and 
+<code>signal.set_wakeup_fd</code> provide the necessary C signal handler 
+which writes to the pipe to be registered with <code>SA_RESTART</code>.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id546">
+  
+  
+<tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet._signals.html#installHandler">installHandler</a></td>
+    <td><span>Install a signal handler which will write a byte to <code>fd</code> when
+<i>SIGCHLD</i> is received.</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet._signals.html#isDefaultHandler">isDefaultHandler</a></td>
+    <td><span>Determine whether the <i>SIGCHLD</i> handler is the default or not.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.internet._signals.installHandler">
+    
+  </a>
+  <a name="installHandler">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    installHandler(fd):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/internet/_signals.py#L40" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Install a signal handler which will write a byte to <code>fd</code> when
+<i>SIGCHLD</i> is received.</p>
+<p>This is implemented by installing a SIGCHLD handler that does nothing, 
+setting the <i>SIGCHLD</i> handler as not allowed to interrupt system 
+calls, and using <a 
+href="http://docs.python.org/library/signal.html#signal.set_wakeup_fd"><code>signal.set_wakeup_fd</code></a>
+to do the actual writing.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">fd</td><td>The file descriptor to which to write when <i>SIGCHLD</i> is received. (type: <code>int</code>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._signals.isDefaultHandler">
+    
+  </a>
+  <a name="isDefaultHandler">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    isDefaultHandler():
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/internet/_signals.py#L64" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Determine whether the <i>SIGCHLD</i> handler is the default or not.<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2014-09-18 22:01:49.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Twisted Documentation: Serving Static Content From a Directory</title>
+    <link href="../../../core/howto/stylesheet.css" rel="stylesheet" type="text/css"/>
+    <!-- Google analytics. -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-99018-6']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body bgcolor="white">
+    <span id="current-docs-container" style="display: none">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="title">Serving Static Content From a Directory</h1>
+    <div class="toc"><ol/></div>
+    <div class="content">
+<span/>
+
+<p>The goal of this example is to show you how to serve static content
+from a filesystem. First, we need to import some objects:</p>
+
+<ul>
+
+<li>
+<code class="API"><a href="http://twistedmatrix.com/documents/13.1.0/api/twisted.web.server.Site.html" title="twisted.web.server.Site">Site</a></code>, an <code class="API"><a href="http://twistedmatrix.com/documents/13.1.0/api/twisted.internet.interfaces.IProtocolFactory.html" title="twisted.internet.interfaces.IProtocolFactory">IProtocolFactory</a></code> which
+glues a listening server port (<code class="API"><a href="http://twistedmatrix.com/documents/13.1.0/api/twisted.internet.interfaces.IListeningPort.html" title="twisted.internet.interfaces.IListeningPort">IListeningPort</a></code>) to the <code class="API"><a href="http://twistedmatrix.com/documents/13.1.0/api/twisted.web.http.HTTPChannel.html" title="twisted.web.http.HTTPChannel">HTTPChannel</a></code>
+implementation:
+<pre class="python"><p class="py-linenumber">1
+</p><span class="py-src-keyword">from</span> <span class="py-src-variable">twisted</span>.<span class="py-src-variable">web</span>.<span class="py-src-variable">server</span> <span class="py-src-keyword">import</span> <span class="py-src-variable">Site</span>
+</pre>
+</li>
+
+<li>
+<code class="API"><a href="http://twistedmatrix.com/documents/13.1.0/api/twisted.web.static.File.html" title="twisted.web.static.File">File</a></code>, an <code class="API"><a href="http://twistedmatrix.com/documents/13.1.0/api/twisted.web.resource.IResource.html" title="twisted.web.resource.IResource">IResource</a></code> which glues
+the HTTP protocol implementation to the filesystem:
+<pre class="python"><p class="py-linenumber">1
+</p><span class="py-src-keyword">from</span> <span class="py-src-variable">twisted</span>.<span class="py-src-variable">web</span>.<span class="py-src-variable">static</span> <span class="py-src-keyword">import</span> <span class="py-src-variable">File</span>
+</pre>
+</li>
+
+<li>
+The <code class="API"><a href="http://twistedmatrix.com/documents/13.1.0/api/twisted.internet.reactor.html" title="twisted.internet.reactor">reactor</a></code>, which
+drives the whole process, actually accepting TCP connections and
+moving bytes into and out of them:
+<pre class="python"><p class="py-linenumber">1
+</p><span class="py-src-keyword">from</span> <span class="py-src-variable">twisted</span>.<span class="py-src-variable">internet</span> <span class="py-src-keyword">import</span> <span class="py-src-variable">reactor</span>
+</pre>
+</li>
+
+</ul>
+
+Next, we create an instance of the File resource pointed at the
+directory to serve:
+<pre class="python"><p class="py-linenumber">1
+</p><span class="py-src-variable">resource</span> = <span class="py-src-variable">File</span>(<span class="py-src-string">&quot;/tmp&quot;</span>)
+</pre>
+
+Then we create an instance of the Site factory with that resource:
+<pre class="python"><p class="py-linenumber">1
+</p><span class="py-src-variable">factory</span> = <span class="py-src-variable">Site</span>(<span class="py-src-variable">resource</span>)
+</pre>
+
+Now we glue that factory to a TCP port:
+<pre class="python"><p class="py-linenumber">1
+</p><span class="py-src-variable">reactor</span>.<span class="py-src-variable">listenTCP</span>(<span class="py-src-number">8888</span>, <span class="py-src-variable">factory</span>)
+</pre>
+
+Finally, we start the reactor so it can make the program work:
+<pre class="python"><p class="py-linenumber">1
+</p><span class="py-src-variable">reactor</span>.<span class="py-src-variable">run</span>()
+</pre>
+And that's it. Here's the complete program:
+
+<pre class="python"><p class="py-linenumber">1
+2
+3
+4
+5
+6
+7
+8
+</p><span class="py-src-keyword">from</span> <span class="py-src-variable">twisted</span>.<span class="py-src-variable">web</span>.<span class="py-src-variable">server</span> <span class="py-src-keyword">import</span> <span class="py-src-variable">Site</span>
+<span class="py-src-keyword">from</span> <span class="py-src-variable">twisted</span>.<span class="py-src-variable">web</span>.<span class="py-src-variable">static</span> <span class="py-src-keyword">import</span> <span class="py-src-variable">File</span>
+<span class="py-src-keyword">from</span> <span class="py-src-variable">twisted</span>.<span class="py-src-variable">internet</span> <span class="py-src-keyword">import</span> <span class="py-src-variable">reactor</span>
+
+<span class="py-src-variable">resource</span> = <span class="py-src-variable">File</span>(<span class="py-src-string">'/tmp'</span>)
+<span class="py-src-variable">factory</span> = <span class="py-src-variable">Site</span>(<span class="py-src-variable">resource</span>)
+<span class="py-src-variable">reactor</span>.<span class="py-src-variable">listenTCP</span>(<span class="py-src-number">8888</span>, <span class="py-src-variable">factory</span>)
+<span class="py-src-variable">reactor</span>.<span class="py-src-variable">run</span>()
+</pre>
+
+<p>Bonus example! For those times when you don't actually want to
+write a new program, the above implemented functionality is one of the
+things the command line <code>twistd</code> tool can do. In this case,
+the command
+<pre xml:space="preserve">
+twistd -n web --path /tmp
+</pre>
+will accomplish the same thing as the above server. See <a href="../../../core/howto/basics.html" shape="rect">helper programs</a> in the
+Twisted Core documentation for more information on using
+<code>twistd</code>.</p>
+
+</div>
+
+    <p><a href="../../../core/howto/index.html">Index</a></p>
+    <span class="version">Version: 13.1.0</span>
+
+    <div>
+        <!-- If the documentation isn't current, insert a current link. -->
+        <script type="text/javascript">
+          if (window.location.pathname.indexOf('/current/') == -1) {
+              <!-- Give the user a link to this page, but in the current version of the docs. -->
+              var link = document.getElementById('current-docs-link');
+              link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+/, '/current');
+              <!-- And make it visible -->
+              var container = document.getElementById('current-docs-container');
+              container.style.display = '';
+              delete link;
+              delete container;
+          }
+        </script>
+        <!-- Site Meter -->
+        <script src="http://sm7.sitemeter.com/js/counter.js?site=sm7twistedmatrix" type="text/javascript">
+        </script>
+        <noscript>
+        <a href="http://sm7.sitemeter.com/stats.asp?site=sm7twistedmatrix" target="_top">
+        <img alt="Site Meter" border="0" src="http://sm7.sitemeter.com/meter.asp?site=sm7twistedmatrix"/></a>
+        </noscript>
+        <!-- Copyright (c)2006 Site Meter -->
+    </div>
+
+  </body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+  <head>
+    <meta name="Description" content="An event-driven networking engine written in Python and MIT licensed." />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Communicating With IRC Clients &mdash; Twisted 16.0.0 documentation</title>
+    <link rel="stylesheet" href="../../_static/twistedtrac.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../../',
+        VERSION:     '16.0.0',
+        COLLAPSE_MODINDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <link rel="top" title="Twisted 16.0.0 documentation" href="../../index.html" />
+    <link rel="up" title="Developer Guides" href="index.html" />
+    <link rel="next" title="Examples" href="../examples/index.html" />
+    <link rel="prev" title="Using the Twisted IRC Client" href="ircclient.html" /> 
+    
+<!-- Can stuff between these comments go? -->
+        <link rel="search" href="/trac/search" />
+        <link rel="help" href="/trac/wiki/TracGuide" />
+        <link rel="alternate" href="/trac/wiki/Documentation?format=txt" type="text/x-trac-wiki" title="Plain Text" />
+        <link rel="start" href="/trac/wiki" />
+
+        
+    <script type="text/javascript" src="/trac/chrome/common/js/jquery.js"></script><script type="text/javascript" src="/trac/chrome/common/js/trac.js"></script><script type="text/javascript" src="/trac/chrome/common/js/search.js"></script>
+    
+    <!-- the following script tag is a holdover frome Trac, which shouldn't be needed in Sphinx
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $("#content").find("h1,h2,h3,h4,h5,h6").addAnchor("Link to this section");
+      });
+    </script>
+    -->
+<!-- Can stuff between these comments go? -->
+
+  </head>
+  
+  
+<body>
+
+<div id="banner">
+<div id="top_grad">
+         
+</div>
+<div id="tab">
+        <a href="http://twistedmatrix.com/trac/wiki">HOME</a>
+    <a href="http://twistedmatrix.com/trac/wiki/FrequentlyAskedQuestions">FAQ</a>
+    <a href="/">DOCS</a>
+    <a href="http://twistedmatrix.com/trac/wiki/Downloads">DOWNLOAD</a>
+
+</div>
+      <div id="header">
+        <a id="logo" href="http://twistedmatrix.com/trac/"><img src="../../_static/trac_banner.png" alt="Twisted" /></a>
+      </div>
+      <!-- taking this out for now, but might use 
+           the space for something else later 
+      -->
+      <!--
+      <form id="topsearch" action="/trac/search" method="get"><div>
+        <label for="proj-search">Search:</label>
+        <input type="text" id="proj-search" name="q" size="10" value="" />
+        <input type="submit" value="Search" />
+        <input type="hidden" name="wiki" value="on" />
+
+        <input type="hidden" name="changeset" value="on" />
+        <input type="hidden" name="ticket" value="on" />
+      </div></form>
+      -->
+      <div id="metanav" class="nav">
+    <ul>
+      <li> </li>
+      <!-- taking this out for now, but might use 
+           the space for something else later 
+      -->
+      <!--
+      <li class="first">logged in as khorn</li><li class=""><a href="/trac/logout">Logout</a></li><li class=""><a href="/trac/wiki/TracGuide">Help/Guide</a></li><li class=""><a href="/trac/about">About Trac</a></li><li class="last"><a href="/trac/account">My Account</a></li>
+      -->
+    </ul>
+  </div>
+    </div>
+
+<!-- mainnav -->
+    <div id="mainnav" class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../examples/index.html" title="Examples"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="ircclient.html" title="Using the Twisted IRC Client"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../../index.html">Twisted 16.0.0 documentation</a> &raquo;</li>
+          <li><a href="../index.html" >Twisted Words</a> &raquo;</li>
+          <li><a href="index.html" accesskey="U">Developer Guides</a> &raquo;</li> 
+      </ul>
+    </div>
+
+    <div id="main">
+    <div id="ctxtnav" class="nav">
+      <h2>Wiki Navigation</h2>
+      <ul>
+        <li>
+        
+        </li>
+        <!-- taking this out for now, but might use 
+             the space for something else later 
+        -->
+        <!--
+        <li><a href="/trac/wiki/WikiStart">Start Page</a></li>
+        <li><a href="/trac/wiki/TitleIndex">Index by Title</a></li>
+
+        <li><a href="/trac/wiki/RecentChanges">Index by Date</a></li>
+        <li class="last">
+          <a href="/trac/wiki/Documentation?action=diff&amp;version=15">Last Change</a>
+        </li>
+        -->
+      </ul>
+      <hr />
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div id="current-docs-container" style="display: none">
+            <em>
+              <a id="current-docs-link">
+                Go to the latest version of this document.
+              </a>
+            </em>
+          </div>
+          <div class="body">
+            
+  <div class="section" id="communicating-with-irc-clients">
+<h1>Communicating With IRC Clients<a class="headerlink" href="#communicating-with-irc-clients" title="Permalink to this headline">¶</a></h1>
+<p>Communicating with clients is the whole point of an IRC server, so you want to make sure you&#8217;re doing it properly.
+Today, we&#8217;ll be looking at receiving messages from a client and sending messages to the client.</p>
+<div class="section" id="representing-clients-in-twisted">
+<h2>Representing Clients in Twisted<a class="headerlink" href="#representing-clients-in-twisted" title="Permalink to this headline">¶</a></h2>
+<p>Users in Twisted IRC are represented as subclasses of <a class="api reference external" href="https://twistedmatrix.com/documents/16.0.0/api/twisted.words.protocols.irc.IRC.html">the IRC class</a>.
+This works as the protocol for your Factory class. It will also give you IRC features (like automatically parsing incoming lines) without you having to implement them yourself. The rest of this guide assumes this setup.</p>
+</div>
+<div class="section" id="sending-messages">
+<h2>Sending Messages<a class="headerlink" href="#sending-messages" title="Permalink to this headline">¶</a></h2>
+<p>Messages are sent to users using the user object&#8217;s <a class="api reference external" href="https://twistedmatrix.com/documents/16.0.0/api/twisted.words.protocols.irc.IRC.sendMessage.html">sendMessage</a> method.</p>
+<div class="section" id="sending-basic-messages">
+<h3>Sending Basic Messages<a class="headerlink" href="#sending-basic-messages" title="Permalink to this headline">¶</a></h3>
+<p>The basic syntax for sending messages to users is
+as follows:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">user</span><span class="o">.</span><span class="n">sendCommand</span><span class="p">(</span><span class="s">&quot;COMMAND&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">),</span> <span class="n">server</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The prefix keyword argument is optional, and it may be omitted to send a message without a prefix (for example, the ERROR command).
+The command is whatever command you plan to send, e.g. &#8220;PRIVMSG&#8221;, &#8220;MODE&#8221;, etc.
+All arguments following the command are the parameters you want to send for the command.
+If the last argument needs to be prefixed with a colon (because it has spaces in it, e.g. a PRIVMSG message), you must add the colon to the beginning of the parameter yourself. For example:
+.. code-block:: python</p>
+<blockquote>
+<div>user.sendCommand(&#8220;PRIVMSG&#8221;, (user.nickname, &#8221;:{}&#8221;.format(message)), sendingUser.hostmask)</div></blockquote>
+</div>
+<div class="section" id="sending-messages-with-tags">
+<h3>Sending Messages with Tags<a class="headerlink" href="#sending-messages-with-tags" title="Permalink to this headline">¶</a></h3>
+<p>Twisted also allows sending message tags as specified in
+<a class="reference external" href="https://ircv3.net/specs/core/message-tags-3.2.html">IRCv3</a>.</p>
+<p>Let&#8217;s say, for example, that your server has a feature to play back a little bit of previous channel content when someone joins a channel.
+You want a way to tell people when this message occurred.  The best way to provide this information is through the <a class="reference external" href="http://ircv3.net/specs/extensions/server-time-3.2.html">server-time specification</a>.</p>
+<p>Let&#8217;s say you&#8217;re storing past messages in a channel object in some structure like this:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">channel</span><span class="o">.</span><span class="n">pastMessages</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s">&quot;I sent some text!&quot;</span><span class="p">,</span> <span class="s">&quot;author!ident@host&quot;</span><span class="p">,</span> <span class="n">datetime</span> <span class="nb">object</span> <span class="n">representing</span> <span class="n">the</span> <span class="n">when</span> <span class="n">the</span> <span class="n">message</span> <span class="n">was</span> <span class="n">sent</span><span class="p">),</span>
+    <span class="p">(</span><span class="s">&quot;I did, too!&quot;</span><span class="p">,</span> <span class="s">&quot;someone-else!ident@host&quot;</span><span class="p">,</span> <span class="n">another</span> <span class="n">datetime</span> <span class="nb">object</span><span class="p">)</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>Your actual implementation may vary. I went with something simple here. The times of the messages would be generated using something like <code class="docutils literal"><span class="pre">datetime.utcnow()</span></code> when the message was received.</p>
+<p>Tags are passed as a list of tuples. If you&#8217;re sending a number of tags, you may have an existing tag dictionary. You can simply add to it (assuming <code class="docutils literal"><span class="pre">message</span></code> is the loop variable for channel.pastMessages above):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">sendingTags</span><span class="p">[</span><span class="s">&quot;server-time&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="s">&quot;{}Z&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">message</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="o">.</span><span class="n">isoformat</span><span class="p">()[:</span><span class="o">-</span><span class="mi">3</span><span class="p">])</span>
+</pre></div>
+</div>
+<p>This will generate the required time format and add it to the tag dictionary. The last three characters that we remove are the microseconds; removing the last three digits changes the precision to milliseconds.</p>
+<p>Once your tags are collected, you can send the message. The tag dictionary is passed using the <code class="docutils literal"><span class="pre">tags</span></code> argument (in the same loop as above):</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">user</span><span class="o">.</span><span class="n">sendCommand</span><span class="p">(</span><span class="s">&quot;PRIVMSG&quot;</span><span class="p">,</span> <span class="p">(</span><span class="n">user</span><span class="o">.</span><span class="n">nickname</span><span class="p">,</span> <span class="n">message</span><span class="p">[</span><span class="mi">0</span><span class="p">]),</span> <span class="n">message</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">sendingTags</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="receiving-messages">
+<h2>Receiving Messages<a class="headerlink" href="#receiving-messages" title="Permalink to this headline">¶</a></h2>
+<p>Twisted Words will handle receiving messages and parsing lines into tokens. The parsed messages are passed into your command through the user&#8217;s <a class="api reference external" href="https://twistedmatrix.com/documents/16.0.0/api/twisted.words.protocols.irc.IRC.handleCommand.html">handleCommand</a> method.</p>
+<div class="section" id="handling-commands">
+<h3>Handling Commands<a class="headerlink" href="#handling-commands" title="Permalink to this headline">¶</a></h3>
+<p>The default IRC handleCommand method calls the <code class="docutils literal"><span class="pre">irc_COMMAND</span></code> method when it receives the command <code class="docutils literal"><span class="pre">COMMAND</span></code>, and it calls irc_unknown if the method for the command received isn&#8217;t defined.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">twisted.words.protocols</span> <span class="kn">import</span> <span class="n">irc</span>
+
+<span class="k">class</span> <span class="nc">IRCUser</span><span class="p">(</span><span class="n">irc</span><span class="o">.</span><span class="n">IRC</span><span class="p">):</span>
+    <span class="c"># possibly other definitions here</span>
+    <span class="k">def</span> <span class="nf">irc_unknown</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">command</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sendCommand</span><span class="p">(</span><span class="n">irc</span><span class="o">.</span><span class="n">ERR_UNKNOWNCOMMAND</span><span class="p">,</span> <span class="p">(</span><span class="n">command</span><span class="p">,</span> <span class="s">&quot;:Unknown command&quot;</span><span class="p">),</span> <span class="n">server</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">irc_PRIVMSG</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">prefix</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
+        <span class="c"># do some stuff to handle PRIVMSG for your server&#39;s setup</span>
+
+    <span class="c"># lots of other command definitions</span>
+</pre></div>
+</div>
+<p>If you have a server setup that doesn&#8217;t allow you to do this (e.g. a modular server program), you may, of course, override the handleCommand function to route commands to your own handlers.</p>
+</div>
+<div class="section" id="receiving-messages-with-tags">
+<h3>Receiving Messages with Tags<a class="headerlink" href="#receiving-messages-with-tags" title="Permalink to this headline">¶</a></h3>
+<p>This has not yet been implemented.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+            <h3><a href="../../index.html">Table Of Contents</a></h3>
+            <ul>
+<li><a class="reference internal" href="#">Communicating With IRC Clients</a><ul>
+<li><a class="reference internal" href="#representing-clients-in-twisted">Representing Clients in Twisted</a></li>
+<li><a class="reference internal" href="#sending-messages">Sending Messages</a><ul>
+<li><a class="reference internal" href="#sending-basic-messages">Sending Basic Messages</a></li>
+<li><a class="reference internal" href="#sending-messages-with-tags">Sending Messages with Tags</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#receiving-messages">Receiving Messages</a><ul>
+<li><a class="reference internal" href="#handling-commands">Handling Commands</a></li>
+<li><a class="reference internal" href="#receiving-messages-with-tags">Receiving Messages with Tags</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            <h4>Previous topic</h4>
+            <p class="topless"><a href="ircclient.html"
+                                  title="previous chapter">Using the Twisted IRC Client</a></p>
+            <h4>Next topic</h4>
+            <p class="topless"><a href="../examples/index.html"
+                                  title="next chapter">Examples</a></p>
+            <h3>This Page</h3>
+            <ul class="this-page-menu">
+              <li><a href="../../_sources/words/howto/ircserverclientcomm.txt"
+                     rel="nofollow">Show Source</a></li>
+            </ul>
+          <div id="searchbox" style="display: none">
+            <h3>Quick search</h3>
+              <form class="search" action="../../search.html" method="get">
+                <p>
+                <input type="text" name="q" size="18" />
+                <input type="submit" value="Go" />
+                <input type="hidden" name="check_keywords" value="yes" />
+                <input type="hidden" name="area" value="default" />
+                </p>
+              </form>
+              <p class="searchtip" style="font-size: 90%">
+              Enter search terms or a module, class or function name.
+              </p>
+          </div>
+          <script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+
+    </div>
+    <div id="footer"><hr />
+      <div>
+
+</div>
+      <p class="left2">
+        Site design<br />
+        By <a href="http://huw.ugbox.net/">huw.wilkins.</a>
+
+      </p>
+      <p class="right"></p>
+    </div>
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+/, '/current');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = '';
+          delete link;
+          delete container;
+      }
+    </script>
+  </body>
+</html>

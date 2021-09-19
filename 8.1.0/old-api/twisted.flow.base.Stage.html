@@ -1,0 +1,219 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.flow.base.Stage&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">Class t.f.b.Stage(<a href="twisted.flow.base.Instruction.html">Instruction</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.flow.html">flow</a>.<a href="twisted.flow.base.html">base</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/flow/base.py#L83">View Source</a>
+      <a href="classIndex.html#twisted.flow.base.Stage">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known subclasses: <a href="twisted.flow.controller.Block.html">twisted.flow.controller.Block</a>, <a href="twisted.flow.pipe.Pipe.html">twisted.flow.pipe.Pipe</a>, <a href="twisted.flow.stage.Callback.html">twisted.flow.stage.Callback</a>, <a href="twisted.flow.stage.Concurrent.html">twisted.flow.stage.Concurrent</a>, <a href="twisted.flow.stage.Map.html">twisted.flow.stage.Map</a>, <a href="twisted.flow.stage.Merge.html">twisted.flow.stage.Merge</a>, <a href="twisted.flow.threads.Threaded.html">twisted.flow.threads.Threaded</a>, <a href="twisted.flow.wrap._Deferred.html">twisted.flow.wrap._Deferred</a>, <a href="twisted.flow.wrap._Iterable.html">twisted.flow.wrap._Iterable</a>, <a href="twisted.flow.wrap._List.html">twisted.flow.wrap._List</a>, <a href="twisted.flow.wrap._String.html">twisted.flow.wrap._String</a></p>
+    </div>
+    <div><p>Abstract base defining protocol for iterator/generators in a flow</p>
+This is the primary component in the flow system, it is an iterable 
+object which must be passed to a yield statement before each call to 
+next(). Usage:
+<pre class="literalblock">
+  iterable = DerivedStage( ... , SpamError, EggsError))
+  yield iterable
+  for result in iterable:
+      # handle good result, or SpamError or EggsError
+      yield iterable
+</pre>
+Alternatively, when inside a generator, the next() method can be used 
+directly. In this case, if no results are available, StopIteration is 
+raised, and if left uncaught, will nicely end the generator. Of course, 
+unexpected failures are raised. This technique is especially useful when 
+pulling from more than one stage at a time. For example:
+<pre class="literalblock">
+    def someGenerator():
+        iterable = SomeStage( ... , SpamError, EggsError)
+        while True:
+            yield iterable
+            result = iterable.next()
+            # handle good result or SpamError or EggsError
+</pre>
+For many generators, the results become available in chunks of rows. 
+While the default value is to get one row at a time, there is a 'chunked' 
+property which allows them to be returned via the next() method as many 
+rows rather than row by row. For example:
+<pre class="literalblock">
+    iterable = DerivedStage(...)
+    iterable.chunked = True
+    for results in iterable:
+        for result in results:
+             # handle good result
+        yield iterable
+</pre>
+For those wishing more control at the cost of a painful experience, 
+the following member variables can be used to great effect:
+<pre class="literalblock">
+   - results: This is a list of results produced by the generator, they
+              can be fetched one by one using next() or in a group
+              together.  If no results were produced, then this is an
+              empty list.  These results should be removed from the list
+              after they are read; or, after reading all of the results
+              set to an empty list
+
+   - stop: This is true if the underlying generator has finished execution
+           (raised a StopIteration or returned).  Note that several
+           results may exist, and stop may be true.
+
+   - failure: If the generator produced an exception, then it is wrapped
+              as a Failure object and put here.  Note that several results
+              may have been produced before the failure.  To ensure that
+              the failure isn't accidently reported twice, it is
+              adviseable to set stop to True.
+</pre>
+The order in which these member variables is used is *critical* for 
+proper adherance to the flow protocol. First, all successful results 
+should be handled. Second, the iterable should be checked to see if it is 
+finished. Third, a failure should be checked; while handling a failure, 
+either the loop should be exited, or the iterable's stop member should be 
+set. For example:
+<pre class="literalblock">
+    iterable = SomeStage(...)
+    while True:
+        yield iterable
+        if iterable.results:
+            for result in iterable.results:
+                # handle good result
+            iterable.results = []
+        if iterable.stop:
+            break
+        if iterable.failure:
+            iterable.stop = True
+            # handle iterable.failure
+            break
+</pre>
+<table class="fieldTable"></table></div>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id6004">
+  
+  
+  
+  
+  <tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.flow.base.Stage.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.flow.base.Stage.html#__iter__">__iter__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.flow.base.Stage.html#next">next</a></td>
+    <td><span>return current result
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.flow.base.Stage.html#_yield">_yield</a></td>
+    <td><span>executed during a yield statement by previous stage
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.flow.base.Stage.__init__"></a>
+        <a name="__init__"></a>
+        <div class="functionHeader">
+        
+        def __init__(self, *trap):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/flow/base.py#L163" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">overridden in <a href="twisted.flow.controller.Block.html">twisted.flow.controller.Block</a>, <a href="twisted.flow.pipe.Pipe.html">twisted.flow.pipe.Pipe</a>, <a href="twisted.flow.stage.Callback.html">twisted.flow.stage.Callback</a>, <a href="twisted.flow.stage.Concurrent.html">twisted.flow.stage.Concurrent</a>, <a href="twisted.flow.stage.Map.html">twisted.flow.stage.Map</a>, <a href="twisted.flow.stage.Merge.html">twisted.flow.stage.Merge</a>, <a href="twisted.flow.threads.Threaded.html">twisted.flow.threads.Threaded</a>, <a href="twisted.flow.wrap._Deferred.html">twisted.flow.wrap._Deferred</a>, <a href="twisted.flow.wrap._Iterable.html">twisted.flow.wrap._Iterable</a>, <a href="twisted.flow.wrap._List.html">twisted.flow.wrap._List</a>, <a href="twisted.flow.wrap._String.html">twisted.flow.wrap._String</a></div>
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.flow.base.Stage.__iter__"></a>
+        <a name="__iter__"></a>
+        <div class="functionHeader">
+        
+        def __iter__(self):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/flow/base.py#L170" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.flow.base.Stage.next"></a>
+        <a name="next"></a>
+        <div class="functionHeader">
+        
+        def next(self):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/flow/base.py#L173" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">overridden in <a href="twisted.flow.controller.Block.html">twisted.flow.controller.Block</a></div>
+          <div><p>return current result</p>
+This is the primary function to be called to retrieve the current 
+result. It complies with the iterator protocol by raising StopIteration 
+when the stage is complete. It also raises an exception if it is called 
+before the stage is yielded.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.flow.base.Stage._yield"></a>
+        <a name="_yield"></a>
+        <div class="functionHeader">
+        
+        def _yield(self):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/flow/base.py#L204" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">overridden in <a href="twisted.flow.pipe.Pipe.html">twisted.flow.pipe.Pipe</a>, <a href="twisted.flow.stage.Callback.html">twisted.flow.stage.Callback</a>, <a href="twisted.flow.stage.Concurrent.html">twisted.flow.stage.Concurrent</a>, <a href="twisted.flow.stage.Map.html">twisted.flow.stage.Map</a>, <a href="twisted.flow.stage.Merge.html">twisted.flow.stage.Merge</a>, <a href="twisted.flow.threads.Threaded.html">twisted.flow.threads.Threaded</a>, <a href="twisted.flow.wrap._Deferred.html">twisted.flow.wrap._Deferred</a>, <a href="twisted.flow.wrap._Iterable.html">twisted.flow.wrap._Iterable</a>, <a href="twisted.flow.wrap._List.html">twisted.flow.wrap._List</a>, <a href="twisted.flow.wrap._String.html">twisted.flow.wrap._String</a></div>
+          <div><p>executed during a yield statement by previous stage</p>
+This method is private within the scope of the flow module, it is used 
+by one stage in the flow to ask a subsequent stage to produce its value. 
+The result of the yield is then stored in self.result and is an instance 
+of Failure if a problem occurred.
+<table class="fieldTable"></table></div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2008-05-18 16:50:21.
+    </address>
+  </body>
+</html>

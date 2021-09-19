@@ -1,0 +1,530 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.internet.iocpreactor.process.Process&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">Class t.i.i.p.Process(object):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a>.<a href="twisted.internet.iocpreactor.html">iocpreactor</a>.<a href="twisted.internet.iocpreactor.process.html">process</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L49">View Source</a>
+      <a href="classIndex.html#twisted.internet.iocpreactor.process.Process">View In Hierarchy</a>
+    </p>
+    <div>
+      Implements interfaces: <a href="twisted.internet.interfaces.IConsumer.html">twisted.internet.interfaces.IConsumer</a>, <a href="twisted.internet.interfaces.IProcessTransport.html">twisted.internet.interfaces.IProcessTransport</a>
+    </div>
+    <div><p>A process that integrates with the Twisted event loop.</p>
+<p>See 
+http://msdn.microsoft.com/library/default.asp?url=/library/en-us/dllproc/base/creating_a_child_process_with_redirected_input_and_output.asp 
+for more info on how to create processes in Windows and access their 
+stdout/err/in. Another good source is 
+http://www.informit.com/articles/article.asp?p=362660&amp;seqNum=2.</p>
+<p>Issues:</p>
+If your subprocess is a python program, you need to:
+<ul>
+  <li>
+    Run python.exe with the '-u' command line option - this turns on 
+    unbuffered I/O. Buffering stdout/err/in can cause problems, see e.g. 
+    http://support.microsoft.com/default.aspx?scid=kb;EN-US;q1903
+  </li>
+  <li>
+    (is this still true?) If you don't want Windows messing with data 
+    passed over stdin/out/err, set the pipes to be in binary mode:
+<pre class="literalblock">
+import os, sys, mscvrt
+msvcrt.setmode(sys.stdin.fileno(), os.O_BINARY)
+msvcrt.setmode(sys.stdout.fileno(), os.O_BINARY)
+msvcrt.setmode(sys.stderr.fileno(), os.O_BINARY)
+</pre>
+  </li>
+</ul>
+<table class="fieldTable"></table></div>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3184">
+  
+  
+  
+  
+  <tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.iocpreactor.process.Process.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.iocpreactor.process.Process.html#signalProcess">signalProcess</a></td>
+    <td><span>Send a signal to the process.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.iocpreactor.process.Process.html#startWriting">startWriting</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.iocpreactor.process.Process.html#stopWriting">stopWriting</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.iocpreactor.process.Process.html#writeDone">writeDone</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.iocpreactor.process.Process.html#write">write</a></td>
+    <td><span>Write data to the process' stdin.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.iocpreactor.process.Process.html#writeSequence">writeSequence</a></td>
+    <td><span>Write a list of strings to the physical connection.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.iocpreactor.process.Process.html#closeStdin">closeStdin</a></td>
+    <td><span>Close the process' stdin.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.iocpreactor.process.Process.html#_closeStdin">_closeStdin</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.iocpreactor.process.Process.html#closeStderr">closeStderr</a></td>
+    <td><span>Close stderr.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.iocpreactor.process.Process.html#closeStdout">closeStdout</a></td>
+    <td><span>Close stdout.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.iocpreactor.process.Process.html#loseConnection">loseConnection</a></td>
+    <td><span>Close the process' stdout, in and err.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.iocpreactor.process.Process.html#outConnectionLost">outConnectionLost</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.iocpreactor.process.Process.html#errConnectionLost">errConnectionLost</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.iocpreactor.process.Process.html#inConnectionLost">inConnectionLost</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.iocpreactor.process.Process.html#connectionLostNotify">connectionLostNotify</a></td>
+    <td><span>Will be called 3 times, for stdout/err/in.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.iocpreactor.process.Process.html#processEnded">processEnded</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.iocpreactor.process.Process.html#connectionLost">connectionLost</a></td>
+    <td><span>Shut down resources.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.iocpreactor.process.Process.html#registerProducer">registerProducer</a></td>
+    <td><span>Register to receive data from a producer.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.iocpreactor.process.Process.html#unregisterProducer">unregisterProducer</a></td>
+    <td><span>Stop consuming data from a producer, without disconnecting.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.internet.iocpreactor.process.Process.__init__"></a>
+        <a name="__init__"></a>
+        <div class="functionHeader">
+        def __init__(self, reactor, protocol, command, args, environment, path):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L85" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.iocpreactor.process.Process.signalProcess"></a>
+        <a name="signalProcess"></a>
+        <div class="functionHeader">
+        def signalProcess(self, signalID):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L266" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProcessTransport.html#signalProcess">twisted.internet.interfaces.IProcessTransport</a></div>
+          <div>Send a signal to the process.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">signalID</td><td>can be
+<ul>
+  <li>
+    one of <code>&quot;HUP&quot;</code>, 
+    <code>&quot;KILL&quot;</code>, <code>&quot;STOP&quot;</code>, or 
+    <code>&quot;INT&quot;</code>. These will be implemented in a 
+    cross-platform manner, and so should be used if possible.
+  </li>
+  <li>
+    an integer, where it represents a POSIX signal ID.
+  </li>
+</ul>
+</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">twisted.internet.error.ProcessExitedAlready</td><td>The process has already exited.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.iocpreactor.process.Process.startWriting"></a>
+        <a name="startWriting"></a>
+        <div class="functionHeader">
+        def startWriting(self):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L270" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.iocpreactor.process.Process.stopWriting"></a>
+        <a name="stopWriting"></a>
+        <div class="functionHeader">
+        def stopWriting(self):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L276" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.iocpreactor.process.Process.writeDone"></a>
+        <a name="writeDone"></a>
+        <div class="functionHeader">
+        def writeDone(self, bytes):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L279" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.iocpreactor.process.Process.write"></a>
+        <a name="write"></a>
+        <div class="functionHeader">
+        def write(self, data):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L296" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#write">twisted.internet.interfaces.IConsumer</a></div>
+          <div>Write data to the process' stdin.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.iocpreactor.process.Process.writeSequence"></a>
+        <a name="writeSequence"></a>
+        <div class="functionHeader">
+        def writeSequence(self, seq):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L303" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Write a list of strings to the physical connection.</p>
+If possible, make sure that all of the data is written to the socket 
+at once, without first copying it all into a single string.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.iocpreactor.process.Process.closeStdin"></a>
+        <a name="closeStdin"></a>
+        <div class="functionHeader">
+        def closeStdin(self):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L312" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProcessTransport.html#closeStdin">twisted.internet.interfaces.IProcessTransport</a></div>
+          <div>Close the process' stdin.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.iocpreactor.process.Process._closeStdin"></a>
+        <a name="_closeStdin"></a>
+        <div class="functionHeader">
+        def _closeStdin(self):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L320" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.iocpreactor.process.Process.closeStderr"></a>
+        <a name="closeStderr"></a>
+        <div class="functionHeader">
+        def closeStderr(self):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L327" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProcessTransport.html#closeStderr">twisted.internet.interfaces.IProcessTransport</a></div>
+          <div>Close stderr.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.iocpreactor.process.Process.closeStdout"></a>
+        <a name="closeStdout"></a>
+        <div class="functionHeader">
+        def closeStdout(self):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L334" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProcessTransport.html#closeStdout">twisted.internet.interfaces.IProcessTransport</a></div>
+          <div>Close stdout.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.iocpreactor.process.Process.loseConnection"></a>
+        <a name="loseConnection"></a>
+        <div class="functionHeader">
+        def loseConnection(self):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L341" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProcessTransport.html#loseConnection">twisted.internet.interfaces.IProcessTransport</a></div>
+          <div>Close the process' stdout, in and err.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.iocpreactor.process.Process.outConnectionLost"></a>
+        <a name="outConnectionLost"></a>
+        <div class="functionHeader">
+        def outConnectionLost(self):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L347" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.iocpreactor.process.Process.errConnectionLost"></a>
+        <a name="errConnectionLost"></a>
+        <div class="functionHeader">
+        def errConnectionLost(self):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L351" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.iocpreactor.process.Process.inConnectionLost"></a>
+        <a name="inConnectionLost"></a>
+        <div class="functionHeader">
+        def inConnectionLost(self):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L355" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.iocpreactor.process.Process.connectionLostNotify"></a>
+        <a name="connectionLostNotify"></a>
+        <div class="functionHeader">
+        def connectionLostNotify(self):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L360" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Will be called 3 times, for stdout/err/in.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.iocpreactor.process.Process.processEnded"></a>
+        <a name="processEnded"></a>
+        <div class="functionHeader">
+        def processEnded(self):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L368" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.iocpreactor.process.Process.connectionLost"></a>
+        <a name="connectionLost"></a>
+        <div class="functionHeader">
+        def connectionLost(self, reason=None):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L374" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Shut down resources.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.iocpreactor.process.Process.registerProducer"></a>
+        <a name="registerProducer"></a>
+        <div class="functionHeader">
+        def registerProducer(self, producer, streaming):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L386" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#registerProducer">twisted.internet.interfaces.IConsumer</a></div>
+          <div><p>Register to receive data from a producer.</p>
+<p>This sets self to be a consumer for a producer. When this object runs 
+out of data (as when a send(2) call on a socket succeeds in moving the 
+last data from a userspace buffer into a kernelspace buffer), it will ask 
+the producer to resumeProducing().</p>
+<p>For <a 
+href="twisted.internet.interfaces.IPullProducer.html"><code>IPullProducer</code></a> 
+providers, <code>resumeProducing</code> will be called once each time 
+data is required.</p>
+For <a 
+href="twisted.internet.interfaces.IPushProducer.html"><code>IPushProducer</code></a> 
+providers, <code>pauseProducing</code> will be called whenever the write 
+buffer fills up and <code>resumeProducing</code> will only be called when 
+it empties.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">producer</td><td>(type: <a 
+href="twisted.internet.interfaces.IProducer.html"><code>IProducer</code></a> 
+provider
+)</td></tr><tr><td></td><td class="fieldArg">streaming</td><td><code>True</code> if <code>producer</code> provides <a 
+href="twisted.internet.interfaces.IPushProducer.html"><code>IPushProducer</code></a>, 
+<code>False</code> if <code>producer</code> provides <a 
+href="twisted.internet.interfaces.IPullProducer.html"><code>IPullProducer</code></a>.
+(type: <code>bool</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>None</code>
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.iocpreactor.process.Process.unregisterProducer"></a>
+        <a name="unregisterProducer"></a>
+        <div class="functionHeader">
+        def unregisterProducer(self):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/internet/iocpreactor/process.py#L389" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#unregisterProducer">twisted.internet.interfaces.IConsumer</a></div>
+          <div>Stop consuming data from a producer, without disconnecting.
+<table class="fieldTable"></table></div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for twisted, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a>.
+    </address>
+  </body>
+</html>

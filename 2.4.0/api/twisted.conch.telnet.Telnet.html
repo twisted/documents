@@ -1,0 +1,520 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.conch.telnet.Telnet&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.c.t.Telnet(<a href="twisted.internet.protocol.Protocol.html">protocol.Protocol</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.conch.telnet.html">twisted.conch.telnet</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.conch.telnet.Telnet">View In Hierarchy</a>
+    </p>
+    <div><p>Known subclasses: <a href="twisted.conch.telnet.TelnetTransport.html">twisted.conch.telnet.TelnetTransport</a></p></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">commandMap</td><td>A mapping of bytes to callables. When a telnet command is received, 
+the command byte (the first byte after IAC) is looked up in this 
+dictionary. If a callable is found, it is invoked with the argument of 
+the command, or None if the command takes no argument. Values should be 
+added to this dictionary if commands wish to be handled. By default, only 
+WILL, WONT, DO, and DONT are handled. These should not be overridden, as 
+this class handles them correctly and provides an API for interacting 
+with them.
+</td></tr><tr><td></td><td class="fieldArg">negotiationMap</td><td>A mapping of bytes to callables. When a subnegotiation command is 
+received, the command byte (the first byte after SB) is looked up in this 
+dictionary. If a callable is found, it is invoked with the argument of 
+the subnegotiation. Values should be added to this dictionary if 
+subnegotiations are to be handled. By default, no values are handled.
+</td></tr><tr><td></td><td class="fieldArg">options</td><td>A mapping of option bytes to their current state. This state is likely 
+of little use to user code. Changes should not be made to it.
+</td></tr><tr><td></td><td class="fieldArg">state</td><td>A string indicating the current parse state. It can take on the values 
+&quot;data&quot;, &quot;escaped&quot;, &quot;command&quot;, 
+&quot;newline&quot;, &quot;subnegotiation&quot;, and 
+&quot;subnegotiation-escaped&quot;. Changes should not be made to it.
+</td></tr><tr><td></td><td class="fieldArg">transport</td><td>This protocol's transport object.
+</td></tr></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.__init__">__init__</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet._write">_write</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.getOptionState">getOptionState</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet._do">_do</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet._dont">_dont</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet._will">_will</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet._wont">_wont</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.will">will</a></td>
+          <td><span>Indicate our willingness to enable an option.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.wont">wont</a></td>
+          <td><span>Indicate we are not willing to enable an option.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.do">do</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.dont">dont</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.requestNegotiation">requestNegotiation</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.dataReceived">dataReceived</a></td>
+          <td><span>Called whenever data is received.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.connectionLost">connectionLost</a></td>
+          <td><span>Called when the connection is shut down.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.applicationDataReceived">applicationDataReceived</a></td>
+          <td><span>Called with application-level data.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.unhandledCommand">unhandledCommand</a></td>
+          <td><span>Called for commands for which no handler is installed.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.commandReceived">commandReceived</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.unhandledSubnegotiation">unhandledSubnegotiation</a></td>
+          <td><span>Called for subnegotiations for which no handler is installed.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.negotiate">negotiate</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.telnet_WILL">telnet_WILL</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.will_no_false">will_no_false</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.will_no_true">will_no_true</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.will_yes_false">will_yes_false</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.will_yes_true">will_yes_true</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.telnet_WONT">telnet_WONT</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.wont_no_false">wont_no_false</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.wont_no_true">wont_no_true</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.wont_yes_false">wont_yes_false</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.wont_yes_true">wont_yes_true</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.telnet_DO">telnet_DO</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.do_no_false">do_no_false</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.do_no_true">do_no_true</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.do_yes_false">do_yes_false</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.do_yes_true">do_yes_true</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.telnet_DONT">telnet_DONT</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.dont_no_false">dont_no_false</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.dont_no_true">dont_no_true</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.dont_yes_false">dont_yes_false</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.dont_yes_true">dont_yes_true</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.enableLocal">enableLocal</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.enableRemote">enableRemote</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.disableLocal">disableLocal</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.telnet.Telnet.disableRemote">disableRemote</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr></table>
+    
+    
+        <p>
+          Inherited from <span><a href="twisted.internet.protocol.BaseProtocol.html">BaseProtocol</a> (via <a href="twisted.internet.protocol.Protocol.html">Protocol</a>)</span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.internet.protocol.BaseProtocol.html#twisted.internet.protocol.BaseProtocol.makeConnection">makeConnection</a></td>
+            <td><span>Make a connection to a transport and a server.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.internet.protocol.BaseProtocol.html#twisted.internet.protocol.BaseProtocol.connectionMade">connectionMade</a></td>
+            <td><span>Called when a connection is made.
+</span></td>
+          </tr></table>
+      
+    <div class="function">
+        <a name="twisted.conch.telnet.Telnet.__init__"></a>
+        <div class="functionHeader">
+          def <span>__init__(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.conch.telnet.TelnetTransport.html#twisted.conch.telnet.TelnetTransport.__init__">twisted.conch.telnet.TelnetTransport</a></div><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet._write"></a>
+        <div class="functionHeader">
+          def <span>_write(self, bytes):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.getOptionState"></a>
+        <div class="functionHeader">
+          def <span>getOptionState(self, opt):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet._do"></a>
+        <div class="functionHeader">
+          def <span>_do(self, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet._dont"></a>
+        <div class="functionHeader">
+          def <span>_dont(self, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet._will"></a>
+        <div class="functionHeader">
+          def <span>_will(self, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet._wont"></a>
+        <div class="functionHeader">
+          def <span>_wont(self, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.will"></a>
+        <div class="functionHeader">
+          def <span>will(self, option):</span>
+        </div>
+        <div class="functionBody"><div>Indicate our willingness to enable an option.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.wont"></a>
+        <div class="functionHeader">
+          def <span>wont(self, option):</span>
+        </div>
+        <div class="functionBody"><div>Indicate we are not willing to enable an option.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.do"></a>
+        <div class="functionHeader">
+          def <span>do(self, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.dont"></a>
+        <div class="functionHeader">
+          def <span>dont(self, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.requestNegotiation"></a>
+        <div class="functionHeader">
+          def <span>requestNegotiation(self, about, bytes):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.dataReceived"></a>
+        <div class="functionHeader">
+          def <span>dataReceived(self, data):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#twisted.internet.interfaces.IProtocol.dataReceived">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Protocol.html#twisted.internet.protocol.Protocol.dataReceived">twisted.internet.protocol.Protocol.dataReceived</a></div><div><p>Called whenever data is received.</p>
+Use this method to translate to a higher-level message. Usually, some 
+callback will be made upon the receipt of each complete protocol 
+message.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">data</td><td>a string of indeterminate length. Please keep in mind that you will 
+probably need to buffer some data, as partial (or multiple) protocol 
+messages may be received! I recommend that unit tests for protocols call 
+through to this method with differing chunk sizes, down to one byte at a 
+time.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.connectionLost"></a>
+        <div class="functionHeader">
+          def <span>connectionLost(self, reason):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#twisted.internet.interfaces.IProtocol.connectionLost">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Protocol.html#twisted.internet.protocol.Protocol.connectionLost">twisted.internet.protocol.Protocol.connectionLost</a></div><div class="interfaceinfo">overridden in <a href="twisted.conch.telnet.TelnetTransport.html#twisted.conch.telnet.TelnetTransport.connectionLost">twisted.conch.telnet.TelnetTransport</a></div><div><p>Called when the connection is shut down.</p>
+Clear any circular references here, and any external references to 
+this Protocol. The connection has been closed. The reason Failure wraps a 
+<a 
+href="twisted.internet.error.ConnectionDone.html">twisted.internet.error.ConnectionDone</a> 
+or <a 
+href="twisted.internet.error.ConnectionLost.html">twisted.internet.error.ConnectionLost</a> 
+instance (or a subclass of one of those).
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">reason</td><td>(type: <a 
+href="twisted.python.failure.Failure.html">twisted.python.failure.Failure</a>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.applicationDataReceived"></a>
+        <div class="functionHeader">
+          def <span>applicationDataReceived(self, bytes):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.conch.telnet.TelnetTransport.html#twisted.conch.telnet.TelnetTransport.applicationDataReceived">twisted.conch.telnet.TelnetTransport</a></div><div>Called with application-level data.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.unhandledCommand"></a>
+        <div class="functionHeader">
+          def <span>unhandledCommand(self, command, argument):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.conch.telnet.TelnetTransport.html#twisted.conch.telnet.TelnetTransport.unhandledCommand">twisted.conch.telnet.TelnetTransport</a></div><div>Called for commands for which no handler is installed.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.commandReceived"></a>
+        <div class="functionHeader">
+          def <span>commandReceived(self, command, argument):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.unhandledSubnegotiation"></a>
+        <div class="functionHeader">
+          def <span>unhandledSubnegotiation(self, command, bytes):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.conch.telnet.TelnetTransport.html#twisted.conch.telnet.TelnetTransport.unhandledSubnegotiation">twisted.conch.telnet.TelnetTransport</a></div><div>Called for subnegotiations for which no handler is installed.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.negotiate"></a>
+        <div class="functionHeader">
+          def <span>negotiate(self, bytes):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.telnet_WILL"></a>
+        <div class="functionHeader">
+          def <span>telnet_WILL(self, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.will_no_false"></a>
+        <div class="functionHeader">
+          def <span>will_no_false(self, state, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.will_no_true"></a>
+        <div class="functionHeader">
+          def <span>will_no_true(self, state, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.will_yes_false"></a>
+        <div class="functionHeader">
+          def <span>will_yes_false(self, state, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.will_yes_true"></a>
+        <div class="functionHeader">
+          def <span>will_yes_true(self, state, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.telnet_WONT"></a>
+        <div class="functionHeader">
+          def <span>telnet_WONT(self, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.wont_no_false"></a>
+        <div class="functionHeader">
+          def <span>wont_no_false(self, state, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.wont_no_true"></a>
+        <div class="functionHeader">
+          def <span>wont_no_true(self, state, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.wont_yes_false"></a>
+        <div class="functionHeader">
+          def <span>wont_yes_false(self, state, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.wont_yes_true"></a>
+        <div class="functionHeader">
+          def <span>wont_yes_true(self, state, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.telnet_DO"></a>
+        <div class="functionHeader">
+          def <span>telnet_DO(self, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.do_no_false"></a>
+        <div class="functionHeader">
+          def <span>do_no_false(self, state, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.do_no_true"></a>
+        <div class="functionHeader">
+          def <span>do_no_true(self, state, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.do_yes_false"></a>
+        <div class="functionHeader">
+          def <span>do_yes_false(self, state, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.do_yes_true"></a>
+        <div class="functionHeader">
+          def <span>do_yes_true(self, state, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.telnet_DONT"></a>
+        <div class="functionHeader">
+          def <span>telnet_DONT(self, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.dont_no_false"></a>
+        <div class="functionHeader">
+          def <span>dont_no_false(self, state, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.dont_no_true"></a>
+        <div class="functionHeader">
+          def <span>dont_no_true(self, state, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.dont_yes_false"></a>
+        <div class="functionHeader">
+          def <span>dont_yes_false(self, state, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.dont_yes_true"></a>
+        <div class="functionHeader">
+          def <span>dont_yes_true(self, state, option):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.enableLocal"></a>
+        <div class="functionHeader">
+          def <span>enableLocal(self, option):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.conch.telnet.TelnetTransport.html#twisted.conch.telnet.TelnetTransport.enableLocal">twisted.conch.telnet.TelnetTransport</a></div><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.enableRemote"></a>
+        <div class="functionHeader">
+          def <span>enableRemote(self, option):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.conch.telnet.TelnetTransport.html#twisted.conch.telnet.TelnetTransport.enableRemote">twisted.conch.telnet.TelnetTransport</a></div><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.disableLocal"></a>
+        <div class="functionHeader">
+          def <span>disableLocal(self, option):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.conch.telnet.TelnetTransport.html#twisted.conch.telnet.TelnetTransport.disableLocal">twisted.conch.telnet.TelnetTransport</a></div><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.telnet.Telnet.disableRemote"></a>
+        <div class="functionHeader">
+          def <span>disableRemote(self, option):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.conch.telnet.TelnetTransport.html#twisted.conch.telnet.TelnetTransport.disableRemote">twisted.conch.telnet.TelnetTransport</a></div><div class="undocumented">Undocumented</div></div>
+      </div>    
+  </body>
+</html>

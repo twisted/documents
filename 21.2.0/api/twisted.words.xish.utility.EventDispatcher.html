@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.words.xish.utility.EventDispatcher : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://twistedmatrix.com/">Twisted</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><a href="twisted.html" class="code" data-type="Package">twisted</a>.<a href="twisted.words.html" class="code" data-type="Package">words</a>.<a href="twisted.words.xish.html" class="code" data-type="Package">xish</a>.<a href="twisted.words.xish.utility.html" class="code" data-type="Module">utility</a>.<a href="twisted.words.xish.utility.EventDispatcher.html" class="code" data-type="Class">EventDispatcher</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> twisted.words.xish.utility.EventDispatcher: <a href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/words/xish/utility.py#L121">(source)</a></code></p><p>Known subclasses: <a href="twisted.words.xish.xmlstream.XmlStream.html" class="code" data-type="Class">twisted.words.xish.xmlstream.XmlStream</a></p>
+        <p><a href="classIndex.html#twisted.words.xish.utility.EventDispatcher">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Event dispatching service.</p><p>The <code>EventDispatcher</code> allows observers to be registered for certain events that are dispatched. There are two types of events: XPath events and Named events.</p><p>Every dispatch is triggered by calling <a href="twisted.words.xish.utility.EventDispatcher.html#dispatch"><code>dispatch</code></a> with a data object and, for named events, the name of the event.</p><p>When an XPath type event is dispatched, the associated object is assumed to be an <a href="twisted.words.xish.domish.Element.html"><code>Element</code></a> instance, which is matched against all registered XPath queries. For every match, the respective observer will be called with the data object.</p><p>A named event will simply call each registered observer for that particular event name, with the data object. Unlike XPath type events, the data object is not restricted to <a href="twisted.words.xish.domish.Element.html"><code>Element</code></a>, but can be anything.</p><p>When registering observers, the event that is to be observed is specified using an <a href="twisted.words.xish.xpath.XPathQuery.html"><code>xpath.XPathQuery</code></a> instance or a string. In the latter case, the string can also contain the string representation of an XPath expression. To distinguish these from named events, each named event should start with a special prefix that is stored in <code>self.prefix</code>. It defaults to <code>//event/</code>.</p><p>Observers registered using <a href="twisted.words.xish.utility.EventDispatcher.html#addObserver"><code>addObserver</code></a> are persistent: after the observer has been triggered by a dispatch, it remains registered for a possible next dispatch. If instead <a href="twisted.words.xish.utility.EventDispatcher.html#addOnetimeObserver"><code>addOnetimeObserver</code></a> was used to observe an event, the observer is removed from the list of observers after the first observed event.</p><p>Observers can also be prioritized, by providing an optional <code>priority</code> parameter to the <a href="twisted.words.xish.utility.EventDispatcher.html#addObserver"><code>addObserver</code></a> and <a href="twisted.words.xish.utility.EventDispatcher.html#addOnetimeObserver"><code>addOnetimeObserver</code></a> methods. Higher priority observers are then called before lower priority observers.</p><p>Finally, observers can be unregistered by using <a href="twisted.words.xish.utility.EventDispatcher.html#removeObserver"><code>removeObserver</code></a>.</p></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3747">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.words.xish.utility.EventDispatcher.html#__init__" class="code" data-type="Method">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.words.xish.utility.EventDispatcher.html#prefix" class="code" data-type="Instance Variable">prefix</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.words.xish.utility.EventDispatcher.html#addOnetimeObserver" class="code" data-type="Method">addOnetimeObserver</a></td>
+    <td><span>Register a one-time observer for an event.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.words.xish.utility.EventDispatcher.html#addObserver" class="code" data-type="Method">addObserver</a></td>
+    <td><span>Register an observer for an event.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.words.xish.utility.EventDispatcher.html#removeObserver" class="code" data-type="Method">removeObserver</a></td>
+    <td><span>Remove callable as observer for an event.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.words.xish.utility.EventDispatcher.html#dispatch" class="code" data-type="Method">dispatch</a></td>
+    <td><span>Dispatch an event.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.words.xish.utility.EventDispatcher.html#_eventObservers" class="code" data-type="Instance Variable">_eventObservers</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.words.xish.utility.EventDispatcher.html#_xpathObservers" class="code" data-type="Instance Variable">_xpathObservers</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.words.xish.utility.EventDispatcher.html#_dispatchDepth" class="code" data-type="Instance Variable">_dispatchDepth</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.words.xish.utility.EventDispatcher.html#_updateQueue" class="code" data-type="Instance Variable">_updateQueue</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.words.xish.utility.EventDispatcher.html#_getEventAndObservers" class="code" data-type="Method">_getEventAndObservers</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.words.xish.utility.EventDispatcher.html#_addObserver" class="code" data-type="Method">_addObserver</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  <a name="twisted.words.xish.utility.EventDispatcher.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def __init__(self, eventprefix='//event/'):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/words/xish/utility.py#L162">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.words.xish.xmlstream.XmlStream.html" class="code" data-type="Class">twisted.words.xish.xmlstream.XmlStream</a></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.words.xish.utility.EventDispatcher.prefix">
+    
+  </a>
+  <a name="prefix">
+    
+  </a>
+  <div class="functionHeader">
+    
+    prefix =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/words/xish/utility.py#L163">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.words.xish.utility.EventDispatcher._eventObservers">
+    
+  </a>
+  <a name="_eventObservers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _eventObservers =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/words/xish/utility.py#L164">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="code">dict</a></code>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.words.xish.utility.EventDispatcher._xpathObservers">
+    
+  </a>
+  <a name="_xpathObservers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _xpathObservers =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/words/xish/utility.py#L165">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="code">dict</a></code>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.words.xish.utility.EventDispatcher._dispatchDepth">
+    
+  </a>
+  <a name="_dispatchDepth">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _dispatchDepth =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/words/xish/utility.py#L166">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/functions.html#int" class="code">int</a></code>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.words.xish.utility.EventDispatcher._updateQueue">
+    
+  </a>
+  <a name="_updateQueue">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _updateQueue =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/words/xish/utility.py#L168">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#list" class="code">list</a></code>)
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.words.xish.utility.EventDispatcher._getEventAndObservers">
+    
+  </a>
+  <a name="_getEventAndObservers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _getEventAndObservers(self, event):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/words/xish/utility.py#L170">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.words.xish.utility.EventDispatcher.addOnetimeObserver">
+    
+  </a>
+  <a name="addOnetimeObserver">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def addOnetimeObserver(self, event, observerfn, priority=0, *args, **kwargs):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/words/xish/utility.py#L185">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Register a one-time observer for an event.</p><p>Like <a href="twisted.words.xish.utility.EventDispatcher.html#addObserver"><code>addObserver</code></a>, but is only triggered at most once. See there for a description of the parameters.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.words.xish.utility.EventDispatcher.addObserver">
+    
+  </a>
+  <a name="addObserver">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def addObserver(self, event, observerfn, priority=0, *args, **kwargs):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/words/xish/utility.py#L194">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Register an observer for an event.</p><p>Each observer will be registered with a certain priority. Higher priority observers get called before lower priority observers.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">event</td><td>Name or XPath query for the event to be monitored. (type: <code>str</code> or <a href="twisted.words.xish.xpath.XPathQuery.html"><code>xpath.XPathQuery</code></a>.)</td></tr><tr><td></td><td class="fieldArg">observerfn</td><td>Function to be called when the specified event has been triggered. This callable takes one parameter: the data object that triggered the event. When specified, the <code>*args</code> and <code>**kwargs</code> parameters to addObserver are being used as additional parameters to the registered observer callable.</td></tr><tr><td></td><td class="fieldArg">priority</td><td>(Optional) priority of this observer in relation to other observer that match the same event. Defaults to <code>0</code>. (type: <code>int</code>)</td></tr><tr><td></td><td class="fieldArg">args</td><td><span class="undocumented">Undocumented</span></td></tr><tr><td></td><td class="fieldArg">kwargs</td><td><span class="undocumented">Undocumented</span></td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.words.xish.utility.EventDispatcher._addObserver">
+    
+  </a>
+  <a name="_addObserver">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _addObserver(self, onetime, event, observerfn, priority, *args, **kwargs):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/words/xish/utility.py#L217">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.words.xish.utility.EventDispatcher.removeObserver">
+    
+  </a>
+  <a name="removeObserver">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def removeObserver(self, event, observerfn):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/words/xish/utility.py#L243">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Remove callable as observer for an event.</p><p>The observer callable is removed for all priority levels for the specified event.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">event</td><td>Event for which the observer callable was registered. (type: <code>str</code> or <a href="twisted.words.xish.xpath.XPathQuery.html"><code>xpath.XPathQuery</code></a>)</td></tr><tr><td></td><td class="fieldArg">observerfn</td><td>Observer callable to be unregistered.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.words.xish.utility.EventDispatcher.dispatch">
+    
+  </a>
+  <a name="dispatch">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def dispatch(self, obj, event=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/words/xish/utility.py#L274">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Dispatch an event.</p><p>When <code>event</code> is <a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>, an XPath type event is triggered, and <code>obj</code> is assumed to be an instance of <a href="twisted.words.xish.domish.Element.html"><code>Element</code></a>. Otherwise, <code>event</code> holds the name of the named event being triggered. In the latter case, <code>obj</code> can be anything.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">obj</td><td>The object to be dispatched.</td></tr><tr><td></td><td class="fieldArg">event</td><td>Optional event name. (type: <code>str</code>)</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-02-28 19:53:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

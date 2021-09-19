@@ -1,0 +1,811 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.trial.reporter.Reporter : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="apidocs.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" style="display: none" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>twisted.trial.reporter.Reporter(<a href="twisted.trial.reporter.TestResult.html" data-type="Class" class="code">TestResult</a>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.trial.html" data-type="Package" class="code">trial</a>.<a href="twisted.trial.reporter.html" data-type="Module" class="code">reporter</a></code>
+          <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/trial/reporter.py#L338">View Source</a>
+          <a href="classIndex.html#twisted.trial.reporter.Reporter">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Known subclasses: <a href="twisted.trial.reporter.MinimalReporter.html" data-type="Class" class="code">twisted.trial.reporter.MinimalReporter</a>, <a href="twisted.trial.reporter.TextReporter.html" data-type="Class" class="code">twisted.trial.reporter.TextReporter</a>, <a href="twisted.trial.reporter.TreeReporter.html" data-type="Class" class="code">twisted.trial.reporter.TreeReporter</a>, <a href="twisted.trial.reporter.VerboseTextReporter.html" data-type="Class" class="code">twisted.trial.reporter.VerboseTextReporter</a></p><p>Implements interfaces: <a href="twisted.trial.itrial.IReporter.html" data-type="Interface" class="code">twisted.trial.itrial.IReporter</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A basic <a href="twisted.trial.reporter.TestResult.html"><code>TestResult</code></a> 
+with support for writing to a stream.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3107">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#startTest" data-type="Method" class="code">startTest</a></td>
+    <td><span>Called when a test begins to run. Records the time when it was first 
+called and resets the warning cache.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#addFailure" data-type="Method" class="code">addFailure</a></td>
+    <td><span>Called when a test fails. If <code>realtime</code> is set, then it 
+prints the error to the stream.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#addError" data-type="Method" class="code">addError</a></td>
+    <td><span>Called when a test raises an error. If <code>realtime</code> is set, 
+then it prints the error to the stream.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#upDownError" data-type="Method" class="code">upDownError</a></td>
+    <td><span>Deprecated in Twisted 8.0.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#cleanupErrors" data-type="Method" class="code">cleanupErrors</a></td>
+    <td><span>Deprecated in Twisted 8.0.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#done" data-type="Method" class="code">done</a></td>
+    <td><span>Summarize the result of the test run.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#_startTime" data-type="Instance Variable" class="code">_startTime</a></td>
+    <td>The time when the first test was started. It defaults to <code>None</code>,
+which means that no test was actually launched. (type: <code>float</code> or <code>NoneType</code>)</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#_warningCache" data-type="Instance Variable" class="code">_warningCache</a></td>
+    <td>A <code>set</code> of tuples of warning message (file, line, text, 
+category) which have already been written to the output stream during the 
+currently executing test.  This is used to avoid writing duplicates of the 
+same warning to the output stream. (type: <code>set</code>)</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#_publisher" data-type="Instance Variable" class="code">_publisher</a></td>
+    <td>The log publisher which will be observed for warning events. (type: <a href="twisted.python.log.LogPublisher.html"><code>twisted.python.log.LogPublisher</code></a>)</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#_observeWarnings" data-type="Method" class="code">_observeWarnings</a></td>
+    <td><span>Observe warning events and write them to <code>self._stream</code>.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#_write" data-type="Method" class="code">_write</a></td>
+    <td><span>Safely write to the reporter's stream.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#_writeln" data-type="Method" class="code">_writeln</a></td>
+    <td><span>Safely write a line to the reporter's stream. Newline is appended to the
+format string.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#_trimFrames" data-type="Method" class="code">_trimFrames</a></td>
+    <td><span>Trim frames to remove internal paths.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#_formatFailureTraceback" data-type="Method" class="code">_formatFailureTraceback</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#_groupResults" data-type="Method" class="code">_groupResults</a></td>
+    <td><span>Group tests together based on their results.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#_printResults" data-type="Method" class="code">_printResults</a></td>
+    <td><span>Print a group of errors to the stream.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#_printExpectedFailure" data-type="Method" class="code">_printExpectedFailure</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#_printUnexpectedSuccess" data-type="Method" class="code">_printUnexpectedSuccess</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#_printErrors" data-type="Method" class="code">_printErrors</a></td>
+    <td><span>Print all of the non-success results to the stream in full.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#_getSummary" data-type="Method" class="code">_getSummary</a></td>
+    <td><span>Return a formatted count of tests status results.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.Reporter.html#_printSummary" data-type="Method" class="code">_printSummary</a></td>
+    <td><span>Print a line summarising the test results to the stream.</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.trial.reporter.TestResult.html" data-type="Class" class="code">TestResult</a>:
+          </p>
+          <table class="children sortable" id="id3108">
+  
+  <tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.trial.reporter.TestResult.html#successes" data-type="Instance Variable" class="code">successes</a></td>
+    <td>count the number of successes achieved by the test run. (type: <code>int</code>)</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.TestResult.html#__repr__" data-type="Method" class="code">__repr__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.TestResult.html#stopTest" data-type="Method" class="code">stopTest</a></td>
+    <td><span>This must be called after the given test is completed.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.TestResult.html#addSkip" data-type="Method" class="code">addSkip</a></td>
+    <td><span>Report that the given test was skipped.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.TestResult.html#addUnexpectedSuccess" data-type="Method" class="code">addUnexpectedSuccess</a></td>
+    <td><span>Report that the given test succeeded against expectations.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.TestResult.html#addExpectedFailure" data-type="Method" class="code">addExpectedFailure</a></td>
+    <td><span>Report that the given test failed, and was expected to do so.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.TestResult.html#addSuccess" data-type="Method" class="code">addSuccess</a></td>
+    <td><span>Report that the given test succeeded.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.TestResult.html#wasSuccessful" data-type="Method" class="code">wasSuccessful</a></td>
+    <td><span>Report whether or not this test suite was successful or not.</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.TestResult.html#_getTime" data-type="Method" class="code">_getTime</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.reporter.TestResult.html#_getFailure" data-type="Method" class="code">_getFailure</a></td>
+    <td><span>Convert a <code>sys.exc_info()</code>-style tuple to a <a href="twisted.python.failure.Failure.html"><code>Failure</code></a>, if 
+necessary.</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable private">
+  
+  <a name="twisted.trial.reporter.Reporter._startTime">
+    
+  </a>
+  <a name="_startTime">
+    
+  </a>
+  <div class="functionHeader">
+    _startTime =
+  </div>
+  <div class="functionBody">
+    The time when the first test was started. It defaults to <code>None</code>,
+which means that no test was actually launched. (type: <code>float</code> or <code>NoneType</code>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.trial.reporter.Reporter._warningCache">
+    
+  </a>
+  <a name="_warningCache">
+    
+  </a>
+  <div class="functionHeader">
+    _warningCache =
+  </div>
+  <div class="functionBody">
+    A <code>set</code> of tuples of warning message (file, line, text, 
+category) which have already been written to the output stream during the 
+currently executing test.  This is used to avoid writing duplicates of the 
+same warning to the output stream. (type: <code>set</code>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.trial.reporter.Reporter._publisher">
+    
+  </a>
+  <a name="_publisher">
+    
+  </a>
+  <div class="functionHeader">
+    _publisher =
+  </div>
+  <div class="functionBody">
+    The log publisher which will be observed for warning events. (type: <a href="twisted.python.log.LogPublisher.html"><code>twisted.python.log.LogPublisher</code></a>)
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.trial.reporter.Reporter.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, stream=sys.stdout, tbformat='default', realtime=False, publisher=None):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/trial/reporter.py#L360">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.trial.reporter.TestResult.html#__init__" data-type="Method" class="code">twisted.trial.reporter.TestResult.__init__</a></div><div class="interfaceinfo">overridden in <a href="twisted.trial.reporter.TreeReporter.html" data-type="Class" class="code">twisted.trial.reporter.TreeReporter</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.trial.reporter.Reporter._observeWarnings">
+    
+  </a>
+  <a name="_observeWarnings">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _observeWarnings(self, event):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/trial/reporter.py#L375">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Observe warning events and write them to <code>self._stream</code>.</p>
+<p>This method is a log observer which will be registered with 
+<code>self._publisher.addObserver</code>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">event</td><td>A <code>dict</code> from the logging system.  If it has a 
+<code>'warning'</code> key, a logged warning will be extracted from it and 
+possibly written to <code>self.stream</code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.trial.reporter.Reporter.startTest">
+    
+  </a>
+  <a name="startTest">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    startTest(self, test):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/trial/reporter.py#L395">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.trial.itrial.IReporter.html#startTest" data-type="Method" class="code">twisted.trial.itrial.IReporter</a></div><div class="interfaceinfo">overrides <a href="twisted.trial.reporter.TestResult.html#startTest" data-type="Method" class="code">twisted.trial.reporter.TestResult.startTest</a></div><div class="interfaceinfo">overridden in <a href="twisted.trial.reporter.TreeReporter.html" data-type="Class" class="code">twisted.trial.reporter.TreeReporter</a>, <a href="twisted.trial.reporter.VerboseTextReporter.html" data-type="Class" class="code">twisted.trial.reporter.VerboseTextReporter</a></div>
+    <div><p>Called when a test begins to run. Records the time when it was first 
+called and resets the warning cache.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">test</td><td><a href="twisted.trial.itrial.ITestCase.html"><code>ITestCase</code></a></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.trial.reporter.Reporter.addFailure">
+    
+  </a>
+  <a name="addFailure">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addFailure(self, test, fail):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/trial/reporter.py#L408">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.trial.itrial.IReporter.html#addFailure" data-type="Method" class="code">twisted.trial.itrial.IReporter</a></div><div class="interfaceinfo">overrides <a href="twisted.trial.reporter.TestResult.html#addFailure" data-type="Method" class="code">twisted.trial.reporter.TestResult.addFailure</a></div><div class="interfaceinfo">overridden in <a href="twisted.trial.reporter.TextReporter.html" data-type="Class" class="code">twisted.trial.reporter.TextReporter</a>, <a href="twisted.trial.reporter.TreeReporter.html" data-type="Class" class="code">twisted.trial.reporter.TreeReporter</a>, <a href="twisted.trial.reporter.VerboseTextReporter.html" data-type="Class" class="code">twisted.trial.reporter.VerboseTextReporter</a></div>
+    <div><p>Called when a test fails. If <code>realtime</code> is set, then it 
+prints the error to the stream.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">test</td><td><a href="twisted.trial.itrial.ITestCase.html"><code>ITestCase</code></a> 
+that failed.</td></tr><tr><td></td><td class="fieldArg">fail</td><td><a href="twisted.python.failure.Failure.html"><code>failure.Failure</code></a>
+containing the error.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.trial.reporter.Reporter.addError">
+    
+  </a>
+  <a name="addError">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addError(self, test, error):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/trial/reporter.py#L422">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.trial.itrial.IReporter.html#addError" data-type="Method" class="code">twisted.trial.itrial.IReporter</a></div><div class="interfaceinfo">overrides <a href="twisted.trial.reporter.TestResult.html#addError" data-type="Method" class="code">twisted.trial.reporter.TestResult.addError</a></div><div class="interfaceinfo">overridden in <a href="twisted.trial.reporter.TextReporter.html" data-type="Class" class="code">twisted.trial.reporter.TextReporter</a>, <a href="twisted.trial.reporter.TreeReporter.html" data-type="Class" class="code">twisted.trial.reporter.TreeReporter</a>, <a href="twisted.trial.reporter.VerboseTextReporter.html" data-type="Class" class="code">twisted.trial.reporter.VerboseTextReporter</a></div>
+    <div><p>Called when a test raises an error. If <code>realtime</code> is set, 
+then it prints the error to the stream.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">test</td><td><a href="twisted.trial.itrial.ITestCase.html"><code>ITestCase</code></a> 
+that raised the error.</td></tr><tr><td></td><td class="fieldArg">error</td><td><a href="twisted.python.failure.Failure.html"><code>failure.Failure</code></a>
+containing the error.</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.trial.reporter.Reporter._write">
+    
+  </a>
+  <a name="_write">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _write(self, format, *args):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/trial/reporter.py#L437">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.trial.reporter.TreeReporter.html" data-type="Class" class="code">twisted.trial.reporter.TreeReporter</a></div>
+    <div><p>Safely write to the reporter's stream.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">format</td><td>A format string to write.</td></tr><tr><td></td><td class="fieldArg">*args</td><td>The arguments for the format string.</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.trial.reporter.Reporter._writeln">
+    
+  </a>
+  <a name="_writeln">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _writeln(self, format, *args):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/trial/reporter.py#L453">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Safely write a line to the reporter's stream. Newline is appended to the
+format string.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">format</td><td>A format string to write.</td></tr><tr><td></td><td class="fieldArg">*args</td><td>The arguments for the format string.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.trial.reporter.Reporter.upDownError">
+    
+  </a>
+  <a name="upDownError">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    upDownError(self, method, error, warn, printStatus):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/trial/reporter.py#L465">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.trial.itrial.IReporter.html#upDownError" data-type="Method" class="code">twisted.trial.itrial.IReporter</a></div><div class="interfaceinfo">overridden in <a href="twisted.trial.reporter.TreeReporter.html" data-type="Class" class="code">twisted.trial.reporter.TreeReporter</a></div>
+    <div><p>Deprecated in Twisted 8.0.</p>
+<p>Called when an error occurs in a setUp* or tearDown* method</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">warn</td><td>indicates whether or not the reporter should emit a warning about the error (type: Boolean)</td></tr><tr><td></td><td class="fieldArg">printStatus</td><td>indicates whether or not the reporter should print the name of the method 
+and the status message appropriate for the type of error (type: Boolean)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.trial.reporter.Reporter.cleanupErrors">
+    
+  </a>
+  <a name="cleanupErrors">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    cleanupErrors(self, errs):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/trial/reporter.py#L475">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.trial.itrial.IReporter.html#cleanupErrors" data-type="Method" class="code">twisted.trial.itrial.IReporter</a></div><div class="interfaceinfo">overridden in <a href="twisted.trial.reporter.TreeReporter.html" data-type="Class" class="code">twisted.trial.reporter.TreeReporter</a></div>
+    <div><p>Deprecated in Twisted 8.0.</p>
+<p>Called when the reactor has been left in a 'dirty' state</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">errs</td><td>a list of <a href="twisted.python.failure.Failure.html"><code>twisted.python.failure.Failure</code></a>s</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.trial.reporter.Reporter._trimFrames">
+    
+  </a>
+  <a name="_trimFrames">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _trimFrames(self, frames):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/trial/reporter.py#L482">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Trim frames to remove internal paths.</p>
+<p>When a <code>SynchronousTestCase</code> method fails synchronously, the 
+stack looks like this:</p>
+<ul>
+  <li>
+    [0]: <code>SynchronousTestCase._run</code>
+  </li>
+  <li>
+    [1]: <code>util.runWithWarningsSuppressed</code>
+  </li>
+  <li>
+    [2:-2]: code in the test method which failed
+  </li>
+  <li>
+    [-1]: <code>_synctest.fail</code>
+  </li>
+</ul>
+<p>When a <code>TestCase</code> method fails synchronously, the stack looks
+like this:</p>
+<ul>
+  <li>
+    [0]: <code>defer.maybeDeferred</code>
+  </li>
+  <li>
+    [1]: <code>utils.runWithWarningsSuppressed</code>
+  </li>
+  <li>
+    [2]: <code>utils.runWithWarningsSuppressed</code>
+  </li>
+  <li>
+    [3:-2]: code in the test method which failed
+  </li>
+  <li>
+    [-1]: <code>_synctest.fail</code>
+  </li>
+</ul>
+<p>When a method fails inside a <code>Deferred</code> (i.e., when the test 
+method returns a <code>Deferred</code>, and that <code>Deferred</code>'s 
+errback fires), the stack captured inside the resulting 
+<code>Failure</code> looks like this:</p>
+<ul>
+  <li>
+    [0]: <code>defer.Deferred._runCallbacks</code>
+  </li>
+  <li>
+    [1:-2]: code in the testmethod which failed
+  </li>
+  <li>
+    [-1]: <code>_synctest.fail</code>
+  </li>
+</ul>
+<p>As a result, we want to trim either [maybeDeferred, runWWS, runWWS] or 
+[Deferred._runCallbacks] or [SynchronousTestCase._run, runWWS] from the 
+front, and trim the [unittest.fail] from the end.</p>
+<p>There is also another case, when the test method is badly defined and 
+contains extra arguments.</p>
+<p>If it doesn't recognize one of these cases, it just returns the original
+frames.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">frames</td><td>The <code>list</code> of frames from the test failure.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The <code>list</code> of frames to display.</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.trial.reporter.Reporter._formatFailureTraceback">
+    
+  </a>
+  <a name="_formatFailureTraceback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _formatFailureTraceback(self, fail):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/trial/reporter.py#L559">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.trial.reporter.Reporter._groupResults">
+    
+  </a>
+  <a name="_groupResults">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _groupResults(self, results, formatter):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/trial/reporter.py#L569">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Group tests together based on their results.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">results</td><td>An iterable of tuples of two or more elements.  The first element of each 
+tuple is a test case.  The remaining elements describe the outcome of that 
+test case.</td></tr><tr><td></td><td class="fieldArg">formatter</td><td>A callable which turns a test case result into a string.  The elements 
+after the first of the tuples in <code>results</code> will be passed as 
+positional arguments to <code>formatter</code>.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A <code>list</code> of two-tuples.  The first element of each tuple is a 
+unique string describing one result from at least one of the test cases in 
+<code>results</code>.  The second element is a list of the test cases which
+had that result.</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.trial.reporter.Reporter._printResults">
+    
+  </a>
+  <a name="_printResults">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _printResults(self, flavor, errors, formatter):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/trial/reporter.py#L596">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Print a group of errors to the stream.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">flavor</td><td>A string indicating the kind of error (e.g. 'TODO').</td></tr><tr><td></td><td class="fieldArg">errors</td><td>A list of errors, often <a href="twisted.python.failure.Failure.html"><code>failure.Failure</code></a>s,
+but sometimes 'todo' errors.</td></tr><tr><td></td><td class="fieldArg">formatter</td><td>A callable that knows how to format the errors.</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.trial.reporter.Reporter._printExpectedFailure">
+    
+  </a>
+  <a name="_printExpectedFailure">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _printExpectedFailure(self, error, todo):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/trial/reporter.py#L614">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.trial.reporter.Reporter._printUnexpectedSuccess">
+    
+  </a>
+  <a name="_printUnexpectedSuccess">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _printUnexpectedSuccess(self, todo):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/trial/reporter.py#L619">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.trial.reporter.Reporter._printErrors">
+    
+  </a>
+  <a name="_printErrors">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _printErrors(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/trial/reporter.py#L626">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.trial.reporter.MinimalReporter.html" data-type="Class" class="code">twisted.trial.reporter.MinimalReporter</a></div>
+    <div><p>Print all of the non-success results to the stream in full.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.trial.reporter.Reporter._getSummary">
+    
+  </a>
+  <a name="_getSummary">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _getSummary(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/trial/reporter.py#L642">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Return a formatted count of tests status results.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.trial.reporter.Reporter._printSummary">
+    
+  </a>
+  <a name="_printSummary">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _printSummary(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/trial/reporter.py#L658">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.trial.reporter.MinimalReporter.html" data-type="Class" class="code">twisted.trial.reporter.MinimalReporter</a>, <a href="twisted.trial.reporter.TreeReporter.html" data-type="Class" class="code">twisted.trial.reporter.TreeReporter</a></div>
+    <div><p>Print a line summarising the test results to the stream.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.trial.reporter.Reporter.done">
+    
+  </a>
+  <a name="done">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    done(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.3.0/twisted/trial/reporter.py#L670">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.trial.itrial.IReporter.html#done" data-type="Method" class="code">twisted.trial.itrial.IReporter</a></div><div class="interfaceinfo">overrides <a href="twisted.trial.reporter.TestResult.html#done" data-type="Method" class="code">twisted.trial.reporter.TestResult.done</a></div>
+    <div><p>Summarize the result of the test run.</p>
+<p>The summary includes a report of all of the errors, todos, skips and so 
+forth that occurred during the run. It also includes the number of tests 
+that were run and how long it took to run them (not including load 
+time).</p>
+<p>Expects that <code>_printErrors</code>, <code>_writeln</code>, 
+<code>_write</code>, <code>_printSummary</code> and <code>_separator</code>
+are all implemented.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2015-08-04 16:20:17.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="http://www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

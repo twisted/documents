@@ -1,0 +1,161 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.words.protocols.jabber.client.XMPPAuthenticator&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">Class t.w.p.j.c.XMPPAuthenticator(<a href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html">xmlstream.ConnectAuthenticator</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.words.html">words</a>.<a href="twisted.words.protocols.html">protocols</a>.<a href="twisted.words.protocols.jabber.html">jabber</a>.<a href="twisted.words.protocols.jabber.client.html">client</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/words/protocols/jabber/client.py#L306">View Source</a>
+      <a href="classIndex.html#twisted.words.protocols.jabber.client.XMPPAuthenticator">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div><p>Initializes an XmlStream connecting to an XMPP server as a Client.</p>
+<p>This authenticator performs the initialization steps needed to start 
+exchanging XML stanzas with an XMPP server as an XMPP client. It checks if 
+the server advertises XML stream version 1.0, negotiates TLS (when 
+available), performs SASL authentication, binds a resource and establishes 
+a session.</p>
+<p>Upon successful stream initialization, the 
+<code>xmlstream.STREAM_AUTHD_EVENT</code> event will be dispatched through 
+the XML stream object. Otherwise, the 
+<code>xmlstream.INIT_FAILED_EVENT</code> event will be dispatched with a 
+failure object.</p>
+After inspection of the failure, initialization can then be restarted by
+calling <code>initializeStream</code>. For example, in case of 
+authentication failure, a user may be given the opportunity to input the 
+correct password. By setting the <code>password</code> instance variable 
+and restarting initialization, the stream authentication step is then 
+retried, and subsequent steps are performed if succesful.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">jid</td><td>Jabber ID to authenticate with. This may contain a resource part, as a 
+suggestion to the server for resource binding. A server may override this, 
+though. If the resource part is left off, the server will generate a unique
+resource identifier. The server will always return the full Jabber ID in 
+the resource binding step, and this is stored in this instance 
+variable.
+ (type: <a 
+href="twisted.words.protocols.jabber.jid.JID.html"><code>jid.JID</code></a>
+)</td></tr><tr><td></td><td class="fieldArg">password</td><td>password to be used during SASL authentication.
+ (type: <code>unicode</code>
+)</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1035">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.jabber.client.XMPPAuthenticator.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.jabber.client.XMPPAuthenticator.html#associateWithStream">associateWithStream</a></td>
+    <td><span>Register with the XML stream.
+</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html">ConnectAuthenticator</a>:
+        </p>
+        <table class="children sortable" id="id1036">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html#connectionMade">connectionMade</a></td>
+    <td><span>Called by the XmlStream when the underlying socket connection is
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html#initializeStream">initializeStream</a></td>
+    <td><span>Perform stream initialization procedures.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html#streamStarted">streamStarted</a></td>
+    <td><span>Called by the XmlStream when the stream has started.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.words.protocols.jabber.client.XMPPAuthenticator.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, jid, password):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/words/protocols/jabber/client.py#L342" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html#__init__">twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.__init__</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.jabber.client.XMPPAuthenticator.associateWithStream">
+    
+  </a>
+  <a name="associateWithStream">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    associateWithStream(self, xs):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/words/protocols/jabber/client.py#L348" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.words.protocols.jabber.xmlstream.Authenticator.html#associateWithStream">twisted.words.protocols.jabber.xmlstream.Authenticator.associateWithStream</a></div>
+    <div><p>Register with the XML stream.</p>
+Populates stream's list of initializers, along with their requiredness. 
+This list is used by <a 
+href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html#initializeStream"><code>ConnectAuthenticator.initializeStream</code></a>
+to perform the initalization steps.
+<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2009-01-01 15:43:32.
+    </address>
+  </body>
+</html>

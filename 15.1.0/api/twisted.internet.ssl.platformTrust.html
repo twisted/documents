@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.ssl.platformTrust : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="function">t.i.s.platformTrust() : function documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a>.<a href="twisted.internet.ssl.html">ssl</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_sslverify.py#L962">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div class="docstring">
+      <div><p>Attempt to discover a set of trusted certificate authority certificates 
+(or, in other words: trust roots, or root certificates) whose trust is 
+managed and updated by tools outside of Twisted.</p>
+<p>If you are writing any client-side TLS code with Twisted, you should use
+this as the <code>trustRoot</code> argument to <a href="twisted.internet.ssl.CertificateOptions.html"><code>CertificateOptions</code></a>.</p>
+<p>The result of this function should be like the up-to-date list of 
+certificates in a web browser.  When developing code that uses 
+<code>platformTrust</code>, you can think of it that way.  However, the 
+choice of which certificate authorities to trust is never Twisted's 
+responsibility. Unless you're writing a very unusual application or 
+library, it's not your code's responsibility either.  The user may use 
+platform-specific tools for defining which server certificates should be 
+trusted by programs using TLS. The purpose of using this API is to respect 
+that decision as much as possible.</p>
+<p>This should be a set of trust settings most appropriate for 
+<i>client</i> TLS connections; i.e. those which need to verify a server's 
+authenticity.  You should probably use this by default for any client TLS 
+connection that you create.  For servers, however, client certificates are 
+typically not verified; or, if they are, their verification will depend on 
+a custom, application-specific certificate authority.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">an appropriate trust settings object for your platform. (type: <a href="twisted.internet._sslverify.IOpenSSLTrustRoot.html"><code>IOpenSSLTrustRoot</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">NotImplementedError</td><td>if this platform is not yet supported by Twisted.  At present, only OpenSSL
+is supported.</td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">14.0</td></tr><tr class="fieldStart"><td class="fieldName">Note</td><td colspan="2">Currently, <a href="twisted.internet.ssl.html#platformTrust"><code>platformTrust</code></a>
+depends entirely upon your OpenSSL build supporting a set of "<a href="twisted.internet.ssl.OpenSSLDefaultPaths.html"><code>default verify 
+paths</code></a>" which correspond to certificate authority trust 
+roots.  Unfortunately, whether this is true of your system is both outside 
+of Twisted's control and difficult (if not impossible) for Twisted to 
+detect automatically.
+<p>Nevertheless, this ought to work as desired by default on:</p>
+<ul>
+  <li>
+    Ubuntu Linux machines with the <a href="https://launchpad.net/ubuntu/+source/ca-certificates" target="_top">ca-certificates</a> package installed,
+  </li>
+  <li>
+    Mac OS X when using the system-installed version of OpenSSL (i.e. 
+    <i>not</i> one installed via MacPorts or Homebrew),
+  </li>
+  <li>
+    any build of OpenSSL which has had certificate authority certificates 
+    installed into its default verify paths (by default, 
+    <code>/usr/local/ssl/certs</code> if you've built your own OpenSSL), or
+  </li>
+  <li>
+    any process where the <code>SSL_CERT_FILE</code> environment variable 
+    is set to the path of a file containing your desired CA certificates 
+    bundle.
+  </li>
+</ul>
+<p>Hopefully soon, this API will be updated to use more sophisticated 
+trust-root discovery mechanisms.  Until then, you can follow tickets in the
+Twisted tracker for progress on this implementation on <a href="https://twistedmatrix.com/trac/ticket/6371" target="_top">Microsoft 
+Windows</a>, <a href="https://twistedmatrix.com/trac/ticket/6372" target="_top">Mac OS X</a>, and <a href="https://twistedmatrix.com/trac/ticket/6934" target="_top">a fallback 
+for other platforms which do not have native trust management 
+tools</a>.</p></td></tr></table></div>
+    </div>
+
+    
+    <div id="splitTables">
+      
+      
+    </div>
+    
+    
+
+    
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://launchpad.net/pydoctor/">pydoctor</a> at 2015-04-13 15:26:48.
+    </address>
+  </body>
+</html>

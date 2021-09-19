@@ -1,0 +1,126 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.spread.flavors.ViewPoint&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.s.f.ViewPoint(<a href="twisted.spread.flavors.Referenceable.html">Referenceable</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.spread.flavors.html">twisted.spread.flavors</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.spread.flavors.ViewPoint">View In Hierarchy</a>
+    </p>
+    <div></div>
+    <div><p>I act as an indirect reference to an object accessed through a <a 
+href="twisted.spread.pb.Perspective.html">pb.Perspective</a>.</p>
+<p>Simply put, I combine an object with a perspective so that when a peer 
+calls methods on the object I refer to, the method will be invoked with 
+that perspective as a first argument, so that it can know who is calling 
+it.</p>
+<p>While <a href="twisted.spread.flavors.Viewable.html">Viewable</a> 
+objects will be converted to ViewPoints by default when they are returned 
+from or sent as arguments to a remote method, any object may be manually 
+proxied as well. (XXX: Now that this class is no longer named 
+<code>Proxy</code>, this is the only occourance of the term 'proxied' in 
+this docstring, and may be unclear.)</p>
+This can be useful when dealing with <a 
+href="twisted.spread.pb.Perspective.html">pb.Perspective</a>s, <a 
+href="twisted.spread.flavors.Copyable.html">Copyable</a>s, and <a 
+href="twisted.spread.flavors.Cacheable.html">Cacheable</a>s. It is legal 
+to implement a method as such on a perspective:
+<pre class="literalblock">
+| def perspective_getViewPointForOther(self, name):
+|     defr = self.service.getPerspectiveRequest(name)
+|     defr.addCallbacks(lambda x, self=self: ViewPoint(self, x), log.msg)
+|     return defr
+</pre>
+<p>This will allow you to have references to Perspective objects in two 
+different ways. One is through the initial 'attach' call -- each peer 
+will have a <a 
+href="twisted.spread.pb.RemoteReference.html">pb.RemoteReference</a> to 
+their perspective directly. The other is through this method; each peer 
+can get a <a 
+href="twisted.spread.pb.RemoteReference.html">pb.RemoteReference</a> to 
+all other perspectives in the service; but that <a 
+href="twisted.spread.pb.RemoteReference.html">pb.RemoteReference</a> will 
+be to a <a href="twisted.spread.flavors.ViewPoint.html">ViewPoint</a>, 
+not directly to the object.</p>
+The practical offshoot of this is that you can implement 2 varieties 
+of remotely callable methods on this Perspective; view_xxx and 
+<code>perspective_xxx</code>. <code>view_xxx</code> methods will follow 
+the rules for ViewPoint methods (see ViewPoint.<a 
+href="twisted.spread.flavors.ViewPoint.html#twisted.spread.flavors.ViewPoint.remoteMessageReceived">remoteMessageReceived</a>), 
+and <code>perspective_xxx</code> methods will follow the rules for 
+Perspective methods.
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.flavors.ViewPoint.__init__">__init__</a></td>
+          <td><span>Initialize me with a Perspective and an Object.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.flavors.ViewPoint.processUniqueID">processUniqueID</a></td>
+          <td><span>Return an ID unique to a proxy for this perspective+object 
+combination.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.flavors.ViewPoint.remoteMessageReceived">remoteMessageReceived</a></td>
+          <td><span>A remote message has been received. Dispatch it appropriately.
+</span></td>
+        </tr></table>
+    
+    
+        <p>
+          Inherited from <span><a href="twisted.spread.flavors.Referenceable.html">Referenceable</a></span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.spread.flavors.Referenceable.html#twisted.spread.flavors.Referenceable.jellyFor">jellyFor</a></td>
+            <td><span>(internal)
+</span></td>
+          </tr></table>
+      
+        <p>
+          Inherited from <span><a href="twisted.spread.jelly.Jellyable.html">Jellyable</a> (via <a href="twisted.spread.flavors.Referenceable.html">Referenceable</a>, <a href="twisted.spread.flavors.Serializable.html">Serializable</a>)</span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.spread.jelly.Jellyable.html#twisted.spread.jelly.Jellyable.getStateFor">getStateFor</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr></table>
+      
+    <div class="function">
+        <a name="twisted.spread.flavors.ViewPoint.__init__"></a>
+        <div class="functionHeader">
+          def <span>__init__(self, perspective, object):</span>
+        </div>
+        <div class="functionBody"><div>Initialize me with a Perspective and an Object.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.spread.flavors.ViewPoint.processUniqueID"></a>
+        <div class="functionHeader">
+          def <span>processUniqueID(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.spread.flavors.Serializable.html#twisted.spread.flavors.Serializable.processUniqueID">twisted.spread.flavors.Serializable.processUniqueID</a></div><div>Return an ID unique to a proxy for this perspective+object 
+combination.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.spread.flavors.ViewPoint.remoteMessageReceived"></a>
+        <div class="functionHeader">
+          def <span>remoteMessageReceived(self, broker, message, args, kw):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.spread.flavors.Referenceable.html#twisted.spread.flavors.Referenceable.remoteMessageReceived">twisted.spread.flavors.Referenceable.remoteMessageReceived</a></div><div><p>A remote message has been received. Dispatch it appropriately.</p>
+The default implementation is to dispatch to a method called 
+'<code>view_messagename</code>' to my Object and call it on my object 
+with the same arguments, modified by inserting my Perspective as the 
+first argument.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

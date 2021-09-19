@@ -1,0 +1,768 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet._glibbase.GlibReactorBase : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">t.i._.GlibReactorBase(<a href="twisted.internet.posixbase.PosixReactorBase.html">posixbase.PosixReactorBase</a>, <a href="twisted.internet.posixbase._PollLikeMixin.html">posixbase._PollLikeMixin</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a>.<a href="twisted.internet._glibbase.html">_glibbase</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L66">View Source</a>
+      <a href="classIndex.html#twisted.internet._glibbase.GlibReactorBase">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known subclasses: <a href="twisted.internet.gireactor.GIReactor.html">twisted.internet.gireactor.GIReactor</a>, <a href="twisted.internet.gtk2reactor.Gtk2Reactor.html">twisted.internet.gtk2reactor.Gtk2Reactor</a></p><p>Implements interfaces: <a href="twisted.internet.interfaces.IReactorFDSet.html">twisted.internet.interfaces.IReactorFDSet</a></p>
+    </div>
+    <div class="docstring">
+      <div><p>Base class for GObject event loop reactors.</p>
+<p>Notification for I/O events (reads and writes on file descriptors) is 
+done by the gobject-based event loop. File descriptors are registered with 
+gobject with the appropriate flags for read/write/disconnect 
+notification.</p>
+<p>Time-based events, the results of <code>callLater</code> and 
+<code>callFromThread</code>, are handled differently. Rather than 
+registering each event with gobject, a single gobject timeout is registered
+for the earliest scheduled event, the output of 
+<code>reactor.timeout()</code>. For example, if there are timeouts in 1, 2 
+and 3.4 seconds, a single timeout is registered for 1 second in the future.
+When this timeout is hit, <code>_simulate</code> is called, which calls the
+appropriate Twisted-level handlers, and a new timeout is added to gobject 
+by the <code>_reschedule</code> method.</p>
+<p>To handle <code>callFromThread</code> events, we use a custom waker that
+calls <code>_simulate</code> whenever it wakes up.</p><table class="fieldTable"></table></div>
+    </div>
+
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id526">
+  
+  
+  <tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#input_add">input_add</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#addReader">addReader</a></td>
+    <td><span>Add a <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+for monitoring of data available to read.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#addWriter">addWriter</a></td>
+    <td><span>Add a <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+for monitoring ability to write data.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#getReaders">getReaders</a></td>
+    <td><span>Retrieve the list of current <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+monitored for reading.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#getWriters">getWriters</a></td>
+    <td><span>Retrieve the list of current <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+monitored for writing.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#removeAll">removeAll</a></td>
+    <td><span>Remove monitoring for all registered <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>s.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#removeReader">removeReader</a></td>
+    <td><span>Stop monitoring the given <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+for reading.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#removeWriter">removeWriter</a></td>
+    <td><span>Stop monitoring the given <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+for writing.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#iterate">iterate</a></td>
+    <td><span>One iteration of the event loop, for trial's use.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#crash">crash</a></td>
+    <td><span>Crash the reactor.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#stop">stop</a></td>
+    <td><span>Stop the reactor.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#run">run</a></td>
+    <td><span>Run the reactor.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#callLater">callLater</a></td>
+    <td><span>Schedule a <code>DelayedCall</code>.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#_sources">_sources</a></td>
+    <td>A dictionary mapping <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+instances to GSource handles.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#_reads">_reads</a></td>
+    <td>A set of <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+instances currently monitored for reading.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#_writes">_writes</a></td>
+    <td>A set of <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+instances currently monitored for writing.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#_simtag">_simtag</a></td>
+    <td>A GSource handle for the next <a href="twisted.internet._glibbase.PortableGlibReactorBase.html#simulate"><code>simulate</code></a>
+call.</td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#_handleSignals">_handleSignals</a></td>
+    <td><span>Extend the basic signal handling logic to also support handling SIGCHLD 
+to know when to try to reap child processes.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#_ioEventCallback">_ioEventCallback</a></td>
+    <td><span>Called by event loop when an I/O event occurs.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#_add">_add</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#_remove">_remove</a></td>
+    <td><span>Remove monitoring the given <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+for either reading or writing. If it's still monitored for the other 
+operation, we re-register the <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+for only that operation.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#_reschedule">_reschedule</a></td>
+    <td><span>Schedule a glib timeout for <code>_simulate</code>.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._glibbase.GlibReactorBase.html#_simulate">_simulate</a></td>
+    <td><span>Run timers, and then reschedule glib timeout for next scheduled 
+event.</span></td>
+  </tr>
+</table>
+      <invisible>
+        <p>
+          Inherited from <a href="twisted.internet.posixbase._PollLikeMixin.html">_PollLikeMixin</a>:
+        </p>
+        <table class="children sortable" id="id531">
+  
+  
+  <tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.posixbase._PollLikeMixin.html#_doReadOrWrite">_doReadOrWrite</a></td>
+    <td><span>fd is available for read or write, do the work and raise errors if 
+necessary.</span></td>
+  </tr>
+</table>
+      </invisible><invisible>
+        <p>
+          Inherited from <a href="twisted.internet.posixbase._PollLikeMixin.html">_PollLikeMixin</a>:
+        </p>
+        <table class="children sortable" id="id531">
+  
+  
+  <tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.posixbase._PollLikeMixin.html#_doReadOrWrite">_doReadOrWrite</a></td>
+    <td><span>fd is available for read or write, do the work and raise errors if 
+necessary.</span></td>
+  </tr>
+</table>
+      </invisible><invisible>
+        <p>
+          Inherited from <a href="twisted.internet.posixbase._PollLikeMixin.html">_PollLikeMixin</a>:
+        </p>
+        <table class="children sortable" id="id531">
+  
+  
+  <tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.posixbase._PollLikeMixin.html#_doReadOrWrite">_doReadOrWrite</a></td>
+    <td><span>fd is available for read or write, do the work and raise errors if 
+necessary.</span></td>
+  </tr>
+</table>
+      </invisible><invisible>
+        <p>
+          Inherited from <a href="twisted.internet.posixbase._PollLikeMixin.html">_PollLikeMixin</a>:
+        </p>
+        <table class="children sortable" id="id531">
+  
+  
+  <tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.posixbase._PollLikeMixin.html#_doReadOrWrite">_doReadOrWrite</a></td>
+    <td><span>fd is available for read or write, do the work and raise errors if 
+necessary.</span></td>
+  </tr>
+</table>
+      </invisible><invisible>
+        <p>
+          Inherited from <a href="twisted.internet.posixbase._PollLikeMixin.html">_PollLikeMixin</a>:
+        </p>
+        <table class="children sortable" id="id531">
+  
+  
+  <tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.posixbase._PollLikeMixin.html#_doReadOrWrite">_doReadOrWrite</a></td>
+    <td><span>fd is available for read or write, do the work and raise errors if 
+necessary.</span></td>
+  </tr>
+</table>
+      </invisible>
+    </div>
+    
+    
+
+    <div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase._sources">
+    
+  </a>
+  <a name="_sources">
+    
+  </a>
+  <div class="functionHeader">
+    _sources =
+  </div>
+  <div class="functionBody">
+    A dictionary mapping <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+instances to GSource handles.
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase._reads">
+    
+  </a>
+  <a name="_reads">
+    
+  </a>
+  <div class="functionHeader">
+    _reads =
+  </div>
+  <div class="functionBody">
+    A set of <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+instances currently monitored for reading.
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase._writes">
+    
+  </a>
+  <a name="_writes">
+    
+  </a>
+  <div class="functionHeader">
+    _writes =
+  </div>
+  <div class="functionBody">
+    A set of <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+instances currently monitored for writing.
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase._simtag">
+    
+  </a>
+  <a name="_simtag">
+    
+  </a>
+  <div class="functionHeader">
+    _simtag =
+  </div>
+  <div class="functionBody">
+    A GSource handle for the next <a href="twisted.internet._glibbase.PortableGlibReactorBase.html#simulate"><code>simulate</code></a>
+call.
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, glib_module, gtk_module, useGtk=False):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L102" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.internet.base.ReactorBase.html#__init__">twisted.internet.base.ReactorBase.__init__</a></div><div class="interfaceinfo">overridden in <a href="twisted.internet.gireactor.GIReactor.html">twisted.internet.gireactor.GIReactor</a>, <a href="twisted.internet.gtk2reactor.Gtk2Reactor.html">twisted.internet.gtk2reactor.Gtk2Reactor</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase._handleSignals">
+    
+  </a>
+  <a name="_handleSignals">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _handleSignals(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L132" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.internet.posixbase.PosixReactorBase.html#_handleSignals">twisted.internet.posixbase.PosixReactorBase._handleSignals</a></div>
+    <div><p>Extend the basic signal handling logic to also support handling SIGCHLD 
+to know when to try to reap child processes.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase.input_add">
+    
+  </a>
+  <a name="input_add">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    input_add(self, source, condition, callback):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L151" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase._ioEventCallback">
+    
+  </a>
+  <a name="_ioEventCallback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _ioEventCallback(self, source, condition):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L165" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Called by event loop when an I/O event occurs.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase._add">
+    
+  </a>
+  <a name="_add">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _add(self, source, primary, other, primaryFlag, otherFlag):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L174" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Add the given <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+for monitoring either for reading or writing. If the file is already 
+monitored for the other operation, we delete the previous registration and 
+re-register it for both reading and writing.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase.addReader">
+    
+  </a>
+  <a name="addReader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addReader(self, reader):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L192" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#addReader">twisted.internet.interfaces.IReactorFDSet</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.base.ReactorBase.html#addReader">twisted.internet.base.ReactorBase.addReader</a></div><div class="interfaceinfo">overridden in <a href="twisted.manhole.gladereactor.GladeReactor.html">twisted.manhole.gladereactor.GladeReactor</a></div>
+    <div><p>Add a <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+for monitoring of data available to read.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase.addWriter">
+    
+  </a>
+  <a name="addWriter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addWriter(self, writer):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L200" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#addWriter">twisted.internet.interfaces.IReactorFDSet</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.base.ReactorBase.html#addWriter">twisted.internet.base.ReactorBase.addWriter</a></div><div class="interfaceinfo">overridden in <a href="twisted.manhole.gladereactor.GladeReactor.html">twisted.manhole.gladereactor.GladeReactor</a></div>
+    <div><p>Add a <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+for monitoring ability to write data.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase.getReaders">
+    
+  </a>
+  <a name="getReaders">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getReaders(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L208" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#getReaders">twisted.internet.interfaces.IReactorFDSet</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.base.ReactorBase.html#getReaders">twisted.internet.base.ReactorBase.getReaders</a></div>
+    <div><p>Retrieve the list of current <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+monitored for reading.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase.getWriters">
+    
+  </a>
+  <a name="getWriters">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getWriters(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L215" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#getWriters">twisted.internet.interfaces.IReactorFDSet</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.base.ReactorBase.html#getWriters">twisted.internet.base.ReactorBase.getWriters</a></div>
+    <div><p>Retrieve the list of current <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+monitored for writing.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase.removeAll">
+    
+  </a>
+  <a name="removeAll">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeAll(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L222" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#removeAll">twisted.internet.interfaces.IReactorFDSet</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.base.ReactorBase.html#removeAll">twisted.internet.base.ReactorBase.removeAll</a></div>
+    <div><p>Remove monitoring for all registered <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>s.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase._remove">
+    
+  </a>
+  <a name="_remove">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _remove(self, source, primary, other, flags):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L229" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Remove monitoring the given <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+for either reading or writing. If it's still monitored for the other 
+operation, we re-register the <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+for only that operation.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase.removeReader">
+    
+  </a>
+  <a name="removeReader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeReader(self, reader):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L246" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#removeReader">twisted.internet.interfaces.IReactorFDSet</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.base.ReactorBase.html#removeReader">twisted.internet.base.ReactorBase.removeReader</a></div><div class="interfaceinfo">overridden in <a href="twisted.manhole.gladereactor.GladeReactor.html">twisted.manhole.gladereactor.GladeReactor</a></div>
+    <div><p>Stop monitoring the given <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+for reading.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase.removeWriter">
+    
+  </a>
+  <a name="removeWriter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeWriter(self, writer):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L253" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#removeWriter">twisted.internet.interfaces.IReactorFDSet</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.base.ReactorBase.html#removeWriter">twisted.internet.base.ReactorBase.removeWriter</a></div><div class="interfaceinfo">overridden in <a href="twisted.manhole.gladereactor.GladeReactor.html">twisted.manhole.gladereactor.GladeReactor</a></div>
+    <div><p>Stop monitoring the given <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+for writing.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase.iterate">
+    
+  </a>
+  <a name="iterate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    iterate(self, delay=0):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L260" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorCore.html#iterate">twisted.internet.interfaces.IReactorCore</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.base.ReactorBase.html#iterate">twisted.internet.base.ReactorBase.iterate</a></div>
+    <div><p>One iteration of the event loop, for trial's use.</p>
+<p>This is not used for actual reactor runs.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase.crash">
+    
+  </a>
+  <a name="crash">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    crash(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L271" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorCore.html#crash">twisted.internet.interfaces.IReactorCore</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.base.ReactorBase.html#crash">twisted.internet.base.ReactorBase.crash</a></div><div class="interfaceinfo">overridden in <a href="twisted.manhole.gladereactor.GladeReactor.html">twisted.manhole.gladereactor.GladeReactor</a></div>
+    <div><p>Crash the reactor.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase.stop">
+    
+  </a>
+  <a name="stop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    stop(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L279" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorCore.html#stop">twisted.internet.interfaces.IReactorCore</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.base.ReactorBase.html#stop">twisted.internet.base.ReactorBase.stop</a></div>
+    <div><p>Stop the reactor.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase.run">
+    
+  </a>
+  <a name="run">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    run(self, installSignalHandlers=True):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L294" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorCore.html#run">twisted.internet.interfaces.IReactorCore</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.base._SignalReactorMixin.html#run">twisted.internet.base._SignalReactorMixin.run</a></div><div class="interfaceinfo">overridden in <a href="twisted.manhole.gladereactor.GladeReactor.html">twisted.manhole.gladereactor.GladeReactor</a></div>
+    <div><p>Run the reactor.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase.callLater">
+    
+  </a>
+  <a name="callLater">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    callLater(self, *args, **kwargs):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L304" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorTime.html#callLater">twisted.internet.interfaces.IReactorTime</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.base.ReactorBase.html#callLater">twisted.internet.base.ReactorBase.callLater</a></div>
+    <div><p>Schedule a <code>DelayedCall</code>.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase._reschedule">
+    
+  </a>
+  <a name="_reschedule">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _reschedule(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L315" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Schedule a glib timeout for <code>_simulate</code>.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._glibbase.GlibReactorBase._simulate">
+    
+  </a>
+  <a name="_simulate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _simulate(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/internet/_glibbase.py#L329" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Run timers, and then reschedule glib timeout for next scheduled 
+event.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://launchpad.net/pydoctor/">pydoctor</a> at 2015-04-13 15:26:48.
+    </address>
+  </body>
+</html>

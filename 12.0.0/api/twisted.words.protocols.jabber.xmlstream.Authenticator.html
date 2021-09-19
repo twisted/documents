@@ -1,0 +1,230 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.words.protocols.jabber.xmlstream.Authenticator : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.w.p.j.x.Authenticator : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.words.html">words</a>.<a href="twisted.words.protocols.html">protocols</a>.<a href="twisted.words.protocols.jabber.html">jabber</a>.<a href="twisted.words.protocols.jabber.xmlstream.html">xmlstream</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/words/protocols/jabber/xmlstream.py#L60">View Source</a>
+      <a href="classIndex.html#twisted.words.protocols.jabber.xmlstream.Authenticator">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known subclasses: <a href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html">twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator</a>, <a href="twisted.words.protocols.jabber.xmlstream.ListenAuthenticator.html">twisted.words.protocols.jabber.xmlstream.ListenAuthenticator</a></p>
+    </div>
+    <div><p>Base class for business logic of initializing an XmlStream</p>
+<p>Subclass this object to enable an XmlStream to initialize and 
+authenticate to different types of stream hosts (such as clients, 
+components, etc.).</p>
+<p>Rules:</p>
+<ol start="1">
+  <li>
+    The Authenticator MUST dispatch a <code>STREAM_AUTHD_EVENT</code> when 
+    the stream has been completely initialized.
+  </li>
+  <li>
+    The Authenticator SHOULD reset all state information when <a 
+    href="twisted.words.protocols.jabber.xmlstream.Authenticator.html#associateWithStream"><code>associateWithStream</code></a>
+    is called.
+  </li>
+  <li>
+    The Authenticator SHOULD override <a 
+    href="twisted.words.protocols.jabber.xmlstream.Authenticator.html#streamStarted"><code>streamStarted</code></a>,
+    and start initialization there.
+  </li>
+</ol>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">xmlstream</td><td>The XmlStream that needs authentication
+ (type: <a 
+href="twisted.words.protocols.jabber.xmlstream.XmlStream.html"><code>XmlStream</code></a>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Note</td><td colspan="2">the term authenticator is historical. Authenticators perform all steps 
+required to prepare the stream for the exchange of XML stanzas.
+</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id2269">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.jabber.xmlstream.Authenticator.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.jabber.xmlstream.Authenticator.html#connectionMade">connectionMade</a></td>
+    <td><span>Called by the XmlStream when the underlying socket connection is in 
+place.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.jabber.xmlstream.Authenticator.html#streamStarted">streamStarted</a></td>
+    <td><span>Called by the XmlStream when the stream has started.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.jabber.xmlstream.Authenticator.html#associateWithStream">associateWithStream</a></td>
+    <td><span>Called by the XmlStreamFactory when a connection has been made to the 
+requested peer, and an XmlStream object has been instantiated.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.words.protocols.jabber.xmlstream.Authenticator.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/words/protocols/jabber/xmlstream.py#L83" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.words.protocols.jabber.component.ListenComponentAuthenticator.html">twisted.words.protocols.jabber.component.ListenComponentAuthenticator</a>, <a href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html">twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.jabber.xmlstream.Authenticator.connectionMade">
+    
+  </a>
+  <a name="connectionMade">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    connectionMade(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/words/protocols/jabber/xmlstream.py#L87" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html">twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator</a></div>
+    <div>Called by the XmlStream when the underlying socket connection is in 
+place.</p>
+<p>This allows the Authenticator to send an initial root element, if it's 
+connecting, or wait for an inbound root from the peer if it's accepting the
+connection.</p>
+<p>Subclasses can use self.xmlstream.send() to send any initial data to the
+peer.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.jabber.xmlstream.Authenticator.streamStarted">
+    
+  </a>
+  <a name="streamStarted">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    streamStarted(self, rootElement):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/words/protocols/jabber/xmlstream.py#L101" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator.html">twisted.words.protocols.jabber.xmlstream.ConnectAuthenticator</a>, <a href="twisted.words.protocols.jabber.xmlstream.ListenAuthenticator.html">twisted.words.protocols.jabber.xmlstream.ListenAuthenticator</a></div>
+    <div>Called by the XmlStream when the stream has started.</p>
+<p>A stream is considered to have started when the start tag of the root 
+element has been received.</p>
+<p>This examines <code>rootElement</code> to see if there is a version 
+attribute. If absent, <code>0.0</code> is assumed per RFC 3920. 
+Subsequently, the minimum of the version from the received stream header 
+and the value stored in <a 
+href="twisted.words.xish.xmlstream.html"><code>xmlstream</code></a> is 
+taken and put back in {xmlstream}.</p>
+<p>Extensions of this method can extract more information from the stream 
+header and perform checks on them, optionally sending stream errors and 
+closing the stream.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.jabber.xmlstream.Authenticator.associateWithStream">
+    
+  </a>
+  <a name="associateWithStream">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    associateWithStream(self, xmlstream):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/words/protocols/jabber/xmlstream.py#L129" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.words.protocols.jabber.client.BasicAuthenticator.html">twisted.words.protocols.jabber.client.BasicAuthenticator</a>, <a href="twisted.words.protocols.jabber.client.XMPPAuthenticator.html">twisted.words.protocols.jabber.client.XMPPAuthenticator</a>, <a href="twisted.words.protocols.jabber.component.ConnectComponentAuthenticator.html">twisted.words.protocols.jabber.component.ConnectComponentAuthenticator</a>, <a href="twisted.words.protocols.jabber.xmlstream.ListenAuthenticator.html">twisted.words.protocols.jabber.xmlstream.ListenAuthenticator</a></div>
+    <div>Called by the XmlStreamFactory when a connection has been made to the 
+requested peer, and an XmlStream object has been instantiated.</p>
+<p>The default implementation just saves a handle to the new XmlStream.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">xmlstream</td><td>The XmlStream that will be passing events to this Authenticator.
+ (type: <a 
+href="twisted.words.protocols.jabber.xmlstream.XmlStream.html"><code>XmlStream</code></a>
+)</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2012-02-14 18:17:43.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

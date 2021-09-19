@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.protocols.telnet.Telnet : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="apidocs.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>twisted.protocols.telnet.Telnet(<a href="twisted.internet.protocol.Protocol.html" data-type="Class" class="code">protocol.Protocol</a>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.protocols.html" data-type="Package" class="code">protocols</a>.<a href="twisted.protocols.telnet.html" data-type="Module" class="code">telnet</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/protocols/telnet.py#L142">View Source</a>
+          <a href="classIndex.html#twisted.protocols.telnet.Telnet">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>I am a Protocol for handling Telnet connections. I have two sets of 
+special methods, telnet_* and iac_*.</p>
+<p>telnet_* methods get called on every line sent to me. The method to call
+is decided by the current mode. The initial mode is 'User'; this means that
+telnet_User is the first telnet_* method to be called. All telnet_* methods
+should return a string which specifies the mode to go into next; thus 
+dictating which telnet_* method to call next. For example, the default 
+telnet_User method returns 'Password' to go into Password mode, and the 
+default telnet_Password method returns 'Command' to go into Command 
+mode.</p>
+<p>The iac_* methods are less-used; they are called when an IAC telnet byte
+is received. You can define iac_DO, iac_DONT, iac_WILL, iac_WONT, and 
+iac_IP methods to do what you want when one of these bytes is received.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2342">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.telnet.Telnet.html#write" data-type="Method" class="code">write</a></td>
+    <td><span>Send the given data over my transport.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.telnet.Telnet.html#connectionMade" data-type="Method" class="code">connectionMade</a></td>
+    <td><span>I will write a welcomeMessage and loginPrompt to the client.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.telnet.Telnet.html#welcomeMessage" data-type="Method" class="code">welcomeMessage</a></td>
+    <td><span>Override me to return a string which will be sent to the client before 
+login.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.telnet.Telnet.html#loginPrompt" data-type="Method" class="code">loginPrompt</a></td>
+    <td><span>Override me to return a 'login:'-type prompt.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.telnet.Telnet.html#iacSBchunk" data-type="Method" class="code">iacSBchunk</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.telnet.Telnet.html#iac_DO" data-type="Method" class="code">iac_DO</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.telnet.Telnet.html#iac_DONT" data-type="Method" class="code">iac_DONT</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.telnet.Telnet.html#iac_WILL" data-type="Method" class="code">iac_WILL</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.telnet.Telnet.html#iac_WONT" data-type="Method" class="code">iac_WONT</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.telnet.Telnet.html#iac_IP" data-type="Method" class="code">iac_IP</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.telnet.Telnet.html#processLine" data-type="Method" class="code">processLine</a></td>
+    <td><span>I call a method that looks like 'telnet_*' where '*' is filled in by the
+current mode. telnet_* methods should return a string which will become the
+new mode.  If None is returned, the mode will not change.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.telnet.Telnet.html#telnet_User" data-type="Method" class="code">telnet_User</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.telnet.Telnet.html#telnet_Password" data-type="Method" class="code">telnet_Password</a></td>
+    <td><span>I accept a password as an argument, and check it with the 
+checkUserAndPass method. If the login is successful, I call loggedIn().</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.telnet.Telnet.html#telnet_Command" data-type="Method" class="code">telnet_Command</a></td>
+    <td><span>The default 'command processing' mode. You probably want to override 
+me.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.telnet.Telnet.html#processChunk" data-type="Method" class="code">processChunk</a></td>
+    <td><span>I take a chunk of data and delegate out to telnet_* methods by way of 
+processLine. If the current mode is 'Done', I'll close the connection.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.telnet.Telnet.html#dataReceived" data-type="Method" class="code">dataReceived</a></td>
+    <td><span>Called whenever data is received.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.telnet.Telnet.html#loggedIn" data-type="Method" class="code">loggedIn</a></td>
+    <td><span>Called after the user successfully logged in.</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.protocol.BaseProtocol.html" data-type="Class" class="code">BaseProtocol</a> (via <a href="twisted.internet.protocol.Protocol.html" data-type="Class" class="code">Protocol</a>):
+          </p>
+          <table class="children sortable" id="id2344">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.BaseProtocol.html#makeConnection" data-type="Method" class="code">makeConnection</a></td>
+    <td><span>Make a connection to a transport and a server.</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.protocol.BaseProtocol.html" data-type="Class" class="code">BaseProtocol</a> (via <a href="twisted.internet.protocol.Protocol.html" data-type="Class" class="code">Protocol</a>):
+          </p>
+          <table class="children sortable" id="id2344">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.BaseProtocol.html#makeConnection" data-type="Method" class="code">makeConnection</a></td>
+    <td><span>Make a connection to a transport and a server.</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  <a name="twisted.protocols.telnet.Telnet.write">
+    
+  </a>
+  <a name="write">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    write(self, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/protocols/telnet.py#L170">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Send the given data over my transport.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.telnet.Telnet.connectionMade">
+    
+  </a>
+  <a name="connectionMade">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    connectionMade(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/protocols/telnet.py#L175">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#connectionMade" data-type="Method" class="code">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.BaseProtocol.html#connectionMade" data-type="Method" class="code">twisted.internet.protocol.BaseProtocol.connectionMade</a></div>
+    
+    <div><p>I will write a welcomeMessage and loginPrompt to the client.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.telnet.Telnet.welcomeMessage">
+    
+  </a>
+  <a name="welcomeMessage">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    welcomeMessage(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/protocols/telnet.py#L179">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Override me to return a string which will be sent to the client before 
+login.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.telnet.Telnet.loginPrompt">
+    
+  </a>
+  <a name="loginPrompt">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    loginPrompt(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/protocols/telnet.py#L187">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Override me to return a 'login:'-type prompt.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.telnet.Telnet.iacSBchunk">
+    
+  </a>
+  <a name="iacSBchunk">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    iacSBchunk(self, chunk):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/protocols/telnet.py#L191">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.telnet.Telnet.iac_DO">
+    
+  </a>
+  <a name="iac_DO">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    iac_DO(self, feature):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/protocols/telnet.py#L194">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.telnet.Telnet.iac_DONT">
+    
+  </a>
+  <a name="iac_DONT">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    iac_DONT(self, feature):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/protocols/telnet.py#L197">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.telnet.Telnet.iac_WILL">
+    
+  </a>
+  <a name="iac_WILL">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    iac_WILL(self, feature):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/protocols/telnet.py#L200">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.telnet.Telnet.iac_WONT">
+    
+  </a>
+  <a name="iac_WONT">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    iac_WONT(self, feature):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/protocols/telnet.py#L203">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.telnet.Telnet.iac_IP">
+    
+  </a>
+  <a name="iac_IP">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    iac_IP(self, feature):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/protocols/telnet.py#L206">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.telnet.Telnet.processLine">
+    
+  </a>
+  <a name="processLine">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    processLine(self, line):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/protocols/telnet.py#L209">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>I call a method that looks like 'telnet_*' where '*' is filled in by the
+current mode. telnet_* methods should return a string which will become the
+new mode.  If None is returned, the mode will not change.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.telnet.Telnet.telnet_User">
+    
+  </a>
+  <a name="telnet_User">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    telnet_User(self, user):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/protocols/telnet.py#L218">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>I take a username, set it to the 'self.username' attribute, print out a 
+password prompt, and switch to 'Password' mode. If you want to do something
+else when the username is received (ie, create a new user if the user 
+doesn't exist), override me.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.telnet.Telnet.telnet_Password">
+    
+  </a>
+  <a name="telnet_Password">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    telnet_Password(self, paswd):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/protocols/telnet.py#L227">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>I accept a password as an argument, and check it with the 
+checkUserAndPass method. If the login is successful, I call loggedIn().</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.telnet.Telnet.telnet_Command">
+    
+  </a>
+  <a name="telnet_Command">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    telnet_Command(self, cmd):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/protocols/telnet.py#L241">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>The default 'command processing' mode. You probably want to override 
+me.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.telnet.Telnet.processChunk">
+    
+  </a>
+  <a name="processChunk">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    processChunk(self, chunk):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/protocols/telnet.py#L246">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>I take a chunk of data and delegate out to telnet_* methods by way of 
+processLine. If the current mode is 'Done', I'll close the connection.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.telnet.Telnet.dataReceived">
+    
+  </a>
+  <a name="dataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dataReceived(self, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/protocols/telnet.py#L269">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#dataReceived" data-type="Method" class="code">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Protocol.html#dataReceived" data-type="Method" class="code">twisted.internet.protocol.Protocol.dataReceived</a></div>
+    
+    <div><p>Called whenever data is received.</p>
+<p>Use this method to translate to a higher-level message.  Usually, some 
+callback will be made upon the receipt of each complete protocol 
+message.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">data</td><td>a string of indeterminate length.  Please keep in mind that you will 
+probably need to buffer some data, as partial (or multiple) protocol 
+messages may be received!  I recommend that unit tests for protocols call 
+through to this method with differing chunk sizes, down to one byte at a 
+time.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.telnet.Telnet.loggedIn">
+    
+  </a>
+  <a name="loggedIn">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    loggedIn(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/protocols/telnet.py#L317">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called after the user successfully logged in.</p>
+<p>Override in subclasses.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2016-11-26 06:44:29.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

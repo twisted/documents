@@ -1,0 +1,382 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.protocols.ftp&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="module">Module t.p.ftp</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.protocols.html">twisted.protocols</a></span>
+      <a></a>
+      <a></a>
+    </p>
+    <div></div>
+    <div>An FTP protocol implementation
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Authors</td><td colspan="2"><a href="mailto:itamarst&#64;twistedmatrix.com">Itamar 
+Shtull-Trauring</a>
+</td></tr><tr><td></td><td colspan="2"><a href="mailto:exarkun&#64;divmod.com">Jp Calderone</a>
+</td></tr><tr><td></td><td colspan="2"><p><a href="mailto:spiv&#64;twistedmatrix.com">Andrew Bennetts</a></p>
+API stability: FTPClient is stable, FTP and FTPFactory (server) is 
+unstable.
+</td></tr></table></div>
+    
+      <table class="children"><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.InvalidPath.html">InvalidPath</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.protocols.ftp.toSegments">toSegments</a></td>
+          <td><span>Normalize a path, as represented by a list of strings each
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.protocols.ftp.errnoToFailure">errnoToFailure</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.FilesystemShellException.html">FilesystemShellException</a></td>
+          <td><span>Base for IFTPShell errors.
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.NoSuchFile.html">NoSuchFile</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.PermissionDenied.html">PermissionDenied</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.WrongFiletype.html">WrongFiletype</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.FTPCmdError.html">FTPCmdError</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.FileNotFoundError.html">FileNotFoundError</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.AnonUserDeniedError.html">AnonUserDeniedError</a></td>
+          <td><span>Raised when an anonymous user issues a command that will alter the
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.PermissionDeniedError.html">PermissionDeniedError</a></td>
+          <td><span>Raised when access is attempted to a resource to which access is
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.IsNotADirectoryError.html">IsNotADirectoryError</a></td>
+          <td><span>raised when RMD is called on a path that isn't a directory
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.CmdSyntaxError.html">CmdSyntaxError</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.CmdArgSyntaxError.html">CmdArgSyntaxError</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.CmdNotImplementedError.html">CmdNotImplementedError</a></td>
+          <td><span>raised when an unimplemented command is given to the server
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.CmdNotImplementedForArgError.html">CmdNotImplementedForArgError</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.FTPError.html">FTPError</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.FTPTimeoutError.html">FTPTimeoutError</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.DTPError.html">DTPError</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.BogusClientError.html">BogusClientError</a></td>
+          <td><span>thrown when a client other than the one we opened this
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.PathBelowTLDError.html">PathBelowTLDError</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.ClientDisconnectError.html">ClientDisconnectError</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.PortConnectionError.html">PortConnectionError</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.BadCmdSequenceError.html">BadCmdSequenceError</a></td>
+          <td><span>raised when a client sends a series of commands in an illogical 
+sequence
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.AuthorizationError.html">AuthorizationError</a></td>
+          <td><span>raised when client authentication fails
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.protocols.ftp.debugDeferred">debugDeferred</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="interface">
+          <td>Interface</td>
+          <td><a href="twisted.protocols.ftp.IDTPFactory.html">IDTPFactory</a></td>
+          <td><span>An interface for protocol.Factories
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.DTP.html">DTP</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.DTPFactory.html">DTPFactory</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.ASCIIConsumerWrapper.html">ASCIIConsumerWrapper</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.FileConsumer.html">FileConsumer</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.FTPOverflowProtocol.html">FTPOverflowProtocol</a></td>
+          <td><span>FTP mini-protocol for when there are too many connections.
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.FTP.html">FTP</a></td>
+          <td><span>Protocol Interpreter for the File Transfer Protocol
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.FTPFactory.html">FTPFactory</a></td>
+          <td><span>A factory for producing ftp protocol instances
+</span></td>
+        </tr><tr class="interface">
+          <td>Interface</td>
+          <td><a href="twisted.protocols.ftp.IFTPShell.html">IFTPShell</a></td>
+          <td><span>An abstraction of the shell commands used by the FTP protocol for
+</span></td>
+        </tr><tr class="interface">
+          <td>Interface</td>
+          <td><a href="twisted.protocols.ftp.IReadFile.html">IReadFile</a></td>
+          <td><span>A file out of which bytes may be read.
+</span></td>
+        </tr><tr class="interface">
+          <td>Interface</td>
+          <td><a href="twisted.protocols.ftp.IWriteFile.html">IWriteFile</a></td>
+          <td><span>A file into which bytes may be written.
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.protocols.ftp._getgroups">_getgroups</a></td>
+          <td><span>Return the primary and supplementary groups for the given UID.
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.protocols.ftp._testPermissions">_testPermissions</a></td>
+          <td><span>checks to see if uid has proper permissions to access path with 
+mode
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.FTPAnonymousShell.html">FTPAnonymousShell</a></td>
+          <td><span>An anonymous implementation of IFTPShell
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp._FileReader.html">_FileReader</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.FTPShell.html">FTPShell</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp._FileWriter.html">_FileWriter</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.FTPRealm.html">FTPRealm</a></td>
+          <td><span></span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.ConnectionLost.html">ConnectionLost</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.CommandFailed.html">CommandFailed</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.BadResponse.html">BadResponse</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.UnexpectedResponse.html">UnexpectedResponse</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.UnexpectedData.html">UnexpectedData</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.FTPCommand.html">FTPCommand</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.ProtocolWrapper.html">ProtocolWrapper</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.SenderProtocol.html">SenderProtocol</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.protocols.ftp.decodeHostPort">decodeHostPort</a></td>
+          <td><span>Decode an FTP response specifying a host and port.
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.protocols.ftp.encodeHostPort">encodeHostPort</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.protocols.ftp._unwrapFirstError">_unwrapFirstError</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.FTPDataPortFactory.html">FTPDataPortFactory</a></td>
+          <td><span>Factory for data connections that use the PORT command
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.FTPClientBasic.html">FTPClientBasic</a></td>
+          <td><span>Foundations of an FTP client.
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp._PassiveConnectionFactory.html">_PassiveConnectionFactory</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.FTPClient.html">FTPClient</a></td>
+          <td><span>A Twisted FTP Client
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.protocols.ftp.FTPFileListProtocol.html">FTPFileListProtocol</a></td>
+          <td><span>Parser for standard FTP file listings
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.protocols.ftp.parsePWDResponse">parsePWDResponse</a></td>
+          <td><span>Returns the path from a response to a PWD command.
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.protocols.ftp.toSegments"></a>
+        <div class="functionHeader">
+          def <span>toSegments(cwd, path):</span>
+        </div>
+        <div class="functionBody"><div>Normalize a path, as represented by a list of strings each 
+representing one segment of the path.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.errnoToFailure"></a>
+        <div class="functionHeader">
+          def <span>errnoToFailure(e, path):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.debugDeferred"></a>
+        <div class="functionHeader">
+          def <span>debugDeferred(self, *_):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp._getgroups"></a>
+        <div class="functionHeader">
+          def <span>_getgroups(uid):</span>
+        </div>
+        <div class="functionBody"><div>Return the primary and supplementary groups for the given UID.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">uid</td><td>(type: <code>int</code>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp._testPermissions"></a>
+        <div class="functionHeader">
+          def <span>_testPermissions(uid, gid, spath, mode='r'):</span>
+        </div>
+        <div class="functionBody"><div>checks to see if uid has proper permissions to access path with 
+mode
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">uid</td><td>numeric user id
+(type: <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">gid</td><td>numeric group id
+(type: <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">spath</td><td>the path on the server to test
+(type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">mode</td><td>'r' or 'w' (read or write)
+(type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">True if the given credentials have the specified form of access to the 
+given path
+(type: <code>bool</code>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.decodeHostPort"></a>
+        <div class="functionHeader">
+          def <span>decodeHostPort(line):</span>
+        </div>
+        <div class="functionBody"><div>Decode an FTP response specifying a host and port.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a 2-tuple of (host, port).
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.encodeHostPort"></a>
+        <div class="functionHeader">
+          def <span>encodeHostPort(host, port):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp._unwrapFirstError"></a>
+        <div class="functionHeader">
+          def <span>_unwrapFirstError(failure):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.parsePWDResponse"></a>
+        <div class="functionHeader">
+          def <span>parsePWDResponse(response):</span>
+        </div>
+        <div class="functionBody"><div><p>Returns the path from a response to a PWD command.</p>
+Responses typically look like:
+<pre class="literalblock">
+   257 &quot;/home/andrew&quot; is current directory.
+</pre>
+<p>For this example, I will return <code>'/home/andrew'</code>.</p>
+If I can't find the path, I return <code>None</code>.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

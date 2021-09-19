@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web._flatten : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="http://twistedmatrix.com/">Twisted</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module private"><code>twisted.web._flatten</code> <small>module documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.web.html" data-type="Package" class="code">web</a></code>
+          <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.1/twisted/web/_flatten.py">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Context-free flattener/serializer for rendering Python objects, possibly
+complex or arbitrarily nested, as strings.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3033">
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.web._flatten.html#escapeForContent" data-type="Function" class="code">escapeForContent</a></td>
+    <td><span>Escape some character or UTF-8 byte data for inclusion in an HTML or XML
+document, by replacing metacharacters (<code>&amp;&lt;&gt;</code>) with 
+their entity equivalents (<code>&amp;amp;&amp;lt;&amp;gt;</code>).</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.web._flatten.html#attributeEscapingDoneOutside" data-type="Function" class="code">attributeEscapingDoneOutside</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.web._flatten.html#writeWithAttributeEscaping" data-type="Function" class="code">writeWithAttributeEscaping</a></td>
+    <td><span>Decorate a <code>write</code> callable so that all output written is 
+properly quoted for inclusion within an XML attribute value.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.web._flatten.html#escapedCDATA" data-type="Function" class="code">escapedCDATA</a></td>
+    <td><span>Escape CDATA for inclusion in a document.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.web._flatten.html#escapedComment" data-type="Function" class="code">escapedComment</a></td>
+    <td><span>Escape a comment for inclusion in a document.</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.web._flatten.html#_getSlotValue" data-type="Function" class="code">_getSlotValue</a></td>
+    <td><span>Find the value of the named slot in the given stack of slot data.</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.web._flatten.html#_flattenElement" data-type="Function" class="code">_flattenElement</a></td>
+    <td><span>Make <code>root</code> slightly more flat by yielding all its immediate 
+contents as strings, deferreds or generators that are recursive calls to 
+itself.</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.web._flatten.html#_flattenTree" data-type="Function" class="code">_flattenTree</a></td>
+    <td><span>Make <code>root</code> into an iterable of <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+and <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> by 
+doing a depth first traversal of the tree.</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.web._flatten.html#_writeFlattenedData" data-type="Function" class="code">_writeFlattenedData</a></td>
+    <td><span>Take strings from an iterator and pass them to a writer function.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  <a name="twisted.web._flatten.escapeForContent">
+    
+  </a>
+  <a name="escapeForContent">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    escapeForContent(data):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.1/twisted/web/_flatten.py#L26">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Escape some character or UTF-8 byte data for inclusion in an HTML or XML
+document, by replacing metacharacters (<code>&amp;&lt;&gt;</code>) with 
+their entity equivalents (<code>&amp;amp;&amp;lt;&amp;gt;</code>).</p>
+<p>This is used as an input to <a href="twisted.web._flatten.html#_flattenElement"><code>_flattenElement</code></a>'s
+<code>dataEscaper</code> parameter.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">data</td><td>The string to escape. (type: <code>bytes</code> or <code>unicode</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The quoted form of <code>data</code>.  If <code>data</code> is unicode, 
+return a utf-8 encoded string. (type: <code>bytes</code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.web._flatten.attributeEscapingDoneOutside">
+    
+  </a>
+  <a name="attributeEscapingDoneOutside">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    attributeEscapingDoneOutside(data):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.1/twisted/web/_flatten.py#L50">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Escape some character or UTF-8 byte data for inclusion in the top level 
+of an attribute.  <a href="twisted.web._flatten.html#attributeEscapingDoneOutside"><code>attributeEscapingDoneOutside</code></a>
+actually passes the data through unchanged, because <a href="twisted.web._flatten.html#writeWithAttributeEscaping"><code>writeWithAttributeEscaping</code></a>
+handles the quoting of the text within attributes outside the generator 
+returned by <a href="twisted.web._flatten.html#_flattenElement"><code>_flattenElement</code></a>;
+this is used as the <code>dataEscaper</code> argument to that <a href="twisted.web._flatten.html#_flattenElement"><code>_flattenElement</code></a>
+call so that that generator does not redundantly escape its text 
+output.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">data</td><td>The string to escape. (type: <code>bytes</code> or <code>unicode</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The string, unchanged, except for encoding. (type: <code>bytes</code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.web._flatten.writeWithAttributeEscaping">
+    
+  </a>
+  <a name="writeWithAttributeEscaping">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    writeWithAttributeEscaping(write):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.1/twisted/web/_flatten.py#L72">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Decorate a <code>write</code> callable so that all output written is 
+properly quoted for inclusion within an XML attribute value.</p>
+<p>If a <a href="twisted.web.template.Tag.html"><code>Tag</code></a> 
+<code>x</code> is flattened within the context of the contents of another 
+<a href="twisted.web.template.Tag.html"><code>Tag</code></a> 
+<code>y</code>, the metacharacters (<code>&lt;&gt;&amp;"</code>) 
+delimiting <code>x</code> should be passed through unchanged, but the 
+textual content of <code>x</code> should still be quoted, as usual.  For 
+example: <code>&lt;y&gt;&lt;x&gt;&amp;amp;&lt;/x&gt;&lt;/y&gt;</code>.  
+That is the default behavior of <a href="twisted.web._flatten.html#_flattenElement"><code>_flattenElement</code></a>
+when <a href="twisted.web._flatten.html#escapeForContent"><code>escapeForContent</code></a>
+is passed as the <code>dataEscaper</code>.</p>
+<p>However, when a <a href="twisted.web.template.Tag.html"><code>Tag</code></a> <code>x</code> is
+flattened within the context of an <i>attribute</i> of another <a href="twisted.web.template.Tag.html"><code>Tag</code></a> <code>y</code>, 
+then the metacharacters delimiting <code>x</code> should be quoted so that 
+it can be parsed from the attribute's value.  In the DOM itself, this is 
+not a valid thing to do, but given that renderers and slots may be freely 
+moved around in a <a href="twisted.web.template.html"><code>twisted.web.template</code></a> 
+template, it is a condition which may arise in a document and must be 
+handled in a way which produces valid output.  So, for example, you should 
+be able to get <code>&lt;y attr="&amp;lt;x /&amp;gt;" 
+/&gt;</code>.  This should also be true for other XML/HTML meta-constructs 
+such as comments and CDATA, so if you were to serialize a <a href="twisted.web.template.Comment.html"><code>comment</code></a> in an 
+attribute you should get <code>&lt;y attr="&amp;lt;-- comment 
+--&amp;gt;" /&gt;</code>.  Therefore in order to capture these 
+meta-characters, flattening is done with <code>write</code> callable that 
+is wrapped with <a href="twisted.web._flatten.html#writeWithAttributeEscaping"><code>writeWithAttributeEscaping</code></a>.</p>
+<p>The final case, and hopefully the much more common one as compared to 
+serializing <a href="twisted.web.template.Tag.html"><code>Tag</code></a> 
+and arbitrary <a href="twisted.web.iweb.IRenderable.html"><code>IRenderable</code></a> 
+objects within an attribute, is to serialize a simple string, and those 
+should be passed through for <a href="twisted.web._flatten.html#writeWithAttributeEscaping"><code>writeWithAttributeEscaping</code></a>
+to quote without applying a second, redundant level of quoting.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">write</td><td>A callable which will be invoked with the escaped <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A callable that writes data with escaping.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.web._flatten.escapedCDATA">
+    
+  </a>
+  <a name="escapedCDATA">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    escapedCDATA(data):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.1/twisted/web/_flatten.py#L116">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Escape CDATA for inclusion in a document.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">data</td><td>The string to escape. (type: <code>str</code> or <code>unicode</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The quoted form of <code>data</code>. If <code>data</code> is unicode, 
+return a utf-8 encoded string. (type: <code>str</code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.web._flatten.escapedComment">
+    
+  </a>
+  <a name="escapedComment">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    escapedComment(data):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.1/twisted/web/_flatten.py#L133">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Escape a comment for inclusion in a document.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">data</td><td>The string to escape. (type: <code>str</code> or <code>unicode</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The quoted form of <code>data</code>. If <code>data</code> is unicode, 
+return a utf-8 encoded string. (type: <code>str</code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.web._flatten._getSlotValue">
+    
+  </a>
+  <a name="_getSlotValue">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _getSlotValue(name, slotData, default=None):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.1/twisted/web/_flatten.py#L153">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Find the value of the named slot in the given stack of slot data.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.web._flatten._flattenElement">
+    
+  </a>
+  <a name="_flattenElement">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _flattenElement(request, root, write, slotData, renderFactory, dataEscaper):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.1/twisted/web/_flatten.py#L167">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Make <code>root</code> slightly more flat by yielding all its immediate 
+contents as strings, deferreds or generators that are recursive calls to 
+itself.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">request</td><td>A request object which will be passed to <a href="twisted.web.iweb.IRenderable.html#render"><code>IRenderable.render</code></a>.</td></tr><tr><td></td><td class="fieldArg">root</td><td>An object to be made flatter.  This may be of type <code>unicode</code>, 
+<code>str</code>, <a href="twisted.web.template.slot.html"><code>slot</code></a>, <a href="twisted.web.template.Tag.html"><code>Tag</code></a>, <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>,
+<a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>,
+<a href="http://docs.python.org/library/types.html#types.GeneratorType"><code>GeneratorType</code></a>,
+<a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>, 
+or an object that implements <a href="twisted.web.iweb.IRenderable.html"><code>IRenderable</code></a>.</td></tr><tr><td></td><td class="fieldArg">write</td><td>A callable which will be invoked with each <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+produced by flattening <code>root</code>.</td></tr><tr><td></td><td class="fieldArg">slotData</td><td>A <code>list</code> of <code>dict</code> mapping <code>str</code> slot 
+names to data with which those slots will be replaced.</td></tr><tr><td></td><td class="fieldArg">renderFactory</td><td>If not <code>None</code>, an object that provides <a href="twisted.web.iweb.IRenderable.html"><code>IRenderable</code></a>.</td></tr><tr><td></td><td class="fieldArg">dataEscaper</td><td>A 1-argument callable which takes <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+or <a href="twisted.python.compat.html#unicode"><code>unicode</code></a> 
+and returns <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>,
+quoted as appropriate for the rendering context.  This is really only one 
+of two values: <a href="twisted.web._flatten.html#attributeEscapingDoneOutside"><code>attributeEscapingDoneOutside</code></a>
+or <a href="twisted.web._flatten.html#escapeForContent"><code>escapeForContent</code></a>,
+depending on whether the rendering context is within an attribute or not.  
+See the explanation in <a href="twisted.web._flatten.html#writeWithAttributeEscaping"><code>writeWithAttributeEscaping</code></a>.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An iterator that eventually yields <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+that should be written to the output.  However it may also yield other 
+iterators or <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>s; if 
+it yields another iterator, the caller will iterate it; if it yields a <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>, the 
+result of that <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> will 
+either be <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>,
+in which case it's written, or another generator, in which case it is 
+iterated.  See <a href="twisted.web._flatten.html#_flattenTree"><code>_flattenTree</code></a>
+for the trampoline that consumes said values. (type: An iterator which yields <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>,
+<a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>, 
+and more iterators of the same type.)</td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.web._flatten._flattenTree">
+    
+  </a>
+  <a name="_flattenTree">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _flattenTree(request, root, write):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.1/twisted/web/_flatten.py#L287">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Make <code>root</code> into an iterable of <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+and <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> by 
+doing a depth first traversal of the tree.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">request</td><td>A request object which will be passed to <a href="twisted.web.iweb.IRenderable.html#render"><code>IRenderable.render</code></a>.</td></tr><tr><td></td><td class="fieldArg">root</td><td>An object to be made flatter.  This may be of type <code>unicode</code>, <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>,
+<a href="twisted.web.template.slot.html"><code>slot</code></a>, <a href="twisted.web.template.Tag.html"><code>Tag</code></a>, <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>,
+<a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>,
+<a href="http://docs.python.org/library/types.html#types.GeneratorType"><code>GeneratorType</code></a>,
+<a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>, 
+or something providing <a href="twisted.web.iweb.IRenderable.html"><code>IRenderable</code></a>.</td></tr><tr><td></td><td class="fieldArg">write</td><td>A callable which will be invoked with each <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+produced by flattening <code>root</code>.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An iterator which yields objects of type <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+and <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>. A <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> is 
+only yielded when one is encountered in the process of flattening 
+<code>root</code>.  The returned iterator must not be iterated again until 
+the <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> is 
+called back.</td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.web._flatten._writeFlattenedData">
+    
+  </a>
+  <a name="_writeFlattenedData">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _writeFlattenedData(state, write, result):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.1/twisted/web/_flatten.py#L333">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Take strings from an iterator and pass them to a writer function.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">state</td><td>An iterator of <code>str</code> and <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>.  
+<code>str</code> instances will be passed to <code>write</code>.  <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+instances will be waited on before resuming iteration of 
+<code>state</code>.</td></tr><tr><td></td><td class="fieldArg">write</td><td>A callable which will be invoked with each <code>str</code> produced by 
+iterating <code>state</code>.</td></tr><tr><td></td><td class="fieldArg">result</td><td>A <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+which will be called back when <code>state</code> has been completely 
+flattened into <code>write</code> or which will be errbacked if an 
+exception in a generator passed to <code>state</code> or an errback from a 
+<a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+from state occurs.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>None</code></td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2016-08-16 11:28:27.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

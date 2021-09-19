@@ -1,0 +1,365 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.protocols.tls._PullToPush : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class private">t.p.t._PullToPush(<span title="object">object</span>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.protocols.html">protocols</a>.<a href="twisted.protocols.tls.html">tls</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.2.0/twisted/protocols/tls.py#L62">View Source</a>
+      <a href="classIndex.html#twisted.protocols.tls._PullToPush">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Implements interfaces: <a href="twisted.internet.interfaces.IPushProducer.html">twisted.internet.interfaces.IPushProducer</a></p>
+    </div>
+    <div>An adapter that converts a non-streaming to a streaming producer.</p>
+<p>Because of limitations of the producer API, this adapter requires the 
+cooperation of the consumer. When the consumer's 
+<code>registerProducer</code> is called with a non-streaming producer, it 
+must wrap it with <a 
+href="twisted.protocols.tls._PullToPush.html"><code>_PullToPush</code></a> 
+and then call <code>startStreaming</code> on the resulting object. When the
+consumer's <code>unregisterProducer</code> is called, it must call 
+<code>stopStreaming</code> on the <a 
+href="twisted.protocols.tls._PullToPush.html"><code>_PullToPush</code></a> 
+instance.</p>
+<p>If the underlying producer throws an exception from 
+<code>resumeProducing</code>, the producer will be unregistered from the 
+consumer.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3381">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls._PullToPush.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls._PullToPush.html#startStreaming">startStreaming</a></td>
+    <td><span>This should be called by the consumer when the producer is 
+registered.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls._PullToPush.html#stopStreaming">stopStreaming</a></td>
+    <td><span>This should be called by the consumer when the producer is 
+unregistered.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls._PullToPush.html#pauseProducing">pauseProducing</a></td>
+    <td><span>Pause producing data.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls._PullToPush.html#resumeProducing">resumeProducing</a></td>
+    <td><span>Resume producing data.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls._PullToPush.html#stopProducing">stopProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.tls._PullToPush.html#_producer">_producer</a></td>
+    <td>the underling non-streaming producer.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.tls._PullToPush.html#_consumer">_consumer</a></td>
+    <td>the consumer with which the underlying producer was registered.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.tls._PullToPush.html#_finished">_finished</a></td>
+    <td><code>bool</code> indicating whether the producer has finished.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.tls._PullToPush.html#_coopTask">_coopTask</a></td>
+    <td>the result of calling <a 
+href="twisted.internet.task.html#cooperate"><code>cooperate</code></a>, the
+task driving the streaming producer.</td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls._PullToPush.html#_pull">_pull</a></td>
+    <td><span>A generator that calls <code>resumeProducing</code> on the underlying 
+producer forever.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.protocols.tls._PullToPush._producer">
+    
+  </a>
+  <a name="_producer">
+    
+  </a>
+  <div class="functionHeader">
+    _producer =
+  </div>
+  <div class="functionBody">
+    the underling non-streaming producer.
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.tls._PullToPush._consumer">
+    
+  </a>
+  <a name="_consumer">
+    
+  </a>
+  <div class="functionHeader">
+    _consumer =
+  </div>
+  <div class="functionBody">
+    the consumer with which the underlying producer was registered.
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.tls._PullToPush._finished">
+    
+  </a>
+  <a name="_finished">
+    
+  </a>
+  <div class="functionHeader">
+    _finished =
+  </div>
+  <div class="functionBody">
+    <code>bool</code> indicating whether the producer has finished.
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.tls._PullToPush._coopTask">
+    
+  </a>
+  <a name="_coopTask">
+    
+  </a>
+  <div class="functionHeader">
+    _coopTask =
+  </div>
+  <div class="functionBody">
+    the result of calling <a 
+href="twisted.internet.task.html#cooperate"><code>cooperate</code></a>, the
+task driving the streaming producer.
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.tls._PullToPush.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, pullProducer, consumer):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.2.0/twisted/protocols/tls.py#L91" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.tls._PullToPush._pull">
+    
+  </a>
+  <a name="_pull">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _pull(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.2.0/twisted/protocols/tls.py#L96" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>A generator that calls <code>resumeProducing</code> on the underlying 
+producer forever.</p>
+<p>If <code>resumeProducing</code> throws an exception, the producer is 
+unregistered, which should result in streaming stopping.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.tls._PullToPush.startStreaming">
+    
+  </a>
+  <a name="startStreaming">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    startStreaming(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.2.0/twisted/protocols/tls.py#L124" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>This should be called by the consumer when the producer is 
+registered.</p>
+<p>Start streaming data to the consumer.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.tls._PullToPush.stopStreaming">
+    
+  </a>
+  <a name="stopStreaming">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    stopStreaming(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.2.0/twisted/protocols/tls.py#L133" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>This should be called by the consumer when the producer is 
+unregistered.</p>
+<p>Stop streaming data to the consumer.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.tls._PullToPush.pauseProducing">
+    
+  </a>
+  <a name="pauseProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    pauseProducing(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.2.0/twisted/protocols/tls.py#L146" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IPushProducer.html#pauseProducing">twisted.internet.interfaces.IPushProducer</a></div>
+    <div>Pause producing data.</p>
+<p>Tells a producer that it has produced too much data to process for the 
+time being, and to stop until resumeProducing() is called.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.tls._PullToPush.resumeProducing">
+    
+  </a>
+  <a name="resumeProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    resumeProducing(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.2.0/twisted/protocols/tls.py#L150" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IPushProducer.html#resumeProducing">twisted.internet.interfaces.IPushProducer</a></div>
+    <div>Resume producing data.</p>
+<p>This tells a producer to re-add itself to the main loop and produce more
+data for its consumer.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.tls._PullToPush.stopProducing">
+    
+  </a>
+  <a name="stopProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    stopProducing(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.2.0/twisted/protocols/tls.py#L154" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2012-09-01 11:44:56.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,204 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.protocols.amp.DateTime : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.p.a.DateTime(<a href="twisted.protocols.amp.Argument.html">Argument</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.protocols.html">protocols</a>.<a href="twisted.protocols.amp.html">amp</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/protocols/amp.py#L2508">View Source</a>
+      <a href="classIndex.html#twisted.protocols.amp.DateTime">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div><p>Encodes <code>datetime.datetime</code> instances.</p>
+<p>Wire format: '%04i-%02i-%02iT%02i:%02i:%02i.%06i%s%02i:%02i'. Fields in 
+order are: year, month, day, hour, minute, second, microsecond, timezone 
+direction (+ or -), timezone hour, timezone minute. Encoded string is 
+always exactly 32 characters long. This format is compatible with ISO 8601,
+but that does not mean all ISO 8601 dates can be accepted.</p>
+Also, note that the datetime module's notion of a &quot;timezone&quot; 
+can be complex, but the wire format includes only a fixed offset, so the 
+conversion is not lossless. A lossless transmission of a 
+<code>datetime</code> instance is not feasible since the receiving end 
+would require a Python interpreter.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">_positions</td><td>A sequence of slices giving the positions of various interesting parts 
+of the wire format.
+</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1057">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.DateTime.html#fromString">fromString</a></td>
+    <td><span>Parse a string containing a date and time in the wire format into a 
+<code>datetime.datetime</code> instance.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.DateTime.html#toString">toString</a></td>
+    <td><span>Serialize a <code>datetime.datetime</code> instance to a string in the 
+specified wire format.
+</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.protocols.amp.Argument.html">Argument</a>:
+        </p>
+        <table class="children sortable" id="id1058">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#__init__">__init__</a></td>
+    <td><span>Create an Argument.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#retrieve">retrieve</a></td>
+    <td><span>Retrieve the given key from the given dictionary, removing it if 
+found.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#fromBox">fromBox</a></td>
+    <td><span>Populate an 'out' dictionary with mapping names to Python values decoded
+from an 'in' AmpBox mapping strings to string values.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#toBox">toBox</a></td>
+    <td><span>Populate an 'out' AmpBox with strings encoded from an 'in' dictionary 
+mapping names to Python values.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#fromStringProto">fromStringProto</a></td>
+    <td><span>Convert a string to a Python value.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Argument.html#toStringProto">toStringProto</a></td>
+    <td><span>Convert a Python object to a string.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.protocols.amp.DateTime.fromString">
+    
+  </a>
+  <a name="fromString">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    fromString(self, s):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/protocols/amp.py#L2535" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.protocols.amp.Argument.html#fromString">twisted.protocols.amp.Argument.fromString</a></div>
+    <div>Parse a string containing a date and time in the wire format into a 
+<code>datetime.datetime</code> instance.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.amp.DateTime.toString">
+    
+  </a>
+  <a name="toString">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    toString(self, i):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/protocols/amp.py#L2550" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.protocols.amp.Argument.html#toString">twisted.protocols.amp.Argument.toString</a></div>
+    <div>Serialize a <code>datetime.datetime</code> instance to a string in the 
+specified wire format.
+<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-10-27 16:22:34.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

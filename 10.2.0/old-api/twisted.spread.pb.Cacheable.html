@@ -1,0 +1,213 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.spread.pb.Cacheable : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">t.s.p.Cacheable(<a href="twisted.spread.pb.Copyable.html">Copyable</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.spread.html">spread</a>.<a href="twisted.spread.pb.html">pb</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/spread/flavors.py#L305">View Source</a>
+      <a href="classIndex.html#twisted.spread.pb.Cacheable">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known subclasses: <a href="twisted.manhole.explorer.Explorer.html">twisted.manhole.explorer.Explorer</a></p>
+    </div>
+    <div>A cached instance.</p>
+<p>This means that it's copied; but there is some logic to make sure that 
+it's only copied once.  Additionally, when state is retrieved, it is passed
+a &quot;proto-reference&quot; to the state as it will exist on the 
+client.</p>
+<p>XXX: The documentation for this class needs work, but it's the most 
+complex part of PB and it is inherently difficult to explain.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id199">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.Cacheable.html#getStateToCacheAndObserveFor">getStateToCacheAndObserveFor</a></td>
+    <td><span>Get state to cache on the client and client-cache reference</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.Cacheable.html#jellyFor">jellyFor</a></td>
+    <td><span>Return an appropriate tuple to serialize me.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.Cacheable.html#stoppedObserving">stoppedObserving</a></td>
+    <td><span>This method is called when a client has stopped observing me.</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.spread.pb.Copyable.html">Copyable</a>:
+        </p>
+        <table class="children sortable" id="id200">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.Copyable.html#getStateToCopy">getStateToCopy</a></td>
+    <td><span>Gather state to send when I am serialized for a peer.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.Copyable.html#getStateToCopyFor">getStateToCopyFor</a></td>
+    <td><span>Gather state to send when I am serialized for a particular</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.Copyable.html#getTypeToCopy">getTypeToCopy</a></td>
+    <td><span>Determine what type tag to send for me.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.Copyable.html#getTypeToCopyFor">getTypeToCopyFor</a></td>
+    <td><span>Determine what type tag to send for me.</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.spread.pb.Serializable.html">Serializable</a> (via <a href="twisted.spread.pb.Copyable.html">Copyable</a>):
+        </p>
+        <table class="children sortable" id="id201">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.Serializable.html#processUniqueID">processUniqueID</a></td>
+    <td><span>Return an ID which uniquely represents this object for this process.</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.spread.jelly.Jellyable.html">Jellyable</a> (via <a href="twisted.spread.pb.Copyable.html">Copyable</a>, <a href="twisted.spread.pb.Serializable.html">Serializable</a>):
+        </p>
+        <table class="children sortable" id="id202">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.jelly.Jellyable.html#getStateFor">getStateFor</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.spread.flavors.Cacheable.getStateToCacheAndObserveFor">
+    
+  </a>
+  <a name="getStateToCacheAndObserveFor">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getStateToCacheAndObserveFor(self, perspective, observer):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/spread/flavors.py#L317" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Get state to cache on the client and client-cache reference to observe 
+locally.</p>
+<p>This is similiar to getStateToCopyFor, but it additionally passes in a 
+reference to the client-side RemoteCache instance that will be created when
+it is unserialized.  This allows Cacheable instances to keep their 
+RemoteCaches up to date when they change, such that no changes can occur 
+between the point at which the state is initially copied and the client 
+receives it that are not propogated.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.spread.flavors.Cacheable.jellyFor">
+    
+  </a>
+  <a name="jellyFor">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    jellyFor(self, jellier):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/spread/flavors.py#L333" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.spread.interfaces.IJellyable.html#jellyFor">twisted.spread.interfaces.IJellyable</a></div><div class="interfaceinfo">overrides <a href="twisted.spread.pb.Copyable.html#jellyFor">twisted.spread.flavors.Copyable.jellyFor</a></div>
+    <div>Return an appropriate tuple to serialize me.</p>
+<p>Depending on whether this broker has cached me or not, this may return 
+either a full state or a reference to an existing cache.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.spread.flavors.Cacheable.stoppedObserving">
+    
+  </a>
+  <a name="stoppedObserving">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    stoppedObserving(self, perspective, observer):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/spread/flavors.py#L355" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>This method is called when a client has stopped observing me.</p>
+<p>The 'observer' argument is the same as that passed in to 
+getStateToCacheAndObserveFor.<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2010-11-30 00:04:06.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+  </body>
+</html>

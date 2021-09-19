@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web.iweb.IBodyProducer : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="apidocs.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="interface"><code>twisted.web.iweb.IBodyProducer(<a href="twisted.internet.interfaces.IPushProducer.html" data-type="Interface" class="code">IPushProducer</a>)</code> <small>interface documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.web.html" data-type="Package" class="code">web</a>.<a href="twisted.web.iweb.html" data-type="Module" class="code">iweb</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-17.9.0/src/twisted/web/iweb.py#L402">View Source</a>
+          <a href="classIndex.html#twisted.web.iweb.IBodyProducer">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Known implementations: <a href="twisted.web.client.FileBodyProducer.html" data-type="Class" class="code">twisted.web.client.FileBodyProducer</a></p>
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>Objects which provide <a href="twisted.web.iweb.IBodyProducer.html"><code>IBodyProducer</code></a> 
+write bytes to an object which provides <a href="twisted.internet.interfaces.IConsumer.html"><code>IConsumer</code></a>
+by calling its <code>write</code> method repeatedly.</p>
+<p><a href="twisted.web.iweb.IBodyProducer.html"><code>IBodyProducer</code></a> 
+providers may start producing as soon as they have an <a href="twisted.internet.interfaces.IConsumer.html"><code>IConsumer</code></a>
+provider.  That is, they should not wait for a <code>resumeProducing</code>
+call to begin writing data.</p>
+<p><a href="twisted.internet.interfaces.IConsumer.html#unregisterProducer"><code>IConsumer.unregisterProducer</code></a>
+must not be called.  Instead, the <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+returned from <code>startProducing</code> must be fired when all bytes have
+been written.</p>
+<p><a href="twisted.internet.interfaces.IConsumer.html#write"><code>IConsumer.write</code></a>
+may synchronously invoke any of <code>pauseProducing</code>, 
+<code>resumeProducing</code>, or <code>stopProducing</code>.  These methods
+must be implemented with this in mind.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">9.0</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3157">
+  
+  <tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><a href="twisted.web.iweb.IBodyProducer.html#length" data-type="Attribute" class="code">length</a></td>
+    <td><span><code>length</code> is a <code>int</code> indicating how many bytes in 
+total this <a href="twisted.web.iweb.IBodyProducer.html"><code>IBodyProducer</code></a> 
+will write to the consumer or <a href="twisted.web.iweb.html#UNKNOWN_LENGTH"><code>UNKNOWN_LENGTH</code></a>
+if this is not known in advance.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IBodyProducer.html#startProducing" data-type="Method" class="code">startProducing</a></td>
+    <td><span>Start producing to the given <a href="twisted.internet.interfaces.IConsumer.html"><code>IConsumer</code></a>
+provider.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IBodyProducer.html#stopProducing" data-type="Method" class="code">stopProducing</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.interfaces.IPushProducer.html" data-type="Interface" class="code">IPushProducer</a>:
+          </p>
+          <table class="children sortable" id="id3158">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.interfaces.IPushProducer.html#pauseProducing" data-type="Method" class="code">pauseProducing</a></td>
+    <td><span>Pause producing data.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.interfaces.IPushProducer.html#resumeProducing" data-type="Method" class="code">resumeProducing</a></td>
+    <td><span>Resume producing data.</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseattribute">
+  
+  <a name="twisted.web.iweb.IBodyProducer.length">
+    
+  </a>
+  <a name="length">
+    
+  </a>
+  <div class="functionHeader">
+    length =
+  </div>
+  <div class="functionBody">
+    <div><p><code>length</code> is a <code>int</code> indicating how many bytes in 
+total this <a href="twisted.web.iweb.IBodyProducer.html"><code>IBodyProducer</code></a> 
+will write to the consumer or <a href="twisted.web.iweb.html#UNKNOWN_LENGTH"><code>UNKNOWN_LENGTH</code></a>
+if this is not known in advance.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IBodyProducer.startProducing">
+    
+  </a>
+  <a name="startProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    startProducing(consumer):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.9.0/src/twisted/web/iweb.py#L438">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Start producing to the given <a href="twisted.internet.interfaces.IConsumer.html"><code>IConsumer</code></a>
+provider.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+which fires with <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+when all bytes have been produced or with a <a href="twisted.python.failure.Failure.html"><code>Failure</code></a> if 
+there is any problem before all bytes have been produced.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IBodyProducer.stopProducing">
+    
+  </a>
+  <a name="stopProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    stopProducing():
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-17.9.0/src/twisted/web/iweb.py#L450">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.internet.interfaces.IProducer.html#stopProducing" data-type="Method" class="code">twisted.internet.interfaces.IProducer.stopProducing</a></div>
+    
+    <div><p>In addition to the standard behavior of <a href="twisted.internet.interfaces.IProducer.html#stopProducing"><code>IProducer.stopProducing</code></a>
+(stop producing data), make sure the <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+returned by <code>startProducing</code> is never fired.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2017-09-23 19:45:03.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

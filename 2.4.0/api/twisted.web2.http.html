@@ -1,0 +1,147 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.web2.http&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="module">Module t.w.http</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.web2.html">twisted.web2</a></span>
+      <a></a>
+      <a></a>
+    </p>
+    <div></div>
+    <div><p>HyperText Transfer Protocol implementation.</p>
+<p>The second coming.</p>
+Maintainer: <a href="mailto:foom&#64;fuhm.net">James Y Knight</a>
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.web2.http.splitHostPort">splitHostPort</a></td>
+          <td><span>Split the host in &quot;host:port&quot; format into host and port 
+fields.
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.web2.http.parseVersion">parseVersion</a></td>
+          <td><span>Parse version strings of the form Protocol '/' Major '.' Minor. E.g. 
+'HTTP/1.1'.
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.web2.http.HTTPError.html">HTTPError</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.web2.http.Response.html">Response</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.web2.http.StatusResponse.html">StatusResponse</a></td>
+          <td><span>A <a href="twisted.web2.http.Response.html">Response</a> object which 
+simply contains a status code and a description of
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.web2.http.RedirectResponse.html">RedirectResponse</a></td>
+          <td><span>A <a href="twisted.web2.http.Response.html">Response</a> object that 
+contains a redirect to another network location.
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.web2.http.NotModifiedResponse">NotModifiedResponse</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.web2.http.checkPreconditions">checkPreconditions</a></td>
+          <td><span>Check to see if this request passes the conditional checks 
+specified
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.web2.http.checkIfRange">checkIfRange</a></td>
+          <td><span>Checks for the If-Range header, and if it exists, checks if the
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.web2.http._NotifyingProducerStream.html">_NotifyingProducerStream</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.web2.http.Request.html">Request</a></td>
+          <td><span>A HTTP request.
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.web2.http.splitHostPort"></a>
+        <div class="functionHeader">
+          def <span>splitHostPort(scheme, hostport):</span>
+        </div>
+        <div class="functionBody"><div>Split the host in &quot;host:port&quot; format into host and port 
+fields. If port was not specified, use the default for the given scheme, 
+if known. Returns a tuple of (hostname, portnumber).
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.http.parseVersion"></a>
+        <div class="functionHeader">
+          def <span>parseVersion(strversion):</span>
+        </div>
+        <div class="functionBody"><div>Parse version strings of the form Protocol '/' Major '.' Minor. E.g. 
+'HTTP/1.1'. Returns (protocol, major, minor). Will raise ValueError on 
+bad syntax.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.http.NotModifiedResponse"></a>
+        <div class="functionHeader">
+          def <span>NotModifiedResponse(oldResponse=None):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.web2.http.checkPreconditions"></a>
+        <div class="functionHeader">
+          def <span>checkPreconditions(request, response=None, entityExists=True, etag=None, lastModified=None):</span>
+        </div>
+        <div class="functionBody"><div><p>Check to see if this request passes the conditional checks specified 
+by the client. May raise an HTTPError with result codes NOT_MODIFIED or 
+PRECONDITION_FAILED, as appropriate.</p>
+<p>This function is called automatically as an output filter for GET and 
+HEAD requests. With GET/HEAD, it is not important for the precondition 
+check to occur before doing the action, as the method is 
+non-destructive.</p>
+<p>However, if you are implementing other request methods, like PUT for 
+your resource, you will need to call this after determining the etag and 
+last-modified time of the existing resource but before actually doing the 
+requested action. In that case,</p>
+This examines the appropriate request headers for conditionals, 
+(If-Modified-Since, If-Unmodified-Since, If-Match, If-None-Match, or 
+If-Range), compares with the etag and last and and then sets the response 
+code as necessary.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">response</td><td>This should be provided for GET/HEAD methods. If it is specified, the 
+etag and lastModified arguments will be retrieved automatically from the 
+response headers and shouldn't be separately specified. Not providing the 
+response with a GET request may cause the emitted &quot;Not 
+Modified&quot; responses to be non-conformant.
+</td></tr><tr><td></td><td class="fieldArg">entityExists</td><td>Set to False if the entity in question doesn't yet exist. Necessary 
+for PUT support with 'If-None-Match: *'.
+</td></tr><tr><td></td><td class="fieldArg">etag</td><td>The etag of the resource to check against, or None.
+</td></tr><tr><td></td><td class="fieldArg">lastModified</td><td>The last modified date of the resource to check against, or None.
+</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg"><span style="font-size: xx-large; font-weight: bold; color: red; border: thick solid red;">None</span></td><td>HTTPError: Raised when the preconditions fail, in order to abort 
+processing and emit an error page.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.http.checkIfRange"></a>
+        <div class="functionHeader">
+          def <span>checkIfRange(request, response):</span>
+        </div>
+        <div class="functionBody"><div>Checks for the If-Range header, and if it exists, checks if the test 
+passes. Returns true if the server should return partial data.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

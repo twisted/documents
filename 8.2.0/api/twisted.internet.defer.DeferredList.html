@@ -1,0 +1,263 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.defer.DeferredList : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.i.d.DeferredList(<a href="twisted.internet.defer.Deferred.html">Deferred</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a>.<a href="twisted.internet.defer.html">defer</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/internet/defer.py#L470">View Source</a>
+      <a href="classIndex.html#twisted.internet.defer.DeferredList">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div><p>I combine a group of deferreds into one callback.</p>
+<p>I track a list of <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>s for 
+their callbacks, and make a single callback when they have all completed, a
+list of (success, result) tuples, 'success' being a boolean.</p>
+Note that you can still use a <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> after
+putting it in a DeferredList.  For example, you can suppress 'Unhandled 
+error in Deferred' messages by adding errbacks to the Deferreds *after* 
+putting them in the DeferredList, as a DeferredList won't swallow the 
+errors.  (Although a more convenient way to do this is simply to set the 
+consumeErrors flag)
+<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3704">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.DeferredList.html#__init__">__init__</a></td>
+    <td><span>Initialize a DeferredList.
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.DeferredList.html#_cbDeferred">_cbDeferred</a></td>
+    <td><span>(internal) Callback for when one of my deferreds fires.
+</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.internet.defer.Deferred.html">Deferred</a>:
+        </p>
+        <table class="children sortable" id="id3705">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.Deferred.html#addCallbacks">addCallbacks</a></td>
+    <td><span>Add a pair of callbacks (success and error) to this Deferred.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.Deferred.html#addCallback">addCallback</a></td>
+    <td><span>Convenience method for adding just a callback.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.Deferred.html#addErrback">addErrback</a></td>
+    <td><span>Convenience method for adding just an errback.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.Deferred.html#addBoth">addBoth</a></td>
+    <td><span>Convenience method for adding a single callable as both a callback and 
+an errback.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.Deferred.html#chainDeferred">chainDeferred</a></td>
+    <td><span>Chain another Deferred to this Deferred.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.Deferred.html#callback">callback</a></td>
+    <td><span>Run all success callbacks that have been added to this Deferred.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.Deferred.html#errback">errback</a></td>
+    <td><span>Run all error callbacks that have been added to this Deferred.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.Deferred.html#pause">pause</a></td>
+    <td><span>Stop processing on a Deferred until <a 
+href="twisted.internet.defer.Deferred.html#unpause"><code>unpause</code></a>()
+is called.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.Deferred.html#unpause">unpause</a></td>
+    <td><span>Process all callbacks made since <a 
+href="twisted.internet.defer.Deferred.html#pause"><code>pause</code></a>() 
+was called.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.Deferred.html#setTimeout">setTimeout</a></td>
+    <td><span>Set a timeout function to be triggered if I am not called.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.Deferred.html#__str__">__str__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.Deferred.html#_continue">_continue</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.Deferred.html#_startRunCallbacks">_startRunCallbacks</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.Deferred.html#_runCallbacks">_runCallbacks</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.internet.defer.DeferredList.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, deferredList, fireOnOneCallback=0, fireOnOneErrback=0, consumeErrors=0):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/internet/defer.py#L487" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.internet.defer.Deferred.html#__init__">twisted.internet.defer.Deferred.__init__</a></div>
+    <div>Initialize a DeferredList.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">deferredList</td><td>The list of deferreds to track.
+ (type: <code>list</code> of <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>s
+)</td></tr><tr><td></td><td class="fieldArg">fireOnOneCallback</td><td>(keyword param) a flag indicating that only one callback needs to be 
+fired for me to call my callback
+</td></tr><tr><td></td><td class="fieldArg">fireOnOneErrback</td><td>(keyword param) a flag indicating that only one errback needs to be 
+fired for me to call my errback
+</td></tr><tr><td></td><td class="fieldArg">consumeErrors</td><td>(keyword param) a flag indicating that any errors raised in the original
+deferreds should be consumed by this DeferredList.  This is useful to 
+prevent spurious warnings being logged.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.defer.DeferredList._cbDeferred">
+    
+  </a>
+  <a name="_cbDeferred">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _cbDeferred(self, result, index, succeeded):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/internet/defer.py#L524" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>(internal) Callback for when one of my deferreds fires.
+<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-10-27 16:02:37.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

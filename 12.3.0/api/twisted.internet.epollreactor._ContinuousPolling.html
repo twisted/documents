@@ -1,0 +1,472 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.epollreactor._ContinuousPolling : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class private">t.i.e._ContinuousPolling(<a href="twisted.internet.posixbase._PollLikeMixin.html">posixbase._PollLikeMixin</a>, <a href="twisted.internet.posixbase._DisconnectSelectableMixin.html">posixbase._DisconnectSelectableMixin</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a>.<a href="twisted.internet.epollreactor.html">epollreactor</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/epollreactor.py#L39">View Source</a>
+      <a href="classIndex.html#twisted.internet.epollreactor._ContinuousPolling">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Implements interfaces: <a href="twisted.internet.interfaces.IReactorFDSet.html">twisted.internet.interfaces.IReactorFDSet</a></p>
+    </div>
+    <div>Schedule reads and writes based on the passage of time, rather than 
+notification.</p>
+<p>This is useful for supporting polling filesystem files, which 
+<code>epoll(7)</code> does not support.</p>
+<p>The implementation uses <a 
+href="twisted.internet.posixbase._PollLikeMixin.html"><code>posixbase._PollLikeMixin</code></a>,
+which is a bit hacky, but re-implementing and testing the relevant code yet
+again is unappealing.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1637">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.epollreactor._ContinuousPolling.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.epollreactor._ContinuousPolling.html#iterate">iterate</a></td>
+    <td><span>Call <code>doRead</code> and <code>doWrite</code> on all readers and 
+writers respectively.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.epollreactor._ContinuousPolling.html#addReader">addReader</a></td>
+    <td><span>Add a <code>FileDescriptor</code> for notification of data available to 
+read.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.epollreactor._ContinuousPolling.html#addWriter">addWriter</a></td>
+    <td><span>Add a <code>FileDescriptor</code> for notification of data available to 
+write.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.epollreactor._ContinuousPolling.html#removeReader">removeReader</a></td>
+    <td><span>Remove a <code>FileDescriptor</code> from notification of data available
+to read.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.epollreactor._ContinuousPolling.html#removeWriter">removeWriter</a></td>
+    <td><span>Remove a <code>FileDescriptor</code> from notification of data available
+to write.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.epollreactor._ContinuousPolling.html#removeAll">removeAll</a></td>
+    <td><span>Remove all readers and writers.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.epollreactor._ContinuousPolling.html#getReaders">getReaders</a></td>
+    <td><span>Return a list of the readers.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.epollreactor._ContinuousPolling.html#getWriters">getWriters</a></td>
+    <td><span>Return a list of the writers.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.epollreactor._ContinuousPolling.html#_reactor">_reactor</a></td>
+    <td>The <a 
+href="twisted.internet.epollreactor.EPollReactor.html"><code>EPollReactor</code></a>
+that is using this instance.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.epollreactor._ContinuousPolling.html#_loop">_loop</a></td>
+    <td>A <code>LoopingCall</code> that drives the polling, or <code>None</code>.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.epollreactor._ContinuousPolling.html#_readers">_readers</a></td>
+    <td>A <code>set</code> of <code>FileDescriptor</code> objects that should be 
+read from.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.epollreactor._ContinuousPolling.html#_writers">_writers</a></td>
+    <td>A <code>set</code> of <code>FileDescriptor</code> objects that should be 
+written to.</td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.epollreactor._ContinuousPolling.html#_checkLoop">_checkLoop</a></td>
+    <td><span>Start or stop a <code>LoopingCall</code> based on whether there are 
+readers and writers.</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.internet.posixbase._PollLikeMixin.html">_PollLikeMixin</a>:
+        </p>
+        <table class="children sortable" id="id1638">
+  
+  
+<tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.posixbase._PollLikeMixin.html#_doReadOrWrite">_doReadOrWrite</a></td>
+    <td><span>fd is available for read or write, do the work and raise errors if 
+necessary.</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.internet.posixbase._DisconnectSelectableMixin.html">_DisconnectSelectableMixin</a>:
+        </p>
+        <table class="children sortable" id="id1639">
+  
+  
+<tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.posixbase._DisconnectSelectableMixin.html#_disconnectSelectable">_disconnectSelectable</a></td>
+    <td><span>Utility function for disconnecting a selectable.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.internet.epollreactor._ContinuousPolling._reactor">
+    
+  </a>
+  <a name="_reactor">
+    
+  </a>
+  <div class="functionHeader">
+    _reactor =
+  </div>
+  <div class="functionBody">
+    The <a 
+href="twisted.internet.epollreactor.EPollReactor.html"><code>EPollReactor</code></a>
+that is using this instance.
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.epollreactor._ContinuousPolling._loop">
+    
+  </a>
+  <a name="_loop">
+    
+  </a>
+  <div class="functionHeader">
+    _loop =
+  </div>
+  <div class="functionBody">
+    A <code>LoopingCall</code> that drives the polling, or <code>None</code>.
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.epollreactor._ContinuousPolling._readers">
+    
+  </a>
+  <a name="_readers">
+    
+  </a>
+  <div class="functionHeader">
+    _readers =
+  </div>
+  <div class="functionBody">
+    A <code>set</code> of <code>FileDescriptor</code> objects that should be 
+read from.
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.epollreactor._ContinuousPolling._writers">
+    
+  </a>
+  <a name="_writers">
+    
+  </a>
+  <div class="functionHeader">
+    _writers =
+  </div>
+  <div class="functionBody">
+    A <code>set</code> of <code>FileDescriptor</code> objects that should be 
+written to.
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.epollreactor._ContinuousPolling.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, reactor):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/epollreactor.py#L69" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.epollreactor._ContinuousPolling._checkLoop">
+    
+  </a>
+  <a name="_checkLoop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _checkLoop(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/epollreactor.py#L78" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Start or stop a <code>LoopingCall</code> based on whether there are 
+readers and writers.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.epollreactor._ContinuousPolling.iterate">
+    
+  </a>
+  <a name="iterate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    iterate(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/epollreactor.py#L96" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Call <code>doRead</code> and <code>doWrite</code> on all readers and 
+writers respectively.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.epollreactor._ContinuousPolling.addReader">
+    
+  </a>
+  <a name="addReader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addReader(self, reader):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/epollreactor.py#L106" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#addReader">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Add a <code>FileDescriptor</code> for notification of data available to 
+read.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.epollreactor._ContinuousPolling.addWriter">
+    
+  </a>
+  <a name="addWriter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addWriter(self, writer):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/epollreactor.py#L114" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#addWriter">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Add a <code>FileDescriptor</code> for notification of data available to 
+write.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.epollreactor._ContinuousPolling.removeReader">
+    
+  </a>
+  <a name="removeReader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeReader(self, reader):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/epollreactor.py#L122" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#removeReader">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Remove a <code>FileDescriptor</code> from notification of data available
+to read.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.epollreactor._ContinuousPolling.removeWriter">
+    
+  </a>
+  <a name="removeWriter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeWriter(self, writer):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/epollreactor.py#L133" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#removeWriter">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Remove a <code>FileDescriptor</code> from notification of data available
+to write.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.epollreactor._ContinuousPolling.removeAll">
+    
+  </a>
+  <a name="removeAll">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeAll(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/epollreactor.py#L144" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#removeAll">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Remove all readers and writers.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.epollreactor._ContinuousPolling.getReaders">
+    
+  </a>
+  <a name="getReaders">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getReaders(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/epollreactor.py#L156" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#getReaders">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Return a list of the readers.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.epollreactor._ContinuousPolling.getWriters">
+    
+  </a>
+  <a name="getWriters">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getWriters(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/epollreactor.py#L163" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#getWriters">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Return a list of the writers.<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2012-12-26 12:18:15.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

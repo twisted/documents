@@ -1,0 +1,205 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.python.failure.Failure&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.p.f.Failure:</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.python.failure.html">twisted.python.failure</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.python.failure.Failure">View In Hierarchy</a>
+    </p>
+    <div><p>Known subclasses: <a href="twisted.spread.pb.CopyableFailure.html">twisted.spread.pb.CopyableFailure</a>, <a href="twisted.spread.pb.CopiedFailure.html">twisted.spread.pb.CopiedFailure</a></p></div>
+    <div><p>A basic abstraction for an error that has occurred.</p>
+This is necessary because Python's built-in error mechanisms are 
+inconvenient for asynchronous communication.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">value</td><td>The exception instance responsible for this failure.
+</td></tr><tr><td></td><td class="fieldArg">type</td><td>The exception's class.
+</td></tr></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.failure.Failure.__init__">__init__</a></td>
+          <td><span>Initialize me with an explanation of the error.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.failure.Failure.trap">trap</a></td>
+          <td><span>Trap this failure if its type is in a predetermined list.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.failure.Failure.check">check</a></td>
+          <td><span>Check if this failure's type is in a predetermined list.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.failure.Failure.raiseException">raiseException</a></td>
+          <td><span>raise the original exception, preserving traceback
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.failure.Failure.__repr__">__repr__</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.failure.Failure.__str__">__str__</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.failure.Failure.__getstate__">__getstate__</a></td>
+          <td><span>Avoid pickling objects in the traceback.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.failure.Failure.cleanFailure">cleanFailure</a></td>
+          <td><span>Remove references to other objects, replacing them with strings.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.failure.Failure.getErrorMessage">getErrorMessage</a></td>
+          <td><span>Get a string of the exception which caused this Failure.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.failure.Failure.getBriefTraceback">getBriefTraceback</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.failure.Failure.getTraceback">getTraceback</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.failure.Failure.printTraceback">printTraceback</a></td>
+          <td><span>Emulate Python's standard error reporting mechanism.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.failure.Failure.printBriefTraceback">printBriefTraceback</a></td>
+          <td><span>Print a traceback as densely as possible.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.failure.Failure.printDetailedTraceback">printDetailedTraceback</a></td>
+          <td><span>Print a traceback with detailed locals and globals information.
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.python.failure.Failure.__init__"></a>
+        <div class="functionHeader">
+          def <span>__init__(self, exc_value=None, exc_type=None, exc_tb=None):</span>
+        </div>
+        <div class="functionBody"><div><p>Initialize me with an explanation of the error.</p>
+By default, this will use the current exception (sys.exc_info()). 
+However, if you want to specify a particular kind of failure, you can 
+pass an exception as an argument.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.failure.Failure.trap"></a>
+        <div class="functionHeader">
+          def <span>trap(self, *errorTypes):</span>
+        </div>
+        <div class="functionBody"><div><p>Trap this failure if its type is in a predetermined list.</p>
+<p>This allows you to trap a Failure in an error callback. It will be 
+automatically re-raised if it is not a type that you expect.</p>
+<p>The reason for having this particular API is because it's very useful 
+in Deferred errback chains:</p>
+<p>| def _ebFoo(self, failure): | r = failure.trap(Spam, Eggs) | print 
+'The Failure is due to either Spam or Eggs!' | if r == Spam: | print 
+'Spam did it!' | elif r == Eggs: | print 'Eggs did it!'</p>
+If the failure is not a Spam or an Eggs, then the Failure will be 
+'passed on' to the next errback.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">errorTypes</td><td>(type: Exception
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.failure.Failure.check"></a>
+        <div class="functionHeader">
+          def <span>check(self, *errorTypes):</span>
+        </div>
+        <div class="functionBody"><div>Check if this failure's type is in a predetermined list.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">errorTypes</td><td>(type: list of Exception classes or fully-qualified class names.
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the matching Exception type, or None if no match.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.failure.Failure.raiseException"></a>
+        <div class="functionHeader">
+          def <span>raiseException(self):</span>
+        </div>
+        <div class="functionBody"><div>raise the original exception, preserving traceback information if 
+available.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.failure.Failure.__repr__"></a>
+        <div class="functionHeader">
+          def <span>__repr__(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.python.failure.Failure.__str__"></a>
+        <div class="functionHeader">
+          def <span>__str__(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.python.failure.Failure.__getstate__"></a>
+        <div class="functionHeader">
+          def <span>__getstate__(self):</span>
+        </div>
+        <div class="functionBody"><div>Avoid pickling objects in the traceback.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.failure.Failure.cleanFailure"></a>
+        <div class="functionHeader">
+          def <span>cleanFailure(self):</span>
+        </div>
+        <div class="functionBody"><div>Remove references to other objects, replacing them with strings.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.failure.Failure.getErrorMessage"></a>
+        <div class="functionHeader">
+          def <span>getErrorMessage(self):</span>
+        </div>
+        <div class="functionBody"><div>Get a string of the exception which caused this Failure.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.failure.Failure.getBriefTraceback"></a>
+        <div class="functionHeader">
+          def <span>getBriefTraceback(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.python.failure.Failure.getTraceback"></a>
+        <div class="functionHeader">
+          def <span>getTraceback(self, elideFrameworkCode=0, detail='default'):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.python.failure.Failure.printTraceback"></a>
+        <div class="functionHeader">
+          def <span>printTraceback(self, file=None, elideFrameworkCode=0, detail='default'):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.spread.pb.CopiedFailure.html#twisted.spread.pb.CopiedFailure.printTraceback">twisted.spread.pb.CopiedFailure</a></div><div>Emulate Python's standard error reporting mechanism.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.failure.Failure.printBriefTraceback"></a>
+        <div class="functionHeader">
+          def <span>printBriefTraceback(self, file=None, elideFrameworkCode=0):</span>
+        </div>
+        <div class="functionBody"><div>Print a traceback as densely as possible.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.failure.Failure.printDetailedTraceback"></a>
+        <div class="functionHeader">
+          def <span>printDetailedTraceback(self, file=None, elideFrameworkCode=0):</span>
+        </div>
+        <div class="functionBody"><div>Print a traceback with detailed locals and globals information.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

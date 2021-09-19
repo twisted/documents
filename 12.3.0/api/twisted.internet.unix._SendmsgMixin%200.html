@@ -1,0 +1,303 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.unix._SendmsgMixin 0 : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class private">t.i.u._SendmsgMixin 0(<span title="object">object</span>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a>.<a href="twisted.internet.unix.html">unix</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/unix.py#L45">View Source</a>
+      <a href="classIndex.html#twisted.internet.unix._SendmsgMixin 0">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Implements interfaces: <a href="twisted.internet.interfaces.IUNIXTransport.html">twisted.internet.interfaces.IUNIXTransport</a></p>
+    </div>
+    <div>Mixin for stream-oriented UNIX transports which uses sendmsg and recvmsg
+to offer additional functionality, such as copying file descriptors into 
+other processes.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1304">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.unix._SendmsgMixin%200.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.unix._SendmsgMixin%200.html#sendFileDescriptor">sendFileDescriptor</a></td>
+    <td><span>Queue the given file descriptor to be sent and start trying to send 
+it.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.unix._SendmsgMixin%200.html#writeSomeData">writeSomeData</a></td>
+    <td><span>Send as much of <code>data</code> as possible.  Also send any pending 
+file descriptors.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.unix._SendmsgMixin%200.html#doRead">doRead</a></td>
+    <td><span>Calls <a 
+href="twisted.internet.interfaces.IFileDescriptorReceiver.html#fileDescriptorReceived"><code>IFileDescriptorReceiver.fileDescriptorReceived</code></a>
+and <a 
+href="twisted.internet.interfaces.IProtocol.html#dataReceived"><code>IProtocol.dataReceived</code></a>
+with all available data.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.unix._SendmsgMixin%200.html#_writeSomeDataBase">_writeSomeDataBase</a></td>
+    <td>The class which provides the basic implementation of 
+<code>writeSomeData</code>.  Ultimately this should be a subclass of <a 
+href="twisted.internet.abstract.FileDescriptor.html"><code>twisted.internet.abstract.FileDescriptor</code></a>.
+Subclasses which mix in <a 
+href="twisted.internet.unix._SendmsgMixin.html"><code>_SendmsgMixin</code></a>
+must define this.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.unix._SendmsgMixin%200.html#_sendmsgQueue">_sendmsgQueue</a></td>
+    <td>A <code>list</code> of <code>int</code> holding file descriptors which are 
+currently buffered before being sent.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.unix._SendmsgMixin%200.html#_fileDescriptorBufferSize">_fileDescriptorBufferSize</a></td>
+    <td>An <code>int</code> giving the maximum number of file descriptors to accept
+and queue for sending before pausing the registered producer, if there is 
+one.</td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.unix._SendmsgMixin%200.html#_isSendBufferFull">_isSendBufferFull</a></td>
+    <td><span>Determine whether the user-space send buffer for this transport is full 
+or not.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.internet.unix._SendmsgMixin._writeSomeDataBase">
+    
+  </a>
+  <a name="_writeSomeDataBase">
+    
+  </a>
+  <div class="functionHeader">
+    _writeSomeDataBase =
+  </div>
+  <div class="functionBody">
+    The class which provides the basic implementation of 
+<code>writeSomeData</code>.  Ultimately this should be a subclass of <a 
+href="twisted.internet.abstract.FileDescriptor.html"><code>twisted.internet.abstract.FileDescriptor</code></a>.
+Subclasses which mix in <a 
+href="twisted.internet.unix._SendmsgMixin.html"><code>_SendmsgMixin</code></a>
+must define this.
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.unix._SendmsgMixin._sendmsgQueue">
+    
+  </a>
+  <a name="_sendmsgQueue">
+    
+  </a>
+  <div class="functionHeader">
+    _sendmsgQueue =
+  </div>
+  <div class="functionBody">
+    A <code>list</code> of <code>int</code> holding file descriptors which are 
+currently buffered before being sent.
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.unix._SendmsgMixin._fileDescriptorBufferSize">
+    
+  </a>
+  <a name="_fileDescriptorBufferSize">
+    
+  </a>
+  <div class="functionHeader">
+    _fileDescriptorBufferSize =
+  </div>
+  <div class="functionBody">
+    An <code>int</code> giving the maximum number of file descriptors to accept
+and queue for sending before pausing the registered producer, if there is 
+one.
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.unix._SendmsgMixin.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/unix.py#L68" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.unix._SendmsgMixin._isSendBufferFull">
+    
+  </a>
+  <a name="_isSendBufferFull">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _isSendBufferFull(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/unix.py#L72" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Determine whether the user-space send buffer for this transport is full 
+or not.</p>
+<p>This extends the base determination by adding consideration of how many 
+file descriptors need to be sent using <code>sendmsg.send1msg</code>.  When
+there are more than <code>self._fileDescriptorBufferSize</code>, the buffer
+is considered full.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>True</code> if it is full, <code>False</code> otherwise.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.unix._SendmsgMixin.sendFileDescriptor">
+    
+  </a>
+  <a name="sendFileDescriptor">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    sendFileDescriptor(self, fileno):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/unix.py#L96" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IUNIXTransport.html#sendFileDescriptor">twisted.internet.interfaces.IUNIXTransport</a></div>
+    <div>Queue the given file descriptor to be sent and start trying to send 
+it.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.unix._SendmsgMixin.writeSomeData">
+    
+  </a>
+  <a name="writeSomeData">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    writeSomeData(self, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/unix.py#L105" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Send as much of <code>data</code> as possible.  Also send any pending 
+file descriptors.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.unix._SendmsgMixin.doRead">
+    
+  </a>
+  <a name="doRead">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    doRead(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/unix.py#L149" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Calls <a 
+href="twisted.internet.interfaces.IFileDescriptorReceiver.html#fileDescriptorReceived"><code>IFileDescriptorReceiver.fileDescriptorReceived</code></a>
+and <a 
+href="twisted.internet.interfaces.IProtocol.html#dataReceived"><code>IProtocol.dataReceived</code></a>
+with all available data.</p>
+<p>This reads up to <code>self.bufferSize</code> bytes of data from its 
+socket, then dispatches the data to protocol callbacks to be handled.  If 
+the connection is not lost through an error in the underlying recvmsg(), 
+this function will return the result of the dataReceived call.<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2012-12-26 12:18:15.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

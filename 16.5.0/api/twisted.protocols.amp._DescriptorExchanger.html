@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.protocols.amp._DescriptorExchanger : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="apidocs.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class private"><code>twisted.protocols.amp._DescriptorExchanger(<span title="object">object</span>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.protocols.html" data-type="Package" class="code">protocols</a>.<a href="twisted.protocols.amp.html" data-type="Module" class="code">amp</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-16.5.0/src/twisted/protocols/amp.py#L2233">View Source</a>
+          <a href="classIndex.html#twisted.protocols.amp._DescriptorExchanger">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Known subclasses: <a href="twisted.protocols.amp.BinaryBoxProtocol.html" data-type="Class" class="code">twisted.protocols.amp.BinaryBoxProtocol</a></p><p>Implements interfaces: <a href="twisted.internet.interfaces.IFileDescriptorReceiver.html" data-type="Interface" class="code">twisted.internet.interfaces.IFileDescriptorReceiver</a></p>
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p><a href="twisted.protocols.amp._DescriptorExchanger.html"><code>_DescriptorExchanger</code></a>
+is a mixin for <a href="twisted.protocols.amp.BinaryBoxProtocol.html"><code>BinaryBoxProtocol</code></a>
+which adds support for receiving file descriptors, a feature offered by <a href="twisted.internet.interfaces.IUNIXTransport.html"><code>IUNIXTransport</code></a>.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1990">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp._DescriptorExchanger.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp._DescriptorExchanger.html#fileDescriptorReceived" data-type="Method" class="code">fileDescriptorReceived</a></td>
+    <td><span>Collect received file descriptors to be claimed later by <a href="twisted.protocols.amp.Descriptor.html"><code>Descriptor</code></a>.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.amp._DescriptorExchanger.html#_descriptors" data-type="Instance Variable" class="code">_descriptors</a></td>
+    <td>Temporary storage for all file descriptors received. Values in this 
+dictionary are the file descriptors (as integers).  Keys in this dictionary
+are ordinals giving the order in which each descriptor was received.  The 
+ordering information is used to allow <a href="twisted.protocols.amp.Descriptor.html"><code>Descriptor</code></a> to
+determine which is the correct descriptor for any particular usage of that 
+argument type. (type: <code>dict</code>)</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.amp._DescriptorExchanger.html#_sendingDescriptorCounter" data-type="Instance Variable" class="code">_sendingDescriptorCounter</a></td>
+    <td>A no-argument callable which returns the ordinals, starting from 0.  This 
+is used to construct values for <code>_sendFileDescriptor</code>.</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.amp._DescriptorExchanger.html#_receivingDescriptorCounter" data-type="Instance Variable" class="code">_receivingDescriptorCounter</a></td>
+    <td>A no-argument callable which returns the ordinals, starting from 0.  This 
+is used to construct values for <code>fileDescriptorReceived</code>.</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp._DescriptorExchanger.html#_sendFileDescriptor" data-type="Method" class="code">_sendFileDescriptor</a></td>
+    <td><span>Assign and return the next ordinal to the given descriptor after sending
+the descriptor over this protocol's transport.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable private">
+  
+  <a name="twisted.protocols.amp._DescriptorExchanger._descriptors">
+    
+  </a>
+  <a name="_descriptors">
+    
+  </a>
+  <div class="functionHeader">
+    _descriptors =
+  </div>
+  <div class="functionBody">
+    Temporary storage for all file descriptors received. Values in this 
+dictionary are the file descriptors (as integers).  Keys in this dictionary
+are ordinals giving the order in which each descriptor was received.  The 
+ordering information is used to allow <a href="twisted.protocols.amp.Descriptor.html"><code>Descriptor</code></a> to
+determine which is the correct descriptor for any particular usage of that 
+argument type. (type: <code>dict</code>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.protocols.amp._DescriptorExchanger._sendingDescriptorCounter">
+    
+  </a>
+  <a name="_sendingDescriptorCounter">
+    
+  </a>
+  <div class="functionHeader">
+    _sendingDescriptorCounter =
+  </div>
+  <div class="functionBody">
+    A no-argument callable which returns the ordinals, starting from 0.  This 
+is used to construct values for <code>_sendFileDescriptor</code>.
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.protocols.amp._DescriptorExchanger._receivingDescriptorCounter">
+    
+  </a>
+  <a name="_receivingDescriptorCounter">
+    
+  </a>
+  <div class="functionHeader">
+    _receivingDescriptorCounter =
+  </div>
+  <div class="functionBody">
+    A no-argument callable which returns the ordinals, starting from 0.  This 
+is used to construct values for <code>fileDescriptorReceived</code>.
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.amp._DescriptorExchanger.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.5.0/src/twisted/protocols/amp.py#L2256">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.protocols.amp.BinaryBoxProtocol.html" data-type="Class" class="code">twisted.protocols.amp.BinaryBoxProtocol</a></div>
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.protocols.amp._DescriptorExchanger._sendFileDescriptor">
+    
+  </a>
+  <a name="_sendFileDescriptor">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _sendFileDescriptor(self, descriptor):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.5.0/src/twisted/protocols/amp.py#L2263">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Assign and return the next ordinal to the given descriptor after sending
+the descriptor over this protocol's transport.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.amp._DescriptorExchanger.fileDescriptorReceived">
+    
+  </a>
+  <a name="fileDescriptorReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    fileDescriptorReceived(self, descriptor):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.5.0/src/twisted/protocols/amp.py#L2272">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IFileDescriptorReceiver.html#fileDescriptorReceived" data-type="Method" class="code">twisted.internet.interfaces.IFileDescriptorReceiver</a></div>
+    
+    <div><p>Collect received file descriptors to be claimed later by <a href="twisted.protocols.amp.Descriptor.html"><code>Descriptor</code></a>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">descriptor</td><td>The received file descriptor. (type: <code>int</code>)</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2016-10-29 16:19:29.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

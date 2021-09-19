@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE html  PUBLIC '-//W3C//DTD XHTML 1.0 Transitional//EN'  'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'><html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Twisted Documentation: DirDBM: Directory-based Storage</title>
+    <link href="stylesheet.css" rel="stylesheet" type="text/css"/>
+    <!-- Google analytics. -->
+    <script type="text/javascript">
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', 'UA-99018-6']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+  </head>
+
+  <body bgcolor="white">
+    <span id="current-docs-container" style="display: none">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="title">DirDBM: Directory-based Storage</h1>
+    <div class="toc"><ol><li><a href="#auto0">dirdbm.DirDBM</a></li><li><a href="#auto1">dirdbm.Shelf</a></li></ol></div>
+    <div class="content">
+<span/>
+
+<h2>dirdbm.DirDBM<a name="auto0"/></h2>
+
+<p><code class="API"><a href="http://twistedmatrix.com/documents/12.2.0/api/twisted.persisted.dirdbm.DirDBM.html" title="twisted.persisted.dirdbm.DirDBM">twisted.persisted.dirdbm.DirDBM</a></code> is a DBM-like storage system. 
+That is, it stores mappings between keys
+and values, like a Python dictionary, except that it stores the values in files
+in a directory - each entry is a different file. The keys must always be strings,
+as are the values. Other than that, <code class="API"><a href="http://twistedmatrix.com/documents/12.2.0/api/twisted.persisted.dirdbm.DirDBM.html" title="twisted.persisted.dirdbm.DirDBM">DirDBM</a></code>
+objects act just like Python dictionaries.</p>
+
+<p><code class="API"><a href="http://twistedmatrix.com/documents/12.2.0/api/twisted.persisted.dirdbm.DirDBM.html" title="twisted.persisted.dirdbm.DirDBM">DirDBM</a></code> is useful for cases
+when you want to store small amounts of data in an organized fashion, without having
+to deal with the complexity of a RDBMS or other sophisticated database. It is simple,
+easy to use, cross-platform, and doesn't require any external C libraries, unlike
+Python's built-in DBM modules.</p>
+
+<pre class="python-interpreter" xml:space="preserve">
+&gt;&gt;&gt; from twisted.persisted import dirdbm
+&gt;&gt;&gt; d = dirdbm.DirDBM(&quot;/tmp/dir&quot;)
+&gt;&gt;&gt; d[&quot;librarian&quot;] = &quot;ook&quot;
+&gt;&gt;&gt; d[&quot;librarian&quot;]        
+'ook'
+&gt;&gt;&gt; d.keys()
+['librarian']
+&gt;&gt;&gt; del d[&quot;librarian&quot;]
+&gt;&gt;&gt; d.items()
+[]
+</pre>
+
+<h2>dirdbm.Shelf<a name="auto1"/></h2>
+
+<p>Sometimes it is neccessary to persist more complicated objects than strings.
+With some care, <code class="API"><a href="http://twistedmatrix.com/documents/12.2.0/api/twisted.persisted.dirdbm.Shelf.html" title="twisted.persisted.dirdbm.Shelf">dirdbm.Shelf</a></code>
+can transparently persist
+them. <code>Shelf</code> works exactly like <code>DirDBM</code>, except that
+the values (but not the keys) can be arbitrary picklable objects. However,
+notice that mutating an object after it has been stored in the  <code>Shelf</code> has no effect on the Shelf.
+When mutating objects, it is neccessary to explictly store them back in the <code>Shelf</code>
+afterwards:</p>
+
+<pre class="python-interpreter" xml:space="preserve">
+&gt;&gt;&gt; from twisted.persisted import dirdbm
+&gt;&gt;&gt; d = dirdbm.Shelf(&quot;/tmp/dir2&quot;)
+&gt;&gt;&gt; d[&quot;key&quot;] = [1, 2]
+&gt;&gt;&gt; d[&quot;key&quot;]
+[1, 2]
+&gt;&gt;&gt; l = d[&quot;key&quot;]
+&gt;&gt;&gt; l.append(3)
+&gt;&gt;&gt; d[&quot;key&quot;]
+[1, 2]
+&gt;&gt;&gt; d[&quot;key&quot;] = l
+&gt;&gt;&gt; d[&quot;key&quot;]
+[1, 2, 3]
+</pre>
+
+
+
+
+
+  </div>
+
+    <p><a href="index.html">Index</a></p>
+    <span class="version">Version: 12.2.0</span>
+
+    <div>
+        <!-- If the documentation isn't current, insert a current link. -->
+        <script type="text/javascript">
+          if (window.location.pathname.indexOf('/current/') == -1) {
+              <!-- Give the user a link to this page, but in the current version of the docs. -->
+              var link = document.getElementById('current-docs-link');
+              link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+/, '/current');
+              <!-- And make it visible -->
+              var container = document.getElementById('current-docs-container');
+              container.style.display = '';
+              delete link;
+              delete container;
+          }
+        </script>
+        <!-- Site Meter -->
+        <script src="http://sm7.sitemeter.com/js/counter.js?site=sm7twistedmatrix" type="text/javascript">
+        </script>
+        <noscript>
+        <a href="http://sm7.sitemeter.com/stats.asp?site=sm7twistedmatrix" target="_top">
+        <img alt="Site Meter" border="0" src="http://sm7.sitemeter.com/meter.asp?site=sm7twistedmatrix"/></a>
+        </noscript>
+        <!-- Copyright (c)2006 Site Meter -->
+    </div>
+
+  </body>
+</html>

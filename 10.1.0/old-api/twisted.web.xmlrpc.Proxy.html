@@ -1,0 +1,165 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web.xmlrpc.Proxy : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">t.w.x.Proxy : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web.html">web</a>.<a href="twisted.web.xmlrpc.html">xmlrpc</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/web/xmlrpc.py#L410">View Source</a>
+      <a href="classIndex.html#twisted.web.xmlrpc.Proxy">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>A Proxy for making remote XML-RPC calls.</p>
+<p>Pass the URL of the remote XML-RPC server to the constructor.</p>
+<p>Use proxy.callRemote('foobar', *args) to call remote method 'foobar' 
+with *args.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">user</td><td>The username with which to authenticate with the server when making calls.
+If specified, overrides any username information embedded in 
+<code>url</code>.  If not specified, a value may be taken from 
+<code>url</code> if present.
+ (type: <code>str</code> or <code>NoneType</code>
+)</td></tr><tr><td></td><td class="fieldArg">password</td><td>The password with which to authenticate with the server when making calls.
+If specified, overrides any password information embedded in 
+<code>url</code>.  If not specified, a value may be taken from 
+<code>url</code> if present.
+ (type: <code>str</code> or <code>NoneType</code>
+)</td></tr><tr><td></td><td class="fieldArg">allowNone</td><td>allow the use of None values in parameters. It's passed to the underlying 
+xmlrpclib implementation. Default to False.
+ (type: <code>bool</code> or <code>NoneType</code>
+)</td></tr><tr><td></td><td class="fieldArg">useDateTime</td><td>Accept datetime values as datetime.datetime objects. also passed to the 
+underlying xmlrpclib implementation.  Default to False.  Requires Python 
+&gt;= 2.5.
+ (type: <code>bool</code>
+)</td></tr><tr><td></td><td class="fieldArg">queryFactory</td><td>object returning a factory for XML-RPC protocol. Mainly useful for tests.
+</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id478">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.xmlrpc.Proxy.html#__init__">__init__</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.xmlrpc.Proxy.html#__setattr__">__setattr__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.xmlrpc.Proxy.html#callRemote">callRemote</a></td>
+    <td><span>Call remote XML-RPC <code>method</code> with given arguments.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.web.xmlrpc.Proxy.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, url, user=None, password=None, allowNone=False, useDateTime=False):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/web/xmlrpc.py#L445" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">url</td><td>The URL to which to post method calls.  Calls will be made over SSL if the 
+scheme is HTTPS.  If netloc contains username or password information, 
+these will be used to authenticate, as long as the <code>user</code> and 
+<code>password</code> arguments are not specified.
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.xmlrpc.Proxy.__setattr__">
+    
+  </a>
+  <a name="__setattr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __setattr__(self, name, value):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/web/xmlrpc.py#L484" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.xmlrpc.Proxy.callRemote">
+    
+  </a>
+  <a name="callRemote">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    callRemote(self, method, *args):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/web/xmlrpc.py#L490" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Call remote XML-RPC <code>method</code> with given arguments.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a <a 
+href="twisted.internet.defer.Deferred.html"><code>defer.Deferred</code></a>
+that will fire with the method response, or a failure if the method failed.
+Generally, the failure type will be <code>Fault</code>, but you can also 
+have an <code>IndexError</code> on some buggy servers giving empty 
+responses.
+<p>If the deferred is cancelled before the request completes, the 
+connection is closed and the deferred will fire with a <a 
+href="twisted.internet.defer.CancelledError.html"><code>defer.CancelledError</code></a>.</p>
+</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2010-07-05 15:03:32.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+  </body>
+</html>

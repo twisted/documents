@@ -1,0 +1,125 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.conch.manhole.ManholeInterpreter&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.c.m.ManholeInterpreter(code.InteractiveInterpreter):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.conch.manhole.html">twisted.conch.manhole</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.conch.manhole.ManholeInterpreter">View In Hierarchy</a>
+    </p>
+    <div></div>
+    <div><p>Interactive Interpreter with special output and Deferred support.</p>
+Aside from the features provided by code.InteractiveInterpreter, this 
+class captures sys.stdout output and redirects it to the appropriate 
+location (the Manhole protocol instance). It also treats Deferreds which 
+reach the top-level specially: each is formatted to the user with a 
+unique identifier and a new callback and errback added to it, each of 
+which will format the unique identifier and the result with which the 
+Deferred fires and then pass it on to the next participant in the 
+callback chain.
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.manhole.ManholeInterpreter.__init__">__init__</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.manhole.ManholeInterpreter.resetBuffer">resetBuffer</a></td>
+          <td><span>Reset the input buffer.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.manhole.ManholeInterpreter.push">push</a></td>
+          <td><span>Push a line to the interpreter.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.manhole.ManholeInterpreter.runcode">runcode</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.manhole.ManholeInterpreter.displayhook">displayhook</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.manhole.ManholeInterpreter._cbDisplayDeferred">_cbDisplayDeferred</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.manhole.ManholeInterpreter._ebDisplayDeferred">_ebDisplayDeferred</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.manhole.ManholeInterpreter.write">write</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.conch.manhole.ManholeInterpreter.__init__"></a>
+        <div class="functionHeader">
+          def <span>__init__(self, handler, locals=None, filename='&lt;console&gt;'):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.manhole.ManholeInterpreter.resetBuffer"></a>
+        <div class="functionHeader">
+          def <span>resetBuffer(self):</span>
+        </div>
+        <div class="functionBody"><div>Reset the input buffer.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.conch.manhole.ManholeInterpreter.push"></a>
+        <div class="functionHeader">
+          def <span>push(self, line):</span>
+        </div>
+        <div class="functionBody"><div><p>Push a line to the interpreter.</p>
+The line should not have a trailing newline; it may have internal 
+newlines. The line is appended to a buffer and the interpreter's 
+runsource() method is called with the concatenated contents of the buffer 
+as source. If this indicates that the command was executed or invalid, 
+the buffer is reset; otherwise, the command is incomplete, and the buffer 
+is left as it was after the line was appended. The return value is 1 if 
+more input is required, 0 if the line was dealt with in some way (this is 
+the same as runsource()).
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.conch.manhole.ManholeInterpreter.runcode"></a>
+        <div class="functionHeader">
+          def <span>runcode(self, *a, **kw):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.manhole.ManholeInterpreter.displayhook"></a>
+        <div class="functionHeader">
+          def <span>displayhook(self, obj):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.manhole.ManholeInterpreter._cbDisplayDeferred"></a>
+        <div class="functionHeader">
+          def <span>_cbDisplayDeferred(self, result, k, obj):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.manhole.ManholeInterpreter._ebDisplayDeferred"></a>
+        <div class="functionHeader">
+          def <span>_ebDisplayDeferred(self, failure, k, obj):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.manhole.ManholeInterpreter.write"></a>
+        <div class="functionHeader">
+          def <span>write(self, data, async=False):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div>    
+  </body>
+</html>

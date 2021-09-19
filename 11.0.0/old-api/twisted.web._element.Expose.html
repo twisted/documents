@@ -1,0 +1,183 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web._element.Expose : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">t.w._.Expose(<span title="object">object</span>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web.html">web</a>.<a href="twisted.web._element.html">_element</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/_element.py#L12">View Source</a>
+      <a href="classIndex.html#twisted.web._element.Expose">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>Helper for exposing methods for various uses using a simple 
+decorator-style callable.</p>
+<p>Instances of this class can be called with one or more functions as 
+positional arguments.  The names of these functions will be added to a list
+on the class object of which they are methods.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">attributeName</td><td>The attribute with which exposed methods will be tracked.
+</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1542">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._element.Expose.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._element.Expose.html#__call__">__call__</a></td>
+    <td><span>Add one or more functions to the set of exposed functions.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._element.Expose.html#get">get</a></td>
+    <td><span>Retrieve an exposed method with the given name from the given 
+instance.</span></td>
+  </tr><tr class="classmethod private">
+    
+    
+    <td>Class Method</td>
+    <td><a href="twisted.web._element.Expose.html#_withDocumentation">_withDocumentation</a></td>
+    <td><span>Slight hack to make users of this class appear to have a docstring 
+to</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.web._element.Expose.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, doc=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/_element.py#L24" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._element.Expose.__call__">
+    
+  </a>
+  <a name="__call__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __call__(self, *funcObjs):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/_element.py#L28" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Add one or more functions to the set of exposed functions.</p>
+<p>This is a way to declare something about a class definition, similar to 
+<code>zope.interface.implements</code>.  Use it like this:</p>
+<pre class="literalblock">
+   magic = Expose('perform extra magic')
+   class Foo(Bar):
+       def twiddle(self, x, y):
+           ...
+       def frob(self, a, b):
+           ...
+       magic(twiddle, frob)
+</pre>
+<p>Later you can query the object:</p>
+<pre class="literalblock">
+   aFoo = Foo()
+   magic.get(aFoo, 'twiddle')(x=1, y=2)
+</pre>
+<p>The call to <code>get</code> will fail if the name it is given has not 
+been exposed using <code>magic</code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">funcObjs</td><td>One or more function objects which will be exposed to the client.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The first of <code>funcObjs</code>.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._element.Expose.get">
+    
+  </a>
+  <a name="get">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    get(self, instance, methodName, default=_nodefault):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/_element.py#L65" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Retrieve an exposed method with the given name from the given 
+instance.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A callable object for the named method assigned to the given instance.
+</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">UnexposedMethodError</td><td>Raised if <code>default</code> is not specified and there is no exposed 
+method with the given name.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._element.Expose._withDocumentation">
+    
+  </a>
+  <a name="_withDocumentation">
+    
+  </a>
+  <div class="functionHeader">
+    @classmethod<br />
+    def
+    _withDocumentation(cls, thunk):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/_element.py#L85" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Slight hack to make users of this class appear to have a docstring to 
+documentation generators, by defining them with a decorator.  (This hack 
+should be removed when epydoc can be convinced to use some other method for
+documenting.)<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-04-03 00:32:03.
+    </address>
+  </body>
+</html>

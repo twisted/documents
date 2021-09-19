@@ -1,0 +1,265 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web.wsgi._WSGIResponse : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class private">t.w.w._WSGIResponse : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web.html">web</a>.<a href="twisted.web.wsgi.html">wsgi</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/wsgi.py#L133">View Source</a>
+      <a href="classIndex.html#twisted.web.wsgi._WSGIResponse">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>Helper for <a 
+href="twisted.web.wsgi.WSGIResource.html"><code>WSGIResource</code></a> 
+which drives the WSGI application using a threadpool and hooks it up to the
+<a href="twisted.web.distrib.Request.html"><code>Request</code></a>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">started</td><td>A <code>bool</code> indicating whether or not the response status and 
+headers have been written to the request yet.  This may only be read or 
+written in the WSGI application thread.
+</td></tr><tr><td></td><td class="fieldArg">reactor</td><td>An <code>IReactorThreads</code> provider which is used to call methods on 
+the request in the I/O thread.
+</td></tr><tr><td></td><td class="fieldArg">threadpool</td><td>A <code>ThreadPool</code> which is used to call the WSGI application object
+in a non-I/O thread.
+</td></tr><tr><td></td><td class="fieldArg">application</td><td>The WSGI application object.
+</td></tr><tr><td></td><td class="fieldArg">request</td><td>The <a href="twisted.web.distrib.Request.html"><code>Request</code></a> 
+upon which the WSGI environment is based and to which the application's 
+output will be sent.
+</td></tr><tr><td></td><td class="fieldArg">environ</td><td>The WSGI environment <code>dict</code>.
+</td></tr><tr><td></td><td class="fieldArg">status</td><td>The HTTP response status <code>str</code> supplied to the WSGI 
+<i>start_response</i> callable by the application.
+</td></tr><tr><td></td><td class="fieldArg">headers</td><td>A list of HTTP response headers supplied to the WSGI <i>start_response</i> 
+callable by the application.
+</td></tr><tr><td></td><td class="fieldArg">_requestFinished</td><td>A flag which indicates whether it is possible to generate more response 
+data or not.  This is <code>False</code> until 
+<code>Request.notifyFinish</code> tells us the request is done, then 
+<code>True</code>.
+</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1480">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.wsgi._WSGIResponse.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.wsgi._WSGIResponse.html#startResponse">startResponse</a></td>
+    <td><span>The WSGI <i>start_response</i> callable.  The given values are saved 
+until</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.wsgi._WSGIResponse.html#write">write</a></td>
+    <td><span>The WSGI <i>write</i> callable returned by the <i>start_response</i> 
+callable.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.wsgi._WSGIResponse.html#start">start</a></td>
+    <td><span>Start the WSGI application in the threadpool.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.wsgi._WSGIResponse.html#run">run</a></td>
+    <td><span>Call the WSGI application object, iterate it, and handle its output.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.wsgi._WSGIResponse.html#_finished">_finished</a></td>
+    <td><span>Record the end of the response generation for the request being</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.wsgi._WSGIResponse.html#_sendResponseHeaders">_sendResponseHeaders</a></td>
+    <td><span>Set the response code and response headers on the request object, 
+but</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.web.wsgi._WSGIResponse.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, reactor, threadpool, application, request):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/wsgi.py#L168" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.wsgi._WSGIResponse._finished">
+    
+  </a>
+  <a name="_finished">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _finished(self, ignored):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/wsgi.py#L235" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Record the end of the response generation for the request being 
+serviced.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.wsgi._WSGIResponse.startResponse">
+    
+  </a>
+  <a name="startResponse">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    startResponse(self, status, headers, excInfo=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/wsgi.py#L243" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>The WSGI <i>start_response</i> callable.  The given values are saved 
+until they are needed to generate the response.</p>
+<p>This will be called in a non-I/O thread.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.wsgi._WSGIResponse.write">
+    
+  </a>
+  <a name="write">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    write(self, bytes):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/wsgi.py#L257" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>The WSGI <i>write</i> callable returned by the <i>start_response</i> 
+callable. The given bytes will be written to the response body, possibly 
+flushing the status and headers first.</p>
+<p>This will be called in a non-I/O thread.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.wsgi._WSGIResponse._sendResponseHeaders">
+    
+  </a>
+  <a name="_sendResponseHeaders">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _sendResponseHeaders(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/wsgi.py#L273" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Set the response code and response headers on the request object, but do
+not flush them.  The caller is responsible for doing a write in order for 
+anything to actually be written out in response to the request.</p>
+<p>This must be called in the I/O thread.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.wsgi._WSGIResponse.start">
+    
+  </a>
+  <a name="start">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    start(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/wsgi.py#L296" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Start the WSGI application in the threadpool.</p>
+<p>This must be called in the I/O thread.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.wsgi._WSGIResponse.run">
+    
+  </a>
+  <a name="run">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    run(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/wsgi.py#L305" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Call the WSGI application object, iterate it, and handle its output.</p>
+<p>This must be called in a non-I/O thread (ie, a WSGI application 
+thread).<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-04-03 00:32:03.
+    </address>
+  </body>
+</html>

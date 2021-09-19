@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.application.internet : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="http://twistedmatrix.com/">Twisted</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code>twisted.application.internet</code> <small>module documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.application.html" data-type="Package" class="code">application</a></code>
+          <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.1/twisted/application/internet.py">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Reactor-based Services</p>
+<p>Here are services to run clients, servers and periodic services using 
+the reactor.</p>
+<p>If you want to run a server service, <a href="twisted.application.internet.StreamServerEndpointService.html"><code>StreamServerEndpointService</code></a>
+defines a service that can wrap an arbitrary <a href="twisted.internet.interfaces.IStreamServerEndpoint.html"><code>IStreamServerEndpoint</code></a>
+as an <a href="twisted.application.service.IService.html"><code>IService</code></a>.
+See also <a href="twisted.application.strports.html#service"><code>twisted.application.strports.service</code></a>
+for constructing one of these directly from a descriptive string.</p>
+<p>Additionally, this module (dynamically) defines various Service 
+subclasses that let you represent clients and servers in a Service 
+hierarchy.  Endpoints APIs should be preferred for stream server services, 
+but since those APIs do not yet exist for clients or datagram services, 
+many of these are still useful.</p>
+<p>They are as follows:</p>
+<pre class="literalblock">
+ TCPServer, TCPClient,
+ UNIXServer, UNIXClient,
+ SSLServer, SSLClient,
+ UDPServer,
+ UNIXDatagramServer, UNIXDatagramClient,
+ MulticastServer
+</pre>
+<p>These classes take arbitrary arguments in their constructors and pass 
+them straight on to their respective reactor.listenXXX or 
+reactor.connectXXX calls.</p>
+<p>For example, the following service starts a web server on port 8080: 
+<code>TCPServer(8080, server.Site(r))</code>.  See the documentation for 
+the reactor.listen/connect* methods for more information.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id33">
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.application.internet.TimerService.html" data-type="Class" class="code">TimerService</a></td>
+    <td><span>Service to periodically call a function</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.application.internet.CooperatorService.html" data-type="Class" class="code">CooperatorService</a></td>
+    <td><span>Simple <a href="twisted.application.service.IService.html"><code>service.IService</code></a>
+which starts and stops a <a href="twisted.internet.task.Cooperator.html"><code>twisted.internet.task.Cooperator</code></a>.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.application.internet.StreamServerEndpointService.html" data-type="Class" class="code">StreamServerEndpointService</a></td>
+    <td><span>A <a href="twisted.application.internet.StreamServerEndpointService.html"><code>StreamServerEndpointService</code></a>
+is an <a href="twisted.application.service.IService.html"><code>IService</code></a> 
+which runs a server on a listening port described by an <a href="twisted.internet.interfaces.IStreamServerEndpoint.html"><code>IStreamServerEndpoint</code></a>.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.application.internet.html#backoffPolicy" data-type="Function" class="code">backoffPolicy</a></td>
+    <td><span>A timeout policy for <a href="twisted.application.internet.ClientService.html"><code>ClientService</code></a>
+which computes an exponential backoff interval with configurable 
+parameters.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.application.internet.ClientService.html" data-type="Class" class="code">ClientService</a></td>
+    <td><span>A <a href="twisted.application.internet.ClientService.html"><code>ClientService</code></a>
+maintains a single outgoing connection to a client endpoint, reconnecting 
+after a configurable timeout when a connection fails, either before or 
+after connecting.</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.application.internet.html#_maybeGlobalReactor" data-type="Function" class="code">_maybeGlobalReactor</a></td>
+    <td></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.application.internet._VolatileDataService.html" data-type="Class" class="code">_VolatileDataService</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.application.internet._AbstractServer.html" data-type="Class" class="code">_AbstractServer</a></td>
+    <td></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.application.internet._AbstractClient.html" data-type="Class" class="code">_AbstractClient</a></td>
+    <td></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.application.internet._ReconnectingProtocolProxy.html" data-type="Class" class="code">_ReconnectingProtocolProxy</a></td>
+    <td><span>A proxy for a Protocol to provide connectionLost notification to a 
+client connection service, in support of reconnecting when connections are 
+lost.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.application.internet._DisconnectFactory.html" data-type="Class" class="code">_DisconnectFactory</a></td>
+    <td><span>A <a href="twisted.application.internet._DisconnectFactory.html"><code>_DisconnectFactory</code></a>
+is a proxy for <a href="twisted.internet.interfaces.IProtocolFactory.html"><code>IProtocolFactory</code></a>
+that catches <code>connectionLost</code> notifications and relays them.</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.application.internet.html#_noop" data-type="Function" class="code">_noop</a></td>
+    <td><span>Do nothing; this stands in for <code>transport.loseConnection()</code> 
+and <code>DelayedCall.cancel()</code> when <a href="twisted.application.internet.ClientService.html"><code>ClientService</code></a>
+is in a state where there's nothing to do.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction private">
+  
+  <a name="twisted.application.internet._maybeGlobalReactor">
+    
+  </a>
+  <a name="_maybeGlobalReactor">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _maybeGlobalReactor(maybeReactor):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.1/twisted/application/internet.py#L56">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the argument, or the global reactor if the argument is <code>None</code>.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.application.internet.backoffPolicy">
+    
+  </a>
+  <a name="backoffPolicy">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    backoffPolicy(initialDelay=1.0, maxDelay=60.0, factor=1.5, jitter=_goodEnoughRandom):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.1/twisted/application/internet.py#L486">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>A timeout policy for <a href="twisted.application.internet.ClientService.html"><code>ClientService</code></a>
+which computes an exponential backoff interval with configurable 
+parameters.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">initialDelay</td><td>Delay for the first reconnection attempt (default 1.0s). (type: <a href="http://docs.python.org/library/stdtypes.html#float"><code>float</code></a>)</td></tr><tr><td></td><td class="fieldArg">maxDelay</td><td>Maximum number of seconds between connection attempts (default 60 seconds, 
+or one minute).  Note that this value is before jitter is applied, so the 
+actual maximum possible delay is this value plus the maximum possible 
+result of <code>jitter()</code>. (type: <a href="http://docs.python.org/library/stdtypes.html#float"><code>float</code></a>)</td></tr><tr><td></td><td class="fieldArg">factor</td><td>A multiplicative factor by which the delay grows on each failed reattempt.
+Default: 1.5. (type: <a href="http://docs.python.org/library/stdtypes.html#float"><code>float</code></a>)</td></tr><tr><td></td><td class="fieldArg">jitter</td><td>A 0-argument callable that introduces noise into the delay. By default, 
+<code>random.random</code>, i.e. a pseudorandom floating-point value 
+between zero and one. (type: 0-argument callable returning <a href="http://docs.python.org/library/stdtypes.html#float"><code>float</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a 1-argument callable that, given an attempt count, returns a floating 
+point number; the number of seconds to delay. (type: see <a href="twisted.application.internet.ClientService.html#__init__"><code>ClientService.__init__</code></a>'s
+<code>retryPolicy</code> argument.)</td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">16.1.0</td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.application.internet._noop">
+    
+  </a>
+  <a name="_noop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _noop():
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.1/twisted/application/internet.py#L525">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Do nothing; this stands in for <code>transport.loseConnection()</code> 
+and <code>DelayedCall.cancel()</code> when <a href="twisted.application.internet.ClientService.html"><code>ClientService</code></a>
+is in a state where there's nothing to do.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2016-08-16 11:28:27.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

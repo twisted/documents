@@ -1,0 +1,70 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.internet.interfaces.IReactorThreads&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="interface">Interface t.i.i.IReactorThreads(<a href="twisted.python.components.Interface.html">Interface</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.internet.interfaces.html">twisted.internet.interfaces</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.internet.interfaces.IReactorThreads">View In Hierarchy</a>
+    </p>
+    <div><p>Known implementations: <a href="twisted.internet.base.ReactorBase.html">twisted.internet.base.ReactorBase</a></p></div>
+    <div><p>Dispatch methods to be run in threads.</p>
+Internally, this should use a thread pool and dispatch methods to 
+them.
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.internet.interfaces.IReactorThreads.callInThread">callInThread</a></td>
+          <td><span>Run the callable object in a separate thread.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.internet.interfaces.IReactorThreads.callFromThread">callFromThread</a></td>
+          <td><span>Call a function from within another (i.e. non-reactor) thread.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.internet.interfaces.IReactorThreads.suggestThreadPoolSize">suggestThreadPoolSize</a></td>
+          <td><span>Suggest the size of the thread pool.
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.internet.interfaces.IReactorThreads.callInThread"></a>
+        <div class="functionHeader">
+          def <span>callInThread(self, callable, *args, **kwargs):</span>
+        </div>
+        <div class="functionBody"><div>Run the callable object in a separate thread.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.internet.interfaces.IReactorThreads.callFromThread"></a>
+        <div class="functionHeader">
+          def <span>callFromThread(self, callable, *args, **kw):</span>
+        </div>
+        <div class="functionBody"><div><p>Call a function from within another (i.e. non-reactor) thread.</p>
+<p>Use this method when you want to run a function in the reactor's 
+thread from another thread. Calling callFromThread should wake up the 
+main thread (where reactor.run() is executing) and run the given callable 
+in that thread.</p>
+Obviously, the callable must be thread safe. (If you want to call a 
+function in the next mainloop iteration, but you're in the same thread, 
+use callLater with a delay of 0.)
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.internet.interfaces.IReactorThreads.suggestThreadPoolSize"></a>
+        <div class="functionHeader">
+          def <span>suggestThreadPoolSize(self, size):</span>
+        </div>
+        <div class="functionBody"><div>Suggest the size of the thread pool.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

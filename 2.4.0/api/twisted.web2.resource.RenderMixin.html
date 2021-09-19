@@ -1,0 +1,167 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.web2.resource.RenderMixin&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.w.r.RenderMixin(object):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.web2.resource.html">twisted.web2.resource</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.web2.resource.RenderMixin">View In Hierarchy</a>
+    </p>
+    <div><p>Known subclasses: <a href="twisted.web2.resource.Resource.html">twisted.web2.resource.Resource</a>, <a href="twisted.web2.resource.LeafResource.html">twisted.web2.resource.LeafResource</a>, <a href="twisted.web2.static.StaticRenderMixin.html">twisted.web2.static.StaticRenderMixin</a></p></div>
+    <div>Mix-in class for <a 
+href="twisted.web2.iweb.IResource.html">iweb.IResource</a> which provides 
+a dispatch mechanism for handling HTTP methods.
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.resource.RenderMixin.allowedMethods">allowedMethods</a></td>
+          <td><span></span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.resource.RenderMixin.checkPreconditions">checkPreconditions</a></td>
+          <td><span>Checks all preconditions imposed by this resource upon a request 
+made
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.resource.RenderMixin.renderHTTP">renderHTTP</a></td>
+          <td><span>See <a 
+href="twisted.web2.iweb.IResource.html#twisted.web2.iweb.IResource.renderHTTP">iweb.IResource.renderHTTP</a>.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.resource.RenderMixin.http_OPTIONS">http_OPTIONS</a></td>
+          <td><span>Respond to a OPTIONS request.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.resource.RenderMixin.http_TRACE">http_TRACE</a></td>
+          <td><span>Respond to a TRACE request.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.resource.RenderMixin.http_HEAD">http_HEAD</a></td>
+          <td><span>Respond to a HEAD request.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.resource.RenderMixin.http_GET">http_GET</a></td>
+          <td><span>Respond to a GET request.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.resource.RenderMixin.render">render</a></td>
+          <td><span>Subclasses should implement this method to do page rendering.
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.web2.resource.RenderMixin.allowedMethods"></a>
+        <div class="functionHeader">
+          def <span>allowedMethods(self):</span>
+        </div>
+        <div class="functionBody"><div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A tuple of HTTP methods that are allowed to be invoked on this 
+resource.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.resource.RenderMixin.checkPreconditions"></a>
+        <div class="functionHeader">
+          def <span>checkPreconditions(self, request):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.web2.static.StaticRenderMixin.html#twisted.web2.static.StaticRenderMixin.checkPreconditions">twisted.web2.static.StaticRenderMixin</a></div><div>Checks all preconditions imposed by this resource upon a request made 
+against it.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">request</td><td>the request to process.
+</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">http.HTTPError</td><td>if any precondition fails.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.resource.RenderMixin.renderHTTP"></a>
+        <div class="functionHeader">
+          def <span>renderHTTP(self, request):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.web2.resource.RedirectResource.html#twisted.web2.resource.RedirectResource.renderHTTP">twisted.web2.resource.RedirectResource</a>, <a href="twisted.web2.twscgi.SCGIClientResource.html#twisted.web2.twscgi.SCGIClientResource.renderHTTP">twisted.web2.twscgi.SCGIClientResource</a>, <a href="twisted.web2.static.StaticRenderMixin.html#twisted.web2.static.StaticRenderMixin.renderHTTP">twisted.web2.static.StaticRenderMixin</a></div><div><p>See <a 
+href="twisted.web2.iweb.IResource.html#twisted.web2.iweb.IResource.renderHTTP">iweb.IResource.renderHTTP</a>.</p>
+<p>This implementation will dispatch the given <code>request</code> to 
+another method of <code>self</code> named <code>http_</code>METHOD, where 
+METHOD is the HTTP method used by <code>request</code> (eg. 
+<code>http_GET</code>, <code>http_POST</code>, etc.).</p>
+<p>Generally, a subclass should implement those methods instead of 
+overriding this one.</p>
+<p><code>http_*</code> methods are expected provide the same interface 
+and return the same results as <a 
+href="twisted.web2.iweb.IResource.html">iweb.IResource</a><code>.renderHTTP</code> 
+(and therefore this method).</p>
+<p><code>etag</code> and <code>last-modified</code> are added to the 
+response returned by the <code>http_*</code> header, if known.</p>
+If an appropriate <code>http_*</code> method is not found, a 
+responsecode.NOT_ALLOWED-status response is returned, with an appropriate 
+<code>allow</code> header.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">request</td><td>the request to process.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">an object adaptable to <a 
+href="twisted.web2.iweb.IResponse.html">iweb.IResponse</a>.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.resource.RenderMixin.http_OPTIONS"></a>
+        <div class="functionHeader">
+          def <span>http_OPTIONS(self, request):</span>
+        </div>
+        <div class="functionBody"><div>Respond to a OPTIONS request.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">request</td><td>the request to process.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">an object adaptable to <a 
+href="twisted.web2.iweb.IResponse.html">iweb.IResponse</a>.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.resource.RenderMixin.http_TRACE"></a>
+        <div class="functionHeader">
+          def <span>http_TRACE(self, request):</span>
+        </div>
+        <div class="functionBody"><div>Respond to a TRACE request.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">request</td><td>the request to process.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">an object adaptable to <a 
+href="twisted.web2.iweb.IResponse.html">iweb.IResponse</a>.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.resource.RenderMixin.http_HEAD"></a>
+        <div class="functionHeader">
+          def <span>http_HEAD(self, request):</span>
+        </div>
+        <div class="functionBody"><div>Respond to a HEAD request.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">request</td><td>the request to process.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">an object adaptable to <a 
+href="twisted.web2.iweb.IResponse.html">iweb.IResponse</a>.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.resource.RenderMixin.http_GET"></a>
+        <div class="functionHeader">
+          def <span>http_GET(self, request):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.web2.resource.Resource.html#twisted.web2.resource.Resource.http_GET">twisted.web2.resource.Resource</a></div><div><p>Respond to a GET request.</p>
+This implementation validates that the request body is empty and then 
+dispatches the given <code>request</code> to <a 
+href="twisted.web2.resource.RenderMixin.html#twisted.web2.resource.RenderMixin.render">render</a> 
+and returns its result.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">request</td><td>the request to process.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">an object adaptable to <a 
+href="twisted.web2.iweb.IResponse.html">iweb.IResponse</a>.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.resource.RenderMixin.render"></a>
+        <div class="functionHeader">
+          def <span>render(self, request):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.web2.dirlist.DirectoryLister.html#twisted.web2.dirlist.DirectoryLister.render">twisted.web2.dirlist.DirectoryLister</a>, <a href="twisted.web2.twcgi.CGIDirectory.html#twisted.web2.twcgi.CGIDirectory.render">twisted.web2.twcgi.CGIDirectory</a>, <a href="twisted.web2.static.FileSaver.html#twisted.web2.static.FileSaver.render">twisted.web2.static.FileSaver</a>, <a href="twisted.web2.xmlrpc.XMLRPC.html#twisted.web2.xmlrpc.XMLRPC.render">twisted.web2.xmlrpc.XMLRPC</a>, <a href="twisted.web2.static.Data.html#twisted.web2.static.Data.render">twisted.web2.static.Data</a>, <a href="twisted.web2.script.ResourceScriptWrapper.html#twisted.web2.script.ResourceScriptWrapper.render">twisted.web2.script.ResourceScriptWrapper</a>, <a href="twisted.web2.script.ResourceScriptDirectory.html#twisted.web2.script.ResourceScriptDirectory.render">twisted.web2.script.ResourceScriptDirectory</a>, <a href="twisted.web2.plugin.TestResource.html#twisted.web2.plugin.TestResource.render">twisted.web2.plugin.TestResource</a>, <a href="twisted.web2.twcgi.CGIScript.html#twisted.web2.twcgi.CGIScript.render">twisted.web2.twcgi.CGIScript</a>, <a href="twisted.web2.auth.wrapper.UnauthorizedResource.html#twisted.web2.auth.wrapper.UnauthorizedResource.render">twisted.web2.auth.wrapper.UnauthorizedResource</a>, <a href="twisted.web2.plugin.TestResource.html#twisted.web2.plugin.TestResource.render">twisted.web2.plugin.TestResource</a>, <a href="twisted.web2.plugin.NoPlugin.html#twisted.web2.plugin.NoPlugin.render">twisted.web2.plugin.NoPlugin</a>, <a href="twisted.web2.static.File.html#twisted.web2.static.File.render">twisted.web2.static.File</a></div><div>Subclasses should implement this method to do page rendering. See <a 
+href="twisted.web2.resource.RenderMixin.html#twisted.web2.resource.RenderMixin.http_GET">http_GET</a>.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">request</td><td>the request to process.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">an object adaptable to <a 
+href="twisted.web2.iweb.IResponse.html">iweb.IResponse</a>.
+</td></tr></table></div></div>
+      </div>    
+  </body>
+</html>

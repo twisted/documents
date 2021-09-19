@@ -1,0 +1,192 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.mail.alias&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="module">Module t.m.alias</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.mail.html">mail</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/mail/alias.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div>Support for aliases(5) configuration files
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Author</td><td colspan="2"><p><a href="mailto:exarkun&#64;twistedmatrix.com">Jp Calderone</a></p>
+TODO:
+<pre class="literalblock">
+   Monitor files for reparsing
+   Handle non-local alias targets
+   Handle maildir alias targets
+</pre>
+</td></tr></table></div>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id6714">
+  
+  
+  
+  
+  <tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.alias.html#handle">handle</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.mail.alias.html#loadAliasFile">loadAliasFile</a></td>
+    <td><span>Load a file containing email aliases.
+</span></td>
+  </tr><tr class="interface">
+    
+    
+    <td>Interface</td>
+    <td><a href="twisted.mail.alias.IAlias.html">IAlias</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.alias.AliasBase.html">AliasBase</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.alias.AddressAlias.html">AddressAlias</a></td>
+    <td><span>The simplest alias, translating one email address into another.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.alias.FileWrapper.html">FileWrapper</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.alias.FileAlias.html">FileAlias</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.alias.ProcessAliasTimeout.html">ProcessAliasTimeout</a></td>
+    <td><span>A timeout occurred while processing aliases.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.alias.MessageWrapper.html">MessageWrapper</a></td>
+    <td><span>A message receiver which delivers content to a child process.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.alias.ProcessAliasProtocol.html">ProcessAliasProtocol</a></td>
+    <td><span>Trivial process protocol which will callback a Deferred when the 
+associated
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.alias.ProcessAlias.html">ProcessAlias</a></td>
+    <td><span>An alias which is handled by the execution of a particular 
+program.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.alias.MultiWrapper.html">MultiWrapper</a></td>
+    <td><span>Wrapper to deliver a single message to multiple recipients.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.mail.alias.AliasGroup.html">AliasGroup</a></td>
+    <td><span>An alias which points to more than one recipient.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.mail.alias.handle"></a>
+        <a name="handle"></a>
+        <div class="functionHeader">
+        
+        def handle(result, line, filename, lineNo):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/mail/alias.py#L30" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.mail.alias.loadAliasFile"></a>
+        <a name="loadAliasFile"></a>
+        <div class="functionHeader">
+        
+        def loadAliasFile(domains, filename=None, fp=None):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/mail/alias.py#L40" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Load a file containing email aliases.</p>
+Lines in the file should be formatted like so:
+<pre class="literalblock">
+   username: alias1,alias2,...,aliasN
+</pre>
+<p>Aliases beginning with a | will be treated as programs, will be run, 
+and the message will be written to their stdin.</p>
+<p>Aliases without a host part will be assumed to be addresses on 
+localhost.</p>
+If a username is specified multiple times, the aliases for each are 
+joined together as if they had all been on one line.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">domains</td><td>The domains to which these aliases will belong.
+ (type: <code>dict</code> of implementor of <code>IDomain</code>
+)</td></tr><tr><td></td><td class="fieldArg">filename</td><td>The filename from which to load aliases.
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">fp</td><td>If specified, overrides <code>filename</code>, and aliases are read 
+from it.
+ (type: Any file-like object.
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A dictionary mapping usernames to <code>AliasGroup</code> objects.
+ (type: <code>dict</code>
+)</td></tr></table></div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2008-05-18 16:50:21.
+    </address>
+  </body>
+</html>

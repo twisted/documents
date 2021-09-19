@@ -1,0 +1,430 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.web.widgets.Form&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">Class t.w.w.Form(<a href="twisted.web.widgets.Widget.html">Widget</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web.html">web</a>.<a href="twisted.web.widgets.html">widgets</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/web/widgets.py#L242">View Source</a>
+      <a href="classIndex.html#twisted.web.widgets.Form">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known subclasses: <a href="twisted.web.guard.AuthForm.html">twisted.web.guard.AuthForm</a></p>
+    </div>
+    <div><p>I am a web form.</p>
+In order to use me, you probably want to set self.formFields (or 
+override 'getFormFields') and override 'process'. In order to demonstrate 
+how this is done, here is a small sample Form subclass:
+<pre class="literalblock">
+ |  from twisted.web import widgets
+ |  class HelloForm(widgets.Form):
+ |      formFields = [
+ |          ['string', 'Who to greet?', 'whoToGreet', 'World',
+ |            'This is for choosing who to greet.'],
+ |          ['menu', 'How to greet?', 'how', [('cheerfully', 'with a smile'),
+ |                                            ('sullenly', 'without enthusiasm'),
+ |                                            ('spontaneously', 'on the spur of the moment')]]
+ |            'This is for choosing how to greet them.']
+ |      def process(self, write, request, submit, whoToGreet, how):
+ |          write('The web wakes up and %s says, &quot;Hello, %s!&quot;' % (how, whoToGreet))
+</pre>
+If you load this widget, you will see that it displays a form with 2 
+inputs derived from data in formFields. Note the argument names to 
+'process': after 'write' and 'request', they are the same as the 3rd 
+elements ('Input Name' parameters) of the formFields list.
+<table class="fieldTable"></table></div>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id6476">
+  
+  
+  
+  
+  <tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.widgets.Form.html#getFormFields">getFormFields</a></td>
+    <td><span>I return a list of lists describing this form, or a Deferred.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.widgets.Form.html#format">format</a></td>
+    <td><span>I display an HTML FORM according to the result of 
+self.getFormFields.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.widgets.Form.html#getFormID">getFormID</a></td>
+    <td><span>Override me: I disambiguate between multiple forms of the same 
+type.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.widgets.Form.html#process">process</a></td>
+    <td><span>Override me: I process a form.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.widgets.Form.html#formatError">formatError</a></td>
+    <td><span>Format an error message.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.widgets.Form.html#shouldProcess">shouldProcess</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.widgets.Form.html#tryAgain">tryAgain</a></td>
+    <td><span>Utility method for re-drawing the form with an error message.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.widgets.Form.html#display">display</a></td>
+    <td><span>Display the form.
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.widgets.Form.html#_doProcess">_doProcess</a></td>
+    <td><span>(internal) Prepare arguments for self.process.
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.widgets.Form.html#_displayProcess">_displayProcess</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.widgets.Form.html#_displayFormat">_displayFormat</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.web.widgets.Widget.html">Widget</a>:
+        </p>
+        <table class="children sortable" id="id6477">
+  
+  
+  
+  
+  <tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.widgets.Widget.html#getTitle">getTitle</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.web.widgets.Form.getFormFields"></a>
+        <a name="getFormFields"></a>
+        <div class="functionHeader">
+        
+        def getFormFields(self, request, fieldSet=None):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/web/widgets.py#L293" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>I return a list of lists describing this form, or a Deferred.</p>
+This information is used both to display the form and to process it. 
+The list is in the following format:
+<pre class="literalblock">
+ | [['Input Type',   'Display Name',   'Input Name',   'Input Value', 'Description'],
+ |  ['Input Type 2', 'Display Name 2', 'Input Name 2', 'Input Value 2', 'Description 2']
+ |  ...]
+</pre>
+Valid values for 'Input Type' are:
+<ul>
+  <li>
+    'hidden': a hidden field that contains a string that the user 
+    won't change
+  </li>
+  <li>
+    'string': a short string
+  </li>
+  <li>
+    'int': an integer, e.g. 1, 0, 25 or -23
+  </li>
+  <li>
+    'float': a float, e.g. 1.0, 2, -3.45, or 28.4324231
+  </li>
+  <li>
+    'text': a longer text field, suitable for entering paragraphs
+  </li>
+  <li>
+    'menu': an HTML SELECT input, a list of choices
+  </li>
+  <li>
+    'multimenu': an HTML SELECT input allowing multiple choices
+  </li>
+  <li>
+    'checkgroup': a group of checkboxes
+  </li>
+  <li>
+    'radio': a group of radio buttons
+  </li>
+  <li>
+    'password': a 'string' field where the contents are not visible as 
+    the user types
+  </li>
+  <li>
+    'file': a file-upload form (EXPERIMENTAL)
+  </li>
+</ul>
+<p>'Display Name' is a descriptive string that will be used to identify 
+the field to the user.</p>
+<p>The 'Input Name' must be a legal Python identifier that describes both 
+the value's name on the HTML form and the name of an argument to 
+'self.process()'.</p>
+<p>The 'Input Value' is usually a string, but its value can depend on the 
+'Input Type'. 'int' it is an integer, 'menu' it is a list of pairs of 
+strings, representing (value, name) pairs for the menu options. Input 
+value for 'checkgroup' and 'radio' should be a list of ('inputName', 
+'Display Name', 'checked') triplets.</p>
+<p>The 'Description' field is an (optional) string which describes the 
+form item to the user.</p>
+<p>If this result is statically determined for your Form subclass, you 
+can assign it to FormSubclass.formFields; if you need to determine it 
+dynamically, you can override this method.</p>
+Note: In many cases it is desirable to use user input for defaults in 
+the form rather than those supplied by your calculations, which is what 
+this method will do to self.formFields. If this is the case for you, but 
+you still need to dynamically calculate some fields, pass your results 
+back through this method by doing:
+<pre class="literalblock">
+ |  def getFormFields(self, request):
+ |      myFormFields = [self.myFieldCalculator()]
+ |      return widgets.Form.getFormFields(self, request, myFormFields)
+</pre>
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web.widgets.Form.format"></a>
+        <a name="format"></a>
+        <div class="functionHeader">
+        
+        def format(self, form, write, request):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/web/widgets.py#L403" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>I display an HTML FORM according to the result of 
+self.getFormFields.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web.widgets.Form.getFormID"></a>
+        <a name="getFormID"></a>
+        <div class="functionHeader">
+        
+        def getFormID(self):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/web/widgets.py#L433" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Override me: I disambiguate between multiple forms of the same 
+type.</p>
+In order to determine which form an HTTP POST request is for, you must 
+have some unique identifier which distinguishes your form from other 
+forms of the same class. An example of such a unique identifier would be: 
+on a page with multiple FrobConf forms, each FrobConf form refers to a 
+particular Frobnitz instance, which has a unique id(). The FrobConf 
+form's getFormID would probably look like this:
+<pre class="literalblock">
+ |  def getFormID(self):
+ |      return str(id(self.frobnitz))
+</pre>
+By default, this method will return None, since distinct Form 
+instances may be identical as far as the application is concerned.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web.widgets.Form.process"></a>
+        <a name="process"></a>
+        <div class="functionHeader">
+        
+        def process(self, write, request, submit, **kw):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/web/widgets.py#L450" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">overridden in <a href="twisted.web.guard.AuthForm.html">twisted.web.guard.AuthForm</a></div>
+          <div><p>Override me: I process a form.</p>
+<p>I will only be called when the correct form input data to process this 
+form has been received.</p>
+<p>I take a variable number of arguments, beginning with 'write', 
+'request', and 'submit'. 'write' is a callable object that will append a 
+string to the response, 'request' is a twisted.web.request.Request 
+instance, and 'submit' is the name of the submit action taken.</p>
+The remainder of my arguments must be correctly named. They will each 
+be named after one of the
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web.widgets.Form._doProcess"></a>
+        <a name="_doProcess"></a>
+        <div class="functionHeader">
+        
+        def _doProcess(self, form, write, request):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/web/widgets.py#L466" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>(internal) Prepare arguments for self.process.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web.widgets.Form.formatError"></a>
+        <a name="formatError"></a>
+        <div class="functionHeader">
+        
+        def formatError(self, error):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/web/widgets.py#L512" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Format an error message.</p>
+By default, this will make the message appear in red, bold 
+italics.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web.widgets.Form.shouldProcess"></a>
+        <a name="shouldProcess"></a>
+        <div class="functionHeader">
+        
+        def shouldProcess(self, request):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/web/widgets.py#L519" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web.widgets.Form.tryAgain"></a>
+        <a name="tryAgain"></a>
+        <div class="functionHeader">
+        
+        def tryAgain(self, err, req):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/web/widgets.py#L529" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Utility method for re-drawing the form with an error message.</p>
+This is handy in forms that process Deferred results. Normally you can 
+just raise a FormInputError() and this will happen by default.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web.widgets.Form.display"></a>
+        <a name="display"></a>
+        <div class="functionHeader">
+        
+        def display(self, request):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/web/widgets.py#L542" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">overrides <a href="twisted.web.widgets.Widget.html#display">twisted.web.widgets.Widget.display</a></div>
+          <div>Display the form.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web.widgets.Form._displayProcess"></a>
+        <a name="_displayProcess"></a>
+        <div class="functionHeader">
+        
+        def _displayProcess(self, request, form):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/web/widgets.py#L557" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web.widgets.Form._displayFormat"></a>
+        <a name="_displayFormat"></a>
+        <div class="functionHeader">
+        
+        def _displayFormat(self, request, form):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/web/widgets.py#L568" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2008-05-18 16:50:21.
+    </address>
+  </body>
+</html>

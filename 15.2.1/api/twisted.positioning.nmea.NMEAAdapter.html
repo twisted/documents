@@ -1,0 +1,944 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.positioning.nmea.NMEAAdapter : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div style="display: none" id="current-docs-container" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>twisted.positioning.nmea.NMEAAdapter(<span title="object">object</span>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.positioning.html" data-type="Package" class="code">positioning</a>.<a href="twisted.positioning.nmea.html" data-type="Module" class="code">nmea</a></code>
+          <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L420">View Source</a>
+          <a href="classIndex.html#twisted.positioning.nmea.NMEAAdapter">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Implements interfaces: <a href="twisted.positioning.ipositioning.INMEAReceiver.html" data-type="Interface" class="code">twisted.positioning.ipositioning.INMEAReceiver</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>An adapter from NMEAProtocol receivers to positioning receivers.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2162">
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#yearThreshold" data-type="Instance Variable" class="code">yearThreshold</a></td>
+    <td>The earliest possible year that data will be interpreted as. For example, 
+if this value is <code>1990</code>, an NMEA 0183 two-digit year of 
+"96" will be interpreted as 1996, and a two-digit year of 
+"13" will be interpreted as 2013. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td><span>Initializes a new NMEA adapter.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#clear" data-type="Method" class="code">clear</a></td>
+    <td><span>Resets this adapter.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#sentenceReceived" data-type="Method" class="code">sentenceReceived</a></td>
+    <td><span>Called when a sentence is received.</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_STATEFUL_UPDATE" data-type="Class Variable" class="code">_STATEFUL_UPDATE</a></td>
+    <td>Information on how to update partial information in the sentence data or 
+internal adapter state. For more information, see 
+<code>_statefulUpdate</code>'s docstring. (type: See <code>_statefulUpdate</code>'s docstring)</td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_ACCEPTABLE_UNITS" data-type="Class Variable" class="code">_ACCEPTABLE_UNITS</a></td>
+    <td>A set of NMEA notations of units that are already acceptable (metric), and 
+therefore don't need to be converted. (type: <code>frozenset</code> of bytestrings)</td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_UNIT_CONVERTERS" data-type="Class Variable" class="code">_UNIT_CONVERTERS</a></td>
+    <td>Mapping of NMEA notations of units that are not acceptable (not metric) to 
+converters that take a quantity in that unit and produce a metric quantity. (type: <code>dict</code> of bytestrings to unary callables)</td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_SPECIFIC_SENTENCE_FIXES" data-type="Class Variable" class="code">_SPECIFIC_SENTENCE_FIXES</a></td>
+    <td>A mapping of sentece types to specific fixes that are required to extract 
+useful information from data from those sentences. (type: <code>dict</code> of sentence types to callables that take self and modify 
+it in-place)</td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_FIXERS" data-type="Class Variable" class="code">_FIXERS</a></td>
+    <td>Set of unary callables that take an NMEAAdapter instance and extract useful
+data from the sentence data, usually modifying the adapter's sentence data 
+in-place. (type: <code>dict</code> of native strings to unary callables)</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_state" data-type="Instance Variable" class="code">_state</a></td>
+    <td>The current internal state of the receiver. (type: <code>dict</code>)</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_sentenceData" data-type="Instance Variable" class="code">_sentenceData</a></td>
+    <td>The data present in the sentence currently being processed. Starts empty, 
+is filled as the sentence is parsed. (type: <code>dict</code>)</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_receiver" data-type="Instance Variable" class="code">_receiver</a></td>
+    <td>The positioning receiver that will receive parsed data. (type: <a href="twisted.positioning.ipositioning.IPositioningReceiver.html"><code>ipositioning.IPositioningReceiver</code></a>)</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_fixTimestamp" data-type="Method" class="code">_fixTimestamp</a></td>
+    <td><span>Turns the NMEAProtocol timestamp notation into a datetime.time object. 
+The time in this object is expressed as Zulu time.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_fixDatestamp" data-type="Method" class="code">_fixDatestamp</a></td>
+    <td><span>Turns an NMEA datestamp format into a <code>datetime.date</code> 
+object.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_fixCoordinateFloat" data-type="Method" class="code">_fixCoordinateFloat</a></td>
+    <td><span>Turns the NMEAProtocol coordinate format into Python float.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_fixHemisphereSign" data-type="Method" class="code">_fixHemisphereSign</a></td>
+    <td><span>Fixes the sign for a hemisphere.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_getHemisphereSign" data-type="Method" class="code">_getHemisphereSign</a></td>
+    <td><span>Returns the hemisphere sign for a given coordinate type.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_convert" data-type="Method" class="code">_convert</a></td>
+    <td><span>A simple conversion fix.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_statefulUpdate" data-type="Method" class="code">_statefulUpdate</a></td>
+    <td><span>Does a stateful update of a particular positioning attribute. 
+Specifically, this will mutate an object in the current sentence data.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_fixUnits" data-type="Method" class="code">_fixUnits</a></td>
+    <td><span>Fixes the units of a certain value. If the units are already acceptable 
+(metric), does nothing.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_fixGSV" data-type="Method" class="code">_fixGSV</a></td>
+    <td><span>Parses partial visible satellite information from a GSV sentence.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_fixGSA" data-type="Method" class="code">_fixGSA</a></td>
+    <td><span>Extracts the information regarding which satellites were used in 
+obtaining the GPS fix from a GSA sentence.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_sentenceSpecificFix" data-type="Method" class="code">_sentenceSpecificFix</a></td>
+    <td><span>Executes a fix for a specific type of sentence.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_validateCurrentSentence" data-type="Method" class="code">_validateCurrentSentence</a></td>
+    <td><span>Tests if a sentence contains a valid fix.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_cleanCurrentSentence" data-type="Method" class="code">_cleanCurrentSentence</a></td>
+    <td><span>Cleans the current sentence.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_updateState" data-type="Method" class="code">_updateState</a></td>
+    <td><span>Updates the current state with the new information from the 
+sentence.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_updateBeaconInformation" data-type="Method" class="code">_updateBeaconInformation</a></td>
+    <td><span>Updates existing beacon information state with new data.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_updateUsedBeacons" data-type="Method" class="code">_updateUsedBeacons</a></td>
+    <td><span>Searches the adapter state and sentence data for information about which
+beacons where used, then adds it to the provided beacon information 
+object.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_mergeBeaconInformation" data-type="Method" class="code">_mergeBeaconInformation</a></td>
+    <td><span>Merges beacon information in the adapter state (if it exists) into the 
+provided beacon information. Specifically, this merges used and seen 
+beacons.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_combineDateAndTime" data-type="Method" class="code">_combineDateAndTime</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.positioning.nmea.NMEAAdapter.html#_fireSentenceCallbacks" data-type="Method" class="code">_fireSentenceCallbacks</a></td>
+    <td><span>Fires sentence callbacks for the current sentence.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseclassvariable private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._STATEFUL_UPDATE">
+    
+  </a>
+  <a name="_STATEFUL_UPDATE">
+    
+  </a>
+  <div class="functionHeader">
+    _STATEFUL_UPDATE =
+  </div>
+  <div class="functionBody">
+    Information on how to update partial information in the sentence data or 
+internal adapter state. For more information, see 
+<code>_statefulUpdate</code>'s docstring. (type: See <code>_statefulUpdate</code>'s docstring)
+  </div>
+</div><div class="baseclassvariable private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._ACCEPTABLE_UNITS">
+    
+  </a>
+  <a name="_ACCEPTABLE_UNITS">
+    
+  </a>
+  <div class="functionHeader">
+    _ACCEPTABLE_UNITS =
+  </div>
+  <div class="functionBody">
+    A set of NMEA notations of units that are already acceptable (metric), and 
+therefore don't need to be converted. (type: <code>frozenset</code> of bytestrings)
+  </div>
+</div><div class="baseclassvariable private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._UNIT_CONVERTERS">
+    
+  </a>
+  <a name="_UNIT_CONVERTERS">
+    
+  </a>
+  <div class="functionHeader">
+    _UNIT_CONVERTERS =
+  </div>
+  <div class="functionBody">
+    Mapping of NMEA notations of units that are not acceptable (not metric) to 
+converters that take a quantity in that unit and produce a metric quantity. (type: <code>dict</code> of bytestrings to unary callables)
+  </div>
+</div><div class="baseclassvariable private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._SPECIFIC_SENTENCE_FIXES">
+    
+  </a>
+  <a name="_SPECIFIC_SENTENCE_FIXES">
+    
+  </a>
+  <div class="functionHeader">
+    _SPECIFIC_SENTENCE_FIXES =
+  </div>
+  <div class="functionBody">
+    A mapping of sentece types to specific fixes that are required to extract 
+useful information from data from those sentences. (type: <code>dict</code> of sentence types to callables that take self and modify 
+it in-place)
+  </div>
+</div><div class="baseclassvariable private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._FIXERS">
+    
+  </a>
+  <a name="_FIXERS">
+    
+  </a>
+  <div class="functionHeader">
+    _FIXERS =
+  </div>
+  <div class="functionBody">
+    Set of unary callables that take an NMEAAdapter instance and extract useful
+data from the sentence data, usually modifying the adapter's sentence data 
+in-place. (type: <code>dict</code> of native strings to unary callables)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter.yearThreshold">
+    
+  </a>
+  <a name="yearThreshold">
+    
+  </a>
+  <div class="functionHeader">
+    yearThreshold =
+  </div>
+  <div class="functionBody">
+    The earliest possible year that data will be interpreted as. For example, 
+if this value is <code>1990</code>, an NMEA 0183 two-digit year of 
+"96" will be interpreted as 1996, and a two-digit year of 
+"13" will be interpreted as 2013. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._state">
+    
+  </a>
+  <a name="_state">
+    
+  </a>
+  <div class="functionHeader">
+    _state =
+  </div>
+  <div class="functionBody">
+    The current internal state of the receiver. (type: <code>dict</code>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._sentenceData">
+    
+  </a>
+  <a name="_sentenceData">
+    
+  </a>
+  <div class="functionHeader">
+    _sentenceData =
+  </div>
+  <div class="functionBody">
+    The data present in the sentence currently being processed. Starts empty, 
+is filled as the sentence is parsed. (type: <code>dict</code>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._receiver">
+    
+  </a>
+  <a name="_receiver">
+    
+  </a>
+  <div class="functionHeader">
+    _receiver =
+  </div>
+  <div class="functionBody">
+    The positioning receiver that will receive parsed data. (type: <a href="twisted.positioning.ipositioning.IPositioningReceiver.html"><code>ipositioning.IPositioningReceiver</code></a>)
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, receiver):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L457" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Initializes a new NMEA adapter.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">receiver</td><td>The receiver for positioning sentences. (type: <a href="twisted.positioning.ipositioning.IPositioningReceiver.html"><code>ipositioning.IPositioningReceiver</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._fixTimestamp">
+    
+  </a>
+  <a name="_fixTimestamp">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _fixTimestamp(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L469" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Turns the NMEAProtocol timestamp notation into a datetime.time object. 
+The time in this object is expressed as Zulu time.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._fixDatestamp">
+    
+  </a>
+  <a name="_fixDatestamp">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _fixDatestamp(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L482" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Turns an NMEA datestamp format into a <code>datetime.date</code> 
+object.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">ValueError</td><td>When the day or month value was invalid, e.g. 32nd day, or 13th month, or 
+0th day or month.</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._fixCoordinateFloat">
+    
+  </a>
+  <a name="_fixCoordinateFloat">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _fixCoordinateFloat(self, coordinateType):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L499" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Turns the NMEAProtocol coordinate format into Python float.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">coordinateType</td><td>The coordinate type. (type: One of <code>Angles.LATITUDE</code> or <code>Angles.LONGITUDE</code>.)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._fixHemisphereSign">
+    
+  </a>
+  <a name="_fixHemisphereSign">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _fixHemisphereSign(self, coordinateType, sentenceDataKey=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L520" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Fixes the sign for a hemisphere.</p>
+<p>This method must be called after the magnitude for the thing it 
+determines the sign of has been set. This is done by the following 
+functions:</p>
+<ul>
+  <li>
+    <code>self.FIXERS['magneticVariation']</code>
+  </li>
+  <li>
+    <code>self.FIXERS['latitudeFloat']</code>
+  </li>
+  <li>
+    <code>self.FIXERS['longitudeFloat']</code>
+  </li>
+</ul><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">coordinateType</td><td>Coordinate type. One of <code>Angles.LATITUDE</code>, 
+<code>Angles.LONGITUDE</code> or <code>Angles.VARIATION</code>.</td></tr><tr><td></td><td class="fieldArg">sentenceDataKey</td><td>The key name of the hemisphere sign being fixed in the sentence data. If 
+unspecified, <code>coordinateType</code> is used. (type: <code>str</code> (unless <code>None</code>))</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._getHemisphereSign">
+    
+  </a>
+  <a name="_getHemisphereSign">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _getHemisphereSign(self, coordinateType):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L544" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Returns the hemisphere sign for a given coordinate type.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">coordinateType</td><td>The coordinate type to find the hemisphere for. (type: <code>Angles.LATITUDE</code>, <code>Angles.LONGITUDE</code> or 
+<code>Angles.VARIATION</code>.)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The sign of that hemisphere (-1 or 1). (type: <code>int</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._convert">
+    
+  </a>
+  <a name="_convert">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _convert(self, key, converter):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L573" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>A simple conversion fix.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">key</td><td>The attribute name of the value to fix. (type: native string (Python identifier))</td></tr><tr><td></td><td class="fieldArg">converter</td><td>The function that converts the value. (type: unary callable)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._statefulUpdate">
+    
+  </a>
+  <a name="_statefulUpdate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _statefulUpdate(self, sentenceKey):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L604" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Does a stateful update of a particular positioning attribute. 
+Specifically, this will mutate an object in the current sentence data.</p>
+<p>Using the <code>sentenceKey</code>, this will get a tuple containing, in
+order, the key name in the current state and sentence data, a factory for 
+new values, the attribute to update, and a converter from sentence data (in
+NMEA notation) to something useful.</p>
+<p>If the sentence data doesn't have this data yet, it is grabbed from the 
+state. If that doesn't have anything useful yet either, the factory is 
+called to produce a new, empty object. Either way, the object ends up in 
+the sentence data.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">sentenceKey</td><td>The name of the key in the sentence attributes, 
+<code>NMEAAdapter._STATEFUL_UPDATE</code> dictionary and the adapter state. (type: <code>str</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._fixUnits">
+    
+  </a>
+  <a name="_fixUnits">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _fixUnits(self, unitKey=None, valueKey=None, sourceKey=None, unit=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L642" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Fixes the units of a certain value. If the units are already acceptable 
+(metric), does nothing.</p>
+<p>None of the keys are allowed to be the empty string.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">unit</td><td>The unit that is being converted <i>from</i>. If unspecified or 
+<code>None</code>, asks the current sentence for the <code>unitKey</code>. 
+If that also fails, raises <code>AttributeError</code>. (type: <code>str</code>)</td></tr><tr><td></td><td class="fieldArg">unitKey</td><td>The name of the key/attribute under which the unit can be found in the 
+current sentence. If the <code>unit</code> parameter is set, this parameter
+is not used. (type: <code>str</code>)</td></tr><tr><td></td><td class="fieldArg">sourceKey</td><td>The name of the key/attribute that contains the current value to be 
+converted (expressed in units as defined according to the <code>unit</code>
+parameter). If unset, will use the same key as the value key. (type: <code>str</code>)</td></tr><tr><td></td><td class="fieldArg">valueKey</td><td>The key name in which the data will be stored in the 
+<code>_sentenceData</code> instance attribute. If unset, attempts to remove
+"Units" from the end of the <code>unitKey</code> parameter. If 
+that fails, raises <code>ValueError</code>. (type: <code>str</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._fixGSV">
+    
+  </a>
+  <a name="_fixGSV">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _fixGSV(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L685" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Parses partial visible satellite information from a GSV sentence.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._fixGSA">
+    
+  </a>
+  <a name="_fixGSA">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _fixGSA(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L711" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Extracts the information regarding which satellites were used in 
+obtaining the GPS fix from a GSA sentence.</p>
+<p>Precondition: A GSA sentence was fired. Postcondition: The current 
+sentence data (<code>self._sentenceData</code> will contain a set of the 
+currently used PRNs (under the key <code>_usedPRNs</code>.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._sentenceSpecificFix">
+    
+  </a>
+  <a name="_sentenceSpecificFix">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _sentenceSpecificFix(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L733" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Executes a fix for a specific type of sentence.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter.clear">
+    
+  </a>
+  <a name="clear">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    clear(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L796" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Resets this adapter.</p>
+<p>This will empty the adapter state and the current sentence data.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter.sentenceReceived">
+    
+  </a>
+  <a name="sentenceReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    sentenceReceived(self, sentence):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L806" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.positioning.ipositioning.INMEAReceiver.html#sentenceReceived" data-type="Method" class="code">twisted.positioning.ipositioning.INMEAReceiver</a></div>
+    <div><p>Called when a sentence is received.</p>
+<p>Will clean the received NMEAProtocol sentence up, and then update the 
+adapter's state, followed by firing the callbacks.</p>
+<p>If the received sentence was invalid, the state will be cleared.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">sentence</td><td>The sentence that is received. (type: <a href="twisted.positioning.nmea.NMEASentence.html"><code>NMEASentence</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._validateCurrentSentence">
+    
+  </a>
+  <a name="_validateCurrentSentence">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _validateCurrentSentence(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L831" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Tests if a sentence contains a valid fix.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._cleanCurrentSentence">
+    
+  </a>
+  <a name="_cleanCurrentSentence">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _cleanCurrentSentence(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L841" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Cleans the current sentence.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._updateState">
+    
+  </a>
+  <a name="_updateState">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _updateState(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L852" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Updates the current state with the new information from the 
+sentence.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._updateBeaconInformation">
+    
+  </a>
+  <a name="_updateBeaconInformation">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _updateBeaconInformation(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L861" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Updates existing beacon information state with new data.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._updateUsedBeacons">
+    
+  </a>
+  <a name="_updateUsedBeacons">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _updateUsedBeacons(self, beaconInformation):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L880" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Searches the adapter state and sentence data for information about which
+beacons where used, then adds it to the provided beacon information 
+object.</p>
+<p>If no new beacon usage information is available, does nothing.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">beaconInformation</td><td>The beacon information object that beacon usage information will be added 
+to (if necessary). (type: <a href="twisted.positioning.base.BeaconInformation.html"><code>twisted.positioning.base.BeaconInformation</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._mergeBeaconInformation">
+    
+  </a>
+  <a name="_mergeBeaconInformation">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _mergeBeaconInformation(self, newBeaconInformation):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L904" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Merges beacon information in the adapter state (if it exists) into the 
+provided beacon information. Specifically, this merges used and seen 
+beacons.</p>
+<p>If the adapter state has no beacon information, does nothing.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">beaconInformation</td><td>The beacon information object that beacon information will be merged into 
+(if necessary). (type: <a href="twisted.positioning.base.BeaconInformation.html"><code>twisted.positioning.base.BeaconInformation</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._combineDateAndTime">
+    
+  </a>
+  <a name="_combineDateAndTime">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _combineDateAndTime(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L924" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Combines a <code>datetime.date</code> object and a 
+<code>datetime.time</code> object, collected from one or more NMEA 
+sentences, into a single <code>datetime.datetime</code> object suitable for
+sending to the <a href="twisted.positioning.ipositioning.IPositioningReceiver.html"><code>IPositioningReceiver</code></a>.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.positioning.nmea.NMEAAdapter._fireSentenceCallbacks">
+    
+  </a>
+  <a name="_fireSentenceCallbacks">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _fireSentenceCallbacks(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/positioning/nmea.py#L946" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Fires sentence callbacks for the current sentence.</p>
+<p>A callback will only fire if all of the keys it requires are present in 
+the current state and at least one such field was altered in the current 
+sentence.</p>
+<p>The callbacks will only be fired with data from 
+<code>self._state</code>.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2015-05-24 20:04:00.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

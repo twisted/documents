@@ -1,0 +1,402 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.python.hook : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="module">t.p.hook : module documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.python.html">python</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/python/hook.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div class="docstring">
+      <div><p>I define support for hookable instance methods.</p>
+<p>These are methods which you can register pre-call and post-call external
+functions to augment their functionality.  People familiar with more 
+esoteric languages may think of these as "method 
+combinations".</p>
+<p>This could be used to add optional preconditions, user-extensible 
+callbacks (a-la emacs) or a thread-safety mechanism.</p>
+<p>The four exported calls are:</p>
+<ul>
+  <li>
+    <a href="twisted.python.hook.html#addPre"><code>addPre</code></a>
+  </li>
+  <li>
+    <a href="twisted.python.hook.html#addPost"><code>addPost</code></a>
+  </li>
+  <li>
+    <a href="twisted.python.hook.html#removePre"><code>removePre</code></a>
+  </li>
+  <li>
+    <a href="twisted.python.hook.html#removePost"><code>removePost</code></a>
+  </li>
+</ul>
+<p>All have the signature (class, methodName, callable), and the callable 
+they take must always have the signature (instance, *args, **kw) unless the
+particular signature of the method they hook is known.</p>
+<p>Hooks should typically not throw exceptions, however, no effort will be 
+made by this module to prevent them from doing so.  Pre-hooks will always 
+be called, but post-hooks will only be called if the pre-hooks do not raise
+any exceptions (they will still be called if the main method raises an 
+exception).  The return values and exception status of the main method will
+be propagated (assuming none of the hooks raise an exception).  Hooks will 
+be executed in the order in which they are added.</p><table class="fieldTable"></table></div>
+    </div>
+
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id2714">
+  
+  
+  <tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.python.hook.HookError.html">HookError</a></td>
+    <td><span>An error which will fire when an invariant is violated.</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.python.hook.html#addPre">addPre</a></td>
+    <td><span>hook.addPre(klass, name, func) -&gt; None</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.python.hook.html#addPost">addPost</a></td>
+    <td><span>hook.addPost(klass, name, func) -&gt; None</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.python.hook.html#removePre">removePre</a></td>
+    <td><span>hook.removePre(klass, name, func) -&gt; None</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.python.hook.html#removePost">removePost</a></td>
+    <td><span>hook.removePre(klass, name, func) -&gt; None</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.python.hook.html#PRE">PRE</a></td>
+    <td><span>(private) munging to turn a method name into a pre-hook-method-name</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.python.hook.html#POST">POST</a></td>
+    <td><span>(private) munging to turn a method name into a post-hook-method-name</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.python.hook.html#ORIG">ORIG</a></td>
+    <td><span>(private) munging to turn a method name into an `original' 
+identifier</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.python.hook.html#_XXX">_XXX</a></td>
+    <td><span>String manipulation garbage.</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.python.hook.html#_addHook">_addHook</a></td>
+    <td><span>(private) adds a hook to a method on a class</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.python.hook.html#_removeHook">_removeHook</a></td>
+    <td><span>(private) removes a hook from a method on a class</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.python.hook.html#_enhook">_enhook</a></td>
+    <td><span>(private) causes a certain method name to be hooked on a class</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.python.hook.html#_dehook">_dehook</a></td>
+    <td><span>(private) causes a certain method name no longer to be hooked on a 
+class</span></td>
+  </tr>
+</table>
+      
+    </div>
+    
+    
+
+    <div class="function">
+  <a name="twisted.python.hook.addPre">
+    
+  </a>
+  <a name="addPre">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addPre(klass, name, func):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/python/hook.py#L43" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>hook.addPre(klass, name, func) -&gt; None</p>
+<p>Add a function to be called before the method klass.name is invoked.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.hook.addPost">
+    
+  </a>
+  <a name="addPost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addPost(klass, name, func):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/python/hook.py#L51" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>hook.addPost(klass, name, func) -&gt; None</p>
+<p>Add a function to be called after the method klass.name is invoked.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.hook.removePre">
+    
+  </a>
+  <a name="removePre">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removePre(klass, name, func):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/python/hook.py#L58" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>hook.removePre(klass, name, func) -&gt; None</p>
+<p>Remove a function (previously registered with addPre) so that it is no 
+longer executed before klass.name.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.hook.removePost">
+    
+  </a>
+  <a name="removePost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removePost(klass, name, func):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/python/hook.py#L67" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>hook.removePre(klass, name, func) -&gt; None</p>
+<p>Remove a function (previously registered with addPost) so that it is no 
+longer executed after klass.name.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.hook._XXX">
+    
+  </a>
+  <a name="_XXX">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _XXX(k, n, s):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/python/hook.py#L97" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>String manipulation garbage.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.hook.PRE">
+    
+  </a>
+  <a name="PRE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    PRE(k, n):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/python/hook.py#L104" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>(private) munging to turn a method name into a pre-hook-method-name</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.hook.POST">
+    
+  </a>
+  <a name="POST">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    POST(k, n):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/python/hook.py#L108" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>(private) munging to turn a method name into a post-hook-method-name</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.hook.ORIG">
+    
+  </a>
+  <a name="ORIG">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ORIG(k, n):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/python/hook.py#L112" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>(private) munging to turn a method name into an `original' 
+identifier</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.hook._addHook">
+    
+  </a>
+  <a name="_addHook">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _addHook(klass, name, phase, func):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/python/hook.py#L117" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>(private) adds a hook to a method on a class</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.hook._removeHook">
+    
+  </a>
+  <a name="_removeHook">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _removeHook(klass, name, phase, func):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/python/hook.py#L128" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>(private) removes a hook from a method on a class</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.hook._enhook">
+    
+  </a>
+  <a name="_enhook">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _enhook(klass, name):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/python/hook.py#L143" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>(private) causes a certain method name to be hooked on a class</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.hook._dehook">
+    
+  </a>
+  <a name="_dehook">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _dehook(klass, name):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/python/hook.py#L168" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>(private) causes a certain method name no longer to be hooked on a 
+class</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://launchpad.net/pydoctor/">pydoctor</a> at 2015-04-13 15:26:48.
+    </address>
+  </body>
+</html>

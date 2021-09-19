@@ -1,0 +1,192 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web.http._ChunkedTransferDecoder : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class private">t.w.h._ChunkedTransferDecoder(<span title="object">object</span>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web.html">web</a>.<a href="twisted.web.http.html">http</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-9.0.0/twisted/web/http.py#L1320">View Source</a>
+      <a href="classIndex.html#twisted.web.http._ChunkedTransferDecoder">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div><p>Protocol for decoding <i>chunked</i> Transfer-Encoding, as defined by 
+RFC 2616, section 3.6.1.  This protocol can interpret the contents of a 
+request or response body which uses the <i>chunked</i> Transfer-Encoding.  
+It cannot interpret any of the rest of the HTTP protocol.</p>
+It may make sense for _ChunkedTransferDecoder to be an actual IProtocol 
+implementation.  Currently, the only user of this class will only ever call
+dataReceived on it.  However, it might be an improvement if the user could 
+connect this to a transport and deliver connection lost notification.  This
+way, `dataCallback` becomes `self.transport.write` and perhaps 
+`finishCallback` becomes `self.transport.loseConnection()` (although I'm 
+not sure where the extra data goes in that case).  This could also allow 
+this object to indicate to the receiver of data that the stream was not 
+completely received, an error case which should be noticed. -exarkun
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">dataCallback</td><td>A one-argument callable which will be invoked each time application data
+is received.
+</td></tr><tr><td></td><td class="fieldArg">finishCallback</td><td>A one-argument callable which will be invoked when the terminal chunk is
+received.  It will be invoked with all bytes which were delivered to this 
+protocol which came after the terminal chunk.
+</td></tr><tr><td></td><td class="fieldArg">length</td><td>Counter keeping track of how many more bytes in a chunk there are to 
+receive.
+</td></tr><tr><td></td><td class="fieldArg">state</td><td>One of <code>'chunk-length'</code>, <code>'trailer'</code>, 
+<code>'body'</code>, or <code>'finished'</code>.  For 
+<code>'chunk-length'</code>, data for the chunk length line is currently 
+being read.  For <code>'trailer'</code>, the CR LF pair which follows each 
+chunk is being read.  For <code>'body'</code>, the contents of a chunk are 
+being read.  For <code>'finished'</code>, the last chunk has been 
+completely read and no more input is valid.
+</td></tr><tr><td></td><td class="fieldArg">finish</td><td>A flag indicating that the last chunk has been started.  When it 
+finishes, the state will change to <code>'finished'</code> and no more data
+will be accepted.
+</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3327">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http._ChunkedTransferDecoder.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http._ChunkedTransferDecoder.html#dataReceived">dataReceived</a></td>
+    <td><span>Interpret data from a request or response body which uses the 
+<i>chunked</i> Transfer-Encoding.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http._ChunkedTransferDecoder.html#noMoreData">noMoreData</a></td>
+    <td><span>Verify that all data has been received.  If it has not been, raise <a 
+href="twisted.web.http._DataLoss.html"><code>_DataLoss</code></a>.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.web.http._ChunkedTransferDecoder.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, dataCallback, finishCallback):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-9.0.0/twisted/web/http.py#L1363" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http._ChunkedTransferDecoder.dataReceived">
+    
+  </a>
+  <a name="dataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dataReceived(self, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-9.0.0/twisted/web/http.py#L1369" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Interpret data from a request or response body which uses the 
+<i>chunked</i> Transfer-Encoding.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http._ChunkedTransferDecoder.noMoreData">
+    
+  </a>
+  <a name="noMoreData">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    noMoreData(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-9.0.0/twisted/web/http.py#L1418" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Verify that all data has been received.  If it has not been, raise <a 
+href="twisted.web.http._DataLoss.html"><code>_DataLoss</code></a>.
+<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-10-27 16:07:41.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

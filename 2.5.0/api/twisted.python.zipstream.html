@@ -1,0 +1,209 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.python.zipstream&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="module">Module t.p.zipstream</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.python.html">python</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/python/zipstream.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div>An extremely asynch approach to unzipping files. This allows you to 
+unzip a little bit of a file at a time, which means it can integrate 
+nicely with a reactor.
+<table class="fieldTable"></table></div>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id159">
+  
+  
+  
+  
+  <tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.python.zipstream.ChunkingZipFile.html">ChunkingZipFile</a></td>
+    <td><span>A ZipFile object which, with readfile(), also gives you access
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.python.zipstream.ZipFileEntry.html">ZipFileEntry</a></td>
+    <td><span>File-like object used to read an uncompressed entry in a ZipFile
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.python.zipstream.DeflatedZipFileEntry.html">DeflatedZipFileEntry</a></td>
+    <td><span>File-like object used to read a deflated entry in a ZipFile
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.python.zipstream.html#unzip">unzip</a></td>
+    <td><span>Unzip the file
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.python.zipstream.html#unzipIter">unzipIter</a></td>
+    <td><span>Return a generator for the zipfile. This implementation will
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.python.zipstream.html#countZipFileChunks">countZipFileChunks</a></td>
+    <td><span>Predict the number of chunks that will be extracted from the
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.python.zipstream.html#countFileChunks">countFileChunks</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.python.zipstream.html#countZipFileEntries">countZipFileEntries</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.python.zipstream.html#unzipIterChunky">unzipIterChunky</a></td>
+    <td><span>Return a generator for the zipfile. This implementation will
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.python.zipstream.unzip"></a>
+        <a name="unzip"></a>
+        <div class="functionHeader">
+        def unzip(filename, directory='.', overwrite=0):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/python/zipstream.py#L147" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Unzip the file
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">filename</td><td>the name of the zip file
+</td></tr><tr><td></td><td class="fieldArg">directory</td><td>the directory into which the files will be extracted
+</td></tr><tr><td></td><td class="fieldArg">overwrite</td><td>if on, overwrite files when they exist. You can still get an error if 
+you try to create a directory over a file with the same name or 
+vice-versa.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.python.zipstream.unzipIter"></a>
+        <a name="unzipIter"></a>
+        <div class="functionHeader">
+        def unzipIter(filename, directory='.', overwrite=0):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/python/zipstream.py#L160" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Return a generator for the zipfile. This implementation will yield 
+after every file.</p>
+The value it yields is the number of files left to unzip.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.python.zipstream.countZipFileChunks"></a>
+        <a name="countZipFileChunks"></a>
+        <div class="functionHeader">
+        def countZipFileChunks(filename, chunksize):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/python/zipstream.py#L189" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Predict the number of chunks that will be extracted from the entire 
+zipfile, given chunksize blocks.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.python.zipstream.countFileChunks"></a>
+        <a name="countFileChunks"></a>
+        <div class="functionHeader">
+        def countFileChunks(zipinfo, chunksize):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/python/zipstream.py#L199" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.python.zipstream.countZipFileEntries"></a>
+        <a name="countZipFileEntries"></a>
+        <div class="functionHeader">
+        def countZipFileEntries(filename):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/python/zipstream.py#L207" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.python.zipstream.unzipIterChunky"></a>
+        <a name="unzipIterChunky"></a>
+        <div class="functionHeader">
+        def unzipIterChunky(filename, directory='.', overwrite=0, chunksize=4096):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/python/zipstream.py#L211" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Return a generator for the zipfile. This implementation will yield 
+after every chunksize uncompressed bytes, or at the end of a file, 
+whichever comes first.</p>
+The value it yields is the number of chunks left to unzip.
+<table class="fieldTable"></table></div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for twisted, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a>.
+    </address>
+  </body>
+</html>

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.defer.Deferred.addTimeout : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link rel="stylesheet" href="bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="apidocs.css" type="text/css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div class="container" id="current-docs-container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="method"><code>twisted.internet.defer.Deferred.addTimeout(self, timeout, clock, onTimeoutCancel=None)</code> <small>method documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.internet.html" data-type="Package" class="code">internet</a>.<a href="twisted.internet.defer.html" data-type="Module" class="code">defer</a>.<a href="twisted.internet.defer.Deferred.html" data-type="Class" class="code">Deferred</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-18.9.0/src/twisted/internet/defer.py#L348">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>Time out this <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> by 
+scheduling it to be cancelled after <code>timeout</code> seconds.</p>
+<p>The timeout encompasses all the callbacks and errbacks added to this <a href="twisted.internet.defer.Deferred.html"><code>defer.Deferred</code></a>
+before the call to <a href="twisted.internet.defer.Deferred.html#addTimeout"><code>addTimeout</code></a>,
+and none added after the call.</p>
+<p>If this <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> gets 
+timed out, it errbacks with a <a href="twisted.internet.defer.TimeoutError.html"><code>TimeoutError</code></a>,
+unless a cancelable function was passed to its initialization or unless a 
+different <code>onTimeoutCancel</code> callable is provided.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">timeout</td><td>number of seconds to wait before timing out this <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr><tr><td></td><td class="fieldArg">clock</td><td>The object which will be used to schedule the timeout. (type: <a href="twisted.internet.interfaces.IReactorTime.html"><code>twisted.internet.interfaces.IReactorTime</code></a>)</td></tr><tr><td></td><td class="fieldArg">onTimeoutCancel</td><td>A callable which is called immediately after this <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> times
+out, and not if this <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> is 
+otherwise cancelled before the timeout. It takes an arbitrary value, which 
+is the value of this <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> at 
+that exact point in time (probably a <a href="twisted.internet.defer.CancelledError.html"><code>CancelledError</code></a>
+<a href="twisted.python.failure.Failure.html"><code>Failure</code></a>), 
+and the <code>timeout</code>.  The default callable (if none is provided) 
+will translate a <a href="twisted.internet.defer.CancelledError.html"><code>CancelledError</code></a>
+<a href="twisted.python.failure.Failure.html"><code>Failure</code></a> into
+a <a href="twisted.internet.defer.TimeoutError.html"><code>TimeoutError</code></a>. (type: <a href="http://docs.python.org/library/functions.html#callable"><code>callable</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>self</code>. (type: a <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">16.5</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2018-10-15 19:29:43.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script src="//www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

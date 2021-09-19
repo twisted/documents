@@ -1,0 +1,185 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.conch.client.default : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="module">t.c.c.default : module documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.conch.html">conch</a>.<a href="twisted.conch.client.html">client</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/conch/client/default.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div><p>Various classes and functions for implementing user-interaction in the 
+command-line conch client.</p>
+You probably shouldn't use anything in this module directly, since it 
+assumes you are sitting at an interactive terminal.  For example, to 
+programmatically interact with a known_hosts database, use <a 
+href="twisted.conch.client.knownhosts.html"><code>twisted.conch.client.knownhosts</code></a>.
+<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1214">
+  
+  
+<tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.conch.client.default.html#verifyHostKey">verifyHostKey</a></td>
+    <td><span>Verify a host's key.
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.conch.client.default.html#isInKnownHosts">isInKnownHosts</a></td>
+    <td><span>checks to see if host is in the known_hosts file for the user. returns 0
+if it isn't, 1 if it is and is the same, 2 if it's changed.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.client.default.SSHUserAuthClient.html">SSHUserAuthClient</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.conch.client.default.verifyHostKey">
+    
+  </a>
+  <a name="verifyHostKey">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    verifyHostKey(transport, host, pubKey, fingerprint):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/conch/client/default.py#L30" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Verify a host's key.</p>
+<p>This function is a gross vestige of some bad factoring in the client 
+internals.  The actual implementation, and a better signature of this logic
+is in <a 
+href="twisted.conch.client.knownhosts.KnownHostsFile.html#verifyHostKey"><code>KnownHostsFile.verifyHostKey</code></a>.
+This function is not deprecated yet because the callers have not yet been 
+rehabilitated, but they should eventually be changed to call that method 
+instead.</p>
+However, this function does perform two functions not implemented by <a 
+href="twisted.conch.client.knownhosts.KnownHostsFile.html#verifyHostKey"><code>KnownHostsFile.verifyHostKey</code></a>.
+It determines the path to the user's known_hosts file based on the options 
+(which should really be the options object's job), and it provides an 
+opener to <a 
+href="twisted.conch.client.knownhosts.ConsoleUI.html"><code>ConsoleUI</code></a>
+which opens '/dev/tty' so that the user will be prompted on the tty of the 
+process even if the input and output of the process has been redirected.  
+This latter part is, somewhat obviously, not portable, but I don't know of 
+a portable equivalent that could be used.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">host</td><td>Due to a bug in <a 
+href="twisted.conch.client.direct.SSHClientTransport.html#verifyHostKey"><code>SSHClientTransport.verifyHostKey</code></a>,
+this is always the dotted-quad IP address of the host being connected 
+to.
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">transport</td><td>the client transport which is attempting to connect to the given 
+host.
+ (type: <a 
+href="twisted.conch.client.direct.SSHClientTransport.html"><code>SSHClientTransport</code></a>
+)</td></tr><tr><td></td><td class="fieldArg">fingerprint</td><td>the fingerprint of the given public key, in xx:xx:xx:... format.  This 
+is ignored in favor of getting the fingerprint from the key itself.
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">pubKey</td><td>The public key of the server being connected to.
+ (type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> which
+fires with <code>1</code> if the key was successfully verified, or fails if
+the key could not be successfully verified.  Failure types may include <a 
+href="twisted.conch.error.HostKeyChanged.html"><code>HostKeyChanged</code></a>,
+<a 
+href="twisted.conch.error.UserRejectedKey.html"><code>UserRejectedKey</code></a>,
+<code>IOError</code> or <code>KeyboardInterrupt</code>.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.client.default.isInKnownHosts">
+    
+  </a>
+  <a name="isInKnownHosts">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    isInKnownHosts(host, pubKey, options):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/conch/client/default.py#L81" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>checks to see if host is in the known_hosts file for the user. returns 0
+if it isn't, 1 if it is and is the same, 2 if it's changed.
+<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-10-27 16:02:37.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

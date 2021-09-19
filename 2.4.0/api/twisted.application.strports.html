@@ -1,0 +1,187 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.application.strports&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="module">Module t.a.strports</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.application.html">twisted.application</a></span>
+      <a></a>
+      <a></a>
+    </p>
+    <div></div>
+    <div><p>Port description language</p>
+<p>This module implements a description mini-language for ports, and 
+provides functions to parse it and to use it to directly construct 
+appropriate network server services or to directly listen on them.</p>
+Here are some examples:
+<pre class="literalblock">
+&gt;&gt;&gt; s=service(&quot;80&quot;, server.Site())
+&gt;&gt;&gt; s=service(&quot;tcp:80&quot;, server.Site())
+&gt;&gt;&gt; s=service(&quot;tcp:80:interface=127.0.0.1&quot;, server.Site())
+&gt;&gt;&gt; s=service(&quot;ssl:443&quot;, server.Site())
+&gt;&gt;&gt; s=service(&quot;ssl:443:privateKey=mykey.pem&quot;, server.Site())
+&gt;&gt;&gt; s=service(&quot;ssl:443:privateKey=mykey.pem:certKey=cert.pem&quot;, server.Site())
+&gt;&gt;&gt; s=service(&quot;unix:/var/run/finger&quot;, FingerFactory())
+&gt;&gt;&gt; s=service(&quot;unix:/var/run/finger:mode=660&quot;, FingerFactory())
+&gt;&gt;&gt; p=listen(&quot;80&quot;, server.Site())
+&gt;&gt;&gt; p=listen(&quot;tcp:80&quot;, server.Site())
+&gt;&gt;&gt; p=listen(&quot;tcp:80:interface=127.0.0.1&quot;, server.Site())
+&gt;&gt;&gt; p=listen(&quot;ssl:443&quot;, server.Site())
+&gt;&gt;&gt; p=listen(&quot;ssl:443:privateKey=mykey.pem&quot;, server.Site())
+&gt;&gt;&gt; p=listen(&quot;ssl:443:privateKey=mykey.pem:certKey=cert.pem&quot;, server.Site())
+&gt;&gt;&gt; p=listen(&quot;unix:/var/run/finger&quot;, FingerFactory())
+&gt;&gt;&gt; p=listen(&quot;unix:/var/run/finger:mode=660&quot;, FingerFactory())
+</pre>
+<p>See specific function documentation for more information.</p>
+<p>API Stability: unstable</p>
+Maintainer: <a href="mailto:moshez&#64;twistedmatrix.com">Moshe 
+Zadka</a>
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.application.strports._parseTCP">_parseTCP</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.application.strports._parseUNIX">_parseUNIX</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.application.strports._parseSSL">_parseSSL</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.application.strports._tokenize">_tokenize</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.application.strports._parse">_parse</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.application.strports.parse">parse</a></td>
+          <td><span>Parse a description of a reliable virtual circuit server
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.application.strports.service">service</a></td>
+          <td><span>Return the service corresponding to a description
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.application.strports.listen">listen</a></td>
+          <td><span>Listen on a port corresponding to a description
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.application.strports._parseTCP"></a>
+        <div class="functionHeader">
+          def <span>_parseTCP(factory, port, interface='', backlog=50):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.application.strports._parseUNIX"></a>
+        <div class="functionHeader">
+          def <span>_parseUNIX(factory, address, mode='666', backlog=50):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.application.strports._parseSSL"></a>
+        <div class="functionHeader">
+          def <span>_parseSSL(factory, port, privateKey='server.pem', certKey=None, sslmethod=None, interface='', backlog=50):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.application.strports._tokenize"></a>
+        <div class="functionHeader">
+          def <span>_tokenize(description):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.application.strports._parse"></a>
+        <div class="functionHeader">
+          def <span>_parse(description):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.application.strports.parse"></a>
+        <div class="functionHeader">
+          def <span>parse(description, factory, default=None):</span>
+        </div>
+        <div class="functionBody"><div>Parse a description of a reliable virtual circuit server
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">description</td><td>(type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">factory</td><td>(type: <code>twisted.internet.interfaces.IProtocolFactory</code>
+)</td></tr><tr><td></td><td class="fieldArg">default</td><td>(type: <code>str</code> or <code>None</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a tuple of string, tuple and dictionary. The string is the name of the 
+method (sans <code>'listen'</code>) to call, and the tuple and dictionary 
+are the arguments and keyword arguments to the method.
+(type: <code>tuple</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg"><span style="font-size: xx-large; font-weight: bold; color: red; border: thick solid red;">None</span></td><td><p><code>ValueError</code> if the string is formatted incorrectly, 
+<code>KeyError</code> if the type is other than unix, ssl or tcp.</p>
+<p>Parse the description of a reliable virtual circuit server (that is, a 
+TCP port, a UNIX domain socket or an SSL port) and return the data 
+necessary to call the reactor methods to listen on the given socket with 
+the given factory.</p>
+<p>An argument with no colons means a default port. Usually the default 
+type is <code>tcp</code>, but passing a non-<code>None</code> value as 
+<code>default</code> will set that as the default. Otherwise, it is a 
+colon-separated string. The first part means the type -- currently, it 
+can only be ssl, unix or tcp. After that, comes a list of arguments. 
+Arguments can be positional or keyword, and can be mixed. Keyword 
+arguments are indicated by <code>'name=value'</code>. If a value is 
+supposed to contain a <code>':'</code>, a <code>'='</code> or a 
+<code>'\'</code>, escape it with a <code>'\'</code>.</p>
+<p>For TCP, the arguments are the port (port number) and, optionally the 
+interface (interface on which to listen) and backlog (how many clients to 
+keep in the backlog).</p>
+<p>For UNIX domain sockets, the arguments are address (the file name of 
+the socket) and optionally the mode (the mode bits of the file, as an 
+octal number) and the backlog (how many clients to keep in the 
+backlog).</p>
+For SSL sockets, the arguments are the port (port number) and, 
+optionally, the privateKey (file in which the private key is in), certKey 
+(file in which the certification is in), sslmethod (the name of the SSL 
+method to allow), the interface (interface on which to listen) and the 
+backlog (how many clients to keep in the backlog).
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.application.strports.service"></a>
+        <div class="functionHeader">
+          def <span>service(description, factory, default=None):</span>
+        </div>
+        <div class="functionBody"><div>Return the service corresponding to a description
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">description</td><td>(type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">factory</td><td>(type: <code>twisted.internet.interfaces.IProtocolFactory</code>
+)</td></tr><tr><td></td><td class="fieldArg">default</td><td>(type: <code>str</code> or <code>None</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><p>the service corresponding to a description of a reliable virtual 
+circuit server.</p>
+See the documentation of the <code>parse</code> function for 
+description of the semantics of the arguments.
+(type: <code>twisted.application.service.IService</code>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.application.strports.listen"></a>
+        <div class="functionHeader">
+          def <span>listen(description, factory, default=None):</span>
+        </div>
+        <div class="functionBody"><div>Listen on a port corresponding to a description
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">description</td><td>(type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">factory</td><td>(type: <code>twisted.internet.interfaces.IProtocolFactory</code>
+)</td></tr><tr><td></td><td class="fieldArg">default</td><td>(type: <code>str</code> or <code>None</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><p>the port corresponding to a description of a reliable virtual circuit 
+server.</p>
+See the documentation of the <code>parse</code> function for 
+description of the semantics of the arguments.
+(type: <code>twisted.internet.interfaces.IListeningPort</code>
+)</td></tr></table></div></div>
+      </div>    
+  </body>
+</html>

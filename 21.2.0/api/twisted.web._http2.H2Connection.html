@@ -1,0 +1,1469 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web._http2.H2Connection : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://twistedmatrix.com/">Twisted</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><a href="twisted.html" class="code" data-type="Package">twisted</a>.<a href="twisted.web.html" class="code" data-type="Package">web</a>.<a href="twisted.web._http2.html" class="code" data-type="Module">_http2</a>.<a href="twisted.web._http2.H2Connection.html" class="code" data-type="Class">H2Connection</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> twisted.web._http2.H2Connection(<a href="twisted.internet.protocol.Protocol.html" class="code" data-type="Class">Protocol</a>, <a href="twisted.protocols.policies.TimeoutMixin.html" class="code" data-type="Class">TimeoutMixin</a>): <a href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L56">(source)</a></code></p><p>Implements interfaces: <a href="twisted.internet.interfaces.IProtocol.html" class="code" data-type="Interface">twisted.internet.interfaces.IProtocol</a>, <a href="twisted.internet.interfaces.IPushProducer.html" class="code" data-type="Interface">twisted.internet.interfaces.IPushProducer</a></p>
+        <p><a href="classIndex.html#twisted.web._http2.H2Connection">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A class representing a single HTTP/2 connection.</p><p>This implementation of <a href="twisted.internet.interfaces.IProtocol.html"><code>IProtocol</code></a> works hand in hand with <a href="twisted.web._http2.H2Stream.html"><code>H2Stream</code></a>. This is because we have the requirement to register multiple producers for a single HTTP/2 connection, one for each stream. The standard Twisted interfaces don't really allow for this, so instead there's a custom interface between the two objects that allows them to work hand-in-hand here.</p></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3085">
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._http2.H2Connection.html#conn" class="code" data-type="Instance Variable">conn</a></td>
+    <td><span>The HTTP/2 connection state machine.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._http2.H2Connection.html#streams" class="code" data-type="Instance Variable">streams</a></td>
+    <td><span>A mapping of stream IDs to <a href="twisted.web._http2.H2Stream.html"><code>H2Stream</code></a> objects, used to call specific methods on streams when events occur.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._http2.H2Connection.html#priority" class="code" data-type="Instance Variable">priority</a></td>
+    <td><span>A HTTP/2 priority tree used to ensure that responses are prioritised appropriately.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._http2.H2Connection.html#abortTimeout" class="code" data-type="Instance Variable">abortTimeout</a></td>
+    <td><span>The number of seconds to wait after we attempt to shut the transport down cleanly to give up and forcibly terminate it. This is only used when we time a connection out, to prevent errors causing the FD to get leaked. If this is <a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>, we will wait forever.</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.web._http2.H2Connection.html#factory" class="code" data-type="Class Variable">factory</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="classvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.web._http2.H2Connection.html#site" class="code" data-type="Class Variable">site</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#__init__" class="code" data-type="Method">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#connectionMade" class="code" data-type="Method">connectionMade</a></td>
+    <td><span>Called by the reactor when a connection is received. May also be called by the <a href="twisted.web.http._GenericHTTPChannelProtocol.html"><code>twisted.web.http._GenericHTTPChannelProtocol</code></a> during upgrade to HTTP/2.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#dataReceived" class="code" data-type="Method">dataReceived</a></td>
+    <td><span>Called whenever a chunk of data is received from the transport.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#timeoutConnection" class="code" data-type="Method">timeoutConnection</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#forceAbortClient" class="code" data-type="Method">forceAbortClient</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#connectionLost" class="code" data-type="Method">connectionLost</a></td>
+    <td><span>Called when the transport connection is lost.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#stopProducing" class="code" data-type="Method">stopProducing</a></td>
+    <td><span>Stop producing data.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#pauseProducing" class="code" data-type="Method">pauseProducing</a></td>
+    <td><span>Pause producing data.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#resumeProducing" class="code" data-type="Method">resumeProducing</a></td>
+    <td><span>Resume producing data.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#writeHeaders" class="code" data-type="Method">writeHeaders</a></td>
+    <td><span>Called by <a href="twisted.web.http.Request.html"><code>twisted.web.http.Request</code></a> objects to write a complete set of HTTP headers to a stream.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#writeDataToStream" class="code" data-type="Method">writeDataToStream</a></td>
+    <td><span>May be called by <a href="twisted.web._http2.H2Stream.html"><code>H2Stream</code></a> objects to write response data to a given stream. Writes a single data frame.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#endRequest" class="code" data-type="Method">endRequest</a></td>
+    <td><span>Called by <a href="twisted.web._http2.H2Stream.html"><code>H2Stream</code></a> objects to signal completion of a response.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#abortRequest" class="code" data-type="Method">abortRequest</a></td>
+    <td><span>Called by <a href="twisted.web._http2.H2Stream.html"><code>H2Stream</code></a> objects to request early termination of a stream. This emits a RstStream frame and then removes all stream state.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#remainingOutboundWindow" class="code" data-type="Method">remainingOutboundWindow</a></td>
+    <td><span>Called to determine how much room is left in the send window for a given stream. Allows us to handle blocking and unblocking producers.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#getPeer" class="code" data-type="Method">getPeer</a></td>
+    <td><span>Get the remote address of this connection.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#getHost" class="code" data-type="Method">getHost</a></td>
+    <td><span>Similar to getPeer, but returns an address describing this side of the connection.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#openStreamWindow" class="code" data-type="Method">openStreamWindow</a></td>
+    <td><span>Open the stream window by a given increment.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_consumerBlocked" class="code" data-type="Instance Variable">_consumerBlocked</a></td>
+    <td><span>A flag tracking whether or not the <a href="twisted.internet.interfaces.IConsumer.html"><code>IConsumer</code></a> that is consuming this data has asked us to stop producing.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_sendingDeferred" class="code" data-type="Instance Variable">_sendingDeferred</a></td>
+    <td><span>A <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> used to restart the data-sending loop when more response data has been produced. Will not be present if there is outstanding data still to send.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_outboundStreamQueues" class="code" data-type="Instance Variable">_outboundStreamQueues</a></td>
+    <td><span>A map of stream IDs to queues, used to store data blocks that are yet to be sent on the connection. These are used both to handle producers that do not respect <a href="twisted.internet.interfaces.IConsumer.html"><code>IConsumer</code></a> but also to allow priority to multiplex data appropriately.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_sender" class="code" data-type="Instance Variable">_sender</a></td>
+    <td><span>A handle to the data-sending loop, allowing it to be terminated if needed.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_abortingCall" class="code" data-type="Instance Variable">_abortingCall</a></td>
+    <td><span>The <a href="twisted.internet.base.DelayedCall.html"><code>twisted.internet.base.DelayedCall</code></a> that will be used to forcibly close the transport if it doesn't close cleanly.</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_log" class="code" data-type="Class Variable">_log</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_streamCleanupCallbacks" class="code" data-type="Instance Variable">_streamCleanupCallbacks</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_stillProducing" class="code" data-type="Instance Variable">_stillProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_maxBufferedControlFrameBytes" class="code" data-type="Instance Variable">_maxBufferedControlFrameBytes</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_bufferedControlFrames" class="code" data-type="Instance Variable">_bufferedControlFrames</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_bufferedControlFrameBytes" class="code" data-type="Instance Variable">_bufferedControlFrameBytes</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_reactor" class="code" data-type="Instance Variable">_reactor</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_sendPrioritisedData" class="code" data-type="Method">_sendPrioritisedData</a></td>
+    <td><span>The data sending loop. This function repeatedly calls itself, either from <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>s or from <a href="twisted.internet.interfaces.IReactorTime.html#callLater"><code>reactor.callLater</code></a></span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_requestReceived" class="code" data-type="Method">_requestReceived</a></td>
+    <td><span>Internal handler for when a request has been received.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_requestDataReceived" class="code" data-type="Method">_requestDataReceived</a></td>
+    <td><span>Internal handler for when a chunk of data is received for a given request.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_requestEnded" class="code" data-type="Method">_requestEnded</a></td>
+    <td><span>Internal handler for when a request is complete, and we expect no further data for that request.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_requestAborted" class="code" data-type="Method">_requestAborted</a></td>
+    <td><span>Internal handler for when a request is aborted by a remote peer.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_handlePriorityUpdate" class="code" data-type="Method">_handlePriorityUpdate</a></td>
+    <td><span>Internal handler for when a stream priority is updated.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_requestDone" class="code" data-type="Method">_requestDone</a></td>
+    <td><span>Called internally by the data sending loop to clean up state that was being used for the stream. Called when the stream is complete.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_handleWindowUpdate" class="code" data-type="Method">_handleWindowUpdate</a></td>
+    <td><span>Manage flow control windows.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_isSecure" class="code" data-type="Method">_isSecure</a></td>
+    <td><span>Returns <a href="https://docs.python.org/3/library/constants.html#True"><code>True</code></a> if this channel is using a secure transport.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_send100Continue" class="code" data-type="Method">_send100Continue</a></td>
+    <td><span>Sends a 100 Continue response, used to signal to clients that further processing will be performed.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_respondToBadRequestAndDisconnect" class="code" data-type="Method">_respondToBadRequestAndDisconnect</a></td>
+    <td><span>This is a quick and dirty way of responding to bad requests.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_streamIsActive" class="code" data-type="Method">_streamIsActive</a></td>
+    <td><span>Checks whether Twisted has still got state for a given stream and so can process events for that stream.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_tryToWriteControlData" class="code" data-type="Method">_tryToWriteControlData</a></td>
+    <td><span>Checks whether the connection is blocked on flow control and, if it isn't, writes any buffered control data.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.web._http2.H2Connection.html#_flushBufferedControlData" class="code" data-type="Method">_flushBufferedControlData</a></td>
+    <td><span>Called when the connection is marked writable again after being marked unwritable. Attempts to flush buffered control data if there is any.</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.protocol.Protocol.html" class="code" data-type="Class">Protocol</a>:
+          </p>
+          <table class="children sortable" id="id3086">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Protocol.html#logPrefix" class="code" data-type="Method">logPrefix</a></td>
+    <td><span>Return a prefix matching the class name, to identify log messages related to this protocol instance.</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.protocol.BaseProtocol.html" class="code" data-type="Class">BaseProtocol</a> (via <a href="twisted.internet.protocol.Protocol.html" class="code" data-type="Class">Protocol</a>):
+          </p>
+          <table class="children sortable" id="id3087">
+  
+  <tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.protocol.BaseProtocol.html#connected" class="code" data-type="Instance Variable">connected</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.protocol.BaseProtocol.html#transport" class="code" data-type="Instance Variable">transport</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.BaseProtocol.html#makeConnection" class="code" data-type="Method">makeConnection</a></td>
+    <td><span>Make a connection to a transport and a server.</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.protocols.policies.TimeoutMixin.html" class="code" data-type="Class">TimeoutMixin</a>:
+          </p>
+          <table class="children sortable" id="id3088">
+  
+  <tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.policies.TimeoutMixin.html#timeOut" class="code" data-type="Instance Variable">timeOut</a></td>
+    <td><span>The number of seconds after which to timeout the connection.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.policies.TimeoutMixin.html#callLater" class="code" data-type="Method">callLater</a></td>
+    <td><span>Wrapper around <a href="twisted.internet.interfaces.IReactorTime.html#callLater"><code>reactor.callLater</code></a> for test purpose.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.policies.TimeoutMixin.html#resetTimeout" class="code" data-type="Method">resetTimeout</a></td>
+    <td><span>Reset the timeout count down.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.policies.TimeoutMixin.html#setTimeout" class="code" data-type="Method">setTimeout</a></td>
+    <td><span>Change the timeout period</span></td>
+  </tr><tr class="baseinstancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.policies.TimeoutMixin.html#__timeoutCall" class="code" data-type="Instance Variable">__timeoutCall</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.policies.TimeoutMixin.html#__timedOut" class="code" data-type="Method">__timedOut</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable">
+  
+  <a name="twisted.web._http2.H2Connection.conn">
+    
+  </a>
+  <a name="conn">
+    
+  </a>
+  <div class="functionHeader">
+    
+    conn =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L67">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The HTTP/2 connection state machine.</div> (type: <a href="https://hyper-h2.readthedocs.io/en/stable/api.html#h2.connection.H2Connection"><code>h2.connection.H2Connection</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.web._http2.H2Connection.streams">
+    
+  </a>
+  <a name="streams">
+    
+  </a>
+  <div class="functionHeader">
+    
+    streams =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L70">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A mapping of stream IDs to <a href="twisted.web._http2.H2Stream.html"><code>H2Stream</code></a> objects, used to call specific methods on streams when events occur.</div> (type: <a href="https://docs.python.org/3/library/stdtypes.html#dict"><code>dict</code></a>, mapping <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a> stream IDs to <a href="twisted.web._http2.H2Stream.html"><code>H2Stream</code></a> objects.)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.web._http2.H2Connection.priority">
+    
+  </a>
+  <a name="priority">
+    
+  </a>
+  <div class="functionHeader">
+    
+    priority =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L74">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A HTTP/2 priority tree used to ensure that responses are prioritised appropriately.</div> (type: <a href="https://priority.readthedocs.io/en/stable/api.html#priority.PriorityTree"><code>priority.PriorityTree</code></a>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web._http2.H2Connection._consumerBlocked">
+    
+  </a>
+  <a name="_consumerBlocked">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _consumerBlocked =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L78">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A flag tracking whether or not the <a href="twisted.internet.interfaces.IConsumer.html"><code>IConsumer</code></a> that is consuming this data has asked us to stop producing.</div> (type: A <a href="twisted.internet.defer.Deferred.html"><code>twisted.internet.defer.Deferred</code></a>, or <a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web._http2.H2Connection._sendingDeferred">
+    
+  </a>
+  <a name="_sendingDeferred">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _sendingDeferred =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L82">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> used to restart the data-sending loop when more response data has been produced. Will not be present if there is outstanding data still to send.</div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web._http2.H2Connection._outboundStreamQueues">
+    
+  </a>
+  <a name="_outboundStreamQueues">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _outboundStreamQueues =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L87">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A map of stream IDs to queues, used to store data blocks that are yet to be sent on the connection. These are used both to handle producers that do not respect <a href="twisted.internet.interfaces.IConsumer.html"><code>IConsumer</code></a> but also to allow priority to multiplex data appropriately.</div> (type: A <a href="https://docs.python.org/3/library/stdtypes.html#dict"><code>dict</code></a> mapping <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a> stream IDs to <a href="https://docs.python.org/3/library/collections.html#collections.deque"><code>collections.deque</code></a> queues, which contain either <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a> objects or <code>_END_STREAM_SENTINEL</code>.)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web._http2.H2Connection._sender">
+    
+  </a>
+  <a name="_sender">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _sender =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L95">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A handle to the data-sending loop, allowing it to be terminated if needed.</div> (type: <a href="twisted.internet.task.LoopingCall.html"><code>twisted.internet.task.LoopingCall</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.web._http2.H2Connection.abortTimeout">
+    
+  </a>
+  <a name="abortTimeout">
+    
+  </a>
+  <div class="functionHeader">
+    
+    abortTimeout =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L99">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The number of seconds to wait after we attempt to shut the transport down cleanly to give up and forcibly terminate it. This is only used when we time a connection out, to prevent errors causing the FD to get leaked. If this is <a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>, we will wait forever.</div> (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web._http2.H2Connection._abortingCall">
+    
+  </a>
+  <a name="_abortingCall">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _abortingCall =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L105">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The <a href="twisted.internet.base.DelayedCall.html"><code>twisted.internet.base.DelayedCall</code></a> that will be used to forcibly close the transport if it doesn't close cleanly.</div> (type: <a href="twisted.internet.base.DelayedCall.html"><code>twisted.internet.base.DelayedCall</code></a>)
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="twisted.web._http2.H2Connection.factory">
+    
+  </a>
+  <a name="factory">
+    
+  </a>
+  <div class="functionHeader">
+    
+    factory =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L110">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Protocol.html#factory" class="code" data-type="Class Variable">twisted.internet.protocol.Protocol.factory</a></div>
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassvariable">
+  
+  <a name="twisted.web._http2.H2Connection.site">
+    
+  </a>
+  <a name="site">
+    
+  </a>
+  <div class="functionHeader">
+    
+    site =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L111">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseclassvariable private">
+  
+  <a name="twisted.web._http2.H2Connection._log">
+    
+  </a>
+  <a name="_log">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _log =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L114">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web._http2.H2Connection.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def __init__(self, reactor=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L117">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web._http2.H2Connection._streamCleanupCallbacks">
+    
+  </a>
+  <a name="_streamCleanupCallbacks">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _streamCleanupCallbacks =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L126">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#dict" class="code">dict</a></code>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web._http2.H2Connection._stillProducing">
+    
+  </a>
+  <a name="_stillProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _stillProducing =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L127">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="code">bool</a></code>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web._http2.H2Connection._maxBufferedControlFrameBytes">
+    
+  </a>
+  <a name="_maxBufferedControlFrameBytes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _maxBufferedControlFrameBytes =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L131">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web._http2.H2Connection._bufferedControlFrames">
+    
+  </a>
+  <a name="_bufferedControlFrames">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _bufferedControlFrames =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L132">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web._http2.H2Connection._bufferedControlFrameBytes">
+    
+  </a>
+  <a name="_bufferedControlFrameBytes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _bufferedControlFrameBytes =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L133">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div> (type: <code><a href="https://docs.python.org/3/library/functions.html#int" class="code">int</a></code>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web._http2.H2Connection._reactor">
+    
+  </a>
+  <a name="_reactor">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _reactor =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L137">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web._http2.H2Connection.connectionMade">
+    
+  </a>
+  <a name="connectionMade">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def connectionMade(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L143">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#connectionMade" class="code" data-type="Method">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.BaseProtocol.html#connectionMade" class="code" data-type="Method">twisted.internet.protocol.BaseProtocol.connectionMade</a></div>
+    
+    <div><p>Called by the reactor when a connection is received. May also be called by the <a href="twisted.web.http._GenericHTTPChannelProtocol.html"><code>twisted.web.http._GenericHTTPChannelProtocol</code></a> during upgrade to HTTP/2.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web._http2.H2Connection.dataReceived">
+    
+  </a>
+  <a name="dataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def dataReceived(self, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L153">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#dataReceived" class="code" data-type="Method">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Protocol.html#dataReceived" class="code" data-type="Method">twisted.internet.protocol.Protocol.dataReceived</a></div>
+    
+    <div><p>Called whenever a chunk of data is received from the transport.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">data</td><td>The data received from the transport. (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web._http2.H2Connection.timeoutConnection">
+    
+  </a>
+  <a name="timeoutConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def timeoutConnection(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L195">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.protocols.policies.TimeoutMixin.html#timeoutConnection" class="code" data-type="Method">twisted.protocols.policies.TimeoutMixin.timeoutConnection</a></div>
+    
+    <div><p>Called when the connection has been inactive for <a href="twisted.protocols.policies.TimeoutMixin.html#timeOut"><code>self.timeOut</code></a> seconds. Cleanly tears the connection down, attempting to notify the peer if needed.</p><p>We override this method to add two extra bits of functionality:</p><ul><li>We want to log the timeout.</li><li>We want to send a GOAWAY frame indicating that the connection is being terminated, and whether it was clean or not. We have to do this before the connection is torn down.</li></ul></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web._http2.H2Connection.forceAbortClient">
+    
+  </a>
+  <a name="forceAbortClient">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def forceAbortClient(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L234">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called if <code>abortTimeout</code> seconds have passed since the timeout fired, and the connection still hasn't gone away. This can really only happen on extremely bad connections or when clients are maliciously attempting to keep connections open.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web._http2.H2Connection.connectionLost">
+    
+  </a>
+  <a name="connectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def connectionLost(self, reason, _cancelTimeouts=True):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L249">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#connectionLost" class="code" data-type="Method">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Protocol.html#connectionLost" class="code" data-type="Method">twisted.internet.protocol.Protocol.connectionLost</a></div>
+    
+    <div><p>Called when the transport connection is lost.</p><p>Informs all outstanding response handlers that the connection has been lost, and cleans up all internal state.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">reason</td><td>See <a href="twisted.internet.interfaces.IProtocol.html#connectionLost"><code>IProtocol.connectionLost</code></a></td></tr><tr><td></td><td class="fieldArg">_cancelTimeouts</td><td>Propagate the <code>reason</code> to this connection's streams but don't cancel any timers, so that peers who never read the data we've written are eventually timed out.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web._http2.H2Connection.stopProducing">
+    
+  </a>
+  <a name="stopProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def stopProducing(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L323">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProducer.html#stopProducing" class="code" data-type="Method">twisted.internet.interfaces.IProducer</a></div>
+    
+    <div><p>Stop producing data.</p><p>This tells the <a href="twisted.web._http2.H2Connection.html"><code>H2Connection</code></a> that its consumer has died, so it must stop producing data for good.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web._http2.H2Connection.pauseProducing">
+    
+  </a>
+  <a name="pauseProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def pauseProducing(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L332">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IPushProducer.html#pauseProducing" class="code" data-type="Method">twisted.internet.interfaces.IPushProducer</a></div>
+    
+    <div><p>Pause producing data.</p><p>Tells the <a href="twisted.web._http2.H2Connection.html"><code>H2Connection</code></a> that it has produced too much data to process for the time being, and to stop until resumeProducing() is called.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web._http2.H2Connection.resumeProducing">
+    
+  </a>
+  <a name="resumeProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def resumeProducing(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L343">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IPushProducer.html#resumeProducing" class="code" data-type="Method">twisted.internet.interfaces.IPushProducer</a></div>
+    
+    <div><p>Resume producing data.</p><p>This tells the <a href="twisted.web._http2.H2Connection.html"><code>H2Connection</code></a> to re-add itself to the main loop and produce more data for the consumer.</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.web._http2.H2Connection._sendPrioritisedData">
+    
+  </a>
+  <a name="_sendPrioritisedData">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _sendPrioritisedData(self, *args):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L355">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>The data sending loop. This function repeatedly calls itself, either from <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>s or from <a href="twisted.internet.interfaces.IReactorTime.html#callLater"><code>reactor.callLater</code></a></p><p>This function sends data on streams according to the rules of HTTP/2 priority. It ensures that the data from each stream is interleved according to the priority signalled by the client, making sure that the connection is used with maximal efficiency.</p><p>This function will execute if data is available: if all data is exhausted, the function will place a deferred onto the <a href="twisted.web._http2.H2Connection.html"><code>H2Connection</code></a> object and wait until it is called to resume executing.</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.web._http2.H2Connection._requestReceived">
+    
+  </a>
+  <a name="_requestReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _requestReceived(self, event):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L434">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Internal handler for when a request has been received.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">event</td><td>The Hyper-h2 event that encodes information about the received request. (type: <a href="https://hyper-h2.readthedocs.io/en/stable/api.html#h2.events.RequestReceived"><code>h2.events.RequestReceived</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.web._http2.H2Connection._requestDataReceived">
+    
+  </a>
+  <a name="_requestDataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _requestDataReceived(self, event):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L465">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Internal handler for when a chunk of data is received for a given request.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">event</td><td>The Hyper-h2 event that encodes information about the received data. (type: <a href="https://hyper-h2.readthedocs.io/en/stable/api.html#h2.events.DataReceived"><code>h2.events.DataReceived</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.web._http2.H2Connection._requestEnded">
+    
+  </a>
+  <a name="_requestEnded">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _requestEnded(self, event):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L477">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Internal handler for when a request is complete, and we expect no further data for that request.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">event</td><td>The Hyper-h2 event that encodes information about the completed stream. (type: <a href="https://hyper-h2.readthedocs.io/en/stable/api.html#h2.events.StreamEnded"><code>h2.events.StreamEnded</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.web._http2.H2Connection._requestAborted">
+    
+  </a>
+  <a name="_requestAborted">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _requestAborted(self, event):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L489">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Internal handler for when a request is aborted by a remote peer.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">event</td><td>The Hyper-h2 event that encodes information about the reset stream. (type: <a href="https://hyper-h2.readthedocs.io/en/stable/api.html#h2.events.StreamReset"><code>h2.events.StreamReset</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.web._http2.H2Connection._handlePriorityUpdate">
+    
+  </a>
+  <a name="_handlePriorityUpdate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _handlePriorityUpdate(self, event):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L503">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Internal handler for when a stream priority is updated.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">event</td><td>The Hyper-h2 event that encodes information about the stream reprioritization. (type: <a href="https://hyper-h2.readthedocs.io/en/stable/api.html#h2.events.PriorityUpdated"><code>h2.events.PriorityUpdated</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web._http2.H2Connection.writeHeaders">
+    
+  </a>
+  <a name="writeHeaders">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def writeHeaders(self, version, code, reason, headers, streamID):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L530">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called by <a href="twisted.web.http.Request.html"><code>twisted.web.http.Request</code></a> objects to write a complete set of HTTP headers to a stream.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">version</td><td>The HTTP version in use. Unused in HTTP/2. (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">code</td><td>The HTTP status code to write. (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">reason</td><td>The HTTP reason phrase to write. Unused in HTTP/2. (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">headers</td><td>The headers to write to the stream. (type: <a href="twisted.web.http_headers.Headers.html"><code>twisted.web.http_headers.Headers</code></a>)</td></tr><tr><td></td><td class="fieldArg">streamID</td><td>The ID of the stream to write the headers to. (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web._http2.H2Connection.writeDataToStream">
+    
+  </a>
+  <a name="writeDataToStream">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def writeDataToStream(self, streamID, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L562">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>May be called by <a href="twisted.web._http2.H2Stream.html"><code>H2Stream</code></a> objects to write response data to a given stream. Writes a single data frame.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">streamID</td><td>The ID of the stream to write the data to. (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)</td></tr><tr><td></td><td class="fieldArg">data</td><td>The data chunk to write to the stream. (type: <a href="https://docs.python.org/3/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web._http2.H2Connection.endRequest">
+    
+  </a>
+  <a name="endRequest">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def endRequest(self, streamID):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L588">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called by <a href="twisted.web._http2.H2Stream.html"><code>H2Stream</code></a> objects to signal completion of a response.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">streamID</td><td>The ID of the stream to write the data to. (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web._http2.H2Connection.abortRequest">
+    
+  </a>
+  <a name="abortRequest">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def abortRequest(self, streamID):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L602">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called by <a href="twisted.web._http2.H2Stream.html"><code>H2Stream</code></a> objects to request early termination of a stream. This emits a RstStream frame and then removes all stream state.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">streamID</td><td>The ID of the stream to write the data to. (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.web._http2.H2Connection._requestDone">
+    
+  </a>
+  <a name="_requestDone">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _requestDone(self, streamID):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L615">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called internally by the data sending loop to clean up state that was being used for the stream. Called when the stream is complete.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">streamID</td><td>The ID of the stream to clean up state for. (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web._http2.H2Connection.remainingOutboundWindow">
+    
+  </a>
+  <a name="remainingOutboundWindow">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def remainingOutboundWindow(self, streamID):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L629">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called to determine how much room is left in the send window for a given stream. Allows us to handle blocking and unblocking producers.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">streamID</td><td>The ID of the stream whose flow control window we'll check. (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The amount of room remaining in the send window for the given stream, including the data queued to be sent. (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.web._http2.H2Connection._handleWindowUpdate">
+    
+  </a>
+  <a name="_handleWindowUpdate">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _handleWindowUpdate(self, event):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L652">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Manage flow control windows.</p><p>Streams that are blocked on flow control will register themselves with the connection. This will fire deferreds that wake those streams up and allow them to continue processing.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">event</td><td>The Hyper-h2 event that encodes information about the flow control window change. (type: <a href="https://hyper-h2.readthedocs.io/en/stable/api.html#h2.events.WindowUpdated"><code>h2.events.WindowUpdated</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web._http2.H2Connection.getPeer">
+    
+  </a>
+  <a name="getPeer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def getPeer(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L688">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Get the remote address of this connection.</p><p>Treat this method with caution.  It is the unfortunate result of the CGI and Jabber standards, but should not be considered reliable for the usual host of reasons; port forwarding, proxying, firewalls, IP masquerading, etc.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An <a href="twisted.internet.interfaces.IAddress.html"><code>IAddress</code></a> provider.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web._http2.H2Connection.getHost">
+    
+  </a>
+  <a name="getHost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def getHost(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L701">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Similar to getPeer, but returns an address describing this side of the connection.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An <a href="twisted.internet.interfaces.IAddress.html"><code>IAddress</code></a> provider.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web._http2.H2Connection.openStreamWindow">
+    
+  </a>
+  <a name="openStreamWindow">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def openStreamWindow(self, streamID, increment):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L710">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Open the stream window by a given increment.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">streamID</td><td>The ID of the stream whose window needs to be opened. (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)</td></tr><tr><td></td><td class="fieldArg">increment</td><td>The amount by which the stream window must be incremented. (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.web._http2.H2Connection._isSecure">
+    
+  </a>
+  <a name="_isSecure">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _isSecure(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L724">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns <a href="https://docs.python.org/3/library/constants.html#True"><code>True</code></a> if this channel is using a secure transport.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="https://docs.python.org/3/library/constants.html#True"><code>True</code></a> if this channel is secure. (type: <a href="https://docs.python.org/3/library/functions.html#bool"><code>bool</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.web._http2.H2Connection._send100Continue">
+    
+  </a>
+  <a name="_send100Continue">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _send100Continue(self, streamID):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L734">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Sends a 100 Continue response, used to signal to clients that further processing will be performed.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">streamID</td><td>The ID of the stream that needs the 100 Continue response (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.web._http2.H2Connection._respondToBadRequestAndDisconnect">
+    
+  </a>
+  <a name="_respondToBadRequestAndDisconnect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _respondToBadRequestAndDisconnect(self, streamID):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L747">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>This is a quick and dirty way of responding to bad requests.</p><p>As described by HTTP standard we should be patient and accept the whole request from the client before sending a polite bad request response, even in the case when clients send tons of data.</p><p>Unlike in the HTTP/1.1 case, this does not actually disconnect the underlying transport: there's no need. This instead just sends a 400 response and terminates the stream.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">streamID</td><td>The ID of the stream that needs the 100 Continue response (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.web._http2.H2Connection._streamIsActive">
+    
+  </a>
+  <a name="_streamIsActive">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _streamIsActive(self, streamID):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L771">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Checks whether Twisted has still got state for a given stream and so can process events for that stream.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">streamID</td><td>The ID of the stream that needs processing. (type: <a href="https://docs.python.org/3/library/functions.html#int"><code>int</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">Whether the stream still has state allocated. (type: <a href="https://docs.python.org/3/library/functions.html#bool"><code>bool</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.web._http2.H2Connection._tryToWriteControlData">
+    
+  </a>
+  <a name="_tryToWriteControlData">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _tryToWriteControlData(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L784">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Checks whether the connection is blocked on flow control and, if it isn't, writes any buffered control data.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="https://docs.python.org/3/library/constants.html#True"><code>True</code></a> if the connection is still active and <a href="https://docs.python.org/3/library/constants.html#False"><code>False</code></a> if it was aborted because too many bytes have been written but not consumed by the other end.</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.web._http2.H2Connection._flushBufferedControlData">
+    
+  </a>
+  <a name="_flushBufferedControlData">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _flushBufferedControlData(self, *args):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/web/_http2.py#L829">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called when the connection is marked writable again after being marked unwritable. Attempts to flush buffered control data if there is any.</p></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-02-28 19:53:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

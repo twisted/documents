@@ -1,0 +1,208 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.conch.insults.text : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="module">t.c.i.text : module documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.conch.html">conch</a>.<a href="twisted.conch.insults.html">insults</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/conch/insults/text.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div><p>Character attribute manipulation API</p>
+<p>This module provides a domain-specific language (using Python syntax) 
+for the creation of text with additional display attributes associated with
+it.  It is intended as an alternative to manually building up strings 
+containing ECMA 48 character attribute control codes.  It currently 
+supports foreground and background colors (black, red, green, yellow, blue,
+magenta, cyan, and white), intensity selection, underlining, blinking and 
+reverse video.  Character set selection support is planned.</p>
+<p>Character attributes are specified by using two Python operations: 
+attribute lookup and indexing.  For example, the string &quot;Hello 
+world&quot; with red foreground and all other attributes set to their 
+defaults, assuming the name twisted.conch.insults.text.attributes has been 
+imported and bound to the name &quot;A&quot; (with the statement <code>from
+twisted.conch.insults.text import attributes as A</code>, for example) one 
+uses this expression:</p>
+<pre class="literalblock">
+| A.fg.red[&quot;Hello world&quot;]
+</pre>
+<p>Other foreground colors are set by substituting their name for 
+&quot;red&quot;.  To set both a foreground and a background color, this 
+expression is used:</p>
+<pre class="literalblock">
+| A.fg.red[A.bg.green[&quot;Hello world&quot;]]
+</pre>
+<p>Note that either A.bg.green can be nested within A.fg.red or vice versa.
+Also note that multiple items can be nested within a single index operation
+by separating them with commas:</p>
+<pre class="literalblock">
+| A.bg.green[A.fg.red[&quot;Hello&quot;], &quot; &quot;, A.fg.blue[&quot;world&quot;]]
+</pre>
+<p>Other character attributes are set in a similar fashion.  To specify a 
+blinking version of the previous expression:</p>
+<pre class="literalblock">
+| A.blink[A.bg.green[A.fg.red[&quot;Hello&quot;], &quot; &quot;, A.fg.blue[&quot;world&quot;]]]
+</pre>
+<p><code>A.reverseVideo</code>, <code>A.underline</code>, and 
+<code>A.bold</code> are also valid.</p>
+<p>A third operation is actually supported: unary negation.  This turns off
+an attribute when an enclosing expression would otherwise have caused it to
+be on.  For example:</p>
+<pre class="literalblock">
+| A.underline[A.fg.red[&quot;Hello&quot;, -A.underline[&quot; world&quot;]]]
+</pre>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Author</td><td colspan="2">Jp Calderone
+</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id252">
+  
+  
+<tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.insults.text.CharacterAttributes.html">CharacterAttributes</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.conch.insults.text.html#flatten">flatten</a></td>
+    <td><span>Serialize a sequence of characters with attribute information</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.insults.text._Attribute.html">_Attribute</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.insults.text._NormalAttr.html">_NormalAttr</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.insults.text._OtherAttr.html">_OtherAttr</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.insults.text._ColorAttr.html">_ColorAttr</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.insults.text._ForegroundColorAttr.html">_ForegroundColorAttr</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.insults.text._BackgroundColorAttr.html">_BackgroundColorAttr</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.conch.insults.text.flatten">
+    
+  </a>
+  <a name="flatten">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    flatten(output, attrs):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/conch/insults/text.py#L154" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Serialize a sequence of characters with attribute information</p>
+<p>The resulting string can be interpreted by VT102-compatible terminals so
+that the contained characters are displayed and, for those attributes which
+the terminal supports, have the attributes specified in the input.</p>
+<p>For example, if your terminal is VT102 compatible, you might run this 
+for a colorful variation on the &quot;hello world&quot; theme:</p>
+<pre class="literalblock">
+| from twisted.conch.insults.text import flatten, attributes as A
+| from twisted.conch.insults.helper import CharacterAttribute
+| print flatten(
+|     A.normal[A.bold[A.fg.red['He'], A.fg.green['ll'], A.fg.magenta['o'], ' ',
+|                     A.fg.yellow['Wo'], A.fg.blue['rl'], A.fg.cyan['d!']]],
+|     CharacterAttribute())
+</pre>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">output</td><td>Object returned by accessing attributes of the module-level attributes 
+object.
+</td></tr><tr><td></td><td class="fieldArg">attrs</td><td>A <a 
+href="twisted.conch.insults.helper.CharacterAttribute.html"><code>twisted.conch.insults.helper.CharacterAttribute</code></a>
+instance
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A VT102-friendly string
+</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-11-17 13:59:56.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

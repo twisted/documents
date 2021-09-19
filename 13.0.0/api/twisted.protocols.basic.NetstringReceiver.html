@@ -1,0 +1,863 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.protocols.basic.NetstringReceiver : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.p.b.NetstringReceiver(<a href="twisted.internet.protocol.Protocol.html">protocol.Protocol</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.protocols.html">protocols</a>.<a href="twisted.protocols.basic.html">basic</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/basic.py#L67">View Source</a>
+      <a href="classIndex.html#twisted.protocols.basic.NetstringReceiver">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div><p>A protocol that sends and receives netstrings.</p>
+<p>See <a href="http://cr.yp.to/proto/netstrings.txt" 
+target="_top">http://cr.yp.to/proto/netstrings.txt</a> for the 
+specification of netstrings. Every netstring starts with digits that 
+specify the length of the data. This length specification is separated from
+the data by a colon. The data is terminated with a comma.</p>
+<p>Override <a 
+href="twisted.protocols.basic.NetstringReceiver.html#stringReceived"><code>stringReceived</code></a>
+to handle received netstrings. This method is called with the netstring 
+payload as a single argument whenever a complete netstring is received.</p>
+<p>Security features:</p>
+<ol start="1">
+  <li>
+    Messages are limited in size, useful if you don't want someone sending 
+    you a 500MB netstring (change <code>self.MAX_LENGTH</code> to the 
+    maximum length you wish to accept).
+  </li>
+  <li>
+    The connection is lost if an illegal message is received.
+  </li>
+</ol><table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3608">
+  
+  
+<tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#MAX_LENGTH">MAX_LENGTH</a></td>
+    <td>Defines the maximum length of netstrings that can be received. (type: <code>int</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#brokenPeer">brokenPeer</a></td>
+    <td>Indicates if the connection is still functional (type: <code>int</code>)</td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#makeConnection">makeConnection</a></td>
+    <td><span>Initializes the protocol.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#sendString">sendString</a></td>
+    <td><span>Sends a netstring.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#dataReceived">dataReceived</a></td>
+    <td><span>Receives some characters of a netstring.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#stringReceived">stringReceived</a></td>
+    <td><span>Override this for notification when each complete string is 
+received.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_LENGTH">_LENGTH</a></td>
+    <td>A pattern describing all strings that contain a netstring length 
+specification. Examples for length specifications are <code>b'0:'</code>, 
+<code>b'12:'</code>, and <code>b'179:'</code>. <code>b'007:'</code> is not 
+a valid length specification, since leading zeros are not allowed. (type: <code>re.Match</code>)</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_LENGTH_PREFIX">_LENGTH_PREFIX</a></td>
+    <td>A pattern describing all strings that contain the first part of a netstring
+length specification (without the trailing comma). Examples are '0', '12', 
+and '179'. '007' does not start a netstring length specification, since 
+leading zeros are not allowed. (type: <code>re.Match</code>)</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_PARSING_LENGTH">_PARSING_LENGTH</a></td>
+    <td>Indicates that the <code>NetstringReceiver</code> is in the state of 
+parsing the length portion of a netstring. (type: <code>int</code>)</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_PARSING_PAYLOAD">_PARSING_PAYLOAD</a></td>
+    <td>Indicates that the <code>NetstringReceiver</code> is in the state of 
+parsing the payload portion (data and trailing comma) of a netstring. (type: <code>int</code>)</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_state">_state</a></td>
+    <td>Indicates if the protocol is consuming the length portion 
+(<code>PARSING_LENGTH</code>) or the payload (<code>PARSING_PAYLOAD</code>)
+of a netstring (type: <code>int</code>)</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_remainingData">_remainingData</a></td>
+    <td>Holds the chunk of data that has not yet been consumed (type: <code>string</code>)</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_payload">_payload</a></td>
+    <td>Holds the payload portion of a netstring including the trailing comma (type: <code>BytesIO</code>)</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_expectedPayloadSize">_expectedPayloadSize</a></td>
+    <td>Holds the payload size plus one for the trailing comma. (type: <code>int</code>)</td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_maxLengthSize">_maxLengthSize</a></td>
+    <td><span>Calculate and return the string size of 
+<code>self.MAX_LENGTH</code>.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_consumeData">_consumeData</a></td>
+    <td><span>Consumes the content of <code>self._remainingData</code>.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_consumeLength">_consumeLength</a></td>
+    <td><span>Consumes the length portion of <code>self._remainingData</code>.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_checkPartialLengthSpecification">_checkPartialLengthSpecification</a></td>
+    <td><span>Makes sure that the received data represents a valid number.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_processLength">_processLength</a></td>
+    <td><span>Processes the length definition of a netstring.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_extractLength">_extractLength</a></td>
+    <td><span>Attempts to extract the length information of a netstring.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_checkStringSize">_checkStringSize</a></td>
+    <td><span>Checks the sanity of lengthAsString.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_prepareForPayloadConsumption">_prepareForPayloadConsumption</a></td>
+    <td><span>Sets up variables necessary for consuming the payload of a 
+netstring.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_consumePayload">_consumePayload</a></td>
+    <td><span>Consumes the payload portion of <code>self._remainingData</code>.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_extractPayload">_extractPayload</a></td>
+    <td><span>Extracts payload information from <code>self._remainingData</code>.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_payloadComplete">_payloadComplete</a></td>
+    <td><span>Checks if enough data have been received to complete the netstring.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_processPayload">_processPayload</a></td>
+    <td><span>Processes the actual payload with <a 
+href="twisted.protocols.basic.NetstringReceiver.html#stringReceived"><code>stringReceived</code></a>.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_checkForTrailingComma">_checkForTrailingComma</a></td>
+    <td><span>Checks if the netstring has a trailing comma at the expected 
+position.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.NetstringReceiver.html#_handleParseError">_handleParseError</a></td>
+    <td><span>Terminates the connection and sets the flag 
+<code>self.brokenPeer</code>.</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.internet.protocol.Protocol.html">Protocol</a>:
+        </p>
+        <table class="children sortable" id="id3609">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Protocol.html#logPrefix">logPrefix</a></td>
+    <td><span>Return a prefix matching the class name, to identify log messages 
+related to this protocol instance.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Protocol.html#connectionLost">connectionLost</a></td>
+    <td><span>Called when the connection is shut down.</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.internet.protocol.BaseProtocol.html">BaseProtocol</a> (via <a href="twisted.internet.protocol.Protocol.html">Protocol</a>):
+        </p>
+        <table class="children sortable" id="id3610">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.BaseProtocol.html#connectionMade">connectionMade</a></td>
+    <td><span>Called when a connection is made.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver.MAX_LENGTH">
+    
+  </a>
+  <a name="MAX_LENGTH">
+    
+  </a>
+  <div class="functionHeader">
+    MAX_LENGTH =
+  </div>
+  <div class="functionBody">
+    Defines the maximum length of netstrings that can be received. (type: <code>int</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._LENGTH">
+    
+  </a>
+  <a name="_LENGTH">
+    
+  </a>
+  <div class="functionHeader">
+    _LENGTH =
+  </div>
+  <div class="functionBody">
+    A pattern describing all strings that contain a netstring length 
+specification. Examples for length specifications are <code>b'0:'</code>, 
+<code>b'12:'</code>, and <code>b'179:'</code>. <code>b'007:'</code> is not 
+a valid length specification, since leading zeros are not allowed. (type: <code>re.Match</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._LENGTH_PREFIX">
+    
+  </a>
+  <a name="_LENGTH_PREFIX">
+    
+  </a>
+  <div class="functionHeader">
+    _LENGTH_PREFIX =
+  </div>
+  <div class="functionBody">
+    A pattern describing all strings that contain the first part of a netstring
+length specification (without the trailing comma). Examples are '0', '12', 
+and '179'. '007' does not start a netstring length specification, since 
+leading zeros are not allowed. (type: <code>re.Match</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._PARSING_LENGTH">
+    
+  </a>
+  <a name="_PARSING_LENGTH">
+    
+  </a>
+  <div class="functionHeader">
+    _PARSING_LENGTH =
+  </div>
+  <div class="functionBody">
+    Indicates that the <code>NetstringReceiver</code> is in the state of 
+parsing the length portion of a netstring. (type: <code>int</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._PARSING_PAYLOAD">
+    
+  </a>
+  <a name="_PARSING_PAYLOAD">
+    
+  </a>
+  <div class="functionHeader">
+    _PARSING_PAYLOAD =
+  </div>
+  <div class="functionBody">
+    Indicates that the <code>NetstringReceiver</code> is in the state of 
+parsing the payload portion (data and trailing comma) of a netstring. (type: <code>int</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver.brokenPeer">
+    
+  </a>
+  <a name="brokenPeer">
+    
+  </a>
+  <div class="functionHeader">
+    brokenPeer =
+  </div>
+  <div class="functionBody">
+    Indicates if the connection is still functional (type: <code>int</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._state">
+    
+  </a>
+  <a name="_state">
+    
+  </a>
+  <div class="functionHeader">
+    _state =
+  </div>
+  <div class="functionBody">
+    Indicates if the protocol is consuming the length portion 
+(<code>PARSING_LENGTH</code>) or the payload (<code>PARSING_PAYLOAD</code>)
+of a netstring (type: <code>int</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._remainingData">
+    
+  </a>
+  <a name="_remainingData">
+    
+  </a>
+  <div class="functionHeader">
+    _remainingData =
+  </div>
+  <div class="functionBody">
+    Holds the chunk of data that has not yet been consumed (type: <code>string</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._payload">
+    
+  </a>
+  <a name="_payload">
+    
+  </a>
+  <div class="functionHeader">
+    _payload =
+  </div>
+  <div class="functionBody">
+    Holds the payload portion of a netstring including the trailing comma (type: <code>BytesIO</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._expectedPayloadSize">
+    
+  </a>
+  <a name="_expectedPayloadSize">
+    
+  </a>
+  <div class="functionHeader">
+    _expectedPayloadSize =
+  </div>
+  <div class="functionBody">
+    Holds the payload size plus one for the trailing comma. (type: <code>int</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver.makeConnection">
+    
+  </a>
+  <a name="makeConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    makeConnection(self, transport):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/basic.py#L149" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#makeConnection">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.BaseProtocol.html#makeConnection">twisted.internet.protocol.BaseProtocol.makeConnection</a></div>
+    <div>Initializes the protocol.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver.sendString">
+    
+  </a>
+  <a name="sendString">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    sendString(self, string):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/basic.py#L162" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Sends a netstring.</p>
+<p>Wraps up <code>string</code> by adding length information and a trailing
+comma; writes the result to the transport.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">string</td><td>The string to send.  The necessary framing (length prefix, etc) will be 
+added. (type: <code>bytes</code>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver.dataReceived">
+    
+  </a>
+  <a name="dataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dataReceived(self, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/basic.py#L176" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#dataReceived">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Protocol.html#dataReceived">twisted.internet.protocol.Protocol.dataReceived</a></div>
+    <div>Receives some characters of a netstring.</p>
+<p>Whenever a complete netstring is received, this method extracts its 
+payload and calls <a 
+href="twisted.protocols.basic.NetstringReceiver.html#stringReceived"><code>stringReceived</code></a>
+to process it.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">data</td><td>A chunk of data representing a (possibly partial) netstring (type: <code>bytes</code>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver.stringReceived">
+    
+  </a>
+  <a name="stringReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    stringReceived(self, string):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/basic.py#L198" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Override this for notification when each complete string is 
+received.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">string</td><td>The complete string which was received with all framing (length prefix, 
+etc) removed. (type: <code>bytes</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">NotImplementedError</td><td>because the method has to be implemented by the child class.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._maxLengthSize">
+    
+  </a>
+  <a name="_maxLengthSize">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _maxLengthSize(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/basic.py#L212" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Calculate and return the string size of 
+<code>self.MAX_LENGTH</code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The size of the string representation for <code>self.MAX_LENGTH</code> (type: <code>float</code>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._consumeData">
+    
+  </a>
+  <a name="_consumeData">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _consumeData(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/basic.py#L222" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Consumes the content of <code>self._remainingData</code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">IncompleteNetstring</td><td>if <code>self._remainingData</code> does not contain enough data to 
+complete the current netstring.</td></tr><tr><td></td><td class="fieldArg">NetstringParseError</td><td>if the received data do not form a valid netstring.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._consumeLength">
+    
+  </a>
+  <a name="_consumeLength">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _consumeLength(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/basic.py#L238" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Consumes the length portion of <code>self._remainingData</code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">IncompleteNetstring</td><td>if <code>self._remainingData</code> contains a partial length specification
+(digits without trailing comma).</td></tr><tr><td></td><td class="fieldArg">NetstringParseError</td><td>if the received data do not form a valid netstring.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._checkPartialLengthSpecification">
+    
+  </a>
+  <a name="_checkPartialLengthSpecification">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _checkPartialLengthSpecification(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/basic.py#L255" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Makes sure that the received data represents a valid number.</p>
+<p>Checks if <code>self._remainingData</code> represents a number smaller 
+or equal to <code>self.MAX_LENGTH</code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">NetstringParseError</td><td>if <code>self._remainingData</code> is no number or is too big (checked by 
+<code>extractLength</code>).</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._processLength">
+    
+  </a>
+  <a name="_processLength">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _processLength(self, lengthMatch):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/basic.py#L272" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Processes the length definition of a netstring.</p>
+<p>Extracts and stores in <code>self._expectedPayloadSize</code> the number
+representing the netstring size.  Removes the prefix representing the 
+length specification from <code>self._remainingData</code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">lengthMatch</td><td>A regular expression match object matching a netstring length specification (type: <code>re.Match</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">NetstringParseError</td><td>if the received netstring does not start with a number or the number is 
+bigger than <code>self.MAX_LENGTH</code>.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._extractLength">
+    
+  </a>
+  <a name="_extractLength">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _extractLength(self, lengthAsString):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/basic.py#L296" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Attempts to extract the length information of a netstring.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">lengthAsString</td><td>A chunk of data starting with a length specification (type: <code>bytes</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The length of the netstring (type: <code>int</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">NetstringParseError</td><td>if the number is bigger than <code>self.MAX_LENGTH</code>.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._checkStringSize">
+    
+  </a>
+  <a name="_checkStringSize">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _checkStringSize(self, lengthAsString):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/basic.py#L315" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Checks the sanity of lengthAsString.</p>
+<p>Checks if the size of the length specification exceeds the size of the 
+string representing self.MAX_LENGTH. If this is not the case, the number 
+represented by lengthAsString is certainly bigger than self.MAX_LENGTH, and
+a NetstringParseError can be raised.</p>
+<p>This method should make sure that netstrings with extremely long length 
+specifications are refused before even attempting to convert them to an 
+integer (which might trigger a MemoryError).<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._prepareForPayloadConsumption">
+    
+  </a>
+  <a name="_prepareForPayloadConsumption">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _prepareForPayloadConsumption(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/basic.py#L334" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Sets up variables necessary for consuming the payload of a 
+netstring.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._consumePayload">
+    
+  </a>
+  <a name="_consumePayload">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _consumePayload(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/basic.py#L344" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Consumes the payload portion of <code>self._remainingData</code>.</p>
+<p>If the payload is complete, checks for the trailing comma and processes 
+the payload. If not, raises an <a 
+href="twisted.protocols.basic.IncompleteNetstring.html"><code>IncompleteNetstring</code></a>
+exception.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">IncompleteNetstring</td><td>if the payload received so far contains fewer characters than expected.</td></tr><tr><td></td><td class="fieldArg">NetstringParseError</td><td>if the payload does not end with a comma.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._extractPayload">
+    
+  </a>
+  <a name="_extractPayload">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _extractPayload(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/basic.py#L365" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Extracts payload information from <code>self._remainingData</code>.</p>
+<p>Splits <code>self._remainingData</code> at the end of the netstring.  
+The first part becomes <code>self._payload</code>, the second part is 
+stored in <code>self._remainingData</code>.</p>
+<p>If the netstring is not yet complete, the whole content of 
+<code>self._remainingData</code> is moved to 
+<code>self._payload</code>.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._payloadComplete">
+    
+  </a>
+  <a name="_payloadComplete">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _payloadComplete(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/basic.py#L388" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Checks if enough data have been received to complete the netstring.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>True</code> iff the received data contain at least as many characters
+as specified in the length section of the netstring (type: <code>bool</code>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._processPayload">
+    
+  </a>
+  <a name="_processPayload">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _processPayload(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/basic.py#L401" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Processes the actual payload with <a 
+href="twisted.protocols.basic.NetstringReceiver.html#stringReceived"><code>stringReceived</code></a>.</p>
+<p>Strips <code>self._payload</code> of the trailing comma and calls <a 
+href="twisted.protocols.basic.NetstringReceiver.html#stringReceived"><code>stringReceived</code></a>
+with the result.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._checkForTrailingComma">
+    
+  </a>
+  <a name="_checkForTrailingComma">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _checkForTrailingComma(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/basic.py#L411" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Checks if the netstring has a trailing comma at the expected 
+position.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">NetstringParseError</td><td>if the last payload character is anything but a comma.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.basic.NetstringReceiver._handleParseError">
+    
+  </a>
+  <a name="_handleParseError">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _handleParseError(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/protocols/basic.py#L422" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Terminates the connection and sets the flag 
+<code>self.brokenPeer</code>.<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2013-04-03 11:20:05.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

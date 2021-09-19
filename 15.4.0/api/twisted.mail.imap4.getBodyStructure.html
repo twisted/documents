@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.mail.imap4.getBodyStructure : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="apidocs.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" style="display: none" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="function"><code>twisted.mail.imap4.getBodyStructure(msg, extended=False)</code> <small>function documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.mail.html" data-type="Package" class="code">mail</a>.<a href="twisted.mail.imap4.html" data-type="Module" class="code">imap4</a></code>
+          <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.4.0/twisted/mail/imap4.py#L5199">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>RFC 3501, 7.4.2, BODYSTRUCTURE:</p>
+<pre class="literalblock">
+ A parenthesized list that describes the [MIME-IMB] body structure of a
+ message.  This is computed by the server by parsing the [MIME-IMB] header
+ fields, defaulting various fields as necessary.
+
+   For example, a simple text message of 48 lines and 2279 octets can have
+   a body structure of: ("TEXT" "PLAIN" ("CHARSET" "US-ASCII") NIL NIL
+   "7BIT" 2279 48)
+</pre>
+<p>This is represented as:</p>
+<pre class="literalblock">
+   ["TEXT", "PLAIN", ["CHARSET", "US-ASCII"], None, None, "7BIT", 2279, 48]
+</pre>
+<p>These basic fields are documented in the RFC as:</p>
+<ol start="1">
+  <li>
+    body type
+    <p>A string giving the content media type name as defined in 
+    [MIME-IMB].</p>
+  </li>
+  <li>
+    body subtype
+    <p>A string giving the content subtype name as defined in 
+    [MIME-IMB].</p>
+  </li>
+  <li>
+    body parameter parenthesized list
+    <p>A parenthesized list of attribute/value pairs [e.g., 
+    ("foo" "bar" "baz" "rag") where
+    "bar" is the value of "foo" and "rag" is 
+    the value of "baz"] as defined in [MIME-IMB].</p>
+  </li>
+  <li>
+    body id
+    <p>A string giving the content id as defined in [MIME-IMB].</p>
+  </li>
+  <li>
+    body description
+    <p>A string giving the content description as defined in 
+    [MIME-IMB].</p>
+  </li>
+  <li>
+    body encoding
+    <p>A string giving the content transfer encoding as defined in 
+    [MIME-IMB].</p>
+  </li>
+  <li>
+    body size
+    <p>A number giving the size of the body in octets.  Note that this size
+    is the size in its transfer encoding and not the resulting size after 
+    any decoding.</p>
+  </li>
+</ol>
+<p>Put another way, the body structure is a list of seven elements.  The 
+semantics of the elements of this list are:</p>
+<ol start="1">
+  <li>
+    Byte string giving the major MIME type
+  </li>
+  <li>
+    Byte string giving the minor MIME type
+  </li>
+  <li>
+    A list giving the Content-Type parameters of the message
+  </li>
+  <li>
+    A byte string giving the content identifier for the message part, or 
+    None if it has no content identifier.
+  </li>
+  <li>
+    A byte string giving the content description for the message part, or 
+    None if it has no content description.
+  </li>
+  <li>
+    A byte string giving the Content-Encoding of the message body
+  </li>
+  <li>
+    An integer giving the number of octets in the message body
+  </li>
+</ol>
+<p>The RFC goes on:</p>
+<pre class="literalblock">
+   Multiple parts are indicated by parenthesis nesting.  Instead of a body
+   type as the first element of the parenthesized list, there is a sequence
+   of one or more nested body structures.  The second element of the
+   parenthesized list is the multipart subtype (mixed, digest, parallel,
+   alternative, etc.).
+
+   For example, a two part message consisting of a text and a
+   BASE64-encoded text attachment can have a body structure of: (("TEXT"
+   "PLAIN" ("CHARSET" "US-ASCII") NIL NIL "7BIT" 1152 23)("TEXT" "PLAIN"
+   ("CHARSET" "US-ASCII" "NAME" "cc.diff")
+   "&lt;960723163407.20117h@cac.washington.edu&gt;" "Compiler diff" "BASE64" 4554
+   73) "MIXED")
+</pre>
+<p>This is represented as:</p>
+<pre class="literalblock">
+   [["TEXT", "PLAIN", ["CHARSET", "US-ASCII"], None, None, "7BIT", 1152,
+     23],
+    ["TEXT", "PLAIN", ["CHARSET", "US-ASCII", "NAME", "cc.diff"],
+     "&lt;960723163407.20117h@cac.washington.edu&gt;", "Compiler diff",
+     "BASE64", 4554, 73],
+    "MIXED"]
+</pre>
+<p>In other words, a list of N + 1 elements, where N is the number of parts
+in the message.  The first N elements are structures as defined by the 
+previous section.  The last element is the minor MIME subtype of the 
+multipart message.</p>
+<p>Additionally, the RFC describes extension data:</p>
+<pre class="literalblock">
+   Extension data follows the multipart subtype.  Extension data is never
+   returned with the BODY fetch, but can be returned with a BODYSTRUCTURE
+   fetch.  Extension data, if present, MUST be in the defined order.
+</pre>
+<p>The <code>extended</code> flag controls whether extension data might be 
+returned with the normal data.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2015-09-04 15:29:41.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

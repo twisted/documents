@@ -1,0 +1,299 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.ssl.DistinguishedName : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.i.s.DistinguishedName(<span title="dict">dict</span>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a>.<a href="twisted.internet.ssl.html">ssl</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/internet/_sslverify.py#L236">View Source</a>
+      <a href="classIndex.html#twisted.internet.ssl.DistinguishedName">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div><p>Identify and describe an entity.</p>
+<p>Distinguished names are used to provide a minimal amount of identifying 
+information about a certificate issuer or subject.  They are commonly 
+created with one or more of the following fields:</p>
+<pre class="literalblock">
+   commonName (CN)
+   organizationName (O)
+   organizationalUnitName (OU)
+   localityName (L)
+   stateOrProvinceName (ST)
+   countryName (C)
+   emailAddress
+</pre>
+<p>A <a 
+href="twisted.internet.ssl.DistinguishedName.html"><code>DistinguishedName</code></a>
+should be constructed using keyword arguments whose keys can be any of the 
+field names above (as a native string), and the values are either Unicode 
+text which is encodable to ASCII, or <code>bytes</code> limited to the 
+ASCII subset. Any fields passed to the constructor will be set as 
+attributes, accessable using both their extended name and their shortened 
+acronym. The attribute values will be the ASCII-encoded bytes. For 
+example:</p>
+<pre class="literalblock">
+   &gt;&gt;&gt; dn = DistinguishedName(commonName=b'www.example.com',
+                              C='US')
+   &gt;&gt;&gt; dn.C
+   b'US'
+   &gt;&gt;&gt; dn.countryName
+   b'US'
+   &gt;&gt;&gt; hasattr(dn, &quot;organizationName&quot;)
+   False
+</pre>
+<p><a 
+href="twisted.internet.ssl.DistinguishedName.html"><code>DistinguishedName</code></a>
+instances can also be used as dictionaries; the keys are extended name of 
+the fields:</p>
+<pre class="literalblock">
+   &gt;&gt;&gt; dn.keys()
+   ['countryName', 'commonName']
+   &gt;&gt;&gt; dn['countryName']
+   b'US'
+</pre><table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1041">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.ssl.DistinguishedName.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.ssl.DistinguishedName.html#__repr__">__repr__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.ssl.DistinguishedName.html#__getattr__">__getattr__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.ssl.DistinguishedName.html#__setattr__">__setattr__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.ssl.DistinguishedName.html#inspect">inspect</a></td>
+    <td><span>Return a multi-line, human-readable representation of this DN.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.ssl.DistinguishedName.html#_copyFrom">_copyFrom</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.ssl.DistinguishedName.html#_copyInto">_copyInto</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.internet._sslverify.DistinguishedName.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, **kw):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/internet/_sslverify.py#L280" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._sslverify.DistinguishedName._copyFrom">
+    
+  </a>
+  <a name="_copyFrom">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _copyFrom(self, x509name):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/internet/_sslverify.py#L285" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._sslverify.DistinguishedName._copyInto">
+    
+  </a>
+  <a name="_copyInto">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _copyInto(self, x509name):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/internet/_sslverify.py#L292" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._sslverify.DistinguishedName.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __repr__(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/internet/_sslverify.py#L297" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._sslverify.DistinguishedName.__getattr__">
+    
+  </a>
+  <a name="__getattr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __getattr__(self, attr):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/internet/_sslverify.py#L301" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._sslverify.DistinguishedName.__setattr__">
+    
+  </a>
+  <a name="__setattr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __setattr__(self, attr, value):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/internet/_sslverify.py#L308" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet._sslverify.DistinguishedName.inspect">
+    
+  </a>
+  <a name="inspect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    inspect(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/internet/_sslverify.py#L317" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Return a multi-line, human-readable representation of this DN.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"> (type: <code>str</code>)</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2014-09-17 19:15:55.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet._newtls : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div style="display: none" id="current-docs-container" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module private"><code>twisted.internet._newtls</code> <small>module documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.internet.html" data-type="Package" class="code">internet</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/internet/_newtls.py">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>This module implements memory BIO based TLS support.  It is the 
+preferred implementation and will be used whenever pyOpenSSL 0.10 or newer 
+is installed (whenever <a href="twisted.protocols.tls.html"><code>twisted.protocols.tls</code></a> is
+importable).</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">11.1</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id556">
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.internet._newtls.html#startTLS" data-type="Function" class="code">startTLS</a></td>
+    <td><span>Add a layer of SSL to a transport.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet._newtls.ConnectionMixin.html" data-type="Class" class="code">ConnectionMixin</a></td>
+    <td><span>A mixin for <a href="twisted.internet.abstract.FileDescriptor.html"><code>twisted.internet.abstract.FileDescriptor</code></a>
+which adds an <a href="twisted.internet.interfaces.ITLSTransport.html"><code>ITLSTransport</code></a>
+implementation.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet._newtls.ClientMixin.html" data-type="Class" class="code">ClientMixin</a></td>
+    <td><span>A mixin for <a href="twisted.internet.tcp.Client.html"><code>twisted.internet.tcp.Client</code></a>
+which just marks it as a client for the purposes of the default TLS 
+handshake.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet._newtls.ServerMixin.html" data-type="Class" class="code">ServerMixin</a></td>
+    <td><span>A mixin for <a href="twisted.internet.tcp.Server.html"><code>twisted.internet.tcp.Server</code></a>
+which just marks it as a server for the purposes of the default TLS 
+handshake.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet._newtls._BypassTLS.html" data-type="Class" class="code">_BypassTLS</a></td>
+    <td><span><a href="twisted.internet._newtls._BypassTLS.html"><code>_BypassTLS</code></a>
+is used as the transport object for the TLS protocol object used to 
+implement <code>startTLS</code>.  Its methods skip any TLS logic which 
+<code>startTLS</code> enables.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  <a name="twisted.internet._newtls.startTLS">
+    
+  </a>
+  <a name="startTLS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    startTLS(transport, contextFactory, normal, bypass):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/internet/_newtls.py#L90">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Add a layer of SSL to a transport.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">transport</td><td>The transport which will be modified.  This can either by a <a href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+or a <a href="twisted.internet.iocpreactor.abstract.FileHandle.html"><code>FileHandle</code></a>.
+The actual requirements of this instance are that it have:
+<ul>
+  <li>
+    a <code>_tlsClientDefault</code> attribute indicating whether the 
+    transport is a client (<code>True</code>) or a server 
+    (<code>False</code>)
+  </li>
+  <li>
+    a settable <code>TLS</code> attribute which can be used to mark the 
+    fact that SSL has been started
+  </li>
+  <li>
+    settable <code>getHandle</code> and <code>getPeerCertificate</code> 
+    attributes so these <a href="twisted.internet.interfaces.ISSLTransport.html"><code>ISSLTransport</code></a>
+    methods can be added to it
+  </li>
+  <li>
+    a <code>protocol</code> attribute referring to the <a href="twisted.internet.interfaces.IProtocol.html"><code>IProtocol</code></a>
+    currently connected to the transport, which can also be set to a new <a href="twisted.internet.interfaces.IProtocol.html"><code>IProtocol</code></a>
+    for the transport to deliver data to
+  </li>
+</ul></td></tr><tr><td></td><td class="fieldArg">contextFactory</td><td>An SSL context factory defining SSL parameters for the new SSL layer. (type: <a href="twisted.internet.ssl.ContextFactory.html"><code>twisted.internet.ssl.ContextFactory</code></a>)</td></tr><tr><td></td><td class="fieldArg">normal</td><td>A flag indicating whether SSL will go in the same direction as the 
+underlying transport goes.  That is, if the SSL client will be the 
+underlying client and the SSL server will be the underlying server. 
+<code>True</code> means it is the same, <code>False</code> means they are 
+switched.</td></tr><tr><td></td><td class="fieldArg">bypass</td><td>A transport base class to call methods on to bypass the new SSL layer (so 
+that the SSL layer itself can send its bytes). (type: <a href="http://docs.python.org/library/stdtypes.html#type"><code>type</code></a>)</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2016-05-18 16:01:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script src="//www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

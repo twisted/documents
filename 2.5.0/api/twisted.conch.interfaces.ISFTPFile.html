@@ -1,0 +1,180 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.conch.interfaces.ISFTPFile&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="interface">Interface t.c.i.ISFTPFile(Interface):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.conch.html">conch</a>.<a href="twisted.conch.interfaces.html">interfaces</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/conch/interfaces.py#L291">View Source</a>
+      <a href="classIndex.html#twisted.conch.interfaces.ISFTPFile">View In Hierarchy</a>
+    </p>
+    <div>
+      Known implementations: <a href="twisted.conch.ssh.filetransfer.ClientFile.html">twisted.conch.ssh.filetransfer.ClientFile</a>, <a href="twisted.conch.unix.UnixSFTPFile.html">twisted.conch.unix.UnixSFTPFile</a>, <a href="twisted.vfs.adapters.sftp.AdaptFileSystemLeafToISFTPFile.html">twisted.vfs.adapters.sftp.AdaptFileSystemLeafToISFTPFile</a>
+    </div>
+    <div>This represents an open file on the server. An object adhering to this 
+interface should be returned from <a 
+href="twisted.conch.interfaces.ISFTPServer.html#openFile"><code>openFile</code></a>().
+<table class="fieldTable"></table></div>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1049">
+  
+  
+  
+  
+  <tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPFile.html#close">close</a></td>
+    <td><span>Close the file.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPFile.html#readChunk">readChunk</a></td>
+    <td><span>Read from the file.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPFile.html#writeChunk">writeChunk</a></td>
+    <td><span>Write to the file.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPFile.html#getAttrs">getAttrs</a></td>
+    <td><span>Return the attributes for the file.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPFile.html#setAttrs">setAttrs</a></td>
+    <td><span>Set the attributes for the file.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.conch.interfaces.ISFTPFile.close"></a>
+        <a name="close"></a>
+        <div class="functionHeader">
+        def close():
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/conch/interfaces.py#L297" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Close the file.</p>
+This method returns nothing if the close succeeds immediately, or a 
+Deferred that is called back when the close succeeds.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.interfaces.ISFTPFile.readChunk"></a>
+        <a name="readChunk"></a>
+        <div class="functionHeader">
+        def readChunk(offset, length):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/conch/interfaces.py#L305" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Read from the file.</p>
+<p>If EOF is reached before any data is read, raise EOFError.</p>
+This method returns the data as a string, or a Deferred that is called 
+back with same.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">offset</td><td>an integer that is the index to start from in the file.
+</td></tr><tr><td></td><td class="fieldArg">length</td><td>the maximum length of data to return. The actual amount returned may 
+less than this. For normal disk files, however, this should read the 
+requested number (up to the end of the file).
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.interfaces.ISFTPFile.writeChunk"></a>
+        <a name="writeChunk"></a>
+        <div class="functionHeader">
+        def writeChunk(offset, data):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/conch/interfaces.py#L320" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Write to the file.</p>
+This method returns when the write completes, or a Deferred that is 
+called when it completes.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">offset</td><td>an integer that is the index to start from in the file.
+</td></tr><tr><td></td><td class="fieldArg">data</td><td>a string that is the data to write.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.interfaces.ISFTPFile.getAttrs"></a>
+        <a name="getAttrs"></a>
+        <div class="functionHeader">
+        def getAttrs():
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/conch/interfaces.py#L331" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Return the attributes for the file.</p>
+This method returns a dictionary in the same format as the attrs 
+argument to <a 
+href="twisted.conch.interfaces.ISFTPServer.html#openFile"><code>openFile</code></a> 
+or a <code>Deferred</code> that is called back with same.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.interfaces.ISFTPFile.setAttrs"></a>
+        <a name="setAttrs"></a>
+        <div class="functionHeader">
+        def setAttrs(attrs):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/conch/interfaces.py#L339" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Set the attributes for the file.</p>
+This method returns when the attributes are set or a Deferred that is 
+called back when they are.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">attrs</td><td>a dictionary in the same format as the attrs argument to <a 
+href="twisted.conch.interfaces.ISFTPServer.html#openFile"><code>openFile</code></a>.
+</td></tr></table></div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for twisted, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a>.
+    </address>
+  </body>
+</html>

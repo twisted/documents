@@ -1,0 +1,706 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web.client.Response : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">t.w.c.Response : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web.html">web</a>.<a href="twisted.web.client.html">client</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L923">View Source</a>
+      <a href="classIndex.html#twisted.web.client.Response">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Implements interfaces: <a href="twisted.web.iweb.IResponse.html">twisted.web.iweb.IResponse</a></p>
+    </div>
+    <div class="docstring">
+      <div><p>A <a href="twisted.web.client.Response.html"><code>Response</code></a> 
+instance describes an HTTP response received from an HTTP server.</p>
+<p><a href="twisted.web.client.Response.html"><code>Response</code></a> 
+should not be subclassed or instantiated.</p><table class="fieldTable"></table></div>
+    </div>
+
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3267">
+  
+  
+  <tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.Response.html#__init__">__init__</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.Response.html#setPreviousResponse">setPreviousResponse</a></td>
+    <td><span>Set the reference to the previous <a href="twisted.web.iweb.IResponse.html"><code>IResponse</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.Response.html#deliverBody">deliverBody</a></td>
+    <td><span>Dispatch the given <a href="twisted.internet.interfaces.IProtocol.html"><code>IProtocol</code></a>
+depending of the current state of the response.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.client.Response.html#_transport">_transport</a></td>
+    <td>See <a href="twisted.web.client.Response.html#__init__"><code>__init__</code></a>.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.client.Response.html#_bodyProtocol">_bodyProtocol</a></td>
+    <td>The <a href="twisted.internet.interfaces.IProtocol.html"><code>IProtocol</code></a>
+provider to which the body is delivered.  <code>None</code> before one has 
+been registered with <code>deliverBody</code>.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.client.Response.html#_bodyBuffer">_bodyBuffer</a></td>
+    <td>A <code>list</code> of the strings passed to <code>bodyDataReceived</code> 
+before <code>deliverBody</code> is called.  <code>None</code> afterwards.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.client.Response.html#_state">_state</a></td>
+    <td>Indicates what state this <a href="twisted.web.client.Response.html"><code>Response</code></a> instance 
+is in, particularly with respect to delivering bytes from the response body
+to an application-supplied protocol object.  This may be one of 
+<code>'INITIAL'</code>, <code>'CONNECTED'</code>, 
+<code>'DEFERRED_CLOSE'</code>, or <code>'FINISHED'</code>, with the 
+following meanings:
+<ul>
+  <li>
+    INITIAL: This is the state <a href="twisted.web.client.Response.html"><code>Response</code></a> 
+    objects start in.  No protocol has yet been provided and the underlying
+    transport may still have bytes to deliver to it.
+  </li>
+  <li>
+    DEFERRED_CLOSE: If the underlying transport indicates all bytes have 
+    been delivered but no application-provided protocol is yet available, 
+    the <a href="twisted.web.client.Response.html"><code>Response</code></a> moves
+    to this state.  Data is buffered and waiting for a protocol to be 
+    delivered to.
+  </li>
+  <li>
+    CONNECTED: If a protocol is provided when the state is INITIAL, the <a href="twisted.web.client.Response.html"><code>Response</code></a> moves
+    to this state.  Any buffered data is delivered and any data which 
+    arrives from the transport subsequently is given directly to the 
+    protocol.
+  </li>
+  <li>
+    FINISHED: If a protocol is provided in the DEFERRED_CLOSE state, the <a href="twisted.web.client.Response.html"><code>Response</code></a> moves
+    to this state after delivering all buffered data to the protocol.  
+    Otherwise, if the <a href="twisted.web.client.Response.html"><code>Response</code></a> is in
+    the CONNECTED state, if the transport indicates there is no more data, 
+    the <a href="twisted.web.client.Response.html"><code>Response</code></a> moves
+    to this state.  Nothing else can happen once the <a href="twisted.web.client.Response.html"><code>Response</code></a> is in
+    this state.
+  </li>
+</ul> (type: <code>str</code>)</td>
+  </tr><tr class="classmethod private">
+    
+    
+    <td>Class Method</td>
+    <td><a href="twisted.web.client.Response.html#_construct">_construct</a></td>
+    <td><span>Private constructor.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.Response.html#_deliverBody_INITIAL">_deliverBody_INITIAL</a></td>
+    <td><span>Deliver any buffered data to <code>protocol</code> and prepare to 
+deliver any future data to it.  Move to the <code>'CONNECTED'</code> 
+state.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.Response.html#_deliverBody_CONNECTED">_deliverBody_CONNECTED</a></td>
+    <td><span>It is invalid to attempt to deliver data to a protocol when it is 
+already being delivered to another protocol.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.Response.html#_deliverBody_DEFERRED_CLOSE">_deliverBody_DEFERRED_CLOSE</a></td>
+    <td><span>Deliver any buffered data to <code>protocol</code> and then disconnect 
+the protocol.  Move to the <code>'FINISHED'</code> state.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.Response.html#_deliverBody_FINISHED">_deliverBody_FINISHED</a></td>
+    <td><span>It is invalid to attempt to deliver data to a protocol after the 
+response body has been delivered to another protocol.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.Response.html#_bodyDataReceived">_bodyDataReceived</a></td>
+    <td><span>Called by HTTPClientParser with chunks of data from the response body. 
+They will be buffered or delivered to the protocol passed to 
+deliverBody.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.Response.html#_bodyDataReceived_INITIAL">_bodyDataReceived_INITIAL</a></td>
+    <td><span>Buffer any data received for later delivery to a protocol passed to 
+<code>deliverBody</code>.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.Response.html#_bodyDataReceived_CONNECTED">_bodyDataReceived_CONNECTED</a></td>
+    <td><span>Deliver any data received to the protocol to which this <a href="twisted.web.client.Response.html"><code>Response</code></a> is 
+connected.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.Response.html#_bodyDataReceived_DEFERRED_CLOSE">_bodyDataReceived_DEFERRED_CLOSE</a></td>
+    <td><span>It is invalid for data to be delivered after it has been indicated that 
+the response body has been completely delivered.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.Response.html#_bodyDataReceived_FINISHED">_bodyDataReceived_FINISHED</a></td>
+    <td><span>It is invalid for data to be delivered after the response body has been 
+delivered to a protocol.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.Response.html#_bodyDataFinished">_bodyDataFinished</a></td>
+    <td><span>Called by HTTPClientParser when no more body data is available.  If the 
+optional reason is supplied, this indicates a problem or potential problem 
+receiving all of the response body.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.Response.html#_bodyDataFinished_INITIAL">_bodyDataFinished_INITIAL</a></td>
+    <td><span>Move to the <code>'DEFERRED_CLOSE'</code> state to wait for a protocol 
+to which to deliver the response body.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.Response.html#_bodyDataFinished_CONNECTED">_bodyDataFinished_CONNECTED</a></td>
+    <td><span>Disconnect the protocol and move to the <code>'FINISHED'</code> 
+state.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.Response.html#_bodyDataFinished_DEFERRED_CLOSE">_bodyDataFinished_DEFERRED_CLOSE</a></td>
+    <td><span>It is invalid to attempt to notify the <a href="twisted.web.client.Response.html"><code>Response</code></a> of the 
+end of the response body data more than once.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.Response.html#_bodyDataFinished_FINISHED">_bodyDataFinished_FINISHED</a></td>
+    <td><span>It is invalid to attempt to notify the <a href="twisted.web.client.Response.html"><code>Response</code></a> of the 
+end of the response body data more than once.</span></td>
+  </tr>
+</table>
+      
+    </div>
+    
+    
+
+    <div class="function">
+  <a name="twisted.web.client.Response._transport">
+    
+  </a>
+  <a name="_transport">
+    
+  </a>
+  <div class="functionHeader">
+    _transport =
+  </div>
+  <div class="functionBody">
+    See <a href="twisted.web.client.Response.html#__init__"><code>__init__</code></a>.
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response._bodyProtocol">
+    
+  </a>
+  <a name="_bodyProtocol">
+    
+  </a>
+  <div class="functionHeader">
+    _bodyProtocol =
+  </div>
+  <div class="functionBody">
+    The <a href="twisted.internet.interfaces.IProtocol.html"><code>IProtocol</code></a>
+provider to which the body is delivered.  <code>None</code> before one has 
+been registered with <code>deliverBody</code>.
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response._bodyBuffer">
+    
+  </a>
+  <a name="_bodyBuffer">
+    
+  </a>
+  <div class="functionHeader">
+    _bodyBuffer =
+  </div>
+  <div class="functionBody">
+    A <code>list</code> of the strings passed to <code>bodyDataReceived</code> 
+before <code>deliverBody</code> is called.  <code>None</code> afterwards.
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response._state">
+    
+  </a>
+  <a name="_state">
+    
+  </a>
+  <div class="functionHeader">
+    _state =
+  </div>
+  <div class="functionBody">
+    Indicates what state this <a href="twisted.web.client.Response.html"><code>Response</code></a> instance 
+is in, particularly with respect to delivering bytes from the response body
+to an application-supplied protocol object.  This may be one of 
+<code>'INITIAL'</code>, <code>'CONNECTED'</code>, 
+<code>'DEFERRED_CLOSE'</code>, or <code>'FINISHED'</code>, with the 
+following meanings:
+<ul>
+  <li>
+    INITIAL: This is the state <a href="twisted.web.client.Response.html"><code>Response</code></a> 
+    objects start in.  No protocol has yet been provided and the underlying
+    transport may still have bytes to deliver to it.
+  </li>
+  <li>
+    DEFERRED_CLOSE: If the underlying transport indicates all bytes have 
+    been delivered but no application-provided protocol is yet available, 
+    the <a href="twisted.web.client.Response.html"><code>Response</code></a> moves
+    to this state.  Data is buffered and waiting for a protocol to be 
+    delivered to.
+  </li>
+  <li>
+    CONNECTED: If a protocol is provided when the state is INITIAL, the <a href="twisted.web.client.Response.html"><code>Response</code></a> moves
+    to this state.  Any buffered data is delivered and any data which 
+    arrives from the transport subsequently is given directly to the 
+    protocol.
+  </li>
+  <li>
+    FINISHED: If a protocol is provided in the DEFERRED_CLOSE state, the <a href="twisted.web.client.Response.html"><code>Response</code></a> moves
+    to this state after delivering all buffered data to the protocol.  
+    Otherwise, if the <a href="twisted.web.client.Response.html"><code>Response</code></a> is in
+    the CONNECTED state, if the transport indicates there is no more data, 
+    the <a href="twisted.web.client.Response.html"><code>Response</code></a> moves
+    to this state.  Nothing else can happen once the <a href="twisted.web.client.Response.html"><code>Response</code></a> is in
+    this state.
+  </li>
+</ul> (type: <code>str</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, version, code, phrase, headers, _transport):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L973" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">version</td><td>HTTP version components protocol, major, minor. E.g. <code>(b'HTTP', 1, 
+1)</code> to mean <code>b'HTTP/1.1'</code>.</td></tr><tr><td></td><td class="fieldArg">code</td><td>HTTP status code. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr><tr><td></td><td class="fieldArg">phrase</td><td>HTTP reason phrase, intended to give a short description of the HTTP status
+code.</td></tr><tr><td></td><td class="fieldArg">headers</td><td>HTTP response headers. (type: <a href="twisted.web.http_headers.Headers.html"><code>twisted.web.http_headers.Headers</code></a>)</td></tr><tr><td></td><td class="fieldArg">_transport</td><td>The transport which is delivering this response.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response._construct">
+    
+  </a>
+  <a name="_construct">
+    
+  </a>
+  <div class="functionHeader">
+    @classmethod<br />
+    def
+    _construct(cls, version, code, phrase, headers, _transport, request):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L1001" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Private constructor.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">version</td><td>See <a href="twisted.web.client.Response.html#__init__"><code>__init__</code></a>.</td></tr><tr><td></td><td class="fieldArg">code</td><td>See <a href="twisted.web.client.Response.html#__init__"><code>__init__</code></a>.</td></tr><tr><td></td><td class="fieldArg">phrase</td><td>See <a href="twisted.web.client.Response.html#__init__"><code>__init__</code></a>.</td></tr><tr><td></td><td class="fieldArg">headers</td><td>See <a href="twisted.web.client.Response.html#__init__"><code>__init__</code></a>.</td></tr><tr><td></td><td class="fieldArg">_transport</td><td>See <a href="twisted.web.client.Response.html#__init__"><code>__init__</code></a>.</td></tr><tr><td></td><td class="fieldArg">request</td><td>See <a href="twisted.web.iweb.IResponse.html#request"><code>IResponse.request</code></a>.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="twisted.web.client.Response.html"><code>Response</code></a> 
+instance.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response.setPreviousResponse">
+    
+  </a>
+  <a name="setPreviousResponse">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setPreviousResponse(self, previousResponse):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L1019" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.web.iweb.IResponse.html#setPreviousResponse">twisted.web.iweb.IResponse</a></div>
+    <div><p>Set the reference to the previous <a href="twisted.web.iweb.IResponse.html"><code>IResponse</code></a>.</p>
+<p>The value of the previous response can be read via <a href="twisted.web.iweb.IResponse.html#previousResponse"><code>IResponse.previousResponse</code></a>.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response.deliverBody">
+    
+  </a>
+  <a name="deliverBody">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    deliverBody(self, protocol):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L1023" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.web.iweb.IResponse.html#deliverBody">twisted.web.iweb.IResponse</a></div>
+    <div><p>Dispatch the given <a href="twisted.internet.interfaces.IProtocol.html"><code>IProtocol</code></a>
+depending of the current state of the response.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response._deliverBody_INITIAL">
+    
+  </a>
+  <a name="_deliverBody_INITIAL">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _deliverBody_INITIAL(self, protocol):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L1031" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Deliver any buffered data to <code>protocol</code> and prepare to 
+deliver any future data to it.  Move to the <code>'CONNECTED'</code> 
+state.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response._deliverBody_CONNECTED">
+    
+  </a>
+  <a name="_deliverBody_CONNECTED">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _deliverBody_CONNECTED(self, protocol):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L1049" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>It is invalid to attempt to deliver data to a protocol when it is 
+already being delivered to another protocol.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response._deliverBody_DEFERRED_CLOSE">
+    
+  </a>
+  <a name="_deliverBody_DEFERRED_CLOSE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _deliverBody_DEFERRED_CLOSE(self, protocol):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L1059" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Deliver any buffered data to <code>protocol</code> and then disconnect 
+the protocol.  Move to the <code>'FINISHED'</code> state.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response._deliverBody_FINISHED">
+    
+  </a>
+  <a name="_deliverBody_FINISHED">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _deliverBody_FINISHED(self, protocol):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L1078" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>It is invalid to attempt to deliver data to a protocol after the 
+response body has been delivered to another protocol.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response._bodyDataReceived">
+    
+  </a>
+  <a name="_bodyDataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _bodyDataReceived(self, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L1087" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Called by HTTPClientParser with chunks of data from the response body. 
+They will be buffered or delivered to the protocol passed to 
+deliverBody.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response._bodyDataReceived_INITIAL">
+    
+  </a>
+  <a name="_bodyDataReceived_INITIAL">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _bodyDataReceived_INITIAL(self, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L1097" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Buffer any data received for later delivery to a protocol passed to 
+<code>deliverBody</code>.</p>
+<p>Little or no data should be buffered by this method, since the transport
+has been paused and will not be resumed until a protocol is supplied.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response._bodyDataReceived_CONNECTED">
+    
+  </a>
+  <a name="_bodyDataReceived_CONNECTED">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _bodyDataReceived_CONNECTED(self, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L1109" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Deliver any data received to the protocol to which this <a href="twisted.web.client.Response.html"><code>Response</code></a> is 
+connected.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response._bodyDataReceived_DEFERRED_CLOSE">
+    
+  </a>
+  <a name="_bodyDataReceived_DEFERRED_CLOSE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _bodyDataReceived_DEFERRED_CLOSE(self, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L1117" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>It is invalid for data to be delivered after it has been indicated that 
+the response body has been completely delivered.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response._bodyDataReceived_FINISHED">
+    
+  </a>
+  <a name="_bodyDataReceived_FINISHED">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _bodyDataReceived_FINISHED(self, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L1125" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>It is invalid for data to be delivered after the response body has been 
+delivered to a protocol.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response._bodyDataFinished">
+    
+  </a>
+  <a name="_bodyDataFinished">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _bodyDataFinished(self, reason=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L1134" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Called by HTTPClientParser when no more body data is available.  If the 
+optional reason is supplied, this indicates a problem or potential problem 
+receiving all of the response body.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response._bodyDataFinished_INITIAL">
+    
+  </a>
+  <a name="_bodyDataFinished_INITIAL">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _bodyDataFinished_INITIAL(self, reason=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L1144" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Move to the <code>'DEFERRED_CLOSE'</code> state to wait for a protocol 
+to which to deliver the response body.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response._bodyDataFinished_CONNECTED">
+    
+  </a>
+  <a name="_bodyDataFinished_CONNECTED">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _bodyDataFinished_CONNECTED(self, reason=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L1155" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Disconnect the protocol and move to the <code>'FINISHED'</code> 
+state.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response._bodyDataFinished_DEFERRED_CLOSE">
+    
+  </a>
+  <a name="_bodyDataFinished_DEFERRED_CLOSE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _bodyDataFinished_DEFERRED_CLOSE(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L1166" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>It is invalid to attempt to notify the <a href="twisted.web.client.Response.html"><code>Response</code></a> of the 
+end of the response body data more than once.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.Response._bodyDataFinished_FINISHED">
+    
+  </a>
+  <a name="_bodyDataFinished_FINISHED">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _bodyDataFinished_FINISHED(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L1174" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>It is invalid to attempt to notify the <a href="twisted.web.client.Response.html"><code>Response</code></a> of the 
+end of the response body data more than once.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://launchpad.net/pydoctor/">pydoctor</a> at 2015-04-13 15:26:48.
+    </address>
+  </body>
+</html>

@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.python.usage.Options : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div style="display: none" id="current-docs-container" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>twisted.python.usage.Options(<span title="dict">dict</span>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.python.html" data-type="Package" class="code">python</a>.<a href="twisted.python.usage.html" data-type="Module" class="code">usage</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/usage.py#L66">View Source</a>
+          <a href="classIndex.html#twisted.python.usage.Options">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Known subclasses: <a href="twisted.application.app.ServerOptions.html" data-type="Class" class="code">twisted.application.app.ServerOptions</a>, <a href="twisted.conch.client.options.ConchOptions.html" data-type="Class" class="code">twisted.conch.client.options.ConchOptions</a>, <a href="twisted.conch.manhole_tap.Options.html" data-type="Class" class="code">twisted.conch.manhole_tap.Options</a>, <a href="twisted.conch.scripts.ckeygen.GeneralOptions.html" data-type="Class" class="code">twisted.conch.scripts.ckeygen.GeneralOptions</a>, <a href="twisted.conch.scripts.tkconch.GeneralOptions.html" data-type="Class" class="code">twisted.conch.scripts.tkconch.GeneralOptions</a>, <a href="twisted.conch.tap.Options.html" data-type="Class" class="code">twisted.conch.tap.Options</a>, <a href="twisted.mail.tap.Options.html" data-type="Class" class="code">twisted.mail.tap.Options</a>, <a href="twisted.names.tap.Options.html" data-type="Class" class="code">twisted.names.tap.Options</a>, <a href="twisted.news.tap.DBOptions.html" data-type="Class" class="code">twisted.news.tap.DBOptions</a>, <a href="twisted.news.tap.Options.html" data-type="Class" class="code">twisted.news.tap.Options</a>, <a href="twisted.news.tap.PickleOptions.html" data-type="Class" class="code">twisted.news.tap.PickleOptions</a>, <a href="twisted.python._release.ChangeVersionsScriptOptions.html" data-type="Class" class="code">twisted.python._release.ChangeVersionsScriptOptions</a>, <a href="twisted.runner.inetdtap.Options.html" data-type="Class" class="code">twisted.runner.inetdtap.Options</a>, <a href="twisted.runner.procmontap.Options.html" data-type="Class" class="code">twisted.runner.procmontap.Options</a>, <a href="twisted.scripts.htmlizer.Options.html" data-type="Class" class="code">twisted.scripts.htmlizer.Options</a>, <a href="twisted.scripts.manhole.MyOptions.html" data-type="Class" class="code">twisted.scripts.manhole.MyOptions</a>, <a href="twisted.scripts.tap2deb.MyOptions.html" data-type="Class" class="code">twisted.scripts.tap2deb.MyOptions</a>, <a href="twisted.scripts.tap2rpm.MyOptions.html" data-type="Class" class="code">twisted.scripts.tap2rpm.MyOptions</a>, <a href="twisted.scripts.trial.Options.html" data-type="Class" class="code">twisted.scripts.trial.Options</a>, <a href="twisted.tap.ftp.Options.html" data-type="Class" class="code">twisted.tap.ftp.Options</a>, <a href="twisted.tap.manhole.Options.html" data-type="Class" class="code">twisted.tap.manhole.Options</a>, <a href="twisted.tap.portforward.Options.html" data-type="Class" class="code">twisted.tap.portforward.Options</a>, <a href="twisted.tap.socks.Options.html" data-type="Class" class="code">twisted.tap.socks.Options</a>, <a href="twisted.tap.telnet.Options.html" data-type="Class" class="code">twisted.tap.telnet.Options</a>, <a href="twisted.trial._dist.options.WorkerOptions.html" data-type="Class" class="code">twisted.trial._dist.options.WorkerOptions</a>, <a href="twisted.web.tap.Options.html" data-type="Class" class="code">twisted.web.tap.Options</a>, <a href="twisted.words.tap.Options.html" data-type="Class" class="code">twisted.words.tap.Options</a>, <a href="twisted.words.xmpproutertap.Options.html" data-type="Class" class="code">twisted.words.xmpproutertap.Options</a></p>
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>An option list parser class</p>
+<p><code>optFlags</code> and <code>optParameters</code> are lists of 
+available parameters which your program can handle. The difference between 
+the two is the 'flags' have an on(1) or off(0) state (off by default) 
+whereas 'parameters' have an assigned value, with an optional default. 
+(Compare '--verbose' and '--verbosity=2')</p>
+<p>optFlags is assigned a list of lists. Each list represents a flag 
+parameter, as so:</p>
+<pre class="literalblock">
+  optFlags = [['verbose', 'v', 'Makes it tell you what it doing.'],
+              ['quiet', 'q', 'Be vewy vewy quiet.']]
+</pre>
+<p>As you can see, the first item is the long option name (prefixed with 
+'--' on the command line), followed by the short option name (prefixed with
+'-'), and the description. The description is used for the built-in 
+handling of the --help switch, which prints a usage summary.</p>
+<p><code>optParameters</code> is much the same, except the list also 
+contains a default value:</p>
+<pre class="literalblock">
+  optParameters = [['outfile', 'O', 'outfile.log', 'Description...']]
+</pre>
+<p>A coerce function can also be specified as the last element: it will be 
+called with the argument and should return the value that will be stored 
+for the option. This function can have a <code>coerceDoc</code> attribute 
+which will be appended to the documentation of the option.</p>
+<p>subCommands is a list of 4-tuples of (command name, command shortcut, 
+parser class, documentation).  If the first non-option argument found is 
+one of the given command names, an instance of the given parser class is 
+instantiated and given the remainder of the arguments to parse and 
+self.opts[command] is set to the command name.  For example:</p>
+<pre class="literalblock">
+  subCommands = [
+       ['inquisition', 'inquest', InquisitionOptions,
+            'Perform an inquisition'],
+       ['holyquest', 'quest', HolyQuestOptions,
+            'Embark upon a holy quest']
+   ]
+</pre>
+<p>In this case, <code>"&lt;program&gt; holyquest --horseback 
+--for-grail"</code> will cause <code>HolyQuestOptions</code> to be 
+instantiated and asked to parse <code>['--horseback', 
+'--for-grail']</code>.  Currently, only the first sub-command is parsed, 
+and all options following it are passed to its parser.  If a subcommand is 
+found, the subCommand attribute is set to its name and the subOptions 
+attribute is set to the Option instance that parses the remaining options. 
+If a subcommand is not given to parseOptions, the subCommand attribute will
+be None. You can also mark one of the subCommands to be the default:</p>
+<pre class="literalblock">
+  defaultSubCommand = 'holyquest'
+</pre>
+<p>In this case, the subCommand attribute will never be None, and the 
+subOptions attribute will always be set.</p>
+<p>If you want to handle your own options, define a method named 
+<code>opt_paramname</code> that takes <code>(self, option)</code> as 
+arguments. <code>option</code> will be whatever immediately follows the 
+parameter on the command line. Options fully supports the mapping 
+interface, so you can do things like <code>'self["option"] = 
+val'</code> in these methods.</p>
+<p>Shell tab-completion is supported by this class, for zsh only at 
+present. Zsh ships with a stub file ("completion function") 
+which, for Twisted commands, performs tab-completion on-the-fly using the 
+support provided by this class. The stub file lives in our tree at 
+<code>twisted/python/twisted-completion.zsh</code>, and in the Zsh tree at 
+<code>Completion/Unix/Command/_twisted</code>.</p>
+<p>Tab-completion is based upon the contents of the optFlags and 
+optParameters lists. And, optionally, additional metadata may be provided 
+by assigning a special attribute, <code>compData</code>, which should be an
+instance of <code>Completions</code>. See that class for details of what 
+can and should be included - and see the howto for additional help using 
+these features - including how third-parties may take advantage of 
+tab-completion for their own commands.</p>
+<p>Advanced functionality is covered in the howto documentation, available 
+at <a target="_top" href="http://twistedmatrix.com/projects/core/documentation/howto/options.html">http://twistedmatrix.com/projects/core/documentation/howto/options.html</a>,
+or doc/core/howto/options.xhtml in your Twisted directory.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2792">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.usage.Options.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.usage.Options.html#opt_help" data-type="Method" class="code">opt_help</a></td>
+    <td><span>Display this help and exit.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.usage.Options.html#opt_version" data-type="Method" class="code">opt_version</a></td>
+    <td><span>Display Twisted version and exit.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.usage.Options.html#parseOptions" data-type="Method" class="code">parseOptions</a></td>
+    <td><span>The guts of the command-line parser.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.usage.Options.html#postOptions" data-type="Method" class="code">postOptions</a></td>
+    <td><span>I am called after the options are parsed.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.usage.Options.html#parseArgs" data-type="Method" class="code">parseArgs</a></td>
+    <td><span>I am called with any leftover arguments which were not options.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.usage.Options.html#__str__" data-type="Method" class="code">__str__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.usage.Options.html#getSynopsis" data-type="Method" class="code">getSynopsis</a></td>
+    <td><span>Returns a string containing a description of these options and how to 
+pass them to the executed file.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.usage.Options.html#getUsage" data-type="Method" class="code">getUsage</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.usage.Options.html#_generic_flag" data-type="Method" class="code">_generic_flag</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.usage.Options.html#_gather_flags" data-type="Method" class="code">_gather_flags</a></td>
+    <td><span>Gather up boolean (flag) options.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.usage.Options.html#_gather_parameters" data-type="Method" class="code">_gather_parameters</a></td>
+    <td><span>Gather options which take a value.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.usage.Options.html#_gather_handlers" data-type="Method" class="code">_gather_handlers</a></td>
+    <td><span>Gather up options with their own handler methods.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  <a name="twisted.python.usage.Options.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/usage.py#L158">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.application.app.ServerOptions.html" data-type="Class" class="code">twisted.application.app.ServerOptions</a>, <a href="twisted.conch.client.options.ConchOptions.html" data-type="Class" class="code">twisted.conch.client.options.ConchOptions</a>, <a href="twisted.conch.manhole_tap.Options.html" data-type="Class" class="code">twisted.conch.manhole_tap.Options</a>, <a href="twisted.conch.tap.Options.html" data-type="Class" class="code">twisted.conch.tap.Options</a>, <a href="twisted.mail.tap.Options.html" data-type="Class" class="code">twisted.mail.tap.Options</a>, <a href="twisted.names.tap.Options.html" data-type="Class" class="code">twisted.names.tap.Options</a>, <a href="twisted.news.tap.Options.html" data-type="Class" class="code">twisted.news.tap.Options</a>, <a href="twisted.tap.ftp.Options.html" data-type="Class" class="code">twisted.tap.ftp.Options</a>, <a href="twisted.web.tap.Options.html" data-type="Class" class="code">twisted.web.tap.Options</a>, <a href="twisted.words.tap.Options.html" data-type="Class" class="code">twisted.words.tap.Options</a></div>
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.usage.Options.opt_help">
+    
+  </a>
+  <a name="opt_help">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    opt_help(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/usage.py#L194">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Display this help and exit.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.usage.Options.opt_version">
+    
+  </a>
+  <a name="opt_version">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    opt_version(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/usage.py#L201">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.scripts._twistd_unix.ServerOptions.html" data-type="Class" class="code">twisted.scripts._twistd_unix.ServerOptions</a>, <a href="twisted.scripts._twistw.ServerOptions.html" data-type="Class" class="code">twisted.scripts._twistw.ServerOptions</a></div>
+    
+    <div><p>Display Twisted version and exit.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.usage.Options.parseOptions">
+    
+  </a>
+  <a name="parseOptions">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    parseOptions(self, options=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/usage.py#L211">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.application.app.ServerOptions.html" data-type="Class" class="code">twisted.application.app.ServerOptions</a></div>
+    
+    <div><p>The guts of the command-line parser.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.usage.Options.postOptions">
+    
+  </a>
+  <a name="postOptions">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    postOptions(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/usage.py#L279">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.application.app.ServerOptions.html" data-type="Class" class="code">twisted.application.app.ServerOptions</a>, <a href="twisted.conch.manhole_tap.Options.html" data-type="Class" class="code">twisted.conch.manhole_tap.Options</a>, <a href="twisted.mail.tap.Options.html" data-type="Class" class="code">twisted.mail.tap.Options</a>, <a href="twisted.names.tap.Options.html" data-type="Class" class="code">twisted.names.tap.Options</a>, <a href="twisted.news.tap.DBOptions.html" data-type="Class" class="code">twisted.news.tap.DBOptions</a>, <a href="twisted.news.tap.PickleOptions.html" data-type="Class" class="code">twisted.news.tap.PickleOptions</a>, <a href="twisted.runner.procmontap.Options.html" data-type="Class" class="code">twisted.runner.procmontap.Options</a>, <a href="twisted.scripts.tap2deb.MyOptions.html" data-type="Class" class="code">twisted.scripts.tap2deb.MyOptions</a>, <a href="twisted.scripts.tap2rpm.MyOptions.html" data-type="Class" class="code">twisted.scripts.tap2rpm.MyOptions</a>, <a href="twisted.scripts.trial.Options.html" data-type="Class" class="code">twisted.scripts.trial.Options</a>, <a href="twisted.tap.manhole.Options.html" data-type="Class" class="code">twisted.tap.manhole.Options</a>, <a href="twisted.web.tap.Options.html" data-type="Class" class="code">twisted.web.tap.Options</a></div>
+    
+    <div><p>I am called after the options are parsed.</p>
+<p>Override this method in your subclass to do something after the options 
+have been parsed and assigned, like validate that all options are sane.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.usage.Options.parseArgs">
+    
+  </a>
+  <a name="parseArgs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    parseArgs(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/usage.py#L288">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.conch.scripts.cftp.ClientOptions.html" data-type="Class" class="code">twisted.conch.scripts.cftp.ClientOptions</a>, <a href="twisted.conch.scripts.conch.ClientOptions.html" data-type="Class" class="code">twisted.conch.scripts.conch.ClientOptions</a>, <a href="twisted.conch.scripts.tkconch.GeneralOptions.html" data-type="Class" class="code">twisted.conch.scripts.tkconch.GeneralOptions</a>, <a href="twisted.runner.procmontap.Options.html" data-type="Class" class="code">twisted.runner.procmontap.Options</a>, <a href="twisted.scripts.htmlizer.Options.html" data-type="Class" class="code">twisted.scripts.htmlizer.Options</a></div>
+    
+    <div><p>I am called with any leftover arguments which were not options.</p>
+<p>Override me to do something with the remaining arguments on the command 
+line, those which were not flags or options. e.g. interpret them as a list 
+of files to operate on.</p>
+<p>Note that if there more arguments on the command line than this method 
+accepts, parseArgs will blow up with a getopt.error.  This means if you 
+don't override me, parseArgs will blow up if I am passed any arguments at 
+all!</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.python.usage.Options._generic_flag">
+    
+  </a>
+  <a name="_generic_flag">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _generic_flag(self, flagName, value=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/usage.py#L303">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.python.usage.Options._gather_flags">
+    
+  </a>
+  <a name="_gather_flags">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _gather_flags(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/usage.py#L310">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Gather up boolean (flag) options.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.python.usage.Options._gather_parameters">
+    
+  </a>
+  <a name="_gather_parameters">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _gather_parameters(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/usage.py#L337">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Gather options which take a value.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.python.usage.Options._gather_handlers">
+    
+  </a>
+  <a name="_gather_handlers">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _gather_handlers(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/usage.py#L371">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Gather up options with their own handler methods.</p>
+<p>This returns a tuple of many values.  Amongst those values is a synonyms
+dictionary, mapping all of the possible aliases (<code>str</code>) for an 
+option to the longest spelling of that option's name C({str}).</p>
+<p>Another element is a dispatch dictionary, mapping each user-facing 
+option name (with - substituted for _) to a callable to handle that 
+option.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.usage.Options.__str__">
+    
+  </a>
+  <a name="__str__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __str__(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/usage.py#L446">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.usage.Options.getSynopsis">
+    
+  </a>
+  <a name="getSynopsis">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getSynopsis(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/usage.py#L449">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns a string containing a description of these options and how to 
+pass them to the executed file.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.usage.Options.getUsage">
+    
+  </a>
+  <a name="getUsage">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getUsage(self, width=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.2.0/twisted/python/usage.py#L472">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2016-05-18 16:01:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script src="//www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

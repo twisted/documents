@@ -1,0 +1,81 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.conch.interfaces.IConchUser&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="interface">Interface t.c.i.IConchUser(Interface):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.conch.interfaces.html">twisted.conch.interfaces</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.conch.interfaces.IConchUser">View In Hierarchy</a>
+    </p>
+    <div><p>Known implementations: <a href="twisted.conch.avatar.ConchUser.html">twisted.conch.avatar.ConchUser</a></p></div>
+    <div>A user who has been authenticated to Cred through Conch. This is the 
+interface between the SSH connection and the user.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">conn</td><td>The SSHConnection object for this user.
+</td></tr></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.interfaces.IConchUser.lookupChannel">lookupChannel</a></td>
+          <td><span>The other side requested a channel of some sort.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.interfaces.IConchUser.lookupSubsystem">lookupSubsystem</a></td>
+          <td><span>The other side requested a subsystem.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.interfaces.IConchUser.gotGlobalRequest">gotGlobalRequest</a></td>
+          <td><span>A global request was sent from the other side.
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.conch.interfaces.IConchUser.lookupChannel"></a>
+        <div class="functionHeader">
+          def <span>lookupChannel(channelType, windowSize, maxPacket, data):</span>
+        </div>
+        <div class="functionBody"><div><p>The other side requested a channel of some sort. channelType is the 
+type of channel being requested, windowSize is the initial size of the 
+remote window, maxPacket is the largest packet we should send, data is 
+any other packet data (often nothing).</p>
+We return a subclass of SSHChannel. If an appropriate channel can not 
+be found, an exception will be raised. If a ConchError is raised, the 
+.value will be the message, and the .data will be the error code.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">channelType</td><td>(type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">windowSize</td><td>(type: <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">maxPacket</td><td>(type: <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">data</td><td>(type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">(type: subclass of <code>SSHChannel</code>/<code>tuple</code>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.conch.interfaces.IConchUser.lookupSubsystem"></a>
+        <div class="functionHeader">
+          def <span>lookupSubsystem(subsystem, data):</span>
+        </div>
+        <div class="functionBody"><div><p>The other side requested a subsystem. subsystem is the name of the 
+subsystem being requested. data is any other packet data (often 
+nothing).</p>
+We return a Protocol.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.conch.interfaces.IConchUser.gotGlobalRequest"></a>
+        <div class="functionHeader">
+          def <span>gotGlobalRequest(requestType, data):</span>
+        </div>
+        <div class="functionBody"><div><p>A global request was sent from the other side.</p>
+By default, this dispatches to a method 'channel_channelType' with any 
+non-alphanumerics in the channelType replace with _'s. If it cannot find 
+a suitable method, it returns an OPEN_UNKNOWN_CHANNEL_TYPE error. The 
+method is called with arguments of windowSize, maxPacket, data.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.conch.ssh.transport : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="module">t.c.s.transport : module documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.conch.html">conch</a>.<a href="twisted.conch.ssh.html">ssh</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/conch/ssh/transport.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div>The lowest level SSH protocol.  This handles the key negotiation, the 
+encryption and the compression.  The transport layer is described in RFC 
+4253.</p>
+<p>Maintainer: Paul Swartz<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id378">
+  
+  
+<tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.ssh.transport.SSHTransportBase.html">SSHTransportBase</a></td>
+    <td><span>Protocol supporting basic SSH functionality: sending/receiving packets 
+and message dispatch.  To connect to or run a server, you must use 
+SSHClientTransport or SSHServerTransport.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.ssh.transport.SSHServerTransport.html">SSHServerTransport</a></td>
+    <td><span>SSHServerTransport implements the server side of the SSH protocol.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.ssh.transport.SSHClientTransport.html">SSHClientTransport</a></td>
+    <td><span>SSHClientTransport implements the client side of the SSH protocol.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.ssh.transport.SSHCiphers.html">SSHCiphers</a></td>
+    <td><span>SSHCiphers represents all the encryption operations that need to occur 
+to encrypt and authenticate the SSH connection.</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.conch.ssh.transport.html#_getRandomNumber">_getRandomNumber</a></td>
+    <td><span>Generate a random number in the range [0, 2 ** bits).</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.conch.ssh.transport.html#_generateX">_generateX</a></td>
+    <td><span>Generate a new value for the private key x.</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.ssh.transport._MACParams.html">_MACParams</a></td>
+    <td><span><a 
+href="twisted.conch.ssh.transport._MACParams.html"><code>_MACParams</code></a>
+represents the parameters necessary to compute SSH MAC (Message 
+Authenticate Codes).</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.ssh.transport._DummyCipher.html">_DummyCipher</a></td>
+    <td><span>A cipher for the none encryption method.</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.ssh.transport._Counter.html">_Counter</a></td>
+    <td><span>Stateful counter which returns results packed in a byte string</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.conch.ssh.transport._getRandomNumber">
+    
+  </a>
+  <a name="_getRandomNumber">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _getRandomNumber(random, bits):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/conch/ssh/transport.py#L36" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Generate a random number in the range [0, 2 ** bits).<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">bits</td><td>The number of bits in the result. (type: <code>int</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The newly generated random number. (type: <code>int</code> or <code>long</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">ValueError</td><td>if <code>bits</code> is not a multiple of 8.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.transport._generateX">
+    
+  </a>
+  <a name="_generateX">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _generateX(random, bits):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/conch/ssh/transport.py#L56" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Generate a new value for the private key x.</p>
+<p>From RFC 2631, section 2.2:</p>
+<pre class="literalblock">
+   X9.42 requires that the private key x be in the interval
+   [2, (q - 2)].  x should be randomly generated in this interval.
+</pre><table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2014-09-17 19:15:55.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,215 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.python.roots.Collection&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.p.r.Collection:</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.python.roots.html">twisted.python.roots</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.python.roots.Collection">View In Hierarchy</a>
+    </p>
+    <div><p>Known subclasses: <a href="twisted.python.roots.Constrained.html">twisted.python.roots.Constrained</a></p></div>
+    <div><p>I represent a static collection of entities.</p>
+I contain methods designed to represent collections that can be 
+dynamically created.
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.roots.Collection.__init__">__init__</a></td>
+          <td><span>Initialize me.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.roots.Collection.getStaticEntity">getStaticEntity</a></td>
+          <td><span>Get an entity that was added to me using putEntity.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.roots.Collection.getDynamicEntity">getDynamicEntity</a></td>
+          <td><span>Subclass this to generate an entity on demand.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.roots.Collection.getEntity">getEntity</a></td>
+          <td><span>Retrieve an entity from me.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.roots.Collection.putEntity">putEntity</a></td>
+          <td><span>Store a static reference on 'name' for 'entity'.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.roots.Collection.delEntity">delEntity</a></td>
+          <td><span>Remove a static reference for 'name'.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.roots.Collection.storeEntity">storeEntity</a></td>
+          <td><span>Store an entity for 'name', based on the content of 'request'.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.roots.Collection.removeEntity">removeEntity</a></td>
+          <td><span>Remove an entity for 'name', based on the content of 'request'.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.roots.Collection.listStaticEntities">listStaticEntities</a></td>
+          <td><span>Retrieve a list of all name, entity pairs that I store references 
+to.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.roots.Collection.listDynamicEntities">listDynamicEntities</a></td>
+          <td><span>A list of all name, entity that I can generate on demand.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.roots.Collection.listEntities">listEntities</a></td>
+          <td><span>Retrieve a list of all name, entity pairs I contain.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.roots.Collection.listStaticNames">listStaticNames</a></td>
+          <td><span>Retrieve a list of the names of entities that I store references 
+to.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.roots.Collection.listDynamicNames">listDynamicNames</a></td>
+          <td><span>Retrieve a list of the names of entities that I store references 
+to.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.python.roots.Collection.listNames">listNames</a></td>
+          <td><span>Retrieve a list of all names for entities that I contain.
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.python.roots.Collection.__init__"></a>
+        <div class="functionHeader">
+          def <span>__init__(self, entities=None):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.web.vhost.VirtualHostCollection.html#twisted.web.vhost.VirtualHostCollection.__init__">twisted.web.vhost.VirtualHostCollection</a></div><div>Initialize me.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.roots.Collection.getStaticEntity"></a>
+        <div class="functionHeader">
+          def <span>getStaticEntity(self, name):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.web.vhost.VirtualHostCollection.html#twisted.web.vhost.VirtualHostCollection.getStaticEntity">twisted.web.vhost.VirtualHostCollection</a></div><div><p>Get an entity that was added to me using putEntity.</p>
+This method will return 'None' if it fails.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.roots.Collection.getDynamicEntity"></a>
+        <div class="functionHeader">
+          def <span>getDynamicEntity(self, name, request):</span>
+        </div>
+        <div class="functionBody"><div><p>Subclass this to generate an entity on demand.</p>
+This method should return 'None' if it fails.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.roots.Collection.getEntity"></a>
+        <div class="functionHeader">
+          def <span>getEntity(self, name, request):</span>
+        </div>
+        <div class="functionBody"><div><p>Retrieve an entity from me.</p>
+<p>I will first attempt to retrieve an entity statically; static entities 
+will obscure dynamic ones. If that fails, I will retrieve the entity 
+dynamically.</p>
+If I cannot retrieve an entity, I will return 'None'.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.roots.Collection.putEntity"></a>
+        <div class="functionHeader">
+          def <span>putEntity(self, name, entity):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.python.roots.Constrained.html#twisted.python.roots.Constrained.putEntity">twisted.python.roots.Constrained</a></div><div><p>Store a static reference on 'name' for 'entity'.</p>
+Raises a KeyError if the operation fails.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.roots.Collection.delEntity"></a>
+        <div class="functionHeader">
+          def <span>delEntity(self, name):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.web.vhost.VirtualHostCollection.html#twisted.web.vhost.VirtualHostCollection.delEntity">twisted.web.vhost.VirtualHostCollection</a></div><div><p>Remove a static reference for 'name'.</p>
+Raises a KeyError if the operation fails.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.roots.Collection.storeEntity"></a>
+        <div class="functionHeader">
+          def <span>storeEntity(self, name, request):</span>
+        </div>
+        <div class="functionBody"><div>Store an entity for 'name', based on the content of 'request'.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.roots.Collection.removeEntity"></a>
+        <div class="functionHeader">
+          def <span>removeEntity(self, name, request):</span>
+        </div>
+        <div class="functionBody"><div>Remove an entity for 'name', based on the content of 'request'.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.roots.Collection.listStaticEntities"></a>
+        <div class="functionHeader">
+          def <span>listStaticEntities(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.web.vhost.VirtualHostCollection.html#twisted.web.vhost.VirtualHostCollection.listStaticEntities">twisted.web.vhost.VirtualHostCollection</a></div><div><p>Retrieve a list of all name, entity pairs that I store references 
+to.</p>
+See getStaticEntity.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.roots.Collection.listDynamicEntities"></a>
+        <div class="functionHeader">
+          def <span>listDynamicEntities(self, request):</span>
+        </div>
+        <div class="functionBody"><div><p>A list of all name, entity that I can generate on demand.</p>
+See getDynamicEntity.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.roots.Collection.listEntities"></a>
+        <div class="functionHeader">
+          def <span>listEntities(self, request):</span>
+        </div>
+        <div class="functionBody"><div><p>Retrieve a list of all name, entity pairs I contain.</p>
+See getEntity.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.roots.Collection.listStaticNames"></a>
+        <div class="functionHeader">
+          def <span>listStaticNames(self):</span>
+        </div>
+        <div class="functionBody"><div><p>Retrieve a list of the names of entities that I store references 
+to.</p>
+See getStaticEntity.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.roots.Collection.listDynamicNames"></a>
+        <div class="functionHeader">
+          def <span>listDynamicNames(self):</span>
+        </div>
+        <div class="functionBody"><div><p>Retrieve a list of the names of entities that I store references 
+to.</p>
+See getDynamicEntity.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.roots.Collection.listNames"></a>
+        <div class="functionHeader">
+          def <span>listNames(self, request):</span>
+        </div>
+        <div class="functionBody"><div><p>Retrieve a list of all names for entities that I contain.</p>
+See getEntity.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

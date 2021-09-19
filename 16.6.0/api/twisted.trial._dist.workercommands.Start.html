@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.trial._dist.workercommands.Start : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="apidocs.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>twisted.trial._dist.workercommands.Start(<a href="twisted.protocols.amp.Command.html" data-type="Class" class="code">Command</a>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.trial.html" data-type="Package" class="code">trial</a>.<a href="twisted.trial._dist.html" data-type="Package" class="code">_dist</a>.<a href="twisted.trial._dist.workercommands.html" data-type="Module" class="code">workercommands</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/trial/_dist/workercommands.py#L23">View Source</a>
+          <a href="classIndex.html#twisted.trial._dist.workercommands.Start">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>Set up the worker process, giving the running directory.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        
+        
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.protocols.amp.Command.html" data-type="Class" class="code">Command</a>:
+          </p>
+          <table class="children sortable" id="id2902">
+  
+  <tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.protocols.amp.Command.html#arguments" data-type="Class Variable" class="code">arguments</a></td>
+    <td>A list of 2-tuples of (name, Argument-subclass-instance), specifying the 
+names and values of the parameters which are required for this command.</td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.protocols.amp.Command.html#response" data-type="Class Variable" class="code">response</a></td>
+    <td>A list like <a href="twisted.protocols.amp.Command.html#arguments"><code>arguments</code></a>,
+but instead used for the return value.</td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.protocols.amp.Command.html#errors" data-type="Class Variable" class="code">errors</a></td>
+    <td>A mapping of subclasses of <a href="http://docs.python.org/library/exceptions.html#exceptions.Exception"><code>Exception</code></a>
+to wire-protocol tags for errors represented as <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>s.
+Responders which raise keys from this dictionary will have the error 
+translated to the corresponding tag on the wire. Invokers which receive 
+Deferreds from invoking this command with <a href="twisted.protocols.amp.BoxDispatcher.html#callRemote"><code>BoxDispatcher.callRemote</code></a>
+will potentially receive Failures with keys from this mapping as their 
+value. This mapping is inherited; if you declare a command which handles 
+<code>FooError</code> as 'FOO_ERROR', then subclass it and specify 
+<code>BarError</code> as 'BAR_ERROR', responders to the subclass may raise 
+either <code>FooError</code> or <code>BarError</code>, and invokers must be
+able to deal with either of those exceptions.</td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.protocols.amp.Command.html#fatalErrors" data-type="Class Variable" class="code">fatalErrors</a></td>
+    <td>like 'errors', but errors in this list will always terminate the 
+connection, despite being of a recognizable error type.</td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.protocols.amp.Command.html#commandType" data-type="Class Variable" class="code">commandType</a></td>
+    <td>The type of Box used to issue commands; useful only for protocol-modifying 
+behavior like startTLS or protocol switching.  Defaults to a plain vanilla 
+<a href="twisted.protocols.amp.AmpBox.html"><code>Box</code></a>.</td>
+  </tr><tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.protocols.amp.Command.html#responseType" data-type="Class Variable" class="code">responseType</a></td>
+    <td>The type of Box used to respond to this command; only useful for 
+protocol-modifying behavior like startTLS or protocol switching. Defaults 
+to a plain vanilla <a href="twisted.protocols.amp.AmpBox.html"><code>Box</code></a>.</td>
+  </tr><tr class="baseinstancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.amp.Command.html#requiresAnswer" data-type="Instance Variable" class="code">requiresAnswer</a></td>
+    <td>a boolean; defaults to True.  Set it to False on your subclass if you want 
+callRemote to return None.  Note: this is a hint only to the client side of
+the protocol.  The return-type of a command responder method must always be
+a dictionary adhering to the contract specified by <a href="twisted.protocols.amp.Command.html#response"><code>response</code></a>,
+because clients are always free to request a response if they want one.</td>
+  </tr><tr class="baseclass">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.Command.__metaclass__.html" data-type="Class" class="code">__metaclass__</a></td>
+    <td><span>Metaclass hack to establish reverse-mappings for 'errors' and 
+'fatalErrors' as class vars.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Command.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td><span>Create an instance of this command with specified values for its 
+parameters.</span></td>
+  </tr><tr class="baseclassmethod">
+    
+    <td>Class Method</td>
+    <td><a href="twisted.protocols.amp.Command.html#makeResponse" data-type="Class Method" class="code">makeResponse</a></td>
+    <td><span>Serialize a mapping of arguments using this <a href="twisted.protocols.amp.Command.html"><code>Command</code></a>'s 
+response schema.</span></td>
+  </tr><tr class="baseclassmethod">
+    
+    <td>Class Method</td>
+    <td><a href="twisted.protocols.amp.Command.html#makeArguments" data-type="Class Method" class="code">makeArguments</a></td>
+    <td><span>Serialize a mapping of arguments using this <a href="twisted.protocols.amp.Command.html"><code>Command</code></a>'s 
+argument schema.</span></td>
+  </tr><tr class="baseclassmethod">
+    
+    <td>Class Method</td>
+    <td><a href="twisted.protocols.amp.Command.html#parseResponse" data-type="Class Method" class="code">parseResponse</a></td>
+    <td><span>Parse a mapping of serialized arguments using this <a href="twisted.protocols.amp.Command.html"><code>Command</code></a>'s 
+response schema.</span></td>
+  </tr><tr class="baseclassmethod">
+    
+    <td>Class Method</td>
+    <td><a href="twisted.protocols.amp.Command.html#parseArguments" data-type="Class Method" class="code">parseArguments</a></td>
+    <td><span>Parse a mapping of serialized arguments using this <a href="twisted.protocols.amp.Command.html"><code>Command</code></a>'s 
+argument schema.</span></td>
+  </tr><tr class="baseclassmethod">
+    
+    <td>Class Method</td>
+    <td><a href="twisted.protocols.amp.Command.html#responder" data-type="Class Method" class="code">responder</a></td>
+    <td><span>Declare a method to be a responder for a particular command.</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.amp.Command.html#_doCommand" data-type="Method" class="code">_doCommand</a></td>
+    <td><span>Encode and send this Command to the given protocol.</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2016-11-26 06:44:29.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

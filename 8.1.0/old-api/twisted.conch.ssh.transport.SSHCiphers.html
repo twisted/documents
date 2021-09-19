@@ -1,0 +1,277 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.conch.ssh.transport.SSHCiphers&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">Class t.c.s.t.SSHCiphers:</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.conch.html">conch</a>.<a href="twisted.conch.ssh.html">ssh</a>.<a href="twisted.conch.ssh.transport.html">transport</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L1134">View Source</a>
+      <a href="classIndex.html#twisted.conch.ssh.transport.SSHCiphers">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>SSHCiphers represents all the encryption operations that need to occur 
+to encrypt and authenticate the SSH connection.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">outCipType</td><td>the string type of the outgoing cipher.
+</td></tr><tr><td></td><td class="fieldArg">inCipType</td><td>the string type of the incoming cipher.
+</td></tr><tr><td></td><td class="fieldArg">outMACType</td><td>the string type of the incoming MAC.
+</td></tr><tr><td></td><td class="fieldArg">inMACType</td><td>the string type of the incoming MAC.
+</td></tr><tr><td></td><td class="fieldArg">encBlockSize</td><td>the block size of the outgoing cipher.
+</td></tr><tr><td></td><td class="fieldArg">decBlockSize</td><td>the block size of the incoming cipher.
+</td></tr><tr><td></td><td class="fieldArg">verifyDigestSize</td><td>the size of the incoming MAC.
+</td></tr><tr><td></td><td class="fieldArg">outMAC</td><td>a tuple of (&lt;hash module&gt;, &lt;inner key&gt;, &lt;outer key&gt;, 
+&lt;digest size&gt;) representing the outgoing MAC.
+</td></tr><tr><td></td><td class="fieldArg">inMAc</td><td>see outMAC, but for the incoming MAC.
+</td></tr><tr class="fieldStart"><td class="fieldName">Class Variables</td><td class="fieldArg">cipherMap</td><td>A dictionary mapping SSH encryption names to 3-tuples of 
+(&lt;Crypto.Cipher.* name&gt;, &lt;block size&gt;, &lt;counter 
+mode&gt;)
+</td></tr><tr><td></td><td class="fieldArg">macMap</td><td>A dictionary mapping SSH MAC names to hash modules.
+</td></tr></table></div>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id4721">
+  
+  
+  
+  
+  <tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHCiphers.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHCiphers.html#setKeys">setKeys</a></td>
+    <td><span>Set up the ciphers and hashes using the given keys,
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHCiphers.html#encrypt">encrypt</a></td>
+    <td><span>Encrypt blocks. Overridden by the encrypt method of a
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHCiphers.html#decrypt">decrypt</a></td>
+    <td><span>Decrypt blocks. See encrypt().
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHCiphers.html#makeMAC">makeMAC</a></td>
+    <td><span>Create a message authentication code (MAC) for the given packet 
+using
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHCiphers.html#verify">verify</a></td>
+    <td><span>Verify an incoming MAC using the incoming MAC values. Return True
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHCiphers.html#_getCipher">_getCipher</a></td>
+    <td><span>Creates an initialized cipher object.
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.transport.SSHCiphers.html#_getMAC">_getMAC</a></td>
+    <td><span>Gets a 4-tuple representing the message authentication code.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.conch.ssh.transport.SSHCiphers.__init__"></a>
+        <a name="__init__"></a>
+        <div class="functionHeader">
+        
+        def __init__(self, outCip, inCip, outMac, inMac):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L1178" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.ssh.transport.SSHCiphers.setKeys"></a>
+        <a name="setKeys"></a>
+        <div class="functionHeader">
+        
+        def setKeys(self, outIV, outKey, inIV, inKey, outInteg, inInteg):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L1190" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Set up the ciphers and hashes using the given keys,
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">outIV</td><td>the outgoing initialization vector
+</td></tr><tr><td></td><td class="fieldArg">outKey</td><td>the outgoing encryption key
+</td></tr><tr><td></td><td class="fieldArg">inIV</td><td>the incoming initialization vector
+</td></tr><tr><td></td><td class="fieldArg">inKey</td><td>the incoming encryption key
+</td></tr><tr><td></td><td class="fieldArg">outInteg</td><td>the outgoing integrity key
+</td></tr><tr><td></td><td class="fieldArg">inInteg</td><td>the incoming integrity key.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.ssh.transport.SSHCiphers._getCipher"></a>
+        <a name="_getCipher"></a>
+        <div class="functionHeader">
+        
+        def _getCipher(self, cip, iv, key):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L1213" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Creates an initialized cipher object.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">cip</td><td>the name of the cipher: maps into Crypto.Cipher.*
+</td></tr><tr><td></td><td class="fieldArg">iv</td><td>the initialzation vector
+</td></tr><tr><td></td><td class="fieldArg">key</td><td>the encryption key
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.ssh.transport.SSHCiphers._getMAC"></a>
+        <a name="_getMAC"></a>
+        <div class="functionHeader">
+        
+        def _getMAC(self, mac, key):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L1232" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Gets a 4-tuple representing the message authentication code. (&lt;hash 
+module&gt;, &lt;inner hash value&gt;, &lt;outer hash value&gt;, 
+&lt;digest size&gt;)
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">mac</td><td>a key mapping into macMap
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">key</td><td>the MAC key.
+ (type: <code>str</code>
+)</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.ssh.transport.SSHCiphers.encrypt"></a>
+        <a name="encrypt"></a>
+        <div class="functionHeader">
+        
+        def encrypt(self, blocks):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L1256" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Encrypt blocks. Overridden by the encrypt method of a Crypto.Cipher.* 
+object in setKeys().
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">blocks</td><td> (type: <code>str</code>
+)</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.ssh.transport.SSHCiphers.decrypt"></a>
+        <a name="decrypt"></a>
+        <div class="functionHeader">
+        
+        def decrypt(self, blocks):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L1266" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Decrypt blocks. See encrypt().
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">blocks</td><td> (type: <code>str</code>
+)</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.ssh.transport.SSHCiphers.makeMAC"></a>
+        <a name="makeMAC"></a>
+        <div class="functionHeader">
+        
+        def makeMAC(self, seqid, data):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L1275" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Create a message authentication code (MAC) for the given packet using 
+the outgoing MAC values.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">seqid</td><td>the sequence ID of the outgoing packet
+ (type: <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">data</td><td>the data to create a MAC for
+ (type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"> (type: <code>str</code>
+)</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.ssh.transport.SSHCiphers.verify"></a>
+        <a name="verify"></a>
+        <div class="functionHeader">
+        
+        def verify(self, seqid, data, mac):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/ssh/transport.py#L1295" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Verify an incoming MAC using the incoming MAC values. Return True if 
+the MAC is valid.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">seqid</td><td>the sequence ID of the incoming packet
+ (type: <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">data</td><td>the packet data to verify
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">mac</td><td>the MAC sent with the packet
+ (type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"> (type: <code>bool</code>
+)</td></tr></table></div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2008-05-18 16:50:21.
+    </address>
+  </body>
+</html>

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.cfreactor._WakerPlus : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div style="display: none" id="current-docs-container" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class private"><code>twisted.internet.cfreactor._WakerPlus(<a href="twisted.internet.posixbase._SocketWaker.html" data-type="Class" class="code">_Waker</a>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.internet.html" data-type="Package" class="code">internet</a>.<a href="twisted.internet.cfreactor.html" data-type="Module" class="code">cfreactor</a></code>
+          <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/internet/cfreactor.py#L47">View Source</a>
+          <a href="classIndex.html#twisted.internet.cfreactor._WakerPlus">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>The normal Twisted waker will simply wake up the main loop, which causes
+an iteration to run, which in turn causes 
+<code>PosixReactorBase.runUntilCurrent</code> to get invoked.</p>
+<p><a href="twisted.internet.cfreactor.CFReactor.html"><code>CFReactor</code></a>
+has a slightly different model of iteration, though: rather than have each 
+iteration process the thread queue, then timed calls, then file 
+descriptors, each callback is run as it is dispatched by the CFRunLoop 
+observer which triggered it.</p>
+<p>So this waker needs to not only unblock the loop, but also make sure the
+work gets done; so, it reschedules the invocation of 
+<code>runUntilCurrent</code> to be immediate (0 seconds from now) even if 
+there is no timed call work to do.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id607">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.cfreactor._WakerPlus.html#doRead" data-type="Method" class="code">doRead</a></td>
+    <td><span>Wake up the loop and force <code>runUntilCurrent</code> to run 
+immediately in the next timed iteration.</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.python.log.Logger.html" data-type="Class" class="code">Logger</a> (via <a href="twisted.internet.posixbase._SocketWaker.html" data-type="Class" class="code">_SocketWaker</a>):
+          </p>
+          <table class="children sortable" id="id609">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.log.Logger.html#logPrefix" data-type="Method" class="code">logPrefix</a></td>
+    <td><span>Override this method to insert custom logging behavior.  Its return 
+value will be inserted in front of every line.  It may be called more times
+than the number of output lines.</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.python.log.Logger.html" data-type="Class" class="code">Logger</a> (via <a href="twisted.internet.posixbase._SocketWaker.html" data-type="Class" class="code">_SocketWaker</a>):
+          </p>
+          <table class="children sortable" id="id609">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.log.Logger.html#logPrefix" data-type="Method" class="code">logPrefix</a></td>
+    <td><span>Override this method to insert custom logging behavior.  Its return 
+value will be inserted in front of every line.  It may be called more times
+than the number of output lines.</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  <a name="twisted.internet.cfreactor._WakerPlus.doRead">
+    
+  </a>
+  <a name="doRead">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    doRead(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.1/twisted/internet/cfreactor.py#L64" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.internet.posixbase._SocketWaker.html#doRead" data-type="Method" class="code">twisted.internet.posixbase._SocketWaker.doRead</a></div>
+    <div><p>Wake up the loop and force <code>runUntilCurrent</code> to run 
+immediately in the next timed iteration.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2015-05-24 20:04:00.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web.iweb.IResponse : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="apidocs.css" type="text/css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="interface"><code>twisted.web.iweb.IResponse(<span title="zope.interface.Interface">Interface</span>)</code> <small>interface documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.web.html" data-type="Package" class="code">web</a>.<a href="twisted.web.iweb.html" data-type="Module" class="code">iweb</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/web/iweb.py#L547">View Source</a>
+          <a href="classIndex.html#twisted.web.iweb.IResponse">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Known implementations: <a href="twisted.web.client.Response.html" data-type="Class" class="code">twisted.web.client.Response</a></p>
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>An object representing an HTTP response received from an HTTP 
+server.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">11.1</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3176">
+  
+  <tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><a href="twisted.web.iweb.IResponse.html#version" data-type="Attribute" class="code">version</a></td>
+    <td><span>A three-tuple describing the protocol and protocol version of the 
+response.  The first element is of type <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>,
+the second and third are of type <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>.
+For example, <code>(b'HTTP', 1, 1)</code>.</span></td>
+  </tr><tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><a href="twisted.web.iweb.IResponse.html#code" data-type="Attribute" class="code">code</a></td>
+    <td><span>The HTTP status code of this response, as a <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>.</span></td>
+  </tr><tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><a href="twisted.web.iweb.IResponse.html#phrase" data-type="Attribute" class="code">phrase</a></td>
+    <td><span>The HTTP reason phrase of this response, as a <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>.</span></td>
+  </tr><tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><a href="twisted.web.iweb.IResponse.html#headers" data-type="Attribute" class="code">headers</a></td>
+    <td><span>The HTTP response <a href="twisted.web.http_headers.Headers.html"><code>Headers</code></a> of 
+this response.</span></td>
+  </tr><tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><a href="twisted.web.iweb.IResponse.html#length" data-type="Attribute" class="code">length</a></td>
+    <td><span>The <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>
+number of bytes expected to be in the body of this response or <a href="twisted.web.iweb.html#UNKNOWN_LENGTH"><code>UNKNOWN_LENGTH</code></a>
+if the server did not indicate how many bytes to expect.  For <i>HEAD</i> 
+responses, this will be 0; if the response includes a <i>Content-Length</i>
+header, it will be available in <code>headers</code>.</span></td>
+  </tr><tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><a href="twisted.web.iweb.IResponse.html#request" data-type="Attribute" class="code">request</a></td>
+    <td><span>The <a href="twisted.web.iweb.IClientRequest.html"><code>IClientRequest</code></a>
+that resulted in this response.</span></td>
+  </tr><tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><a href="twisted.web.iweb.IResponse.html#previousResponse" data-type="Attribute" class="code">previousResponse</a></td>
+    <td><span>The previous <a href="twisted.web.iweb.IResponse.html"><code>IResponse</code></a> from a 
+redirect, or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+if there was no previous response. This can be used to walk the response or
+request history for redirections.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IResponse.html#deliverBody" data-type="Method" class="code">deliverBody</a></td>
+    <td><span>Register an <a href="twisted.internet.interfaces.IProtocol.html"><code>IProtocol</code></a>
+provider to receive the response body.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IResponse.html#setPreviousResponse" data-type="Method" class="code">setPreviousResponse</a></td>
+    <td><span>Set the reference to the previous <a href="twisted.web.iweb.IResponse.html"><code>IResponse</code></a>.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseattribute">
+  
+  <a name="twisted.web.iweb.IResponse.version">
+    
+  </a>
+  <a name="version">
+    
+  </a>
+  <div class="functionHeader">
+    version =
+  </div>
+  <div class="functionBody">
+    <div><p>A three-tuple describing the protocol and protocol version of the 
+response.  The first element is of type <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>,
+the second and third are of type <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>.
+For example, <code>(b'HTTP', 1, 1)</code>.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="baseattribute">
+  
+  <a name="twisted.web.iweb.IResponse.code">
+    
+  </a>
+  <a name="code">
+    
+  </a>
+  <div class="functionHeader">
+    code =
+  </div>
+  <div class="functionBody">
+    <div><p>The HTTP status code of this response, as a <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="baseattribute">
+  
+  <a name="twisted.web.iweb.IResponse.phrase">
+    
+  </a>
+  <a name="phrase">
+    
+  </a>
+  <div class="functionHeader">
+    phrase =
+  </div>
+  <div class="functionBody">
+    <div><p>The HTTP reason phrase of this response, as a <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="baseattribute">
+  
+  <a name="twisted.web.iweb.IResponse.headers">
+    
+  </a>
+  <a name="headers">
+    
+  </a>
+  <div class="functionHeader">
+    headers =
+  </div>
+  <div class="functionBody">
+    <div><p>The HTTP response <a href="twisted.web.http_headers.Headers.html"><code>Headers</code></a> of 
+this response.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="baseattribute">
+  
+  <a name="twisted.web.iweb.IResponse.length">
+    
+  </a>
+  <a name="length">
+    
+  </a>
+  <div class="functionHeader">
+    length =
+  </div>
+  <div class="functionBody">
+    <div><p>The <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>
+number of bytes expected to be in the body of this response or <a href="twisted.web.iweb.html#UNKNOWN_LENGTH"><code>UNKNOWN_LENGTH</code></a>
+if the server did not indicate how many bytes to expect.  For <i>HEAD</i> 
+responses, this will be 0; if the response includes a <i>Content-Length</i>
+header, it will be available in <code>headers</code>.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="baseattribute">
+  
+  <a name="twisted.web.iweb.IResponse.request">
+    
+  </a>
+  <a name="request">
+    
+  </a>
+  <div class="functionHeader">
+    request =
+  </div>
+  <div class="functionBody">
+    <div><p>The <a href="twisted.web.iweb.IClientRequest.html"><code>IClientRequest</code></a>
+that resulted in this response.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="baseattribute">
+  
+  <a name="twisted.web.iweb.IResponse.previousResponse">
+    
+  </a>
+  <a name="previousResponse">
+    
+  </a>
+  <div class="functionHeader">
+    previousResponse =
+  </div>
+  <div class="functionBody">
+    <div><p>The previous <a href="twisted.web.iweb.IResponse.html"><code>IResponse</code></a> from a 
+redirect, or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+if there was no previous response. This can be used to walk the response or
+request history for redirections.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IResponse.deliverBody">
+    
+  </a>
+  <a name="deliverBody">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    deliverBody(protocol):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/web/iweb.py#L588">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Register an <a href="twisted.internet.interfaces.IProtocol.html"><code>IProtocol</code></a>
+provider to receive the response body.</p>
+<p>The protocol will be connected to a transport which provides <a href="twisted.internet.interfaces.IPushProducer.html"><code>IPushProducer</code></a>.
+The protocol's <code>connectionLost</code> method will be called with:</p>
+<ul>
+  <li>
+    ResponseDone, which indicates that all bytes from the response have 
+    been successfully delivered.
+  </li>
+  <li>
+    PotentialDataLoss, which indicates that it cannot be determined if the 
+    entire response body has been delivered.  This only occurs when making 
+    requests to HTTP servers which do not set <i>Content-Length</i> or a 
+    <i>Transfer-Encoding</i> in the response.
+  </li>
+  <li>
+    ResponseFailed, which indicates that some bytes from the response were 
+    lost.  The <code>reasons</code> attribute of the exception may provide 
+    more specific indications as to why.
+  </li>
+</ul><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.iweb.IResponse.setPreviousResponse">
+    
+  </a>
+  <a name="setPreviousResponse">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setPreviousResponse(response):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.10.0/src/twisted/web/iweb.py#L611">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Set the reference to the previous <a href="twisted.web.iweb.IResponse.html"><code>IResponse</code></a>.</p>
+<p>The value of the previous response can be read via <a href="twisted.web.iweb.IResponse.html#previousResponse"><code>IResponse.previousResponse</code></a>.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2019-11-11 15:02:42.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

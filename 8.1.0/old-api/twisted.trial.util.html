@@ -1,0 +1,276 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.trial.util&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="module">Module t.t.util</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.trial.html">trial</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/trial/util.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div><p>A collection of utility functions and classes, used internally by 
+Trial.</p>
+<p>This code is for Trial's internal use. Do NOT use this code if you are 
+writing tests. It is subject to change at the Trial maintainer's whim. 
+There is nothing here in this module for you to use unless you are 
+maintaining Trial.</p>
+<p>Any non-Trial Twisted code that uses this module will be shot.</p>
+Maintainer: <a href="mailto:jml&#64;twistedmatrix.com">Jonathan 
+Lange</a>
+<table class="fieldTable"></table></div>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id7583">
+  
+  
+  
+  
+  <tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.trial.util.FailureError.html">FailureError</a></td>
+    <td><span>DEPRECATED in Twisted 8.0. This exception is never raised by 
+Trial.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.trial.util.DirtyReactorWarning.html">DirtyReactorWarning</a></td>
+    <td><span>DEPRECATED in Twisted 8.0.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.trial.util.DirtyReactorError.html">DirtyReactorError</a></td>
+    <td><span>DEPRECATED in Twisted 8.0. This is not used by Trial any more.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.trial.util.PendingTimedCallsError.html">PendingTimedCallsError</a></td>
+    <td><span>DEPRECATED in Twisted 8.0. This is not used by Trial any more.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.trial.util.DirtyReactorAggregateError.html">DirtyReactorAggregateError</a></td>
+    <td><span>Passed to <a 
+href="twisted.trial.itrial.IReporter.html#addError"><code>twisted.trial.itrial.IReporter.addError</code></a> 
+when the reactor is
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.trial.util.html#suppress">suppress</a></td>
+    <td><span>Sets up the .suppress tuple properly, pass options to this method as 
+you
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.trial.util.html#profiled">profiled</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.trial.util.html#getPythonContainers">getPythonContainers</a></td>
+    <td><span>Walk up the Python tree from method 'meth', finding its class, its 
+module
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.trial.util.html#acquireAttribute">acquireAttribute</a></td>
+    <td><span>Go through the list 'objects' sequentially until we find one which 
+has
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.trial.util.html#findObject">findObject</a></td>
+    <td><span>Get a fully-named package, module, module-global object or 
+attribute.
+</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.trial.util._Janitor.html">_Janitor</a></td>
+    <td><span>The guy that cleans up after you.
+</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.trial.util.html#_runSequentially">_runSequentially</a></td>
+    <td><span>Run the given callables one after the other. If a callable returns 
+a
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.trial.util.suppress"></a>
+        <a name="suppress"></a>
+        <div class="functionHeader">
+        
+        def suppress(action='ignore', **kwarg):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/trial/util.py#L216" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Sets up the .suppress tuple properly, pass options to this method as 
+you would the stdlib warnings.filterwarnings()</p>
+So, to use this with a .suppress magic attribute you would do the 
+following:
+<pre class="doctestblock">
+<span class="py-src"><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">from</span> twisted.trial <span class="py-keyword">import</span> unittest, util
+<span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">import</span> warnings
+<span class="py-prompt">&gt;&gt;&gt;
+</span><span class="py-prompt">&gt;&gt;&gt; </span><span class="py-keyword">class</span> TestFoo(unittest.TestCase):
+<span class="py-prompt">... </span>    <span class="py-keyword">def</span> testFooBar(self):
+<span class="py-prompt">... </span>        warnings.warn(<span class="py-string">&quot;i am deprecated&quot;</span>, DeprecationWarning)
+<span class="py-prompt">... </span>    testFooBar.suppress = [util.suppress(message=<span class="py-string">'i am deprecated'</span>)]
+<span class="py-prompt">...
+</span><span class="py-prompt">&gt;&gt;&gt;
+</span></span></pre>
+Note that as with the todo and timeout attributes: the module level 
+attribute acts as a default for the class attribute which acts as a 
+default for the method attribute. The suppress attribute can be 
+overridden at any level by specifying <code>.suppress = []</code>
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.trial.util.profiled"></a>
+        <a name="profiled"></a>
+        <div class="functionHeader">
+        
+        def profiled(f, outputFile):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/trial/util.py#L242" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.trial.util.getPythonContainers"></a>
+        <a name="getPythonContainers"></a>
+        <div class="functionHeader">
+        
+        def getPythonContainers(meth):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/trial/util.py#L267" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Walk up the Python tree from method 'meth', finding its class, its 
+module and all containing packages.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.trial.util.acquireAttribute"></a>
+        <a name="acquireAttribute"></a>
+        <div class="functionHeader">
+        
+        def acquireAttribute(objects, attr, default=_DEFAULT):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/trial/util.py#L283" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Go through the list 'objects' sequentially until we find one which has 
+attribute 'attr', then return the value of that attribute. If not found, 
+return 'default' if set, otherwise, raise AttributeError.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.trial.util.findObject"></a>
+        <a name="findObject"></a>
+        <div class="functionHeader">
+        
+        def findObject(name):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/trial/util.py#L295" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Get a fully-named package, module, module-global object or attribute. 
+Forked from twisted.python.reflect.namedAny.</p>
+Returns a tuple of (bool, obj). If bool is True, the named object 
+exists and is returned as obj. If bool is False, the named object does 
+not exist and the value of obj is unspecified.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.trial.util._runSequentially"></a>
+        <a name="_runSequentially"></a>
+        <div class="functionHeader">
+        
+        def _runSequentially(callables, stopOnFirstError=False):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/trial/util.py#L336" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Run the given callables one after the other. If a callable returns a 
+Deferred, wait until it has finished before running the next 
+callable.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">callables</td><td>An iterable of callables that take no parameters.
+</td></tr><tr><td></td><td class="fieldArg">stopOnFirstError</td><td>If True, then stop running callables as soon as one raises an 
+exception or fires an errback. False by default.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+that fires a list of <code>(flag, value)</code> tuples. Each tuple will 
+be either <code>(SUCCESS, &lt;return value&gt;)</code> or <code>(FAILURE, 
+&lt;Failure&gt;)</code>.
+</td></tr></table></div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2008-05-18 16:50:21.
+    </address>
+  </body>
+</html>

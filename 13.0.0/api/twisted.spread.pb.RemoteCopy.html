@@ -1,0 +1,161 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.spread.pb.RemoteCopy : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.s.p.RemoteCopy(<a href="twisted.spread.jelly.Unjellyable.html">Unjellyable</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.spread.html">spread</a>.<a href="twisted.spread.pb.html">pb</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/spread/flavors.py#L364">View Source</a>
+      <a href="classIndex.html#twisted.spread.pb.RemoteCopy">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known subclasses: <a href="twisted.spread.pb.CopiedFailure.html">twisted.spread.pb.CopiedFailure</a>, <a href="twisted.spread.pb.RemoteCache.html">twisted.spread.pb.RemoteCache</a>, <a href="twisted.web.distrib.Request.html">twisted.web.distrib.Request</a></p>
+    </div>
+    <div>I am a remote copy of a Copyable object.</p>
+<p>When the state from a <a 
+href="twisted.spread.pb.Copyable.html"><code>Copyable</code></a> object is 
+received, an instance will be created based on the copy tags table (see 
+setUnjellyableForClass) and sent the <a 
+href="twisted.spread.pb.RemoteCopy.html#setCopyableState"><code>setCopyableState</code></a>
+message.  I provide a reasonable default implementation of that message; 
+subclass me if you wish to serve as a copier for remote data.</p>
+<p>NOTE: copiers are invoked with no arguments.  Do not implement a 
+constructor which requires args in a subclass of <a 
+href="twisted.spread.pb.RemoteCopy.html"><code>RemoteCopy</code></a>!<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id89">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.RemoteCopy.html#setCopyableState">setCopyableState</a></td>
+    <td><span>I will be invoked with the state to copy locally.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.pb.RemoteCopy.html#unjellyFor">unjellyFor</a></td>
+    <td><span>Perform the inverse operation of <a 
+href="twisted.spread.jelly.Jellyable.html#jellyFor"><code>Jellyable.jellyFor</code></a>.</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.spread.jelly.Unjellyable.html">Unjellyable</a>:
+        </p>
+        <table class="children sortable" id="id90">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.jelly.Unjellyable.html#setStateFor">setStateFor</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.spread.flavors.RemoteCopy.setCopyableState">
+    
+  </a>
+  <a name="setCopyableState">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setCopyableState(self, state):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/spread/flavors.py#L377" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.spread.publish.RemotePublished.html">twisted.spread.publish.RemotePublished</a>, <a href="twisted.web.distrib.Request.html">twisted.web.distrib.Request</a></div>
+    <div>I will be invoked with the state to copy locally.</p>
+<p>'state' is the data returned from the remote object's 
+'getStateToCopyFor' method, which will often be the remote object's 
+dictionary (or a filtered approximation of it depending on my peer's 
+perspective).<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.spread.flavors.RemoteCopy.unjellyFor">
+    
+  </a>
+  <a name="unjellyFor">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    unjellyFor(self, unjellier, jellyList):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/spread/flavors.py#L388" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.spread.interfaces.IUnjellyable.html#unjellyFor">twisted.spread.interfaces.IUnjellyable</a></div><div class="interfaceinfo">overrides <a href="twisted.spread.jelly.Unjellyable.html#unjellyFor">twisted.spread.jelly.Unjellyable.unjellyFor</a></div><div class="interfaceinfo">overridden in <a href="twisted.spread.pb.RemoteCache.html">twisted.spread.pb.RemoteCache</a></div>
+    <div>Perform the inverse operation of <a 
+href="twisted.spread.jelly.Jellyable.html#jellyFor"><code>Jellyable.jellyFor</code></a>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><a 
+href="twisted.spread.interfaces.IUnjellyable.html#unjellyFor"><code>twisted.spread.interfaces.IUnjellyable.unjellyFor</code></a></td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2013-04-03 11:20:05.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,302 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.enterprise.adbapi.ConnectionPool&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.e.a.ConnectionPool:</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.enterprise.adbapi.html">twisted.enterprise.adbapi</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.enterprise.adbapi.ConnectionPool">View In Hierarchy</a>
+    </p>
+    <div></div>
+    <div>I represent a pool of connections to a DB-API 2.0 compliant 
+database.
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.adbapi.ConnectionPool.__init__">__init__</a></td>
+          <td><span>Create a new ConnectionPool.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.adbapi.ConnectionPool._start">_start</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.adbapi.ConnectionPool.start">start</a></td>
+          <td><span>Start the connection pool.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.adbapi.ConnectionPool.runWithConnection">runWithConnection</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.adbapi.ConnectionPool._runWithConnection">_runWithConnection</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.adbapi.ConnectionPool.runInteraction">runInteraction</a></td>
+          <td><span>Interact with the database and return the result.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.adbapi.ConnectionPool.runQuery">runQuery</a></td>
+          <td><span>Execute an SQL query and return the result.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.adbapi.ConnectionPool.runOperation">runOperation</a></td>
+          <td><span>Execute an SQL query and return None.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.adbapi.ConnectionPool.close">close</a></td>
+          <td><span>Close all pool connections and shutdown the pool.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.adbapi.ConnectionPool.finalClose">finalClose</a></td>
+          <td><span>This should only be called by the shutdown trigger.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.adbapi.ConnectionPool.connect">connect</a></td>
+          <td><span>Return a database connection when one becomes available.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.adbapi.ConnectionPool.disconnect">disconnect</a></td>
+          <td><span>Disconnect a database connection associated with this pool.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.adbapi.ConnectionPool._close">_close</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.adbapi.ConnectionPool._runInteraction">_runInteraction</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.adbapi.ConnectionPool._runQuery">_runQuery</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.adbapi.ConnectionPool._runOperation">_runOperation</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.adbapi.ConnectionPool.__getstate__">__getstate__</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.adbapi.ConnectionPool.__setstate__">__setstate__</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.enterprise.adbapi.ConnectionPool._deferToThread">_deferToThread</a></td>
+          <td><span>Internal function.
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.enterprise.adbapi.ConnectionPool.__init__"></a>
+        <div class="functionHeader">
+          def <span>__init__(self, dbapiName, *connargs, **connkw):</span>
+        </div>
+        <div class="functionBody"><div><p>Create a new ConnectionPool.</p>
+Any positional or keyword arguments other than those documented here 
+are passed to the DB-API object when connecting. Use these arguments to 
+pass database names, usernames, passwords, etc.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">dbapiName</td><td>an import string to use to obtain a DB-API compatible module (e.g. 
+'pyPgSQL.PgSQL')
+</td></tr><tr><td></td><td class="fieldArg">cp_min</td><td>the minimum number of connections in pool (default 3)
+</td></tr><tr><td></td><td class="fieldArg">cp_max</td><td>the maximum number of connections in pool (default 5)
+</td></tr><tr><td></td><td class="fieldArg">cp_noisy</td><td>generate informational log messages during operation (default 
+False)
+</td></tr><tr><td></td><td class="fieldArg">cp_openfun</td><td>a callback invoked after every connect() on the underlying DB-API 
+object. The callback is passed a new DB-API connection object. This 
+callback can setup per-connection state such as charset, timezone, 
+etc.
+</td></tr><tr><td></td><td class="fieldArg">cp_reconnect</td><td>detect connections which have failed and reconnect (default False). 
+Failed connections may result in ConnectionLost exceptions, which 
+indicate the query may need to be re-sent.
+</td></tr><tr><td></td><td class="fieldArg">cp_good_sql</td><td>an sql query which should always succeed and change no state (default 
+'select 1')
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.adbapi.ConnectionPool._start"></a>
+        <div class="functionHeader">
+          def <span>_start(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.adbapi.ConnectionPool.start"></a>
+        <div class="functionHeader">
+          def <span>start(self):</span>
+        </div>
+        <div class="functionBody"><div><p>Start the connection pool.</p>
+If you are using the reactor normally, this function does *not* need 
+to be called.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.adbapi.ConnectionPool.runWithConnection"></a>
+        <div class="functionHeader">
+          def <span>runWithConnection(self, func, *args, **kw):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.adbapi.ConnectionPool._runWithConnection"></a>
+        <div class="functionHeader">
+          def <span>_runWithConnection(self, func, *args, **kw):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.adbapi.ConnectionPool.runInteraction"></a>
+        <div class="functionHeader">
+          def <span>runInteraction(self, interaction, *args, **kw):</span>
+        </div>
+        <div class="functionBody"><div><p>Interact with the database and return the result.</p>
+<p>The 'interaction' is a callable object which will be executed in a 
+thread using a pooled connection. It will be passed an <a 
+href="twisted.enterprise.adbapi.Transaction.html">Transaction</a> object 
+as an argument (whose interface is identical to that of the database 
+cursor for your DB-API module of choice), and its results will be 
+returned as a Deferred. If running the method raises an exception, the 
+transaction will be rolled back. If the method returns a value, the 
+transaction will be committed.</p>
+NOTE that the function you pass is *not* run in the main thread: you 
+may have to worry about thread-safety in the function you pass to this if 
+it tries to use non-local objects.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">interaction</td><td>a callable object whose first argument is <a 
+href="twisted.enterprise.adbapi.Transaction.html">adbapi.Transaction</a>. 
+*args,**kw will be passed as additional arguments.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a Deferred which will fire the return value of 
+'interaction(Transaction(...))', or a Failure.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.adbapi.ConnectionPool.runQuery"></a>
+        <div class="functionHeader">
+          def <span>runQuery(self, *args, **kw):</span>
+        </div>
+        <div class="functionBody"><div><p>Execute an SQL query and return the result.</p>
+<p>A DB-API cursor will will be invoked with cursor.execute(*args, **kw). 
+The exact nature of the arguments will depend on the specific flavor of 
+DB-API being used, but the first argument in *args be an SQL statement. 
+The result of a subsequent cursor.fetchall() will be fired to the 
+Deferred which is returned. If either the 'execute' or 'fetchall' methods 
+raise an exception, the transaction will be rolled back and a Failure 
+returned.</p>
+The *args and **kw arguments will be passed to the DB-API cursor's 
+'execute' method.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a Deferred which will fire the return value of a DB-API cursor's 
+'fetchall' method, or a Failure.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.adbapi.ConnectionPool.runOperation"></a>
+        <div class="functionHeader">
+          def <span>runOperation(self, *args, **kw):</span>
+        </div>
+        <div class="functionBody"><div><p>Execute an SQL query and return None.</p>
+<p>A DB-API cursor will will be invoked with cursor.execute(*args, **kw). 
+The exact nature of the arguments will depend on the specific flavor of 
+DB-API being used, but the first argument in *args will be an SQL 
+statement. This method will not attempt to fetch any results from the 
+query and is thus suitable for INSERT, DELETE, and other SQL statements 
+which do not return values. If the 'execute' method raises an exception, 
+the transaction will be rolled back and a Failure returned.</p>
+<p>The args and kw arguments will be passed to the DB-API cursor's 
+'execute' method.</p>
+return: a Deferred which will fire None or a Failure.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.adbapi.ConnectionPool.close"></a>
+        <div class="functionHeader">
+          def <span>close(self):</span>
+        </div>
+        <div class="functionBody"><div>Close all pool connections and shutdown the pool.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.adbapi.ConnectionPool.finalClose"></a>
+        <div class="functionHeader">
+          def <span>finalClose(self):</span>
+        </div>
+        <div class="functionBody"><div>This should only be called by the shutdown trigger.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.adbapi.ConnectionPool.connect"></a>
+        <div class="functionHeader">
+          def <span>connect(self):</span>
+        </div>
+        <div class="functionBody"><div><p>Return a database connection when one becomes available.</p>
+This method blocks and should be run in a thread from the internal 
+threadpool. Don't call this method directly from non-threaded code. Using 
+this method outside the external threadpool may exceed the maximum number 
+of connections in the pool.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a database connection from the pool.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.adbapi.ConnectionPool.disconnect"></a>
+        <div class="functionHeader">
+          def <span>disconnect(self, conn):</span>
+        </div>
+        <div class="functionBody"><div><p>Disconnect a database connection associated with this pool.</p>
+Note: This function should only be used by the same thread which 
+called connect(). As with connect(), this function is not used in normal 
+non-threaded twisted code.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.adbapi.ConnectionPool._close"></a>
+        <div class="functionHeader">
+          def <span>_close(self, conn):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.adbapi.ConnectionPool._runInteraction"></a>
+        <div class="functionHeader">
+          def <span>_runInteraction(self, interaction, *args, **kw):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.adbapi.ConnectionPool._runQuery"></a>
+        <div class="functionHeader">
+          def <span>_runQuery(self, trans, *args, **kw):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.adbapi.ConnectionPool._runOperation"></a>
+        <div class="functionHeader">
+          def <span>_runOperation(self, trans, *args, **kw):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.adbapi.ConnectionPool.__getstate__"></a>
+        <div class="functionHeader">
+          def <span>__getstate__(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.adbapi.ConnectionPool.__setstate__"></a>
+        <div class="functionHeader">
+          def <span>__setstate__(self, state):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.enterprise.adbapi.ConnectionPool._deferToThread"></a>
+        <div class="functionHeader">
+          def <span>_deferToThread(self, f, *args, **kwargs):</span>
+        </div>
+        <div class="functionBody"><div><p>Internal function.</p>
+Call f in one of the connection pool's threads.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

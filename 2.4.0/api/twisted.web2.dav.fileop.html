@@ -1,0 +1,168 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.web2.dav.fileop&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="module">Module t.w.d.fileop</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.web2.dav.html">twisted.web2.dav</a></span>
+      <a></a>
+      <a></a>
+    </p>
+    <div></div>
+    <div><p>WebDAV file operations</p>
+This API is considered private to static.py and is therefore subject 
+to change.
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.web2.dav.fileop.delete">delete</a></td>
+          <td><span>Perform a DELETE operation on the given URI, which is backed by the 
+given
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.web2.dav.fileop.copy">copy</a></td>
+          <td><span>Perform a COPY from the given source and destination filepaths.
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.web2.dav.fileop.move">move</a></td>
+          <td><span>Perform a MOVE from the given source and destination filepaths.
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.web2.dav.fileop.put">put</a></td>
+          <td><span>Perform a PUT of the given data stream into the given filepath.
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.web2.dav.fileop.mkcollection">mkcollection</a></td>
+          <td><span>Perform a MKCOL on the given filepath.
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.web2.dav.fileop.rmdir">rmdir</a></td>
+          <td><span>Removes the directory with the given name, as well as its 
+contents.
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.web2.dav.fileop.delete"></a>
+        <div class="functionHeader">
+          def <span>delete(uri, filepath, depth='infinity'):</span>
+        </div>
+        <div class="functionBody"><div>Perform a DELETE operation on the given URI, which is backed by the 
+given filepath.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">filepath</td><td>the <a href="twisted.python.filepath.FilePath.html">FilePath</a> to 
+delete.
+</td></tr><tr><td></td><td class="fieldArg">depth</td><td>the recursion Depth for the DELETE operation, which must be 
+&quot;infinity&quot;.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a response or response code. If <code>depth</code> is not 
+&quot;infinity&quot;, responsecode.BAD_REQUEST is returned. If the 
+operation succeeds, the return value will be responsecode.NO_CONTENT.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.fileop.copy"></a>
+        <div class="functionHeader">
+          def <span>copy(source_filepath, destination_filepath, destination_uri, depth):</span>
+        </div>
+        <div class="functionBody"><div>Perform a COPY from the given source and destination filepaths. This 
+will perform a DELETE on the destination if necessary; the caller should 
+check and handle the overwrite header before calling <a 
+href="twisted.web2.dav.fileop.html#twisted.web2.dav.fileop.copy">copy</a> 
+(as in COPYMOVE.prepareForCopy).
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">source_filepath</td><td>a <a href="twisted.python.filepath.FilePath.html">FilePath</a> for the 
+file to copy from.
+</td></tr><tr><td></td><td class="fieldArg">destination_filepath</td><td>a <a href="twisted.python.filepath.FilePath.html">FilePath</a> for the 
+file to copy to.
+</td></tr><tr><td></td><td class="fieldArg">destination_uri</td><td>the URI of the destination resource.
+</td></tr><tr><td></td><td class="fieldArg">depth</td><td>the recursion Depth for the COPY operation, which must be one of 
+&quot;0&quot;, &quot;1&quot;, or &quot;infinity&quot;.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a response or response code. If <code>depth</code> is not 
+&quot;0&quot;, &quot;1&quot; or &quot;infinity&quot;, 
+responsecode.BAD_REQUEST is returned. If the operation succeeds, the 
+return value will be responsecode.CREATED if the destination already 
+exists or responsecode.NO_CONTENT if the destination was created by the 
+COPY.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.fileop.move"></a>
+        <div class="functionHeader">
+          def <span>move(source_filepath, source_uri, destination_filepath, destination_uri, depth):</span>
+        </div>
+        <div class="functionBody"><div>Perform a MOVE from the given source and destination filepaths. This 
+will perform a DELETE on the destination if necessary; the caller should 
+check and handle the overwrite header before calling <a 
+href="twisted.web2.dav.fileop.html#twisted.web2.dav.fileop.copy">copy</a> 
+(as in COPYMOVE.prepareForCopy). Following the DELETE, this will attempt 
+an atomic filesystem move. If that fails, a COPY operation followed by a 
+DELETE on the source will be attempted instead.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">source_filepath</td><td>a <a href="twisted.python.filepath.FilePath.html">FilePath</a> for the 
+file to copy from.
+</td></tr><tr><td></td><td class="fieldArg">destination_filepath</td><td>a <a href="twisted.python.filepath.FilePath.html">FilePath</a> for the 
+file to copy to.
+</td></tr><tr><td></td><td class="fieldArg">destination_uri</td><td>the URI of the destination resource.
+</td></tr><tr><td></td><td class="fieldArg">depth</td><td>the recursion Depth for the MOVE operation, which must be 
+&quot;infinity&quot;.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a response or response code. If <code>depth</code> is not 
+&quot;infinity&quot;, responsecode.BAD_REQUEST is returned. If the 
+operation succeeds, the return value will be responsecode.CREATED if the 
+destination already exists or responsecode.NO_CONTENT if the destination 
+was created by the MOVE.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.fileop.put"></a>
+        <div class="functionHeader">
+          def <span>put(stream, filepath, uri=None):</span>
+        </div>
+        <div class="functionBody"><div>Perform a PUT of the given data stream into the given filepath.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">stream</td><td>the stream to write to the destination.
+</td></tr><tr><td></td><td class="fieldArg">filepath</td><td>the <a href="twisted.python.filepath.FilePath.html">FilePath</a> of 
+the destination file.
+</td></tr><tr><td></td><td class="fieldArg">uri</td><td>the URI of the destination resource. If the destination exists, if 
+<code>uri</code> is not <code>None</code>, perform a DELETE operation on 
+the destination, but if <code>uri</code> is <code>None</code>, delete the 
+destination directly. Note that whether a <a 
+href="twisted.web2.dav.fileop.html#twisted.web2.dav.fileop.put">put</a> 
+deletes the destination directly vs. performing a DELETE on the 
+destination affects the response returned in the event of an error during 
+deletion. Specifically, DELETE on collections must return a 
+MultiStatusResponse under certain circumstances, whereas PUT isn't 
+required to do so. Therefore, if the caller expects DELETE semantics, it 
+must provide a valid <code>uri</code>.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a response or response code. If the operation succeeds, the return 
+value will be responsecode.CREATED if the destination already exists or 
+responsecode.NO_CONTENT if the destination was created by the PUT.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.fileop.mkcollection"></a>
+        <div class="functionHeader">
+          def <span>mkcollection(filepath):</span>
+        </div>
+        <div class="functionBody"><div>Perform a MKCOL on the given filepath.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">filepath</td><td>the <a href="twisted.python.filepath.FilePath.html">FilePath</a> of 
+the collection resource to create.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a response or response code. If the operation succeeds, the return 
+value will be responsecode.CREATED if the destination already exists or 
+responsecode.NO_CONTENT if the destination was created by the MKCOL.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.fileop.rmdir"></a>
+        <div class="functionHeader">
+          def <span>rmdir(dirname):</span>
+        </div>
+        <div class="functionBody"><div>Removes the directory with the given name, as well as its 
+contents.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">dirname</td><td>the path to the directory to remove.
+</td></tr></table></div></div>
+      </div>    
+  </body>
+</html>

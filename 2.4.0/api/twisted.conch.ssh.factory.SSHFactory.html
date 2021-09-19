@@ -1,0 +1,163 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.conch.ssh.factory.SSHFactory&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.c.s.f.SSHFactory(<a href="twisted.internet.protocol.Factory.html">protocol.Factory</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.conch.ssh.factory.html">twisted.conch.ssh.factory</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.conch.ssh.factory.SSHFactory">View In Hierarchy</a>
+    </p>
+    <div><p>Known subclasses: <a href="twisted.conch.manhole_ssh.ConchFactory.html">twisted.conch.manhole_ssh.ConchFactory</a>, <a href="twisted.conch.openssh_compat.factory.OpenSSHFactory.html">twisted.conch.openssh_compat.factory.OpenSSHFactory</a></p></div>
+    <div class="undocumented">Undocumented</div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.ssh.factory.SSHFactory.startFactory">startFactory</a></td>
+          <td><span>This will be called before I begin listening on a Port or 
+Connector.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.ssh.factory.SSHFactory.buildProtocol">buildProtocol</a></td>
+          <td><span>Called when a connection has been established to addr.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.ssh.factory.SSHFactory.getPublicKeys">getPublicKeys</a></td>
+          <td><span>Called when the factory is started to get the public portions of 
+the
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.ssh.factory.SSHFactory.getPrivateKeys">getPrivateKeys</a></td>
+          <td><span>Called when the factory is started to get the private portions of 
+the
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.ssh.factory.SSHFactory.getPrimes">getPrimes</a></td>
+          <td><span>Called when the factory is started to get Diffie-Hellman generators 
+and
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.ssh.factory.SSHFactory.getDHPrime">getDHPrime</a></td>
+          <td><span>Return a tuple of (g, p) for a Diffe-Hellman process, with p being 
+as
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.ssh.factory.SSHFactory.getService">getService</a></td>
+          <td><span>Return a class to use as a service for the given transport.
+</span></td>
+        </tr></table>
+    
+    
+        <p>
+          Inherited from <span><a href="twisted.internet.protocol.Factory.html">Factory</a></span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.internet.protocol.Factory.html#twisted.internet.protocol.Factory.doStart">doStart</a></td>
+            <td><span>Make sure startFactory is called.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.internet.protocol.Factory.html#twisted.internet.protocol.Factory.doStop">doStop</a></td>
+            <td><span>Make sure stopFactory is called.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.internet.protocol.Factory.html#twisted.internet.protocol.Factory.stopFactory">stopFactory</a></td>
+            <td><span>This will be called before I stop listening on all 
+Ports/Connectors.
+</span></td>
+          </tr></table>
+      
+    <div class="function">
+        <a name="twisted.conch.ssh.factory.SSHFactory.startFactory"></a>
+        <div class="functionHeader">
+          def <span>startFactory(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Factory.html#twisted.internet.protocol.Factory.startFactory">twisted.internet.protocol.Factory.startFactory</a></div><div><p>This will be called before I begin listening on a Port or 
+Connector.</p>
+<p>It will only be called once, even if the factory is connected to 
+multiple ports.</p>
+This can be used to perform 'unserialization' tasks that are best put 
+off until things are actually running, such as connecting to a database, 
+opening files, etcetera.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.conch.ssh.factory.SSHFactory.buildProtocol"></a>
+        <div class="functionHeader">
+          def <span>buildProtocol(self, addr):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocolFactory.html#twisted.internet.interfaces.IProtocolFactory.buildProtocol">twisted.internet.interfaces.IProtocolFactory</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Factory.html#twisted.internet.protocol.Factory.buildProtocol">twisted.internet.protocol.Factory.buildProtocol</a></div><div><p>Called when a connection has been established to addr.</p>
+If None is returned, the connection is assumed to have been refused, 
+and the Port will close the connection.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">addr</td><td>The address of the newly-established connection
+(type: (host, port)
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">None if the connection was refused, otherwise an object implementing 
+IProtocol.
+(type: None or <a 
+href="twisted.internet.interfaces.IProtocol.html">IProtocol</a>.
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.conch.ssh.factory.SSHFactory.getPublicKeys"></a>
+        <div class="functionHeader">
+          def <span>getPublicKeys(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.conch.openssh_compat.factory.OpenSSHFactory.html#twisted.conch.openssh_compat.factory.OpenSSHFactory.getPublicKeys">twisted.conch.openssh_compat.factory.OpenSSHFactory</a></div><div>Called when the factory is started to get the public portions of the 
+servers host keys. Returns a dictionary mapping SSH key types to public 
+key strings.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">(type: <code>dict</code>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.conch.ssh.factory.SSHFactory.getPrivateKeys"></a>
+        <div class="functionHeader">
+          def <span>getPrivateKeys(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.conch.openssh_compat.factory.OpenSSHFactory.html#twisted.conch.openssh_compat.factory.OpenSSHFactory.getPrivateKeys">twisted.conch.openssh_compat.factory.OpenSSHFactory</a></div><div>Called when the factory is started to get the private portions of the 
+servers host keys. Returns a dictionary mapping SSH key types to 
+<code>Crypto.PublicKey.pubkey.pubkey</code> objects.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">(type: <code>dict</code>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.conch.ssh.factory.SSHFactory.getPrimes"></a>
+        <div class="functionHeader">
+          def <span>getPrimes(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.conch.openssh_compat.factory.OpenSSHFactory.html#twisted.conch.openssh_compat.factory.OpenSSHFactory.getPrimes">twisted.conch.openssh_compat.factory.OpenSSHFactory</a></div><div>Called when the factory is started to get Diffie-Hellman generators 
+and primes to use. Returns a dictionary mapping number of bits to lists 
+of tuple of (generator, prime).
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">(type: <code>dict</code>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.conch.ssh.factory.SSHFactory.getDHPrime"></a>
+        <div class="functionHeader">
+          def <span>getDHPrime(self, bits):</span>
+        </div>
+        <div class="functionBody"><div>Return a tuple of (g, p) for a Diffe-Hellman process, with p being as 
+close to bits bits as possible.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">bits</td><td>(type: <code>int</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">(type: <code>tuple</code>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.conch.ssh.factory.SSHFactory.getService"></a>
+        <div class="functionHeader">
+          def <span>getService(self, transport, service):</span>
+        </div>
+        <div class="functionBody"><div>Return a class to use as a service for the given transport.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">transport</td><td>(type: <code>transport.SSHServerTransport</code>
+)</td></tr><tr><td></td><td class="fieldArg">service</td><td>(type: <code>stR</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">(type: subclass of {service.SSHService}
+)</td></tr></table></div></div>
+      </div>    
+  </body>
+</html>

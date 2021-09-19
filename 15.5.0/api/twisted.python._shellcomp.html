@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.python._shellcomp : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div style="display: none" id="current-docs-container" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module private"><code>twisted.python._shellcomp</code> <small>module documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.python.html" data-type="Package" class="code">python</a></code>
+          <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_shellcomp.py">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>No public APIs are provided by this module. Internal use only.</p>
+<p>This module implements dynamic tab-completion for any command that uses 
+twisted.python.usage. Currently, only zsh is supported. Bash support may be
+added in the future.</p>
+<p>Maintainer: Eric P. Mangold - twisted AT teratorn DOT org</p>
+<p>In order for zsh completion to take place the shell must be able to find
+an appropriate "stub" file ("completion function") that
+invokes this code and displays the results to the user.</p>
+<p>The stub used for Twisted commands is in the file 
+<code>twisted-completion.zsh</code>, which is also included in the official
+Zsh distribution at <code>Completion/Unix/Command/_twisted</code>. Use this
+file as a basis for completion functions for your own commands. You should 
+only need to change the first line to something like <code>#compdef 
+mycommand</code>.</p>
+<p>The main public documentation exists in the <a href="twisted.python.usage.Options.html"><code>twisted.python.usage.Options</code></a>
+docstring, the <a href="twisted.python.usage.Completions.html"><code>twisted.python.usage.Completions</code></a>
+docstring, and the Options howto.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2558">
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.python._shellcomp.html#shellComplete" data-type="Function" class="code">shellComplete</a></td>
+    <td><span>Perform shell completion.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.python._shellcomp.SubcommandAction.html" data-type="Class" class="code">SubcommandAction</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.python._shellcomp.ZshBuilder.html" data-type="Class" class="code">ZshBuilder</a></td>
+    <td><span>Constructs zsh code that will complete options for a given usage.Options
+instance, possibly including a list of subcommand names.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.python._shellcomp.ZshSubcommandBuilder.html" data-type="Class" class="code">ZshSubcommandBuilder</a></td>
+    <td><span>Constructs zsh code that will complete options for a given usage.Options
+instance, and also for a single sub-command. This will only be used in the 
+case where the user is completing options for a specific subcommand.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.python._shellcomp.ZshArgumentsGenerator.html" data-type="Class" class="code">ZshArgumentsGenerator</a></td>
+    <td><span>Generate a call to the zsh _arguments completion function based on data 
+in a usage.Options instance</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.python._shellcomp.html#descrFromDoc" data-type="Function" class="code">descrFromDoc</a></td>
+    <td><span>Generate an appropriate description from docstring of the given 
+object</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.python._shellcomp.html#escape" data-type="Function" class="code">escape</a></td>
+    <td><span>Shell escape the given string</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  <a name="twisted.python._shellcomp.shellComplete">
+    
+  </a>
+  <a name="shellComplete">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    shellComplete(config, cmdName, words, shellCompFile):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_shellcomp.py#L34">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Perform shell completion.</p>
+<p>A completion function (shell script) is generated for the requested 
+shell and written to <code>shellCompFile</code>, typically 
+<code>stdout</code>. The result is then eval'd by the shell to produce the 
+desired completions.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">config</td><td>The <a href="twisted.python.usage.Options.html"><code>twisted.python.usage.Options</code></a>
+instance to generate completions for. (type: <a href="twisted.python.usage.Options.html"><code>twisted.python.usage.Options</code></a>)</td></tr><tr><td></td><td class="fieldArg">cmdName</td><td>The name of the command we're generating completions for. In the case of 
+zsh, this is used to print an appropriate "#compdef $CMD" line at
+the top of the output. This is not necessary for the functionality of the 
+system, but it helps in debugging, since the output we produce is properly 
+formed and may be saved in a file and used as a stand-alone completion 
+function. (type: <code>str</code>)</td></tr><tr><td></td><td class="fieldArg">words</td><td>The raw command-line words passed to use by the shell stub function. 
+argv[0] has already been stripped off. (type: <code>list</code> of <code>str</code>)</td></tr><tr><td></td><td class="fieldArg">shellCompFile</td><td>The file to write completion data to. (type: <code>file</code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.python._shellcomp.descrFromDoc">
+    
+  </a>
+  <a name="descrFromDoc">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    descrFromDoc(obj):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_shellcomp.py#L636">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Generate an appropriate description from docstring of the given 
+object</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.python._shellcomp.escape">
+    
+  </a>
+  <a name="escape">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    escape(x):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_shellcomp.py#L649">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Shell escape the given string</p>
+<p>Implementation borrowed from now-deprecated commands.mkarg() in the 
+stdlib</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2015-11-29 11:40:45.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script src="//www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

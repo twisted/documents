@@ -1,0 +1,403 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.ssl : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="http://twistedmatrix.com/">Twisted</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code>twisted.internet.ssl</code> <small>module documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.internet.html" data-type="Package" class="code">internet</a></code>
+          <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.1/twisted/internet/ssl.py">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>This module implements Transport Layer Security (TLS) support for 
+Twisted.  It requires <a target="_top" href="https://pypi.python.org/pypi/pyOpenSSL">PyOpenSSL</a>.</p>
+<p>If you wish to establish a TLS connection, please use one of the 
+following APIs:</p>
+<ul>
+  <li>
+    SSL endpoints for <a href="twisted.internet.endpoints.SSL4ServerEndpoint.html"><code>servers</code></a>
+    and <a href="twisted.internet.endpoints.SSL4ClientEndpoint.html"><code>clients</code></a>
+  </li>
+  <li>
+    <a href="twisted.internet.interfaces.ITLSTransport.html#startTLS"><code>startTLS</code></a>
+  </li>
+  <li>
+    <a href="twisted.internet.interfaces.IReactorSSL.html#connectSSL"><code>connectSSL</code></a>
+  </li>
+  <li>
+    <a href="twisted.internet.interfaces.IReactorSSL.html#listenSSL"><code>listenSSL</code></a>
+  </li>
+</ul>
+<p>These APIs all require a <code>contextFactory</code> argument that 
+specifies their security properties, such as certificate, private key, 
+certificate authorities to verify the peer, allowed TLS protocol versions, 
+cipher suites, and so on. The recommended value for this argument is a <a href="twisted.internet.ssl.CertificateOptions.html"><code>CertificateOptions</code></a>
+instance; see its documentation for an explanation of the available 
+options.</p>
+<p>The <code>contextFactory</code> name is a bit of an anachronism now, as 
+context factories have been replaced with "connection creators", 
+but these objects serve the same role.</p>
+<p>Be warned that implementing your own connection creator (i.e.: value for
+the <code>contextFactory</code>) is both difficult and dangerous; the 
+Twisted team has worked hard to make <a href="twisted.internet.ssl.CertificateOptions.html"><code>CertificateOptions</code></a>'
+API comprehensible and unsurprising, and the Twisted team is actively 
+maintaining it to ensure that it becomes more secure over time.</p>
+<p>If you are really absolutely sure that you want to take on the risk of 
+implementing your own connection creator based on the pyOpenSSL API, see 
+the <a href="twisted.internet.interfaces.IOpenSSLServerConnectionCreator.html"><code>server
+connection creator</code></a> and <a href="twisted.internet.interfaces.IOpenSSLServerConnectionCreator.html"><code>client
+connection creator</code></a> interfaces.</p>
+<p>Developers using Twisted, please ignore the <a href="twisted.internet.ssl.Port.html"><code>Port</code></a>, <a href="twisted.internet.ssl.Connector.html"><code>Connector</code></a>, and 
+<a href="twisted.internet.ssl.Client.html"><code>Client</code></a> classes 
+defined here, as these are details of certain reactors' TLS 
+implementations, exposed by accident (and remaining here only for 
+compatibility reasons).  If you wish to establish a TLS connection, please 
+use one of the APIs listed above.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Note</td><td colspan="2">"SSL" (Secure Sockets Layer) is an antiquated synonym for 
+"TLS" (Transport Layer Security).  You may see these terms used 
+interchangeably throughout the documentation.</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1038">
+  
+  <tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.ssl.ContextFactory.html" data-type="Class" class="code">ContextFactory</a></td>
+    <td><span>A factory for SSL context objects, for server SSL connections.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.ssl.DefaultOpenSSLContextFactory.html" data-type="Class" class="code">DefaultOpenSSLContextFactory</a></td>
+    <td><span><a href="twisted.internet.ssl.DefaultOpenSSLContextFactory.html"><code>DefaultOpenSSLContextFactory</code></a>
+is a factory for server-side SSL context objects.  These objects define 
+certain parameters related to SSL handshakes and the subsequent 
+connection.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.ssl.ClientContextFactory.html" data-type="Class" class="code">ClientContextFactory</a></td>
+    <td><span>A context factory for SSL clients.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.ssl.Client.html" data-type="Class" class="code">Client</a></td>
+    <td><span>I am an SSL client.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.ssl.Server.html" data-type="Class" class="code">Server</a></td>
+    <td><span>I am an SSL server.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.ssl.Port.html" data-type="Class" class="code">Port</a></td>
+    <td><span>I am an SSL port.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.ssl.Connector.html" data-type="Class" class="code">Connector</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.ssl.KeyPair.html" data-type="Class" class="code">KeyPair</a></td>
+    <td><span class="undocumented">No class docstring; 0/2 class methods, 3/10 methods documented</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.ssl.DistinguishedName.html" data-type="Class" class="code">DistinguishedName</a></td>
+    <td><span>Identify and describe an entity.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.ssl.Certificate.html" data-type="Class" class="code">Certificate</a></td>
+    <td><span>An x509 certificate.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.ssl.CertificateRequest.html" data-type="Class" class="code">CertificateRequest</a></td>
+    <td><span>An x509 certificate request.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.ssl.PrivateCertificate.html" data-type="Class" class="code">PrivateCertificate</a></td>
+    <td><span>An x509 certificate and private key.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.ssl.AcceptableCiphers.html" data-type="Class" class="code">AcceptableCiphers</a></td>
+    <td><span>A representation of ciphers that are acceptable for TLS connections.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.ssl.CertificateOptions.html" data-type="Class" class="code">CertificateOptions</a></td>
+    <td><span>A <a href="twisted.internet.ssl.CertificateOptions.html"><code>CertificateOptions</code></a>
+specifies the security properties for a client or server TLS connection 
+used with OpenSSL.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.ssl.DiffieHellmanParameters.html" data-type="Class" class="code">DiffieHellmanParameters</a></td>
+    <td><span>A representation of key generation parameters that are required for 
+Diffie-Hellman key exchange.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.ssl.html#platformTrust" data-type="Function" class="code">platformTrust</a></td>
+    <td><span>Attempt to discover a set of trusted certificate authority certificates 
+(or, in other words: trust roots, or root certificates) whose trust is 
+managed and updated by tools outside of Twisted.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.ssl.OpenSSLDefaultPaths.html" data-type="Class" class="code">OpenSSLDefaultPaths</a></td>
+    <td><span>Trust the set of default verify paths that OpenSSL was built with, as 
+specified by <a target="_top" href="https://www.openssl.org/docs/ssl/SSL_CTX_load_verify_locations.html">SSL_CTX_set_default_verify_paths</a>.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.ssl.html#optionsForClientTLS" data-type="Function" class="code">optionsForClientTLS</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.internet.ssl.ProtocolNegotiationSupport.html" data-type="Class" class="code">ProtocolNegotiationSupport</a></td>
+    <td><span><a href="twisted.internet.ssl.ProtocolNegotiationSupport.html"><code>ProtocolNegotiationSupport</code></a>
+defines flags which are used to indicate the level of NPN/ALPN support 
+provided by the TLS backend.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.ssl.html#protocolNegotiationMechanisms" data-type="Function" class="code">protocolNegotiationMechanisms</a></td>
+    <td><span>Checks whether your versions of PyOpenSSL and OpenSSL are recent enough 
+to support protocol negotiation, and if they are, what kind of protocol 
+negotiation is supported.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.ssl.html#trustRootFromCertificates" data-type="Function" class="code">trustRootFromCertificates</a></td>
+    <td><span>Builds an object that trusts multiple root <a href="twisted.internet.ssl.Certificate.html"><code>Certificate</code></a>s.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  <a name="twisted.internet.ssl.platformTrust">
+    
+  </a>
+  <a name="platformTrust">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    platformTrust():
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.1/twisted/internet/_sslverify.py#L1061">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Attempt to discover a set of trusted certificate authority certificates 
+(or, in other words: trust roots, or root certificates) whose trust is 
+managed and updated by tools outside of Twisted.</p>
+<p>If you are writing any client-side TLS code with Twisted, you should use
+this as the <code>trustRoot</code> argument to <a href="twisted.internet.ssl.CertificateOptions.html"><code>CertificateOptions</code></a>.</p>
+<p>The result of this function should be like the up-to-date list of 
+certificates in a web browser.  When developing code that uses 
+<code>platformTrust</code>, you can think of it that way.  However, the 
+choice of which certificate authorities to trust is never Twisted's 
+responsibility. Unless you're writing a very unusual application or 
+library, it's not your code's responsibility either.  The user may use 
+platform-specific tools for defining which server certificates should be 
+trusted by programs using TLS. The purpose of using this API is to respect 
+that decision as much as possible.</p>
+<p>This should be a set of trust settings most appropriate for 
+<i>client</i> TLS connections; i.e. those which need to verify a server's 
+authenticity.  You should probably use this by default for any client TLS 
+connection that you create.  For servers, however, client certificates are 
+typically not verified; or, if they are, their verification will depend on 
+a custom, application-specific certificate authority.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">an appropriate trust settings object for your platform. (type: <a href="twisted.internet._sslverify.IOpenSSLTrustRoot.html"><code>IOpenSSLTrustRoot</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">NotImplementedError</td><td>if this platform is not yet supported by Twisted.  At present, only OpenSSL
+is supported.</td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">14.0</td></tr><tr class="fieldStart"><td class="fieldName">Note</td><td colspan="2">Currently, <a href="twisted.internet.ssl.html#platformTrust"><code>platformTrust</code></a>
+depends entirely upon your OpenSSL build supporting a set of "<a href="twisted.internet.ssl.OpenSSLDefaultPaths.html"><code>default verify 
+paths</code></a>" which correspond to certificate authority trust 
+roots.  Unfortunately, whether this is true of your system is both outside 
+of Twisted's control and difficult (if not impossible) for Twisted to 
+detect automatically.
+<p>Nevertheless, this ought to work as desired by default on:</p>
+<ul>
+  <li>
+    Ubuntu Linux machines with the <a target="_top" href="https://launchpad.net/ubuntu/+source/ca-certificates">ca-certificates</a> package installed,
+  </li>
+  <li>
+    Mac OS X when using the system-installed version of OpenSSL (i.e. 
+    <i>not</i> one installed via MacPorts or Homebrew),
+  </li>
+  <li>
+    any build of OpenSSL which has had certificate authority certificates 
+    installed into its default verify paths (by default, 
+    <code>/usr/local/ssl/certs</code> if you've built your own OpenSSL), or
+  </li>
+  <li>
+    any process where the <code>SSL_CERT_FILE</code> environment variable 
+    is set to the path of a file containing your desired CA certificates 
+    bundle.
+  </li>
+</ul>
+<p>Hopefully soon, this API will be updated to use more sophisticated 
+trust-root discovery mechanisms.  Until then, you can follow tickets in the
+Twisted tracker for progress on this implementation on <a target="_top" href="https://twistedmatrix.com/trac/ticket/6371">Microsoft 
+Windows</a>, <a target="_top" href="https://twistedmatrix.com/trac/ticket/6372">Mac OS X</a>, and <a target="_top" href="https://twistedmatrix.com/trac/ticket/6934">a fallback 
+for other platforms which do not have native trust management 
+tools</a>.</p></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.internet.ssl.optionsForClientTLS">
+    
+  </a>
+  <a name="optionsForClientTLS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    optionsForClientTLS(hostname, trustRoot=None, clientCertificate=None, acceptableProtocols=None, **kw):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.1/twisted/internet/_sslverify.py#L1261">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Create a <a href="twisted.internet.interfaces.IOpenSSLClientConnectionCreator.html"><code>client
+connection creator</code></a> for use with APIs such as <a href="twisted.internet.endpoints.SSL4ClientEndpoint.html"><code>SSL4ClientEndpoint</code></a>,
+<a href="twisted.internet.interfaces.IReactorSSL.html#connectSSL"><code>connectSSL</code></a>,
+and <a href="twisted.internet.interfaces.ITLSTransport.html#startTLS"><code>startTLS</code></a>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">hostname</td><td>The expected name of the remote host.  This serves two purposes: first, and
+most importantly, it verifies that the certificate received from the server
+correctly identifies the specified hostname. The second purpose is (if the 
+local <code>pyOpenSSL</code> supports it) to use the <a target="_top" href="https://en.wikipedia.org/wiki/Server_Name_Indication">Server Name Indication extension</a> to indicate to the 
+server which certificate should be used. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr><td></td><td class="fieldArg">trustRoot</td><td>Specification of trust requirements of peers.  This may be a <a href="twisted.internet.ssl.Certificate.html"><code>Certificate</code></a> 
+or the result of <a href="twisted.internet.ssl.html#platformTrust"><code>platformTrust</code></a>.
+By default it is <a href="twisted.internet.ssl.html#platformTrust"><code>platformTrust</code></a>
+and you probably shouldn't adjust it unless you really know what you're 
+doing.  Be aware that clients using this interface <i>must</i> verify the 
+server; you cannot explicitly pass <code>None</code> since that just means 
+to use <a href="twisted.internet.ssl.html#platformTrust"><code>platformTrust</code></a>. (type: <a href="twisted.internet._sslverify.IOpenSSLTrustRoot.html"><code>IOpenSSLTrustRoot</code></a>)</td></tr><tr><td></td><td class="fieldArg">clientCertificate</td><td>The certificate and private key that the client will use to authenticate to
+the server.  If unspecified, the client will not authenticate. (type: <a href="twisted.internet.ssl.PrivateCertificate.html"><code>PrivateCertificate</code></a>)</td></tr><tr><td></td><td class="fieldArg">acceptableProtocols</td><td>The protocols this peer is willing to speak after the TLS negotation has 
+completed, advertised over both ALPN and NPN. If this argument is 
+specified, and no overlap can be found with the other peer, the connection 
+will fail to be established. If the remote peer does not offer NPN or ALPN,
+the connection will be established, but no protocol wil be negotiated. 
+Protocols earlier in the list are preferred over those later in the list. (type: <code>list</code> of <code>bytes</code>)</td></tr><tr><td></td><td class="fieldArg">extraCertificateOptions</td><td>keyword-only argument; this is a dictionary of additional keyword arguments
+to be presented to <a href="twisted.internet.ssl.CertificateOptions.html"><code>CertificateOptions</code></a>.
+Please avoid using this unless you absolutely need to; any time you need to
+pass an option here that is a bug in this interface. (type: <a href="http://docs.python.org/library/stdtypes.html#dict"><code>dict</code></a>)</td></tr><tr><td></td><td class="fieldArg">kw</td><td>(Backwards compatibility hack to allow keyword-only arguments on Python 2.
+Please ignore; arbitrary keyword arguments will be errors.) (type: <a href="http://docs.python.org/library/stdtypes.html#dict"><code>dict</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A client connection creator. (type: <a href="twisted.internet.interfaces.IOpenSSLClientConnectionCreator.html"><code>IOpenSSLClientConnectionCreator</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">14.0</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.internet.ssl.protocolNegotiationMechanisms">
+    
+  </a>
+  <a name="protocolNegotiationMechanisms">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    protocolNegotiationMechanisms():
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.1/twisted/internet/_sslverify.py#L258">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Checks whether your versions of PyOpenSSL and OpenSSL are recent enough 
+to support protocol negotiation, and if they are, what kind of protocol 
+negotiation is supported.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A combination of flags from <a href="twisted.internet.ssl.ProtocolNegotiationSupport.html"><code>ProtocolNegotiationSupport</code></a>
+that indicate which mechanisms for protocol negotiation are supported. (type: <a href="twisted.python.constants.FlagConstant.html"><code>FlagConstant</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.internet.ssl.trustRootFromCertificates">
+    
+  </a>
+  <a name="trustRootFromCertificates">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    trustRootFromCertificates(certificates):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-16.3.1/twisted/internet/_sslverify.py#L1015">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Builds an object that trusts multiple root <a href="twisted.internet.ssl.Certificate.html"><code>Certificate</code></a>s.</p>
+<p>When passed to <a href="twisted.internet.ssl.html#optionsForClientTLS"><code>optionsForClientTLS</code></a>,
+connections using those options will reject any server certificate not 
+signed by at least one of the certificates in the `certificates` list.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">certificates</td><td>All certificates which will be trusted. (type: <code>iterable</code> of <a href="twisted.internet._sslverify.CertBase.html"><code>CertBase</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">an object suitable for use as the trustRoot= keyword argument to <a href="twisted.internet.ssl.html#optionsForClientTLS"><code>optionsForClientTLS</code></a> (type: <a href="twisted.internet._sslverify.IOpenSSLTrustRoot.html"><code>IOpenSSLTrustRoot</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">16.0.0</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2016-08-16 11:28:27.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

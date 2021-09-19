@@ -1,0 +1,242 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.python._release.BookBuilder : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.p._.BookBuilder(<a href="twisted.python._release.LoreBuilderMixin.html">LoreBuilderMixin</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.python.html">python</a>.<a href="twisted.python._release.html">_release</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/python/_release.py#L469">View Source</a>
+      <a href="classIndex.html#twisted.python._release.BookBuilder">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div><p>Generate the LaTeX and PDF documentation.</p>
+<p>The book is built by assembling a number of LaTeX documents.  Only the 
+overall document which describes how to assemble the documents is stored in
+LaTeX in the source.  The rest of the documentation is generated from Lore 
+input files.  These are primarily XHTML files (of the particular Lore 
+subset), but man pages are stored in GROFF format.  BookBuilder expects all
+of its input to be Lore XHTML format, so <a 
+href="twisted.python._release.ManBuilder.html"><code>ManBuilder</code></a> 
+should be invoked first if the man pages are to be included in the result 
+(this is determined by the book LaTeX definition file). Therefore, a sample
+usage of BookBuilder may look something like this:</p>
+<pre class="literalblock">
+   man = ManBuilder()
+   man.build(FilePath(&quot;doc/core/man&quot;))
+   book = BookBuilder()
+   book.build(
+       FilePath('doc/core/howto'),
+       [FilePath('doc/core/howto'), FilePath('doc/core/howto/tutorial'),
+        FilePath('doc/core/man'), FilePath('doc/core/specifications')],
+       FilePath('doc/core/howto/book.tex'), FilePath('/tmp/book.pdf'))
+</pre>
+<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3420">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python._release.BookBuilder.html#run">run</a></td>
+    <td><span>Execute a command in a child process and return the output.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python._release.BookBuilder.html#buildTeX">buildTeX</a></td>
+    <td><span>Build LaTeX files for lore input files in the given directory.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python._release.BookBuilder.html#buildPDF">buildPDF</a></td>
+    <td><span>Build a PDF from the given a LaTeX book document.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python._release.BookBuilder.html#build">build</a></td>
+    <td><span>Build a PDF book from the given TeX book definition and directories 
+containing lore inputs.</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.python._release.LoreBuilderMixin.html">LoreBuilderMixin</a>:
+        </p>
+        <table class="children sortable" id="id3421">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python._release.LoreBuilderMixin.html#lore">lore</a></td>
+    <td><span>Run lore with the given arguments.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.python._release.BookBuilder.run">
+    
+  </a>
+  <a name="run">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    run(self, command):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/python/_release.py#L492" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Execute a command in a child process and return the output.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">command</td><td>The shell command to run.
+ (type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">CommandFailed</td><td>If the child process exits with an error.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python._release.BookBuilder.buildTeX">
+    
+  </a>
+  <a name="buildTeX">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    buildTeX(self, howtoDir):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/python/_release.py#L504" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Build LaTeX files for lore input files in the given directory.</p>
+<p>Input files ending in .xhtml will be considered. Output will written as 
+.tex files.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">howtoDir</td><td>A directory containing lore input files.
+ (type: <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">ValueError</td><td>If <code>howtoDir</code> does not exist.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python._release.BookBuilder.buildPDF">
+    
+  </a>
+  <a name="buildPDF">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    buildPDF(self, bookPath, inputDirectory, outputPath):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/python/_release.py#L524" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Build a PDF from the given a LaTeX book document.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">bookPath</td><td>The location of a LaTeX document defining a book.
+ (type: <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>
+)</td></tr><tr><td></td><td class="fieldArg">inputDirectory</td><td>The directory which the inputs of the book are relative to.
+ (type: <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>
+)</td></tr><tr><td></td><td class="fieldArg">outputPath</td><td>The location to which to write the resulting book.
+ (type: <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python._release.BookBuilder.build">
+    
+  </a>
+  <a name="build">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    build(self, baseDirectory, inputDirectories, bookPath, outputPath):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/python/_release.py#L576" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Build a PDF book from the given TeX book definition and directories 
+containing lore inputs.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">baseDirectory</td><td>The directory which the inputs of the book are relative to.
+ (type: <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>
+)</td></tr><tr><td></td><td class="fieldArg">inputDirectories</td><td>The paths which contain lore inputs to be converted to LaTeX.
+ (type: <code>list</code> of <a 
+href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>
+)</td></tr><tr><td></td><td class="fieldArg">bookPath</td><td>The location of a LaTeX document defining a book.
+ (type: <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>
+)</td></tr><tr><td></td><td class="fieldArg">outputPath</td><td>The location to which to write the resulting book.
+ (type: <a href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a>
+)</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-11-17 13:59:56.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

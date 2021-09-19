@@ -1,0 +1,464 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.mail.mail.FileMonitoringService : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.m.m.FileMonitoringService(<a href="twisted.application.internet.TimerService.html">internet.TimerService</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.mail.html">mail</a>.<a href="twisted.mail.mail.html">mail</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/mail/mail.py#L712">View Source</a>
+      <a href="classIndex.html#twisted.mail.mail.FileMonitoringService">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>A service for monitoring changes to files.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1374">
+  
+  
+<tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.mail.FileMonitoringService.html#files">files</a></td>
+    <td>Information about files to be monitored.  Each list entry provides the 
+following information for a file: interval in seconds between checks, 
+filename, callback function, time of last modification to the file. (type: <a 
+href="http://docs.python.org/library/functions.html#list"><code>list</code></a>
+of <a 
+href="http://docs.python.org/library/functions.html#list"><code>list</code></a>
+of (1) <a 
+href="http://docs.python.org/library/functions.html#float"><code>float</code></a>,
+(2) <a 
+href="http://docs.python.org/library/functions.html#bytes"><code>bytes</code></a>,
+(3) callable which takes a <a 
+href="http://docs.python.org/library/functions.html#bytes"><code>bytes</code></a>
+argument, (4) <a 
+href="http://docs.python.org/library/functions.html#float"><code>float</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.mail.FileMonitoringService.html#intervals">intervals</a></td>
+    <td>Intervals between successive file checks. (type: <a 
+href="twisted.python.util._IntervalDifferentialIterator.html"><code>_IntervalDifferentialIterator</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.mail.FileMonitoringService.html#index">index</a></td>
+    <td>The index of the next file to be checked. (type: <a 
+href="http://docs.python.org/library/functions.html#int"><code>int</code></a>)</td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.mail.FileMonitoringService.html#__init__">__init__</a></td>
+    <td><span>Initialize the file monitoring service.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.mail.FileMonitoringService.html#startService">startService</a></td>
+    <td><span>Start the file monitoring service.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.mail.FileMonitoringService.html#stopService">stopService</a></td>
+    <td><span>Stop the file monitoring service.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.mail.FileMonitoringService.html#monitorFile">monitorFile</a></td>
+    <td><span>Start monitoring a file for changes.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.mail.FileMonitoringService.html#unmonitorFile">unmonitorFile</a></td>
+    <td><span>Stop monitoring a file.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.mail.FileMonitoringService.html#_call">_call</a></td>
+    <td>The next scheduled call to check a file. (type: <a 
+href="twisted.internet.interfaces.IDelayedCall.html"><code>IDelayedCall</code></a>
+provider)</td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.mail.FileMonitoringService.html#_setupMonitor">_setupMonitor</a></td>
+    <td><span>Schedule the next monitoring call.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.mail.FileMonitoringService.html#_monitor">_monitor</a></td>
+    <td><span>Monitor a file and make a callback if it has changed.</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.application.internet.TimerService.html">TimerService</a>:
+        </p>
+        <table class="children sortable" id="id1375">
+  
+  
+<tr class="baseinstancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.application.internet.TimerService.html#clock">clock</a></td>
+    <td>Source of time. This defaults to <a 
+href="http://docs.python.org/library/functions.html#None"><code>None</code></a>
+which is causes <a 
+href="twisted.internet.reactor.html"><code>twisted.internet.reactor</code></a>
+to be used. Feel free to set this to something else, but it probably ought 
+to be set *before* calling <a 
+href="twisted.application.internet.TimerService.html#startService"><code>startService</code></a>. (type: <a 
+href="twisted.internet.interfaces.IReactorTime.html"><code>IReactorTime</code></a>)</td>
+  </tr><tr class="baseinstancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.application.internet.TimerService.html#call">call</a></td>
+    <td>Function and arguments to call periodically. (type: <a 
+href="http://docs.python.org/library/functions.html#tuple"><code>tuple</code></a>
+of <code>(callable, args, kwargs)</code>)</td>
+  </tr><tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.application.internet.TimerService.html#_failed">_failed</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.application.internet._VolatileDataService.html">_VolatileDataService</a> (via <a href="twisted.application.internet.TimerService.html">TimerService</a>):
+        </p>
+        <table class="children sortable" id="id1376">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.application.internet._VolatileDataService.html#__getstate__">__getstate__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.application.service.Service.html">Service</a> (via <a href="twisted.application.internet.TimerService.html">TimerService</a>, <a href="twisted.application.internet._VolatileDataService.html">_VolatileDataService</a>):
+        </p>
+        <table class="children sortable" id="id1377">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.application.service.Service.html#setName">setName</a></td>
+    <td><span>Set the name of the service.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.application.service.Service.html#setServiceParent">setServiceParent</a></td>
+    <td><span>Set the parent of the service.  This method is responsible for setting 
+the <code>parent</code> attribute on this service (the child service).</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.application.service.Service.html#disownServiceParent">disownServiceParent</a></td>
+    <td><span>Use this API to remove an <a 
+href="twisted.application.service.IService.html"><code>IService</code></a> 
+from an <a 
+href="twisted.application.service.IServiceCollection.html"><code>IServiceCollection</code></a>.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.application.service.Service.html#privilegedStartService">privilegedStartService</a></td>
+    <td><span>Do preparation work for starting the service.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.mail.mail.FileMonitoringService.files">
+    
+  </a>
+  <a name="files">
+    
+  </a>
+  <div class="functionHeader">
+    files =
+  </div>
+  <div class="functionBody">
+    Information about files to be monitored.  Each list entry provides the 
+following information for a file: interval in seconds between checks, 
+filename, callback function, time of last modification to the file. (type: <a 
+href="http://docs.python.org/library/functions.html#list"><code>list</code></a>
+of <a 
+href="http://docs.python.org/library/functions.html#list"><code>list</code></a>
+of (1) <a 
+href="http://docs.python.org/library/functions.html#float"><code>float</code></a>,
+(2) <a 
+href="http://docs.python.org/library/functions.html#bytes"><code>bytes</code></a>,
+(3) callable which takes a <a 
+href="http://docs.python.org/library/functions.html#bytes"><code>bytes</code></a>
+argument, (4) <a 
+href="http://docs.python.org/library/functions.html#float"><code>float</code></a>)
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.mail.FileMonitoringService.intervals">
+    
+  </a>
+  <a name="intervals">
+    
+  </a>
+  <div class="functionHeader">
+    intervals =
+  </div>
+  <div class="functionBody">
+    Intervals between successive file checks. (type: <a 
+href="twisted.python.util._IntervalDifferentialIterator.html"><code>_IntervalDifferentialIterator</code></a>)
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.mail.FileMonitoringService._call">
+    
+  </a>
+  <a name="_call">
+    
+  </a>
+  <div class="functionHeader">
+    _call =
+  </div>
+  <div class="functionBody">
+    The next scheduled call to check a file. (type: <a 
+href="twisted.internet.interfaces.IDelayedCall.html"><code>IDelayedCall</code></a>
+provider)
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.mail.FileMonitoringService.index">
+    
+  </a>
+  <a name="index">
+    
+  </a>
+  <div class="functionHeader">
+    index =
+  </div>
+  <div class="functionBody">
+    The index of the next file to be checked. (type: <a 
+href="http://docs.python.org/library/functions.html#int"><code>int</code></a>)
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.mail.FileMonitoringService.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/mail/mail.py#L734" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.application.internet.TimerService.html#__init__">twisted.application.internet.TimerService.__init__</a></div>
+    <div>Initialize the file monitoring service.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.mail.FileMonitoringService.startService">
+    
+  </a>
+  <a name="startService">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    startService(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/mail/mail.py#L742" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.application.service.IService.html#startService">twisted.application.service.IService</a></div><div class="interfaceinfo">overrides <a href="twisted.application.internet.TimerService.html#startService">twisted.application.internet.TimerService.startService</a></div>
+    <div>Start the file monitoring service.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.mail.FileMonitoringService._setupMonitor">
+    
+  </a>
+  <a name="_setupMonitor">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _setupMonitor(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/mail/mail.py#L750" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Schedule the next monitoring call.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.mail.FileMonitoringService.stopService">
+    
+  </a>
+  <a name="stopService">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    stopService(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/mail/mail.py#L759" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.application.service.IService.html#stopService">twisted.application.service.IService</a></div><div class="interfaceinfo">overrides <a href="twisted.application.internet.TimerService.html#stopService">twisted.application.internet.TimerService.stopService</a></div>
+    <div>Stop the file monitoring service.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.mail.FileMonitoringService.monitorFile">
+    
+  </a>
+  <a name="monitorFile">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    monitorFile(self, name, callback, interval=10):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/mail/mail.py#L769" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Start monitoring a file for changes.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>The name of a file to monitor. (type: <a 
+href="http://docs.python.org/library/functions.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">callback</td><td>The function to call when the file has changed. (type: callable which takes a <a 
+href="http://docs.python.org/library/functions.html#bytes"><code>bytes</code></a>
+argument)</td></tr><tr><td></td><td class="fieldArg">interval</td><td>The interval in seconds between checks. (type: <a 
+href="http://docs.python.org/library/functions.html#float"><code>float</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.mail.FileMonitoringService.unmonitorFile">
+    
+  </a>
+  <a name="unmonitorFile">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    unmonitorFile(self, name):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/mail/mail.py#L790" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Stop monitoring a file.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>A file name. (type: <a 
+href="http://docs.python.org/library/functions.html#bytes"><code>bytes</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.mail.FileMonitoringService._monitor">
+    
+  </a>
+  <a name="_monitor">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _monitor(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/mail/mail.py#L804" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Monitor a file and make a callback if it has changed.<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2014-09-17 19:15:55.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

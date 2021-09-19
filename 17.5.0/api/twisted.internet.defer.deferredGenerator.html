@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.defer.deferredGenerator : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="apidocs.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="function"><code>twisted.internet.defer.deferredGenerator(f)</code> <small>function documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.internet.html" data-type="Package" class="code">internet</a>.<a href="twisted.internet.defer.html" data-type="Module" class="code">defer</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-17.5.0/src/twisted/internet/defer.py#L1278">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      <div role="alert" class="deprecationNotice alert alert-warning">deferredGenerator was deprecated in Twisted 15.0.0; please use twisted.internet.defer.inlineCallbacks instead.</div>
+
+      <div class="moduleDocstring">
+        <div><p><a href="twisted.internet.defer.html#deferredGenerator"><code>deferredGenerator</code></a>
+and <a href="twisted.internet.defer.waitForDeferred.html"><code>waitForDeferred</code></a>
+help you write <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>-using
+code that looks like a regular sequential function. Consider the use of <a href="twisted.internet.defer.html#inlineCallbacks"><code>inlineCallbacks</code></a>
+instead, which can accomplish the same thing in a more concise manner.</p>
+<p>There are two important functions involved: <a href="twisted.internet.defer.waitForDeferred.html"><code>waitForDeferred</code></a>,
+and <a href="twisted.internet.defer.html#deferredGenerator"><code>deferredGenerator</code></a>.
+They are used together, like this:</p>
+<pre class="literalblock">
+   @deferredGenerator
+   def thingummy():
+       thing = waitForDeferred(makeSomeRequestResultingInDeferred())
+       yield thing
+       thing = thing.getResult()
+       print(thing) #the result! hoorj!
+</pre>
+<p><a href="twisted.internet.defer.waitForDeferred.html"><code>waitForDeferred</code></a>
+returns something that you should immediately yield; when your generator is
+resumed, calling <code>thing.getResult()</code> will either give you the 
+result of the <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> if it
+was a success, or raise an exception if it was a failure.  Calling 
+<code>getResult</code> is <b>absolutely mandatory</b>.  If you do not call 
+it, <i>your program will not work</i>.</p>
+<p><a href="twisted.internet.defer.html#deferredGenerator"><code>deferredGenerator</code></a>
+takes one of these waitForDeferred-using generator functions and converts 
+it into a function that returns a <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>. The 
+result of the <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> will 
+be the last value that your generator yielded unless the last value is a <a href="twisted.internet.defer.waitForDeferred.html"><code>waitForDeferred</code></a>
+instance, in which case the result will be <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>.
+If the function raises an unhandled exception, the <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> will 
+errback instead.  Remember that <code>return result</code> won't work; use 
+<code>yield result; return</code> in place of that.</p>
+<p>Note that not yielding anything from your generator will make the <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+result in <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>.
+Yielding a <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> from 
+your generator is also an error condition; always yield 
+<code>waitForDeferred(d)</code> instead.</p>
+<p>The <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+returned from your deferred generator may also errback if your generator 
+raised an exception.  For example:</p>
+<pre class="literalblock">
+   @deferredGenerator
+   def thingummy():
+       thing = waitForDeferred(makeSomeRequestResultingInDeferred())
+       yield thing
+       thing = thing.getResult()
+       if thing == 'I love Twisted':
+           # will become the result of the Deferred
+           yield 'TWISTED IS GREAT!'
+           return
+       else:
+           # will trigger an errback
+           raise Exception('DESTROY ALL LIFE')
+</pre>
+<p>Put succinctly, these functions connect deferred-using code with this 
+'fake blocking' style in both directions: <a href="twisted.internet.defer.waitForDeferred.html"><code>waitForDeferred</code></a>
+converts from a <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> to 
+the 'blocking' style, and <a href="twisted.internet.defer.html#deferredGenerator"><code>deferredGenerator</code></a>
+converts from the 'blocking' style to a <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2017-06-11 10:59:01.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

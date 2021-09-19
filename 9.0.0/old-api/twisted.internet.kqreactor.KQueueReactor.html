@@ -1,0 +1,365 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.internet.kqreactor.KQueueReactor&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">Class t.i.k.KQueueReactor(<span title="twisted.internet.posixbase.PosixReactorBase">posixbase.PosixReactorBase</span>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a>.<a href="twisted.internet.kqreactor.html">kqreactor</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-9.0.0/twisted/internet/kqreactor.py#L74">View Source</a>
+      <a href="classIndex.html#twisted.internet.kqreactor.KQueueReactor">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Implements interfaces: <a href="twisted.internet.interfaces.IReactorFDSet.html">twisted.internet.interfaces.IReactorFDSet</a></p>
+    </div>
+    <div>A reactor that uses kqueue(2)/kevent(2).<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">_kq</td><td>A <code>kqueue</code> which will be used to check for I/O readiness.
+</td></tr><tr><td></td><td class="fieldArg">_selectables</td><td>A dictionary mapping integer file descriptors to instances of <a 
+href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+which have been registered with the reactor.  All 
+<code>FileDescriptors</code> which are currently receiving read or write 
+readiness notifications will be present as values in this dictionary.
+</td></tr><tr><td></td><td class="fieldArg">_reads</td><td>A dictionary mapping integer file descriptors to arbitrary values (this is 
+essentially a set).  Keys in this dictionary will be registered with 
+<code>_kq</code> for read readiness notifications which will be dispatched 
+to the corresponding <a 
+href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+instances in <code>_selectables</code>.
+</td></tr><tr><td></td><td class="fieldArg">_writes</td><td>A dictionary mapping integer file descriptors to arbitrary values (this is 
+essentially a set).  Keys in this dictionary will be registered with 
+<code>_kq</code> for write readiness notifications which will be dispatched
+to the corresponding <a 
+href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+instances in <code>_selectables</code>.
+</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id2857">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.kqreactor.KQueueReactor.html#__init__">__init__</a></td>
+    <td><span>Initialize kqueue object, file descriptor tracking dictionaries, and 
+the</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.kqreactor.KQueueReactor.html#addReader">addReader</a></td>
+    <td><span>Add a FileDescriptor for notification of data available to read.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.kqreactor.KQueueReactor.html#addWriter">addWriter</a></td>
+    <td><span>Add a FileDescriptor for notification of data available to write.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.kqreactor.KQueueReactor.html#removeReader">removeReader</a></td>
+    <td><span>Remove a Selectable for notification of data available to read.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.kqreactor.KQueueReactor.html#removeWriter">removeWriter</a></td>
+    <td><span>Remove a Selectable for notification of data available to write.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.kqreactor.KQueueReactor.html#removeAll">removeAll</a></td>
+    <td><span>Remove all selectables, and return a list of them.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.kqreactor.KQueueReactor.html#getReaders">getReaders</a></td>
+    <td><span>Return the list of file descriptors currently monitored for input</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.kqreactor.KQueueReactor.html#getWriters">getWriters</a></td>
+    <td><span>Return the list file descriptors currently monitored for output 
+events</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.kqreactor.KQueueReactor.html#doKEvent">doKEvent</a></td>
+    <td><span>Poll the kqueue for new events.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.kqreactor.KQueueReactor.html#_updateRegistration">_updateRegistration</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.kqreactor.KQueueReactor.html#_doWriteOrRead">_doWriteOrRead</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.internet.kqreactor.KQueueReactor.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-9.0.0/twisted/internet/kqreactor.py#L100" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Initialize kqueue object, file descriptor tracking dictionaries, and the
+base class.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.kqreactor.KQueueReactor._updateRegistration">
+    
+  </a>
+  <a name="_updateRegistration">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _updateRegistration(self, *args):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-9.0.0/twisted/internet/kqreactor.py#L112" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.kqreactor.KQueueReactor.addReader">
+    
+  </a>
+  <a name="addReader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addReader(self, reader):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-9.0.0/twisted/internet/kqreactor.py#L115" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#addReader">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Add a FileDescriptor for notification of data available to read.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.kqreactor.KQueueReactor.addWriter">
+    
+  </a>
+  <a name="addWriter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addWriter(self, writer):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-9.0.0/twisted/internet/kqreactor.py#L124" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#addWriter">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Add a FileDescriptor for notification of data available to write.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.kqreactor.KQueueReactor.removeReader">
+    
+  </a>
+  <a name="removeReader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeReader(self, reader):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-9.0.0/twisted/internet/kqreactor.py#L133" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#removeReader">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Remove a Selectable for notification of data available to read.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.kqreactor.KQueueReactor.removeWriter">
+    
+  </a>
+  <a name="removeWriter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeWriter(self, writer):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-9.0.0/twisted/internet/kqreactor.py#L143" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#removeWriter">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Remove a Selectable for notification of data available to write.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.kqreactor.KQueueReactor.removeAll">
+    
+  </a>
+  <a name="removeAll">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeAll(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-9.0.0/twisted/internet/kqreactor.py#L153" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#removeAll">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Remove all selectables, and return a list of them.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.kqreactor.KQueueReactor.getReaders">
+    
+  </a>
+  <a name="getReaders">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getReaders(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-9.0.0/twisted/internet/kqreactor.py#L162" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#getReaders">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Return the list of file descriptors currently monitored for input events
+by the reactor.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the list of file descriptors monitored for input events.
+ (type: <code>list</code> of <code>IReadDescriptor</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.kqreactor.KQueueReactor.getWriters">
+    
+  </a>
+  <a name="getWriters">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getWriters(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-9.0.0/twisted/internet/kqreactor.py#L166" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#getWriters">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Return the list file descriptors currently monitored for output events 
+by the reactor.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the list of file descriptors monitored for output events.
+ (type: <code>list</code> of <code>IWriteDescriptor</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.kqreactor.KQueueReactor.doKEvent">
+    
+  </a>
+  <a name="doKEvent">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    doKEvent(self, timeout):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-9.0.0/twisted/internet/kqreactor.py#L170" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Poll the kqueue for new events.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.kqreactor.KQueueReactor._doWriteOrRead">
+    
+  </a>
+  <a name="_doWriteOrRead">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _doWriteOrRead(self, selectable, fd, filter):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-9.0.0/twisted/internet/kqreactor.py#L196" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2009-11-24 22:07:21.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+  </body>
+</html>

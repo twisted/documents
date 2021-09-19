@@ -1,0 +1,149 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.protocols.htb.HierarchicalBucketFilter&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">Class t.p.h.HierarchicalBucketFilter:</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.protocols.html">protocols</a>.<a href="twisted.protocols.htb.html">htb</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.1/twisted/protocols/htb.py#L106">View Source</a>
+      <a href="classIndex.html#twisted.protocols.htb.HierarchicalBucketFilter">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known subclasses: <a href="twisted.protocols.htb.FilterByHost.html">twisted.protocols.htb.FilterByHost</a>, <a href="twisted.protocols.htb.FilterByServer.html">twisted.protocols.htb.FilterByServer</a></p><p>Implements interfaces: <a href="twisted.protocols.htb.IBucketFilter.html">twisted.protocols.htb.IBucketFilter</a></p>
+    </div>
+    <div>I filter things into buckets, and I am nestable.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Class Variables</td><td class="fieldArg">bucketFactory</td><td>Class of buckets to make.
+ (type: <a href="twisted.protocols.htb.Bucket.html"><code>Bucket</code></a> 
+class
+)</td></tr><tr><td></td><td class="fieldArg">sweepInterval</td><td>Seconds between sweeping out the bucket cache.
+ (type: int
+)</td></tr></table></div>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id492">
+  
+  
+  
+  
+  <tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.htb.HierarchicalBucketFilter.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.htb.HierarchicalBucketFilter.html#getBucketFor">getBucketFor</a></td>
+    <td><span>You want a bucket for that? I'll give you a bucket.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.htb.HierarchicalBucketFilter.html#getBucketKey">getBucketKey</a></td>
+    <td><span>I determine who gets which bucket.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.htb.HierarchicalBucketFilter.html#sweep">sweep</a></td>
+    <td><span>I throw away references to empty buckets.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.protocols.htb.HierarchicalBucketFilter.__init__"></a>
+        <a name="__init__"></a>
+        <div class="functionHeader">
+        
+        def __init__(self, parentFilter=None):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.1/twisted/protocols/htb.py#L120" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.protocols.htb.HierarchicalBucketFilter.getBucketFor"></a>
+        <a name="getBucketFor"></a>
+        <div class="functionHeader">
+        
+        def getBucketFor(self, *a, **kw):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.1/twisted/protocols/htb.py#L125" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">from <a href="twisted.protocols.htb.IBucketFilter.html#getBucketFor">twisted.protocols.htb.IBucketFilter</a></div>
+          <div><p>You want a bucket for that? I'll give you a bucket.</p>
+Any parameters are passed on to <a 
+href="twisted.protocols.htb.HierarchicalBucketFilter.html#getBucketKey"><code>getBucketKey</code></a>, 
+from them it decides which bucket you get.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"> (type: <a 
+href="twisted.protocols.htb.Bucket.html"><code>Bucket</code></a>
+)</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.protocols.htb.HierarchicalBucketFilter.getBucketKey"></a>
+        <a name="getBucketKey"></a>
+        <div class="functionHeader">
+        
+        def getBucketKey(self, *a, **kw):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.1/twisted/protocols/htb.py#L149" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">overridden in <a href="twisted.protocols.htb.FilterByHost.html">twisted.protocols.htb.FilterByHost</a>, <a href="twisted.protocols.htb.FilterByServer.html">twisted.protocols.htb.FilterByServer</a></div>
+          <div><p>I determine who gets which bucket.</p>
+Unless I'm overridden, everything gets the same bucket.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">something to be used as a key in the bucket cache.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.protocols.htb.HierarchicalBucketFilter.sweep"></a>
+        <a name="sweep"></a>
+        <div class="functionHeader">
+        
+        def sweep(self):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.1/twisted/protocols/htb.py#L158" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>I throw away references to empty buckets.
+<table class="fieldTable"></table></div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2008-05-18 16:42:17.
+    </address>
+  </body>
+</html>

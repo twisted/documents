@@ -1,0 +1,853 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web._newclient.HTTP11ClientProtocol : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.w._.HTTP11ClientProtocol(<a href="twisted.internet.protocol.Protocol.html">Protocol</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web.html">web</a>.<a href="twisted.web._newclient.html">_newclient</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/web/_newclient.py#L1190">View Source</a>
+      <a href="classIndex.html#twisted.web._newclient.HTTP11ClientProtocol">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div><a 
+href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+is an implementation of the HTTP 1.1 client protocol.  It supports as few 
+features as possible.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id2526">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#state">state</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#request">request</a></td>
+    <td><span>Issue <code>request</code> over <code>self.transport</code> and return a
+<a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+which will fire with a <a 
+href="twisted.web.client.Response.html"><code>Response</code></a> instance 
+or an error.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#dataReceived">dataReceived</a></td>
+    <td><span>Handle some stuff from some place.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#connectionLost">connectionLost</a></td>
+    <td><span>The underlying transport went away.  If appropriate, notify the parser 
+object.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#abort">abort</a></td>
+    <td><span>Close the connection and cause all outstanding <a 
+href="twisted.web._newclient.HTTP11ClientProtocol.html#request"><code>request</code></a>
+<a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>s 
+to fire with an error.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#_parser">_parser</a></td>
+    <td>After a request is issued, the <a 
+href="twisted.web._newclient.HTTPClientParser.html"><code>HTTPClientParser</code></a>
+to which received data making up the response to that request is delivered.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#_finishedRequest">_finishedRequest</a></td>
+    <td>After a request is issued, the <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> which
+will fire when a <a 
+href="twisted.web.client.Response.html"><code>Response</code></a> object 
+corresponding to that request is available.  This allows <a 
+href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+to fail the request if there is a connection or parsing problem.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#_currentRequest">_currentRequest</a></td>
+    <td>After a request is issued, the <a 
+href="twisted.web._newclient.Request.html"><code>Request</code></a> 
+instance used to make that request.  This allows <a 
+href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+to stop request generation if necessary (for example, if the connection is 
+lost).</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#_transportProxy">_transportProxy</a></td>
+    <td>After a request is issued, the <a 
+href="twisted.web._newclient.TransportProxyProducer.html"><code>TransportProxyProducer</code></a>
+to which <code>_parser</code> is connected.  This allows 
+<code>_parser</code> to pause and resume the transport in a way which <a 
+href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+can exert some control over.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#_responseDeferred">_responseDeferred</a></td>
+    <td>After a request is issued, the <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> from 
+<code>_parser</code> which will fire with a <a 
+href="twisted.web.client.Response.html"><code>Response</code></a> when one 
+has been received.  This is eventually chained with 
+<code>_finishedRequest</code>, but only in certain cases to avoid double 
+firing that Deferred.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#_state">_state</a></td>
+    <td>Indicates what state this <a 
+href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+instance is in with respect to transmission of a request and reception of a
+response.  This may be one of the following strings:
+<ul>
+  <li>
+    QUIESCENT: This is the state <a 
+    href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+    instances start in.  Nothing is happening: no request is being sent and
+    no response is being received or expected.
+  </li>
+  <li>
+    TRANSMITTING: When a request is made (via <a 
+    href="twisted.web._newclient.HTTP11ClientProtocol.html#request"><code>request</code></a>),
+    the instance moves to this state.  <a 
+    href="twisted.web._newclient.Request.html#writeTo"><code>Request.writeTo</code></a>
+    has been used to start to send a request but it has not yet finished.
+  </li>
+  <li>
+    TRANSMITTING_AFTER_RECEIVING_RESPONSE: The server has returned a 
+    complete response but the request has not yet been fully sent yet.  The
+    instance will remain in this state until the request is fully sent.
+  </li>
+  <li>
+    GENERATION_FAILED: There was an error while the request.  The request 
+    was not fully sent to the network.
+  </li>
+  <li>
+    WAITING: The request was fully sent to the network.  The instance is 
+    now waiting for the response to be fully received.
+  </li>
+  <li>
+    ABORTING: Application code has requested that the HTTP connection be 
+    aborted.
+  </li>
+  <li>
+    CONNECTION_LOST: The connection has been lost.
+  </li>
+</ul></td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#_abortDeferreds">_abortDeferreds</a></td>
+    <td>A list of <code>Deferred</code> instances that will fire when the 
+connection is lost.</td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#_finishResponse">_finishResponse</a></td>
+    <td><span>Called by an <a 
+href="twisted.web._newclient.HTTPClientParser.html"><code>HTTPClientParser</code></a>
+to indicate that it has parsed a complete response.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#_finishResponse_WAITING">_finishResponse_WAITING</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#_disconnectParser">_disconnectParser</a></td>
+    <td><span>If there is still a parser, call its <code>connectionLost</code> method 
+with the given reason.  If there is not, do nothing.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#_giveUp">_giveUp</a></td>
+    <td><span>Lose the underlying connection and disconnect the parser with the given 
+<a href="twisted.python.failure.Failure.html"><code>Failure</code></a>.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#_connectionLost_QUIESCENT">_connectionLost_QUIESCENT</a></td>
+    <td><span>Nothing is currently happening.  Move to the 
+<code>'CONNECTION_LOST'</code> state but otherwise do nothing.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#_connectionLost_GENERATION_FAILED">_connectionLost_GENERATION_FAILED</a></td>
+    <td><span>The connection was in an inconsistent state.  Move to the 
+<code>'CONNECTION_LOST'</code> state but otherwise do nothing.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#_connectionLost_TRANSMITTING">_connectionLost_TRANSMITTING</a></td>
+    <td><span>Fail the <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> for 
+the current request, notify the request object that it does not need to 
+continue transmitting itself, and move to the 
+<code>'CONNECTION_LOST'</code> state.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#_connectionLost_TRANSMITTING_AFTER_RECEIVING_RESPONSE">_connectionLost_TRANSMITTING_AFTER_RECEIVING_RESPONSE</a></td>
+    <td><span>Move to the <code>'CONNECTION_LOST'</code> state.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#_connectionLost_WAITING">_connectionLost_WAITING</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTP11ClientProtocol.html#_connectionLost_ABORTING">_connectionLost_ABORTING</a></td>
+    <td><span>Disconnect the response parser with a <a 
+href="twisted.web._newclient.ConnectionAborted.html"><code>ConnectionAborted</code></a>
+failure, and move to the <code>'CONNECTION_LOST'</code> state.</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.internet.protocol.Protocol.html">Protocol</a>:
+        </p>
+        <table class="children sortable" id="id2527">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Protocol.html#logPrefix">logPrefix</a></td>
+    <td><span>Return a prefix matching the class name, to identify log messages 
+related to this protocol instance.</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.internet.protocol.BaseProtocol.html">BaseProtocol</a> (via <a href="twisted.internet.protocol.Protocol.html">Protocol</a>):
+        </p>
+        <table class="children sortable" id="id2528">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.BaseProtocol.html#makeConnection">makeConnection</a></td>
+    <td><span>Make a connection to a transport and a server.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.BaseProtocol.html#connectionMade">connectionMade</a></td>
+    <td><span>Called when a connection is made.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol._parser">
+    
+  </a>
+  <a name="_parser">
+    
+  </a>
+  <div class="functionHeader">
+    _parser =
+  </div>
+  <div class="functionBody">
+    After a request is issued, the <a 
+href="twisted.web._newclient.HTTPClientParser.html"><code>HTTPClientParser</code></a>
+to which received data making up the response to that request is delivered.
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol._finishedRequest">
+    
+  </a>
+  <a name="_finishedRequest">
+    
+  </a>
+  <div class="functionHeader">
+    _finishedRequest =
+  </div>
+  <div class="functionBody">
+    After a request is issued, the <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> which
+will fire when a <a 
+href="twisted.web.client.Response.html"><code>Response</code></a> object 
+corresponding to that request is available.  This allows <a 
+href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+to fail the request if there is a connection or parsing problem.
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol._currentRequest">
+    
+  </a>
+  <a name="_currentRequest">
+    
+  </a>
+  <div class="functionHeader">
+    _currentRequest =
+  </div>
+  <div class="functionBody">
+    After a request is issued, the <a 
+href="twisted.web._newclient.Request.html"><code>Request</code></a> 
+instance used to make that request.  This allows <a 
+href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+to stop request generation if necessary (for example, if the connection is 
+lost).
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol._transportProxy">
+    
+  </a>
+  <a name="_transportProxy">
+    
+  </a>
+  <div class="functionHeader">
+    _transportProxy =
+  </div>
+  <div class="functionBody">
+    After a request is issued, the <a 
+href="twisted.web._newclient.TransportProxyProducer.html"><code>TransportProxyProducer</code></a>
+to which <code>_parser</code> is connected.  This allows 
+<code>_parser</code> to pause and resume the transport in a way which <a 
+href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+can exert some control over.
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol._responseDeferred">
+    
+  </a>
+  <a name="_responseDeferred">
+    
+  </a>
+  <div class="functionHeader">
+    _responseDeferred =
+  </div>
+  <div class="functionBody">
+    After a request is issued, the <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> from 
+<code>_parser</code> which will fire with a <a 
+href="twisted.web.client.Response.html"><code>Response</code></a> when one 
+has been received.  This is eventually chained with 
+<code>_finishedRequest</code>, but only in certain cases to avoid double 
+firing that Deferred.
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol._state">
+    
+  </a>
+  <a name="_state">
+    
+  </a>
+  <div class="functionHeader">
+    _state =
+  </div>
+  <div class="functionBody">
+    Indicates what state this <a 
+href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+instance is in with respect to transmission of a request and reception of a
+response.  This may be one of the following strings:
+<ul>
+  <li>
+    QUIESCENT: This is the state <a 
+    href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>
+    instances start in.  Nothing is happening: no request is being sent and
+    no response is being received or expected.
+  </li>
+  <li>
+    TRANSMITTING: When a request is made (via <a 
+    href="twisted.web._newclient.HTTP11ClientProtocol.html#request"><code>request</code></a>),
+    the instance moves to this state.  <a 
+    href="twisted.web._newclient.Request.html#writeTo"><code>Request.writeTo</code></a>
+    has been used to start to send a request but it has not yet finished.
+  </li>
+  <li>
+    TRANSMITTING_AFTER_RECEIVING_RESPONSE: The server has returned a 
+    complete response but the request has not yet been fully sent yet.  The
+    instance will remain in this state until the request is fully sent.
+  </li>
+  <li>
+    GENERATION_FAILED: There was an error while the request.  The request 
+    was not fully sent to the network.
+  </li>
+  <li>
+    WAITING: The request was fully sent to the network.  The instance is 
+    now waiting for the response to be fully received.
+  </li>
+  <li>
+    ABORTING: Application code has requested that the HTTP connection be 
+    aborted.
+  </li>
+  <li>
+    CONNECTION_LOST: The connection has been lost.
+  </li>
+</ul>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol._abortDeferreds">
+    
+  </a>
+  <a name="_abortDeferreds">
+    
+  </a>
+  <div class="functionHeader">
+    _abortDeferreds =
+  </div>
+  <div class="functionBody">
+    A list of <code>Deferred</code> instances that will fire when the 
+connection is lost.
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, quiescentCallback=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/web/_newclient.py#L1258" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol.state">
+    
+  </a>
+  <a name="state">
+    
+  </a>
+  <div class="functionHeader">
+    @property<br />
+    def
+    state(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/web/_newclient.py#L1264" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol.request">
+    
+  </a>
+  <a name="request">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    request(self, request):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/web/_newclient.py#L1268" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Issue <code>request</code> over <code>self.transport</code> and return a
+<a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+which will fire with a <a 
+href="twisted.web.client.Response.html"><code>Response</code></a> instance 
+or an error.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">request</td><td>The object defining the parameters of the request to issue. (type: <a href="twisted.web._newclient.Request.html"><code>Request</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The deferred may errback with <a 
+href="twisted.web._newclient.RequestGenerationFailed.html"><code>RequestGenerationFailed</code></a>
+if the request was not fully written to the transport due to a local error.
+It may errback with <a 
+href="twisted.web._newclient.RequestTransmissionFailed.html"><code>RequestTransmissionFailed</code></a>
+if it was not fully written to the transport due to a network error.  It 
+may errback with <a 
+href="twisted.web.client.ResponseFailed.html"><code>ResponseFailed</code></a>
+if the request was sent (not necessarily received) but some or all of the 
+response was lost.  It may errback with <a 
+href="twisted.web._newclient.RequestNotSent.html"><code>RequestNotSent</code></a>
+if it is not possible to send any more requests using this <a 
+href="twisted.web._newclient.HTTP11ClientProtocol.html"><code>HTTP11ClientProtocol</code></a>. (type: <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol._finishResponse">
+    
+  </a>
+  <a name="_finishResponse">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _finishResponse(self, rest):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/web/_newclient.py#L1323" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called by an <a 
+href="twisted.web._newclient.HTTPClientParser.html"><code>HTTPClientParser</code></a>
+to indicate that it has parsed a complete response.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">rest</td><td>A <code>str</code> giving any trailing bytes which were given to the <a 
+href="twisted.web._newclient.HTTPClientParser.html"><code>HTTPClientParser</code></a>
+which were not part of the response it was parsing.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol._finishResponse_WAITING">
+    
+  </a>
+  <a name="_finishResponse_WAITING">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _finishResponse_WAITING(self, rest):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/web/_newclient.py#L1335" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol._disconnectParser">
+    
+  </a>
+  <a name="_disconnectParser">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _disconnectParser(self, reason):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/web/_newclient.py#L1377" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>If there is still a parser, call its <code>connectionLost</code> method 
+with the given reason.  If there is not, do nothing.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol._giveUp">
+    
+  </a>
+  <a name="_giveUp">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _giveUp(self, reason):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/web/_newclient.py#L1400" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Lose the underlying connection and disconnect the parser with the given 
+<a href="twisted.python.failure.Failure.html"><code>Failure</code></a>.</p>
+<p>Use this method instead of calling the transport's loseConnection method
+directly otherwise random things will break.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol.dataReceived">
+    
+  </a>
+  <a name="dataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dataReceived(self, bytes):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/web/_newclient.py#L1412" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#dataReceived">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Protocol.html#dataReceived">twisted.internet.protocol.Protocol.dataReceived</a></div>
+    <div>Handle some stuff from some place.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol.connectionLost">
+    
+  </a>
+  <a name="connectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    connectionLost(self, reason):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/web/_newclient.py#L1422" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#connectionLost">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Protocol.html#connectionLost">twisted.internet.protocol.Protocol.connectionLost</a></div>
+    <div>The underlying transport went away.  If appropriate, notify the parser 
+object.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol._connectionLost_QUIESCENT">
+    
+  </a>
+  <a name="_connectionLost_QUIESCENT">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _connectionLost_QUIESCENT(self, reason):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/web/_newclient.py#L1430" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Nothing is currently happening.  Move to the 
+<code>'CONNECTION_LOST'</code> state but otherwise do nothing.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol._connectionLost_GENERATION_FAILED">
+    
+  </a>
+  <a name="_connectionLost_GENERATION_FAILED">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _connectionLost_GENERATION_FAILED(self, reason):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/web/_newclient.py#L1438" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>The connection was in an inconsistent state.  Move to the 
+<code>'CONNECTION_LOST'</code> state but otherwise do nothing.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol._connectionLost_TRANSMITTING">
+    
+  </a>
+  <a name="_connectionLost_TRANSMITTING">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _connectionLost_TRANSMITTING(self, reason):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/web/_newclient.py#L1446" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Fail the <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> for 
+the current request, notify the request object that it does not need to 
+continue transmitting itself, and move to the 
+<code>'CONNECTION_LOST'</code> state.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol._connectionLost_TRANSMITTING_AFTER_RECEIVING_RESPONSE">
+    
+  </a>
+  <a name="_connectionLost_TRANSMITTING_AFTER_RECEIVING_RESPONSE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _connectionLost_TRANSMITTING_AFTER_RECEIVING_RESPONSE(self, reason):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/web/_newclient.py#L1461" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Move to the <code>'CONNECTION_LOST'</code> state.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol._connectionLost_WAITING">
+    
+  </a>
+  <a name="_connectionLost_WAITING">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _connectionLost_WAITING(self, reason):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/web/_newclient.py#L1468" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Disconnect the response parser so that it can propagate the event as 
+necessary (for example, to call an application protocol's 
+<code>connectionLost</code> method, or to fail a request <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>) and 
+move to the <code>'CONNECTION_LOST'</code> state.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol._connectionLost_ABORTING">
+    
+  </a>
+  <a name="_connectionLost_ABORTING">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _connectionLost_ABORTING(self, reason):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/web/_newclient.py#L1479" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Disconnect the response parser with a <a 
+href="twisted.web._newclient.ConnectionAborted.html"><code>ConnectionAborted</code></a>
+failure, and move to the <code>'CONNECTION_LOST'</code> state.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTP11ClientProtocol.abort">
+    
+  </a>
+  <a name="abort">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    abort(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/web/_newclient.py#L1491" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Close the connection and cause all outstanding <a 
+href="twisted.web._newclient.HTTP11ClientProtocol.html#request"><code>request</code></a>
+<a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>s 
+to fire with an error.<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2012-12-26 12:18:15.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

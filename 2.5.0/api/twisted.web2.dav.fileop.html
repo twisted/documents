@@ -1,0 +1,297 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.web2.dav.fileop&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="module">Module t.w.d.fileop</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web2.html">web2</a>.<a href="twisted.web2.dav.html">dav</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/fileop.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div><p>WebDAV file operations</p>
+This API is considered private to static.py and is therefore subject 
+to change.
+<table class="fieldTable"></table></div>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1722">
+  
+  
+  
+  
+  <tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.web2.dav.fileop.html#delete">delete</a></td>
+    <td><span>Perform a DELETE operation on the given URI, which is backed by the 
+given
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.web2.dav.fileop.html#copy">copy</a></td>
+    <td><span>Perform a COPY from the given source and destination filepaths.
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.web2.dav.fileop.html#move">move</a></td>
+    <td><span>Perform a MOVE from the given source and destination filepaths.
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.web2.dav.fileop.html#put">put</a></td>
+    <td><span>Perform a PUT of the given data stream into the given filepath.
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.web2.dav.fileop.html#mkcollection">mkcollection</a></td>
+    <td><span>Perform a MKCOL on the given filepath.
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.web2.dav.fileop.html#rmdir">rmdir</a></td>
+    <td><span>Removes the directory with the given name, as well as its 
+contents.
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.web2.dav.fileop.html#checkResponse">checkResponse</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.web2.dav.fileop.delete"></a>
+        <a name="delete"></a>
+        <div class="functionHeader">
+        def delete(uri, filepath, depth='infinity'):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/fileop.py#L53" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Perform a DELETE operation on the given URI, which is backed by the 
+given filepath.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">filepath</td><td>the <a 
+href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> to 
+delete.
+</td></tr><tr><td></td><td class="fieldArg">depth</td><td>the recursion Depth for the DELETE operation, which must be 
+&quot;infinity&quot;.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a deferred response with a status code of 
+<code>responsecode.NO_CONTENT</code> if the DELETE operation 
+succeeds.
+</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">HTTPError</td><td>(containing a response with a status code of 
+<code>responsecode.BAD_REQUEST</code>) if <code>depth</code> is not 
+&quot;infinity&quot;.
+</td></tr><tr><td></td><td class="fieldArg">HTTPError</td><td>(containing an appropriate response) if the delete operation fails. If 
+<code>filepath</code> is a directory, the response will be a <a 
+href="twisted.web2.dav.http.MultiStatusResponse.html"><code>MultiStatusResponse</code></a>.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.fileop.copy"></a>
+        <a name="copy"></a>
+        <div class="functionHeader">
+        def copy(source_filepath, destination_filepath, destination_uri, depth):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/fileop.py#L169" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Perform a COPY from the given source and destination filepaths. This 
+will perform a DELETE on the destination if necessary; the caller should 
+check and handle the overwrite header before calling <a 
+href="twisted.web2.dav.fileop.html#copy"><code>copy</code></a> (as in 
+<code>COPYMOVE.prepareForCopy</code>).
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">source_filepath</td><td>a <a 
+href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+for the file to copy from.
+</td></tr><tr><td></td><td class="fieldArg">destination_filepath</td><td>a <a 
+href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+for the file to copy to.
+</td></tr><tr><td></td><td class="fieldArg">destination_uri</td><td>the URI of the destination resource.
+</td></tr><tr><td></td><td class="fieldArg">depth</td><td>the recursion Depth for the COPY operation, which must be one of 
+&quot;0&quot;, &quot;1&quot;, or &quot;infinity&quot;.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a deferred response with a status code of 
+<code>responsecode.CREATED</code> if the destination already exists, or 
+<code>responsecode.NO_CONTENT</code> if the destination was created by 
+the COPY operation.
+</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">HTTPError</td><td>(containing a response with a status code of 
+<code>responsecode.BAD_REQUEST</code>) if <code>depth</code> is not 
+&quot;0&quot;, &quot;1&quot; or &quot;infinity&quot;.
+</td></tr><tr><td></td><td class="fieldArg">HTTPError</td><td>(containing an appropriate response) if the operation fails. If 
+<code>source_filepath</code> is a directory, the response will be a <a 
+href="twisted.web2.dav.http.MultiStatusResponse.html"><code>MultiStatusResponse</code></a>.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.fileop.move"></a>
+        <a name="move"></a>
+        <div class="functionHeader">
+        def move(source_filepath, source_uri, destination_filepath, destination_uri, depth):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/fileop.py#L326" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Perform a MOVE from the given source and destination filepaths. This 
+will perform a DELETE on the destination if necessary; the caller should 
+check and handle the overwrite header before calling <a 
+href="twisted.web2.dav.fileop.html#copy"><code>copy</code></a> (as in 
+<code>COPYMOVE.prepareForCopy</code>). Following the DELETE, this will 
+attempt an atomic filesystem move. If that fails, a COPY operation 
+followed by a DELETE on the source will be attempted instead.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">source_filepath</td><td>a <a 
+href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+for the file to copy from.
+</td></tr><tr><td></td><td class="fieldArg">destination_filepath</td><td>a <a 
+href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> 
+for the file to copy to.
+</td></tr><tr><td></td><td class="fieldArg">destination_uri</td><td>the URI of the destination resource.
+</td></tr><tr><td></td><td class="fieldArg">depth</td><td>the recursion Depth for the MOVE operation, which must be 
+&quot;infinity&quot;.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a deferred response with a status code of 
+<code>responsecode.CREATED</code> if the destination already exists, or 
+<code>responsecode.NO_CONTENT</code> if the destination was created by 
+the MOVE operation.
+</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">HTTPError</td><td>(containing a response with a status code of 
+<code>responsecode.BAD_REQUEST</code>) if <code>depth</code> is not 
+&quot;infinity&quot;.
+</td></tr><tr><td></td><td class="fieldArg">HTTPError</td><td>(containing an appropriate response) if the operation fails. If 
+<code>source_filepath</code> is a directory, the response will be a <a 
+href="twisted.web2.dav.http.MultiStatusResponse.html"><code>MultiStatusResponse</code></a>.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.fileop.put"></a>
+        <a name="put"></a>
+        <div class="functionHeader">
+        def put(stream, filepath, uri=None):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/fileop.py#L398" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Perform a PUT of the given data stream into the given filepath.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">stream</td><td>the stream to write to the destination.
+</td></tr><tr><td></td><td class="fieldArg">filepath</td><td>the <a 
+href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> of 
+the destination file.
+</td></tr><tr><td></td><td class="fieldArg">uri</td><td>the URI of the destination resource. If the destination exists, if 
+<code>uri</code> is not <code>None</code>, perform a DELETE operation on 
+the destination, but if <code>uri</code> is <code>None</code>, delete the 
+destination directly. Note that whether a <a 
+href="twisted.web2.dav.fileop.html#put"><code>put</code></a> deletes the 
+destination directly vs. performing a DELETE on the destination affects 
+the response returned in the event of an error during deletion. 
+Specifically, DELETE on collections must return a <a 
+href="twisted.web2.dav.http.MultiStatusResponse.html"><code>MultiStatusResponse</code></a> 
+under certain circumstances, whereas PUT isn't required to do so. 
+Therefore, if the caller expects DELETE semantics, it must provide a 
+valid <code>uri</code>.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a deferred response with a status code of 
+<code>responsecode.CREATED</code> if the destination already exists, or 
+<code>responsecode.NO_CONTENT</code> if the destination was created by 
+the PUT operation.
+</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">HTTPError</td><td>(containing an appropriate response) if the operation fails.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.fileop.mkcollection"></a>
+        <a name="mkcollection"></a>
+        <div class="functionHeader">
+        def mkcollection(filepath):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/fileop.py#L472" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Perform a MKCOL on the given filepath.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">filepath</td><td>the <a 
+href="twisted.python.filepath.FilePath.html"><code>FilePath</code></a> of 
+the collection resource to create.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a deferred response with a status code of 
+<code>responsecode.CREATED</code> if the destination already exists, or 
+<code>responsecode.NO_CONTENT</code> if the destination was created by 
+the MKCOL operation.
+</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">HTTPError</td><td>(containing an appropriate response) if the operation fails.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.fileop.rmdir"></a>
+        <a name="rmdir"></a>
+        <div class="functionHeader">
+        def rmdir(dirname):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/fileop.py#L494" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Removes the directory with the given name, as well as its 
+contents.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">dirname</td><td>the path to the directory to remove.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web2.dav.fileop.checkResponse"></a>
+        <a name="checkResponse"></a>
+        <div class="functionHeader">
+        def checkResponse(response, method, *codes):
+        <a href="http://twistedmatrix.com/trac/browser/trunk/twisted/web2/dav/fileop.py#L511" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div class="undocumented">Undocumented</div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for twisted, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a>.
+    </address>
+  </body>
+</html>

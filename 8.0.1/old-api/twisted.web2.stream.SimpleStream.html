@@ -1,0 +1,130 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.web2.stream.SimpleStream&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">Class t.w.s.SimpleStream(<span title="object">object</span>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web2.html">web2</a>.<a href="twisted.web2.stream.html">stream</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.1/twisted/web2/stream.py#L113">View Source</a>
+      <a href="classIndex.html#twisted.web2.stream.SimpleStream">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known subclasses: <a href="twisted.vfs.adapters.stream.FileSystemLeafStream.html">twisted.vfs.adapters.stream.FileSystemLeafStream</a>, <a href="twisted.web2.stream.FileStream.html">twisted.web2.stream.FileStream</a>, <a href="twisted.web2.stream.MemoryStream.html">twisted.web2.stream.MemoryStream</a></p><p>Implements interfaces: <a href="twisted.web2.stream.IByteStream.html">twisted.web2.stream.IByteStream</a></p>
+    </div>
+    <div>Superclass of simple streams with a single buffer and a offset and 
+length into that buffer.
+<table class="fieldTable"></table></div>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1679">
+  
+  
+  
+  
+  <tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.stream.SimpleStream.html#read">read</a></td>
+    <td><span>Read some data.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.stream.SimpleStream.html#close">close</a></td>
+    <td><span>Prematurely close this stream. Should also cause further reads to
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.stream.SimpleStream.html#split">split</a></td>
+    <td><span>Split this stream into two, at byte position 'point'.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.web2.stream.SimpleStream.read"></a>
+        <a name="read"></a>
+        <div class="functionHeader">
+        
+        def read(self):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.1/twisted/web2/stream.py#L121" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">from <a href="twisted.web2.stream.IByteStream.html#read">twisted.web2.stream.IByteStream</a></div><div class="interfaceinfo">overridden in <a href="twisted.vfs.adapters.stream.FileSystemLeafStream.html">twisted.vfs.adapters.stream.FileSystemLeafStream</a>, <a href="twisted.web2.stream.FileStream.html">twisted.web2.stream.FileStream</a>, <a href="twisted.web2.stream.MemoryStream.html">twisted.web2.stream.MemoryStream</a></div>
+          <div><p>Read some data.</p>
+<p>Returns an object conforming to the buffer interface, or if there is 
+no more data available, returns None. Can also return a Deferred 
+resulting in one of the above.</p>
+Errors may be indicated by exception or by a Deferred of a 
+Failure.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web2.stream.SimpleStream.close"></a>
+        <a name="close"></a>
+        <div class="functionHeader">
+        
+        def close(self):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.1/twisted/web2/stream.py#L124" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">from <a href="twisted.web2.stream.IByteStream.html#close">twisted.web2.stream.IByteStream</a></div><div class="interfaceinfo">overridden in <a href="twisted.vfs.adapters.stream.FileSystemLeafStream.html">twisted.vfs.adapters.stream.FileSystemLeafStream</a>, <a href="twisted.web2.stream.FileStream.html">twisted.web2.stream.FileStream</a>, <a href="twisted.web2.stream.MemoryStream.html">twisted.web2.stream.MemoryStream</a></div>
+          <div>Prematurely close this stream. Should also cause further reads to 
+return None. Additionally, .length should be set to 0.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.web2.stream.SimpleStream.split"></a>
+        <a name="split"></a>
+        <div class="functionHeader">
+        
+        def split(self, point):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.1/twisted/web2/stream.py#L127" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">from <a href="twisted.web2.stream.IByteStream.html#split">twisted.web2.stream.IByteStream</a></div>
+          <div><p>Split this stream into two, at byte position 'point'.</p>
+<p>Returns a tuple of (before, after). After calling split, no other 
+methods should be called on this stream. Doing so will have undefined 
+behavior.</p>
+If you cannot implement split easily, you may implement it as:
+<pre class="literalblock">
+   return fallbackSplit(self, point)
+</pre>
+<table class="fieldTable"></table></div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2008-05-18 16:42:17.
+    </address>
+  </body>
+</html>

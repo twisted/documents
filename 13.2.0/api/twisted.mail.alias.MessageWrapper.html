@@ -1,0 +1,353 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.mail.alias.MessageWrapper : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.m.a.MessageWrapper : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.mail.html">mail</a>.<a href="twisted.mail.alias.html">alias</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.2.0/twisted/mail/alias.py#L200">View Source</a>
+      <a href="classIndex.html#twisted.mail.alias.MessageWrapper">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Implements interfaces: <a href="twisted.mail.smtp.IMessage.html">twisted.mail.smtp.IMessage</a></p>
+    </div>
+    <div>A message receiver which delivers content to a child process.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id313">
+  
+  
+<tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.alias.MessageWrapper.html#completionTimeout">completionTimeout</a></td>
+    <td>The number of seconds to wait for the child process to exit before 
+reporting the delivery as a failure. (type: <code>int</code> or <code>float</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.alias.MessageWrapper.html#done">done</a></td>
+    <td>Flag indicating whether the child process has exited or not. (type: <code>bool</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.alias.MessageWrapper.html#reactor">reactor</a></td>
+    <td>An <code>IReactorTime</code> provider which will be used to schedule 
+timeouts.</td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.alias.MessageWrapper.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.alias.MessageWrapper.html#lineReceived">lineReceived</a></td>
+    <td><span>handle another line</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.alias.MessageWrapper.html#eomReceived">eomReceived</a></td>
+    <td><span>Disconnect from the child process, set up a timeout to wait for it to 
+exit, and return a Deferred which will be called back when the child 
+process exits.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.alias.MessageWrapper.html#connectionLost">connectionLost</a></td>
+    <td><span>handle message truncated</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.alias.MessageWrapper.html#__str__">__str__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.alias.MessageWrapper.html#_timeoutCallID">_timeoutCallID</a></td>
+    <td>The call used to time out delivery, started when the connection to the 
+child process is closed. (type: <code>NoneType</code> or <code>IDelayedCall</code>)</td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.alias.MessageWrapper.html#_processEnded">_processEnded</a></td>
+    <td><span>Record process termination and cancel the timeout call if it is 
+active.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.alias.MessageWrapper.html#_completionCancel">_completionCancel</a></td>
+    <td><span>Handle the expiration of the timeout for the child process to exit by 
+terminating the child process forcefully and issuing a failure to the 
+completion deferred returned by <a 
+href="twisted.mail.alias.MessageWrapper.html#eomReceived"><code>eomReceived</code></a>.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.mail.alias.MessageWrapper.completionTimeout">
+    
+  </a>
+  <a name="completionTimeout">
+    
+  </a>
+  <div class="functionHeader">
+    completionTimeout =
+  </div>
+  <div class="functionBody">
+    The number of seconds to wait for the child process to exit before 
+reporting the delivery as a failure. (type: <code>int</code> or <code>float</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.alias.MessageWrapper._timeoutCallID">
+    
+  </a>
+  <a name="_timeoutCallID">
+    
+  </a>
+  <div class="functionHeader">
+    _timeoutCallID =
+  </div>
+  <div class="functionBody">
+    The call used to time out delivery, started when the connection to the 
+child process is closed. (type: <code>NoneType</code> or <code>IDelayedCall</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.alias.MessageWrapper.done">
+    
+  </a>
+  <a name="done">
+    
+  </a>
+  <div class="functionHeader">
+    done =
+  </div>
+  <div class="functionBody">
+    Flag indicating whether the child process has exited or not. (type: <code>bool</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.alias.MessageWrapper.reactor">
+    
+  </a>
+  <a name="reactor">
+    
+  </a>
+  <div class="functionHeader">
+    reactor =
+  </div>
+  <div class="functionBody">
+    An <code>IReactorTime</code> provider which will be used to schedule 
+timeouts.
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.alias.MessageWrapper.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, protocol, process=None, reactor=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.2.0/twisted/mail/alias.py#L227" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.alias.MessageWrapper._processEnded">
+    
+  </a>
+  <a name="_processEnded">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _processEnded(self, result):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.2.0/twisted/mail/alias.py#L238" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Record process termination and cancel the timeout call if it is 
+active.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.alias.MessageWrapper.lineReceived">
+    
+  </a>
+  <a name="lineReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    lineReceived(self, line):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.2.0/twisted/mail/alias.py#L254" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.mail.smtp.IMessage.html#lineReceived">twisted.mail.smtp.IMessage</a></div>
+    <div>handle another line<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.alias.MessageWrapper.eomReceived">
+    
+  </a>
+  <a name="eomReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    eomReceived(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.2.0/twisted/mail/alias.py#L260" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.mail.smtp.IMessage.html#eomReceived">twisted.mail.smtp.IMessage</a></div>
+    <div>Disconnect from the child process, set up a timeout to wait for it to 
+exit, and return a Deferred which will be called back when the child 
+process exits.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.alias.MessageWrapper._completionCancel">
+    
+  </a>
+  <a name="_completionCancel">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _completionCancel(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.2.0/twisted/mail/alias.py#L273" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Handle the expiration of the timeout for the child process to exit by 
+terminating the child process forcefully and issuing a failure to the 
+completion deferred returned by <a 
+href="twisted.mail.alias.MessageWrapper.html#eomReceived"><code>eomReceived</code></a>.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.alias.MessageWrapper.connectionLost">
+    
+  </a>
+  <a name="connectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    connectionLost(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.2.0/twisted/mail/alias.py#L287" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.mail.smtp.IMessage.html#connectionLost">twisted.mail.smtp.IMessage</a></div>
+    <div>handle message truncated</p>
+<p>semantics should be to discard the message<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.alias.MessageWrapper.__str__">
+    
+  </a>
+  <a name="__str__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __str__(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.2.0/twisted/mail/alias.py#L292" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2013-11-08 22:07:30.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web.http : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="apidocs.css" type="text/css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code>twisted.web.http</code> <small>module documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.web.html" data-type="Package" class="code">web</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/web/http.py">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>HyperText Transfer Protocol implementation.</p>
+<p>This is the basic server-side protocol implementation used by the 
+Twisted Web server.  It can parse HTTP 1.0 requests and supports many HTTP 
+1.1 features as well.  Additionally, some functionality implemented here is
+also useful for HTTP clients (such as the chunked encoding parser).</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3129">
+  
+  <tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.web.http.html#CACHED" data-type="Variable" class="code">CACHED</a></td>
+    <td>A marker value to be returned from cache-related request methods to 
+indicate to the caller that a cached response will be usable and no 
+response body should be generated.</td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.web.http.html#NOT_MODIFIED" data-type="Variable" class="code">NOT_MODIFIED</a></td>
+    <td>An HTTP response code indicating that a requested pre-condition (for 
+example, the condition represented by an <i>If-Modified-Since</i> header is
+present in the request) has succeeded.  This indicates a response body 
+cached by the client can be used.</td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.web.http.html#PRECONDITION_FAILED" data-type="Variable" class="code">PRECONDITION_FAILED</a></td>
+    <td>An HTTP response code indicating that a requested pre-condition (for 
+example, the condition represented by an <i>If-None-Match</i> header is 
+present in the request) has failed.  This should typically indicate that 
+the server has not taken the requested action.</td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.web.http.html#urlparse" data-type="Function" class="code">urlparse</a></td>
+    <td><span>Parse an URL into six components.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.web.http.html#parse_qs" data-type="Function" class="code">parse_qs</a></td>
+    <td><span>Like <code>cgi.parse_qs</code>, but with support for parsing byte 
+strings on Python 3.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.web.http.html#datetimeToString" data-type="Function" class="code">datetimeToString</a></td>
+    <td><span>Convert seconds since epoch to HTTP datetime string.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.web.http.html#datetimeToLogString" data-type="Function" class="code">datetimeToLogString</a></td>
+    <td><span>Convert seconds since epoch to log datetime string.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.web.http.html#timegm" data-type="Function" class="code">timegm</a></td>
+    <td><span>Convert time tuple in GMT to seconds since epoch, GMT</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.web.http.html#stringToDatetime" data-type="Function" class="code">stringToDatetime</a></td>
+    <td><span>Convert an HTTP date string (one of three formats) to seconds since 
+epoch.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.web.http.html#toChunk" data-type="Function" class="code">toChunk</a></td>
+    <td><span>Convert string to a chunk.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.web.http.html#fromChunk" data-type="Function" class="code">fromChunk</a></td>
+    <td><span>Convert chunk to string.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.web.http.html#parseContentRange" data-type="Function" class="code">parseContentRange</a></td>
+    <td><span>Parse a content-range header into (start, end, realLength).</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.web.http.StringTransport.html" data-type="Class" class="code">StringTransport</a></td>
+    <td><span>I am a StringIO wrapper that conforms for the transport API. I support 
+the `writeSequence' method.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.web.http.HTTPClient.html" data-type="Class" class="code">HTTPClient</a></td>
+    <td><span>A client for HTTP 1.0.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.web.http.Request.html" data-type="Class" class="code">Request</a></td>
+    <td><span>A HTTP request.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.web.http.PotentialDataLoss.html" data-type="Class" class="code">PotentialDataLoss</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.web.http.HTTPChannel.html" data-type="Class" class="code">HTTPChannel</a></td>
+    <td><span>A receiver for HTTP requests.</span></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.web.http.html#combinedLogFormatter" data-type="Function" class="code">combinedLogFormatter</a></td>
+    <td></td>
+  </tr><tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.web.http.html#proxiedLogFormatter" data-type="Function" class="code">proxiedLogFormatter</a></td>
+    <td></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.web.http.HTTPFactory.html" data-type="Class" class="code">HTTPFactory</a></td>
+    <td><span>Factory for HTTP server.</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.web.http.html#_parseHeader" data-type="Function" class="code">_parseHeader</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="interface private">
+    
+    <td>Interface</td>
+    <td><a href="twisted.web.http._IDeprecatedHTTPChannelToRequestInterface.html" data-type="Interface" class="code">_IDeprecatedHTTPChannelToRequestInterface</a></td>
+    <td><span>The interface <a href="twisted.web.http.HTTPChannel.html"><code>HTTPChannel</code></a> 
+expects of <a href="twisted.web.http.Request.html"><code>Request</code></a>.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.web.http._DataLoss.html" data-type="Class" class="code">_DataLoss</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.web.http._MalformedChunkedDataError.html" data-type="Class" class="code">_MalformedChunkedDataError</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.web.http._IdentityTransferDecoder.html" data-type="Class" class="code">_IdentityTransferDecoder</a></td>
+    <td><span>Protocol for accumulating bytes up to a specified length.  This handles 
+the case where no <i>Transfer-Encoding</i> is specified.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.web.http._ChunkedTransferDecoder.html" data-type="Class" class="code">_ChunkedTransferDecoder</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.web.http._NoPushProducer.html" data-type="Class" class="code">_NoPushProducer</a></td>
+    <td><span>A no-op version of <a href="twisted.internet.interfaces.IPushProducer.html"><code>interfaces.IPushProducer</code></a>,
+used to abstract over the possibility that a <a href="twisted.web.http.HTTPChannel.html"><code>HTTPChannel</code></a> 
+transport does not provide <a href="twisted.internet.interfaces.IPushProducer.html"><code>IPushProducer</code></a>.</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.web.http.html#_escape" data-type="Function" class="code">_escape</a></td>
+    <td><span>Return a string like python repr, but always escaped as if surrounding 
+quotes were double quotes.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.web.http._XForwardedForAddress.html" data-type="Class" class="code">_XForwardedForAddress</a></td>
+    <td><span><a href="twisted.internet.interfaces.IAddress.html"><code>IAddress</code></a> 
+which represents the client IP to log for a request, as gleaned from an 
+X-Forwarded-For header.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.web.http._XForwardedForRequest.html" data-type="Class" class="code">_XForwardedForRequest</a></td>
+    <td><span>Add a layer on top of another request that only uses the value of an 
+X-Forwarded-For header as the result of <code>getClientAddress</code>.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.web.http._GenericHTTPChannelProtocol.html" data-type="Class" class="code">_GenericHTTPChannelProtocol</a></td>
+    <td><span>A proxy object that wraps one of the HTTP protocol objects, and switches
+between them depending on TLS negotiated protocol.</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.web.http.html#_genericHTTPChannelProtocolFactory" data-type="Function" class="code">_genericHTTPChannelProtocolFactory</a></td>
+    <td><span>Returns an appropriately initialized _GenericHTTPChannelProtocol.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basevariable">
+  
+  <a name="twisted.web.http.CACHED">
+    
+  </a>
+  <a name="CACHED">
+    
+  </a>
+  <div class="functionHeader">
+    CACHED =
+  </div>
+  <div class="functionBody">
+    A marker value to be returned from cache-related request methods to 
+indicate to the caller that a cached response will be usable and no 
+response body should be generated.
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.web.http.NOT_MODIFIED">
+    
+  </a>
+  <a name="NOT_MODIFIED">
+    
+  </a>
+  <div class="functionHeader">
+    NOT_MODIFIED =
+  </div>
+  <div class="functionBody">
+    An HTTP response code indicating that a requested pre-condition (for 
+example, the condition represented by an <i>If-Modified-Since</i> header is
+present in the request) has succeeded.  This indicates a response body 
+cached by the client can be used.
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.web.http.PRECONDITION_FAILED">
+    
+  </a>
+  <a name="PRECONDITION_FAILED">
+    
+  </a>
+  <div class="functionHeader">
+    PRECONDITION_FAILED =
+  </div>
+  <div class="functionBody">
+    An HTTP response code indicating that a requested pre-condition (for 
+example, the condition represented by an <i>If-None-Match</i> header is 
+present in the request) has failed.  This should typically indicate that 
+the server has not taken the requested action.
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.web.http._parseHeader">
+    
+  </a>
+  <a name="_parseHeader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _parseHeader(line):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/web/http.py#L78">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.web.http.urlparse">
+    
+  </a>
+  <a name="urlparse">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    urlparse(url):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/web/http.py#L164">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Parse an URL into six components.</p>
+<p>This is similar to <code>urlparse.urlparse</code>, but rejects 
+<code>unicode</code> input and always produces <code>bytes</code> 
+output.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The scheme, net location, path, params, query string, and fragment of the 
+URL - all as <code>bytes</code>. (type: <code>ParseResultBytes</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">TypeError</td><td>The given url was a <code>unicode</code> string instead of a 
+<code>bytes</code>.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.web.http.parse_qs">
+    
+  </a>
+  <a name="parse_qs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    parse_qs(qs, keep_blank_values=0, strict_parsing=0):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/web/http.py#L193">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Like <code>cgi.parse_qs</code>, but with support for parsing byte 
+strings on Python 3.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.web.http.datetimeToString">
+    
+  </a>
+  <a name="datetimeToString">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    datetimeToString(msSinceEpoch=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/web/http.py#L219">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Convert seconds since epoch to HTTP datetime string.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"> (type: <code>bytes</code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.web.http.datetimeToLogString">
+    
+  </a>
+  <a name="datetimeToLogString">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    datetimeToLogString(msSinceEpoch=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/web/http.py#L236">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Convert seconds since epoch to log datetime string.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"> (type: <code>str</code>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.web.http.timegm">
+    
+  </a>
+  <a name="timegm">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    timegm(year, month, day, hour, minute, second):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/web/http.py#L252">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Convert time tuple in GMT to seconds since epoch, GMT</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.web.http.stringToDatetime">
+    
+  </a>
+  <a name="stringToDatetime">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    stringToDatetime(dateString):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/web/http.py#L273">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Convert an HTTP date string (one of three formats) to seconds since 
+epoch.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.web.http.toChunk">
+    
+  </a>
+  <a name="toChunk">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    toChunk(data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/web/http.py#L329">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Convert string to a chunk.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a tuple of <code>bytes</code> representing the chunked encoding of data</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.web.http.fromChunk">
+    
+  </a>
+  <a name="fromChunk">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    fromChunk(data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/web/http.py#L341">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Convert chunk to string.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">tuple of (result, remaining) - both <code>bytes</code>.</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">ValueError</td><td>If the given data is not a correctly formatted chunked byte string.</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.web.http.parseContentRange">
+    
+  </a>
+  <a name="parseContentRange">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    parseContentRange(header):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/web/http.py#L362">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Parse a content-range header into (start, end, realLength).</p>
+<p>realLength might be None if real length is not known ('*').</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.web.http._escape">
+    
+  </a>
+  <a name="_escape">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _escape(s):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/web/http.py#L2605">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return a string like python repr, but always escaped as if surrounding 
+quotes were double quotes.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">s</td><td>The string to escape. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+or <a href="twisted.python.compat.html#unicode"><code>unicode</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An escaped string. (type: <a href="twisted.python.compat.html#unicode"><code>unicode</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.web.http.combinedLogFormatter">
+    
+  </a>
+  <a name="combinedLogFormatter">
+    
+  </a>
+  <div class="functionHeader">
+    @provider(IAccessLogFormatter)<br />
+    def
+    combinedLogFormatter(timestamp, request):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/web/http.py#L2631">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A combined log formatted log line for the given request.</td></tr><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><a href="twisted.web.iweb.IAccessLogFormatter.html"><code>IAccessLogFormatter</code></a></td></tr></table></div>
+  </div>
+</div><div class="basefunction">
+  
+  <a name="twisted.web.http.proxiedLogFormatter">
+    
+  </a>
+  <a name="proxiedLogFormatter">
+    
+  </a>
+  <div class="functionHeader">
+    @provider(IAccessLogFormatter)<br />
+    def
+    proxiedLogFormatter(timestamp, request):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/web/http.py#L2724">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A combined log formatted log line for the given request but use the value 
+of the <i>X-Forwarded-For</i> header as the value for the client IP 
+address.</td></tr><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><a href="twisted.web.iweb.IAccessLogFormatter.html"><code>IAccessLogFormatter</code></a></td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.web.http._genericHTTPChannelProtocolFactory">
+    
+  </a>
+  <a name="_genericHTTPChannelProtocolFactory">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _genericHTTPChannelProtocolFactory(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.2.1/src/twisted/web/http.py#L2928">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Returns an appropriately initialized _GenericHTTPChannelProtocol.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2019-06-07 00:11:44.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

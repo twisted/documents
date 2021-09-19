@@ -1,0 +1,529 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.mail.pop3.POP3&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.m.p.POP3(<a href="twisted.protocols.basic.LineOnlyReceiver.html">basic.LineOnlyReceiver</a>, <a href="twisted.protocols.policies.TimeoutMixin.html">policies.TimeoutMixin</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.mail.pop3.html">twisted.mail.pop3</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.mail.pop3.POP3">View In Hierarchy</a>
+    </p>
+    <div><p>Known subclasses: <a href="twisted.mail.protocols.VirtualPOP3.html">twisted.mail.protocols.VirtualPOP3</a></p><p>Implements interfaces: <a href="twisted.internet.interfaces.IProducer.html">twisted.internet.interfaces.IProducer</a></p></div>
+    <div>POP3 server protocol implementation.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">portal</td><td>A reference to the <a 
+href="twisted.cred.portal.Portal.html">twisted.cred.portal.Portal</a> 
+instance we will authenticate through.
+</td></tr><tr><td></td><td class="fieldArg">factory</td><td>A <a 
+href="twisted.mail.pop3.IServerFactory.html">twisted.mail.pop3.IServerFactory</a> 
+which will be used to determine some extended behavior of the server.
+</td></tr><tr><td></td><td class="fieldArg">timeOut</td><td>An integer which defines the minimum amount of time which may elapse 
+without receiving any traffic after which the client will be 
+disconnected.
+</td></tr><tr><td></td><td class="fieldArg">schedule</td><td>A one-argument callable which should behave like <a 
+href="twisted.internet.task.html#twisted.internet.task.coiterate">twisted.internet.task.coiterate</a>.
+</td></tr></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.connectionMade">connectionMade</a></td>
+          <td><span>Called when a connection is made.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.connectionLost">connectionLost</a></td>
+          <td><span>Called when the connection is shut down.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.generateMagic">generateMagic</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.successResponse">successResponse</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.failResponse">failResponse</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.lineReceived">lineReceived</a></td>
+          <td><span>Override this for when each line is received.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3._unblock">_unblock</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.state_COMMAND">state_COMMAND</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.processCommand">processCommand</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.listCapabilities">listCapabilities</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.do_CAPA">do_CAPA</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.do_AUTH">do_AUTH</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.state_AUTH">state_AUTH</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.do_APOP">do_APOP</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3._cbMailbox">_cbMailbox</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3._ebMailbox">_ebMailbox</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3._ebUnexpected">_ebUnexpected</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.do_USER">do_USER</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.do_PASS">do_PASS</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3._longOperation">_longOperation</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3._coiterate">_coiterate</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.do_STAT">do_STAT</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.do_LIST">do_LIST</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.do_UIDL">do_UIDL</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3._getMessageFile">_getMessageFile</a></td>
+          <td><span>Retrieve the size and contents of a given message, as a two-tuple.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3._sendMessageContent">_sendMessageContent</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.do_TOP">do_TOP</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.do_RETR">do_RETR</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.transformChunk">transformChunk</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.finishedFileTransfer">finishedFileTransfer</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.do_DELE">do_DELE</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.do_NOOP">do_NOOP</a></td>
+          <td><span>Perform no operation. Return a success code
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.do_RSET">do_RSET</a></td>
+          <td><span>Unset all deleted message flags
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.do_LAST">do_LAST</a></td>
+          <td><span>Return the index of the highest message yet downloaded.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.do_RPOP">do_RPOP</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.do_QUIT">do_QUIT</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.authenticateUserAPOP">authenticateUserAPOP</a></td>
+          <td><span>Perform authentication of an APOP login.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.POP3.authenticateUserPASS">authenticateUserPASS</a></td>
+          <td><span>Perform authentication of a username/password login.
+</span></td>
+        </tr></table>
+    
+    
+        <p>
+          Inherited from <span><a href="twisted.protocols.basic.LineOnlyReceiver.html">LineOnlyReceiver</a></span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic.LineOnlyReceiver.html#twisted.protocols.basic.LineOnlyReceiver.dataReceived">dataReceived</a></td>
+            <td><span>Translates bytes into lines, and calls lineReceived.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic.LineOnlyReceiver.html#twisted.protocols.basic.LineOnlyReceiver.sendLine">sendLine</a></td>
+            <td><span>Sends a line to the other end of the connection.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic.LineOnlyReceiver.html#twisted.protocols.basic.LineOnlyReceiver.lineLengthExceeded">lineLengthExceeded</a></td>
+            <td><span>Called when the maximum line length has been reached.
+</span></td>
+          </tr></table>
+      
+        <p>
+          Inherited from <span><a href="twisted.internet.protocol.BaseProtocol.html">BaseProtocol</a> (via <a href="twisted.protocols.basic.LineOnlyReceiver.html">LineOnlyReceiver</a>, <a href="twisted.internet.protocol.Protocol.html">Protocol</a>)</span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.internet.protocol.BaseProtocol.html#twisted.internet.protocol.BaseProtocol.makeConnection">makeConnection</a></td>
+            <td><span>Make a connection to a transport and a server.
+</span></td>
+          </tr></table>
+      
+        <p>
+          Inherited from <span><a href="twisted.protocols.policies.TimeoutMixin.html">TimeoutMixin</a></span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.policies.TimeoutMixin.html#twisted.protocols.policies.TimeoutMixin.callLater">callLater</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.policies.TimeoutMixin.html#twisted.protocols.policies.TimeoutMixin.resetTimeout">resetTimeout</a></td>
+            <td><span>Reset the timeout count down
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.policies.TimeoutMixin.html#twisted.protocols.policies.TimeoutMixin.setTimeout">setTimeout</a></td>
+            <td><span>Change the timeout period
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.policies.TimeoutMixin.html#twisted.protocols.policies.TimeoutMixin.__timedOut">__timedOut</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.policies.TimeoutMixin.html#twisted.protocols.policies.TimeoutMixin.timeoutConnection">timeoutConnection</a></td>
+            <td><span>Called when the connection times out.
+</span></td>
+          </tr></table>
+      
+    <div class="function">
+        <a name="twisted.mail.pop3.POP3.connectionMade"></a>
+        <div class="functionHeader">
+          def <span>connectionMade(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#twisted.internet.interfaces.IProtocol.connectionMade">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.BaseProtocol.html#twisted.internet.protocol.BaseProtocol.connectionMade">twisted.internet.protocol.BaseProtocol.connectionMade</a></div><div><p>Called when a connection is made.</p>
+This may be considered the initializer of the protocol, because it is 
+called when the connection is completed. For clients, this is called once 
+the connection to the server has been established; for servers, this is 
+called after an accept() call stops blocking and a socket has been 
+received. If you need to send any greeting or initial message, do it 
+here.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.connectionLost"></a>
+        <div class="functionHeader">
+          def <span>connectionLost(self, reason):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#twisted.internet.interfaces.IProtocol.connectionLost">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Protocol.html#twisted.internet.protocol.Protocol.connectionLost">twisted.internet.protocol.Protocol.connectionLost</a></div><div><p>Called when the connection is shut down.</p>
+Clear any circular references here, and any external references to 
+this Protocol. The connection has been closed. The reason Failure wraps a 
+<a 
+href="twisted.internet.error.ConnectionDone.html">twisted.internet.error.ConnectionDone</a> 
+or <a 
+href="twisted.internet.error.ConnectionLost.html">twisted.internet.error.ConnectionLost</a> 
+instance (or a subclass of one of those).
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">reason</td><td>(type: <a 
+href="twisted.python.failure.Failure.html">twisted.python.failure.Failure</a>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.generateMagic"></a>
+        <div class="functionHeader">
+          def <span>generateMagic(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.successResponse"></a>
+        <div class="functionHeader">
+          def <span>successResponse(self, message=''):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.failResponse"></a>
+        <div class="functionHeader">
+          def <span>failResponse(self, message=''):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.lineReceived"></a>
+        <div class="functionHeader">
+          def <span>lineReceived(self, line):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.protocols.basic.LineOnlyReceiver.html#twisted.protocols.basic.LineOnlyReceiver.lineReceived">twisted.protocols.basic.LineOnlyReceiver.lineReceived</a></div><div>Override this for when each line is received.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3._unblock"></a>
+        <div class="functionHeader">
+          def <span>_unblock(self, _):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.state_COMMAND"></a>
+        <div class="functionHeader">
+          def <span>state_COMMAND(self, line):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.processCommand"></a>
+        <div class="functionHeader">
+          def <span>processCommand(self, command, *args):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.listCapabilities"></a>
+        <div class="functionHeader">
+          def <span>listCapabilities(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.do_CAPA"></a>
+        <div class="functionHeader">
+          def <span>do_CAPA(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.do_AUTH"></a>
+        <div class="functionHeader">
+          def <span>do_AUTH(self, args=None):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.state_AUTH"></a>
+        <div class="functionHeader">
+          def <span>state_AUTH(self, line):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.do_APOP"></a>
+        <div class="functionHeader">
+          def <span>do_APOP(self, user, digest):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3._cbMailbox"></a>
+        <div class="functionHeader">
+          def <span>_cbMailbox(self, (interface, avatar, logout), user):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3._ebMailbox"></a>
+        <div class="functionHeader">
+          def <span>_ebMailbox(self, failure):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3._ebUnexpected"></a>
+        <div class="functionHeader">
+          def <span>_ebUnexpected(self, failure):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.do_USER"></a>
+        <div class="functionHeader">
+          def <span>do_USER(self, user):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.do_PASS"></a>
+        <div class="functionHeader">
+          def <span>do_PASS(self, password):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3._longOperation"></a>
+        <div class="functionHeader">
+          def <span>_longOperation(self, d):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3._coiterate"></a>
+        <div class="functionHeader">
+          def <span>_coiterate(self, gen):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.do_STAT"></a>
+        <div class="functionHeader">
+          def <span>do_STAT(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.do_LIST"></a>
+        <div class="functionHeader">
+          def <span>do_LIST(self, i=None):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.do_UIDL"></a>
+        <div class="functionHeader">
+          def <span>do_UIDL(self, i=None):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3._getMessageFile"></a>
+        <div class="functionHeader">
+          def <span>_getMessageFile(self, i):</span>
+        </div>
+        <div class="functionBody"><div>Retrieve the size and contents of a given message, as a two-tuple.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">i</td><td>The number of the message to operate on. This is a base-ten string 
+representation starting at 1.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A Deferred which fires with a two-tuple of an integer and a file-like 
+object.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3._sendMessageContent"></a>
+        <div class="functionHeader">
+          def <span>_sendMessageContent(self, i, fpWrapper, successResponse):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.do_TOP"></a>
+        <div class="functionHeader">
+          def <span>do_TOP(self, i, size):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.do_RETR"></a>
+        <div class="functionHeader">
+          def <span>do_RETR(self, i):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.transformChunk"></a>
+        <div class="functionHeader">
+          def <span>transformChunk(self, chunk):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.finishedFileTransfer"></a>
+        <div class="functionHeader">
+          def <span>finishedFileTransfer(self, lastsent):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.do_DELE"></a>
+        <div class="functionHeader">
+          def <span>do_DELE(self, i):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.do_NOOP"></a>
+        <div class="functionHeader">
+          def <span>do_NOOP(self):</span>
+        </div>
+        <div class="functionBody"><div>Perform no operation. Return a success code
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.do_RSET"></a>
+        <div class="functionHeader">
+          def <span>do_RSET(self):</span>
+        </div>
+        <div class="functionBody"><div>Unset all deleted message flags
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.do_LAST"></a>
+        <div class="functionHeader">
+          def <span>do_LAST(self):</span>
+        </div>
+        <div class="functionBody"><div>Return the index of the highest message yet downloaded.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.do_RPOP"></a>
+        <div class="functionHeader">
+          def <span>do_RPOP(self, user):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.do_QUIT"></a>
+        <div class="functionHeader">
+          def <span>do_QUIT(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.authenticateUserAPOP"></a>
+        <div class="functionHeader">
+          def <span>authenticateUserAPOP(self, user, digest):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.mail.protocols.VirtualPOP3.html#twisted.mail.protocols.VirtualPOP3.authenticateUserAPOP">twisted.mail.protocols.VirtualPOP3</a></div><div>Perform authentication of an APOP login.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">user</td><td>The name of the user attempting to log in.
+(type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">digest</td><td>The response string with which the user replied.
+(type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A deferred whose callback is invoked if the login is successful, and 
+whose errback will be invoked otherwise. The callback will be passed a 
+3-tuple consisting of IMailbox, an object implementing IMailbox, and a 
+zero-argument callable to be invoked when this session is terminated.
+(type: <code>Deferred</code>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.POP3.authenticateUserPASS"></a>
+        <div class="functionHeader">
+          def <span>authenticateUserPASS(self, user, password):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.mail.protocols.VirtualPOP3.html#twisted.mail.protocols.VirtualPOP3.authenticateUserPASS">twisted.mail.protocols.VirtualPOP3</a></div><div>Perform authentication of a username/password login.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">user</td><td>The name of the user attempting to log in.
+(type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">password</td><td>The password to attempt to authenticate with.
+(type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A deferred whose callback is invoked if the login is successful, and 
+whose errback will be invoked otherwise. The callback will be passed a 
+3-tuple consisting of IMailbox, an object implementing IMailbox, and a 
+zero-argument callable to be invoked when this session is terminated.
+(type: <code>Deferred</code>
+)</td></tr></table></div></div>
+      </div>    
+  </body>
+</html>

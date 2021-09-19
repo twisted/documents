@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web.iweb.IAgent : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="apidocs.css" type="text/css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="interface"><code>twisted.web.iweb.IAgent(<span title="zope.interface.Interface">Interface</span>)</code> <small>interface documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.web.html" data-type="Package" class="code">web</a>.<a href="twisted.web.iweb.html" data-type="Module" class="code">iweb</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/web/iweb.py#L688">View Source</a>
+          <a href="classIndex.html#twisted.web.iweb.IAgent">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Known implementations: <a href="twisted.web.client.Agent.html" data-type="Class" class="code">twisted.web.client.Agent</a>, <a href="twisted.web.client.ContentDecoderAgent.html" data-type="Class" class="code">twisted.web.client.ContentDecoderAgent</a>, <a href="twisted.web.client.CookieAgent.html" data-type="Class" class="code">twisted.web.client.CookieAgent</a>, <a href="twisted.web.client.ProxyAgent.html" data-type="Class" class="code">twisted.web.client.ProxyAgent</a>, <a href="twisted.web.client.RedirectAgent.html" data-type="Class" class="code">twisted.web.client.RedirectAgent</a></p>
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>An agent makes HTTP requests.</p>
+<p>The way in which requests are issued is left up to each implementation. 
+Some may issue them directly to the server indicated by the net location 
+portion of the request URL.  Others may use a proxy specified by system 
+configuration.</p>
+<p>Processing of responses is also left very widely specified.  An 
+implementation may perform no special handling of responses, or it may 
+implement redirect following or content negotiation, it may implement a 
+cookie store or automatically respond to authentication challenges.  It may
+implement many other unforeseen behaviors as well.</p>
+<p>It is also intended that <a href="twisted.web.iweb.IAgent.html"><code>IAgent</code></a> implementations
+be composable.  An implementation which provides cookie handling features 
+should re-use an implementation that provides connection pooling and this 
+combination could be used by an implementation which adds content 
+negotiation functionality. Some implementations will be completely 
+self-contained, such as those which actually perform the network operations
+to send and receive requests, but most or all other implementations should 
+implement a small number of new features (perhaps one new feature) and 
+delegate the rest of the request/response machinery to another 
+implementation.</p>
+<p>This allows for great flexibility in the behavior an <a href="twisted.web.iweb.IAgent.html"><code>IAgent</code></a> will provide.  
+For example, an <a href="twisted.web.iweb.IAgent.html"><code>IAgent</code></a> with web 
+browser-like behavior could be obtained by combining a number of 
+(hypothetical) implementations:</p>
+<pre class="literalblock">
+   baseAgent = Agent(reactor)
+   redirect = BrowserLikeRedirectAgent(baseAgent, limit=10)
+   authenticate = AuthenticateAgent(
+       redirect, [diskStore.credentials, GtkAuthInterface()])
+   cookie = CookieAgent(authenticate, diskStore.cookie)
+   decode = ContentDecoderAgent(cookie, [(b"gzip", GzipDecoder())])
+   cache = CacheAgent(decode, diskStore.cache)
+
+   doSomeRequests(cache)
+</pre><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2873">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.iweb.IAgent.html#request" data-type="Method" class="code">request</a></td>
+    <td><span>Request the resource at the given location.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  <a name="twisted.web.iweb.IAgent.request">
+    
+  </a>
+  <a name="request">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    request(method, uri, headers=None, bodyProducer=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/web/iweb.py#L727">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Request the resource at the given location.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">method</td><td>The request method to use, such as <code>"GET"</code>, 
+<code>"HEAD"</code>, <code>"PUT"</code>, 
+<code>"POST"</code>, etc. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">uri</td><td>The location of the resource to request.  This should be an absolute URI 
+but some implementations may support relative URIs (with absolute or 
+relative paths).  <i>HTTP</i> and <i>HTTPS</i> are the schemes most likely 
+to be supported but others may be as well. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">headers</td><td>The headers to send with the request (or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+to send no extra headers).  An implementation may add its own headers to 
+this (for example for client identification or content negotiation). (type: <a href="twisted.web.http_headers.Headers.html"><code>Headers</code></a> or
+<a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>)</td></tr><tr><td></td><td class="fieldArg">bodyProducer</td><td>An object which can generate bytes to make up the body of this request (for
+example, the properly encoded contents of a file for a file upload).  Or, 
+<a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+if the request is to have no body. (type: <a href="twisted.web.iweb.IBodyProducer.html"><code>IBodyProducer</code></a> 
+provider)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+that fires with an <a href="twisted.web.iweb.IResponse.html"><code>IResponse</code></a> provider 
+when the header of the response has been received (regardless of the 
+response status code) or with a <a href="twisted.python.failure.Failure.html"><code>Failure</code></a> if 
+there is any problem which prevents that response from being received 
+(including problems that prevent the request from being sent). (type: <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>)</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2019-08-06 12:10:50.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

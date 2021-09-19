@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.base._ThreePhaseEvent : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="apidocs.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" style="display: none" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class private"><code>twisted.internet.base._ThreePhaseEvent(<span title="object">object</span>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.internet.html" data-type="Package" class="code">internet</a>.<a href="twisted.internet.base.html" data-type="Module" class="code">base</a></code>
+          <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.4.0/twisted/internet/base.py#L295">View Source</a>
+          <a href="classIndex.html#twisted.internet.base._ThreePhaseEvent">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Collection of callables (with arguments) which can be invoked as a group
+in a particular order.</p>
+<p>This provides the underlying implementation for the reactor's system 
+event triggers.  An instance of this class tracks triggers for all phases 
+of a single type of event.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id613">
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.base._ThreePhaseEvent.html#before" data-type="Instance Variable" class="code">before</a></td>
+    <td>A list of the before-phase triggers containing three-tuples of a callable, 
+a tuple of positional arguments, and a dict of keyword arguments</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.base._ThreePhaseEvent.html#finishedBefore" data-type="Instance Variable" class="code">finishedBefore</a></td>
+    <td>A list of the before-phase triggers which have already been executed.  This
+is only populated in the <code>'BEFORE'</code> state.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.base._ThreePhaseEvent.html#during" data-type="Instance Variable" class="code">during</a></td>
+    <td>A list of the during-phase triggers containing three-tuples of a callable, 
+a tuple of positional arguments, and a dict of keyword arguments</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.base._ThreePhaseEvent.html#after" data-type="Instance Variable" class="code">after</a></td>
+    <td>A list of the after-phase triggers containing three-tuples of a callable, a
+tuple of positional arguments, and a dict of keyword arguments</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.base._ThreePhaseEvent.html#state" data-type="Instance Variable" class="code">state</a></td>
+    <td>A string indicating what is currently going on with this object.  One of 
+<code>'BASE'</code> (for when nothing in particular is happening; this is 
+the initial value), <code>'BEFORE'</code> (when the before-phase triggers 
+are in the process of being executed).</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.base._ThreePhaseEvent.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.base._ThreePhaseEvent.html#addTrigger" data-type="Method" class="code">addTrigger</a></td>
+    <td><span>Add a trigger to the indicate phase.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.base._ThreePhaseEvent.html#removeTrigger" data-type="Method" class="code">removeTrigger</a></td>
+    <td><span>Remove a previously added trigger callable.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.base._ThreePhaseEvent.html#removeTrigger_BASE" data-type="Method" class="code">removeTrigger_BASE</a></td>
+    <td><span>Just try to remove the trigger.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.base._ThreePhaseEvent.html#removeTrigger_BEFORE" data-type="Method" class="code">removeTrigger_BEFORE</a></td>
+    <td><span>Remove the trigger if it has yet to be executed, otherwise emit a 
+warning that in the future an exception will be raised when removing an 
+already-executed trigger.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.base._ThreePhaseEvent.html#fireEvent" data-type="Method" class="code">fireEvent</a></td>
+    <td><span>Call the triggers added to this event.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.base._ThreePhaseEvent.html#_continueFiring" data-type="Method" class="code">_continueFiring</a></td>
+    <td><span>Call the during and after phase triggers for this event.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable">
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.before">
+    
+  </a>
+  <a name="before">
+    
+  </a>
+  <div class="functionHeader">
+    before =
+  </div>
+  <div class="functionBody">
+    A list of the before-phase triggers containing three-tuples of a callable, 
+a tuple of positional arguments, and a dict of keyword arguments
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.finishedBefore">
+    
+  </a>
+  <a name="finishedBefore">
+    
+  </a>
+  <div class="functionHeader">
+    finishedBefore =
+  </div>
+  <div class="functionBody">
+    A list of the before-phase triggers which have already been executed.  This
+is only populated in the <code>'BEFORE'</code> state.
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.during">
+    
+  </a>
+  <a name="during">
+    
+  </a>
+  <div class="functionHeader">
+    during =
+  </div>
+  <div class="functionBody">
+    A list of the during-phase triggers containing three-tuples of a callable, 
+a tuple of positional arguments, and a dict of keyword arguments
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.after">
+    
+  </a>
+  <a name="after">
+    
+  </a>
+  <div class="functionHeader">
+    after =
+  </div>
+  <div class="functionBody">
+    A list of the after-phase triggers containing three-tuples of a callable, a
+tuple of positional arguments, and a dict of keyword arguments
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.state">
+    
+  </a>
+  <a name="state">
+    
+  </a>
+  <div class="functionHeader">
+    state =
+  </div>
+  <div class="functionBody">
+    A string indicating what is currently going on with this object.  One of 
+<code>'BASE'</code> (for when nothing in particular is happening; this is 
+the initial value), <code>'BEFORE'</code> (when the before-phase triggers 
+are in the process of being executed).
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.4.0/twisted/internet/base.py#L324">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.addTrigger">
+    
+  </a>
+  <a name="addTrigger">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addTrigger(self, phase, callable, *args, **kwargs):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.4.0/twisted/internet/base.py#L331">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Add a trigger to the indicate phase.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">phase</td><td>One of <code>'before'</code>, <code>'during'</code>, or 
+<code>'after'</code>.</td></tr><tr><td></td><td class="fieldArg">callable</td><td>An object to be called when this event is triggered.</td></tr><tr><td></td><td class="fieldArg">*args</td><td>Positional arguments to pass to <code>callable</code>.</td></tr><tr><td></td><td class="fieldArg">**kwargs</td><td>Keyword arguments to pass to <code>callable</code>.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An opaque handle which may be passed to <a href="twisted.internet.base._ThreePhaseEvent.html#removeTrigger"><code>removeTrigger</code></a>
+to reverse the effects of calling this method.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.removeTrigger">
+    
+  </a>
+  <a name="removeTrigger">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeTrigger(self, handle):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.4.0/twisted/internet/base.py#L350">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Remove a previously added trigger callable.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">handle</td><td>An object previously returned by <a href="twisted.internet.base._ThreePhaseEvent.html#addTrigger"><code>addTrigger</code></a>.
+The trigger added by that call will be removed.</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">ValueError</td><td>If the trigger associated with <code>handle</code> has already been removed
+or if <code>handle</code> is not a valid handle.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.removeTrigger_BASE">
+    
+  </a>
+  <a name="removeTrigger_BASE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeTrigger_BASE(self, handle):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.4.0/twisted/internet/base.py#L363">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Just try to remove the trigger.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2">removeTrigger</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.removeTrigger_BEFORE">
+    
+  </a>
+  <a name="removeTrigger_BEFORE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeTrigger_BEFORE(self, handle):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.4.0/twisted/internet/base.py#L379">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Remove the trigger if it has yet to be executed, otherwise emit a 
+warning that in the future an exception will be raised when removing an 
+already-executed trigger.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2">removeTrigger</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.base._ThreePhaseEvent.fireEvent">
+    
+  </a>
+  <a name="fireEvent">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    fireEvent(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.4.0/twisted/internet/base.py#L400">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Call the triggers added to this event.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.internet.base._ThreePhaseEvent._continueFiring">
+    
+  </a>
+  <a name="_continueFiring">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _continueFiring(self, ignored):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.4.0/twisted/internet/base.py#L420">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Call the during and after phase triggers for this event.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2015-09-04 15:29:41.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

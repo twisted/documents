@@ -1,0 +1,195 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.application.internet : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="module">t.a.internet : module documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.application.html">application</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/application/internet.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div><p>Reactor-based Services</p>
+<p>Here are services to run clients, servers and periodic services using 
+the reactor.</p>
+<p>If you want to run a server service, <a 
+href="twisted.application.internet.StreamServerEndpointService.html"><code>StreamServerEndpointService</code></a>
+defines a service that can wrap an arbitrary 
+<code>IStreamServerEndpoint</code> as an <a 
+href="twisted.application.service.IService.html"><code>IService</code></a>.
+See also <code>twisted.internet.strports.service</code> for constructing 
+one of these directly from a descriptive string.</p>
+<p>Additionally, this module (dynamically) defines various Service 
+subclasses that let you represent clients and servers in a Service 
+hierarchy.  Endpoints APIs should be preferred for stream server services, 
+but since those APIs do not yet exist for clients or datagram services, 
+many of these are still useful.</p>
+They are as follows:
+<pre class="literalblock">
+ TCPServer, TCPClient,
+ UNIXServer, UNIXClient,
+ SSLServer, SSLClient,
+ UDPServer, UDPClient,
+ UNIXDatagramServer, UNIXDatagramClient,
+ MulticastServer
+</pre>
+<p>These classes take arbitrary arguments in their constructors and pass 
+them straight on to their respective reactor.listenXXX or 
+reactor.connectXXX calls.</p>
+For example, the following service starts a web server on port 8080: 
+<code>TCPServer(8080, server.Site(r))</code>.  See the documentation for 
+the reactor.listen/connect* methods for more information.
+<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id2734">
+  
+  
+<tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.application.internet.GenericServer.html">GenericServer</a></td>
+    <td><span>Serve Generic clients
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.application.internet.GenericClient.html">GenericClient</a></td>
+    <td><span>Connect to Generic.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.application.internet.TimerService.html">TimerService</a></td>
+    <td><span>Service to periodically call a function
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.application.internet.CooperatorService.html">CooperatorService</a></td>
+    <td><span>Simple <a 
+href="twisted.application.service.IService.html"><code>service.IService</code></a>
+which starts and stops a <a 
+href="twisted.internet.task.Cooperator.html"><code>twisted.internet.task.Cooperator</code></a>.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.application.internet.StreamServerEndpointService.html">StreamServerEndpointService</a></td>
+    <td><span>A <a 
+href="twisted.application.internet.StreamServerEndpointService.html"><code>StreamServerEndpointService</code></a>
+is an <a 
+href="twisted.application.service.IService.html"><code>IService</code></a> 
+which runs a server on a listening port described by an 
+<code>IStreamServerEndpoint</code>.
+</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.application.internet.html#_maybeGlobalReactor">_maybeGlobalReactor</a></td>
+    <td></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.application.internet._VolatileDataService.html">_VolatileDataService</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.application.internet._AbstractServer.html">_AbstractServer</a></td>
+    <td></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.application.internet._AbstractClient.html">_AbstractClient</a></td>
+    <td></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.application.internet._maybeGlobalReactor">
+    
+  </a>
+  <a name="_maybeGlobalReactor">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _maybeGlobalReactor(maybeReactor):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/application/internet.py#L48" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the argument, or the global reactor if the argument is 
+<code>None</code>.
+</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-10-27 16:27:37.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.python.modules.PythonPath : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.p.m.PythonPath : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.python.html">python</a>.<a href="twisted.python.modules.html">modules</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/modules.py#L527">View Source</a>
+      <a href="classIndex.html#twisted.python.modules.PythonPath">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>I represent the very top of the Python object-space, the module list in 
+sys.path and the modules list in sys.modules.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">_sysPath</td><td>a sequence of strings like sys.path.  This attribute is read-only.
+</td></tr><tr><td></td><td class="fieldArg">moduleDict</td><td>a dictionary mapping string module names to module objects, like 
+sys.modules.
+</td></tr><tr><td></td><td class="fieldArg">sysPathHooks</td><td>a list of PEP-302 path hooks, like sys.path_hooks.
+</td></tr><tr><td></td><td class="fieldArg">moduleLoader</td><td>a function that takes a fully-qualified python name and returns a 
+module, like twisted.python.reflect.namedAny.
+</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id73">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.modules.PythonPath.html#__init__">__init__</a></td>
+    <td><span>Create a PythonPath.  You almost certainly want to use 
+modules.theSystemPath, or its aliased methods, rather than creating a new 
+instance yourself, though.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.modules.PythonPath.html#iterEntries">iterEntries</a></td>
+    <td><span>Iterate the entries on my sysPath.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.modules.PythonPath.html#__getitem__">__getitem__</a></td>
+    <td><span>Get a python module by its given fully-qualified name.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.modules.PythonPath.html#__repr__">__repr__</a></td>
+    <td><span>Display my sysPath and moduleDict in a string representation.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.modules.PythonPath.html#iterModules">iterModules</a></td>
+    <td><span>Yield all top-level modules on my sysPath.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.modules.PythonPath.html#walkModules">walkModules</a></td>
+    <td><span>Similar to <a 
+href="twisted.python.modules.PythonPath.html#iterModules"><code>iterModules</code></a>,
+this yields every module on the path, then every submodule in each package 
+or entry.
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.modules.PythonPath.html#_getSysPath">_getSysPath</a></td>
+    <td><span>Retrieve the current value of the module search path list.
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.modules.PythonPath.html#_findEntryPathString">_findEntryPathString</a></td>
+    <td><span>Determine where a given Python module object came from by looking at 
+path entries.
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.modules.PythonPath.html#_smartPath">_smartPath</a></td>
+    <td><span>Given a path entry from sys.path which may refer to an importer, return 
+the appropriate FilePath-like instance.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.python.modules.PythonPath.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, sysPath=None, moduleDict=sys.modules, sysPathHooks=sys.path_hooks, importerCache=sys.path_importer_cache, moduleLoader=namedAny, sysPathFactory=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/modules.py#L544" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Create a PythonPath.  You almost certainly want to use 
+modules.theSystemPath, or its aliased methods, rather than creating a new 
+instance yourself, though.</p>
+All parameters are optional, and if unspecified, will use 'system' 
+equivalents that makes this PythonPath like the global 
+<code>theSystemPath</code> instance.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">sysPath</td><td>a sys.path-like list to use for this PythonPath, to specify where to 
+load modules from.
+</td></tr><tr><td></td><td class="fieldArg">moduleDict</td><td>a sys.modules-like dictionary to use for keeping track of what modules 
+this PythonPath has loaded.
+</td></tr><tr><td></td><td class="fieldArg">sysPathHooks</td><td>sys.path_hooks-like list of PEP-302 path hooks to be used for this 
+PythonPath, to determie which importers should be used.
+</td></tr><tr><td></td><td class="fieldArg">importerCache</td><td>a sys.path_importer_cache-like list of PEP-302 importers.  This will be 
+used in conjunction with the given sysPathHooks.
+</td></tr><tr><td></td><td class="fieldArg">moduleLoader</td><td>a module loader function which takes a string and returns a module.  
+That is to say, it is like <a 
+href="twisted.python.reflect.html#namedAny"><code>namedAny</code></a> - 
+*not* like <code>__import__</code>.
+</td></tr><tr><td></td><td class="fieldArg">sysPathFactory</td><td>a 0-argument callable which returns the current value of a sys.path-like
+list of strings.  Specify either this, or sysPath, not both.  This 
+alternative interface is provided because the way the Python import 
+mechanism works, you can re-bind the 'sys.path' name and that is what is 
+used for current imports, so it must be a factory rather than a value to 
+deal with modification by rebinding rather than modification by mutation.  
+Note: it is not recommended to rebind sys.path.  Although this mechanism 
+can deal with that, it is a subtle point which some tools that it is easy 
+for tools which interact with sys.path to miss.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.modules.PythonPath._getSysPath">
+    
+  </a>
+  <a name="_getSysPath">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _getSysPath(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/modules.py#L601" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Retrieve the current value of the module search path list.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.modules.PythonPath._findEntryPathString">
+    
+  </a>
+  <a name="_findEntryPathString">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _findEntryPathString(self, modobj):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/modules.py#L609" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Determine where a given Python module object came from by looking at 
+path entries.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.modules.PythonPath._smartPath">
+    
+  </a>
+  <a name="_smartPath">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _smartPath(self, pathName):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/modules.py#L641" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Given a path entry from sys.path which may refer to an importer, return 
+the appropriate FilePath-like instance.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">pathName</td><td>a str describing the path.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a FilePath-like object.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.modules.PythonPath.iterEntries">
+    
+  </a>
+  <a name="iterEntries">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    iterEntries(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/modules.py#L661" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Iterate the entries on my sysPath.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a generator yielding PathEntry objects
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.modules.PythonPath.__getitem__">
+    
+  </a>
+  <a name="__getitem__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __getitem__(self, modname):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/modules.py#L672" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Get a python module by its given fully-qualified name.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">modname</td><td>The fully-qualified Python module name to load.
+ (type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">an object representing the module identified by <code>modname</code>
+ (type: <a 
+href="twisted.python.modules.PythonModule.html"><code>PythonModule</code></a>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">KeyError</td><td>if the module name is not a valid module name, or no such module can be 
+identified as loadable.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.modules.PythonPath.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __repr__(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/modules.py#L712" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Display my sysPath and moduleDict in a string representation.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.modules.PythonPath.iterModules">
+    
+  </a>
+  <a name="iterModules">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    iterModules(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/modules.py#L718" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Yield all top-level modules on my sysPath.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.modules.PythonPath.walkModules">
+    
+  </a>
+  <a name="walkModules">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    walkModules(self, importPackages=False):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/python/modules.py#L726" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Similar to <a 
+href="twisted.python.modules.PythonPath.html#iterModules"><code>iterModules</code></a>,
+this yields every module on the path, then every submodule in each package 
+or entry.
+<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-10-27 16:17:34.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

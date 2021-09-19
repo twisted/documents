@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web._flatten._flattenElement : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="apidocs.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="function private"><code>twisted.web._flatten._flattenElement(request, root, write, slotData, renderFactory, dataEscaper)</code> <small>function documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.web.html" data-type="Package" class="code">web</a>.<a href="twisted.web._flatten.html" data-type="Module" class="code">_flatten</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/web/_flatten.py#L167">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>Make <code>root</code> slightly more flat by yielding all its immediate 
+contents as strings, deferreds or generators that are recursive calls to 
+itself.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">request</td><td>A request object which will be passed to <a href="twisted.web.iweb.IRenderable.html#render"><code>IRenderable.render</code></a>.</td></tr><tr><td></td><td class="fieldArg">root</td><td>An object to be made flatter.  This may be of type <code>unicode</code>, <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>,
+<a href="twisted.web.template.slot.html"><code>slot</code></a>, <a href="twisted.web.template.Tag.html"><code>Tag</code></a>, <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>,
+<a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>,
+<a href="http://docs.python.org/library/types.html#types.GeneratorType"><code>types.GeneratorType</code></a>,
+<a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>, 
+or an object that implements <a href="twisted.web.iweb.IRenderable.html"><code>IRenderable</code></a>.</td></tr><tr><td></td><td class="fieldArg">write</td><td>A callable which will be invoked with each <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+produced by flattening <code>root</code>.</td></tr><tr><td></td><td class="fieldArg">slotData</td><td>A <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="http://docs.python.org/library/stdtypes.html#dict"><code>dict</code></a>
+mapping <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>
+slot names to data with which those slots will be replaced.</td></tr><tr><td></td><td class="fieldArg">renderFactory</td><td>If not <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>,
+an object that provides <a href="twisted.web.iweb.IRenderable.html"><code>IRenderable</code></a>.</td></tr><tr><td></td><td class="fieldArg">dataEscaper</td><td>A 1-argument callable which takes <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+or <a href="twisted.python.compat.html#unicode"><code>unicode</code></a> 
+and returns <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>,
+quoted as appropriate for the rendering context.  This is really only one 
+of two values: <a href="twisted.web._flatten.html#attributeEscapingDoneOutside"><code>attributeEscapingDoneOutside</code></a>
+or <a href="twisted.web._flatten.html#escapeForContent"><code>escapeForContent</code></a>,
+depending on whether the rendering context is within an attribute or not.  
+See the explanation in <a href="twisted.web._flatten.html#writeWithAttributeEscaping"><code>writeWithAttributeEscaping</code></a>.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An iterator that eventually yields <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+that should be written to the output.  However it may also yield other 
+iterators or <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>s; if 
+it yields another iterator, the caller will iterate it; if it yields a <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>, the 
+result of that <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> will 
+either be <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>,
+in which case it's written, or another generator, in which case it is 
+iterated.  See <a href="twisted.web._flatten.html#_flattenTree"><code>_flattenTree</code></a>
+for the trampoline that consumes said values. (type: An iterator which yields <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>,
+<a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>, 
+and more iterators of the same type.)</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2016-11-26 06:44:29.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

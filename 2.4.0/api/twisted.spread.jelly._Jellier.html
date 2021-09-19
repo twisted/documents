@@ -1,0 +1,129 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.spread.jelly._Jellier&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.s.j._Jellier:</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.spread.jelly.html">twisted.spread.jelly</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.spread.jelly._Jellier">View In Hierarchy</a>
+    </p>
+    <div></div>
+    <div>(Internal) This class manages state for a call to jelly()
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.jelly._Jellier.__init__">__init__</a></td>
+          <td><span>Initialize.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.jelly._Jellier._cook">_cook</a></td>
+          <td><span>(internal)
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.jelly._Jellier.prepare">prepare</a></td>
+          <td><span>(internal)
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.jelly._Jellier.preserve">preserve</a></td>
+          <td><span>(internal)
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.jelly._Jellier._checkMutable">_checkMutable</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.jelly._Jellier.jelly">jelly</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.spread.jelly._Jellier.unpersistable">unpersistable</a></td>
+          <td><span>(internal)
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.spread.jelly._Jellier.__init__"></a>
+        <div class="functionHeader">
+          def <span>__init__(self, taster, persistentStore, invoker):</span>
+        </div>
+        <div class="functionBody"><div>Initialize.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.spread.jelly._Jellier._cook"></a>
+        <div class="functionHeader">
+          def <span>_cook(self, object):</span>
+        </div>
+        <div class="functionBody"><div><p>(internal)</p>
+<p>backreference an object.</p>
+<p>Notes on this method for the hapless future maintainer: If I've 
+already gone through the prepare/preserve cycle on the specified object 
+(it is being referenced after the serializer is &quot;done with&quot; it, 
+e.g. this reference is NOT circular), the copy-in-place of aList is 
+relevant, since the list being modified is the actual, pre-existing jelly 
+expression that was returned for that object. If not, it's technically 
+superfluous, since the value in self.preserved didn't need to be set, but 
+the invariant that self.preserved[id(object)] is a list is convenient 
+because that means we don't have to test and create it or not create it 
+here, creating fewer code-paths. that's why self.preserved is always set 
+to a list.</p>
+Sorry that this code is so hard to follow, but Python objects are 
+tricky to persist correctly. -glyph
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.spread.jelly._Jellier.prepare"></a>
+        <div class="functionHeader">
+          def <span>prepare(self, object):</span>
+        </div>
+        <div class="functionBody"><div><p>(internal) create a list for persisting an object to. this will allow 
+backreferences to be made internal to the object. (circular 
+references).</p>
+The reason this needs to happen is that we don't generate an ID for 
+every object, so we won't necessarily know which ID the object will have 
+in the future. When it is 'cooked' ( see _cook ), it will be assigned an 
+ID, and the temporary placeholder list created here will be modified 
+in-place to create an expression that gives this object an ID: [reference 
+id# [object-jelly]].
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.spread.jelly._Jellier.preserve"></a>
+        <div class="functionHeader">
+          def <span>preserve(self, object, sexp):</span>
+        </div>
+        <div class="functionBody"><div>(internal) mark an object's persistent list for later referral
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.spread.jelly._Jellier._checkMutable"></a>
+        <div class="functionHeader">
+          def <span>_checkMutable(self, obj):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.spread.jelly._Jellier.jelly"></a>
+        <div class="functionHeader">
+          def <span>jelly(self, obj):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.spread.jelly._Jellier.unpersistable"></a>
+        <div class="functionHeader">
+          def <span>unpersistable(self, reason, sxp=None):</span>
+        </div>
+        <div class="functionBody"><div>(internal) Returns an sexp: (unpersistable &quot;reason&quot;). 
+Utility method for making note that a particular object could not be 
+serialized.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

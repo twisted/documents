@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web.resource.IResource : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="apidocs.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="interface"><code>twisted.web.resource.IResource(<span title="zope.interface.Interface">Interface</span>)</code> <small>interface documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.web.html" data-type="Package" class="code">web</a>.<a href="twisted.web.resource.html" data-type="Module" class="code">resource</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/web/resource.py#L29">View Source</a>
+          <a href="classIndex.html#twisted.web.resource.IResource">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Known implementations: <a href="twisted.web._auth.wrapper.UnauthorizedResource.html" data-type="Class" class="code">twisted.web._auth.wrapper.UnauthorizedResource</a>, <a href="twisted.web.guard.HTTPAuthSessionWrapper.html" data-type="Class" class="code">twisted.web.guard.HTTPAuthSessionWrapper</a>, <a href="twisted.web.resource.Resource.html" data-type="Class" class="code">twisted.web.resource.Resource</a>, <a href="twisted.web.wsgi.WSGIResource.html" data-type="Class" class="code">twisted.web.wsgi.WSGIResource</a></p>
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>A web resource.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3209">
+  
+  <tr class="attribute">
+    
+    <td>Attribute</td>
+    <td><a href="twisted.web.resource.IResource.html#isLeaf" data-type="Attribute" class="code">isLeaf</a></td>
+    <td><span>Signal if this IResource implementor is a "leaf node" or not. 
+If True, getChildWithDefault will not be called on this Resource.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.resource.IResource.html#getChildWithDefault" data-type="Method" class="code">getChildWithDefault</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.resource.IResource.html#putChild" data-type="Method" class="code">putChild</a></td>
+    <td><span>Put a child IResource implementor at the given path.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.resource.IResource.html#render" data-type="Method" class="code">render</a></td>
+    <td><span>Render a request. This is called on the leaf resource for a request.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseattribute">
+  
+  <a name="twisted.web.resource.IResource.isLeaf">
+    
+  </a>
+  <a name="isLeaf">
+    
+  </a>
+  <div class="functionHeader">
+    isLeaf =
+  </div>
+  <div class="functionBody">
+    <div><p>Signal if this IResource implementor is a "leaf node" or not. 
+If True, getChildWithDefault will not be called on this Resource.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.resource.IResource.getChildWithDefault">
+    
+  </a>
+  <a name="getChildWithDefault">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getChildWithDefault(name, request):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/web/resource.py#L41">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return a child with the given name for the given request. This is the 
+external interface used by the Resource publishing machinery. If 
+implementing IResource without subclassing Resource, it must be provided. 
+However, if subclassing Resource, getChild overridden instead.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>A single path component from a requested URL.  For example, a request for 
+<i>http://example.com/foo/bar</i> will result in calls to this method with 
+<code>b"foo"</code> and <code>b"bar"</code> as values 
+for this argument. (type: <code>bytes</code>)</td></tr><tr><td></td><td class="fieldArg">request</td><td>A representation of all of the information about the request that is being 
+made for this child. (type: <a href="twisted.web.server.Request.html"><code>twisted.web.server.Request</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.resource.IResource.putChild">
+    
+  </a>
+  <a name="putChild">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    putChild(path, child):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/web/resource.py#L61">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Put a child IResource implementor at the given path.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">path</td><td>A single path component, to be interpreted relative to the path this 
+resource is found at, at which to put the given child. For example, if 
+resource A can be found at <i>http://example.com/foo</i> then a call like 
+<code>A.putChild(b"bar", B)</code> will make resource B available
+at <i>http://example.com/foo/bar</i>. (type: <code>bytes</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.resource.IResource.render">
+    
+  </a>
+  <a name="render">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    render(request):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.6.0/src/twisted/web/resource.py#L74">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Render a request. This is called on the leaf resource for a request.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">Either <code>server.NOT_DONE_YET</code> to indicate an asynchronous or a 
+<code>bytes</code> instance to write as the response to the request.  If 
+<code>NOT_DONE_YET</code> is returned, at some point later (for example, in
+a Deferred callback) call 
+<code>request.write(b"&lt;html&gt;")</code> to write data to the 
+request, and <code>request.finish()</code> to send the data to the browser.</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">twisted.web.error.UnsupportedMethod</td><td>If the HTTP verb requested is not supported by this resource.</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2016-11-26 06:44:29.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

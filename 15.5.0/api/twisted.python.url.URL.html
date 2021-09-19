@@ -1,0 +1,957 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.python.url.URL : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div style="display: none" id="current-docs-container" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>twisted.python.url.URL(<span title="object">object</span>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.python.html" data-type="Package" class="code">python</a>.<a href="twisted.python.url.html" data-type="Module" class="code">url</a></code>
+          <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_url.py#L184">View Source</a>
+          <a href="classIndex.html#twisted.python.url.URL">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A <a href="twisted.python.url.URL.html"><code>URL</code></a> represents 
+a URL and provides a convenient API for modifying its parts.</p>
+<p>A URL is split into a number of distinct parts: scheme, host, port, path
+segments, query parameters and fragment identifier:</p>
+<pre class="literalblock">
+   http://example.com:8080/a/b/c?d=e#f
+   ^ scheme           ^ port     ^ query parameters
+          ^ host           ^ path segments
+                                     ^ fragment
+</pre>
+<p>You can construct <a href="twisted.python.url.URL.html"><code>URL</code></a> objects by passing 
+in these components directly, like so:</p>
+<pre class="literalblock">
+   &gt;&gt;&gt; from twisted.python.url import URL
+   &gt;&gt;&gt; URL(scheme=u'https', host=u'example.com',
+   ...     path=[u'hello', u'world'])
+   URL.fromText(u'https://example.com/hello/world')
+</pre>
+<p>Or you can use the <a href="twisted.python.url.URL.html#fromText"><code>fromText</code></a> 
+method you can see in the output there:</p>
+<pre class="literalblock">
+   &gt;&gt;&gt; URL.fromText(u'https://example.com/hello/world')
+   URL.fromText(u'https://example.com/hello/world')
+</pre>
+<p>There are two major advantages of using <a href="twisted.python.url.URL.html"><code>URL</code></a> over representing 
+URLs as strings.  The first is that it's really easy to evaluate a relative
+hyperlink, for example, when crawling documents, to figure out what is 
+linked:</p>
+<pre class="literalblock">
+   &gt;&gt;&gt; URL.fromText(u'https://example.com/base/uri/').click(u"/absolute")
+   URL.fromText(u'https://example.com/absolute')
+   &gt;&gt;&gt; (URL.fromText(u'https://example.com/base/uri/')
+   ...  .click(u"relative/path"))
+   URL.fromText(u'https://example.com/base/uri/relative/path')
+</pre>
+<p>The other is that URLs have two normalizations.  One representation is 
+suitable for humans to read, because it can represent data from many 
+character sets - this is the Internationalized, or IRI, normalization.  The
+other is the older, US-ASCII-only representation, which is necessary for 
+most contexts where you would need to put a URI.  You can convert *between*
+these representations according to certain rules.  <a href="twisted.python.url.URL.html"><code>URL</code></a> exposes these 
+conversions as methods:</p>
+<pre class="literalblock">
+   &gt;&gt;&gt; URL.fromText(u"https://→example.com/foo⇧bar/").asURI()
+   URL.fromText(u'https://xn--example-dk9c.com/foo%E2%87%A7bar/')
+   &gt;&gt;&gt; (URL.fromText(u'https://xn--example-dk9c.com/foo%E2%87%A7bar/')
+        .asIRI())
+   URL.fromText(u'https://\u2192example.com/foo\u21e7bar/')
+</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><a target="_top" href="https://tools.ietf.org/html/rfc3986">RFC 3986, 
+Uniform Resource Identifier (URI): Generic Syntax</a></td></tr><tr><td></td><td colspan="2"><a target="_top" href="https://tools.ietf.org/html/rfc3987">RFC 3987, 
+Internationalized Resource Identifiers</a></td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2768">
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.python.url.URL.html#scheme" data-type="Instance Variable" class="code">scheme</a></td>
+    <td>The URI scheme. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.python.url.URL.html#user%200" data-type="Instance Variable" class="code">user 0</a></td>
+    <td>The username portion of the URL, if specified; otherwise the empty string. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.python.url.URL.html#userinfo" data-type="Instance Variable" class="code">userinfo</a></td>
+    <td>The username and password portions of the URL, if specified, separated with
+colons.  If not specified, the empty string. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.python.url.URL.html#host" data-type="Instance Variable" class="code">host</a></td>
+    <td>The host name. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.python.url.URL.html#port" data-type="Instance Variable" class="code">port</a></td>
+    <td>The port number. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.python.url.URL.html#path" data-type="Instance Variable" class="code">path</a></td>
+    <td>The path segments. (type: <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>
+of <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>.)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.python.url.URL.html#query" data-type="Instance Variable" class="code">query</a></td>
+    <td>The query parameters, as (name, value) pairs. (type: <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>
+of 2-<a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>s
+of (name: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>,
+value: (<a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>
+for values or <code>None</code> for stand-alone query parameters with no 
+<code>=</code> in them)).)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.python.url.URL.html#fragment" data-type="Instance Variable" class="code">fragment</a></td>
+    <td>The fragment identifier. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.python.url.URL.html#rooted" data-type="Instance Variable" class="code">rooted</a></td>
+    <td>Does the path start with a <code>/</code>?  This is taken from the 
+terminology in the BNF grammar, specifically the 
+<code>path-rootless</code>, rule, since "absolute path" and 
+"absolute URI" are somewhat ambiguous. <code>path</code> does not
+contain the implicit prefixed <code>"/"</code> since that is 
+somewhat awkward to work with. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.url.URL.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td><span>Create a new <a href="twisted.python.url.URL.html"><code>URL</code></a> 
+from structured information about itself.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.url.URL.html#user" data-type="Method" class="code">user</a></td>
+    <td><span>The user portion of <code>userinfo</code>; everything up to the first 
+<code>":"</code>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.url.URL.html#authority" data-type="Method" class="code">authority</a></td>
+    <td><span>Compute and return the appropriate host/port/userinfo combination.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.url.URL.html#__eq__" data-type="Method" class="code">__eq__</a></td>
+    <td><span><a href="twisted.python.url.URL.html"><code>URL</code></a>s are equal to
+<a href="twisted.python.url.URL.html"><code>URL</code></a> objects whose 
+attributes are equal.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.url.URL.html#__ne__" data-type="Method" class="code">__ne__</a></td>
+    <td><span><a href="twisted.python.url.URL.html"><code>URL</code></a>s are unequal 
+to <a href="twisted.python.url.URL.html"><code>URL</code></a> objects whose
+attributes are unequal.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.url.URL.html#absolute" data-type="Method" class="code">absolute</a></td>
+    <td><span>Is this URL complete enough to resolve a resource without resolution 
+relative to a base-URI?</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.url.URL.html#replace" data-type="Method" class="code">replace</a></td>
+    <td><span>Make a new instance of <code>self.__class__</code>, passing along the 
+given arguments to its constructor.</span></td>
+  </tr><tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><a href="twisted.python.url.URL.html#fromText" data-type="Class Method" class="code">fromText</a></td>
+    <td><span>Parse the given string into a URL object.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.url.URL.html#child" data-type="Method" class="code">child</a></td>
+    <td><span>Construct a <a href="twisted.python.url.URL.html"><code>URL</code></a> 
+where the given path segments are a child of this url, presering the query 
+and fragment.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.url.URL.html#sibling" data-type="Method" class="code">sibling</a></td>
+    <td><span>Construct a url where the given path segment is a sibling of this 
+url.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.url.URL.html#click" data-type="Method" class="code">click</a></td>
+    <td><span>Resolve the given URI reference relative to this (base) URI.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.url.URL.html#asURI" data-type="Method" class="code">asURI</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.url.URL.html#asIRI" data-type="Method" class="code">asIRI</a></td>
+    <td><span>Convert a <a href="twisted.python.url.URL.html"><code>URL</code></a> 
+object that potentially contains text that has been percent-encoded or IDNA
+encoded into a <a href="twisted.python.url.URL.html"><code>URL</code></a> 
+object containing the text as it should be presented to a human for 
+reading.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.url.URL.html#asText" data-type="Method" class="code">asText</a></td>
+    <td><span>Convert this URL to its canonical textual representation.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.url.URL.html#__repr__" data-type="Method" class="code">__repr__</a></td>
+    <td><span>Convert this URL to an <code>eval</code>-able representation that shows 
+all of its constituent parts.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.url.URL.html#add" data-type="Method" class="code">add</a></td>
+    <td><span><p>Create a new <a href="twisted.python.url.URL.html"><code>URL</code></a> 
+with a given query argument, <code>name</code>, added to it with the value 
+<code>value</code>, like so:</p>
+<pre class="literalblock">
+
+</pre></span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.url.URL.html#set" data-type="Method" class="code">set</a></td>
+    <td><span><p>Create a new <a href="twisted.python.url.URL.html"><code>URL</code></a> 
+with all existing occurrences of the query argument <code>name</code>, if 
+any, removed, then add the argument with the given value, like so:</p>
+<pre class="literalblock">
+
+</pre></span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.url.URL.html#get" data-type="Method" class="code">get</a></td>
+    <td><span>Retrieve a list of values for the given named query parameter.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.python.url.URL.html#remove" data-type="Method" class="code">remove</a></td>
+    <td><span>Create a new <a href="twisted.python.url.URL.html"><code>URL</code></a> 
+with all query arguments with the given name removed.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable">
+  
+  <a name="twisted.python.url.URL.scheme">
+    
+  </a>
+  <a name="scheme">
+    
+  </a>
+  <div class="functionHeader">
+    scheme =
+  </div>
+  <div class="functionBody">
+    The URI scheme. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.python.url.URL.user 0">
+    
+  </a>
+  <a name="user 0">
+    
+  </a>
+  <div class="functionHeader">
+    user 0 =
+  </div>
+  <div class="functionBody">
+    The username portion of the URL, if specified; otherwise the empty string. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.python.url.URL.userinfo">
+    
+  </a>
+  <a name="userinfo">
+    
+  </a>
+  <div class="functionHeader">
+    userinfo =
+  </div>
+  <div class="functionBody">
+    The username and password portions of the URL, if specified, separated with
+colons.  If not specified, the empty string. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.python.url.URL.host">
+    
+  </a>
+  <a name="host">
+    
+  </a>
+  <div class="functionHeader">
+    host =
+  </div>
+  <div class="functionBody">
+    The host name. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.python.url.URL.port">
+    
+  </a>
+  <a name="port">
+    
+  </a>
+  <div class="functionHeader">
+    port =
+  </div>
+  <div class="functionBody">
+    The port number. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.python.url.URL.path">
+    
+  </a>
+  <a name="path">
+    
+  </a>
+  <div class="functionHeader">
+    path =
+  </div>
+  <div class="functionBody">
+    The path segments. (type: <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>
+of <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>.)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.python.url.URL.query">
+    
+  </a>
+  <a name="query">
+    
+  </a>
+  <div class="functionHeader">
+    query =
+  </div>
+  <div class="functionBody">
+    The query parameters, as (name, value) pairs. (type: <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>
+of 2-<a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>s
+of (name: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>,
+value: (<a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>
+for values or <code>None</code> for stand-alone query parameters with no 
+<code>=</code> in them)).)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.python.url.URL.fragment">
+    
+  </a>
+  <a name="fragment">
+    
+  </a>
+  <div class="functionHeader">
+    fragment =
+  </div>
+  <div class="functionBody">
+    The fragment identifier. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.python.url.URL.rooted">
+    
+  </a>
+  <a name="rooted">
+    
+  </a>
+  <div class="functionHeader">
+    rooted =
+  </div>
+  <div class="functionBody">
+    Does the path start with a <code>/</code>?  This is taken from the 
+terminology in the BNF grammar, specifically the 
+<code>path-rootless</code>, rule, since "absolute path" and 
+"absolute URI" are somewhat ambiguous. <code>path</code> does not
+contain the implicit prefixed <code>"/"</code> since that is 
+somewhat awkward to work with. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.url.URL.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, scheme=None, host=None, path=(), query=(), fragment=u'', port=None, rooted=None, userinfo=u''):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_url.py#L276">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Create a new <a href="twisted.python.url.URL.html"><code>URL</code></a> 
+from structured information about itself.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.url.URL.user">
+    
+  </a>
+  <a name="user">
+    
+  </a>
+  <div class="functionHeader">
+    @property<br />
+    def
+    user(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_url.py#L360">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>The user portion of <code>userinfo</code>; everything up to the first 
+<code>":"</code>.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.url.URL.authority">
+    
+  </a>
+  <a name="authority">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    authority(self, includeSecrets=False):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_url.py#L367">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Compute and return the appropriate host/port/userinfo combination.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">includeSecrets</td><td>should the return value of this method include secret information?  
+<code>True</code> if so, <code>False</code> if not (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The authority (network location and user information) portion of the URL. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.url.URL.__eq__">
+    
+  </a>
+  <a name="__eq__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __eq__(self, other):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_url.py#L392">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p><a href="twisted.python.url.URL.html"><code>URL</code></a>s are equal to
+<a href="twisted.python.url.URL.html"><code>URL</code></a> objects whose 
+attributes are equal.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.url.URL.__ne__">
+    
+  </a>
+  <a name="__ne__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __ne__(self, other):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_url.py#L405">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p><a href="twisted.python.url.URL.html"><code>URL</code></a>s are unequal 
+to <a href="twisted.python.url.URL.html"><code>URL</code></a> objects whose
+attributes are unequal.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.url.URL.absolute">
+    
+  </a>
+  <a name="absolute">
+    
+  </a>
+  <div class="functionHeader">
+    @property<br />
+    def
+    absolute(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_url.py#L415">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Is this URL complete enough to resolve a resource without resolution 
+relative to a base-URI?</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.url.URL.replace">
+    
+  </a>
+  <a name="replace">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    replace(self, scheme=_unspecified, host=_unspecified, path=_unspecified, query=_unspecified, fragment=_unspecified, port=_unspecified, rooted=_unspecified, userinfo=_unspecified):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_url.py#L423">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Make a new instance of <code>self.__class__</code>, passing along the 
+given arguments to its constructor.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">scheme</td><td>the scheme of the new URL; if unspecified, the scheme of this URL. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr><td></td><td class="fieldArg">host</td><td>the host of the new URL; if unspecified, the host of this URL. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr><td></td><td class="fieldArg">path</td><td>the path segments of the new URL; if unspecified, the path segments of this
+URL. (type: iterable of <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr><td></td><td class="fieldArg">query</td><td>the query elements of the new URL; if unspecified, the query segments of 
+this URL. (type: iterable of 2-<a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>s
+of key, value.)</td></tr><tr><td></td><td class="fieldArg">fragment</td><td>the fragment of the new URL; if unspecified, the query segments of this 
+URL. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr><td></td><td class="fieldArg">port</td><td>the port of the new URL; if unspecified, the port of this URL. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr><tr><td></td><td class="fieldArg">rooted</td><td><code>True</code> if the given <code>path</code> are meant to start at the 
+root of the host; <code>False</code> otherwise.  Only meaningful for 
+relative URIs. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr><tr><td></td><td class="fieldArg">userinfo</td><td>A string indicating information about an authenticated user. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a new <a href="twisted.python.url.URL.html"><code>URL</code></a>.</td></tr></table></div>
+  </div>
+</div><div class="baseclassmethod">
+  
+  <a name="twisted.python.url.URL.fromText">
+    
+  </a>
+  <a name="fromText">
+    
+  </a>
+  <div class="functionHeader">
+    @classmethod<br />
+    def
+    fromText(cls, s):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_url.py#L479">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Parse the given string into a URL object.</p>
+<p>Relative path references are not supported.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">s</td><td>a valid URI or IRI (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the parsed representation of <code>s</code> (type: <a href="twisted.python.url.URL.html"><code>URL</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.url.URL.child">
+    
+  </a>
+  <a name="child">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    child(self, *segments):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_url.py#L524">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Construct a <a href="twisted.python.url.URL.html"><code>URL</code></a> 
+where the given path segments are a child of this url, presering the query 
+and fragment.</p>
+<p>For example:</p>
+<pre class="literalblock">
+   &gt;&gt;&gt; (URL.fromText(u"http://localhost/a/b?x=y")
+        .child(u"c", u"d").asText())
+   u'http://localhost/a/b/c?x=y'
+</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">segments</td><td>A path segment. (type: <a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>
+of <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a new <a href="twisted.python.url.URL.html"><code>URL</code></a> with the 
+additional path segments. (type: <a href="twisted.python.url.URL.html"><code>URL</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.url.URL.sibling">
+    
+  </a>
+  <a name="sibling">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    sibling(self, segment):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_url.py#L547">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Construct a url where the given path segment is a sibling of this 
+url.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">segment</td><td>A path segment. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a new <a href="twisted.python.url.URL.html"><code>URL</code></a> with its 
+final path segment replaced with <code>segment</code>. (type: <a href="twisted.python.url.URL.html"><code>URL</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.url.URL.click">
+    
+  </a>
+  <a name="click">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    click(self, href):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_url.py#L561">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Resolve the given URI reference relative to this (base) URI.</p>
+<p>The resulting URI should match what a web browser would generate if you 
+click on <code>href</code> in the context of this URI.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">href</td><td>a URI reference (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>
+or ASCII <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a new absolute <a href="twisted.python.url.URL.html"><code>URL</code></a></td></tr><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2">RFC 3986 section 5, Reference Resolution</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.url.URL.asURI">
+    
+  </a>
+  <a name="asURI">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    asURI(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_url.py#L610">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Convert a <a href="twisted.python.url.URL.html"><code>URL</code></a> 
+object that potentially contains non-ASCII characters into a <a href="twisted.python.url.URL.html"><code>URL</code></a> object where all 
+non-ASCII text has been encoded appropriately.  This is useful to do in 
+preparation for sending a <a href="twisted.python.url.URL.html"><code>URL</code></a>, or portions of it,
+over a wire protocol.  For example:</p>
+<pre class="literalblock">
+   &gt;&gt;&gt; URL.fromText(u"https://→example.com/foo⇧bar/").asURI()
+   URL.fromText(u'https://xn--example-dk9c.com/foo%E2%87%A7bar/')
+</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a new <a href="twisted.python.url.URL.html"><code>URL</code></a> with its 
+path-segments, query-parameters, and hostname appropriately decoded, so 
+that they are all in the US-ASCII range. (type: <a href="twisted.python.url.URL.html"><code>URL</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.url.URL.asIRI">
+    
+  </a>
+  <a name="asIRI">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    asIRI(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_url.py#L639">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Convert a <a href="twisted.python.url.URL.html"><code>URL</code></a> 
+object that potentially contains text that has been percent-encoded or IDNA
+encoded into a <a href="twisted.python.url.URL.html"><code>URL</code></a> 
+object containing the text as it should be presented to a human for 
+reading.</p>
+<p>For example:</p>
+<pre class="literalblock">
+   &gt;&gt;&gt; (URL.fromText(u'https://xn--example-dk9c.com/foo%E2%87%A7bar/')
+        .asIRI())
+   URL.fromText(u'https://\u2192example.com/foo\u21e7bar/')
+</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a new <a href="twisted.python.url.URL.html"><code>URL</code></a> with its 
+path-segments, query-parameters, and hostname appropriately decoded. (type: <a href="twisted.python.url.URL.html"><code>URL</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.url.URL.asText">
+    
+  </a>
+  <a name="asText">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    asText(self, includeSecrets=False):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_url.py#L674">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Convert this URL to its canonical textual representation.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">includeSecrets</td><td>Should the returned textual representation include potentially sensitive 
+information?  The default, <code>False</code>, if not; <code>True</code> if
+so.  Quoting from RFC3986, section 3.2.1:
+<p>"Applications should not render as clear text any data after the 
+first colon (":") character found within a userinfo subcomponent 
+unless the data after the colon is the empty string (indicating no 
+password)."</p> (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The serialized textual representation of this <a href="twisted.python.url.URL.html"><code>URL</code></a>, such as 
+<code>u"http://example.com/some/path?some=query"</code>. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.url.URL.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __repr__(self):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_url.py#L705">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Convert this URL to an <code>eval</code>-able representation that shows 
+all of its constituent parts.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.url.URL.add">
+    
+  </a>
+  <a name="add">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    add(self, name, value=None):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_url.py#L713">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Create a new <a href="twisted.python.url.URL.html"><code>URL</code></a> 
+with a given query argument, <code>name</code>, added to it with the value 
+<code>value</code>, like so:</p>
+<pre class="literalblock">
+   &gt;&gt;&gt; URL.fromText(u'https://example.com/?x=y').add(u'x')
+   URL.fromText(u'https://example.com/?x=y&amp;x')
+   &gt;&gt;&gt; URL.fromText(u'https://example.com/?x=y').add(u'x', u'z')
+   URL.fromText(u'https://example.com/?x=y&amp;x=z')
+</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>The name (the part before the <code>=</code>) of the query parameter to 
+add. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr><td></td><td class="fieldArg">value</td><td>The value (the part after the <code>=</code>) of the query parameter to 
+add. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a new <a href="twisted.python.url.URL.html"><code>URL</code></a> with the 
+parameter added.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.url.URL.set">
+    
+  </a>
+  <a name="set">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    set(self, name, value=None):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_url.py#L736">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Create a new <a href="twisted.python.url.URL.html"><code>URL</code></a> 
+with all existing occurrences of the query argument <code>name</code>, if 
+any, removed, then add the argument with the given value, like so:</p>
+<pre class="literalblock">
+   &gt;&gt;&gt; URL.fromText(u'https://example.com/?x=y').set(u'x')
+   URL.fromText(u'https://example.com/?x')
+   &gt;&gt;&gt; URL.fromText(u'https://example.com/?x=y').set(u'x', u'z')
+   URL.fromText(u'https://example.com/?x=z')
+</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>The name (the part before the <code>=</code>) of the query parameter to 
+add. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr><td></td><td class="fieldArg">value</td><td>The value (the part after the <code>=</code>) of the query parameter to 
+add. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a new <a href="twisted.python.url.URL.html"><code>URL</code></a> with the 
+parameter added or changed.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.url.URL.get">
+    
+  </a>
+  <a name="get">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    get(self, name):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_url.py#L765">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Retrieve a list of values for the given named query parameter.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>The name of the query parameter to retrieve. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">all the values associated with the key; for example, for the query string 
+<code>u"x=1&amp;x=2"</code>, 
+<code>url.query.get(u"x")</code> would return <code>[u'1', 
+u'2']</code>; <code>url.query.get(u"y")</code> (since there is no
+<code>"y"</code> parameter) would return the empty list, 
+<code>[]</code>. (type: <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.python.url.URL.remove">
+    
+  </a>
+  <a name="remove">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    remove(self, name):
+    <a class="functionSourceLink" href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.5.0/twisted/python/_url.py#L781">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Create a new <a href="twisted.python.url.URL.html"><code>URL</code></a> 
+with all query arguments with the given name removed.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>The name of the query parameter to remove. (type: <a href="http://docs.python.org/library/stdtypes.html#unicode"><code>unicode</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a new <a href="twisted.python.url.URL.html"><code>URL</code></a> with the 
+parameter removed.</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2015-11-29 11:40:45.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script src="//www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

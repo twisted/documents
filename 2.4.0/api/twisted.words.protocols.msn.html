@@ -1,0 +1,202 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.words.protocols.msn&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="module">Module t.w.p.msn</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.words.protocols.html">twisted.words.protocols</a></span>
+      <a></a>
+      <a></a>
+    </p>
+    <div></div>
+    <div><p>MSNP8 Protocol (client only) - semi-experimental</p>
+<p>Stability: unstable.</p>
+<p>This module provides support for clients using the MSN Protocol 
+(MSNP8). There are basically 3 servers involved in any MSN session:</p>
+<p><i>Dispatch server</i></p>
+<p>The DispatchClient class handles connections to the dispatch server, 
+which basically delegates users to a suitable notification server.</p>
+<p>You will want to subclass this and handle the gotNotificationReferral 
+method appropriately.</p>
+<p><i>Notification Server</i></p>
+<p>The NotificationClient class handles connections to the notification 
+server, which acts as a session server (state updates, message 
+negotiation etc...)</p>
+<p><i>Switcboard Server</i></p>
+<p>The SwitchboardClient handles connections to switchboard servers which 
+are used to conduct conversations with other users.</p>
+<p>There are also two classes (FileSend and FileReceive) used for file 
+transfers.</p>
+Clients handle events in two ways.
+<ul>
+  <li>
+    each client request requiring a response will return a Deferred, 
+    the callback for same will be fired when the server sends the 
+    required response
+  </li>
+  <li>
+    Events which are not in response to any client request have 
+    respective methods which should be overridden and handled in an 
+    adequate manner
+  </li>
+</ul>
+<p>Most client request callbacks require more than one argument, and 
+since Deferreds can only pass the callback one result, most of the time 
+the callback argument will be a tuple of values (documented in the 
+respective request method). To make reading/writing code easier, 
+callbacks can be defined in a number of ways to handle this 'cleanly'. 
+One way would be to define methods like: def callBack(self, (arg1, arg2, 
+arg)): ... another way would be to do something like: 
+d.addCallback(lambda result: myCallback(*result)).</p>
+<p>If the server sends an error response to a client request, the errback 
+of the corresponding Deferred will be called, the argument being the 
+corresponding error code.</p>
+<b>NOTE</b>: Due to the lack of an official spec for MSNP8, extra 
+checking than may be deemed necessary often takes place considering the 
+server is never 'wrong'. Thus, if gotBadLine (in any of the 3 main 
+clients) is called, or an MSNProtocolError is raised, it's probably a 
+good idea to submit a bug report. ;) Use of this module requires that 
+PyOpenSSL is installed.
+<h1 class="heading">TODO</h1>
+  <ul>
+    <li>
+      check message hooks with invalid x-msgsinvite messages.
+    </li>
+    <li>
+      font handling
+    </li>
+    <li>
+      switchboard factory
+    </li>
+  </ul>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Author</td><td colspan="2"><a href="mailto:sam&#64;twistedmatrix.com">Sam Jordan</a>
+</td></tr></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.words.protocols.msn.checkParamLen">checkParamLen</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.words.protocols.msn._parseHeader">_parseHeader</a></td>
+          <td><span>Split a certin number of known
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.words.protocols.msn._parsePrimitiveHost">_parsePrimitiveHost</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.words.protocols.msn._login">_login</a></td>
+          <td><span>This function is used internally and should not ever be called
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.words.protocols.msn.PassportNexus.html">PassportNexus</a></td>
+          <td><span>Used to obtain the URL of a valid passport
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.words.protocols.msn.PassportLogin.html">PassportLogin</a></td>
+          <td><span>This class is used internally to obtain
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.words.protocols.msn.MSNProtocolError.html">MSNProtocolError</a></td>
+          <td><span>This Exception is basically used for debugging
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.words.protocols.msn.MSNMessage.html">MSNMessage</a></td>
+          <td><span>I am the class used to represent an 'instant' message.
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.words.protocols.msn.MSNContact.html">MSNContact</a></td>
+          <td><span>This class represents a contact (user).
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.words.protocols.msn.MSNContactList.html">MSNContactList</a></td>
+          <td><span>This class represents a basic MSN contact list.
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.words.protocols.msn.MSNEventBase.html">MSNEventBase</a></td>
+          <td><span>This class provides support for handling / dispatching events and is 
+the
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.words.protocols.msn.DispatchClient.html">DispatchClient</a></td>
+          <td><span>This class provides support for clients connecting to the dispatch 
+server
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.words.protocols.msn.NotificationClient.html">NotificationClient</a></td>
+          <td><span>This class provides support for clients connecting
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.words.protocols.msn.NotificationFactory.html">NotificationFactory</a></td>
+          <td><span>Factory for the NotificationClient protocol.
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.words.protocols.msn.SwitchboardClient.html">SwitchboardClient</a></td>
+          <td><span>This class provides support for clients connecting to a switchboard 
+server.
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.words.protocols.msn.FileReceive.html">FileReceive</a></td>
+          <td><span>This class provides support for receiving files from contacts.
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.words.protocols.msn.FileSend.html">FileSend</a></td>
+          <td><span>This class provides support for sending files to other contacts.
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.words.protocols.msn.checkParamLen"></a>
+        <div class="functionHeader">
+          def <span>checkParamLen(num, expected, cmd, error=None):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.words.protocols.msn._parseHeader"></a>
+        <div class="functionHeader">
+          def <span>_parseHeader(h, v):</span>
+        </div>
+        <div class="functionBody"><div>Split a certin number of known header values with the format: 
+field1=val,field2=val,field3=val into a dict mapping fields to 
+values.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">h</td><td>the header's key
+</td></tr><tr><td></td><td class="fieldArg">v</td><td>the header's value as a string
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.words.protocols.msn._parsePrimitiveHost"></a>
+        <div class="functionHeader">
+          def <span>_parsePrimitiveHost(host):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.words.protocols.msn._login"></a>
+        <div class="functionHeader">
+          def <span>_login(userHandle, passwd, nexusServer, cached=0, authData=''):</span>
+        </div>
+        <div class="functionBody"><div>This function is used internally and should not ever be called 
+directly.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

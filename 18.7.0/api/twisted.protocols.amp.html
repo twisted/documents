@@ -1,0 +1,769 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.protocols.amp : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link rel="stylesheet" href="bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="apidocs.css" type="text/css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div class="container" id="current-docs-container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code>twisted.protocols.amp</code> <small>module documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.protocols.html" data-type="Package" class="code">protocols</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-18.7.0/src/twisted/protocols/amp.py">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>This module implements AMP, the Asynchronous Messaging Protocol.</p>
+<p>AMP is a protocol for sending multiple asynchronous request/response 
+pairs over the same connection.  Requests and responses are both 
+collections of key/value pairs.</p>
+<p>AMP is a very simple protocol which is not an application.  This module 
+is a "protocol construction kit" of sorts; it attempts to be the 
+simplest wire-level implementation of Deferreds.  AMP provides the 
+following base-level features:</p>
+<ul>
+  <li>
+    Asynchronous request/response handling (hence the name)
+  </li>
+  <li>
+    Requests and responses are both key/value pairs
+  </li>
+  <li>
+    Binary transfer of all data: all data is length-prefixed.  Your 
+    application will never need to worry about quoting.
+  </li>
+  <li>
+    Command dispatching (like HTTP Verbs): the protocol is extensible, and 
+    multiple AMP sub-protocols can be grouped together easily.
+  </li>
+</ul>
+<p>The protocol implementation also provides a few additional features 
+which are not part of the core wire protocol, but are nevertheless very 
+useful:</p>
+<ul>
+  <li>
+    Tight TLS integration, with an included StartTLS command.
+  </li>
+  <li>
+    Handshaking to other protocols: because AMP has well-defined message 
+    boundaries and maintains all incoming and outgoing requests for you, 
+    you can start a connection over AMP and then switch to another 
+    protocol. This makes it ideal for firewall-traversal applications where
+    you may have only one forwarded port but multiple applications that 
+    want to use it.
+  </li>
+</ul>
+<p>Using AMP with Twisted is simple.  Each message is a command, with a 
+response. You begin by defining a command type.  Commands specify their 
+input and output in terms of the types that they expect to see in the 
+request and response key-value pairs.  Here's an example of a command that 
+adds two integers, 'a' and 'b':</p>
+<pre class="literalblock">
+   class Sum(amp.Command):
+       arguments = [('a', amp.Integer()),
+                    ('b', amp.Integer())]
+       response = [('total', amp.Integer())]
+</pre>
+<p>Once you have specified a command, you need to make it part of a 
+protocol, and define a responder for it.  Here's a 'JustSum' protocol that 
+includes a responder for our 'Sum' command:</p>
+<pre class="literalblock">
+   class JustSum(amp.AMP):
+       def sum(self, a, b):
+           total = a + b
+           print 'Did a sum: %d + %d = %d' % (a, b, total)
+           return {'total': total}
+       Sum.responder(sum)
+</pre>
+<p>Later, when you want to actually do a sum, the following expression will
+return a <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> which
+will fire with the result:</p>
+<pre class="literalblock">
+   ClientCreator(reactor, amp.AMP).connectTCP(...).addCallback(
+       lambda p: p.callRemote(Sum, a=13, b=81)).addCallback(
+           lambda result: result['total'])
+</pre>
+<p>Command responders may also return Deferreds, causing the response to be
+sent only once the Deferred fires:</p>
+<pre class="literalblock">
+   class DelayedSum(amp.AMP):
+       def slowSum(self, a, b):
+           total = a + b
+           result = defer.Deferred()
+           reactor.callLater(3, result.callback, {'total': total})
+           return result
+       Sum.responder(slowSum)
+</pre>
+<p>This is transparent to the caller.</p>
+<p>You can also define the propagation of specific errors in AMP.  For 
+example, for the slightly more complicated case of division, we might have 
+to deal with division by zero:</p>
+<pre class="literalblock">
+   class Divide(amp.Command):
+       arguments = [('numerator', amp.Integer()),
+                    ('denominator', amp.Integer())]
+       response = [('result', amp.Float())]
+       errors = {ZeroDivisionError: 'ZERO_DIVISION'}
+</pre>
+<p>The 'errors' mapping here tells AMP that if a responder to Divide emits 
+a <a href="http://docs.python.org/library/exceptions.html#exceptions.ZeroDivisionError"><code>ZeroDivisionError</code></a>,
+then the other side should be informed that an error of the type 
+'ZERO_DIVISION' has occurred.  Writing a responder which takes advantage of
+this is very simple - just raise your exception normally:</p>
+<pre class="literalblock">
+   class JustDivide(amp.AMP):
+       def divide(self, numerator, denominator):
+           result = numerator / denominator
+           print 'Divided: %d / %d = %d' % (numerator, denominator, total)
+           return {'result': result}
+       Divide.responder(divide)
+</pre>
+<p>On the client side, the errors mapping will be used to determine what 
+the 'ZERO_DIVISION' error means, and translated into an asynchronous 
+exception, which can be handled normally as any <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> would
+be:</p>
+<pre class="literalblock">
+   def trapZero(result):
+       result.trap(ZeroDivisionError)
+       print "Divided by zero: returning INF"
+       return 1e1000
+   ClientCreator(reactor, amp.AMP).connectTCP(...).addCallback(
+       lambda p: p.callRemote(Divide, numerator=1234,
+                              denominator=0)
+       ).addErrback(trapZero)
+</pre>
+<p>For a complete, runnable example of both of these commands, see the 
+files in the Twisted repository:</p>
+<pre class="literalblock">
+   doc/core/examples/ampserver.py
+   doc/core/examples/ampclient.py
+</pre>
+<p>On the wire, AMP is a protocol which uses 2-byte lengths to prefix keys 
+and values, and empty keys to separate messages:</p>
+<pre class="literalblock">
+   &lt;2-byte length&gt;&lt;key&gt;&lt;2-byte length&gt;&lt;value&gt;
+   &lt;2-byte length&gt;&lt;key&gt;&lt;2-byte length&gt;&lt;value&gt;
+   ...
+   &lt;2-byte length&gt;&lt;key&gt;&lt;2-byte length&gt;&lt;value&gt;
+   &lt;NUL&gt;&lt;NUL&gt;                  # Empty Key == End of Message
+</pre>
+<p>And so on.  Because it's tedious to refer to lengths and NULs 
+constantly, the documentation will refer to packets as if they were newline
+delimited, like so:</p>
+<pre class="literalblock">
+   C: _command: sum
+   C: _ask: ef639e5c892ccb54
+   C: a: 13
+   C: b: 81
+
+   S: _answer: ef639e5c892ccb54
+   S: total: 94
+</pre>
+<p>Notes:</p>
+<p>In general, the order of keys is arbitrary.  Specific uses of AMP may 
+impose an ordering requirement, but unless this is specified explicitly, 
+any ordering may be generated and any ordering must be accepted.  This 
+applies to the command-related keys <i>_command</i> and <i>_ask</i> as well
+as any other keys.</p>
+<p>Values are limited to the maximum encodable size in a 16-bit length, 
+65535 bytes.</p>
+<p>Keys are limited to the maximum encodable size in a 8-bit length, 255 
+bytes. Note that we still use 2-byte lengths to encode keys.  This small 
+redundancy has several features:</p>
+<ul>
+  <li>
+    If an implementation becomes confused and starts emitting corrupt data,
+    or gets keys confused with values, many common errors will be signalled
+    immediately instead of delivering obviously corrupt packets.
+  </li>
+  <li>
+    A single NUL will separate every key, and a double NUL separates 
+    messages.  This provides some redundancy when debugging traffic dumps.
+  </li>
+  <li>
+    NULs will be present at regular intervals along the protocol, providing
+    some padding for otherwise braindead C implementations of the protocol,
+    so that &lt;stdio.h&gt; string functions will see the NUL and stop.
+  </li>
+  <li>
+    This makes it possible to run an AMP server on a port also used by a 
+    plain-text protocol, and easily distinguish between non-AMP clients 
+    (like web browsers) which issue non-NUL as the first byte, and AMP 
+    clients, which always issue NUL as the first byte.
+  </li>
+</ul><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1955">
+  
+  <tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.protocols.amp.html#MAX_VALUE_LENGTH" data-type="Variable" class="code">MAX_VALUE_LENGTH</a></td>
+    <td>The maximum length of a message. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.protocols.amp.html#ASK" data-type="Variable" class="code">ASK</a></td>
+    <td>Marker for an Ask packet. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.protocols.amp.html#ANSWER" data-type="Variable" class="code">ANSWER</a></td>
+    <td>Marker for an Answer packet. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.protocols.amp.html#COMMAND" data-type="Variable" class="code">COMMAND</a></td>
+    <td>Marker for a Command packet. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.protocols.amp.html#ERROR" data-type="Variable" class="code">ERROR</a></td>
+    <td>Marker for an AMP box of error type. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.protocols.amp.html#ERROR_CODE" data-type="Variable" class="code">ERROR_CODE</a></td>
+    <td>Marker for an AMP box containing the code of an error. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td>
+  </tr><tr class="variable">
+    
+    <td>Variable</td>
+    <td><a href="twisted.protocols.amp.html#ERROR_DESCRIPTION" data-type="Variable" class="code">ERROR_DESCRIPTION</a></td>
+    <td>Marker for an AMP box containing the description of the error. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td>
+  </tr><tr class="interface">
+    
+    <td>Interface</td>
+    <td><a href="twisted.protocols.amp.IArgumentType.html" data-type="Interface" class="code">IArgumentType</a></td>
+    <td><span>An <a href="twisted.protocols.amp.IArgumentType.html"><code>IArgumentType</code></a>
+can serialize a Python object into an AMP box and deserialize information 
+from an AMP box back into a Python object.</span></td>
+  </tr><tr class="interface">
+    
+    <td>Interface</td>
+    <td><a href="twisted.protocols.amp.IBoxSender.html" data-type="Interface" class="code">IBoxSender</a></td>
+    <td><span>A transport which can send <a href="twisted.protocols.amp.AmpBox.html"><code>AmpBox</code></a> 
+objects.</span></td>
+  </tr><tr class="interface">
+    
+    <td>Interface</td>
+    <td><a href="twisted.protocols.amp.IBoxReceiver.html" data-type="Interface" class="code">IBoxReceiver</a></td>
+    <td><span>An application object which can receive <a href="twisted.protocols.amp.AmpBox.html"><code>AmpBox</code></a> objects 
+and dispatch them appropriately.</span></td>
+  </tr><tr class="interface">
+    
+    <td>Interface</td>
+    <td><a href="twisted.protocols.amp.IResponderLocator.html" data-type="Interface" class="code">IResponderLocator</a></td>
+    <td><span>An application object which can look up appropriate responder methods 
+for AMP commands.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.AmpError.html" data-type="Class" class="code">AmpError</a></td>
+    <td><span>Base class of all Amp-related exceptions.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.ProtocolSwitched.html" data-type="Class" class="code">ProtocolSwitched</a></td>
+    <td><span>Connections which have been switched to other protocols can no longer 
+accept traffic at the AMP level.  This is raised when you try to send 
+it.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.OnlyOneTLS.html" data-type="Class" class="code">OnlyOneTLS</a></td>
+    <td><span>This is an implementation limitation; TLS may only be started once per 
+connection.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.NoEmptyBoxes.html" data-type="Class" class="code">NoEmptyBoxes</a></td>
+    <td><span>You can't have empty boxes on the connection.  This is raised when you 
+receive or attempt to send one.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.InvalidSignature.html" data-type="Class" class="code">InvalidSignature</a></td>
+    <td><span>You didn't pass all the required arguments.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.TooLong.html" data-type="Class" class="code">TooLong</a></td>
+    <td><span>One of the protocol's length limitations was violated.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.BadLocalReturn.html" data-type="Class" class="code">BadLocalReturn</a></td>
+    <td><span>A bad value was returned from a local command; we were unable to coerce 
+it.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.RemoteAmpError.html" data-type="Class" class="code">RemoteAmpError</a></td>
+    <td><span>This error indicates that something went wrong on the remote end of the 
+connection, and the error was serialized and transmitted to you.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.UnknownRemoteError.html" data-type="Class" class="code">UnknownRemoteError</a></td>
+    <td><span>This means that an error whose type we can't identify was raised from 
+the other side.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.MalformedAmpBox.html" data-type="Class" class="code">MalformedAmpBox</a></td>
+    <td><span>This error indicates that the wire-level protocol was malformed.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.UnhandledCommand.html" data-type="Class" class="code">UnhandledCommand</a></td>
+    <td><span>A command received via amp could not be dispatched.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.IncompatibleVersions.html" data-type="Class" class="code">IncompatibleVersions</a></td>
+    <td><span>It was impossible to negotiate a compatible version of the protocol with
+the other end of the connection.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.AmpBox.html" data-type="Class" class="code">AmpBox</a></td>
+    <td><span>I am a packet in the AMP protocol, much like a regular bytes:bytes 
+dictionary.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.QuitBox.html" data-type="Class" class="code">QuitBox</a></td>
+    <td><span>I am an AmpBox that, upon being sent, terminates the connection.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.BoxDispatcher.html" data-type="Class" class="code">BoxDispatcher</a></td>
+    <td><span>A <a href="twisted.protocols.amp.BoxDispatcher.html"><code>BoxDispatcher</code></a>
+dispatches '_ask', '_answer', and '_error' <a href="twisted.protocols.amp.AmpBox.html"><code>AmpBox</code></a>es, both 
+incoming and outgoing, to their appropriate destinations.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.CommandLocator.html" data-type="Class" class="code">CommandLocator</a></td>
+    <td><span>A <a href="twisted.protocols.amp.CommandLocator.html"><code>CommandLocator</code></a>
+is a collection of responders to AMP <a href="twisted.protocols.amp.Command.html"><code>Command</code></a>s, with 
+the help of the <a href="twisted.protocols.amp.Command.html#responder"><code>Command.responder</code></a>
+decorator.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.SimpleStringLocator.html" data-type="Class" class="code">SimpleStringLocator</a></td>
+    <td><span>Implement the <a href="twisted.protocols.amp.AMP.html#locateResponder"><code>AMP.locateResponder</code></a>
+method to do simple, string-based dispatch.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.Argument.html" data-type="Class" class="code">Argument</a></td>
+    <td><span>Base-class of all objects that take values from Amp packets and convert 
+them into objects for Python functions.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.Integer.html" data-type="Class" class="code">Integer</a></td>
+    <td><span>Encode any integer values of any size on the wire as the string 
+representation.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.String.html" data-type="Class" class="code">String</a></td>
+    <td><span>Don't do any conversion at all; just pass through 'str'.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.Float.html" data-type="Class" class="code">Float</a></td>
+    <td><span>Encode floating-point values on the wire as their repr.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.Boolean.html" data-type="Class" class="code">Boolean</a></td>
+    <td><span>Encode True or False as "True" or "False" on the 
+wire.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.Unicode.html" data-type="Class" class="code">Unicode</a></td>
+    <td><span>Encode a unicode string on the wire as UTF-8.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.Path.html" data-type="Class" class="code">Path</a></td>
+    <td><span>Encode and decode <a href="twisted.python.filepath.FilePath.html"><code>filepath.FilePath</code></a>
+instances as paths on the wire.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.ListOf.html" data-type="Class" class="code">ListOf</a></td>
+    <td><span>Encode and decode lists of instances of a single other argument 
+type.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.AmpList.html" data-type="Class" class="code">AmpList</a></td>
+    <td><span>Convert a list of dictionaries into a list of AMP boxes on the wire.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.Descriptor.html" data-type="Class" class="code">Descriptor</a></td>
+    <td><span>Encode and decode file descriptors for exchange over a UNIX domain 
+socket.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.Command.html" data-type="Class" class="code">Command</a></td>
+    <td><span>Subclass me to specify an AMP Command.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.StartTLS.html" data-type="Class" class="code">StartTLS</a></td>
+    <td><span>Use, or subclass, me to implement a command that starts TLS.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.ProtocolSwitchCommand.html" data-type="Class" class="code">ProtocolSwitchCommand</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.BinaryBoxProtocol.html" data-type="Class" class="code">BinaryBoxProtocol</a></td>
+    <td><span>A protocol for receiving <a href="twisted.protocols.amp.AmpBox.html"><code>AmpBox</code></a>es - 
+key/value pairs - via length-prefixed strings.  A box is composed of:</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.AMP.html" data-type="Class" class="code">AMP</a></td>
+    <td><span>This protocol is an AMP connection.  See the module docstring for 
+protocol details.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.Decimal.html" data-type="Class" class="code">Decimal</a></td>
+    <td><span>Encodes <code>decimal.Decimal</code> instances.</span></td>
+  </tr><tr class="class">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp.DateTime.html" data-type="Class" class="code">DateTime</a></td>
+    <td><span>Encodes <code>datetime.datetime</code> instances.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp._SwitchBox.html" data-type="Class" class="code">_SwitchBox</a></td>
+    <td><span>Implementation detail of ProtocolSwitchCommand: I am an AmpBox which 
+sets up state for the protocol to switch.</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.protocols.amp.html#_wireNameToPythonIdentifier" data-type="Function" class="code">_wireNameToPythonIdentifier</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp._NoCertificate.html" data-type="Class" class="code">_NoCertificate</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp._TLSBox.html" data-type="Class" class="code">_TLSBox</a></td>
+    <td><span>I am an AmpBox that, upon being sent, initiates a TLS connection.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp._LocalArgument.html" data-type="Class" class="code">_LocalArgument</a></td>
+    <td><span>Local arguments are never actually relayed across the wire.  This is 
+just a shim so that StartTLS can pretend to have some arguments: if 
+arguments acquire documentation properties, replace this with something 
+nicer later.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp._DescriptorExchanger.html" data-type="Class" class="code">_DescriptorExchanger</a></td>
+    <td><span><a href="twisted.protocols.amp._DescriptorExchanger.html"><code>_DescriptorExchanger</code></a>
+is a mixin for <a href="twisted.protocols.amp.BinaryBoxProtocol.html"><code>BinaryBoxProtocol</code></a>
+which adds support for receiving file descriptors, a feature offered by <a href="twisted.internet.interfaces.IUNIXTransport.html"><code>IUNIXTransport</code></a>.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.protocols.amp._ParserHelper.html" data-type="Class" class="code">_ParserHelper</a></td>
+    <td><span>A box receiver which records all boxes received.</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.protocols.amp.html#_stringsToObjects" data-type="Function" class="code">_stringsToObjects</a></td>
+    <td><span>Convert an AmpBox to a dictionary of python objects, converting through 
+a given arglist.</span></td>
+  </tr><tr class="function private">
+    
+    <td>Function</td>
+    <td><a href="twisted.protocols.amp.html#_objectsToStrings" data-type="Function" class="code">_objectsToStrings</a></td>
+    <td><span>Convert a dictionary of python objects to an AmpBox, converting through 
+a given arglist.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basevariable">
+  
+  <a name="twisted.protocols.amp.MAX_VALUE_LENGTH">
+    
+  </a>
+  <a name="MAX_VALUE_LENGTH">
+    
+  </a>
+  <div class="functionHeader">
+    MAX_VALUE_LENGTH =
+  </div>
+  <div class="functionBody">
+    The maximum length of a message. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.protocols.amp.ASK">
+    
+  </a>
+  <a name="ASK">
+    
+  </a>
+  <div class="functionHeader">
+    ASK =
+  </div>
+  <div class="functionBody">
+    Marker for an Ask packet. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.protocols.amp.ANSWER">
+    
+  </a>
+  <a name="ANSWER">
+    
+  </a>
+  <div class="functionHeader">
+    ANSWER =
+  </div>
+  <div class="functionBody">
+    Marker for an Answer packet. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.protocols.amp.COMMAND">
+    
+  </a>
+  <a name="COMMAND">
+    
+  </a>
+  <div class="functionHeader">
+    COMMAND =
+  </div>
+  <div class="functionBody">
+    Marker for a Command packet. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.protocols.amp.ERROR">
+    
+  </a>
+  <a name="ERROR">
+    
+  </a>
+  <div class="functionHeader">
+    ERROR =
+  </div>
+  <div class="functionBody">
+    Marker for an AMP box of error type. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.protocols.amp.ERROR_CODE">
+    
+  </a>
+  <a name="ERROR_CODE">
+    
+  </a>
+  <div class="functionHeader">
+    ERROR_CODE =
+  </div>
+  <div class="functionBody">
+    Marker for an AMP box containing the code of an error. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)
+  </div>
+</div><div class="basevariable">
+  
+  <a name="twisted.protocols.amp.ERROR_DESCRIPTION">
+    
+  </a>
+  <a name="ERROR_DESCRIPTION">
+    
+  </a>
+  <div class="functionHeader">
+    ERROR_DESCRIPTION =
+  </div>
+  <div class="functionBody">
+    Marker for an AMP box containing the description of the error. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.protocols.amp._wireNameToPythonIdentifier">
+    
+  </a>
+  <a name="_wireNameToPythonIdentifier">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _wireNameToPythonIdentifier(key):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.7.0/src/twisted/protocols/amp.py#L1277">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>(Private) Normalize an argument name from the wire for use with Python 
+code.  If the return value is going to be a python keyword it will be 
+capitalized.  If it contains any dashes they will be replaced with 
+underscores.</p>
+<p>The rationale behind this method is that AMP should be an inherently 
+multi-language protocol, so message keys may contain all manner of bizarre 
+bytes.  This is not a complete solution; there are still forms of arguments
+that this implementation will be unable to parse.  However, Python 
+identifiers share a huge raft of properties with identifiers from many 
+other languages, so this is a 'good enough' effort for now.  We deal 
+explicitly with dashes because that is the most likely departure: Lisps 
+commonly use dashes to separate method names, so protocols initially 
+implemented in a lisp amp dialect may use dashes in argument or command 
+names.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">key</td><td>a <code>bytes</code>, looking something like 'foo-bar-baz' or 'from' (type: <code>bytes</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a native string which is a valid python identifier, looking something like 
+'foo_bar_baz' or 'From'.</td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.protocols.amp._stringsToObjects">
+    
+  </a>
+  <a name="_stringsToObjects">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _stringsToObjects(strings, arglist, proto):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.7.0/src/twisted/protocols/amp.py#L2728">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Convert an AmpBox to a dictionary of python objects, converting through 
+a given arglist.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">strings</td><td>an AmpBox (or dict of strings)</td></tr><tr><td></td><td class="fieldArg">arglist</td><td>a list of 2-tuples of strings and Argument objects, as described in <a href="twisted.protocols.amp.Command.html#arguments"><code>Command.arguments</code></a>.</td></tr><tr><td></td><td class="fieldArg">proto</td><td>an <a href="twisted.protocols.amp.AMP.html"><code>AMP</code></a> instance.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the converted dictionary mapping names to argument objects.</td></tr></table></div>
+  </div>
+</div><div class="basefunction private">
+  
+  <a name="twisted.protocols.amp._objectsToStrings">
+    
+  </a>
+  <a name="_objectsToStrings">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _objectsToStrings(objects, arglist, strings, proto):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.7.0/src/twisted/protocols/amp.py#L2750">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Convert a dictionary of python objects to an AmpBox, converting through 
+a given arglist.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">objects</td><td>a dict mapping names to python objects</td></tr><tr><td></td><td class="fieldArg">arglist</td><td>a list of 2-tuples of strings and Argument objects, as described in <a href="twisted.protocols.amp.Command.html#arguments"><code>Command.arguments</code></a>.</td></tr><tr><td></td><td class="fieldArg">strings</td><td>[OUT PARAMETER] An object providing the <a href="twisted.protocols.dict.html"><code>dict</code></a> interface which 
+will be populated with serialized data.</td></tr><tr><td></td><td class="fieldArg">proto</td><td>an <a href="twisted.protocols.amp.AMP.html"><code>AMP</code></a> instance.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The converted dictionary mapping names to encoded argument strings 
+(identical to <code>strings</code>).</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2018-07-14 04:53:34.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script src="//www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

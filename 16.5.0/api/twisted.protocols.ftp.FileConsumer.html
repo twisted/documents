@@ -1,0 +1,246 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.protocols.ftp.FileConsumer : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="apidocs.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>twisted.protocols.ftp.FileConsumer(<span title="object">object</span>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.protocols.html" data-type="Package" class="code">protocols</a>.<a href="twisted.protocols.ftp.html" data-type="Module" class="code">ftp</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-16.5.0/src/twisted/protocols/ftp.py#L655">View Source</a>
+          <a href="classIndex.html#twisted.protocols.ftp.FileConsumer">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Implements interfaces: <a href="twisted.internet.interfaces.IConsumer.html" data-type="Interface" class="code">twisted.internet.interfaces.IConsumer</a></p>
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>A consumer for FTP input that writes data to a file.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2087">
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.ftp.FileConsumer.html#fObj" data-type="Instance Variable" class="code">fObj</a></td>
+    <td>a file object opened for writing, used to write data received. (type: <code>file</code>)</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.ftp.FileConsumer.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.ftp.FileConsumer.html#registerProducer" data-type="Method" class="code">registerProducer</a></td>
+    <td><span>Register to receive data from a producer.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.ftp.FileConsumer.html#unregisterProducer" data-type="Method" class="code">unregisterProducer</a></td>
+    <td><span>Stop consuming data from a producer, without disconnecting.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.ftp.FileConsumer.html#write" data-type="Method" class="code">write</a></td>
+    <td><span>The producer will write data by calling this method.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable">
+  
+  <a name="twisted.protocols.ftp.FileConsumer.fObj">
+    
+  </a>
+  <a name="fObj">
+    
+  </a>
+  <div class="functionHeader">
+    fObj =
+  </div>
+  <div class="functionBody">
+    a file object opened for writing, used to write data received. (type: <code>file</code>)
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.ftp.FileConsumer.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, fObj):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.5.0/src/twisted/protocols/ftp.py#L662">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.ftp.FileConsumer.registerProducer">
+    
+  </a>
+  <a name="registerProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    registerProducer(self, producer, streaming):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.5.0/src/twisted/protocols/ftp.py#L666">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#registerProducer" data-type="Method" class="code">twisted.internet.interfaces.IConsumer</a></div>
+    
+    <div><p>Register to receive data from a producer.</p>
+<p>This sets self to be a consumer for a producer.  When this object runs 
+out of data (as when a send(2) call on a socket succeeds in moving the last
+data from a userspace buffer into a kernelspace buffer), it will ask the 
+producer to resumeProducing().</p>
+<p>For <a href="twisted.internet.interfaces.IPullProducer.html"><code>IPullProducer</code></a>
+providers, <code>resumeProducing</code> will be called once each time data 
+is required.</p>
+<p>For <a href="twisted.internet.interfaces.IPushProducer.html"><code>IPushProducer</code></a>
+providers, <code>pauseProducing</code> will be called whenever the write 
+buffer fills up and <code>resumeProducing</code> will only be called when 
+it empties.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">streaming</td><td><code>True</code> if <code>producer</code> provides <a href="twisted.internet.interfaces.IPushProducer.html"><code>IPushProducer</code></a>,
+<code>False</code> if <code>producer</code> provides <a href="twisted.internet.interfaces.IPullProducer.html"><code>IPullProducer</code></a>. (type: <code>bool</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="http://docs.python.org/library/constants.html#None"><code>None</code></a></td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">RuntimeError</td><td>If a producer is already registered.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.ftp.FileConsumer.unregisterProducer">
+    
+  </a>
+  <a name="unregisterProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    unregisterProducer(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.5.0/src/twisted/protocols/ftp.py#L671">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#unregisterProducer" data-type="Method" class="code">twisted.internet.interfaces.IConsumer</a></div>
+    
+    <div><p>Stop consuming data from a producer, without disconnecting.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.ftp.FileConsumer.write">
+    
+  </a>
+  <a name="write">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    write(self, bytes):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.5.0/src/twisted/protocols/ftp.py#L676">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#write" data-type="Method" class="code">twisted.internet.interfaces.IConsumer</a></div>
+    
+    <div><p>The producer will write data by calling this method.</p>
+<p>The implementation must be non-blocking and perform whatever buffering 
+is necessary.  If the producer has provided enough data for now and it is a
+<a href="twisted.internet.interfaces.IPushProducer.html"><code>IPushProducer</code></a>,
+the consumer may call its <code>pauseProducing</code> method.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2016-10-29 16:19:29.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

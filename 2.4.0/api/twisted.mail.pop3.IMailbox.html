@@ -1,0 +1,135 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.mail.pop3.IMailbox&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="interface">Interface t.m.p.IMailbox(<a href="twisted.python.components.Interface.html">components.Interface</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.mail.pop3.html">twisted.mail.pop3</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.mail.pop3.IMailbox">View In Hierarchy</a>
+    </p>
+    <div><p>Known implementations: <a href="twisted.mail.maildir.StringListMailbox.html">twisted.mail.maildir.StringListMailbox</a>, <a href="twisted.mail.pop3.Mailbox.html">twisted.mail.pop3.Mailbox</a></p></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">loginDelay</td><td>The number of seconds between allowed logins for the user associated 
+with this mailbox. None
+(type: <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">messageExpiration</td><td>The number of days messages in this mailbox will remain on the server 
+before being deleted.
+(type: <code>int</code>
+)</td></tr></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.IMailbox.listMessages">listMessages</a></td>
+          <td><span>Retrieve the size of one or more messages.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.IMailbox.getMessage">getMessage</a></td>
+          <td><span>Retrieve a file-like object for a particular message.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.IMailbox.getUidl">getUidl</a></td>
+          <td><span>Get a unique identifier for a particular message.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.IMailbox.deleteMessage">deleteMessage</a></td>
+          <td><span>Delete a particular message.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.IMailbox.undeleteMessages">undeleteMessages</a></td>
+          <td><span>Undelete any messages possible.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3.IMailbox.sync">sync</a></td>
+          <td><span>Perform checkpointing.
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.mail.pop3.IMailbox.listMessages"></a>
+        <div class="functionHeader">
+          def <span>listMessages(self, index=None):</span>
+        </div>
+        <div class="functionBody"><pre>Retrieve the size of one or more messages.
+
+@type index: C{int} or C{None}
+@param index: The number of the message for which to retrieve the
+size (starting at 0), or None to retrieve the size of all messages.
+
+@rtype: C{int} or any iterable of C{int} or a L{Deferred} which fires
+with one of these.
+
+@return: The number of octets in the specified message, or an iterable
+of integers representing the number of octets in all the messages.  Any
+value which would have referred to a deleted message should be set to
+0.
+
+@raise ValueError: if C{index} is greater than the index of any message
+in the mailbox.</pre></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.IMailbox.getMessage"></a>
+        <div class="functionHeader">
+          def <span>getMessage(self, index):</span>
+        </div>
+        <div class="functionBody"><div>Retrieve a file-like object for a particular message.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">index</td><td>The number of the message to retrieve
+(type: <code>int</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">(type: A file-like object
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.IMailbox.getUidl"></a>
+        <div class="functionHeader">
+          def <span>getUidl(self, index):</span>
+        </div>
+        <div class="functionBody"><div>Get a unique identifier for a particular message.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">index</td><td>The number of the message for which to retrieve a UIDL
+(type: <code>int</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A string of printable characters uniquely identifying for all time the 
+specified message.
+(type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">ValueError</td><td>if <code>index</code> is greater than the index of any message in the 
+mailbox.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.IMailbox.deleteMessage"></a>
+        <div class="functionHeader">
+          def <span>deleteMessage(self, index):</span>
+        </div>
+        <div class="functionBody"><div><p>Delete a particular message.</p>
+This must not change the number of messages in this mailbox. Further 
+requests for the size of deleted messages should return 0. Further 
+requests for the message itself may raise an exception.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">index</td><td>The number of the message to delete.
+(type: <code>int</code>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.IMailbox.undeleteMessages"></a>
+        <div class="functionHeader">
+          def <span>undeleteMessages(self):</span>
+        </div>
+        <div class="functionBody"><div><p>Undelete any messages possible.</p>
+If a message can be deleted it, it should return it its original 
+position in the message sequence and retain the same UIDL.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3.IMailbox.sync"></a>
+        <div class="functionHeader">
+          def <span>sync(self):</span>
+        </div>
+        <div class="functionBody"><div><p>Perform checkpointing.</p>
+This method will be called to indicate the mailbox should attempt to 
+clean up any remaining deleted messages.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

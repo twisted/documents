@@ -1,0 +1,104 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.words.iwords.IChatClient&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="interface">Interface t.w.i.IChatClient(Interface):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.words.iwords.html">twisted.words.iwords</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.words.iwords.IChatClient">View In Hierarchy</a>
+    </p>
+    <div><p>Known implementations: <a href="twisted.words.service.IRCUser.html">twisted.words.service.IRCUser</a>, <a href="twisted.words.service.PBMindReference.html">twisted.words.service.PBMindReference</a>, <a href="twisted.words.service.ChatAvatar.html">twisted.words.service.ChatAvatar</a></p></div>
+    <div>Interface through which IChatService interacts with clients.
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.iwords.IChatClient.receive">receive</a></td>
+          <td><span>Callback notifying this user of the given message sent by the
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.iwords.IChatClient.groupMetaUpdate">groupMetaUpdate</a></td>
+          <td><span>Callback notifying this user that the metadata for the given
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.iwords.IChatClient.userJoined">userJoined</a></td>
+          <td><span>Callback notifying this user that the given user has joined
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.words.iwords.IChatClient.userLeft">userLeft</a></td>
+          <td><span>Callback notifying this user that the given user has left the
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.words.iwords.IChatClient.receive"></a>
+        <div class="functionHeader">
+          def <span>receive(sender, recipient, message):</span>
+        </div>
+        <div class="functionBody"><div><p>Callback notifying this user of the given message sent by the given 
+user.</p>
+This will be invoked whenever another user sends a message to a group 
+this user is participating in, or whenever another user sends a message 
+directly to this user. In the former case, <code>recipient</code> will be 
+the group to which the message was sent; in the latter, it will be the 
+same object as the user who is receiving the message.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">sender</td><td>(type: <a href="twisted.words.iwords.IUser.html">IUser</a>
+)</td></tr><tr><td></td><td class="fieldArg">recipient</td><td>(type: <a href="twisted.words.iwords.IUser.html">IUser</a> or <a 
+href="twisted.words.iwords.IGroup.html">IGroup</a>
+)</td></tr><tr><td></td><td class="fieldArg">message</td><td>(type: <code>dict</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A Deferred which fires when the message has been delivered, or which 
+fails in some way. If the Deferred fails and the message was directed at 
+a group, this user will be removed from that group.
+(type: <a 
+href="twisted.internet.defer.Deferred.html">twisted.internet.defer.Deferred</a>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.words.iwords.IChatClient.groupMetaUpdate"></a>
+        <div class="functionHeader">
+          def <span>groupMetaUpdate(group, meta):</span>
+        </div>
+        <div class="functionBody"><div>Callback notifying this user that the metadata for the given group has 
+changed.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">group</td><td>(type: <a href="twisted.words.iwords.IGroup.html">IGroup</a>
+)</td></tr><tr><td></td><td class="fieldArg">meta</td><td>(type: <code>dict</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">(type: <a 
+href="twisted.internet.defer.Deferred.html">twisted.internet.defer.Deferred</a>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.words.iwords.IChatClient.userJoined"></a>
+        <div class="functionHeader">
+          def <span>userJoined(group, user):</span>
+        </div>
+        <div class="functionBody"><div>Callback notifying this user that the given user has joined the given 
+group.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">group</td><td>(type: <a href="twisted.words.iwords.IGroup.html">IGroup</a>
+)</td></tr><tr><td></td><td class="fieldArg">user</td><td>(type: <a href="twisted.words.iwords.IUser.html">IUser</a>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">(type: <a 
+href="twisted.internet.defer.Deferred.html">twisted.internet.defer.Deferred</a>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.words.iwords.IChatClient.userLeft"></a>
+        <div class="functionHeader">
+          def <span>userLeft(group, user, reason=None):</span>
+        </div>
+        <div class="functionBody"><div>Callback notifying this user that the given user has left the given 
+group for the given reason.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">group</td><td>(type: <a href="twisted.words.iwords.IGroup.html">IGroup</a>
+)</td></tr><tr><td></td><td class="fieldArg">user</td><td>(type: <a href="twisted.words.iwords.IUser.html">IUser</a>
+)</td></tr><tr><td></td><td class="fieldArg">reason</td><td>(type: <code>unicode</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">(type: <a 
+href="twisted.internet.defer.Deferred.html">twisted.internet.defer.Deferred</a>
+)</td></tr></table></div></div>
+      </div>    
+  </body>
+</html>

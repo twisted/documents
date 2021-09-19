@@ -1,0 +1,145 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.defer.deferredGenerator : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="function">t.i.d.deferredGenerator(f) : function documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a>.<a href="twisted.internet.defer.html">defer</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/internet/defer.py#L931">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div>deferredGenerator and waitForDeferred help you write <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>-using
+code that looks like a regular sequential function. If your code has a 
+minimum requirement of Python 2.5, consider the use of <a 
+href="twisted.internet.defer.html#inlineCallbacks"><code>inlineCallbacks</code></a>
+instead, which can accomplish the same thing in a more concise manner.</p>
+<p>There are two important functions involved: <a 
+href="twisted.internet.defer.waitForDeferred.html"><code>waitForDeferred</code></a>,
+and <a 
+href="twisted.internet.defer.html#deferredGenerator"><code>deferredGenerator</code></a>.
+They are used together, like this:</p>
+<pre class="literalblock">
+   @deferredGenerator
+   def thingummy():
+       thing = waitForDeferred(makeSomeRequestResultingInDeferred())
+       yield thing
+       thing = thing.getResult()
+       print thing #the result! hoorj!
+</pre>
+<p><a 
+href="twisted.internet.defer.waitForDeferred.html"><code>waitForDeferred</code></a>
+returns something that you should immediately yield; when your generator is
+resumed, calling <code>thing.getResult()</code> will either give you the 
+result of the <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> if it
+was a success, or raise an exception if it was a failure.  Calling 
+<code>getResult</code> is <b>absolutely mandatory</b>.  If you do not call 
+it, <i>your program will not work</i>.</p>
+<p><a 
+href="twisted.internet.defer.html#deferredGenerator"><code>deferredGenerator</code></a>
+takes one of these waitForDeferred-using generator functions and converts 
+it into a function that returns a <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>. The 
+result of the <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> will 
+be the last value that your generator yielded unless the last value is a <a
+href="twisted.internet.defer.waitForDeferred.html"><code>waitForDeferred</code></a>
+instance, in which case the result will be <code>None</code>.  If the 
+function raises an unhandled exception, the <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> will 
+errback instead.  Remember that <code>return result</code> won't work; use 
+<code>yield result; return</code> in place of that.</p>
+<p>Note that not yielding anything from your generator will make the <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+result in <code>None</code>. Yielding a <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> from 
+your generator is also an error condition; always yield 
+<code>waitForDeferred(d)</code> instead.</p>
+<p>The <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+returned from your deferred generator may also errback if your generator 
+raised an exception.  For example:</p>
+<pre class="literalblock">
+   @deferredGenerator
+   def thingummy():
+       thing = waitForDeferred(makeSomeRequestResultingInDeferred())
+       yield thing
+       thing = thing.getResult()
+       if thing == 'I love Twisted':
+           # will become the result of the Deferred
+           yield 'TWISTED IS GREAT!'
+           return
+       else:
+           # will trigger an errback
+           raise Exception('DESTROY ALL LIFE')
+</pre>
+<p>Put succinctly, these functions connect deferred-using code with this 
+'fake blocking' style in both directions: <a 
+href="twisted.internet.defer.waitForDeferred.html"><code>waitForDeferred</code></a>
+converts from a <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> to 
+the 'blocking' style, and <a 
+href="twisted.internet.defer.html#deferredGenerator"><code>deferredGenerator</code></a>
+converts from the 'blocking' style to a <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      
+      
+      
+    </div>
+    
+    
+    
+
+    
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2012-02-14 18:17:43.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

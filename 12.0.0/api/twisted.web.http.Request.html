@@ -1,0 +1,1138 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web.http.Request : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.w.h.Request : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web.html">web</a>.<a href="twisted.web.http.html">http</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L511">View Source</a>
+      <a href="classIndex.html#twisted.web.http.Request">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known subclasses: <a href="twisted.web.proxy.ProxyRequest.html">twisted.web.proxy.ProxyRequest</a>, <a href="twisted.web.proxy.ReverseProxyRequest.html">twisted.web.proxy.ReverseProxyRequest</a>, <a href="twisted.web.server.Request.html">twisted.web.server.Request</a></p><p>Implements interfaces: <a href="twisted.internet.interfaces.IConsumer.html">twisted.internet.interfaces.IConsumer</a></p>
+    </div>
+    <div>A HTTP request.</p>
+<p>Subclasses should override the process() method to determine how the 
+request will be processed.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">method</td><td>The HTTP method that was used.
+</td></tr><tr><td></td><td class="fieldArg">uri</td><td>The full URI that was requested (includes arguments).
+</td></tr><tr><td></td><td class="fieldArg">path</td><td>The path only (arguments not included).
+</td></tr><tr><td></td><td class="fieldArg">args</td><td>All of the arguments, including URL and POST arguments.
+ (type: A mapping of strings (the argument names) to lists of values. i.e., 
+?foo=bar&amp;foo=baz&amp;quux=spam results in {'foo': ['bar', 'baz'], 
+'quux': ['spam']}.
+)</td></tr><tr><td></td><td class="fieldArg">requestHeaders</td><td>All received HTTP request headers.
+ (type: <a 
+href="twisted.web.http_headers.Headers.html"><code>http_headers.Headers</code></a>
+)</td></tr><tr><td></td><td class="fieldArg">received_headers</td><td>Backwards-compatibility access to <code>requestHeaders</code>.  Use 
+<code>requestHeaders</code> instead.  <code>received_headers</code> behaves
+mostly like a <code>dict</code> and does not provide access to all header 
+values.
+</td></tr><tr><td></td><td class="fieldArg">responseHeaders</td><td>All HTTP response headers to be sent.
+ (type: <a 
+href="twisted.web.http_headers.Headers.html"><code>http_headers.Headers</code></a>
+)</td></tr><tr><td></td><td class="fieldArg">headers</td><td>Backwards-compatibility access to <code>responseHeaders</code>.  Use 
+<code>responseHeaders</code> instead.  <code>headers</code> behaves mostly 
+like a <code>dict</code> and does not provide access to all header values 
+nor does it allow multiple values for one header to be set.
+</td></tr><tr><td></td><td class="fieldArg">notifications</td><td>A <code>list</code> of <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>s 
+which are waiting for notification that the response to this request has 
+been finished (successfully or with an error).  Don't use this attribute 
+directly, instead use the <a 
+href="twisted.web.http.Request.html#notifyFinish"><code>Request.notifyFinish</code></a>
+method.
+</td></tr><tr><td></td><td class="fieldArg">_disconnected</td><td>A flag which is <code>False</code> until the connection over which this 
+request was received is closed and which is <code>True</code> after that.
+ (type: <code>bool</code>
+)</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1712">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#__init__">__init__</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#__setattr__">__setattr__</a></td>
+    <td><span>Support assignment of <code>dict</code> instances to 
+<code>received_headers</code> for backwards-compatibility.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#noLongerQueued">noLongerQueued</a></td>
+    <td><span>Notify the object that it is no longer queued.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#gotLength">gotLength</a></td>
+    <td><span>Called when HTTP channel got length of content in this request.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#parseCookies">parseCookies</a></td>
+    <td><span>Parse cookie headers.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#handleContentChunk">handleContentChunk</a></td>
+    <td><span>Write a chunk of data.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#requestReceived">requestReceived</a></td>
+    <td><span>Called by channel when all data has been received.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#__repr__">__repr__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#process">process</a></td>
+    <td><span>Override in subclasses.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#registerProducer">registerProducer</a></td>
+    <td><span>Register a producer.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#unregisterProducer">unregisterProducer</a></td>
+    <td><span>Unregister the producer.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#getHeader">getHeader</a></td>
+    <td><span>Get an HTTP request header.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#getCookie">getCookie</a></td>
+    <td><span>Get a cookie that was sent from the network.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#notifyFinish">notifyFinish</a></td>
+    <td><span>Notify when the response to this request has finished.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#finish">finish</a></td>
+    <td><span>Indicate that all response data has been written to this <a 
+href="twisted.web.http.Request.html"><code>Request</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#write">write</a></td>
+    <td><span>Write some data as a result of an HTTP request.  The first time this is 
+called, it writes out response data.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#addCookie">addCookie</a></td>
+    <td><span>Set an outgoing HTTP cookie.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#setResponseCode">setResponseCode</a></td>
+    <td><span>Set the HTTP response code.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#setHeader">setHeader</a></td>
+    <td><span>Set an HTTP response header.  Overrides any previously set values for 
+this header.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#redirect">redirect</a></td>
+    <td><span>Utility function that does a redirect.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#setLastModified">setLastModified</a></td>
+    <td><span>Set the <code>Last-Modified</code> time for the response to this 
+request.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#setETag">setETag</a></td>
+    <td><span>Set an <code>entity tag</code> for the outgoing response.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#getAllHeaders">getAllHeaders</a></td>
+    <td><span>Return dictionary mapping the names of all received headers to the last 
+value received for each.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#getRequestHostname">getRequestHostname</a></td>
+    <td><span>Get the hostname that the user passed in to the request.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#getHost">getHost</a></td>
+    <td><span>Get my originally requesting transport's host.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#setHost">setHost</a></td>
+    <td><span>Change the host and port the request thinks it's using.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#getClientIP">getClientIP</a></td>
+    <td><span>Return the IP address of the client who submitted this request.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#isSecure">isSecure</a></td>
+    <td><span>Return True if this request is using a secure transport.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#getUser">getUser</a></td>
+    <td><span>Return the HTTP user sent with this request, if any.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#getPassword">getPassword</a></td>
+    <td><span>Return the HTTP password sent with this request, if any.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#getClient">getClient</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#connectionLost">connectionLost</a></td>
+    <td><span>There is no longer a connection for this request to respond over. Clean 
+up anything which can't be useful anymore.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#_cleanup">_cleanup</a></td>
+    <td><span>Called when have finished responding and are no longer queued.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#_sendError">_sendError</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.Request.html#_authorize">_authorize</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.web.http.Request.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, channel, queued):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L572" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.web.proxy.ProxyRequest.html">twisted.web.proxy.ProxyRequest</a>, <a href="twisted.web.proxy.ReverseProxyRequest.html">twisted.web.proxy.ReverseProxyRequest</a>, <a href="twisted.web.server.Request.html">twisted.web.server.Request</a></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">channel</td><td>the channel we're connected to.
+</td></tr><tr><td></td><td class="fieldArg">queued</td><td>are we in the request queue, or can we start writing to the transport?
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.__setattr__">
+    
+  </a>
+  <a name="__setattr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __setattr__(self, name, value):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L592" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Support assignment of <code>dict</code> instances to 
+<code>received_headers</code> for backwards-compatibility.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request._cleanup">
+    
+  </a>
+  <a name="_cleanup">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _cleanup(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L616" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when have finished responding and are no longer queued.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.noLongerQueued">
+    
+  </a>
+  <a name="noLongerQueued">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    noLongerQueued(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L637" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Notify the object that it is no longer queued.</p>
+<p>We start writing whatever data we have to the transport, etc.</p>
+<p>This method is not intended for users.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.gotLength">
+    
+  </a>
+  <a name="gotLength">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    gotLength(self, length):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L664" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when HTTP channel got length of content in this request.</p>
+<p>This method is not intended for users.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">length</td><td>The length of the request body, as indicated by the request headers.  
+<code>None</code> if the request headers do not indicate a length.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.parseCookies">
+    
+  </a>
+  <a name="parseCookies">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    parseCookies(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L680" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Parse cookie headers.</p>
+<p>This method is not intended for users.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.handleContentChunk">
+    
+  </a>
+  <a name="handleContentChunk">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    handleContentChunk(self, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L702" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Write a chunk of data.</p>
+<p>This method is not intended for users.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.requestReceived">
+    
+  </a>
+  <a name="requestReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    requestReceived(self, command, path, version):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L711" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called by channel when all data has been received.</p>
+<p>This method is not intended for users.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">command</td><td>The HTTP verb of this request.  This has the case supplied by the client 
+(eg, it maybe &quot;get&quot; rather than &quot;GET&quot;).
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">path</td><td>The URI of this request.
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">version</td><td>The HTTP version of this request.
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __repr__(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L776" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.process">
+    
+  </a>
+  <a name="process">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    process(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L779" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.web.proxy.ProxyRequest.html">twisted.web.proxy.ProxyRequest</a>, <a href="twisted.web.proxy.ReverseProxyRequest.html">twisted.web.proxy.ReverseProxyRequest</a>, <a href="twisted.web.server.Request.html">twisted.web.server.Request</a></div>
+    <div>Override in subclasses.</p>
+<p>This method is not intended for users.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.registerProducer">
+    
+  </a>
+  <a name="registerProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    registerProducer(self, producer, streaming):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L790" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#registerProducer">twisted.internet.interfaces.IConsumer</a></div><div class="interfaceinfo">overridden in <a href="twisted.web.distrib.Request.html">twisted.web.distrib.Request</a></div>
+    <div>Register a producer.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.unregisterProducer">
+    
+  </a>
+  <a name="unregisterProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    unregisterProducer(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L806" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#unregisterProducer">twisted.internet.interfaces.IConsumer</a></div><div class="interfaceinfo">overridden in <a href="twisted.web.distrib.Request.html">twisted.web.distrib.Request</a></div>
+    <div>Unregister the producer.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request._sendError">
+    
+  </a>
+  <a name="_sendError">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _sendError(self, code, resp=''):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L816" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.getHeader">
+    
+  </a>
+  <a name="getHeader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getHeader(self, key):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L822" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Get an HTTP request header.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">key</td><td>The name of the header to get the value of.
+ (type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The value of the specified header, or <code>None</code> if that header was 
+not present in the request.
+ (type: <code>str</code> or <code>NoneType</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.getCookie">
+    
+  </a>
+  <a name="getCookie">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getCookie(self, key):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L838" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Get a cookie that was sent from the network.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.notifyFinish">
+    
+  </a>
+  <a name="notifyFinish">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    notifyFinish(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L845" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Notify when the response to this request has finished.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+which will be triggered when the request is finished -- with a 
+<code>None</code> value if the request finishes successfully or with an 
+error if the request is interrupted by an error (for example, the client 
+closing the connection prematurely).
+ (type: <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.finish">
+    
+  </a>
+  <a name="finish">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    finish(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L860" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Indicate that all response data has been written to this <a 
+href="twisted.web.http.Request.html"><code>Request</code></a>.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.write">
+    
+  </a>
+  <a name="write">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    write(self, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L889" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#write">twisted.internet.interfaces.IConsumer</a></div><div class="interfaceinfo">overridden in <a href="twisted.web.server.Request.html">twisted.web.server.Request</a></div>
+    <div>Write some data as a result of an HTTP request.  The first time this is 
+called, it writes out response data.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">data</td><td>Some bytes to be sent as part of the response body.
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.addCookie">
+    
+  </a>
+  <a name="addCookie">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addCookie(self, k, v, expires=None, domain=None, path=None, max_age=None, comment=None, secure=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L955" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Set an outgoing HTTP cookie.</p>
+<p>In general, you should consider using sessions instead of cookies, see 
+<a 
+href="twisted.web.server.Request.html#getSession"><code>twisted.web.server.Request.getSession</code></a>
+and the <a 
+href="twisted.web.server.Session.html"><code>twisted.web.server.Session</code></a>
+class for details.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.setResponseCode">
+    
+  </a>
+  <a name="setResponseCode">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setResponseCode(self, code, message=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L978" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Set the HTTP response code.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.setHeader">
+    
+  </a>
+  <a name="setHeader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setHeader(self, name, value):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L991" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Set an HTTP response header.  Overrides any previously set values for 
+this header.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>The name of the header for which to set the value.
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">value</td><td>The value to set for the named header.
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.redirect">
+    
+  </a>
+  <a name="redirect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    redirect(self, url):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L1005" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Utility function that does a redirect.</p>
+<p>The request should have finish() called after this.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.setLastModified">
+    
+  </a>
+  <a name="setLastModified">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setLastModified(self, when):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L1015" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Set the <code>Last-Modified</code> time for the response to this 
+request.</p>
+<p>If I am called more than once, I ignore attempts to set Last-Modified 
+earlier, only replacing the Last-Modified time if it is to a later 
+value.</p>
+<p>If I am a conditional request, I may modify my response code to 
+<code>NOT_MODIFIED</code> if appropriate for the time given.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">when</td><td>The last time the resource being returned was modified, in seconds since 
+the epoch.
+ (type: number
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">If I am a <code>If-Modified-Since</code> conditional request and the time 
+given is not newer than the condition, I return <code>http.CACHED</code> to
+indicate that you should write no body.  Otherwise, I return a false value.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.setETag">
+    
+  </a>
+  <a name="setETag">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setETag(self, etag):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L1052" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Set an <code>entity tag</code> for the outgoing response.</p>
+<p>That's &quot;entity tag&quot; as in the HTTP/1.1 <code>ETag</code> 
+header, &quot;used for comparing two or more entities from the same 
+requested resource.&quot;</p>
+<p>If I am a conditional request, I may modify my response code to 
+<code>NOT_MODIFIED</code> or <code>PRECONDITION_FAILED</code>, if 
+appropriate for the tag given.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">etag</td><td>The entity tag for the resource being returned.
+ (type: string
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">If I am a <code>If-None-Match</code> conditional request and the tag 
+matches one in the request, I return <code>http.CACHED</code> to indicate 
+that you should write no body.  Otherwise, I return a false value.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.getAllHeaders">
+    
+  </a>
+  <a name="getAllHeaders">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getAllHeaders(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L1085" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Return dictionary mapping the names of all received headers to the last 
+value received for each.</p>
+<p>Since this method does not return all header information, 
+<code>self.requestHeaders.getAllRawHeaders()</code> may be preferred.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.getRequestHostname">
+    
+  </a>
+  <a name="getRequestHostname">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getRequestHostname(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L1099" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Get the hostname that the user passed in to the request.</p>
+<p>This will either use the Host: header (if it is available) or the host 
+we are listening on if the header is unavailable.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the requested hostname
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.getHost">
+    
+  </a>
+  <a name="getHost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getHost(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L1117" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Get my originally requesting transport's host.</p>
+<p>Don't rely on the 'transport' attribute, since Request objects may be 
+copied remotely.  For information on this method's return value, see 
+twisted.internet.tcp.Port.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.setHost">
+    
+  </a>
+  <a name="setHost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setHost(self, host, port, ssl=0):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L1127" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Change the host and port the request thinks it's using.</p>
+<p>This method is useful for working with reverse HTTP proxies (e.g. both 
+Squid and Apache's mod_proxy can do this), when the address the HTTP client
+is using is different than the one we're listening on.</p>
+<p>For example, Apache may be listening on https://www.example.com, and 
+then forwarding requests to http://localhost:8080, but we don't want HTML 
+produced by Twisted to say 'http://localhost:8080', they should say 
+'https://www.example.com', so we do:</p>
+<pre class="literalblock">
+  request.setHost('www.example.com', 443, ssl=1)
+</pre>
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">host</td><td>The value to which to change the host header.
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">ssl</td><td>A flag which, if <code>True</code>, indicates that the request is 
+considered secure (if <code>True</code>, <a 
+href="twisted.web.http.Request.html#isSecure"><code>isSecure</code></a> 
+will return <code>True</code>).
+ (type: <code>bool</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.getClientIP">
+    
+  </a>
+  <a name="getClientIP">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getClientIP(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L1162" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Return the IP address of the client who submitted this request.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the client IP address
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.isSecure">
+    
+  </a>
+  <a name="isSecure">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    isSecure(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L1174" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Return True if this request is using a secure transport.</p>
+<p>Normally this method returns True if this request's HTTPChannel instance
+is using a transport that implements ISSLTransport.</p>
+<p>This will also return True if setHost() has been called with 
+ssl=True.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">True if this request is secure
+ (type: <code>bool</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request._authorize">
+    
+  </a>
+  <a name="_authorize">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _authorize(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L1194" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.getUser">
+    
+  </a>
+  <a name="getUser">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getUser(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L1212" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Return the HTTP user sent with this request, if any.</p>
+<p>If no user was supplied, return the empty string.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the HTTP user, if any
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.getPassword">
+    
+  </a>
+  <a name="getPassword">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getPassword(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L1228" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Return the HTTP password sent with this request, if any.</p>
+<p>If no password was supplied, return the empty string.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the HTTP password, if any
+ (type: <code>str</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.getClient">
+    
+  </a>
+  <a name="getClient">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getClient(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L1244" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.http.Request.connectionLost">
+    
+  </a>
+  <a name="connectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    connectionLost(self, reason):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.0.0/twisted/web/http.py#L1259" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>There is no longer a connection for this request to respond over. Clean 
+up anything which can't be useful anymore.<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2012-02-14 18:17:43.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,146 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.internet.defer.DeferredFilesystemLock&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">Class t.i.d.DeferredFilesystemLock(<a href="twisted.python.lockfile.FilesystemLock.html">lockfile.FilesystemLock</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a>.<a href="twisted.internet.defer.html">defer</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/internet/defer.py#L1011">View Source</a>
+      <a href="classIndex.html#twisted.internet.defer.DeferredFilesystemLock">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>A FilesystemLock that allows for a deferred to be fired when the lock 
+is acquired.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">_scheduler</td><td>The object in charge of scheduling retries. In this implementation 
+this is parameterized for testing.
+</td></tr><tr><td></td><td class="fieldArg">_interval</td><td>The retry interval for an <a 
+href="twisted.internet.interfaces.IReactorTime.html"><code>IReactorTime</code></a> 
+based scheduler.
+</td></tr><tr><td></td><td class="fieldArg">_tryLockCall</td><td>A <a 
+href="twisted.internet.base.DelayedCall.html"><code>DelayedCall</code></a> 
+based on _interval that will managex the next retry for aquiring the 
+lock.
+</td></tr><tr><td></td><td class="fieldArg">_timeoutCall</td><td>A <a 
+href="twisted.internet.base.DelayedCall.html"><code>DelayedCall</code></a> 
+based on deferUntilLocked's timeout argument. This is in charge of timing 
+out our attempt to acquire the lock.
+</td></tr></table></div>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id7272">
+  
+  
+  
+  
+  <tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.DeferredFilesystemLock.html#__init__">__init__</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.DeferredFilesystemLock.html#deferUntilLocked">deferUntilLocked</a></td>
+    <td><span>Wait until we acquire this lock. This method is not safe for
+</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.python.lockfile.FilesystemLock.html">FilesystemLock</a>:
+        </p>
+        <table class="children sortable" id="id7273">
+  
+  
+  
+  
+  <tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.lockfile.FilesystemLock.html#lock">lock</a></td>
+    <td><span>Acquire this lock.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.lockfile.FilesystemLock.html#unlock">unlock</a></td>
+    <td><span>Release this lock.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.internet.defer.DeferredFilesystemLock.__init__"></a>
+        <a name="__init__"></a>
+        <div class="functionHeader">
+        
+        def __init__(self, name, scheduler=None):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/internet/defer.py#L1032" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          <div class="interfaceinfo">overrides <a href="twisted.python.lockfile.FilesystemLock.html#__init__">twisted.python.lockfile.FilesystemLock.__init__</a></div>
+          <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>The name of the lock to acquire
+</td></tr><tr><td></td><td class="fieldArg">scheduler</td><td>An object which provides <a 
+href="twisted.internet.interfaces.IReactorTime.html"><code>IReactorTime</code></a>
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.internet.defer.DeferredFilesystemLock.deferUntilLocked"></a>
+        <a name="deferUntilLocked"></a>
+        <div class="functionHeader">
+        
+        def deferUntilLocked(self, timeout=None):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/internet/defer.py#L1045" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Wait until we acquire this lock. This method is not safe for 
+concurrent use.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">timeout</td><td>the number of seconds after which to time out if the lock has not been 
+acquired.
+ (type: <code>float</code> or <code>int</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a deferred which will callback when the lock is acquired, or errback 
+with a <a 
+href="twisted.internet.defer.TimeoutError.html"><code>TimeoutError</code></a> 
+after timing out or an <a 
+href="twisted.internet.defer.AlreadyTryingToLockError.html"><code>AlreadyTryingToLockError</code></a> 
+if the <a 
+href="twisted.internet.defer.DeferredFilesystemLock.html#deferUntilLocked"><code>deferUntilLocked</code></a> 
+has already been called and not successfully locked the file.
+</td></tr></table></div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2008-05-18 16:50:21.
+    </address>
+  </body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web.guard.HTTPAuthSessionWrapper : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.w.g.HTTPAuthSessionWrapper(<span title="object">object</span>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web.html">web</a>.<a href="twisted.web.guard.html">guard</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/web/_auth/wrapper.py#L68">View Source</a>
+      <a href="classIndex.html#twisted.web.guard.HTTPAuthSessionWrapper">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Implements interfaces: <a href="twisted.web.resource.IResource.html">twisted.web.resource.IResource</a></p>
+    </div>
+    <div>Wrap a portal, enforcing supported header-based authentication 
+schemes.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">_portal</td><td>The <code>Portal</code> which will be used to retrieve <a 
+href="twisted.web.resource.IResource.html"><code>IResource</code></a> 
+avatars.
+</td></tr><tr><td></td><td class="fieldArg">_credentialFactories</td><td>A list of <a 
+href="twisted.web.iweb.ICredentialFactory.html"><code>ICredentialFactory</code></a>
+providers which will be used to decode <i>Authorization</i> headers into 
+<code>ICredentials</code> providers.
+</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3446">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.guard.HTTPAuthSessionWrapper.html#__init__">__init__</a></td>
+    <td><span>Initialize a session wrapper
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.guard.HTTPAuthSessionWrapper.html#render">render</a></td>
+    <td><span>Find the <a 
+href="twisted.web.resource.IResource.html"><code>IResource</code></a> 
+avatar suitable for the given request, if possible, and render it.  
+Otherwise, perhaps render an error page requiring authorization or 
+describing an internal server failure.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.guard.HTTPAuthSessionWrapper.html#getChildWithDefault">getChildWithDefault</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.guard.HTTPAuthSessionWrapper.html#_authorizedResource">_authorizedResource</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.guard.HTTPAuthSessionWrapper.html#_login">_login</a></td>
+    <td><span>Get the <a 
+href="twisted.web.resource.IResource.html"><code>IResource</code></a> 
+avatar for the given credentials.
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.guard.HTTPAuthSessionWrapper.html#_loginSucceeded">_loginSucceeded</a></td>
+    <td><span>Handle login success by wrapping the resulting <a 
+href="twisted.web.resource.IResource.html"><code>IResource</code></a> 
+avatar so that the <code>logout</code> callback will be invoked when 
+rendering is complete.
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.guard.HTTPAuthSessionWrapper.html#_loginFailed">_loginFailed</a></td>
+    <td><span>Handle login failure by presenting either another challenge (for 
+expected authentication/authorization-related failures) or a server error 
+page (for anything else).
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.guard.HTTPAuthSessionWrapper.html#_selectParseHeader">_selectParseHeader</a></td>
+    <td><span>Choose an <code>ICredentialFactory</code> from 
+<code>_credentialFactories</code> suitable to use to decode the given 
+<i>Authenticate</i> header.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.web._auth.wrapper.HTTPAuthSessionWrapper.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, portal, credentialFactories):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/web/_auth/wrapper.py#L82" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Initialize a session wrapper
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">portal</td><td>The portal that will authenticate the remote client
+ (type: <code>Portal</code>
+)</td></tr><tr><td></td><td class="fieldArg">credentialFactories</td><td>The portal that will authenticate the remote client based on one 
+submitted <code>ICredentialFactory</code>
+ (type: <code>Iterable</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._auth.wrapper.HTTPAuthSessionWrapper._authorizedResource">
+    
+  </a>
+  <a name="_authorizedResource">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _authorizedResource(self, request):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/web/_auth/wrapper.py#L97" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Get the <a 
+href="twisted.web.resource.IResource.html"><code>IResource</code></a> which
+the given request is authorized to receive. If the proper authorization 
+headers are present, the resource will be requested from the portal.  If 
+not, an anonymous login attempt will be made.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._auth.wrapper.HTTPAuthSessionWrapper.render">
+    
+  </a>
+  <a name="render">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    render(self, request):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/web/_auth/wrapper.py#L122" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.web.resource.IResource.html#render">twisted.web.resource.IResource</a></div>
+    <div>Find the <a 
+href="twisted.web.resource.IResource.html"><code>IResource</code></a> 
+avatar suitable for the given request, if possible, and render it.  
+Otherwise, perhaps render an error page requiring authorization or 
+describing an internal server failure.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._auth.wrapper.HTTPAuthSessionWrapper.getChildWithDefault">
+    
+  </a>
+  <a name="getChildWithDefault">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getChildWithDefault(self, path, request):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/web/_auth/wrapper.py#L131" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.web.resource.IResource.html#getChildWithDefault">twisted.web.resource.IResource</a></div>
+    <div>Inspect the Authorization HTTP header, and return a deferred which, when
+fired after successful authentication, will return an authorized 
+<code>Avatar</code>. On authentication failure, an 
+<code>UnauthorizedResource</code> will be returned, essentially halting 
+further dispatch on the wrapped resource and all children
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._auth.wrapper.HTTPAuthSessionWrapper._login">
+    
+  </a>
+  <a name="_login">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _login(self, credentials):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/web/_auth/wrapper.py#L145" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Get the <a 
+href="twisted.web.resource.IResource.html"><code>IResource</code></a> 
+avatar for the given credentials.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A <code>Deferred</code> which will be called back with an <a 
+href="twisted.web.resource.IResource.html"><code>IResource</code></a> 
+avatar or which will errback if authentication fails.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._auth.wrapper.HTTPAuthSessionWrapper._loginSucceeded">
+    
+  </a>
+  <a name="_loginSucceeded">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _loginSucceeded(self, (interface, avatar, logout)):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/web/_auth/wrapper.py#L157" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Handle login success by wrapping the resulting <a 
+href="twisted.web.resource.IResource.html"><code>IResource</code></a> 
+avatar so that the <code>logout</code> callback will be invoked when 
+rendering is complete.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._auth.wrapper.HTTPAuthSessionWrapper._loginFailed">
+    
+  </a>
+  <a name="_loginFailed">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _loginFailed(self, result):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/web/_auth/wrapper.py#L193" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Handle login failure by presenting either another challenge (for 
+expected authentication/authorization-related failures) or a server error 
+page (for anything else).
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._auth.wrapper.HTTPAuthSessionWrapper._selectParseHeader">
+    
+  </a>
+  <a name="_selectParseHeader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _selectParseHeader(self, header):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/web/_auth/wrapper.py#L209" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Choose an <code>ICredentialFactory</code> from 
+<code>_credentialFactories</code> suitable to use to decode the given 
+<i>Authenticate</i> header.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A two-tuple of a factory and the remaining portion of the header value 
+to be decoded or a two-tuple of <code>None</code> if no factory can decode 
+the header value.
+</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-10-27 16:22:34.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

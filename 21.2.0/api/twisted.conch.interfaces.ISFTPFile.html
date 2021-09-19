@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.conch.interfaces.ISFTPFile : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://twistedmatrix.com/">Twisted</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="interface"><code><a href="twisted.html" class="code" data-type="Package">twisted</a>.<a href="twisted.conch.html" class="code" data-type="Package">conch</a>.<a href="twisted.conch.interfaces.html" class="code" data-type="Module">interfaces</a>.<a href="twisted.conch.interfaces.ISFTPFile.html" class="code" data-type="Interface">ISFTPFile</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        interface documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> twisted.conch.interfaces.ISFTPFile(<span title="zope.interface.Interface">Interface</span>): <a href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/interfaces.py#L397">(source)</a></code></p><p>Known implementations: <a href="twisted.conch.ssh.filetransfer.ClientFile.html" class="code" data-type="Class">twisted.conch.ssh.filetransfer.ClientFile</a>, <a href="twisted.conch.unix.UnixSFTPFile.html" class="code" data-type="Class">twisted.conch.unix.UnixSFTPFile</a></p>
+        <p><a href="classIndex.html#twisted.conch.interfaces.ISFTPFile">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>This represents an open file on the server.  An object adhering to this interface should be returned from <a href="twisted.conch.interfaces.ISFTPServer.html#openFile"><code>openFile</code></a>().</p></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id288">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPFile.html#close" class="code" data-type="Method">close</a></td>
+    <td><span>Close the file.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPFile.html#readChunk" class="code" data-type="Method">readChunk</a></td>
+    <td><span>Read from the file.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPFile.html#writeChunk" class="code" data-type="Method">writeChunk</a></td>
+    <td><span>Write to the file.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPFile.html#getAttrs" class="code" data-type="Method">getAttrs</a></td>
+    <td><span>Return the attributes for the file.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPFile.html#setAttrs" class="code" data-type="Method">setAttrs</a></td>
+    <td><span>Set the attributes for the file.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  <a name="twisted.conch.interfaces.ISFTPFile.close">
+    
+  </a>
+  <a name="close">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def close():
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/interfaces.py#L403">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Close the file.</p><p>This method returns nothing if the close succeeds immediately, or a Deferred that is called back when the close succeeds.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.interfaces.ISFTPFile.readChunk">
+    
+  </a>
+  <a name="readChunk">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def readChunk(offset, length):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/interfaces.py#L411">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Read from the file.</p><p>If EOF is reached before any data is read, raise EOFError.</p><p>This method returns the data as a string, or a Deferred that is called back with same.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">offset</td><td>an integer that is the index to start from in the file.</td></tr><tr><td></td><td class="fieldArg">length</td><td>the maximum length of data to return.  The actual amount returned may less than this.  For normal disk files, however, this should read the requested number (up to the end of the file).</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.interfaces.ISFTPFile.writeChunk">
+    
+  </a>
+  <a name="writeChunk">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def writeChunk(offset, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/interfaces.py#L426">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Write to the file.</p><p>This method returns when the write completes, or a Deferred that is called when it completes.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">offset</td><td>an integer that is the index to start from in the file.</td></tr><tr><td></td><td class="fieldArg">data</td><td>a string that is the data to write.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.interfaces.ISFTPFile.getAttrs">
+    
+  </a>
+  <a name="getAttrs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def getAttrs():
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/interfaces.py#L437">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return the attributes for the file.</p><p>This method returns a dictionary in the same format as the attrs argument to <a href="twisted.conch.interfaces.ISFTPServer.html#openFile"><code>openFile</code></a> or a <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> that is called back with same.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.conch.interfaces.ISFTPFile.setAttrs">
+    
+  </a>
+  <a name="setAttrs">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def setAttrs(attrs):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/conch/interfaces.py#L445">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Set the attributes for the file.</p><p>This method returns when the attributes are set or a Deferred that is called back when they are.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">attrs</td><td>a dictionary in the same format as the attrs argument to <a href="twisted.conch.interfaces.ISFTPServer.html#openFile"><code>openFile</code></a>.</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-02-28 19:53:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

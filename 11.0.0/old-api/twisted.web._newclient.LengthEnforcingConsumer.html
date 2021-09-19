@@ -1,0 +1,166 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web._newclient.LengthEnforcingConsumer : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">t.w._.LengthEnforcingConsumer : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web.html">web</a>.<a href="twisted.web._newclient.html">_newclient</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/_newclient.py#L729">View Source</a>
+      <a href="classIndex.html#twisted.web._newclient.LengthEnforcingConsumer">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>An <a 
+href="twisted.internet.interfaces.IConsumer.html"><code>IConsumer</code></a>
+proxy which enforces an exact length requirement on the total data written 
+to it.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">_length</td><td>The number of bytes remaining to be written.
+</td></tr><tr><td></td><td class="fieldArg">_producer</td><td>The <a 
+href="twisted.web.iweb.IBodyProducer.html"><code>IBodyProducer</code></a> 
+which is writing to this consumer.
+</td></tr><tr><td></td><td class="fieldArg">_consumer</td><td>The consumer to which at most <code>_length</code> bytes will be forwarded.
+</td></tr><tr><td></td><td class="fieldArg">_finished</td><td>A <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+which will be fired with a <a 
+href="twisted.python.failure.Failure.html"><code>Failure</code></a> if too 
+many bytes are written to this consumer.
+</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1404">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.LengthEnforcingConsumer.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.LengthEnforcingConsumer.html#write">write</a></td>
+    <td><span>Write <code>bytes</code> to the underlying consumer unless</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.LengthEnforcingConsumer.html#_allowNoMoreWrites">_allowNoMoreWrites</a></td>
+    <td><span>Indicate that no additional writes are allowed.  Attempts to write</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.LengthEnforcingConsumer.html#_noMoreWritesExpected">_noMoreWritesExpected</a></td>
+    <td><span>Called to indicate no more bytes will be written to this consumer.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.web._newclient.LengthEnforcingConsumer.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, producer, consumer, finished):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/_newclient.py#L745" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.LengthEnforcingConsumer._allowNoMoreWrites">
+    
+  </a>
+  <a name="_allowNoMoreWrites">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _allowNoMoreWrites(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/_newclient.py#L752" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Indicate that no additional writes are allowed.  Attempts to write after
+calling this method will be met with an exception.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.LengthEnforcingConsumer.write">
+    
+  </a>
+  <a name="write">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    write(self, bytes):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/_newclient.py#L760" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Write <code>bytes</code> to the underlying consumer unless 
+<code>_noMoreWritesExpected</code> has been called or there are/have been 
+too many bytes.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.LengthEnforcingConsumer._noMoreWritesExpected">
+    
+  </a>
+  <a name="_noMoreWritesExpected">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _noMoreWritesExpected(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/web/_newclient.py#L789" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called to indicate no more bytes will be written to this consumer. Check
+to see that the correct number have been written.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">WrongBodyLength</td><td>If not enough bytes have been written.
+</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-04-03 00:32:03.
+    </address>
+  </body>
+</html>

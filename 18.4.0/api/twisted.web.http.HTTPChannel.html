@@ -1,0 +1,1407 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web.http.HTTPChannel : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link rel="stylesheet" href="bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="apidocs.css" type="text/css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div class="container" id="current-docs-container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>twisted.web.http.HTTPChannel(<a href="twisted.protocols.basic.LineReceiver.html" data-type="Class" class="code">basic.LineReceiver</a>, <a href="twisted.protocols.policies.TimeoutMixin.html" data-type="Class" class="code">policies.TimeoutMixin</a>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.web.html" data-type="Package" class="code">web</a>.<a href="twisted.web.http.html" data-type="Module" class="code">http</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L1851">View Source</a>
+          <a href="classIndex.html#twisted.web.http.HTTPChannel">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Known subclasses: <a href="twisted.web.proxy.Proxy.html" data-type="Class" class="code">twisted.web.proxy.Proxy</a>, <a href="twisted.web.proxy.ReverseProxy.html" data-type="Class" class="code">twisted.web.proxy.ReverseProxy</a></p><p>Implements interfaces: <a href="twisted.internet.interfaces.IConsumer.html" data-type="Interface" class="code">twisted.internet.interfaces.IConsumer</a>, <a href="twisted.internet.interfaces.IPushProducer.html" data-type="Interface" class="code">twisted.internet.interfaces.IPushProducer</a>, <a href="twisted.internet.interfaces.ITransport.html" data-type="Interface" class="code">twisted.internet.interfaces.ITransport</a></p>
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>A receiver for HTTP requests.</p>
+<p>The <a href="twisted.web.http.HTTPChannel.html"><code>HTTPChannel</code></a> 
+provides <a href="twisted.internet.interfaces.ITransport.html"><code>interfaces.ITransport</code></a>
+and <a href="twisted.internet.interfaces.IConsumer.html"><code>interfaces.IConsumer</code></a>
+to the <a href="twisted.web.http.Request.html"><code>Request</code></a> 
+objects it creates.  It also implements <a href="twisted.internet.interfaces.IPushProducer.html"><code>interfaces.IPushProducer</code></a>
+to <code>self.transport</code>, allowing the transport to pause it.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id3124">
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#MAX_LENGTH" data-type="Instance Variable" class="code">MAX_LENGTH</a></td>
+    <td>Maximum length for initial request line and each line from the header.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#maxHeaders" data-type="Instance Variable" class="code">maxHeaders</a></td>
+    <td>Maximum number of headers allowed per request. (type: <code>int</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#totalHeadersSize" data-type="Instance Variable" class="code">totalHeadersSize</a></td>
+    <td>Maximum bytes for request line plus all headers from the request. (type: <code>int</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#abortTimeout" data-type="Instance Variable" class="code">abortTimeout</a></td>
+    <td>The number of seconds to wait after we attempt to shut the transport down 
+cleanly to give up and forcibly terminate it.  This is only used when we 
+time a connection out, to prevent errors causing the FD to get leaked.  If 
+this is <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>,
+we will wait forever. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#connectionMade" data-type="Method" class="code">connectionMade</a></td>
+    <td><span>Called when a connection is made.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#lineReceived" data-type="Method" class="code">lineReceived</a></td>
+    <td><span>Called for each line from request until the end of headers when it 
+enters binary mode.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#headerReceived" data-type="Method" class="code">headerReceived</a></td>
+    <td><span>Do pre-processing (for content-length) and store this header away. 
+Enforce the per-request header limit.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#allContentReceived" data-type="Method" class="code">allContentReceived</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#dataReceived" data-type="Method" class="code">dataReceived</a></td>
+    <td><span>Data was received from the network.  Process it.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#rawDataReceived" data-type="Method" class="code">rawDataReceived</a></td>
+    <td><span>Override this for when raw data is received.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#allHeadersReceived" data-type="Method" class="code">allHeadersReceived</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#checkPersistence" data-type="Method" class="code">checkPersistence</a></td>
+    <td><span>Check if the channel should close or not.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#requestDone" data-type="Method" class="code">requestDone</a></td>
+    <td><span>Called by first request in queue when it is done.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#timeoutConnection" data-type="Method" class="code">timeoutConnection</a></td>
+    <td><span>Called when the connection times out.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#forceAbortClient" data-type="Method" class="code">forceAbortClient</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#connectionLost" data-type="Method" class="code">connectionLost</a></td>
+    <td><span>Called when the connection is shut down.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#isSecure" data-type="Method" class="code">isSecure</a></td>
+    <td><span>Return <a href="http://docs.python.org/library/constants.html#True"><code>True</code></a>
+if this channel is using a secure transport.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#writeHeaders" data-type="Method" class="code">writeHeaders</a></td>
+    <td><span>Called by <a href="twisted.web.http.Request.html"><code>Request</code></a> objects to 
+write a complete set of HTTP headers to a transport.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#write" data-type="Method" class="code">write</a></td>
+    <td><span>Called by <a href="twisted.web.http.Request.html"><code>Request</code></a> objects to 
+write response data.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#writeSequence" data-type="Method" class="code">writeSequence</a></td>
+    <td><span>Write a list of strings to the HTTP response.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#getPeer" data-type="Method" class="code">getPeer</a></td>
+    <td><span>Get the remote address of this connection.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#getHost" data-type="Method" class="code">getHost</a></td>
+    <td><span>Get the local address of this connection.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#loseConnection" data-type="Method" class="code">loseConnection</a></td>
+    <td><span>Closes the connection. Will write any data that is pending to be sent on
+the network, but if this response has not yet been written to the network 
+will not write anything.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#registerProducer" data-type="Method" class="code">registerProducer</a></td>
+    <td><span>Register to receive data from a producer.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#unregisterProducer" data-type="Method" class="code">unregisterProducer</a></td>
+    <td><span>Stop consuming data from a producer, without disconnecting.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#stopProducing" data-type="Method" class="code">stopProducing</a></td>
+    <td><span>Stop producing data.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#pauseProducing" data-type="Method" class="code">pauseProducing</a></td>
+    <td><span>Pause producing data.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#resumeProducing" data-type="Method" class="code">resumeProducing</a></td>
+    <td><span>Resume producing data.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#_transferDecoder" data-type="Instance Variable" class="code">_transferDecoder</a></td>
+    <td><a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+or a decoder instance if the request body uses the <i>chunked</i> 
+Transfer-Encoding. (type: <a href="twisted.web.http._ChunkedTransferDecoder.html"><code>_ChunkedTransferDecoder</code></a>)</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#_receivedHeaderSize" data-type="Instance Variable" class="code">_receivedHeaderSize</a></td>
+    <td>Bytes received so far for the header. (type: <code>int</code>)</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#_handlingRequest" data-type="Instance Variable" class="code">_handlingRequest</a></td>
+    <td>Whether a request is currently being processed. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#_dataBuffer" data-type="Instance Variable" class="code">_dataBuffer</a></td>
+    <td>Any data that has been received from the connection while processing an 
+outstanding request. (type: <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#_networkProducer" data-type="Instance Variable" class="code">_networkProducer</a></td>
+    <td>Either the transport, if it provides <a href="twisted.internet.interfaces.IPushProducer.html"><code>interfaces.IPushProducer</code></a>,
+or a null implementation of <a href="twisted.internet.interfaces.IPushProducer.html"><code>interfaces.IPushProducer</code></a>.
+Used to attempt to prevent the transport from producing excess data when 
+we're responding to a request. (type: <a href="twisted.internet.interfaces.IPushProducer.html"><code>interfaces.IPushProducer</code></a>)</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#_requestProducer" data-type="Instance Variable" class="code">_requestProducer</a></td>
+    <td>If the <a href="twisted.web.http.Request.html"><code>Request</code></a> 
+object or anything it calls registers itself as an <a href="twisted.internet.interfaces.IProducer.html"><code>interfaces.IProducer</code></a>,
+it will be stored here. This is used to create a producing pipeline: 
+pause/resume producing methods will be propagated from the 
+<code>transport</code>, through the <a href="twisted.web.http.HTTPChannel.html"><code>HTTPChannel</code></a> 
+instance, to the c{_requestProducer}.
+<p>The reason we proxy through the producing methods rather than the old 
+behaviour (where we literally just set the <a href="twisted.web.http.Request.html"><code>Request</code></a> object as the
+producer on the transport) is because we want to be able to exert 
+backpressure on the client to prevent it from sending in arbitrarily many 
+requests without ever reading responses.  Essentially, if the client never 
+reads our responses we will eventually stop reading its requests.</p> (type: <a href="twisted.internet.interfaces.IPushProducer.html"><code>interfaces.IPushProducer</code></a>)</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#_requestProducerStreaming" data-type="Instance Variable" class="code">_requestProducerStreaming</a></td>
+    <td>A boolean that tracks whether the producer on the <a href="twisted.web.http.Request.html"><code>Request</code></a> side of this 
+channel has registered itself as a <a href="twisted.internet.interfaces.IPushProducer.html"><code>interfaces.IPushProducer</code></a>
+or an <a href="twisted.internet.interfaces.IPullProducer.html"><code>interfaces.IPullProducer</code></a>. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>
+or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>)</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#_waitingForTransport" data-type="Instance Variable" class="code">_waitingForTransport</a></td>
+    <td>A boolean that tracks whether the transport has asked us to stop producing.
+This is used to keep track of what we're waiting for: if the transport has 
+asked us to stop producing then we don't want to unpause the transport 
+until it asks us to produce again. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#_abortingCall" data-type="Instance Variable" class="code">_abortingCall</a></td>
+    <td>The <a href="twisted.internet.base.DelayedCall.html"><code>twisted.internet.base.DelayedCall</code></a>
+that will be used to forcibly close the transport if it doesn't close 
+cleanly. (type: <a href="twisted.internet.base.DelayedCall.html"><code>twisted.internet.base.DelayedCall</code></a>)</td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#_optimisticEagerReadSize" data-type="Instance Variable" class="code">_optimisticEagerReadSize</a></td>
+    <td>When a resource takes a long time to answer a request (via <a href="twisted.web.server.html#NOT_DONE_YET"><code>twisted.web.server.NOT_DONE_YET</code></a>,
+hopefully one day by a <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>), we 
+would like to be able to let that resource know about the underlying 
+transport disappearing as promptly as possible, via <a href="twisted.web.http.Request.html#notifyFinish"><code>Request.notifyFinish</code></a>,
+and therefore via <code>self.requests[...].connectionLost()</code> on this 
+<a href="twisted.web.http.HTTPChannel.html"><code>HTTPChannel</code></a>.
+<p>However, in order to simplify application logic, we implement 
+head-of-line blocking, and do not relay pipelined requests to the 
+application until the previous request has been answered.  This means that 
+said application cannot dispose of any entity-body that comes in from those
+subsequent requests, which may be arbitrarily large, and it may need to be 
+buffered in memory.</p>
+<p>To implement this tradeoff between prompt notification when possible (in
+the most frequent case of non-pipelined requests) and correct behavior when
+not (say, if a client sends a very long-running GET request followed by a 
+PUT request with a very large body) we will continue reading pipelined 
+requests into <code>self._dataBuffer</code> up to a given limit.</p>
+<p><code>_optimisticEagerReadSize</code> is the number of bytes we will 
+accept from the client and buffer before pausing the transport.</p>
+<p>This behavior has been in place since Twisted 17.9.0 .</p> (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#_finishRequestBody" data-type="Method" class="code">_finishRequestBody</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#_send100Continue" data-type="Method" class="code">_send100Continue</a></td>
+    <td><span>Sends a 100 Continue response, used to signal to clients that further 
+processing will be performed.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.web.http.HTTPChannel.html#_respondToBadRequestAndDisconnect" data-type="Method" class="code">_respondToBadRequestAndDisconnect</a></td>
+    <td><span>This is a quick and dirty way of responding to bad requests.</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.protocols.basic.LineReceiver.html" data-type="Class" class="code">LineReceiver</a>:
+          </p>
+          <table class="children sortable" id="id3125">
+  
+  <tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#delimiter" data-type="Class Variable" class="code">delimiter</a></td>
+    <td>The line-ending delimiter to use. By default this is <code>b'\r\n'</code>.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#clearLineBuffer" data-type="Method" class="code">clearLineBuffer</a></td>
+    <td><span>Clear buffered data.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#setLineMode" data-type="Method" class="code">setLineMode</a></td>
+    <td><span>Sets the line-mode of this receiver.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#setRawMode" data-type="Method" class="code">setRawMode</a></td>
+    <td><span>Sets the raw mode of this receiver. Further data received will be sent 
+to rawDataReceived rather than lineReceived.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#sendLine" data-type="Method" class="code">sendLine</a></td>
+    <td><span>Sends a line to the other end of the connection.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#lineLengthExceeded" data-type="Method" class="code">lineLengthExceeded</a></td>
+    <td><span>Called when the maximum line length has been reached. Override if it 
+needs to be dealt with in some special way.</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.protocol.Protocol.html" data-type="Class" class="code">Protocol</a> (via <a href="twisted.protocols.basic.LineReceiver.html" data-type="Class" class="code">LineReceiver</a>):
+          </p>
+          <table class="children sortable" id="id3126">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.Protocol.html#logPrefix" data-type="Method" class="code">logPrefix</a></td>
+    <td><span>Return a prefix matching the class name, to identify log messages 
+related to this protocol instance.</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet.protocol.BaseProtocol.html" data-type="Class" class="code">BaseProtocol</a> (via <a href="twisted.protocols.basic.LineReceiver.html" data-type="Class" class="code">LineReceiver</a>, <a href="twisted.internet.protocol.Protocol.html" data-type="Class" class="code">Protocol</a>):
+          </p>
+          <table class="children sortable" id="id3127">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.BaseProtocol.html#makeConnection" data-type="Method" class="code">makeConnection</a></td>
+    <td><span>Make a connection to a transport and a server.</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.protocols.policies.TimeoutMixin.html" data-type="Class" class="code">TimeoutMixin</a>:
+          </p>
+          <table class="children sortable" id="id3128">
+  
+  <tr class="baseclassvariable">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.protocols.policies.TimeoutMixin.html#timeOut" data-type="Class Variable" class="code">timeOut</a></td>
+    <td>The number of seconds after which to timeout the connection.</td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.policies.TimeoutMixin.html#callLater" data-type="Method" class="code">callLater</a></td>
+    <td><span>Wrapper around <a href="twisted.internet.interfaces.IReactorTime.html#callLater"><code>reactor.callLater</code></a>
+for test purpose.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.policies.TimeoutMixin.html#resetTimeout" data-type="Method" class="code">resetTimeout</a></td>
+    <td><span>Reset the timeout count down.</span></td>
+  </tr><tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.policies.TimeoutMixin.html#setTimeout" data-type="Method" class="code">setTimeout</a></td>
+    <td><span>Change the timeout period</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.policies.TimeoutMixin.html#__timedOut" data-type="Method" class="code">__timedOut</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable">
+  
+  <a name="twisted.web.http.HTTPChannel.MAX_LENGTH">
+    
+  </a>
+  <a name="MAX_LENGTH">
+    
+  </a>
+  <div class="functionHeader">
+    MAX_LENGTH =
+  </div>
+  <div class="functionBody">
+    Maximum length for initial request line and each line from the header.
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web.http.HTTPChannel._transferDecoder">
+    
+  </a>
+  <a name="_transferDecoder">
+    
+  </a>
+  <div class="functionHeader">
+    _transferDecoder =
+  </div>
+  <div class="functionBody">
+    <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+or a decoder instance if the request body uses the <i>chunked</i> 
+Transfer-Encoding. (type: <a href="twisted.web.http._ChunkedTransferDecoder.html"><code>_ChunkedTransferDecoder</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.web.http.HTTPChannel.maxHeaders">
+    
+  </a>
+  <a name="maxHeaders">
+    
+  </a>
+  <div class="functionHeader">
+    maxHeaders =
+  </div>
+  <div class="functionBody">
+    Maximum number of headers allowed per request. (type: <code>int</code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.web.http.HTTPChannel.totalHeadersSize">
+    
+  </a>
+  <a name="totalHeadersSize">
+    
+  </a>
+  <div class="functionHeader">
+    totalHeadersSize =
+  </div>
+  <div class="functionBody">
+    Maximum bytes for request line plus all headers from the request. (type: <code>int</code>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web.http.HTTPChannel._receivedHeaderSize">
+    
+  </a>
+  <a name="_receivedHeaderSize">
+    
+  </a>
+  <div class="functionHeader">
+    _receivedHeaderSize =
+  </div>
+  <div class="functionBody">
+    Bytes received so far for the header. (type: <code>int</code>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web.http.HTTPChannel._handlingRequest">
+    
+  </a>
+  <a name="_handlingRequest">
+    
+  </a>
+  <div class="functionHeader">
+    _handlingRequest =
+  </div>
+  <div class="functionBody">
+    Whether a request is currently being processed. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web.http.HTTPChannel._dataBuffer">
+    
+  </a>
+  <a name="_dataBuffer">
+    
+  </a>
+  <div class="functionHeader">
+    _dataBuffer =
+  </div>
+  <div class="functionBody">
+    Any data that has been received from the connection while processing an 
+outstanding request. (type: <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web.http.HTTPChannel._networkProducer">
+    
+  </a>
+  <a name="_networkProducer">
+    
+  </a>
+  <div class="functionHeader">
+    _networkProducer =
+  </div>
+  <div class="functionBody">
+    Either the transport, if it provides <a href="twisted.internet.interfaces.IPushProducer.html"><code>interfaces.IPushProducer</code></a>,
+or a null implementation of <a href="twisted.internet.interfaces.IPushProducer.html"><code>interfaces.IPushProducer</code></a>.
+Used to attempt to prevent the transport from producing excess data when 
+we're responding to a request. (type: <a href="twisted.internet.interfaces.IPushProducer.html"><code>interfaces.IPushProducer</code></a>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web.http.HTTPChannel._requestProducer">
+    
+  </a>
+  <a name="_requestProducer">
+    
+  </a>
+  <div class="functionHeader">
+    _requestProducer =
+  </div>
+  <div class="functionBody">
+    If the <a href="twisted.web.http.Request.html"><code>Request</code></a> 
+object or anything it calls registers itself as an <a href="twisted.internet.interfaces.IProducer.html"><code>interfaces.IProducer</code></a>,
+it will be stored here. This is used to create a producing pipeline: 
+pause/resume producing methods will be propagated from the 
+<code>transport</code>, through the <a href="twisted.web.http.HTTPChannel.html"><code>HTTPChannel</code></a> 
+instance, to the c{_requestProducer}.
+<p>The reason we proxy through the producing methods rather than the old 
+behaviour (where we literally just set the <a href="twisted.web.http.Request.html"><code>Request</code></a> object as the
+producer on the transport) is because we want to be able to exert 
+backpressure on the client to prevent it from sending in arbitrarily many 
+requests without ever reading responses.  Essentially, if the client never 
+reads our responses we will eventually stop reading its requests.</p> (type: <a href="twisted.internet.interfaces.IPushProducer.html"><code>interfaces.IPushProducer</code></a>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web.http.HTTPChannel._requestProducerStreaming">
+    
+  </a>
+  <a name="_requestProducerStreaming">
+    
+  </a>
+  <div class="functionHeader">
+    _requestProducerStreaming =
+  </div>
+  <div class="functionBody">
+    A boolean that tracks whether the producer on the <a href="twisted.web.http.Request.html"><code>Request</code></a> side of this 
+channel has registered itself as a <a href="twisted.internet.interfaces.IPushProducer.html"><code>interfaces.IPushProducer</code></a>
+or an <a href="twisted.internet.interfaces.IPullProducer.html"><code>interfaces.IPullProducer</code></a>. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>
+or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web.http.HTTPChannel._waitingForTransport">
+    
+  </a>
+  <a name="_waitingForTransport">
+    
+  </a>
+  <div class="functionHeader">
+    _waitingForTransport =
+  </div>
+  <div class="functionBody">
+    A boolean that tracks whether the transport has asked us to stop producing.
+This is used to keep track of what we're waiting for: if the transport has 
+asked us to stop producing then we don't want to unpause the transport 
+until it asks us to produce again. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.web.http.HTTPChannel.abortTimeout">
+    
+  </a>
+  <a name="abortTimeout">
+    
+  </a>
+  <div class="functionHeader">
+    abortTimeout =
+  </div>
+  <div class="functionBody">
+    The number of seconds to wait after we attempt to shut the transport down 
+cleanly to give up and forcibly terminate it.  This is only used when we 
+time a connection out, to prevent errors causing the FD to get leaked.  If 
+this is <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>,
+we will wait forever. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web.http.HTTPChannel._abortingCall">
+    
+  </a>
+  <a name="_abortingCall">
+    
+  </a>
+  <div class="functionHeader">
+    _abortingCall =
+  </div>
+  <div class="functionBody">
+    The <a href="twisted.internet.base.DelayedCall.html"><code>twisted.internet.base.DelayedCall</code></a>
+that will be used to forcibly close the transport if it doesn't close 
+cleanly. (type: <a href="twisted.internet.base.DelayedCall.html"><code>twisted.internet.base.DelayedCall</code></a>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.web.http.HTTPChannel._optimisticEagerReadSize">
+    
+  </a>
+  <a name="_optimisticEagerReadSize">
+    
+  </a>
+  <div class="functionHeader">
+    _optimisticEagerReadSize =
+  </div>
+  <div class="functionBody">
+    When a resource takes a long time to answer a request (via <a href="twisted.web.server.html#NOT_DONE_YET"><code>twisted.web.server.NOT_DONE_YET</code></a>,
+hopefully one day by a <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>), we 
+would like to be able to let that resource know about the underlying 
+transport disappearing as promptly as possible, via <a href="twisted.web.http.Request.html#notifyFinish"><code>Request.notifyFinish</code></a>,
+and therefore via <code>self.requests[...].connectionLost()</code> on this 
+<a href="twisted.web.http.HTTPChannel.html"><code>HTTPChannel</code></a>.
+<p>However, in order to simplify application logic, we implement 
+head-of-line blocking, and do not relay pipelined requests to the 
+application until the previous request has been answered.  This means that 
+said application cannot dispose of any entity-body that comes in from those
+subsequent requests, which may be arbitrarily large, and it may need to be 
+buffered in memory.</p>
+<p>To implement this tradeoff between prompt notification when possible (in
+the most frequent case of non-pipelined requests) and correct behavior when
+not (say, if a client sends a very long-running GET request followed by a 
+PUT request with a very large body) we will continue reading pipelined 
+requests into <code>self._dataBuffer</code> up to a given limit.</p>
+<p><code>_optimisticEagerReadSize</code> is the number of bytes we will 
+accept from the client and buffer before pausing the transport.</p>
+<p>This behavior has been in place since Twisted 17.9.0 .</p> (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L1979">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.connectionMade">
+    
+  </a>
+  <a name="connectionMade">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    connectionMade(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L1987">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#connectionMade" data-type="Method" class="code">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.BaseProtocol.html#connectionMade" data-type="Method" class="code">twisted.internet.protocol.BaseProtocol.connectionMade</a></div>
+    
+    <div><p>Called when a connection is made.</p>
+<p>This may be considered the initializer of the protocol, because it is 
+called when the connection is completed.  For clients, this is called once 
+the connection to the server has been established; for servers, this is 
+called after an accept() call stops blocking and a socket has been 
+received.  If you need to send any greeting or initial message, do it 
+here.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.lineReceived">
+    
+  </a>
+  <a name="lineReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    lineReceived(self, line):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L1995">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.protocols.basic.LineReceiver.html#lineReceived" data-type="Method" class="code">twisted.protocols.basic.LineReceiver.lineReceived</a></div>
+    
+    <div><p>Called for each line from request until the end of headers when it 
+enters binary mode.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.web.http.HTTPChannel._finishRequestBody">
+    
+  </a>
+  <a name="_finishRequestBody">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _finishRequestBody(self, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2069">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.headerReceived">
+    
+  </a>
+  <a name="headerReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    headerReceived(self, line):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2074">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Do pre-processing (for content-length) and store this header away. 
+Enforce the per-request header limit.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">line</td><td>A line from the header section of a request, excluding the line delimiter. (type: <code>bytes</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A flag indicating whether the header was valid. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.allContentReceived">
+    
+  </a>
+  <a name="allContentReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    allContentReceived(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2124">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.dataReceived">
+    
+  </a>
+  <a name="dataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dataReceived(self, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2148">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#dataReceived" data-type="Method" class="code">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.protocols.basic.LineReceiver.html#dataReceived" data-type="Method" class="code">twisted.protocols.basic.LineReceiver.dataReceived</a></div>
+    
+    <div><p>Data was received from the network.  Process it.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.rawDataReceived">
+    
+  </a>
+  <a name="rawDataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    rawDataReceived(self, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2169">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.protocols.basic.LineReceiver.html#rawDataReceived" data-type="Method" class="code">twisted.protocols.basic.LineReceiver.rawDataReceived</a></div>
+    
+    <div><p>Override this for when raw data is received.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.allHeadersReceived">
+    
+  </a>
+  <a name="allHeadersReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    allHeadersReceived(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2178">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.checkPersistence">
+    
+  </a>
+  <a name="checkPersistence">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    checkPersistence(self, request, version):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2191">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Check if the channel should close or not.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">request</td><td>The request most recently received over this channel against which checks 
+will be made to determine if this connection can remain open after a 
+matching response is returned.</td></tr><tr><td></td><td class="fieldArg">version</td><td>The version of the request. (type: <code>bytes</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A flag which, if <code>True</code>, indicates that this connection may 
+remain open to receive another request; if <code>False</code>, the 
+connection must be closed in order to indicate the completion of the 
+response to <code>request</code>. (type: <code>bool</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.requestDone">
+    
+  </a>
+  <a name="requestDone">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    requestDone(self, request):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2235">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called by first request in queue when it is done.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.timeoutConnection">
+    
+  </a>
+  <a name="timeoutConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    timeoutConnection(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2261">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.protocols.policies.TimeoutMixin.html#timeoutConnection" data-type="Method" class="code">twisted.protocols.policies.TimeoutMixin.timeoutConnection</a></div>
+    
+    <div><p>Called when the connection times out.</p>
+<p>Override to define behavior other than dropping the connection.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.forceAbortClient">
+    
+  </a>
+  <a name="forceAbortClient">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    forceAbortClient(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2274">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called if <code>abortTimeout</code> seconds have passed since the 
+timeout fired, and the connection still hasn't gone away. This can really 
+only happen on extremely bad connections or when clients are maliciously 
+attempting to keep connections open.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.connectionLost">
+    
+  </a>
+  <a name="connectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    connectionLost(self, reason):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2291">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#connectionLost" data-type="Method" class="code">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Protocol.html#connectionLost" data-type="Method" class="code">twisted.internet.protocol.Protocol.connectionLost</a></div>
+    
+    <div><p>Called when the connection is shut down.</p>
+<p>Clear any circular references here, and any external references to this 
+Protocol.  The connection has been closed.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.isSecure">
+    
+  </a>
+  <a name="isSecure">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    isSecure(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2302">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return <a href="http://docs.python.org/library/constants.html#True"><code>True</code></a>
+if this channel is using a secure transport.</p>
+<p>Normally this method returns <a href="http://docs.python.org/library/constants.html#True"><code>True</code></a>
+if this instance is using a transport that implements <a href="twisted.internet.interfaces.ISSLTransport.html"><code>interfaces.ISSLTransport</code></a>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="http://docs.python.org/library/constants.html#True"><code>True</code></a>
+if this request is secure (type: <code>bool</code>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.writeHeaders">
+    
+  </a>
+  <a name="writeHeaders">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    writeHeaders(self, version, code, reason, headers):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2317">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Called by <a href="twisted.web.http.Request.html"><code>Request</code></a> objects to 
+write a complete set of HTTP headers to a transport.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">version</td><td>The HTTP version in use. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">code</td><td>The HTTP status code to write. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">reason</td><td>The HTTP reason phrase to write. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">headers</td><td>The headers to write to the transport. (type: <a href="twisted.web.http_headers.Headers.html"><code>twisted.web.http_headers.Headers</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.write">
+    
+  </a>
+  <a name="write">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    write(self, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2343">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.ITransport.html#write" data-type="Method" class="code">twisted.internet.interfaces.ITransport</a></div>
+    
+    <div><p>Called by <a href="twisted.web.http.Request.html"><code>Request</code></a> objects to 
+write response data.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">data</td><td>The data chunk to write to the stream. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="http://docs.python.org/library/constants.html#None"><code>None</code></a></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.writeSequence">
+    
+  </a>
+  <a name="writeSequence">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    writeSequence(self, iovec):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2355">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.ITransport.html#writeSequence" data-type="Method" class="code">twisted.internet.interfaces.ITransport</a></div>
+    
+    <div><p>Write a list of strings to the HTTP response.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">iovec</td><td>A list of byte strings to write to the stream.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="http://docs.python.org/library/constants.html#None"><code>None</code></a></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.getPeer">
+    
+  </a>
+  <a name="getPeer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getPeer(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2367">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.ITransport.html#getPeer" data-type="Method" class="code">twisted.internet.interfaces.ITransport</a></div>
+    
+    <div><p>Get the remote address of this connection.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An <a href="twisted.internet.interfaces.IAddress.html"><code>IAddress</code></a> 
+provider.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.getHost">
+    
+  </a>
+  <a name="getHost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getHost(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2376">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.ITransport.html#getHost" data-type="Method" class="code">twisted.internet.interfaces.ITransport</a></div>
+    
+    <div><p>Get the local address of this connection.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An <a href="twisted.internet.interfaces.IAddress.html"><code>IAddress</code></a> 
+provider.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.loseConnection">
+    
+  </a>
+  <a name="loseConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    loseConnection(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2385">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.ITransport.html#loseConnection" data-type="Method" class="code">twisted.internet.interfaces.ITransport</a></div>
+    
+    <div><p>Closes the connection. Will write any data that is pending to be sent on
+the network, but if this response has not yet been written to the network 
+will not write anything.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="http://docs.python.org/library/constants.html#None"><code>None</code></a></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.registerProducer">
+    
+  </a>
+  <a name="registerProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    registerProducer(self, producer, streaming):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2397">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#registerProducer" data-type="Method" class="code">twisted.internet.interfaces.IConsumer</a></div>
+    
+    <div><p>Register to receive data from a producer.</p>
+<p>This sets self to be a consumer for a producer.  When this object runs 
+out of data (as when a send(2) call on a socket succeeds in moving the last
+data from a userspace buffer into a kernelspace buffer), it will ask the 
+producer to resumeProducing().</p>
+<p>For <a href="twisted.internet.interfaces.IPullProducer.html"><code>IPullProducer</code></a>
+providers, <code>resumeProducing</code> will be called once each time data 
+is required.</p>
+<p>For <a href="twisted.internet.interfaces.IPushProducer.html"><code>IPushProducer</code></a>
+providers, <code>pauseProducing</code> will be called whenever the write 
+buffer fills up and <code>resumeProducing</code> will only be called when 
+it empties.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">producer</td><td>The <a href="twisted.internet.interfaces.IProducer.html"><code>IProducer</code></a>
+that will be producing data. (type: <a href="twisted.internet.interfaces.IProducer.html"><code>IProducer</code></a>
+provider)</td></tr><tr><td></td><td class="fieldArg">streaming</td><td><code>True</code> if <code>producer</code> provides <a href="twisted.internet.interfaces.IPushProducer.html"><code>IPushProducer</code></a>,
+<code>False</code> if <code>producer</code> provides <a href="twisted.internet.interfaces.IPullProducer.html"><code>IPullProducer</code></a>. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="http://docs.python.org/library/constants.html#None"><code>None</code></a></td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">RuntimeError</td><td>If a producer is already registered.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.unregisterProducer">
+    
+  </a>
+  <a name="unregisterProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    unregisterProducer(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2439">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#unregisterProducer" data-type="Method" class="code">twisted.internet.interfaces.IConsumer</a></div>
+    
+    <div><p>Stop consuming data from a producer, without disconnecting.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="http://docs.python.org/library/constants.html#None"><code>None</code></a></td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.stopProducing">
+    
+  </a>
+  <a name="stopProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    stopProducing(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2455">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProducer.html#stopProducing" data-type="Method" class="code">twisted.internet.interfaces.IProducer</a></div><div class="interfaceinfo">overrides <a href="twisted.protocols.basic._PauseableMixin.html#stopProducing" data-type="Method" class="code">twisted.protocols.basic._PauseableMixin.stopProducing</a></div>
+    
+    <div><p>Stop producing data.</p>
+<p>The HTTPChannel doesn't *actually* implement this, beacuse the 
+assumption is that it will only be called just before 
+<code>loseConnection</code> is called. There's nothing sensible we can do 
+other than call <code>loseConnection</code> anyway.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.pauseProducing">
+    
+  </a>
+  <a name="pauseProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    pauseProducing(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2468">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IPushProducer.html#pauseProducing" data-type="Method" class="code">twisted.internet.interfaces.IPushProducer</a></div><div class="interfaceinfo">overrides <a href="twisted.protocols.basic._PauseableMixin.html#pauseProducing" data-type="Method" class="code">twisted.protocols.basic._PauseableMixin.pauseProducing</a></div>
+    
+    <div><p>Pause producing data.</p>
+<p>This will be called by the transport when the send buffers have been 
+filled up. We want to simultaneously pause the producing <a href="twisted.web.http.Request.html"><code>Request</code></a> object and 
+also pause our transport.</p>
+<p>The logic behind pausing the transport is specifically to avoid issues 
+like https://twistedmatrix.com/trac/ticket/8868. In this case, our 
+inability to send does not prevent us handling more requests, which means 
+we increasingly queue up more responses in our send buffer without end. The
+easiest way to handle this is to ensure that if we are unable to send our 
+responses, we will not read further data from the connection until the 
+client pulls some data out. This is a bit of a blunt instrument, but it's 
+ok.</p>
+<p>Note that this potentially interacts with timeout handling in a positive
+way. Once the transport is paused the client may run into a timeout which 
+will cause us to tear the connection down. That's a good thing!</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.web.http.HTTPChannel.resumeProducing">
+    
+  </a>
+  <a name="resumeProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    resumeProducing(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2504">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IPushProducer.html#resumeProducing" data-type="Method" class="code">twisted.internet.interfaces.IPushProducer</a></div><div class="interfaceinfo">overrides <a href="twisted.protocols.basic._PauseableMixin.html#resumeProducing" data-type="Method" class="code">twisted.protocols.basic._PauseableMixin.resumeProducing</a></div>
+    
+    <div><p>Resume producing data.</p>
+<p>This will be called by the transport when the send buffer has dropped 
+enough to actually send more data. When this happens we can unpause any 
+outstanding <a href="twisted.web.http.Request.html"><code>Request</code></a> producers we 
+have, and also unpause our transport.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.web.http.HTTPChannel._send100Continue">
+    
+  </a>
+  <a name="_send100Continue">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _send100Continue(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2524">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Sends a 100 Continue response, used to signal to clients that further 
+processing will be performed.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.web.http.HTTPChannel._respondToBadRequestAndDisconnect">
+    
+  </a>
+  <a name="_respondToBadRequestAndDisconnect">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _respondToBadRequestAndDisconnect(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.4.0/src/twisted/web/http.py#L2532">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>This is a quick and dirty way of responding to bad requests.</p>
+<p>As described by HTTP standard we should be patient and accept the whole 
+request from the client before sending a polite bad request response, even 
+in the case when clients send tons of data.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">transport</td><td>Transport handling connection to the client. (type: <a href="twisted.internet.interfaces.ITransport.html"><code>interfaces.ITransport</code></a>)</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2018-04-29 21:01:12.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script src="//www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

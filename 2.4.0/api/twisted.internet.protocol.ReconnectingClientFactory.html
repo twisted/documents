@@ -1,0 +1,143 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.internet.protocol.ReconnectingClientFactory&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.i.p.ReconnectingClientFactory(<a href="twisted.internet.protocol.ClientFactory.html">ClientFactory</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.internet.protocol.html">twisted.internet.protocol</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.internet.protocol.ReconnectingClientFactory">View In Hierarchy</a>
+    </p>
+    <div><p>Known subclasses: <a href="twisted.words.xish.xmlstream.XmlStreamFactory.html">twisted.words.xish.xmlstream.XmlStreamFactory</a></p></div>
+    <div><p>My clients auto-reconnect with an exponential back-off.</p>
+Note that clients should call my resetDelay method after they have 
+connected successfully.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">maxDelay</td><td>Maximum number of seconds between connection attempts.
+</td></tr><tr><td></td><td class="fieldArg">initialDelay</td><td>Delay for the first reconnection attempt.
+</td></tr><tr><td></td><td class="fieldArg">factor</td><td>a multiplicitive factor by which the delay grows
+</td></tr><tr><td></td><td class="fieldArg">jitter</td><td>percentage of randomness to introduce into the delay length to prevent 
+stampeding.
+</td></tr></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.internet.protocol.ReconnectingClientFactory.clientConnectionFailed">clientConnectionFailed</a></td>
+          <td><span>Called when a connection has failed to connect.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.internet.protocol.ReconnectingClientFactory.clientConnectionLost">clientConnectionLost</a></td>
+          <td><span>Called when an established connection is lost.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.internet.protocol.ReconnectingClientFactory.retry">retry</a></td>
+          <td><span>Have this connector connect again, after a suitable delay.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.internet.protocol.ReconnectingClientFactory.stopTrying">stopTrying</a></td>
+          <td><span>I put a stop to any attempt to reconnect in progress.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.internet.protocol.ReconnectingClientFactory.resetDelay">resetDelay</a></td>
+          <td><span>Call me after a successful connection to reset.
+</span></td>
+        </tr></table>
+    
+    
+        <p>
+          Inherited from <span><a href="twisted.internet.protocol.ClientFactory.html">ClientFactory</a></span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.internet.protocol.ClientFactory.html#twisted.internet.protocol.ClientFactory.startedConnecting">startedConnecting</a></td>
+            <td><span>Called when a connection has been started.
+</span></td>
+          </tr></table>
+      
+        <p>
+          Inherited from <span><a href="twisted.internet.protocol.Factory.html">Factory</a> (via <a href="twisted.internet.protocol.ClientFactory.html">ClientFactory</a>)</span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.internet.protocol.Factory.html#twisted.internet.protocol.Factory.doStart">doStart</a></td>
+            <td><span>Make sure startFactory is called.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.internet.protocol.Factory.html#twisted.internet.protocol.Factory.doStop">doStop</a></td>
+            <td><span>Make sure stopFactory is called.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.internet.protocol.Factory.html#twisted.internet.protocol.Factory.startFactory">startFactory</a></td>
+            <td><span>This will be called before I begin listening on a Port or 
+Connector.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.internet.protocol.Factory.html#twisted.internet.protocol.Factory.stopFactory">stopFactory</a></td>
+            <td><span>This will be called before I stop listening on all 
+Ports/Connectors.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.internet.protocol.Factory.html#twisted.internet.protocol.Factory.buildProtocol">buildProtocol</a></td>
+            <td><span>Create an instance of a subclass of Protocol.
+</span></td>
+          </tr></table>
+      
+    <div class="function">
+        <a name="twisted.internet.protocol.ReconnectingClientFactory.clientConnectionFailed"></a>
+        <div class="functionHeader">
+          def <span>clientConnectionFailed(self, connector, reason):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.ClientFactory.html#twisted.internet.protocol.ClientFactory.clientConnectionFailed">twisted.internet.protocol.ClientFactory.clientConnectionFailed</a></div><div><p>Called when a connection has failed to connect.</p>
+It may be useful to call connector.connect() - this will 
+reconnect.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">reason</td><td>(type: <a 
+href="twisted.python.failure.Failure.html">twisted.python.failure.Failure</a>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.internet.protocol.ReconnectingClientFactory.clientConnectionLost"></a>
+        <div class="functionHeader">
+          def <span>clientConnectionLost(self, connector, unused_reason):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.ClientFactory.html#twisted.internet.protocol.ClientFactory.clientConnectionLost">twisted.internet.protocol.ClientFactory.clientConnectionLost</a></div><div><p>Called when an established connection is lost.</p>
+It may be useful to call connector.connect() - this will 
+reconnect.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">reason</td><td>(type: <a 
+href="twisted.python.failure.Failure.html">twisted.python.failure.Failure</a>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.internet.protocol.ReconnectingClientFactory.retry"></a>
+        <div class="functionHeader">
+          def <span>retry(self, connector=None):</span>
+        </div>
+        <div class="functionBody"><div>Have this connector connect again, after a suitable delay.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.internet.protocol.ReconnectingClientFactory.stopTrying"></a>
+        <div class="functionHeader">
+          def <span>stopTrying(self):</span>
+        </div>
+        <div class="functionBody"><div>I put a stop to any attempt to reconnect in progress.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.internet.protocol.ReconnectingClientFactory.resetDelay"></a>
+        <div class="functionHeader">
+          def <span>resetDelay(self):</span>
+        </div>
+        <div class="functionBody"><div><p>Call me after a successful connection to reset.</p>
+I reset the delay and the retry counter.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

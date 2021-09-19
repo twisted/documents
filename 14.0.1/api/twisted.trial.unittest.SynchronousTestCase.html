@@ -1,0 +1,1056 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.trial.unittest.SynchronousTestCase : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.t.u.SynchronousTestCase(<a href="twisted.trial._synctest._Assertions.html">_Assertions</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.trial.html">trial</a>.<a href="twisted.trial.unittest.html">unittest</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L806">View Source</a>
+      <a href="classIndex.html#twisted.trial.unittest.SynchronousTestCase">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>A unit test. The atom of the unit testing universe.</p>
+<p>This class extends <code>unittest.TestCase</code> from the standard 
+library.  A number of convenient testing helpers are added, including 
+logging and warning integration, monkey-patching support, and more.</p>
+<p>To write a unit test, subclass <code>SynchronousTestCase</code> and 
+define a method (say, 'test_foo') on the subclass. To run the test, 
+instantiate your subclass with the name of the method, and call <a 
+href="twisted.trial.unittest.SynchronousTestCase.html#run"><code>run</code></a>
+on the instance, passing a <a 
+href="twisted.trial.reporter.TestResult.html"><code>TestResult</code></a> 
+object.</p>
+<p>The <code>trial</code> script will automatically find any 
+<code>SynchronousTestCase</code> subclasses defined in modules beginning 
+with 'test_' and construct test cases for all methods beginning with 
+'test'.</p>
+<p>If an error is logged during the test run, the test will fail with an 
+error. See <a 
+href="twisted.python.log.html#err"><code>log.err</code></a>.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3131">
+  
+  
+<tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#failureException">failureException</a></td>
+    <td>An exception class, defaulting to <code>FailTest</code>. If the test method
+raises this exception, it will be reported as a failure, rather than an 
+exception. All of the assertion methods raise this if the assertion fails.</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#skip">skip</a></td>
+    <td><code>None</code> or a string explaining why this test is to be skipped. If
+defined, the test will not be run. Instead, it will be reported to the 
+result object as 'skipped' (if the <code>TestResult</code> supports 
+skipping).</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#todo">todo</a></td>
+    <td><code>None</code>, a string or a tuple of <code>(errors, reason)</code> 
+where <code>errors</code> is either an exception class or an iterable of 
+exception classes, and <code>reason</code> is a string. See <a 
+href="twisted.trial.unittest.Todo.html"><code>Todo</code></a> or <a 
+href="twisted.trial.unittest.html#makeTodo"><code>makeTodo</code></a> for 
+more information.</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#suppress">suppress</a></td>
+    <td><code>None</code> or a list of tuples of <code>(args, kwargs)</code> to be 
+passed to <code>warnings.filterwarnings</code>. Use these to suppress 
+warnings raised in a test. Useful for testing deprecated code. See also <a 
+href="twisted.trial.util.html#suppress"><code>util.suppress</code></a>.</td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#__eq__">__eq__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#__ne__">__ne__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#__hash__">__hash__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#shortDescription">shortDescription</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#getSkip">getSkip</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#getTodo">getTodo</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#runTest">runTest</a></td>
+    <td><span>If no <code>methodName</code> argument is passed to the constructor, <a 
+href="twisted.trial.unittest.SynchronousTestCase.html#run"><code>run</code></a>
+will treat this method as the thing with the actual test inside.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#run">run</a></td>
+    <td><span>Run the test case, storing the results in <code>result</code>.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#addCleanup">addCleanup</a></td>
+    <td><span>Add the given function to a list of functions to be called after the 
+test has run, but before <code>tearDown</code>.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#patch">patch</a></td>
+    <td><span>Monkey patch an object for the duration of the test.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#flushLoggedErrors">flushLoggedErrors</a></td>
+    <td><span>Remove stored errors received from the log.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#flushWarnings">flushWarnings</a></td>
+    <td><span>Remove stored warnings from the list of captured warnings and return 
+them.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#callDeprecated">callDeprecated</a></td>
+    <td><span>Call a function that should have been deprecated at a specific version 
+and in favor of a specific alternative, and assert that it was thusly 
+deprecated.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#mktemp">mktemp</a></td>
+    <td><span>Create a new path name which can be used for a new file or 
+directory.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#_getSuppress">_getSuppress</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#_getSkipReason">_getSkipReason</a></td>
+    <td><span>Return the reason to use for skipping a test method.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#_run">_run</a></td>
+    <td><span>Run a single method, either a test method or fixture.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#_runFixturesAndTest">_runFixturesAndTest</a></td>
+    <td><span>Run <code>setUp</code>, a test method, test cleanups, and 
+<code>tearDown</code>.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#_runCleanups">_runCleanups</a></td>
+    <td><span>Synchronously run any cleanups which have been added.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#_installObserver">_installObserver</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial.unittest.SynchronousTestCase.html#_removeObserver">_removeObserver</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.trial._synctest._Assertions.html">_Assertions</a>:
+        </p>
+        <table class="children sortable" id="id3132">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#fail">fail</a></td>
+    <td><span>Absolutely fail the test.  Do not pass go, do not collect $200.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#assertFalse">assertFalse</a></td>
+    <td><span>Fail the test if <code>condition</code> evaluates to True.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#assertTrue">assertTrue</a></td>
+    <td><span>Fail the test if <code>condition</code> evaluates to False.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#assertRaises">assertRaises</a></td>
+    <td><span>Fail the test unless calling the function <code>f</code> with the given 
+<code>args</code> and <code>kwargs</code> raises <code>exception</code>. 
+The failure will report the traceback and call stack of the unexpected 
+exception.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#assertEqual">assertEqual</a></td>
+    <td><span>Fail the test if <code>first</code> and <code>second</code> are not 
+equal.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#assertIs">assertIs</a></td>
+    <td><span>Fail the test if <code>first</code> is not <code>second</code>.  This is
+an obect-identity-equality test, not an object equality (i.e. 
+<code>__eq__</code>) test.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#assertIsNot">assertIsNot</a></td>
+    <td><span>Fail the test if <code>first</code> is <code>second</code>.  This is an 
+obect-identity-equality test, not an object equality (i.e. 
+<code>__eq__</code>) test.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#assertNotEqual">assertNotEqual</a></td>
+    <td><span>Fail the test if <code>first</code> == <code>second</code>.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#assertIn">assertIn</a></td>
+    <td><span>Fail the test if <code>containee</code> is not found in 
+<code>container</code>.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#assertNotIn">assertNotIn</a></td>
+    <td><span>Fail the test if <code>containee</code> is found in 
+<code>container</code>.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#assertNotAlmostEqual">assertNotAlmostEqual</a></td>
+    <td><span>Fail if the two objects are equal as determined by their difference 
+rounded to the given number of decimal places (default 7) and comparing to 
+zero.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#assertAlmostEqual">assertAlmostEqual</a></td>
+    <td><span>Fail if the two objects are unequal as determined by their difference 
+rounded to the given number of decimal places (default 7) and comparing to 
+zero.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#assertApproximates">assertApproximates</a></td>
+    <td><span>Fail if <code>first</code> - <code>second</code> &gt; 
+<code>tolerance</code></span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#assertSubstring">assertSubstring</a></td>
+    <td><span>Fail if <code>substring</code> does not exist within 
+<code>astring</code>.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#assertNotSubstring">assertNotSubstring</a></td>
+    <td><span>Fail if <code>astring</code> contains <code>substring</code>.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#assertWarns">assertWarns</a></td>
+    <td><span>Fail if the given function doesn't generate the specified warning when 
+called. It calls the function, checks the warning, and forwards the result 
+of the function if everything is fine.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#assertIsInstance">assertIsInstance</a></td>
+    <td><span>Fail if <code>instance</code> is not an instance of the given class or 
+of one of the given classes.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#assertNotIsInstance">assertNotIsInstance</a></td>
+    <td><span>Fail if <code>instance</code> is an instance of the given class or of 
+one of the given classes.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#successResultOf">successResultOf</a></td>
+    <td><span>Return the current success result of <code>deferred</code> or raise 
+<code>self.failureException</code>.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#failureResultOf">failureResultOf</a></td>
+    <td><span>Return the current failure result of <code>deferred</code> or raise 
+<code>self.failureException</code>.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.trial._synctest._Assertions.html#assertNoResult">assertNoResult</a></td>
+    <td><span>Assert that <code>deferred</code> does not have a result at this 
+point.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase.failureException">
+    
+  </a>
+  <a name="failureException">
+    
+  </a>
+  <div class="functionHeader">
+    failureException =
+  </div>
+  <div class="functionBody">
+    An exception class, defaulting to <code>FailTest</code>. If the test method
+raises this exception, it will be reported as a failure, rather than an 
+exception. All of the assertion methods raise this if the assertion fails.
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase.skip">
+    
+  </a>
+  <a name="skip">
+    
+  </a>
+  <div class="functionHeader">
+    skip =
+  </div>
+  <div class="functionBody">
+    <code>None</code> or a string explaining why this test is to be skipped. If
+defined, the test will not be run. Instead, it will be reported to the 
+result object as 'skipped' (if the <code>TestResult</code> supports 
+skipping).
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase.todo">
+    
+  </a>
+  <a name="todo">
+    
+  </a>
+  <div class="functionHeader">
+    todo =
+  </div>
+  <div class="functionBody">
+    <code>None</code>, a string or a tuple of <code>(errors, reason)</code> 
+where <code>errors</code> is either an exception class or an iterable of 
+exception classes, and <code>reason</code> is a string. See <a 
+href="twisted.trial.unittest.Todo.html"><code>Todo</code></a> or <a 
+href="twisted.trial.unittest.html#makeTodo"><code>makeTodo</code></a> for 
+more information.
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase.suppress">
+    
+  </a>
+  <a name="suppress">
+    
+  </a>
+  <div class="functionHeader">
+    suppress =
+  </div>
+  <div class="functionBody">
+    <code>None</code> or a list of tuples of <code>(args, kwargs)</code> to be 
+passed to <code>warnings.filterwarnings</code>. Use these to suppress 
+warnings raised in a test. Useful for testing deprecated code. See also <a 
+href="twisted.trial.util.html#suppress"><code>util.suppress</code></a>.
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, methodName='runTest'):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L848" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase.__eq__">
+    
+  </a>
+  <a name="__eq__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __eq__(self, other):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L864" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase.__ne__">
+    
+  </a>
+  <a name="__ne__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __ne__(self, other):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L867" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase.__hash__">
+    
+  </a>
+  <a name="__hash__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __hash__(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L870" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase.shortDescription">
+    
+  </a>
+  <a name="shortDescription">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    shortDescription(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L874" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase.getSkip">
+    
+  </a>
+  <a name="getSkip">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getSkip(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L881" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Return the skip reason set on this test, if any is set. Checks on the 
+instance first, then the class, then the module, then packages. As soon as 
+it finds something with a <code>skip</code> attribute, returns that. 
+Returns <code>None</code> if it cannot find anything. See <a 
+href="twisted.trial.unittest.TestCase.html"><code>TestCase</code></a> 
+docstring for more details.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase.getTodo">
+    
+  </a>
+  <a name="getTodo">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getTodo(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L892" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Return a <a 
+href="twisted.trial.unittest.Todo.html"><code>Todo</code></a> object if the
+test is marked todo. Checks on the instance first, then the class, then the
+module, then packages. As soon as it finds something with a 
+<code>todo</code> attribute, returns that. Returns <code>None</code> if it 
+cannot find anything. See <a 
+href="twisted.trial.unittest.TestCase.html"><code>TestCase</code></a> 
+docstring for more details.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase.runTest">
+    
+  </a>
+  <a name="runTest">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    runTest(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L906" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>If no <code>methodName</code> argument is passed to the constructor, <a 
+href="twisted.trial.unittest.SynchronousTestCase.html#run"><code>run</code></a>
+will treat this method as the thing with the actual test inside.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase.run">
+    
+  </a>
+  <a name="run">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    run(self, result):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L913" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Run the test case, storing the results in <code>result</code>.</p>
+<p>First runs <code>setUp</code> on self, then runs the test method 
+(defined in the constructor), then runs <code>tearDown</code>.  As with the
+standard library <a 
+href="twisted.trial.unittest.TestCase.html"><code>unittest.TestCase</code></a>,
+the return value of these methods is disregarded. In particular, returning 
+a <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+has no special additional consequences.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">result</td><td>A <a 
+href="twisted.trial.reporter.TestResult.html"><code>TestResult</code></a> 
+object.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase.addCleanup">
+    
+  </a>
+  <a name="addCleanup">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addCleanup(self, f, *args, **kwargs):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L956" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Add the given function to a list of functions to be called after the 
+test has run, but before <code>tearDown</code>.</p>
+<p>Functions will be run in reverse order of being added. This helps ensure
+that tear down complements set up.</p>
+<p>As with all aspects of <a 
+href="twisted.trial.unittest.SynchronousTestCase.html"><code>SynchronousTestCase</code></a>,
+Deferreds are not supported in cleanup functions.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase.patch">
+    
+  </a>
+  <a name="patch">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    patch(self, obj, attribute, value):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L970" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Monkey patch an object for the duration of the test.</p>
+<p>The monkey patch will be reverted at the end of the test using the <a 
+href="twisted.trial.unittest.SynchronousTestCase.html#addCleanup"><code>addCleanup</code></a>
+mechanism.</p>
+<p>The <a 
+href="twisted.python.monkey.MonkeyPatcher.html"><code>monkey.MonkeyPatcher</code></a>
+is returned so that users can restore and re-apply the monkey patch within 
+their tests.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">obj</td><td>The object to monkey patch.</td></tr><tr><td></td><td class="fieldArg">attribute</td><td>The name of the attribute to change.</td></tr><tr><td></td><td class="fieldArg">value</td><td>The value to set the attribute to.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A <a 
+href="twisted.python.monkey.MonkeyPatcher.html"><code>monkey.MonkeyPatcher</code></a>
+object.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase.flushLoggedErrors">
+    
+  </a>
+  <a name="flushLoggedErrors">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    flushLoggedErrors(self, *errorTypes):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L991" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Remove stored errors received from the log.</p>
+<p><code>TestCase</code> stores each error logged during the run of the 
+test and reports them as errors during the cleanup phase (after 
+<code>tearDown</code>).<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">*errorTypes</td><td>If unspecifed, flush all errors. Otherwise, only flush errors that match 
+the given types.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A list of failures that have been removed.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase.flushWarnings">
+    
+  </a>
+  <a name="flushWarnings">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    flushWarnings(self, offendingFunctions=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L1006" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Remove stored warnings from the list of captured warnings and return 
+them.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">offendingFunctions</td><td>If <code>None</code>, all warnings issued during the currently running test
+will be flushed.  Otherwise, only warnings which <i>point</i> to a function
+included in this list will be flushed. All warnings include a filename and 
+source line number; if these parts of a warning point to a source line 
+which is part of a function, then the warning <i>points</i> to that 
+function. (type: <code>NoneType</code> or <a 
+href="http://docs.python.org/library/functions.html#list"><code>list</code></a>
+of functions or methods.)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A <code>list</code>, each element of which is a <code>dict</code> giving 
+information about one warning which was flushed by this call.  The keys of 
+each <code>dict</code> are:
+<ul>
+  <li>
+    <code>'message'</code>: The string which was passed as the 
+    <i>message</i> parameter to <a 
+    href="http://docs.python.org/library/warnings.html#warnings.warn"><code>warnings.warn</code></a>.
+  </li>
+  <li>
+    <code>'category'</code>: The warning subclass which was passed as the 
+    <i>category</i> parameter to <a 
+    href="http://docs.python.org/library/warnings.html#warnings.warn"><code>warnings.warn</code></a>.
+  </li>
+  <li>
+    <code>'filename'</code>: The name of the file containing the definition
+    of the code object which was <code>stacklevel</code> frames above the 
+    call to <a 
+    href="http://docs.python.org/library/warnings.html#warnings.warn"><code>warnings.warn</code></a>,
+    where <code>stacklevel</code> is the value of the 
+    <code>stacklevel</code> parameter passed to <a 
+    href="http://docs.python.org/library/warnings.html#warnings.warn"><code>warnings.warn</code></a>.
+  </li>
+  <li>
+    <code>'lineno'</code>: The source line associated with the active 
+    instruction of the code object object which was <code>stacklevel</code>
+    frames above the call to <a 
+    href="http://docs.python.org/library/warnings.html#warnings.warn"><code>warnings.warn</code></a>,
+    where <code>stacklevel</code> is the value of the 
+    <code>stacklevel</code> parameter passed to <a 
+    href="http://docs.python.org/library/warnings.html#warnings.warn"><code>warnings.warn</code></a>.
+  </li>
+</ul></td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">ValueError</td><td>If <code>offendingFunctions</code> is not <code>None</code> and includes an
+object which is not a <a 
+href="http://docs.python.org/library/types.html#types.FunctionType"><code>types.FunctionType</code></a>
+or <a 
+href="http://docs.python.org/library/types.html#types.MethodType"><code>types.MethodType</code></a>
+instance.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase.callDeprecated">
+    
+  </a>
+  <a name="callDeprecated">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    callDeprecated(self, version, f, *args, **kwargs):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L1088" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Call a function that should have been deprecated at a specific version 
+and in favor of a specific alternative, and assert that it was thusly 
+deprecated.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">version</td><td>A 2-sequence of (since, replacement), where <code>since</code> is a the 
+first <a 
+href="twisted.python.versions.Version.html"><code>version</code></a> that 
+<code>f</code> should have been deprecated since, and 
+<code>replacement</code> is a suggested replacement for the deprecated 
+functionality, as described by <a 
+href="twisted.python.deprecate.html#deprecated"><code>twisted.python.deprecate.deprecated</code></a>.
+If there is no suggested replacement, this parameter may also be simply a 
+<a href="twisted.python.versions.Version.html"><code>version</code></a> by 
+itself.</td></tr><tr><td></td><td class="fieldArg">f</td><td>The deprecated function to call.</td></tr><tr><td></td><td class="fieldArg">args</td><td>The arguments to pass to <code>f</code>.</td></tr><tr><td></td><td class="fieldArg">kwargs</td><td>The keyword arguments to pass to <code>f</code>.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">Whatever <code>f</code> returns.</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td colspan="2">Whatever <code>f</code> raises.  If any exception is raised by 
+<code>f</code>, though, no assertions will be made about emitted 
+deprecations.</td></tr><tr><td></td><td class="fieldArg">FailTest</td><td>if no warnings were emitted by <code>f</code>, or if the <a 
+href="http://docs.python.org/library/exceptions.html#exceptions.DeprecationWarning"><code>DeprecationWarning</code></a>
+emitted did not produce the canonical please-use-something-else message 
+that is standard for Twisted deprecations according to the given version 
+and replacement.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase.mktemp">
+    
+  </a>
+  <a name="mktemp">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    mktemp(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L1140" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Create a new path name which can be used for a new file or 
+directory.</p>
+<p>The result is a relative path that is guaranteed to be unique within the
+current working directory.  The parent of the path will exist, but the path
+will not.</p>
+<p>For a temporary directory call os.mkdir on the path.  For a temporary 
+file just create the file (e.g. by opening the path for writing and then 
+closing it).<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The newly created path (type: <code>str</code>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase._getSuppress">
+    
+  </a>
+  <a name="_getSuppress">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _getSuppress(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L1165" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Returns any warning suppressions set for this test. Checks on the 
+instance first, then the class, then the module, then packages. As soon as 
+it finds something with a <code>suppress</code> attribute, returns that. 
+Returns any empty list (i.e. suppress no warnings) if it cannot find 
+anything. See <a 
+href="twisted.trial.unittest.TestCase.html"><code>TestCase</code></a> 
+docstring for more details.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase._getSkipReason">
+    
+  </a>
+  <a name="_getSkipReason">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _getSkipReason(self, method, skip):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L1176" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Return the reason to use for skipping a test method.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">method</td><td>The method which produced the skip.</td></tr><tr><td></td><td class="fieldArg">skip</td><td>A <a href="twisted.trial.unittest.SkipTest.html"><code>SkipTest</code></a> 
+instance raised by <code>method</code>.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase._run">
+    
+  </a>
+  <a name="_run">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _run(self, suppress, todo, method, result):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L1193" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Run a single method, either a test method or fixture.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">suppress</td><td>Any warnings to suppress, as defined by the <code>suppress</code> attribute
+on this method, test case, or the module it is defined in.</td></tr><tr><td></td><td class="fieldArg">todo</td><td>Any expected failure or failures, as defined by the <code>todo</code> 
+attribute on this method, test case, or the module it is defined in.</td></tr><tr><td></td><td class="fieldArg">method</td><td>The method to run.</td></tr><tr><td></td><td class="fieldArg">result</td><td>The TestResult instance to which to report results.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>True</code> if the method fails and no further method/fixture calls 
+should be made, <code>False</code> otherwise.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase._runFixturesAndTest">
+    
+  </a>
+  <a name="_runFixturesAndTest">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _runFixturesAndTest(self, result):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L1235" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Run <code>setUp</code>, a test method, test cleanups, and 
+<code>tearDown</code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">result</td><td>The TestResult instance to which to report results.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase._runCleanups">
+    
+  </a>
+  <a name="_runCleanups">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _runCleanups(self, result):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L1270" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Synchronously run any cleanups which have been added.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase._installObserver">
+    
+  </a>
+  <a name="_installObserver">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _installObserver(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L1283" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.trial._synctest.SynchronousTestCase._removeObserver">
+    
+  </a>
+  <a name="_removeObserver">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _removeObserver(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/trial/_synctest.py#L1288" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2014-09-17 19:15:55.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

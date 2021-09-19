@@ -1,0 +1,96 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.web2.vhost.VHostURIRewrite&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.w.v.VHostURIRewrite(object):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.web2.vhost.html">twisted.web2.vhost</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.web2.vhost.VHostURIRewrite">View In Hierarchy</a>
+    </p>
+    <div><p>Implements interfaces: <a href="twisted.web2.iweb.IResource.html">twisted.web2.iweb.IResource</a></p></div>
+    <div><p>I do request mangling to insure that children know what host they are 
+being accessed from behind mod_proxy.</p>
+Usage:
+<ul>
+  <li>
+    Twisted:
+<pre class="literalblock">
+   root = MyResource()
+   vur = vhost.VHostURIRewrite(uri='http://hostname:port/path', resource=root)
+   server.Site(vur)
+</pre>
+  </li>
+  <li>
+    Apache:
+<pre class="literalblock">
+   &lt;VirtualHost hostname:port&gt;
+       ProxyPass /path/ http://localhost:8080/
+       Servername hostname
+   &lt;/VirtualHost&gt;
+</pre>
+    <p>If the trailing / is ommitted in the second argument to ProxyPass 
+    VHostURIRewrite will return a 404 response code.</p>
+    uri must be a fully specified uri complete with 
+    scheme://hostname/path/
+  </li>
+</ul>
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.vhost.VHostURIRewrite.__init__">__init__</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.vhost.VHostURIRewrite.renderHTTP">renderHTTP</a></td>
+          <td><span>Return an IResponse or a deferred which will fire an
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.vhost.VHostURIRewrite.locateChild">locateChild</a></td>
+          <td><span>Locate another object which can be adapted to IResource.
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.web2.vhost.VHostURIRewrite.__init__"></a>
+        <div class="functionHeader">
+          def <span>__init__(self, uri, resource):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.web2.vhost.VHostURIRewrite.renderHTTP"></a>
+        <div class="functionHeader">
+          def <span>renderHTTP(self, req):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.web2.iweb.IResource.html#twisted.web2.iweb.IResource.renderHTTP">twisted.web2.iweb.IResource</a></div><div>Return an IResponse or a deferred which will fire an IResponse. This 
+response will be written to the web browser which initiated the 
+request.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.vhost.VHostURIRewrite.locateChild"></a>
+        <div class="functionHeader">
+          def <span>locateChild(self, req, segments):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.web2.iweb.IResource.html#twisted.web2.iweb.IResource.locateChild">twisted.web2.iweb.IResource</a></div><div>Locate another object which can be adapted to IResource.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><p>A 2-tuple of (resource, remaining-path-segments), or a deferred which 
+will fire the above.</p>
+<p>Causes the object publishing machinery to continue on with specified 
+resource and segments, calling the appropriate method on the specified 
+resource.</p>
+If you return (self, <a 
+href="twisted.web2.server.StopTraversal.html">server.StopTraversal</a>), 
+this instructs web2 to immediately stop the lookup stage, and switch to 
+the rendering stage, leaving the remaining path alone for your render 
+function to handle.
+</td></tr></table></div></div>
+      </div>    
+  </body>
+</html>

@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.mail.relaymanager.MXCalculator : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">t.m.r.MXCalculator : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.mail.html">mail</a>.<a href="twisted.mail.relaymanager.html">relaymanager</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/mail/relaymanager.py#L914">View Source</a>
+      <a href="classIndex.html#twisted.mail.relaymanager.MXCalculator">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div class="docstring">
+      <div><p>A utility for looking up mail exchange hosts and tracking whether they 
+are working or not.</p><table class="fieldTable"></table></div>
+    </div>
+
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1539">
+  
+  
+  <tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.relaymanager.MXCalculator.html#clock">clock</a></td>
+    <td>A reactor which will be used to schedule timeouts. (type: <a href="twisted.internet.interfaces.IReactorTime.html"><code>IReactorTime</code></a>
+provider)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.relaymanager.MXCalculator.html#resolver">resolver</a></td>
+    <td>A resolver. (type: <a href="twisted.internet.interfaces.IResolver.html"><code>IResolver</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.relaymanager.MXCalculator.html#badMXs">badMXs</a></td>
+    <td>A mapping of non-functioning mail exchange hostname to time at which 
+another attempt at contacting it may be made. (type: <a href="http://docs.python.org/library/stdtypes.html#dict"><code>dict</code></a>
+mapping <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+to <a href="http://docs.python.org/library/stdtypes.html#float"><code>float</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.relaymanager.MXCalculator.html#timeOutBadMX">timeOutBadMX</a></td>
+    <td>Period in seconds between attempts to contact a non-functioning mail 
+exchange host. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.mail.relaymanager.MXCalculator.html#fallbackToDomain">fallbackToDomain</a></td>
+    <td>A flag indicating whether to attempt to use the hostname directly when no 
+mail exchange can be found (<code>True</code>) or not (<code>False</code>). (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.relaymanager.MXCalculator.html#__init__">__init__</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.relaymanager.MXCalculator.html#markBad">markBad</a></td>
+    <td><span>Record that a mail exchange host is not currently functioning.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.relaymanager.MXCalculator.html#markGood">markGood</a></td>
+    <td><span>Record that a mail exchange host is functioning.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.relaymanager.MXCalculator.html#getMX">getMX</a></td>
+    <td><span>Find the name of a host that acts as a mail exchange server for a 
+domain.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.relaymanager.MXCalculator.html#_filterRecords">_filterRecords</a></td>
+    <td><span>Organize the records of a DNS response by record name.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.relaymanager.MXCalculator.html#_cbMX">_cbMX</a></td>
+    <td><span>Try to find the mail exchange host for a domain from the given DNS 
+records.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.relaymanager.MXCalculator.html#_ebMX">_ebMX</a></td>
+    <td><span>Attempt to use the name of the domain directly when mail exchange lookup
+fails.</span></td>
+  </tr>
+</table>
+      
+    </div>
+    
+    
+
+    <div class="function">
+  <a name="twisted.mail.relaymanager.MXCalculator.clock">
+    
+  </a>
+  <a name="clock">
+    
+  </a>
+  <div class="functionHeader">
+    clock =
+  </div>
+  <div class="functionBody">
+    A reactor which will be used to schedule timeouts. (type: <a href="twisted.internet.interfaces.IReactorTime.html"><code>IReactorTime</code></a>
+provider)
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.relaymanager.MXCalculator.resolver">
+    
+  </a>
+  <a name="resolver">
+    
+  </a>
+  <div class="functionHeader">
+    resolver =
+  </div>
+  <div class="functionBody">
+    A resolver. (type: <a href="twisted.internet.interfaces.IResolver.html"><code>IResolver</code></a>)
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.relaymanager.MXCalculator.badMXs">
+    
+  </a>
+  <a name="badMXs">
+    
+  </a>
+  <div class="functionHeader">
+    badMXs =
+  </div>
+  <div class="functionBody">
+    A mapping of non-functioning mail exchange hostname to time at which 
+another attempt at contacting it may be made. (type: <a href="http://docs.python.org/library/stdtypes.html#dict"><code>dict</code></a>
+mapping <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+to <a href="http://docs.python.org/library/stdtypes.html#float"><code>float</code></a>)
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.relaymanager.MXCalculator.timeOutBadMX">
+    
+  </a>
+  <a name="timeOutBadMX">
+    
+  </a>
+  <div class="functionHeader">
+    timeOutBadMX =
+  </div>
+  <div class="functionBody">
+    Period in seconds between attempts to contact a non-functioning mail 
+exchange host. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.relaymanager.MXCalculator.fallbackToDomain">
+    
+  </a>
+  <a name="fallbackToDomain">
+    
+  </a>
+  <div class="functionHeader">
+    fallbackToDomain =
+  </div>
+  <div class="functionBody">
+    A flag indicating whether to attempt to use the hostname directly when no 
+mail exchange can be found (<code>True</code>) or not (<code>False</code>). (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.relaymanager.MXCalculator.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, resolver=None, clock=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/mail/relaymanager.py#L942" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td colspan="2">A resolver.</td></tr><tr><td></td><td class="fieldArg">clock</td><td>A reactor which will be used to schedule timeouts. (type: <a href="twisted.internet.interfaces.IReactorTime.html"><code>IReactorTime</code></a>
+provider or <a href="http://docs.python.org/library/types.html#types.NoneType"><code>NoneType</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.relaymanager.MXCalculator.markBad">
+    
+  </a>
+  <a name="markBad">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    markBad(self, mx):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/mail/relaymanager.py#L962" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Record that a mail exchange host is not currently functioning.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">mx</td><td>The hostname of a mail exchange host. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.relaymanager.MXCalculator.markGood">
+    
+  </a>
+  <a name="markGood">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    markGood(self, mx):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/mail/relaymanager.py#L972" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Record that a mail exchange host is functioning.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">mx</td><td>The hostname of a mail exchange host. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.relaymanager.MXCalculator.getMX">
+    
+  </a>
+  <a name="getMX">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getMX(self, domain, maximumCanonicalChainLength=3):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/mail/relaymanager.py#L985" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Find the name of a host that acts as a mail exchange server for a 
+domain.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">domain</td><td>A domain name. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">maximumCanonicalChainLength</td><td>The maximum number of unique canonical name records to follow while looking
+up the mail exchange host. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A deferred which succeeds with the MX record for the mail exchange server 
+for the domain or fails if none can be found. (type: <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+which successfully fires with <a href="twisted.names.dns.Record_MX.html"><code>Record_MX</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.relaymanager.MXCalculator._filterRecords">
+    
+  </a>
+  <a name="_filterRecords">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _filterRecords(self, records):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/mail/relaymanager.py#L1010" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Organize the records of a DNS response by record name.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">records</td><td>Answer resource records, authority resource records and additional resource
+records. (type: 3-<a href="http://docs.python.org/library/stdtypes.html#tuple"><code>tuple</code></a>
+of (0) <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="twisted.names.dns.RRHeader.html"><code>RRHeader</code></a>, (1)
+<a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="twisted.names.dns.RRHeader.html"><code>RRHeader</code></a>, (2)
+<a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="twisted.names.dns.RRHeader.html"><code>RRHeader</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A mapping of record name to record payload. (type: <a href="http://docs.python.org/library/stdtypes.html#dict"><code>dict</code></a>
+mapping <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+to <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="twisted.names.dns.IRecord.html"><code>IRecord</code></a> 
+provider)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.relaymanager.MXCalculator._cbMX">
+    
+  </a>
+  <a name="_cbMX">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _cbMX(self, answers, domain, cnamesLeft):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/mail/relaymanager.py#L1031" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Try to find the mail exchange host for a domain from the given DNS 
+records.</p>
+<p>This will attempt to resolve canonical name record results.  It can 
+recognize loops and will give up on non-cyclic chains after a specified 
+number of lookups.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">answers</td><td>A mapping of record name to record payload. (type: <a href="http://docs.python.org/library/stdtypes.html#dict"><code>dict</code></a>
+mapping <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>
+to <a href="http://docs.python.org/library/stdtypes.html#list"><code>list</code></a>
+of <a href="twisted.names.dns.IRecord.html"><code>IRecord</code></a> 
+provider)</td></tr><tr><td></td><td class="fieldArg">domain</td><td>A domain name. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">cnamesLeft</td><td>The number of unique canonical name records left to follow while looking up
+the mail exchange host. (type: <a href="http://docs.python.org/library/stdtypes.html#int"><code>int</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An MX record for the mail exchange host or a failure if one cannot be 
+found. (type: <a href="twisted.names.dns.Record_MX.html"><code>Record_MX</code></a> or <a href="twisted.python.failure.Failure.html"><code>Failure</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.relaymanager.MXCalculator._ebMX">
+    
+  </a>
+  <a name="_ebMX">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _ebMX(self, failure, domain):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/mail/relaymanager.py#L1115" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Attempt to use the name of the domain directly when mail exchange lookup
+fails.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">failure</td><td>The reason for the lookup failure. (type: <a href="twisted.python.failure.Failure.html"><code>Failure</code></a>)</td></tr><tr><td></td><td class="fieldArg">domain</td><td>The domain name. (type: <a href="http://docs.python.org/library/stdtypes.html#bytes"><code>bytes</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An MX record for the domain or a failure if the fallback to domain option 
+is not in effect and an error, other than not finding an MX record, 
+occurred during lookup. (type: <a href="twisted.names.dns.Record_MX.html"><code>Record_MX</code></a> or <a href="twisted.python.failure.Failure.html"><code>Failure</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">IOError</td><td>When no MX record could be found and the fallback to domain option is not 
+in effect.</td></tr><tr><td></td><td class="fieldArg">DNSLookupError</td><td>When no MX record could be found and the fallback to domain option is in 
+effect but no address for the domain could be found.</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://launchpad.net/pydoctor/">pydoctor</a> at 2015-04-13 15:26:48.
+    </address>
+  </body>
+</html>

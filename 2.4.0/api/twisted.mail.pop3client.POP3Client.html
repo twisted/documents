@@ -1,0 +1,621 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.mail.pop3client.POP3Client&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.m.p.POP3Client(<a href="twisted.protocols.basic.LineOnlyReceiver.html">basic.LineOnlyReceiver</a>, <a href="twisted.protocols.policies.TimeoutMixin.html">policies.TimeoutMixin</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.mail.pop3client.html">twisted.mail.pop3client</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.mail.pop3client.POP3Client">View In Hierarchy</a>
+    </p>
+    <div></div>
+    <div><p>POP3 client protocol implementation class</p>
+Instances of this class provide a convenient, efficient API for 
+retrieving and deleting messages from a POP3 server.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">startedTLS</td><td>Whether TLS has been negotiated successfully.
+(type: <code>bool</code>
+)</td></tr><tr><td></td><td class="fieldArg">allowInsecureLogin</td><td>Indicate whether login() should be allowed if the server offers no 
+authentication challenge and if our transport does not offer any 
+protection via encryption.
+(type: <code>bool</code>
+)</td></tr><tr><td></td><td class="fieldArg">serverChallenge</td><td>Challenge received from the server
+(type: <code>str</code> or <code>None</code>
+)</td></tr><tr><td></td><td class="fieldArg">timeout</td><td>Number of seconds to wait before timing out a connection. If the 
+number is &lt;= 0, no timeout checking will be performed.
+(type: <code>int</code>
+)</td></tr></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client._blocked">_blocked</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client._unblock">_unblock</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.sendShort">sendShort</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.sendLong">sendLong</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.connectionMade">connectionMade</a></td>
+          <td><span>Called when a connection is made.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.timeoutConnection">timeoutConnection</a></td>
+          <td><span>Called when the connection times out.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.connectionLost">connectionLost</a></td>
+          <td><span>Called when the connection is shut down.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.lineReceived">lineReceived</a></td>
+          <td><span>Override this for when each line is received.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.lineLengthExceeded">lineLengthExceeded</a></td>
+          <td><span>Called when the maximum line length has been reached.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.state_WELCOME">state_WELCOME</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.state_WAITING">state_WAITING</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.state_SHORT">state_SHORT</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.state_LONG_INITIAL">state_LONG_INITIAL</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.state_LONG">state_LONG</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.serverGreeting">serverGreeting</a></td>
+          <td><span>Called when the server has sent us a greeting.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.startTLS">startTLS</a></td>
+          <td><span>Initiates a 'STLS' request and negotiates the TLS / SSL
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client._startTLS">_startTLS</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client._startedTLS">_startedTLS</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client._getContextFactory">_getContextFactory</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.login">login</a></td>
+          <td><span>Log into the server.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client._login">_login</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client._loginTLS">_loginTLS</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client._plaintext">_plaintext</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client._apop">_apop</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.apop">apop</a></td>
+          <td><span>Perform APOP login.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.user">user</a></td>
+          <td><span>Send the user command.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.password">password</a></td>
+          <td><span>Send the password command.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.delete">delete</a></td>
+          <td><span>Delete a message from the server.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client._consumeOrSetItem">_consumeOrSetItem</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client._consumeOrAppend">_consumeOrAppend</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.capabilities">capabilities</a></td>
+          <td><span>Retrieve the capabilities supported by this server.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.noop">noop</a></td>
+          <td><span>Do nothing, with the help of the server.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.reset">reset</a></td>
+          <td><span>Remove the deleted flag from any messages which have it.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.retrieve">retrieve</a></td>
+          <td><span>Retrieve a message from the server.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.stat">stat</a></td>
+          <td><span>Get information about the size of this mailbox.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.listSize">listSize</a></td>
+          <td><span>Retrieve a list of the size of all messages on the server.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.listUID">listUID</a></td>
+          <td><span>Retrieve a list of the UIDs of all messages on the server.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.mail.pop3client.POP3Client.quit">quit</a></td>
+          <td><span>Disconnect from the server.
+</span></td>
+        </tr></table>
+    
+    
+        <p>
+          Inherited from <span><a href="twisted.protocols.basic.LineOnlyReceiver.html">LineOnlyReceiver</a></span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic.LineOnlyReceiver.html#twisted.protocols.basic.LineOnlyReceiver.dataReceived">dataReceived</a></td>
+            <td><span>Translates bytes into lines, and calls lineReceived.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic.LineOnlyReceiver.html#twisted.protocols.basic.LineOnlyReceiver.sendLine">sendLine</a></td>
+            <td><span>Sends a line to the other end of the connection.
+</span></td>
+          </tr></table>
+      
+        <p>
+          Inherited from <span><a href="twisted.internet.protocol.BaseProtocol.html">BaseProtocol</a> (via <a href="twisted.protocols.basic.LineOnlyReceiver.html">LineOnlyReceiver</a>, <a href="twisted.internet.protocol.Protocol.html">Protocol</a>)</span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.internet.protocol.BaseProtocol.html#twisted.internet.protocol.BaseProtocol.makeConnection">makeConnection</a></td>
+            <td><span>Make a connection to a transport and a server.
+</span></td>
+          </tr></table>
+      
+        <p>
+          Inherited from <span><a href="twisted.protocols.policies.TimeoutMixin.html">TimeoutMixin</a></span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.policies.TimeoutMixin.html#twisted.protocols.policies.TimeoutMixin.callLater">callLater</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.policies.TimeoutMixin.html#twisted.protocols.policies.TimeoutMixin.resetTimeout">resetTimeout</a></td>
+            <td><span>Reset the timeout count down
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.policies.TimeoutMixin.html#twisted.protocols.policies.TimeoutMixin.setTimeout">setTimeout</a></td>
+            <td><span>Change the timeout period
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.policies.TimeoutMixin.html#twisted.protocols.policies.TimeoutMixin.__timedOut">__timedOut</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr></table>
+      
+    <div class="function">
+        <a name="twisted.mail.pop3client.POP3Client._blocked"></a>
+        <div class="functionHeader">
+          def <span>_blocked(self, f, *a):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client._unblock"></a>
+        <div class="functionHeader">
+          def <span>_unblock(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.sendShort"></a>
+        <div class="functionHeader">
+          def <span>sendShort(self, cmd, args):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.sendLong"></a>
+        <div class="functionHeader">
+          def <span>sendLong(self, cmd, args, consumer, xform):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.connectionMade"></a>
+        <div class="functionHeader">
+          def <span>connectionMade(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#twisted.internet.interfaces.IProtocol.connectionMade">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.BaseProtocol.html#twisted.internet.protocol.BaseProtocol.connectionMade">twisted.internet.protocol.BaseProtocol.connectionMade</a></div><div><p>Called when a connection is made.</p>
+This may be considered the initializer of the protocol, because it is 
+called when the connection is completed. For clients, this is called once 
+the connection to the server has been established; for servers, this is 
+called after an accept() call stops blocking and a socket has been 
+received. If you need to send any greeting or initial message, do it 
+here.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.timeoutConnection"></a>
+        <div class="functionHeader">
+          def <span>timeoutConnection(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.protocols.policies.TimeoutMixin.html#twisted.protocols.policies.TimeoutMixin.timeoutConnection">twisted.protocols.policies.TimeoutMixin.timeoutConnection</a></div><div>Called when the connection times out. Override to define behavior 
+other than dropping the connection.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.connectionLost"></a>
+        <div class="functionHeader">
+          def <span>connectionLost(self, reason):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#twisted.internet.interfaces.IProtocol.connectionLost">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Protocol.html#twisted.internet.protocol.Protocol.connectionLost">twisted.internet.protocol.Protocol.connectionLost</a></div><div><p>Called when the connection is shut down.</p>
+Clear any circular references here, and any external references to 
+this Protocol. The connection has been closed. The reason Failure wraps a 
+<a 
+href="twisted.internet.error.ConnectionDone.html">twisted.internet.error.ConnectionDone</a> 
+or <a 
+href="twisted.internet.error.ConnectionLost.html">twisted.internet.error.ConnectionLost</a> 
+instance (or a subclass of one of those).
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">reason</td><td>(type: <a 
+href="twisted.python.failure.Failure.html">twisted.python.failure.Failure</a>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.lineReceived"></a>
+        <div class="functionHeader">
+          def <span>lineReceived(self, line):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.protocols.basic.LineOnlyReceiver.html#twisted.protocols.basic.LineOnlyReceiver.lineReceived">twisted.protocols.basic.LineOnlyReceiver.lineReceived</a></div><div>Override this for when each line is received.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.lineLengthExceeded"></a>
+        <div class="functionHeader">
+          def <span>lineLengthExceeded(self, buffer):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.protocols.basic.LineOnlyReceiver.html#twisted.protocols.basic.LineOnlyReceiver.lineLengthExceeded">twisted.protocols.basic.LineOnlyReceiver.lineLengthExceeded</a></div><div>Called when the maximum line length has been reached. Override if it 
+needs to be dealt with in some special way.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.state_WELCOME"></a>
+        <div class="functionHeader">
+          def <span>state_WELCOME(self, line):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.state_WAITING"></a>
+        <div class="functionHeader">
+          def <span>state_WAITING(self, line):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.state_SHORT"></a>
+        <div class="functionHeader">
+          def <span>state_SHORT(self, line):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.state_LONG_INITIAL"></a>
+        <div class="functionHeader">
+          def <span>state_LONG_INITIAL(self, line):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.state_LONG"></a>
+        <div class="functionHeader">
+          def <span>state_LONG(self, line):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.serverGreeting"></a>
+        <div class="functionHeader">
+          def <span>serverGreeting(self, greeting):</span>
+        </div>
+        <div class="functionBody"><div>Called when the server has sent us a greeting.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">greeting</td><td>The status message sent with the server greeting. For servers 
+implementing APOP authentication, this will be a challenge string. .
+(type: <code>str</code> or <code>None</code>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.startTLS"></a>
+        <div class="functionHeader">
+          def <span>startTLS(self, contextFactory=None):</span>
+        </div>
+        <div class="functionBody"><div>Initiates a 'STLS' request and negotiates the TLS / SSL Handshake.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">contextFactory</td><td>(type: <code>ssl.ClientContextFactory</code> &#64;param contextFactory: The 
+context factory with which to negotiate TLS. If <code>None</code>, try to 
+create a new one.
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A Deferred which fires when the transport has been secured according 
+to the given contextFactory, or which fails if the transport cannot be 
+secured.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client._startTLS"></a>
+        <div class="functionHeader">
+          def <span>_startTLS(self, caps, contextFactory, tls):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client._startedTLS"></a>
+        <div class="functionHeader">
+          def <span>_startedTLS(self, result, context, tls):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client._getContextFactory"></a>
+        <div class="functionHeader">
+          def <span>_getContextFactory(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.login"></a>
+        <div class="functionHeader">
+          def <span>login(self, username, password):</span>
+        </div>
+        <div class="functionBody"><div><p>Log into the server.</p>
+If APOP is available it will be used. Otherwise, if TLS is available 
+an 'STLS' session will be started and plaintext login will proceed. 
+Otherwise, if the instance attribute allowInsecureLogin is set to True, 
+insecure plaintext login will proceed. Otherwise, 
+InsecureAuthenticationDisallowed will be raised (asynchronously).
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">username</td><td>The username with which to log in.
+</td></tr><tr><td></td><td class="fieldArg">password</td><td>The password with which to log in.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A deferred which fires when login has completed.
+(type: <code>Deferred</code>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client._login"></a>
+        <div class="functionHeader">
+          def <span>_login(self, caps, username, password):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client._loginTLS"></a>
+        <div class="functionHeader">
+          def <span>_loginTLS(self, res, username, password):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client._plaintext"></a>
+        <div class="functionHeader">
+          def <span>_plaintext(self, username, password):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client._apop"></a>
+        <div class="functionHeader">
+          def <span>_apop(self, username, password, challenge):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.apop"></a>
+        <div class="functionHeader">
+          def <span>apop(self, username, digest):</span>
+        </div>
+        <div class="functionBody"><div><p>Perform APOP login.</p>
+This should be used in special circumstances only, when it is known 
+that the server supports APOP authentication, and APOP authentication is 
+absolutely required. For the common case, use <a 
+href="twisted.mail.pop3client.POP3Client.html#twisted.mail.pop3client.POP3Client.login">login</a> 
+instead.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">username</td><td>The username with which to log in.
+</td></tr><tr><td></td><td class="fieldArg">digest</td><td>The challenge response to authenticate with.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.user"></a>
+        <div class="functionHeader">
+          def <span>user(self, username):</span>
+        </div>
+        <div class="functionBody"><div><p>Send the user command.</p>
+This performs the first half of plaintext login. Unless this is 
+absolutely required, use the <a 
+href="twisted.mail.pop3client.POP3Client.html#twisted.mail.pop3client.POP3Client.login">login</a> 
+method instead.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">username</td><td>The username with which to log in.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.password"></a>
+        <div class="functionHeader">
+          def <span>password(self, password):</span>
+        </div>
+        <div class="functionBody"><div><p>Send the password command.</p>
+This performs the second half of plaintext login. Unless this is 
+absolutely required, use the <a 
+href="twisted.mail.pop3client.POP3Client.html#twisted.mail.pop3client.POP3Client.login">login</a> 
+method instead.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">password</td><td>The plaintext password with which to authenticate.
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.delete"></a>
+        <div class="functionHeader">
+          def <span>delete(self, index):</span>
+        </div>
+        <div class="functionBody"><div>Delete a message from the server.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">index</td><td>The index of the message to delete. This is 0-based.
+(type: <code>int</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A deferred which fires when the delete command is successful, or fails 
+if the server returns an error.
+(type: <code>Deferred</code>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client._consumeOrSetItem"></a>
+        <div class="functionHeader">
+          def <span>_consumeOrSetItem(self, cmd, args, consumer, xform):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client._consumeOrAppend"></a>
+        <div class="functionHeader">
+          def <span>_consumeOrAppend(self, cmd, args, consumer, xform):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.capabilities"></a>
+        <div class="functionHeader">
+          def <span>capabilities(self, useCache=True):</span>
+        </div>
+        <div class="functionBody"><div><p>Retrieve the capabilities supported by this server.</p>
+Not all servers support this command. If the server does not support 
+this, it is treated as though it returned a successful response listing 
+no capabilities. At some future time, this may be changed to instead seek 
+out information about a server's capabilities in some other fashion (only 
+if it proves useful to do so, and only if there are servers still in use 
+which do not support CAPA but which do support POP3 extensions that are 
+useful).
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">useCache</td><td>If set, and if capabilities have been retrieved previously, just 
+return the previously retrieved results.
+(type: <code>bool</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A Deferred which fires with a <code>dict</code> mapping 
+<code>str</code> to <code>None</code> or <code>list</code>s of 
+<code>str</code>. For example:
+<pre class="literalblock">
+   C: CAPA
+   S: +OK Capability list follows
+   S: TOP
+   S: USER
+   S: SASL CRAM-MD5 KERBEROS_V4
+   S: RESP-CODES
+   S: LOGIN-DELAY 900
+   S: PIPELINING
+   S: EXPIRE 60
+   S: UIDL
+   S: IMPLEMENTATION Shlemazle-Plotz-v302
+   S: .
+</pre>
+will be lead to a result of:
+<pre class="literalblock">
+   | {'TOP': None,
+   |  'USER': None,
+   |  'SASL': ['CRAM-MD5', 'KERBEROS_V4'],
+   |  'RESP-CODES': None,
+   |  'LOGIN-DELAY': ['900'],
+   |  'PIPELINING': None,
+   |  'EXPIRE': ['60'],
+   |  'UIDL': None,
+   |  'IMPLEMENTATION': ['Shlemazle-Plotz-v302']}
+</pre>
+</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.noop"></a>
+        <div class="functionHeader">
+          def <span>noop(self):</span>
+        </div>
+        <div class="functionBody"><div><p>Do nothing, with the help of the server.</p>
+No operation is performed. The returned Deferred fires when the server 
+responds.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.reset"></a>
+        <div class="functionHeader">
+          def <span>reset(self):</span>
+        </div>
+        <div class="functionBody"><div><p>Remove the deleted flag from any messages which have it.</p>
+The returned Deferred fires when the server responds.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.retrieve"></a>
+        <div class="functionHeader">
+          def <span>retrieve(self, index, consumer=None, lines=None):</span>
+        </div>
+        <div class="functionBody"><div><p>Retrieve a message from the server.</p>
+If consumer is not None, it will be called with each line of the 
+message as it is received. Otherwise, the returned Deferred will be fired 
+with a list of all the lines when the message has been completely 
+received.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.stat"></a>
+        <div class="functionHeader">
+          def <span>stat(self):</span>
+        </div>
+        <div class="functionBody"><div><p>Get information about the size of this mailbox.</p>
+The returned Deferred will be fired with a tuple containing the number 
+or messages in the mailbox and the size (in bytes) of the mailbox.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.listSize"></a>
+        <div class="functionHeader">
+          def <span>listSize(self, consumer=None):</span>
+        </div>
+        <div class="functionBody"><div><p>Retrieve a list of the size of all messages on the server.</p>
+If consumer is not None, it will be called with two-tuples of message 
+index number and message size as they are received. Otherwise, a Deferred 
+which will fire with a list of <b>only</b> message sizes will be 
+returned. For messages which have been deleted, None will be used in 
+place of the message size.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.listUID"></a>
+        <div class="functionHeader">
+          def <span>listUID(self, consumer=None):</span>
+        </div>
+        <div class="functionBody"><div><p>Retrieve a list of the UIDs of all messages on the server.</p>
+If consumer is not None, it will be called with two-tuples of message 
+index number and message UID as they are received. Otherwise, a Deferred 
+which will fire with of list of <b>only</b> message UIDs will be 
+returned. For messages which have been deleted, None will be used in 
+place of the message UID.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.mail.pop3client.POP3Client.quit"></a>
+        <div class="functionHeader">
+          def <span>quit(self):</span>
+        </div>
+        <div class="functionBody"><div>Disconnect from the server.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

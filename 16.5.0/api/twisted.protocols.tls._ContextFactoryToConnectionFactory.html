@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.protocols.tls._ContextFactoryToConnectionFactory : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link type="text/css" href="bootstrap.min.css" rel="stylesheet" />
+    <link type="text/css" href="apidocs.css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class private"><code>twisted.protocols.tls._ContextFactoryToConnectionFactory(<span title="object">object</span>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.protocols.html" data-type="Package" class="code">protocols</a>.<a href="twisted.protocols.tls.html" data-type="Module" class="code">tls</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-16.5.0/src/twisted/protocols/tls.py#L721">View Source</a>
+          <a href="classIndex.html#twisted.protocols.tls._ContextFactoryToConnectionFactory">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Implements interfaces: <a href="twisted.internet.interfaces.IOpenSSLClientConnectionCreator.html" data-type="Interface" class="code">twisted.internet.interfaces.IOpenSSLClientConnectionCreator</a>, <a href="twisted.internet.interfaces.IOpenSSLServerConnectionCreator.html" data-type="Interface" class="code">twisted.internet.interfaces.IOpenSSLServerConnectionCreator</a></p>
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>Adapter wrapping a <a href="twisted.internet.interfaces.IOpenSSLContextFactory.html"><code>twisted.internet.interfaces.IOpenSSLContextFactory</code></a>
+into a <a href="twisted.internet.interfaces.IOpenSSLClientConnectionCreator.html"><code>IOpenSSLClientConnectionCreator</code></a>
+or <a href="twisted.internet.interfaces.IOpenSSLServerConnectionCreator.html"><code>IOpenSSLServerConnectionCreator</code></a>.</p>
+<p>See <a href="https://twistedmatrix.com/trac/ticket/7215" target="_top">https://twistedmatrix.com/trac/ticket/7215</a> for work that 
+should make this unnecessary.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id2351">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls._ContextFactoryToConnectionFactory.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td><span>Construct a <a href="twisted.protocols.tls._ContextFactoryToConnectionFactory.html"><code>_ContextFactoryToConnectionFactory</code></a>
+with a <a href="twisted.internet.interfaces.IOpenSSLContextFactory.html"><code>twisted.internet.interfaces.IOpenSSLContextFactory</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls._ContextFactoryToConnectionFactory.html#serverConnectionForTLS" data-type="Method" class="code">serverConnectionForTLS</a></td>
+    <td><span>Construct an OpenSSL server connection from the wrapped old-style 
+context factory.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls._ContextFactoryToConnectionFactory.html#clientConnectionForTLS" data-type="Method" class="code">clientConnectionForTLS</a></td>
+    <td><span>Construct an OpenSSL server connection from the wrapped old-style 
+context factory.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.tls._ContextFactoryToConnectionFactory.html#_connectionForTLS" data-type="Method" class="code">_connectionForTLS</a></td>
+    <td><span>Create an <a href="https://pyopenssl.readthedocs.io/en/stable/api/ssl.html#OpenSSL.SSL.Connection"><code>OpenSSL.SSL.Connection</code></a>
+object.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  <a name="twisted.protocols.tls._ContextFactoryToConnectionFactory.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, oldStyleContextFactory):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.5.0/src/twisted/protocols/tls.py#L731">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Construct a <a href="twisted.protocols.tls._ContextFactoryToConnectionFactory.html"><code>_ContextFactoryToConnectionFactory</code></a>
+with a <a href="twisted.internet.interfaces.IOpenSSLContextFactory.html"><code>twisted.internet.interfaces.IOpenSSLContextFactory</code></a>.</p>
+<p>Immediately call <code>getContext</code> on 
+<code>oldStyleContextFactory</code> in order to force advance parameter 
+checking, since old-style context factories don't actually check that their
+arguments to <a href="https://pyopenssl.readthedocs.io/en/stable/api.html#module-OpenSSL"><code>OpenSSL</code></a>
+are correct.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">oldStyleContextFactory</td><td>A factory that can produce contexts. (type: <a href="twisted.internet.interfaces.IOpenSSLContextFactory.html"><code>twisted.internet.interfaces.IOpenSSLContextFactory</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.protocols.tls._ContextFactoryToConnectionFactory._connectionForTLS">
+    
+  </a>
+  <a name="_connectionForTLS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _connectionForTLS(self, protocol):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.5.0/src/twisted/protocols/tls.py#L748">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Create an <a href="https://pyopenssl.readthedocs.io/en/stable/api/ssl.html#OpenSSL.SSL.Connection"><code>OpenSSL.SSL.Connection</code></a>
+object.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">protocol</td><td>The protocol initiating a TLS connection. (type: <a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html"><code>TLSMemoryBIOProtocol</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a connection (type: <a href="https://pyopenssl.readthedocs.io/en/stable/api/ssl.html#OpenSSL.SSL.Connection"><code>OpenSSL.SSL.Connection</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.tls._ContextFactoryToConnectionFactory.serverConnectionForTLS">
+    
+  </a>
+  <a name="serverConnectionForTLS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    serverConnectionForTLS(self, protocol):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.5.0/src/twisted/protocols/tls.py#L762">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IOpenSSLServerConnectionCreator.html#serverConnectionForTLS" data-type="Method" class="code">twisted.internet.interfaces.IOpenSSLServerConnectionCreator</a></div>
+    
+    <div><p>Construct an OpenSSL server connection from the wrapped old-style 
+context factory.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">protocol</td><td>The protocol initiating a TLS connection. (type: <a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html"><code>TLSMemoryBIOProtocol</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a connection (type: <a href="https://pyopenssl.readthedocs.io/en/stable/api/ssl.html#OpenSSL.SSL.Connection"><code>OpenSSL.SSL.Connection</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Note</td><td colspan="2">Since old-style context factories don't distinguish between clients and 
+servers, this is exactly the same as <a href="twisted.protocols.tls._ContextFactoryToConnectionFactory.html#clientConnectionForTLS"><code>_ContextFactoryToConnectionFactory.clientConnectionForTLS</code></a>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.protocols.tls._ContextFactoryToConnectionFactory.clientConnectionForTLS">
+    
+  </a>
+  <a name="clientConnectionForTLS">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    clientConnectionForTLS(self, protocol):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.5.0/src/twisted/protocols/tls.py#L780">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IOpenSSLClientConnectionCreator.html#clientConnectionForTLS" data-type="Method" class="code">twisted.internet.interfaces.IOpenSSLClientConnectionCreator</a></div>
+    
+    <div><p>Construct an OpenSSL server connection from the wrapped old-style 
+context factory.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">protocol</td><td>The protocol initiating a TLS connection. (type: <a href="twisted.protocols.tls.TLSMemoryBIOProtocol.html"><code>TLSMemoryBIOProtocol</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a connection (type: <a href="https://pyopenssl.readthedocs.io/en/stable/api/ssl.html#OpenSSL.SSL.Connection"><code>OpenSSL.SSL.Connection</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Note</td><td colspan="2">Since old-style context factories don't distinguish between clients and 
+servers, this is exactly the same as <a href="twisted.protocols.tls._ContextFactoryToConnectionFactory.html#serverConnectionForTLS"><code>_ContextFactoryToConnectionFactory.serverConnectionForTLS</code></a>.</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2016-10-29 16:19:29.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

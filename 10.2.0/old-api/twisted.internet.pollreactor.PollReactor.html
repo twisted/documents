@@ -1,0 +1,391 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.pollreactor.PollReactor : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">t.i.p.PollReactor(<span title="twisted.internet.posixbase.PosixReactorBase">posixbase.PosixReactorBase</span>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a>.<a href="twisted.internet.pollreactor.html">pollreactor</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/internet/pollreactor.py#L30">View Source</a>
+      <a href="classIndex.html#twisted.internet.pollreactor.PollReactor">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Implements interfaces: <a href="twisted.internet.interfaces.IReactorFDSet.html">twisted.internet.interfaces.IReactorFDSet</a></p>
+    </div>
+    <div>A reactor that uses poll(2).<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">_poller</td><td>A <code>poll</code> which will be used to check for I/O readiness.
+</td></tr><tr><td></td><td class="fieldArg">_selectables</td><td>A dictionary mapping integer file descriptors to instances of <a 
+href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+which have been registered with the reactor.  All 
+<code>FileDescriptors</code> which are currently receiving read or write 
+readiness notifications will be present as values in this dictionary.
+</td></tr><tr><td></td><td class="fieldArg">_reads</td><td>A dictionary mapping integer file descriptors to arbitrary values (this is 
+essentially a set).  Keys in this dictionary will be registered with 
+<code>_poller</code> for read readiness notifications which will be 
+dispatched to the corresponding <a 
+href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+instances in <code>_selectables</code>.
+</td></tr><tr><td></td><td class="fieldArg">_writes</td><td>A dictionary mapping integer file descriptors to arbitrary values (this is 
+essentially a set).  Keys in this dictionary will be registered with 
+<code>_poller</code> for write readiness notifications which will be 
+dispatched to the corresponding <a 
+href="twisted.internet.abstract.FileDescriptor.html"><code>FileDescriptor</code></a>
+instances in <code>_selectables</code>.
+</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1850">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.pollreactor.PollReactor.html#__init__">__init__</a></td>
+    <td><span>Initialize polling object, file descriptor tracking dictionaries, 
+and</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.pollreactor.PollReactor.html#addReader">addReader</a></td>
+    <td><span>Add a FileDescriptor for notification of data available to read.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.pollreactor.PollReactor.html#addWriter">addWriter</a></td>
+    <td><span>Add a FileDescriptor for notification of data available to write.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.pollreactor.PollReactor.html#removeReader">removeReader</a></td>
+    <td><span>Remove a Selectable for notification of data available to read.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.pollreactor.PollReactor.html#removeWriter">removeWriter</a></td>
+    <td><span>Remove a Selectable for notification of data available to write.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.pollreactor.PollReactor.html#removeAll">removeAll</a></td>
+    <td><span>Remove all selectables, and return a list of them.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.pollreactor.PollReactor.html#doPoll">doPoll</a></td>
+    <td><span>Poll the poller for new events.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.pollreactor.PollReactor.html#getReaders">getReaders</a></td>
+    <td><span>Return the list of file descriptors currently monitored for input</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.pollreactor.PollReactor.html#getWriters">getWriters</a></td>
+    <td><span>Return the list file descriptors currently monitored for output 
+events</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.pollreactor.PollReactor.html#_updateRegistration">_updateRegistration</a></td>
+    <td><span>Register/unregister an fd with the poller.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.pollreactor.PollReactor.html#_dictRemove">_dictRemove</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.pollreactor.PollReactor.html#_doReadOrWrite">_doReadOrWrite</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.internet.pollreactor.PollReactor.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/internet/pollreactor.py#L57" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Initialize polling object, file descriptor tracking dictionaries, and 
+the base class.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.pollreactor.PollReactor._updateRegistration">
+    
+  </a>
+  <a name="_updateRegistration">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _updateRegistration(self, fd):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/internet/pollreactor.py#L69" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Register/unregister an fd with the poller.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.pollreactor.PollReactor._dictRemove">
+    
+  </a>
+  <a name="_dictRemove">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _dictRemove(self, selectable, mdict):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/internet/pollreactor.py#L87" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.pollreactor.PollReactor.addReader">
+    
+  </a>
+  <a name="addReader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addReader(self, reader):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/internet/pollreactor.py#L108" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#addReader">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Add a FileDescriptor for notification of data available to read.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.pollreactor.PollReactor.addWriter">
+    
+  </a>
+  <a name="addWriter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addWriter(self, writer):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/internet/pollreactor.py#L117" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#addWriter">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Add a FileDescriptor for notification of data available to write.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.pollreactor.PollReactor.removeReader">
+    
+  </a>
+  <a name="removeReader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeReader(self, reader):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/internet/pollreactor.py#L126" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#removeReader">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Remove a Selectable for notification of data available to read.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.pollreactor.PollReactor.removeWriter">
+    
+  </a>
+  <a name="removeWriter">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeWriter(self, writer):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/internet/pollreactor.py#L131" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#removeWriter">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Remove a Selectable for notification of data available to write.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.pollreactor.PollReactor.removeAll">
+    
+  </a>
+  <a name="removeAll">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeAll(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/internet/pollreactor.py#L136" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#removeAll">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Remove all selectables, and return a list of them.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.pollreactor.PollReactor.doPoll">
+    
+  </a>
+  <a name="doPoll">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    doPoll(self, timeout):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/internet/pollreactor.py#L145" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Poll the poller for new events.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.pollreactor.PollReactor._doReadOrWrite">
+    
+  </a>
+  <a name="_doReadOrWrite">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _doReadOrWrite(self, selectable, fd, event):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/internet/pollreactor.py#L169" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.pollreactor.PollReactor.getReaders">
+    
+  </a>
+  <a name="getReaders">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getReaders(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/internet/pollreactor.py#L196" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#getReaders">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Return the list of file descriptors currently monitored for input events
+by the reactor.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the list of file descriptors monitored for input events.
+ (type: <code>list</code> of <code>IReadDescriptor</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.pollreactor.PollReactor.getWriters">
+    
+  </a>
+  <a name="getWriters">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getWriters(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.2.0/twisted/internet/pollreactor.py#L200" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IReactorFDSet.html#getWriters">twisted.internet.interfaces.IReactorFDSet</a></div>
+    <div>Return the list file descriptors currently monitored for output events 
+by the reactor.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the list of file descriptors monitored for output events.
+ (type: <code>list</code> of <code>IWriteDescriptor</code>
+)</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2010-11-30 00:04:06.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+  </body>
+</html>

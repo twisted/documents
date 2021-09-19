@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.abstract._ConsumerMixin : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div style="display: none" id="current-docs-container" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class private"><code>twisted.internet.abstract._ConsumerMixin(<span title="object">object</span>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.internet.html" data-type="Package" class="code">internet</a>.<a href="twisted.internet.abstract.html" data-type="Module" class="code">abstract</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-16.3.0/twisted/internet/abstract.py#L34">View Source</a>
+          <a href="classIndex.html#twisted.internet.abstract._ConsumerMixin">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Known subclasses: <a href="twisted.internet.abstract.FileDescriptor.html" data-type="Class" class="code">twisted.internet.abstract.FileDescriptor</a>, <a href="twisted.internet.iocpreactor.abstract.FileHandle.html" data-type="Class" class="code">twisted.internet.iocpreactor.abstract.FileHandle</a></p>
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p><a href="twisted.internet.interfaces.IConsumer.html"><code>IConsumer</code></a>
+implementations can mix this in to get <code>registerProducer</code> and 
+<code>unregisterProducer</code> methods which take care of keeping track of
+a producer's state.</p>
+<p>Subclasses must provide three attributes which <a href="twisted.internet.abstract._ConsumerMixin.html"><code>_ConsumerMixin</code></a>
+will read but not write:</p>
+<ul>
+  <li>
+    connected: A <code>bool</code> which is <code>True</code> as long as 
+    the consumer has someplace to send bytes (for example, a TCP 
+    connection), and then <code>False</code> when it no longer does.
+  </li>
+  <li>
+    disconnecting: A <code>bool</code> which is <code>False</code> until 
+    something like <a href="twisted.internet.interfaces.ITransport.html#loseConnection"><code>ITransport.loseConnection</code></a>
+    is called, indicating that the send buffer should be flushed and the 
+    connection lost afterwards.  Afterwards, <code>True</code>.
+  </li>
+  <li>
+    disconnected: A <code>bool</code> which is <code>False</code> until the
+    consumer no longer has a place to send bytes, then <code>True</code>.
+  </li>
+</ul>
+<p>Subclasses must also override the <code>startWriting</code> method.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id591">
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.abstract._ConsumerMixin.html#producer" data-type="Instance Variable" class="code">producer</a></td>
+    <td><code>None</code> if no producer is registered, otherwise the registered 
+producer.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.abstract._ConsumerMixin.html#producerPaused" data-type="Instance Variable" class="code">producerPaused</a></td>
+    <td>A flag indicating whether the producer is currently paused. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.abstract._ConsumerMixin.html#streamingProducer%200" data-type="Instance Variable" class="code">streamingProducer 0</a></td>
+    <td>A flag indicating whether the producer was registered as a streaming (ie 
+push) producer or not (ie a pull producer).  This will determine whether 
+the consumer may ever need to pause and resume it, or if it can merely call
+<code>resumeProducing</code> on it when buffer space is available.</td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.abstract._ConsumerMixin.html#streamingProducer" data-type="Instance Variable" class="code">streamingProducer</a></td>
+    <td><code>bool</code> or <code>int</code></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract._ConsumerMixin.html#startWriting" data-type="Method" class="code">startWriting</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract._ConsumerMixin.html#registerProducer" data-type="Method" class="code">registerProducer</a></td>
+    <td><span>Register to receive data from a producer.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.abstract._ConsumerMixin.html#unregisterProducer" data-type="Method" class="code">unregisterProducer</a></td>
+    <td><span>Stop consuming data from a producer, without disconnecting.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable">
+  
+  <a name="twisted.internet.abstract._ConsumerMixin.producer">
+    
+  </a>
+  <a name="producer">
+    
+  </a>
+  <div class="functionHeader">
+    producer =
+  </div>
+  <div class="functionBody">
+    <code>None</code> if no producer is registered, otherwise the registered 
+producer.
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.abstract._ConsumerMixin.producerPaused">
+    
+  </a>
+  <a name="producerPaused">
+    
+  </a>
+  <div class="functionHeader">
+    producerPaused =
+  </div>
+  <div class="functionBody">
+    A flag indicating whether the producer is currently paused. (type: <a href="http://docs.python.org/library/stdtypes.html#bool"><code>bool</code></a>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.abstract._ConsumerMixin.streamingProducer 0">
+    
+  </a>
+  <a name="streamingProducer 0">
+    
+  </a>
+  <div class="functionHeader">
+    streamingProducer 0 =
+  </div>
+  <div class="functionBody">
+    A flag indicating whether the producer was registered as a streaming (ie 
+push) producer or not (ie a pull producer).  This will determine whether 
+the consumer may ever need to pause and resume it, or if it can merely call
+<code>resumeProducing</code> on it when buffer space is available.
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.abstract._ConsumerMixin.streamingProducer">
+    
+  </a>
+  <a name="streamingProducer">
+    
+  </a>
+  <div class="functionHeader">
+    streamingProducer =
+  </div>
+  <div class="functionBody">
+    <code>bool</code> or <code>int</code>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.abstract._ConsumerMixin.startWriting">
+    
+  </a>
+  <a name="startWriting">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    startWriting(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.3.0/twisted/internet/abstract.py#L76">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.internet.abstract.FileDescriptor.html" data-type="Class" class="code">twisted.internet.abstract.FileDescriptor</a>, <a href="twisted.internet.iocpreactor.abstract.FileHandle.html" data-type="Class" class="code">twisted.internet.iocpreactor.abstract.FileHandle</a></div>
+    
+    <div><p>Override in a subclass to cause the reactor to monitor this selectable 
+for write events.  This will be called once in 
+<code>unregisterProducer</code> if <code>loseConnection</code> has 
+previously been called, so that the connection can actually close.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.abstract._ConsumerMixin.registerProducer">
+    
+  </a>
+  <a name="registerProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    registerProducer(self, producer, streaming):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.3.0/twisted/internet/abstract.py#L86">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.internet.iocpreactor.tcp.Connection.html" data-type="Class" class="code">twisted.internet.iocpreactor.tcp.Connection</a></div>
+    
+    <div><p>Register to receive data from a producer.</p>
+<p>This sets this selectable to be a consumer for a producer.  When this 
+selectable runs out of data on a write() call, it will ask the producer to 
+resumeProducing(). When the FileDescriptor's internal data buffer is 
+filled, it will ask the producer to pauseProducing(). If the connection is 
+lost, FileDescriptor calls producer's stopProducing() method.</p>
+<p>If streaming is true, the producer should provide the IPushProducer 
+interface. Otherwise, it is assumed that producer provides the 
+IPullProducer interface. In this case, the producer won't be asked to 
+pauseProducing(), but it has to be careful to write() data only when its 
+resumeProducing() method is called.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.abstract._ConsumerMixin.unregisterProducer">
+    
+  </a>
+  <a name="unregisterProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    unregisterProducer(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-16.3.0/twisted/internet/abstract.py#L115">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.internet.iocpreactor.tcp.Connection.html" data-type="Class" class="code">twisted.internet.iocpreactor.tcp.Connection</a></div>
+    
+    <div><p>Stop consuming data from a producer, without disconnecting.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2016-07-06 22:44:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script src="//www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,573 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.runner.procmon.ProcessMonitor : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.r.p.ProcessMonitor(<a href="twisted.application.service.Service.html">service.Service</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.runner.html">runner</a>.<a href="twisted.runner.procmon.html">procmon</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/runner/procmon.py#L53">View Source</a>
+      <a href="classIndex.html#twisted.runner.procmon.ProcessMonitor">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>ProcessMonitor runs processes, monitors their progress, and restarts 
+them when they die.</p>
+<p>The ProcessMonitor will not attempt to restart a process that appears to
+die instantly -- with each &quot;instant&quot; death (less than 1 second, 
+by default), it will delay approximately twice as long before restarting 
+it.  A successful run will reset the counter.</p>
+<p>The primary interface is <a 
+href="twisted.runner.procmon.ProcessMonitor.html#addProcess"><code>addProcess</code></a>
+and <a 
+href="twisted.runner.procmon.ProcessMonitor.html#removeProcess"><code>removeProcess</code></a>.
+When the service is running (that is, when the application it is attached 
+to is running), adding a process automatically starts it.</p>
+<p>Each process has a name. This name string must uniquely identify the 
+process.  In particular, attempting to add two processes with the same name
+will result in a <code>KeyError</code>.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id2843">
+  
+  
+<tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.runner.procmon.ProcessMonitor.html#threshold">threshold</a></td>
+    <td>How long a process has to live before the death is considered instant, in 
+seconds.  The default value is 1 second. (type: <code>float</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.runner.procmon.ProcessMonitor.html#killTime">killTime</a></td>
+    <td>How long a process being killed has to get its affairs in order before it 
+gets killed with an unmaskable signal.  The default value is 5 seconds. (type: <code>float</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.runner.procmon.ProcessMonitor.html#minRestartDelay">minRestartDelay</a></td>
+    <td>The minimum time (in seconds) to wait before attempting to restart a 
+process.  Default 1s. (type: <code>float</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.runner.procmon.ProcessMonitor.html#maxRestartDelay">maxRestartDelay</a></td>
+    <td>The maximum time (in seconds) to wait before attempting to restart a 
+process.  Default 3600s (1h). (type: <code>float</code>)</td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.runner.procmon.ProcessMonitor.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.runner.procmon.ProcessMonitor.html#__getstate__">__getstate__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.runner.procmon.ProcessMonitor.html#addProcess">addProcess</a></td>
+    <td><span>Add a new monitored process and start it immediately if the <a 
+href="twisted.runner.procmon.ProcessMonitor.html"><code>ProcessMonitor</code></a>
+service is running.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.runner.procmon.ProcessMonitor.html#removeProcess">removeProcess</a></td>
+    <td><span>Stop the named process and remove it from the list of monitored 
+processes.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.runner.procmon.ProcessMonitor.html#startService">startService</a></td>
+    <td><span>Start all monitored processes.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.runner.procmon.ProcessMonitor.html#stopService">stopService</a></td>
+    <td><span>Stop all monitored processes and cancel all scheduled process 
+restarts.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.runner.procmon.ProcessMonitor.html#connectionLost">connectionLost</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.runner.procmon.ProcessMonitor.html#startProcess">startProcess</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.runner.procmon.ProcessMonitor.html#stopProcess">stopProcess</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.runner.procmon.ProcessMonitor.html#restartAll">restartAll</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.runner.procmon.ProcessMonitor.html#__repr__">__repr__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.runner.procmon.ProcessMonitor.html#_reactor">_reactor</a></td>
+    <td>A provider of <code>IReactorProcess</code> and <code>IReactorTime</code> 
+which will be used to spawn processes and register delayed calls. (type: <code>IReactorProcess</code> provider)</td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.runner.procmon.ProcessMonitor.html#_forceStopProcess">_forceStopProcess</a></td>
+    <td></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.application.service.Service.html">Service</a>:
+        </p>
+        <table class="children sortable" id="id2844">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.application.service.Service.html#setName">setName</a></td>
+    <td><span>Set the name of the service.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.application.service.Service.html#setServiceParent">setServiceParent</a></td>
+    <td><span>Set the parent of the service.  This method is responsible for setting 
+the <code>parent</code> attribute on this service (the child service).</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.application.service.Service.html#disownServiceParent">disownServiceParent</a></td>
+    <td><span>Use this API to remove an <a 
+href="twisted.application.service.IService.html"><code>IService</code></a> 
+from an <a 
+href="twisted.application.service.IServiceCollection.html"><code>IServiceCollection</code></a>.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.application.service.Service.html#privilegedStartService">privilegedStartService</a></td>
+    <td><span>Do preparation work for starting the service.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.runner.procmon.ProcessMonitor.threshold">
+    
+  </a>
+  <a name="threshold">
+    
+  </a>
+  <div class="functionHeader">
+    threshold =
+  </div>
+  <div class="functionBody">
+    How long a process has to live before the death is considered instant, in 
+seconds.  The default value is 1 second. (type: <code>float</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.runner.procmon.ProcessMonitor.killTime">
+    
+  </a>
+  <a name="killTime">
+    
+  </a>
+  <div class="functionHeader">
+    killTime =
+  </div>
+  <div class="functionBody">
+    How long a process being killed has to get its affairs in order before it 
+gets killed with an unmaskable signal.  The default value is 5 seconds. (type: <code>float</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.runner.procmon.ProcessMonitor.minRestartDelay">
+    
+  </a>
+  <a name="minRestartDelay">
+    
+  </a>
+  <div class="functionHeader">
+    minRestartDelay =
+  </div>
+  <div class="functionBody">
+    The minimum time (in seconds) to wait before attempting to restart a 
+process.  Default 1s. (type: <code>float</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.runner.procmon.ProcessMonitor.maxRestartDelay">
+    
+  </a>
+  <a name="maxRestartDelay">
+    
+  </a>
+  <div class="functionHeader">
+    maxRestartDelay =
+  </div>
+  <div class="functionBody">
+    The maximum time (in seconds) to wait before attempting to restart a 
+process.  Default 3600s (1h). (type: <code>float</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.runner.procmon.ProcessMonitor._reactor">
+    
+  </a>
+  <a name="_reactor">
+    
+  </a>
+  <div class="functionHeader">
+    _reactor =
+  </div>
+  <div class="functionBody">
+    A provider of <code>IReactorProcess</code> and <code>IReactorTime</code> 
+which will be used to spawn processes and register delayed calls. (type: <code>IReactorProcess</code> provider)
+  </div>
+</div><div class="function">
+  <a name="twisted.runner.procmon.ProcessMonitor.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, reactor=_reactor):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/runner/procmon.py#L99" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.runner.procmon.ProcessMonitor.__getstate__">
+    
+  </a>
+  <a name="__getstate__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __getstate__(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/runner/procmon.py#L110" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.application.service.Service.html#__getstate__">twisted.application.service.Service.__getstate__</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.runner.procmon.ProcessMonitor.addProcess">
+    
+  </a>
+  <a name="addProcess">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addProcess(self, name, args, uid=None, gid=None, env={}):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/runner/procmon.py#L121" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Add a new monitored process and start it immediately if the <a 
+href="twisted.runner.procmon.ProcessMonitor.html"><code>ProcessMonitor</code></a>
+service is running.</p>
+<p>Note that args are passed to the system call, not to the shell. If 
+running the shell is desired, the common idiom is to use 
+<code>ProcessMonitor.addProcess(&quot;name&quot;, ['/bin/sh', '-c', 
+shell_script])</code><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>A name for this process.  This value must be unique across all processes 
+added to this monitor. (type: <code>str</code>)</td></tr><tr><td></td><td class="fieldArg">args</td><td>The argv sequence for the process to launch.</td></tr><tr><td></td><td class="fieldArg">uid</td><td>The user ID to use to run the process.  If <code>None</code>, the current 
+UID is used. (type: <code>int</code>)</td></tr><tr><td></td><td class="fieldArg">gid</td><td>The group ID to use to run the process.  If <code>None</code>, the current 
+GID is used.</td></tr><tr><td></td><td class="fieldArg">env</td><td>The environment to give to the launched process. See 
+<code>IReactorProcess.spawnProcess</code>'s <code>env</code> parameter. (type: <code>dict</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td colspan="2"><code>KeyError</code> if a process with the given name already exists</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.runner.procmon.ProcessMonitor.removeProcess">
+    
+  </a>
+  <a name="removeProcess">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeProcess(self, name):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/runner/procmon.py#L154" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Stop the named process and remove it from the list of monitored 
+processes.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>A string that uniquely identifies the process. (type: <code>str</code>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.runner.procmon.ProcessMonitor.startService">
+    
+  </a>
+  <a name="startService">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    startService(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/runner/procmon.py#L166" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.application.service.IService.html#startService">twisted.application.service.IService</a></div><div class="interfaceinfo">overrides <a href="twisted.application.service.Service.html#startService">twisted.application.service.Service.startService</a></div>
+    <div>Start all monitored processes.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.runner.procmon.ProcessMonitor.stopService">
+    
+  </a>
+  <a name="stopService">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    stopService(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/runner/procmon.py#L175" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.application.service.IService.html#stopService">twisted.application.service.IService</a></div><div class="interfaceinfo">overrides <a href="twisted.application.service.Service.html#stopService">twisted.application.service.Service.stopService</a></div>
+    <div>Stop all monitored processes and cancel all scheduled process 
+restarts.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.runner.procmon.ProcessMonitor.connectionLost">
+    
+  </a>
+  <a name="connectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    connectionLost(self, name):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/runner/procmon.py#L190" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when a monitored processes exits. If 
+<code>ProcessMonitor.running</code> is <code>True</code> (ie the service is
+started), the process will be restarted. If the process had been running 
+for more than <a 
+href="twisted.runner.procmon.ProcessMonitor.html#threshold"><code>ProcessMonitor.threshold</code></a>
+seconds it will be restarted immediately. If the process had been running 
+for less than <a 
+href="twisted.runner.procmon.ProcessMonitor.html#threshold"><code>ProcessMonitor.threshold</code></a>
+seconds, the restart will be delayed and each time the process dies before 
+the configured threshold, the restart delay will be doubled - up to a 
+maximum delay of maxRestartDelay sec.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>A string that uniquely identifies the process which exited. (type: <code>str</code>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.runner.procmon.ProcessMonitor.startProcess">
+    
+  </a>
+  <a name="startProcess">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    startProcess(self, name):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/runner/procmon.py#L233" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>The name of the process to be started</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.runner.procmon.ProcessMonitor._forceStopProcess">
+    
+  </a>
+  <a name="_forceStopProcess">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _forceStopProcess(self, proc):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/runner/procmon.py#L253" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">proc</td><td>An <code>IProcessTransport</code> provider</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.runner.procmon.ProcessMonitor.stopProcess">
+    
+  </a>
+  <a name="stopProcess">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    stopProcess(self, name):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/runner/procmon.py#L263" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>The name of the process to be stopped</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.runner.procmon.ProcessMonitor.restartAll">
+    
+  </a>
+  <a name="restartAll">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    restartAll(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/runner/procmon.py#L283" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Restart all processes. This is useful for third party management 
+services to allow a user to restart servers because of an outside change in
+circumstances -- for example, a new version of a library is installed.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.runner.procmon.ProcessMonitor.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __repr__(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/runner/procmon.py#L294" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2014-09-18 22:01:49.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

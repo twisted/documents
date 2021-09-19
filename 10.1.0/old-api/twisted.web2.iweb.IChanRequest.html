@@ -1,0 +1,328 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web2.iweb.IChanRequest : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="interface">t.w.i.IChanRequest(<span title="zope.interface.Interface">Interface</span>) : interface documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web2.html">web2</a>.<a href="twisted.web2.iweb.html">iweb</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/web2/iweb.py#L174">View Source</a>
+      <a href="classIndex.html#twisted.web2.iweb.IChanRequest">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div class="undocumented">No interface docstring</div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3536">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.iweb.IChanRequest.html#writeIntermediateResponse">writeIntermediateResponse</a></td>
+    <td><span>Write a non-terminating response.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.iweb.IChanRequest.html#writeHeaders">writeHeaders</a></td>
+    <td><span>Write a final response.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.iweb.IChanRequest.html#write">write</a></td>
+    <td><span>Write some data.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.iweb.IChanRequest.html#finish">finish</a></td>
+    <td><span>Finish the request, and clean up the connection if necessary.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.iweb.IChanRequest.html#abortConnection">abortConnection</a></td>
+    <td><span>Forcibly abort the connection without cleanly closing.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.iweb.IChanRequest.html#registerProducer">registerProducer</a></td>
+    <td><span>Register a producer with the standard API.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.iweb.IChanRequest.html#unregisterProducer">unregisterProducer</a></td>
+    <td><span>Unregister a producer.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.iweb.IChanRequest.html#getHostInfo">getHostInfo</a></td>
+    <td><span>Returns a tuple of (address, socket user connected to,</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.iweb.IChanRequest.html#getRemoteHost">getRemoteHost</a></td>
+    <td><span>Returns an address of the remote host.</span></td>
+  </tr><tr class="attribute">
+    
+    
+    <td>Attribute</td>
+    <td><a href="twisted.web2.iweb.IChanRequest.html#persistent">persistent</a></td>
+    <td><span>Whether this request supports HTTP connection persistence. May be set to
+False. Should not be set to other values.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.web2.iweb.IChanRequest.writeIntermediateResponse">
+    
+  </a>
+  <a name="writeIntermediateResponse">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    writeIntermediateResponse(code, headers=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/web2/iweb.py#L176" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Write a non-terminating response.</p>
+<p>Intermediate responses cannot contain data. If the channel does not 
+support intermediate responses, do nothing.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">code</td><td>The response code. Should be in the 1xx range.
+ (type: int
+)</td></tr><tr><td></td><td class="fieldArg">headers</td><td>the headers to send in the response
+ (type: <code>twisted.web.http_headers.Headers</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.iweb.IChanRequest.writeHeaders">
+    
+  </a>
+  <a name="writeHeaders">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    writeHeaders(code, headers):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/web2/iweb.py#L189" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Write a final response.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">code</td><td>The response code. Should not be in the 1xx range.
+ (type: int
+)</td></tr><tr><td></td><td class="fieldArg">headers</td><td>the headers to send in the response. They will be augmented with any 
+connection-oriented headers as necessary for the protocol.
+ (type: <code>twisted.web.http_headers.Headers</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.iweb.IChanRequest.write">
+    
+  </a>
+  <a name="write">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    write(data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/web2/iweb.py#L201" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Write some data.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">data</td><td>the data bytes
+ (type: str
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.iweb.IChanRequest.finish">
+    
+  </a>
+  <a name="finish">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    finish():
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/web2/iweb.py#L209" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Finish the request, and clean up the connection if necessary.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.iweb.IChanRequest.abortConnection">
+    
+  </a>
+  <a name="abortConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    abortConnection():
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/web2/iweb.py#L214" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Forcibly abort the connection without cleanly closing.</p>
+<p>Use if, for example, you can't write all the data you promised.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.iweb.IChanRequest.registerProducer">
+    
+  </a>
+  <a name="registerProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    registerProducer(producer, streaming):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/web2/iweb.py#L221" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Register a producer with the standard API.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.iweb.IChanRequest.unregisterProducer">
+    
+  </a>
+  <a name="unregisterProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    unregisterProducer():
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/web2/iweb.py#L226" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Unregister a producer.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.iweb.IChanRequest.getHostInfo">
+    
+  </a>
+  <a name="getHostInfo">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getHostInfo():
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/web2/iweb.py#L231" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Returns a tuple of (address, socket user connected to, boolean, was it 
+secure).  Note that this should not necessarily always return the actual 
+local socket information from twisted. E.g. in a CGI, it should use the 
+variables coming from the invoking script.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.iweb.IChanRequest.getRemoteHost">
+    
+  </a>
+  <a name="getRemoteHost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    getRemoteHost():
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/web2/iweb.py#L240" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Returns an address of the remote host.</p>
+<p>Like <a 
+href="twisted.web2.iweb.IChanRequest.html#getHostInfo"><code>getHostInfo</code></a>,
+this information may come from the real socket, or may come from additional
+information, depending on the transport.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.iweb.IChanRequest.persistent">
+    
+  </a>
+  <a name="persistent">
+    
+  </a>
+  <div class="functionHeader">
+    persistent =
+  </div>
+  <div class="functionBody">
+    <div>Whether this request supports HTTP connection persistence. May be set to
+False. Should not be set to other values.<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2010-07-05 15:03:32.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+  </body>
+</html>

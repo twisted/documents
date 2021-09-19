@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.logger.LogLevelFilterPredicate : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link rel="stylesheet" href="bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="apidocs.css" type="text/css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div class="container" id="current-docs-container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button onclick="togglePrivate()" class="btn btn-link">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>twisted.logger.LogLevelFilterPredicate(<span title="object">object</span>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.logger.html" data-type="Package" class="code">logger</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-18.9.0/src/twisted/logger/_filter.py#L139">View Source</a>
+          <a href="classIndex.html#twisted.logger.LogLevelFilterPredicate">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Implements interfaces: twisted.logger._filter.ILogFilterPredicate</p>
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p><a href="twisted.logger.ILogFilterPredicate.html"><code>ILogFilterPredicate</code></a>
+that filters out events with a log level lower than the log level for the 
+event's namespace.</p>
+<p>Events that not not have a log level or namespace are also dropped.</p><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1269">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.logger.LogLevelFilterPredicate.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.logger.LogLevelFilterPredicate.html#logLevelForNamespace" data-type="Method" class="code">logLevelForNamespace</a></td>
+    <td><span>Determine an appropriate log level for the given namespace.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.logger.LogLevelFilterPredicate.html#setLogLevelForNamespace" data-type="Method" class="code">setLogLevelForNamespace</a></td>
+    <td><span>Sets the log level for a logging namespace.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.logger.LogLevelFilterPredicate.html#clearLogLevels" data-type="Method" class="code">clearLogLevels</a></td>
+    <td><span>Clears all log levels to the default.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.logger.LogLevelFilterPredicate.html#__call__" data-type="Method" class="code">__call__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  <a name="twisted.logger.LogLevelFilterPredicate.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, defaultLogLevel=LogLevel.info):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.9.0/src/twisted/logger/_filter.py#L147">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">defaultLogLevel</td><td>The default minimum log level. (type: <a href="twisted.logger.LogLevel.html"><code>LogLevel</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.logger.LogLevelFilterPredicate.logLevelForNamespace">
+    
+  </a>
+  <a name="logLevelForNamespace">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    logLevelForNamespace(self, namespace):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.9.0/src/twisted/logger/_filter.py#L157">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Determine an appropriate log level for the given namespace.</p>
+<p>This respects dots in namespaces; for example, if you have previously 
+invoked <code>setLogLevelForNamespace("mypackage", 
+LogLevel.debug)</code>, then 
+<code>logLevelForNamespace("mypackage.subpackage")</code> will 
+return <code>LogLevel.debug</code>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">namespace</td><td>A logging namespace, or <a href="http://docs.python.org/library/constants.html#None"><code>None</code></a>
+for the default namespace. (type: <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>
+(native string))</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The log level for the specified namespace. (type: <a href="twisted.logger.LogLevel.html"><code>LogLevel</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.logger.LogLevelFilterPredicate.setLogLevelForNamespace">
+    
+  </a>
+  <a name="setLogLevelForNamespace">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setLogLevelForNamespace(self, namespace, level):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.9.0/src/twisted/logger/_filter.py#L191">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Sets the log level for a logging namespace.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">namespace</td><td>A logging namespace. (type: <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>
+(native string))</td></tr><tr><td></td><td class="fieldArg">level</td><td>The log level for the given namespace. (type: <a href="twisted.logger.LogLevel.html"><code>LogLevel</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.logger.LogLevelFilterPredicate.clearLogLevels">
+    
+  </a>
+  <a name="clearLogLevels">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    clearLogLevels(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.9.0/src/twisted/logger/_filter.py#L210">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Clears all log levels to the default.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.logger.LogLevelFilterPredicate.__call__">
+    
+  </a>
+  <a name="__call__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __call__(self, event):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-18.9.0/src/twisted/logger/_filter.py#L218">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2018-10-15 19:29:43.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script src="//www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

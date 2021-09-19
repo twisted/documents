@@ -1,0 +1,436 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.spread.pb&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="module">Module t.s.pb</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.spread.html">spread</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/spread/pb.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div><p>Perspective Broker</p>
+&quot;This isn't a professional opinion, but it's probably got enough 
+internet to kill you.&quot; --glyph
+<h1 class="heading">Introduction</h1>
+  <p>This is a broker for proxies for and copies of objects.  It provides a
+  translucent interface layer to those proxies.</p>
+  <p>The protocol is not opaque, because it provides objects which 
+  represent the remote proxies and require no context (server references, 
+  IDs) to operate on.</p>
+  <p>It is not transparent because it does <i>not</i> attempt to make 
+  remote objects behave identically, or even similiarly, to local objects.
+  Method calls are invoked asynchronously, and specific rules are applied 
+  when serializing arguments.</p>
+  To get started, begin with <a 
+  href="twisted.spread.pb.PBClientFactory.html"><code>PBClientFactory</code></a>
+  and <a 
+  href="twisted.spread.pb.PBServerFactory.html"><code>PBServerFactory</code></a>.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Author</td><td colspan="2">Glyph Lefkowitz
+</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3691">
+  
+  
+<tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.Serializable.html">Serializable</a></td>
+    <td><span>An object that can be passed remotely.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.Referenceable.html">Referenceable</a></td>
+    <td><span class="undocumented">No class docstring; 2/2 methods documented</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.NoSuchMethod.html">NoSuchMethod</a></td>
+    <td><span>Raised if there is no such remote method
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.Root.html">Root</a></td>
+    <td><span>I provide a root object to <a 
+href="twisted.spread.pb.Broker.html"><code>pb.Broker</code></a>s for a 
+<code>pb.BrokerFactory</code>.
+</span></td>
+  </tr><tr class="interface">
+    
+    
+    <td>Interface</td>
+    <td><a href="twisted.spread.pb.IPBRoot.html">IPBRoot</a></td>
+    <td><span>Factory for root Referenceable objects for PB servers.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.ViewPoint.html">ViewPoint</a></td>
+    <td><span>I act as an indirect reference to an object accessed through a
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.Viewable.html">Viewable</a></td>
+    <td><span>I will be converted to a <a 
+href="twisted.spread.pb.ViewPoint.html"><code>ViewPoint</code></a> when 
+passed to or returned from a remote method.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.Copyable.html">Copyable</a></td>
+    <td><span>Subclass me to get copied each time you are returned from or passed to a
+remote method.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.Cacheable.html">Cacheable</a></td>
+    <td><span>A cached instance.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.RemoteCopy.html">RemoteCopy</a></td>
+    <td><span>I am a remote copy of a Copyable object.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.RemoteCache.html">RemoteCache</a></td>
+    <td><span>A cache is a local representation of a remote <a 
+href="twisted.spread.pb.Cacheable.html"><code>Cacheable</code></a> 
+object.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.RemoteCacheObserver.html">RemoteCacheObserver</a></td>
+    <td><span>I am a reverse-reference to the peer's <a 
+href="twisted.spread.pb.RemoteCache.html"><code>RemoteCache</code></a>.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.ProtocolError.html">ProtocolError</a></td>
+    <td><span>This error is raised when an invalid protocol statement is received.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.DeadReferenceError.html">DeadReferenceError</a></td>
+    <td><span>This error is raised when a method is called on a dead reference (one 
+whose
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.Error.html">Error</a></td>
+    <td><span>This error can be raised to generate known error conditions.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.RemoteMethod.html">RemoteMethod</a></td>
+    <td><span>This is a translucent reference to a remote message.
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.spread.pb.html#noOperation">noOperation</a></td>
+    <td><span>Do nothing.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.PBConnectionLost.html">PBConnectionLost</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.spread.pb.html#printTraceback">printTraceback</a></td>
+    <td><span>Print a traceback (string) to the standard log.
+</span></td>
+  </tr><tr class="interface">
+    
+    
+    <td>Interface</td>
+    <td><a href="twisted.spread.pb.IPerspective.html">IPerspective</a></td>
+    <td><span>per*spec*tive, n. : The relationship of aspects of a subject to each
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.Avatar.html">Avatar</a></td>
+    <td><span>A default IPerspective implementor.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.AsReferenceable.html">AsReferenceable</a></td>
+    <td><span>A reference directed towards another object.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.RemoteReference.html">RemoteReference</a></td>
+    <td><span>A translucent reference to a remote object.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.Local.html">Local</a></td>
+    <td><span>(internal) A reference to a local object.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.CopyableFailure.html">CopyableFailure</a></td>
+    <td><span>A <code>flavors.RemoteCopy</code> and <code>flavors.Copyable</code> 
+version of
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.CopiedFailure.html">CopiedFailure</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.spread.pb.html#failure2Copyable">failure2Copyable</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.Broker.html">Broker</a></td>
+    <td><span>I am a broker for objects.
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.spread.pb.html#respond">respond</a></td>
+    <td><span>Respond to a challenge.
+</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.spread.pb.html#challenge">challenge</a></td>
+    <td><span>I return some random data.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.PBClientFactory.html">PBClientFactory</a></td>
+    <td><span>Client factory for PB brokers.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb.PBServerFactory.html">PBServerFactory</a></td>
+    <td><span>Server factory for perspective broker.
+</span></td>
+  </tr><tr class="interface">
+    
+    
+    <td>Interface</td>
+    <td><a href="twisted.spread.pb.IUsernameMD5Password.html">IUsernameMD5Password</a></td>
+    <td><span>I encapsulate a username and a hashed password.
+</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb._PortalRoot.html">_PortalRoot</a></td>
+    <td><span>Root object, used to login to portal.
+</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb._JellyableAvatarMixin.html">_JellyableAvatarMixin</a></td>
+    <td><span>Helper class for code which deals with avatars which PB must be capable 
+of
+</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb._PortalWrapper.html">_PortalWrapper</a></td>
+    <td><span>Root Referenceable object, used to login to portal.
+</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.spread.pb._PortalAuthChallenger.html">_PortalAuthChallenger</a></td>
+    <td><span>Called with response to password challenge.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.spread.pb.noOperation">
+    
+  </a>
+  <a name="noOperation">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    noOperation(*args, **kw):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/spread/pb.py#L123" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Do nothing.</p>
+Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, 
+consectetur, adipisci velit...
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.spread.pb.printTraceback">
+    
+  </a>
+  <a name="printTraceback">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    printTraceback(tb):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/spread/pb.py#L139" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Print a traceback (string) to the standard log.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.spread.pb.failure2Copyable">
+    
+  </a>
+  <a name="failure2Copyable">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    failure2Copyable(fail, unsafeTracebacks=0):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/spread/pb.py#L431" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.spread.pb.respond">
+    
+  </a>
+  <a name="respond">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    respond(challenge, password):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/spread/pb.py#L995" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Respond to a challenge.</p>
+This is useful for challenge/response authentication.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.spread.pb.challenge">
+    
+  </a>
+  <a name="challenge">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    challenge():
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/spread/pb.py#L1009" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>I return some random data.
+<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2009-01-01 15:43:32.
+    </address>
+  </body>
+</html>

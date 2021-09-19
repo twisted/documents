@@ -1,0 +1,336 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.spread.jelly._Jellier : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class private">t.s.j._Jellier : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.spread.html">spread</a>.<a href="twisted.spread.jelly.html">jelly</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/spread/jelly.py#L354">View Source</a>
+      <a href="classIndex.html#twisted.spread.jelly._Jellier">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>(Internal) This class manages state for a call to jelly()<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id2905">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.jelly._Jellier.html#__init__">__init__</a></td>
+    <td><span>Initialize.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.jelly._Jellier.html#prepare">prepare</a></td>
+    <td><span>(internal) Create a list for persisting an object to.  This will allow 
+backreferences to be made internal to the object. (circular 
+references).</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.jelly._Jellier.html#preserve">preserve</a></td>
+    <td><span>(internal) Mark an object's persistent list for later referral.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.jelly._Jellier.html#jelly">jelly</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.jelly._Jellier.html#jelly_decimal">jelly_decimal</a></td>
+    <td><span>Jelly a decimal object.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.jelly._Jellier.html#unpersistable">unpersistable</a></td>
+    <td><span>(internal) Returns an sexp: (unpersistable &quot;reason&quot;).  Utility
+method for making note that a particular object could not be 
+serialized.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.jelly._Jellier.html#_cook">_cook</a></td>
+    <td><span>(internal) Backreference an object.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.jelly._Jellier.html#_checkMutable">_checkMutable</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.spread.jelly._Jellier.html#_jellyIterable">_jellyIterable</a></td>
+    <td><span>Jelly an iterable object.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.spread.jelly._Jellier.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, taster, persistentStore, invoker):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/spread/jelly.py#L359" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Initialize.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.spread.jelly._Jellier._cook">
+    
+  </a>
+  <a name="_cook">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _cook(self, object):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/spread/jelly.py#L375" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>(internal) Backreference an object.</p>
+<p>Notes on this method for the hapless future maintainer: If I've already 
+gone through the prepare/preserve cycle on the specified object (it is 
+being referenced after the serializer is &quot;done with&quot; it, e.g. 
+this reference is NOT circular), the copy-in-place of aList is relevant, 
+since the list being modified is the actual, pre-existing jelly expression 
+that was returned for that object. If not, it's technically superfluous, 
+since the value in self.preserved didn't need to be set, but the invariant 
+that self.preserved[id(object)] is a list is convenient because that means 
+we don't have to test and create it or not create it here, creating fewer 
+code-paths.  that's why self.preserved is always set to a list.</p>
+<p>Sorry that this code is so hard to follow, but Python objects are tricky
+to persist correctly. -glyph<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.spread.jelly._Jellier.prepare">
+    
+  </a>
+  <a name="prepare">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    prepare(self, object):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/spread/jelly.py#L406" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>(internal) Create a list for persisting an object to.  This will allow 
+backreferences to be made internal to the object. (circular 
+references).</p>
+<p>The reason this needs to happen is that we don't generate an ID for 
+every object, so we won't necessarily know which ID the object will have in
+the future.  When it is 'cooked' ( see _cook ), it will be assigned an ID, 
+and the temporary placeholder list created here will be modified in-place 
+to create an expression that gives this object an ID: [reference id# 
+[object-jelly]].<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.spread.jelly._Jellier.preserve">
+    
+  </a>
+  <a name="preserve">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    preserve(self, object, sexp):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/spread/jelly.py#L431" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>(internal) Mark an object's persistent list for later referral.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.spread.jelly._Jellier._checkMutable">
+    
+  </a>
+  <a name="_checkMutable">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _checkMutable(self, obj):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/spread/jelly.py#L449" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.spread.jelly._Jellier.jelly">
+    
+  </a>
+  <a name="jelly">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    jelly(self, obj):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/spread/jelly.py#L458" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.spread.jelly._Jellier._jellyIterable">
+    
+  </a>
+  <a name="_jellyIterable">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _jellyIterable(self, atom, obj):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/spread/jelly.py#L559" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Jelly an iterable object.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">atom</td><td>the identifier atom of the object. (type: <code>str</code>)</td></tr><tr><td></td><td class="fieldArg">obj</td><td>any iterable object. (type: <code>iterable</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a generator of jellied data. (type: <code>generator</code>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.spread.jelly._Jellier.jelly_decimal">
+    
+  </a>
+  <a name="jelly_decimal">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    jelly_decimal(self, d):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/spread/jelly.py#L577" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Jelly a decimal object.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">d</td><td>a decimal object to serialize. (type: <code>decimal.Decimal</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">jelly for the decimal object. (type: <code>list</code>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.spread.jelly._Jellier.unpersistable">
+    
+  </a>
+  <a name="unpersistable">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    unpersistable(self, reason, sxp=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/spread/jelly.py#L594" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>(internal) Returns an sexp: (unpersistable &quot;reason&quot;).  Utility
+method for making note that a particular object could not be 
+serialized.<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2014-09-17 19:15:55.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

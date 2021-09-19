@@ -1,0 +1,427 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.python.zshcomp.ArgumentsGenerator&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">Class t.p.z.ArgumentsGenerator:</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.python.html">python</a>.<a href="twisted.python.zshcomp.html">zshcomp</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/python/zshcomp.py#L250">View Source</a>
+      <a href="classIndex.html#twisted.python.zshcomp.ArgumentsGenerator">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>Generate a call to the zsh _arguments completion function based on data 
+in a usage.Options subclass
+<table class="fieldTable"></table></div>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id2147">
+  
+  
+  
+  
+  <tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.zshcomp.ArgumentsGenerator.html#__init__">__init__</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.zshcomp.ArgumentsGenerator.html#write">write</a></td>
+    <td><span>Write the zsh completion code to the file given to __init__
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.zshcomp.ArgumentsGenerator.html#writeHeader">writeHeader</a></td>
+    <td><span>This is the start of the code that calls _arguments
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.zshcomp.ArgumentsGenerator.html#writeOptions">writeOptions</a></td>
+    <td><span>Write out zsh code for each option in this command
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.zshcomp.ArgumentsGenerator.html#writeExtras">writeExtras</a></td>
+    <td><span>Write out the &quot;extras&quot; list. These are just passed verbatim to
+the
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.zshcomp.ArgumentsGenerator.html#writeFooter">writeFooter</a></td>
+    <td><span>Write the last bit of code that finishes the call to _arguments
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.zshcomp.ArgumentsGenerator.html#verifyZshNames">verifyZshNames</a></td>
+    <td><span>Ensure that none of the names given in zsh_* variables are typoed
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.zshcomp.ArgumentsGenerator.html#excludeStr">excludeStr</a></td>
+    <td><span>Generate an &quot;exclusion string&quot; for the given option
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.zshcomp.ArgumentsGenerator.html#makeExcludesDict">makeExcludesDict</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.zshcomp.ArgumentsGenerator.html#writeOpt">writeOpt</a></td>
+    <td><span>Write out the zsh code for the given argument. This is just part of 
+the
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.zshcomp.ArgumentsGenerator.html#getAction">getAction</a></td>
+    <td><span>Return a zsh &quot;action&quot; string for the given argument
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.zshcomp.ArgumentsGenerator.html#getActionDescr">getActionDescr</a></td>
+    <td><span>Return the description to be used when this argument is completed
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.zshcomp.ArgumentsGenerator.html#getDescription">getDescription</a></td>
+    <td><span>Return the description to be used for this argument
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.zshcomp.ArgumentsGenerator.html#getShortOption">getShortOption</a></td>
+    <td><span>Return the short option letter or None
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.zshcomp.ArgumentsGenerator.html#addAdditionalOptions">addAdditionalOptions</a></td>
+    <td><span>Add additional options to the optFlags and optParams lists.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.python.zshcomp.ArgumentsGenerator.__init__"></a>
+        <a name="__init__"></a>
+        <div class="functionHeader">
+        
+        def __init__(self, cmd_name, options, file):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/python/zshcomp.py#L255" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">cmd_name</td><td>The name of the command
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">options</td><td>The <code>twisted.usage.Options</code> instance defined for this 
+command
+ (type: <code>twisted.usage.Options</code>
+)</td></tr><tr><td></td><td class="fieldArg">file</td><td>The <code>file</code> to write the completion function to
+ (type: <code>file</code>
+)</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.python.zshcomp.ArgumentsGenerator.write"></a>
+        <a name="write"></a>
+        <div class="functionHeader">
+        
+        def write(self):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/python/zshcomp.py#L330" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Write the zsh completion code to the file given to __init__
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>None</code>
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.python.zshcomp.ArgumentsGenerator.writeHeader"></a>
+        <a name="writeHeader"></a>
+        <div class="functionHeader">
+        
+        def writeHeader(self):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/python/zshcomp.py#L340" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>This is the start of the code that calls _arguments
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>None</code>
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.python.zshcomp.ArgumentsGenerator.writeOptions"></a>
+        <a name="writeOptions"></a>
+        <div class="functionHeader">
+        
+        def writeOptions(self):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/python/zshcomp.py#L347" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Write out zsh code for each option in this command
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>None</code>
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.python.zshcomp.ArgumentsGenerator.writeExtras"></a>
+        <a name="writeExtras"></a>
+        <div class="functionHeader">
+        
+        def writeExtras(self):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/python/zshcomp.py#L357" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Write out the &quot;extras&quot; list. These are just passed verbatim to
+the _arguments call
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>None</code>
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.python.zshcomp.ArgumentsGenerator.writeFooter"></a>
+        <a name="writeFooter"></a>
+        <div class="functionHeader">
+        
+        def writeFooter(self):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/python/zshcomp.py#L367" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Write the last bit of code that finishes the call to _arguments
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>None</code>
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.python.zshcomp.ArgumentsGenerator.verifyZshNames"></a>
+        <a name="verifyZshNames"></a>
+        <div class="functionHeader">
+        
+        def verifyZshNames(self):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/python/zshcomp.py#L374" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Ensure that none of the names given in zsh_* variables are typoed
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>None</code>
+</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">ValueError</td><td>Raised if unknown option names have been given in zsh_* variables
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.python.zshcomp.ArgumentsGenerator.excludeStr"></a>
+        <a name="excludeStr"></a>
+        <div class="functionHeader">
+        
+        def excludeStr(self, long, buildShort=False):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/python/zshcomp.py#L396" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Generate an &quot;exclusion string&quot; for the given option
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">long</td><td>The long name of the option (i.e. &quot;verbose&quot; instead of 
+&quot;v&quot;)
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">buildShort</td><td>May be True to indicate we're building an excludes string for the short 
+option that correspondes to the given long opt
+ (type: <code>bool</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The generated <code>str</code>
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.python.zshcomp.ArgumentsGenerator.makeExcludesDict"></a>
+        <a name="makeExcludesDict"></a>
+        <div class="functionHeader">
+        
+        def makeExcludesDict(self):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/python/zshcomp.py#L439" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A <code>dict</code> that maps each option name appearing in 
+self.mutuallyExclusive to a list of those option names that is it mutually 
+exclusive with (can't appear on the cmd line with)
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.python.zshcomp.ArgumentsGenerator.writeOpt"></a>
+        <a name="writeOpt"></a>
+        <div class="functionHeader">
+        
+        def writeOpt(self, long):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/python/zshcomp.py#L471" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Write out the zsh code for the given argument. This is just part of the 
+one big call to _arguments
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">long</td><td>The long name of the option (i.e. &quot;verbose&quot; instead of 
+&quot;v&quot;)
+ (type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>None</code>
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.python.zshcomp.ArgumentsGenerator.getAction"></a>
+        <a name="getAction"></a>
+        <div class="functionHeader">
+        
+        def getAction(self, long):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/python/zshcomp.py#L523" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Return a zsh &quot;action&quot; string for the given argument
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>str</code>
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.python.zshcomp.ArgumentsGenerator.getActionDescr"></a>
+        <a name="getActionDescr"></a>
+        <div class="functionHeader">
+        
+        def getActionDescr(self, long):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/python/zshcomp.py#L538" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Return the description to be used when this argument is completed
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>str</code>
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.python.zshcomp.ArgumentsGenerator.getDescription"></a>
+        <a name="getDescription"></a>
+        <div class="functionHeader">
+        
+        def getDescription(self, long):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/python/zshcomp.py#L548" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Return the description to be used for this argument
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>str</code>
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.python.zshcomp.ArgumentsGenerator.getShortOption"></a>
+        <a name="getShortOption"></a>
+        <div class="functionHeader">
+        
+        def getShortOption(self, long):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/python/zshcomp.py#L579" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Return the short option letter or None
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>str</code> or <code>None</code>
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.python.zshcomp.ArgumentsGenerator.addAdditionalOptions"></a>
+        <a name="addAdditionalOptions"></a>
+        <div class="functionHeader">
+        
+        def addAdditionalOptions(self):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0//twisted/python/zshcomp.py#L590" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Add additional options to the optFlags and optParams lists. These will 
+be defined by 'opt_foo' methods of the Options subclass
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><code>None</code>
+</td></tr></table></div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2008-03-25 17:55:10.
+    </address>
+  </body>
+</html>

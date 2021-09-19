@@ -1,0 +1,117 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.web2.stream.CompoundStream&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.w.s.CompoundStream(object):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.web2.stream.html">twisted.web2.stream</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.web2.stream.CompoundStream">View In Hierarchy</a>
+    </p>
+    <div><p>Implements interfaces: <a href="twisted.web2.stream.IByteStream.html">twisted.web2.stream.IByteStream</a>, <a href="twisted.web2.stream.ISendfileableStream.html">twisted.web2.stream.ISendfileableStream</a></p></div>
+    <div><p>A stream which is composed of many other streams.</p>
+Call addStream to add substreams.
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.stream.CompoundStream.__init__">__init__</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.stream.CompoundStream.addStream">addStream</a></td>
+          <td><span>Add a stream to the output
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.stream.CompoundStream.read">read</a></td>
+          <td><span>Read some data.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.stream.CompoundStream._gotFailure">_gotFailure</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.stream.CompoundStream._gotRead">_gotRead</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.stream.CompoundStream.split">split</a></td>
+          <td><span>Split this stream into two, at byte position 'point'.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.stream.CompoundStream.close">close</a></td>
+          <td><span>Prematurely close this stream. Should also cause further reads to
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.web2.stream.CompoundStream.__init__"></a>
+        <div class="functionHeader">
+          def <span>__init__(self, buckets=()):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.web2.stream.CompoundStream.addStream"></a>
+        <div class="functionHeader">
+          def <span>addStream(self, bucket):</span>
+        </div>
+        <div class="functionBody"><div>Add a stream to the output
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.stream.CompoundStream.read"></a>
+        <div class="functionHeader">
+          def <span>read(self, sendfile=False):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.web2.stream.IByteStream.html#twisted.web2.stream.IByteStream.read">twisted.web2.stream.IByteStream</a></div><div><p>Read some data.</p>
+<p>Returns an object conforming to the buffer interface, or if there is 
+no more data available, returns None. Can also return a Deferred 
+resulting in one of the above.</p>
+Errors may be indicated by exception or by a Deferred of a 
+Failure.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.stream.CompoundStream._gotFailure"></a>
+        <div class="functionHeader">
+          def <span>_gotFailure(self, f):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.web2.stream.CompoundStream._gotRead"></a>
+        <div class="functionHeader">
+          def <span>_gotRead(self, result, sendfile):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.web2.stream.CompoundStream.split"></a>
+        <div class="functionHeader">
+          def <span>split(self, point):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.web2.stream.IByteStream.html#twisted.web2.stream.IByteStream.split">twisted.web2.stream.IByteStream</a></div><div><p>Split this stream into two, at byte position 'point'.</p>
+<p>Returns a tuple of (before, after). After calling split, no other 
+methods should be called on this stream. Doing so will have undefined 
+behavior.</p>
+If you cannot implement split easily, you may implement it as:
+<pre class="literalblock">
+   return fallbackSplit(self, point)
+</pre>
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.stream.CompoundStream.close"></a>
+        <div class="functionHeader">
+          def <span>close(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.web2.stream.IByteStream.html#twisted.web2.stream.IByteStream.close">twisted.web2.stream.IByteStream</a></div><div>Prematurely close this stream. Should also cause further reads to 
+return None. Additionally, .length should be set to 0.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

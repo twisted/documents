@@ -1,0 +1,788 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet._dumbwin32proc.Process : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="apidocs.css" type="text/css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code>twisted.internet._dumbwin32proc.Process(<a href="twisted.internet._pollingfile._PollingTimer.html" data-type="Class" class="code">_pollingfile._PollingTimer</a>, <a href="twisted.internet._baseprocess.BaseProcess.html" data-type="Class" class="code">BaseProcess</a>)</code> <small>class documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.internet.html" data-type="Package" class="code">internet</a>.<a href="twisted.internet._dumbwin32proc.html" data-type="Module" class="code">_dumbwin32proc</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L129">View Source</a>
+          <a href="classIndex.html#twisted.internet._dumbwin32proc.Process">(View In Hierarchy)</a>
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        <p>Implements interfaces: <a href="twisted.internet.interfaces.IConsumer.html" data-type="Interface" class="code">twisted.internet.interfaces.IConsumer</a>, <a href="twisted.internet.interfaces.IProcessTransport.html" data-type="Interface" class="code">twisted.internet.interfaces.IProcessTransport</a>, <a href="twisted.internet.interfaces.IProducer.html" data-type="Interface" class="code">twisted.internet.interfaces.IProducer</a></p>
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>A process that integrates with the Twisted event loop.</p>
+<p>If your subprocess is a python program, you need to:</p>
+<ul>
+  <li>
+    Run python.exe with the '-u' command line option - this turns on 
+    unbuffered I/O. Buffering stdout/err/in can cause problems, see e.g. 
+    http://support.microsoft.com/default.aspx?scid=kb;EN-US;q1903
+  </li>
+  <li>
+    If you don't want Windows messing with data passed over stdin/out/err, 
+    set the pipes to be in binary mode:
+<pre class="literalblock">
+import os, sys, mscvrt
+msvcrt.setmode(sys.stdin.fileno(), os.O_BINARY)
+msvcrt.setmode(sys.stdout.fileno(), os.O_BINARY)
+msvcrt.setmode(sys.stderr.fileno(), os.O_BINARY)
+</pre>
+  </li>
+</ul><table class="fieldTable"></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id488">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#__init__" data-type="Method" class="code">__init__</a></td>
+    <td><span>Create a new child process.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#signalProcess" data-type="Method" class="code">signalProcess</a></td>
+    <td><span>Send a signal to the process.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#write" data-type="Method" class="code">write</a></td>
+    <td><span>Write data to the process' stdin.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#writeSequence" data-type="Method" class="code">writeSequence</a></td>
+    <td><span>Write data to the process' stdin.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#writeToChild" data-type="Method" class="code">writeToChild</a></td>
+    <td><span>Similar to <a href="twisted.internet.interfaces.ITransport.html#write"><code>ITransport.write</code></a>
+but also allows the file descriptor in the child process which will receive
+the bytes to be specified.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#closeChildFD" data-type="Method" class="code">closeChildFD</a></td>
+    <td><span>Close a file descriptor which is connected to the child process, 
+identified by its FD in the child process.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#closeStdin" data-type="Method" class="code">closeStdin</a></td>
+    <td><span>Close the process' stdin.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#closeStderr" data-type="Method" class="code">closeStderr</a></td>
+    <td><span>Close stderr.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#closeStdout" data-type="Method" class="code">closeStdout</a></td>
+    <td><span>Close stdout.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#loseConnection" data-type="Method" class="code">loseConnection</a></td>
+    <td><span>Close the process' stdout, in and err.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#outConnectionLost" data-type="Method" class="code">outConnectionLost</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#errConnectionLost" data-type="Method" class="code">errConnectionLost</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#inConnectionLost" data-type="Method" class="code">inConnectionLost</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#connectionLostNotify" data-type="Method" class="code">connectionLostNotify</a></td>
+    <td><span>Will be called 3 times, by stdout/err threads and process handle.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#maybeCallProcessEnded" data-type="Method" class="code">maybeCallProcessEnded</a></td>
+    <td><span>Call processEnded on protocol after final cleanup.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#registerProducer" data-type="Method" class="code">registerProducer</a></td>
+    <td><span>Register to receive data from a producer.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#unregisterProducer" data-type="Method" class="code">unregisterProducer</a></td>
+    <td><span>Stop consuming data from a producer, without disconnecting.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#pauseProducing" data-type="Method" class="code">pauseProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#resumeProducing" data-type="Method" class="code">resumeProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#stopProducing" data-type="Method" class="code">stopProducing</a></td>
+    <td><span>Stop producing data.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#__repr__" data-type="Method" class="code">__repr__</a></td>
+    <td><span>Return a string representation of the process.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._dumbwin32proc.Process.html#_getReason" data-type="Method" class="code">_getReason</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet._baseprocess.BaseProcess.html" data-type="Class" class="code">BaseProcess</a>:
+          </p>
+          <table class="children sortable" id="id490">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._baseprocess.BaseProcess.html#processEnded" data-type="Method" class="code">processEnded</a></td>
+    <td><span>This is called when the child terminates.</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._baseprocess.BaseProcess.html#_callProcessExited" data-type="Method" class="code">_callProcessExited</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+          <p class="inheritedFrom">
+            Inherited from <a href="twisted.internet._baseprocess.BaseProcess.html" data-type="Class" class="code">BaseProcess</a>:
+          </p>
+          <table class="children sortable" id="id490">
+  
+  <tr class="basemethod">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._baseprocess.BaseProcess.html#processEnded" data-type="Method" class="code">processEnded</a></td>
+    <td><span>This is called when the child terminates.</span></td>
+  </tr><tr class="basemethod private">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet._baseprocess.BaseProcess.html#_callProcessExited" data-type="Method" class="code">_callProcessExited</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+          
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, reactor, protocol, command, args, environment, path):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L150">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.internet._pollingfile._PollingTimer.html#__init__" data-type="Method" class="code">twisted.internet._pollingfile._PollingTimer.__init__</a></div>
+    
+    <div><p>Create a new child process.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.signalProcess">
+    
+  </a>
+  <a name="signalProcess">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    signalProcess(self, signalID):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L287">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProcessTransport.html#signalProcess" data-type="Method" class="code">twisted.internet.interfaces.IProcessTransport</a></div>
+    
+    <div><p>Send a signal to the process.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">signalID</td><td>can be
+<ul>
+  <li>
+    one of <code>"KILL"</code>, <code>"TERM"</code>, or
+    <code>"INT"</code>. These will be implemented in a 
+    cross-platform manner, and so should be used if possible.
+  </li>
+  <li>
+    an integer, where it represents a POSIX signal ID.
+  </li>
+</ul></td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">twisted.internet.error.ProcessExitedAlready</td><td>If the process has already exited.</td></tr><tr><td></td><td class="fieldArg">OSError</td><td>If the <code>os.kill</code> call fails with an errno different from 
+<code>ESRCH</code>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.internet._dumbwin32proc.Process._getReason">
+    
+  </a>
+  <a name="_getReason">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _getReason(self, status):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L294">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.write">
+    
+  </a>
+  <a name="write">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    write(self, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L300">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.ITransport.html#write" data-type="Method" class="code">twisted.internet.interfaces.ITransport</a></div>
+    
+    <div><p>Write data to the process' stdin.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.writeSequence">
+    
+  </a>
+  <a name="writeSequence">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    writeSequence(self, seq):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L309">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.ITransport.html#writeSequence" data-type="Method" class="code">twisted.internet.interfaces.ITransport</a></div>
+    
+    <div><p>Write data to the process' stdin.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.writeToChild">
+    
+  </a>
+  <a name="writeToChild">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    writeToChild(self, fd, data):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L318">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProcessTransport.html#writeToChild" data-type="Method" class="code">twisted.internet.interfaces.IProcessTransport</a></div>
+    
+    <div><p>Similar to <a href="twisted.internet.interfaces.ITransport.html#write"><code>ITransport.write</code></a>
+but also allows the file descriptor in the child process which will receive
+the bytes to be specified.</p>
+<p>This implementation is limited to writing to the child's standard 
+input.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">fd</td><td>The file descriptor to which to write.  Only stdin (<code>0</code>) is 
+supported. (type: <code>int</code>)</td></tr><tr><td></td><td class="fieldArg">data</td><td>The bytes to write. (type: <code>bytes</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="http://docs.python.org/library/constants.html#None"><code>None</code></a></td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">KeyError</td><td>If <code>fd</code> is anything other than the stdin file descriptor 
+(<code>0</code>).</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.closeChildFD">
+    
+  </a>
+  <a name="closeChildFD">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    closeChildFD(self, fd):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L343">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProcessTransport.html#closeChildFD" data-type="Method" class="code">twisted.internet.interfaces.IProcessTransport</a></div>
+    
+    <div><p>Close a file descriptor which is connected to the child process, 
+identified by its FD in the child process.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.closeStdin">
+    
+  </a>
+  <a name="closeStdin">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    closeStdin(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L354">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProcessTransport.html#closeStdin" data-type="Method" class="code">twisted.internet.interfaces.IProcessTransport</a></div>
+    
+    <div><p>Close the process' stdin.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.closeStderr">
+    
+  </a>
+  <a name="closeStderr">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    closeStderr(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L360">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProcessTransport.html#closeStderr" data-type="Method" class="code">twisted.internet.interfaces.IProcessTransport</a></div>
+    
+    <div><p>Close stderr.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.closeStdout">
+    
+  </a>
+  <a name="closeStdout">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    closeStdout(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L364">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProcessTransport.html#closeStdout" data-type="Method" class="code">twisted.internet.interfaces.IProcessTransport</a></div>
+    
+    <div><p>Close stdout.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.loseConnection">
+    
+  </a>
+  <a name="loseConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    loseConnection(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L368">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProcessTransport.html#loseConnection" data-type="Method" class="code">twisted.internet.interfaces.IProcessTransport</a></div>
+    
+    <div><p>Close the process' stdout, in and err.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.outConnectionLost">
+    
+  </a>
+  <a name="outConnectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    outConnectionLost(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L377">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.errConnectionLost">
+    
+  </a>
+  <a name="errConnectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    errConnectionLost(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L382">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.inConnectionLost">
+    
+  </a>
+  <a name="inConnectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    inConnectionLost(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L387">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.connectionLostNotify">
+    
+  </a>
+  <a name="connectionLostNotify">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    connectionLostNotify(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L392">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Will be called 3 times, by stdout/err threads and process handle.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.maybeCallProcessEnded">
+    
+  </a>
+  <a name="maybeCallProcessEnded">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    maybeCallProcessEnded(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L400">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.internet._baseprocess.BaseProcess.html#maybeCallProcessEnded" data-type="Method" class="code">twisted.internet._baseprocess.BaseProcess.maybeCallProcessEnded</a></div>
+    
+    <div><p>Call processEnded on protocol after final cleanup.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.registerProducer">
+    
+  </a>
+  <a name="registerProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    registerProducer(self, producer, streaming):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L409">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#registerProducer" data-type="Method" class="code">twisted.internet.interfaces.IConsumer</a></div>
+    
+    <div><p>Register to receive data from a producer.</p>
+<p>This sets self to be a consumer for a producer.  When this object runs 
+out of data (as when a send(2) call on a socket succeeds in moving the last
+data from a userspace buffer into a kernelspace buffer), it will ask the 
+producer to resumeProducing().</p>
+<p>For <a href="twisted.internet.interfaces.IPullProducer.html"><code>IPullProducer</code></a>
+providers, <code>resumeProducing</code> will be called once each time data 
+is required.</p>
+<p>For <a href="twisted.internet.interfaces.IPushProducer.html"><code>IPushProducer</code></a>
+providers, <code>pauseProducing</code> will be called whenever the write 
+buffer fills up and <code>resumeProducing</code> will only be called when 
+it empties.  The consumer will only call <code>resumeProducing</code> to 
+balance a previous <code>pauseProducing</code> call; the producer is 
+assumed to start in an un-paused state.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">streaming</td><td><code>True</code> if <code>producer</code> provides <a href="twisted.internet.interfaces.IPushProducer.html"><code>IPushProducer</code></a>,
+<code>False</code> if <code>producer</code> provides <a href="twisted.internet.interfaces.IPullProducer.html"><code>IPullProducer</code></a>. (type: <code>bool</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><a href="http://docs.python.org/library/constants.html#None"><code>None</code></a></td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">RuntimeError</td><td>If a producer is already registered.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.unregisterProducer">
+    
+  </a>
+  <a name="unregisterProducer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    unregisterProducer(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L413">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#unregisterProducer" data-type="Method" class="code">twisted.internet.interfaces.IConsumer</a></div>
+    
+    <div><p>Stop consuming data from a producer, without disconnecting.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.pauseProducing">
+    
+  </a>
+  <a name="pauseProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    pauseProducing(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L417">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.resumeProducing">
+    
+  </a>
+  <a name="resumeProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    resumeProducing(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L421">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.stopProducing">
+    
+  </a>
+  <a name="stopProducing">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    stopProducing(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L425">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProducer.html#stopProducing" data-type="Method" class="code">twisted.internet.interfaces.IProducer</a></div>
+    
+    <div><p>Stop producing data.</p>
+<p>This tells a producer that its consumer has died, so it must stop 
+producing data for good.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet._dumbwin32proc.Process.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __repr__(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/twisted-19.7.0/src/twisted/internet/_dumbwin32proc.py#L429">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Return a string representation of the process.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2019-08-06 12:10:50.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

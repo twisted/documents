@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.conch.client.default.verifyHostKey : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" href="bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="apidocs.css" type="text/css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div id="current-docs-container" class="container" style="display: none">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="function"><code>twisted.conch.client.default.verifyHostKey(transport, host, pubKey, fingerprint)</code> <small>function documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" data-type="Package" class="code">twisted</a>.<a href="twisted.conch.html" data-type="Package" class="code">conch</a>.<a href="twisted.conch.client.html" data-type="Package" class="code">client</a>.<a href="twisted.conch.client.default.html" data-type="Module" class="code">default</a></code>
+          <a href="https://github.com/twisted/twisted/tree/twisted-19.2.0/src/twisted/conch/client/default.py#L42">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      
+
+      <div class="moduleDocstring">
+        <div><p>Verify a host's key.</p>
+<p>This function is a gross vestige of some bad factoring in the client 
+internals.  The actual implementation, and a better signature of this logic
+is in <a href="twisted.conch.client.knownhosts.KnownHostsFile.html#verifyHostKey"><code>KnownHostsFile.verifyHostKey</code></a>.
+This function is not deprecated yet because the callers have not yet been 
+rehabilitated, but they should eventually be changed to call that method 
+instead.</p>
+<p>However, this function does perform two functions not implemented by <a href="twisted.conch.client.knownhosts.KnownHostsFile.html#verifyHostKey"><code>KnownHostsFile.verifyHostKey</code></a>.
+It determines the path to the user's known_hosts file based on the options 
+(which should really be the options object's job), and it provides an 
+opener to <a href="twisted.conch.client.knownhosts.ConsoleUI.html"><code>ConsoleUI</code></a>
+which opens '/dev/tty' so that the user will be prompted on the tty of the 
+process even if the input and output of the process has been redirected.  
+This latter part is, somewhat obviously, not portable, but I don't know of 
+a portable equivalent that could be used.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">host</td><td>Due to a bug in <a href="twisted.conch.client.direct.SSHClientTransport.html#verifyHostKey"><code>SSHClientTransport.verifyHostKey</code></a>,
+this is always the dotted-quad IP address of the host being connected to. (type: <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>)</td></tr><tr><td></td><td class="fieldArg">transport</td><td>the client transport which is attempting to connect to the given host. (type: <a href="twisted.conch.client.direct.SSHClientTransport.html"><code>SSHClientTransport</code></a>)</td></tr><tr><td></td><td class="fieldArg">fingerprint</td><td>the fingerprint of the given public key, in xx:xx:xx:... format.  This is 
+ignored in favor of getting the fingerprint from the key itself. (type: <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>)</td></tr><tr><td></td><td class="fieldArg">pubKey</td><td>The public key of the server being connected to. (type: <a href="http://docs.python.org/library/stdtypes.html#str"><code>str</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+which fires with <code>1</code> if the key was successfully verified, or 
+fails if the key could not be successfully verified.  Failure types may 
+include <a href="twisted.conch.error.HostKeyChanged.html"><code>HostKeyChanged</code></a>,
+<a href="twisted.conch.error.UserRejectedKey.html"><code>UserRejectedKey</code></a>,
+<a href="http://docs.python.org/library/exceptions.html#exceptions.IOError"><code>IOError</code></a>
+or <a href="http://docs.python.org/library/exceptions.html#exceptions.KeyboardInterrupt"><code>KeyboardInterrupt</code></a>.</td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2019-04-10 22:20:19.
+      </address>
+
+    </div>
+
+    <script type="text/javascript" src="pydoctor.js"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script type="text/javascript" src="//www.google-analytics.com/urchin.js"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

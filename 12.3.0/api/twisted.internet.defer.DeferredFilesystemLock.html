@@ -1,0 +1,278 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.defer.DeferredFilesystemLock : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.i.d.DeferredFilesystemLock(<a href="twisted.python.lockfile.FilesystemLock.html">lockfile.FilesystemLock</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a>.<a href="twisted.internet.defer.html">defer</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/defer.py#L1492">View Source</a>
+      <a href="classIndex.html#twisted.internet.defer.DeferredFilesystemLock">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>A <a 
+href="twisted.python.lockfile.FilesystemLock.html"><code>FilesystemLock</code></a>
+that allows for a <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> to be
+fired when the lock is acquired.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1675">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.DeferredFilesystemLock.html#__init__">__init__</a></td>
+    <td></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.DeferredFilesystemLock.html#deferUntilLocked">deferUntilLocked</a></td>
+    <td><span>Wait until we acquire this lock.  This method is not safe for concurrent
+use.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.defer.DeferredFilesystemLock.html#_scheduler">_scheduler</a></td>
+    <td>The object in charge of scheduling retries. In this implementation this is 
+parameterized for testing.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.defer.DeferredFilesystemLock.html#_interval">_interval</a></td>
+    <td>The retry interval for an <a 
+href="twisted.internet.interfaces.IReactorTime.html"><code>IReactorTime</code></a>
+based scheduler.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.defer.DeferredFilesystemLock.html#_tryLockCall">_tryLockCall</a></td>
+    <td>A <a 
+href="twisted.internet.base.DelayedCall.html"><code>DelayedCall</code></a> 
+based on <code>_interval</code> that will manage the next retry for 
+aquiring the lock.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.defer.DeferredFilesystemLock.html#_timeoutCall">_timeoutCall</a></td>
+    <td>A <a 
+href="twisted.internet.base.DelayedCall.html"><code>DelayedCall</code></a> 
+based on <code>deferUntilLocked</code>'s timeout argument.  This is in 
+charge of timing out our attempt to acquire the lock.</td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.python.lockfile.FilesystemLock.html">FilesystemLock</a>:
+        </p>
+        <table class="children sortable" id="id1676">
+  
+  
+<tr class="baseinstancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.python.lockfile.FilesystemLock.html#name">name</a></td>
+    <td>The name of the file associated with this lock.</td>
+  </tr><tr class="baseinstancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.python.lockfile.FilesystemLock.html#clean">clean</a></td>
+    <td>Indicates whether this lock was released cleanly by its last owner.  Only 
+meaningful after <code>lock</code> has been called and returns True.</td>
+  </tr><tr class="baseinstancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.python.lockfile.FilesystemLock.html#locked">locked</a></td>
+    <td>Indicates whether the lock is currently held by this object.</td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.lockfile.FilesystemLock.html#lock">lock</a></td>
+    <td><span>Acquire this lock.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.lockfile.FilesystemLock.html#unlock">unlock</a></td>
+    <td><span>Release this lock.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.internet.defer.DeferredFilesystemLock._scheduler">
+    
+  </a>
+  <a name="_scheduler">
+    
+  </a>
+  <div class="functionHeader">
+    _scheduler =
+  </div>
+  <div class="functionBody">
+    The object in charge of scheduling retries. In this implementation this is 
+parameterized for testing.
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.defer.DeferredFilesystemLock._interval">
+    
+  </a>
+  <a name="_interval">
+    
+  </a>
+  <div class="functionHeader">
+    _interval =
+  </div>
+  <div class="functionBody">
+    The retry interval for an <a 
+href="twisted.internet.interfaces.IReactorTime.html"><code>IReactorTime</code></a>
+based scheduler.
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.defer.DeferredFilesystemLock._tryLockCall">
+    
+  </a>
+  <a name="_tryLockCall">
+    
+  </a>
+  <div class="functionHeader">
+    _tryLockCall =
+  </div>
+  <div class="functionBody">
+    A <a 
+href="twisted.internet.base.DelayedCall.html"><code>DelayedCall</code></a> 
+based on <code>_interval</code> that will manage the next retry for 
+aquiring the lock.
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.defer.DeferredFilesystemLock._timeoutCall">
+    
+  </a>
+  <a name="_timeoutCall">
+    
+  </a>
+  <div class="functionHeader">
+    _timeoutCall =
+  </div>
+  <div class="functionBody">
+    A <a 
+href="twisted.internet.base.DelayedCall.html"><code>DelayedCall</code></a> 
+based on <code>deferUntilLocked</code>'s timeout argument.  This is in 
+charge of timing out our attempt to acquire the lock.
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.defer.DeferredFilesystemLock.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, name, scheduler=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/defer.py#L1514" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.python.lockfile.FilesystemLock.html#__init__">twisted.python.lockfile.FilesystemLock.__init__</a></div>
+    <div><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>The name of the lock to acquire</td></tr><tr><td></td><td class="fieldArg">scheduler</td><td>An object which provides <a 
+href="twisted.internet.interfaces.IReactorTime.html"><code>IReactorTime</code></a></td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.defer.DeferredFilesystemLock.deferUntilLocked">
+    
+  </a>
+  <a name="deferUntilLocked">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    deferUntilLocked(self, timeout=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-12.3.0/twisted/internet/defer.py#L1528" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Wait until we acquire this lock.  This method is not safe for concurrent
+use.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">timeout</td><td>the number of seconds after which to time out if the lock has not been 
+acquired. (type: <code>float</code> or <code>int</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+which will callback when the lock is acquired, or errback with a <a 
+href="twisted.internet.defer.TimeoutError.html"><code>TimeoutError</code></a>
+after timing out or an <a 
+href="twisted.internet.defer.AlreadyTryingToLockError.html"><code>AlreadyTryingToLockError</code></a>
+if the <a 
+href="twisted.internet.defer.DeferredFilesystemLock.html#deferUntilLocked"><code>deferUntilLocked</code></a>
+has already been called and not successfully locked the file.</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2012-12-26 12:18:15.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

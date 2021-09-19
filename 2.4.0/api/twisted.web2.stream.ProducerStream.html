@@ -1,0 +1,140 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.web2.stream.ProducerStream&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.w.s.ProducerStream(object):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.web2.stream.html">twisted.web2.stream</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.web2.stream.ProducerStream">View In Hierarchy</a>
+    </p>
+    <div><p>Known subclasses: <a href="twisted.web2.http._NotifyingProducerStream.html">twisted.web2.http._NotifyingProducerStream</a></p><p>Implements interfaces: <a href="twisted.web2.stream.IByteStream.html">twisted.web2.stream.IByteStream</a>, <a href="twisted.internet.interfaces.IConsumer.html">twisted.internet.interfaces.IConsumer</a></p></div>
+    <div>Turns producers into a IByteStream. Thus, implements IConsumer and 
+IByteStream.
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.stream.ProducerStream.__init__">__init__</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.stream.ProducerStream.read">read</a></td>
+          <td><span>Read some data.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.stream.ProducerStream.split">split</a></td>
+          <td><span>Split this stream into two, at byte position 'point'.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.stream.ProducerStream.close">close</a></td>
+          <td><span>Called by reader of stream when it is done reading.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.stream.ProducerStream.write">write</a></td>
+          <td><span>The producer will write data by calling this method.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.stream.ProducerStream.finish">finish</a></td>
+          <td><span>Called by producer when it is done.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.stream.ProducerStream.registerProducer">registerProducer</a></td>
+          <td><span>Register to receive data from a producer.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.stream.ProducerStream.unregisterProducer">unregisterProducer</a></td>
+          <td><span>Stop consuming data from a producer, without disconnecting.
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.web2.stream.ProducerStream.__init__"></a>
+        <div class="functionHeader">
+          def <span>__init__(self, length=None):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.web2.http._NotifyingProducerStream.html#twisted.web2.http._NotifyingProducerStream.__init__">twisted.web2.http._NotifyingProducerStream</a></div><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.web2.stream.ProducerStream.read"></a>
+        <div class="functionHeader">
+          def <span>read(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.web2.stream.IByteStream.html#twisted.web2.stream.IByteStream.read">twisted.web2.stream.IByteStream</a></div><div class="interfaceinfo">overridden in <a href="twisted.web2.http._NotifyingProducerStream.html#twisted.web2.http._NotifyingProducerStream.read">twisted.web2.http._NotifyingProducerStream</a></div><div><p>Read some data.</p>
+<p>Returns an object conforming to the buffer interface, or if there is 
+no more data available, returns None. Can also return a Deferred 
+resulting in one of the above.</p>
+Errors may be indicated by exception or by a Deferred of a 
+Failure.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.stream.ProducerStream.split"></a>
+        <div class="functionHeader">
+          def <span>split(self, point):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.web2.stream.IByteStream.html#twisted.web2.stream.IByteStream.split">twisted.web2.stream.IByteStream</a></div><div><p>Split this stream into two, at byte position 'point'.</p>
+<p>Returns a tuple of (before, after). After calling split, no other 
+methods should be called on this stream. Doing so will have undefined 
+behavior.</p>
+If you cannot implement split easily, you may implement it as:
+<pre class="literalblock">
+   return fallbackSplit(self, point)
+</pre>
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.stream.ProducerStream.close"></a>
+        <div class="functionHeader">
+          def <span>close(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.web2.stream.IByteStream.html#twisted.web2.stream.IByteStream.close">twisted.web2.stream.IByteStream</a></div><div>Called by reader of stream when it is done reading.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.stream.ProducerStream.write"></a>
+        <div class="functionHeader">
+          def <span>write(self, data):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#twisted.internet.interfaces.IConsumer.write">twisted.internet.interfaces.IConsumer</a></div><div class="interfaceinfo">overridden in <a href="twisted.web2.http._NotifyingProducerStream.html#twisted.web2.http._NotifyingProducerStream.write">twisted.web2.http._NotifyingProducerStream</a></div><div>The producer will write data by calling this method.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.stream.ProducerStream.finish"></a>
+        <div class="functionHeader">
+          def <span>finish(self, failure=None):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.web2.http._NotifyingProducerStream.html#twisted.web2.http._NotifyingProducerStream.finish">twisted.web2.http._NotifyingProducerStream</a></div><div><p>Called by producer when it is done.</p>
+If the optional failure argument is passed a Failure instance, the 
+stream will return it as errback on next Deferred.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.stream.ProducerStream.registerProducer"></a>
+        <div class="functionHeader">
+          def <span>registerProducer(self, producer, streaming):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#twisted.internet.interfaces.IConsumer.registerProducer">twisted.internet.interfaces.IConsumer</a></div><div><p>Register to receive data from a producer.</p>
+This sets self to be a consumer for a producer. When this object runs 
+out of data on a write() call, it will ask the producer to 
+resumeProducing(). A producer should implement the <a 
+href="twisted.internet.interfaces.IProducer.html">IProducer</a> 
+interface. A push producer which is unable to pause or stop need not 
+register or unregister.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.stream.ProducerStream.unregisterProducer"></a>
+        <div class="functionHeader">
+          def <span>unregisterProducer(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.internet.interfaces.IConsumer.html#twisted.internet.interfaces.IConsumer.unregisterProducer">twisted.internet.interfaces.IConsumer</a></div><div>Stop consuming data from a producer, without disconnecting.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

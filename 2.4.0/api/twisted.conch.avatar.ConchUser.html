@@ -1,0 +1,88 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.conch.avatar.ConchUser&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.c.a.ConchUser:</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.conch.avatar.html">twisted.conch.avatar</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.conch.avatar.ConchUser">View In Hierarchy</a>
+    </p>
+    <div><p>Known subclasses: <a href="twisted.conch.manhole_ssh.TerminalUser.html">twisted.conch.manhole_ssh.TerminalUser</a>, <a href="twisted.conch.unix.UnixConchUser.html">twisted.conch.unix.UnixConchUser</a></p><p>Implements interfaces: <a href="twisted.conch.interfaces.IConchUser.html">twisted.conch.interfaces.IConchUser</a></p></div>
+    <div class="undocumented">Undocumented</div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.avatar.ConchUser.__init__">__init__</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.avatar.ConchUser.lookupChannel">lookupChannel</a></td>
+          <td><span>The other side requested a channel of some sort.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.avatar.ConchUser.lookupSubsystem">lookupSubsystem</a></td>
+          <td><span>The other side requested a subsystem.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.conch.avatar.ConchUser.gotGlobalRequest">gotGlobalRequest</a></td>
+          <td><span>A global request was sent from the other side.
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.conch.avatar.ConchUser.__init__"></a>
+        <div class="functionHeader">
+          def <span>__init__(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overridden in <a href="twisted.conch.manhole_ssh.TerminalUser.html#twisted.conch.manhole_ssh.TerminalUser.__init__">twisted.conch.manhole_ssh.TerminalUser</a>, <a href="twisted.conch.unix.UnixConchUser.html#twisted.conch.unix.UnixConchUser.__init__">twisted.conch.unix.UnixConchUser</a></div><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.conch.avatar.ConchUser.lookupChannel"></a>
+        <div class="functionHeader">
+          def <span>lookupChannel(self, channelType, windowSize, maxPacket, data):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.conch.interfaces.IConchUser.html#twisted.conch.interfaces.IConchUser.lookupChannel">twisted.conch.interfaces.IConchUser</a></div><div><p>The other side requested a channel of some sort. channelType is the 
+type of channel being requested, windowSize is the initial size of the 
+remote window, maxPacket is the largest packet we should send, data is 
+any other packet data (often nothing).</p>
+We return a subclass of SSHChannel. If an appropriate channel can not 
+be found, an exception will be raised. If a ConchError is raised, the 
+.value will be the message, and the .data will be the error code.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">channelType</td><td>(type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">windowSize</td><td>(type: <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">maxPacket</td><td>(type: <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">data</td><td>(type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">(type: subclass of <code>SSHChannel</code>/<code>tuple</code>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.conch.avatar.ConchUser.lookupSubsystem"></a>
+        <div class="functionHeader">
+          def <span>lookupSubsystem(self, subsystem, data):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.conch.interfaces.IConchUser.html#twisted.conch.interfaces.IConchUser.lookupSubsystem">twisted.conch.interfaces.IConchUser</a></div><div><p>The other side requested a subsystem. subsystem is the name of the 
+subsystem being requested. data is any other packet data (often 
+nothing).</p>
+We return a Protocol.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.conch.avatar.ConchUser.gotGlobalRequest"></a>
+        <div class="functionHeader">
+          def <span>gotGlobalRequest(self, requestType, data):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.conch.interfaces.IConchUser.html#twisted.conch.interfaces.IConchUser.gotGlobalRequest">twisted.conch.interfaces.IConchUser</a></div><div><p>A global request was sent from the other side.</p>
+By default, this dispatches to a method 'channel_channelType' with any 
+non-alphanumerics in the channelType replace with _'s. If it cannot find 
+a suitable method, it returns an OPEN_UNKNOWN_CHANNEL_TYPE error. The 
+method is called with arguments of windowSize, maxPacket, data.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

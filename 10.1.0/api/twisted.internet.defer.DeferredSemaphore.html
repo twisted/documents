@@ -1,0 +1,228 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.defer.DeferredSemaphore : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.i.d.DeferredSemaphore(<a href="twisted.internet.defer._ConcurrencyPrimitive.html">_ConcurrencyPrimitive</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a>.<a href="twisted.internet.defer.html">defer</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/internet/defer.py#L1126">View Source</a>
+      <a href="classIndex.html#twisted.internet.defer.DeferredSemaphore">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>A semaphore for event driven systems.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">tokens</td><td>At most this many users may acquire this semaphore at once.
+ (type: <code>int</code>
+)</td></tr><tr><td></td><td class="fieldArg">limit</td><td>The difference between <code>tokens</code> and the number of users which
+have currently acquired this semaphore.
+ (type: <code>int</code>
+)</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1464">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.DeferredSemaphore.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.DeferredSemaphore.html#acquire">acquire</a></td>
+    <td><span>Attempt to acquire the token.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.DeferredSemaphore.html#release">release</a></td>
+    <td><span>Release the token.
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer.DeferredSemaphore.html#_cancelAcquire">_cancelAcquire</a></td>
+    <td><span>Remove a deferred d from our waiting list, as the deferred has been 
+canceled.
+</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.internet.defer._ConcurrencyPrimitive.html">_ConcurrencyPrimitive</a>:
+        </p>
+        <table class="children sortable" id="id1465">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer._ConcurrencyPrimitive.html#run">run</a></td>
+    <td><span>Acquire, run, release.
+</span></td>
+  </tr><tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.defer._ConcurrencyPrimitive.html#_releaseAndReturn">_releaseAndReturn</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.internet.defer.DeferredSemaphore.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, tokens):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/internet/defer.py#L1139" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.internet.defer._ConcurrencyPrimitive.html#__init__">twisted.internet.defer._ConcurrencyPrimitive.__init__</a></div>
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.defer.DeferredSemaphore._cancelAcquire">
+    
+  </a>
+  <a name="_cancelAcquire">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _cancelAcquire(self, d):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/internet/defer.py#L1147" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Remove a deferred d from our waiting list, as the deferred has been 
+canceled.</p>
+Note: We do not need to wrap this in a try/except to catch d not being 
+in self.waiting because this canceller will not be called if d has fired. 
+release() pops a deferred out of self.waiting and calls it, so the 
+canceller will no longer be called.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">d</td><td>The deferred that has been canceled.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.defer.DeferredSemaphore.acquire">
+    
+  </a>
+  <a name="acquire">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    acquire(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/internet/defer.py#L1162" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Attempt to acquire the token.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> which
+fires on token acquisition.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.defer.DeferredSemaphore.release">
+    
+  </a>
+  <a name="release">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    release(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.1.0/twisted/internet/defer.py#L1178" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Release the token.</p>
+Should be called by whoever did the <a 
+href="twisted.internet.defer.DeferredSemaphore.html#acquire"><code>acquire</code></a>()
+when the shared resource is free.
+<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-10-27 16:17:34.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

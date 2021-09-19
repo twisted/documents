@@ -1,0 +1,816 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.conch.ssh.userauth.SSHUserAuthServer : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.c.s.u.SSHUserAuthServer(<a href="twisted.conch.ssh.service.SSHService.html">service.SSHService</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.conch.html">conch</a>.<a href="twisted.conch.ssh.html">ssh</a>.<a href="twisted.conch.ssh.userauth.html">userauth</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/conch/ssh/userauth.py#L23">View Source</a>
+      <a href="classIndex.html#twisted.conch.ssh.userauth.SSHUserAuthServer">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div>A service implementing the server side of the 'ssh-userauth' service.  
+It is used to authenticate the user on the other side as being able to 
+access this server.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id2287">
+  
+  
+<tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#name">name</a></td>
+    <td>the name of this service: 'ssh-userauth' (type: <code>str</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#authenticatedWith">authenticatedWith</a></td>
+    <td>a list of authentication methods that have already been used. (type: <code>list</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#loginTimeout">loginTimeout</a></td>
+    <td>the number of seconds we wait before disconnecting the user for taking too 
+long to authenticate (type: <code>int</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#attemptsBeforeDisconnect">attemptsBeforeDisconnect</a></td>
+    <td>the number of failed login attempts we allow before disconnecting. (type: <code>int</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#loginAttempts">loginAttempts</a></td>
+    <td>the number of login attempts that have been made (type: <code>int</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#passwordDelay">passwordDelay</a></td>
+    <td>the number of seconds to delay when the user gives an incorrect password (type: <code>int</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#interfaceToMethod">interfaceToMethod</a></td>
+    <td>a <code>dict</code> mapping credential interfaces to authentication 
+methods.  The server checks to see which of the cred interfaces have 
+checkers and tells the client that those methods are valid for 
+authentication. (type: <code>dict</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#supportedAuthentications">supportedAuthentications</a></td>
+    <td>A list of the supported authentication methods. (type: <code>list</code> of <code>str</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#user">user</a></td>
+    <td>the last username the client tried to authenticate with (type: <code>str</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#method">method</a></td>
+    <td>the current authentication method (type: <code>str</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#nextService">nextService</a></td>
+    <td>the service the user wants started after authentication has been completed. (type: <code>str</code>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#portal">portal</a></td>
+    <td>the <a 
+href="twisted.cred.portal.Portal.html"><code>twisted.cred.portal.Portal</code></a>
+we are using for authentication (type: <a 
+href="twisted.cred.portal.Portal.html"><code>twisted.cred.portal.Portal</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#clock">clock</a></td>
+    <td>an object with a callLater method.  Stubbed out for testing.</td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#serviceStarted">serviceStarted</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#serviceStopped">serviceStopped</a></td>
+    <td><span>Called when the userauth service is stopped.  Cancel the login timeout 
+if it's still going.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#timeoutAuthentication">timeoutAuthentication</a></td>
+    <td><span>Called when the user has timed out on authentication.  Disconnect with a
+DISCONNECT_NO_MORE_AUTH_METHODS_AVAILABLE message.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#tryAuth">tryAuth</a></td>
+    <td><span>Try to authenticate the user with the given method.  Dispatches to a 
+auth_* method.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#ssh_USERAUTH_REQUEST">ssh_USERAUTH_REQUEST</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#auth_publickey">auth_publickey</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#auth_password">auth_password</a></td>
+    <td><span>Password authentication.  Payload:: string password</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#auth_keyboard_interactive">auth_keyboard_interactive</a></td>
+    <td><span>Keyboard interactive authentication.  No payload.  We create a 
+PluggableAuthenticationModules credential and authenticate with our 
+portal.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#ssh_USERAUTH_INFO_RESPONSE">ssh_USERAUTH_INFO_RESPONSE</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#_cbFinishedAuth">_cbFinishedAuth</a></td>
+    <td><span>The callback when user has successfully been authenticated.  For a 
+description of the arguments, see <a 
+href="twisted.cred.portal.Portal.html#login"><code>twisted.cred.portal.Portal.login</code></a>.
+We start the service requested by the user.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#_ebMaybeBadAuth">_ebMaybeBadAuth</a></td>
+    <td><span>An intermediate errback.  If the reason is 
+error.NotEnoughAuthentication, we send a MSG_USERAUTH_FAILURE, but with the
+partial success indicator set.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#_ebBadAuth">_ebBadAuth</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#_ebCheckKey">_ebCheckKey</a></td>
+    <td><span>Called back if the user did not sent a signature.  If reason is 
+error.ValidPublicKey then this key is valid for the user to authenticate 
+with.  Send MSG_USERAUTH_PK_OK.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#_ebPassword">_ebPassword</a></td>
+    <td><span>If the password is invalid, wait before sending the failure in order to 
+delay brute-force password guessing.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.userauth.SSHUserAuthServer.html#_pamConv">_pamConv</a></td>
+    <td><span>Convert a list of PAM authentication questions into a 
+MSG_USERAUTH_INFO_REQUEST.  Returns a Deferred that will be called back 
+when the user has responses to the questions.</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.conch.ssh.service.SSHService.html">SSHService</a>:
+        </p>
+        <table class="children sortable" id="id2288">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.service.SSHService.html#logPrefix">logPrefix</a></td>
+    <td><span>Override this method to insert custom logging behavior.  Its return 
+value will be inserted in front of every line.  It may be called more times
+than the number of output lines.</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.ssh.service.SSHService.html#packetReceived">packetReceived</a></td>
+    <td><span>called when we receive a packet on the transport</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.name">
+    
+  </a>
+  <a name="name">
+    
+  </a>
+  <div class="functionHeader">
+    name =
+  </div>
+  <div class="functionBody">
+    the name of this service: 'ssh-userauth' (type: <code>str</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.authenticatedWith">
+    
+  </a>
+  <a name="authenticatedWith">
+    
+  </a>
+  <div class="functionHeader">
+    authenticatedWith =
+  </div>
+  <div class="functionBody">
+    a list of authentication methods that have already been used. (type: <code>list</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.loginTimeout">
+    
+  </a>
+  <a name="loginTimeout">
+    
+  </a>
+  <div class="functionHeader">
+    loginTimeout =
+  </div>
+  <div class="functionBody">
+    the number of seconds we wait before disconnecting the user for taking too 
+long to authenticate (type: <code>int</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.attemptsBeforeDisconnect">
+    
+  </a>
+  <a name="attemptsBeforeDisconnect">
+    
+  </a>
+  <div class="functionHeader">
+    attemptsBeforeDisconnect =
+  </div>
+  <div class="functionBody">
+    the number of failed login attempts we allow before disconnecting. (type: <code>int</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.loginAttempts">
+    
+  </a>
+  <a name="loginAttempts">
+    
+  </a>
+  <div class="functionHeader">
+    loginAttempts =
+  </div>
+  <div class="functionBody">
+    the number of login attempts that have been made (type: <code>int</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.passwordDelay">
+    
+  </a>
+  <a name="passwordDelay">
+    
+  </a>
+  <div class="functionHeader">
+    passwordDelay =
+  </div>
+  <div class="functionBody">
+    the number of seconds to delay when the user gives an incorrect password (type: <code>int</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.interfaceToMethod">
+    
+  </a>
+  <a name="interfaceToMethod">
+    
+  </a>
+  <div class="functionHeader">
+    interfaceToMethod =
+  </div>
+  <div class="functionBody">
+    a <code>dict</code> mapping credential interfaces to authentication 
+methods.  The server checks to see which of the cred interfaces have 
+checkers and tells the client that those methods are valid for 
+authentication. (type: <code>dict</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.supportedAuthentications">
+    
+  </a>
+  <a name="supportedAuthentications">
+    
+  </a>
+  <div class="functionHeader">
+    supportedAuthentications =
+  </div>
+  <div class="functionBody">
+    A list of the supported authentication methods. (type: <code>list</code> of <code>str</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.user">
+    
+  </a>
+  <a name="user">
+    
+  </a>
+  <div class="functionHeader">
+    user =
+  </div>
+  <div class="functionBody">
+    the last username the client tried to authenticate with (type: <code>str</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.method">
+    
+  </a>
+  <a name="method">
+    
+  </a>
+  <div class="functionHeader">
+    method =
+  </div>
+  <div class="functionBody">
+    the current authentication method (type: <code>str</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.nextService">
+    
+  </a>
+  <a name="nextService">
+    
+  </a>
+  <div class="functionHeader">
+    nextService =
+  </div>
+  <div class="functionBody">
+    the service the user wants started after authentication has been completed. (type: <code>str</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.portal">
+    
+  </a>
+  <a name="portal">
+    
+  </a>
+  <div class="functionHeader">
+    portal =
+  </div>
+  <div class="functionBody">
+    the <a 
+href="twisted.cred.portal.Portal.html"><code>twisted.cred.portal.Portal</code></a>
+we are using for authentication (type: <a 
+href="twisted.cred.portal.Portal.html"><code>twisted.cred.portal.Portal</code></a>)
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.clock">
+    
+  </a>
+  <a name="clock">
+    
+  </a>
+  <div class="functionHeader">
+    clock =
+  </div>
+  <div class="functionBody">
+    an object with a callLater method.  Stubbed out for testing.
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.serviceStarted">
+    
+  </a>
+  <a name="serviceStarted">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    serviceStarted(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/conch/ssh/userauth.py#L81" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.conch.ssh.service.SSHService.html#serviceStarted">twisted.conch.ssh.service.SSHService.serviceStarted</a></div>
+    <div>Called when the userauth service is started.  Set up instance variables,
+check if we should allow password/keyboard-interactive authentication (only
+allow if the outgoing connection is encrypted) and set up a login 
+timeout.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.serviceStopped">
+    
+  </a>
+  <a name="serviceStopped">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    serviceStopped(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/conch/ssh/userauth.py#L111" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.conch.ssh.service.SSHService.html#serviceStopped">twisted.conch.ssh.service.SSHService.serviceStopped</a></div>
+    <div>Called when the userauth service is stopped.  Cancel the login timeout 
+if it's still going.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.timeoutAuthentication">
+    
+  </a>
+  <a name="timeoutAuthentication">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    timeoutAuthentication(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/conch/ssh/userauth.py#L121" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when the user has timed out on authentication.  Disconnect with a
+DISCONNECT_NO_MORE_AUTH_METHODS_AVAILABLE message.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.tryAuth">
+    
+  </a>
+  <a name="tryAuth">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    tryAuth(self, kind, user, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/conch/ssh/userauth.py#L132" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Try to authenticate the user with the given method.  Dispatches to a 
+auth_* method.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">kind</td><td>the authentication method to try. (type: <code>str</code>)</td></tr><tr><td></td><td class="fieldArg">user</td><td>the username the client is authenticating with. (type: <code>str</code>)</td></tr><tr><td></td><td class="fieldArg">data</td><td>authentication specific data sent by the client. (type: <code>str</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A Deferred called back if the method succeeded, or erred back if it failed. (type: <code>defer.Deferred</code>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.ssh_USERAUTH_REQUEST">
+    
+  </a>
+  <a name="ssh_USERAUTH_REQUEST">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ssh_USERAUTH_REQUEST(self, packet):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/conch/ssh/userauth.py#L164" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>The client has requested authentication.  Payload:</p>
+<pre class="literalblock">
+   string user
+   string next service
+   string method
+   &lt;authentication specific data&gt;
+</pre><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer._cbFinishedAuth">
+    
+  </a>
+  <a name="_cbFinishedAuth">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _cbFinishedAuth(self, (interface, avatar, logout)):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/conch/ssh/userauth.py#L191" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>The callback when user has successfully been authenticated.  For a 
+description of the arguments, see <a 
+href="twisted.cred.portal.Portal.html#login"><code>twisted.cred.portal.Portal.login</code></a>.
+We start the service requested by the user.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer._ebMaybeBadAuth">
+    
+  </a>
+  <a name="_ebMaybeBadAuth">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _ebMaybeBadAuth(self, reason):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/conch/ssh/userauth.py#L209" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>An intermediate errback.  If the reason is 
+error.NotEnoughAuthentication, we send a MSG_USERAUTH_FAILURE, but with the
+partial success indicator set.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer._ebBadAuth">
+    
+  </a>
+  <a name="_ebBadAuth">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _ebBadAuth(self, reason):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/conch/ssh/userauth.py#L222" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>The final errback in the authentication chain.  If the reason is 
+error.IgnoreAuthentication, we simply return; the authentication method has
+sent its own response.  Otherwise, send a failure message and (if the 
+method is not 'none') increment the number of login attempts.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.auth_publickey">
+    
+  </a>
+  <a name="auth_publickey">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    auth_publickey(self, packet):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/conch/ssh/userauth.py#L253" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Public key authentication.  Payload:</p>
+<pre class="literalblock">
+   byte has signature
+   string algorithm name
+   string key blob
+   [string signature] (if has signature is True)
+</pre>
+<p>Create a SSHPublicKey credential and verify it using our portal.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer._ebCheckKey">
+    
+  </a>
+  <a name="_ebCheckKey">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _ebCheckKey(self, reason, packet):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/conch/ssh/userauth.py#L281" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called back if the user did not sent a signature.  If reason is 
+error.ValidPublicKey then this key is valid for the user to authenticate 
+with.  Send MSG_USERAUTH_PK_OK.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.auth_password">
+    
+  </a>
+  <a name="auth_password">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    auth_password(self, packet):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/conch/ssh/userauth.py#L293" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Password authentication.  Payload:</p>
+<pre class="literalblock">
+   string password
+</pre>
+<p>Make a UsernamePassword credential and verify it with our portal.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer._ebPassword">
+    
+  </a>
+  <a name="_ebPassword">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _ebPassword(self, f):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/conch/ssh/userauth.py#L306" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>If the password is invalid, wait before sending the failure in order to 
+delay brute-force password guessing.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.auth_keyboard_interactive">
+    
+  </a>
+  <a name="auth_keyboard_interactive">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    auth_keyboard_interactive(self, packet):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/conch/ssh/userauth.py#L316" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Keyboard interactive authentication.  No payload.  We create a 
+PluggableAuthenticationModules credential and authenticate with our 
+portal.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer._pamConv">
+    
+  </a>
+  <a name="_pamConv">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _pamConv(self, items):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/conch/ssh/userauth.py#L332" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Convert a list of PAM authentication questions into a 
+MSG_USERAUTH_INFO_REQUEST.  Returns a Deferred that will be called back 
+when the user has responses to the questions.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">items</td><td>a list of 2-tuples (message, kind).  We only care about kinds 1 (password) 
+and 2 (text). (type: <code>list</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"> (type: <a 
+href="twisted.internet.defer.Deferred.html"><code>defer.Deferred</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.ssh.userauth.SSHUserAuthServer.ssh_USERAUTH_INFO_RESPONSE">
+    
+  </a>
+  <a name="ssh_USERAUTH_INFO_RESPONSE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    ssh_USERAUTH_INFO_RESPONSE(self, packet):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-13.0.0/twisted/conch/ssh/userauth.py#L365" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>The user has responded with answers to PAMs authentication questions. 
+Parse the packet into a PAM response and callback self._pamDeferred. 
+Payload:</p>
+<pre class="literalblock">
+   uint32 numer of responses
+   string response 1
+   ...
+   string response n
+</pre><table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2013-04-03 11:20:05.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

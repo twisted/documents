@@ -1,0 +1,259 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.threads : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="module">t.i.threads : module documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.internet.html">internet</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/internet/threads.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div>Extended thread dispatching support.</p>
+<p>For basic support see reactor threading API docs.</p>
+<p>Maintainer: Itamar Shtull-Trauring<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id2957">
+  
+  
+<tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.threads.html#deferToThreadPool">deferToThreadPool</a></td>
+    <td><span>Call the function <code>f</code> using a thread from the given 
+threadpool and return the result as a Deferred.</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.threads.html#deferToThread">deferToThread</a></td>
+    <td><span>Run a function in a thread and return the result as a Deferred.</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.threads.html#callMultipleInThread">callMultipleInThread</a></td>
+    <td><span>Run a list of functions in the same thread.</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.threads.html#blockingCallFromThread">blockingCallFromThread</a></td>
+    <td><span>Run a function in the reactor from a thread, and wait for the result 
+synchronously.  If the function returns a <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>, wait
+for its result and return that.</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.internet.threads.html#_runMultiple">_runMultiple</a></td>
+    <td><span>Run a list of functions.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.internet.threads.deferToThreadPool">
+    
+  </a>
+  <a name="deferToThreadPool">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    deferToThreadPool(reactor, threadpool, f, *args, **kwargs):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/internet/threads.py#L18" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Call the function <code>f</code> using a thread from the given 
+threadpool and return the result as a Deferred.</p>
+<p>This function is only used by client code which is maintaining its own 
+threadpool.  To run a function in the reactor's threadpool, use 
+<code>deferToThread</code>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">reactor</td><td>The reactor in whose main thread the Deferred will be invoked.
+</td></tr><tr><td></td><td class="fieldArg">threadpool</td><td>An object which supports the <code>callInThreadWithCallback</code> method 
+of <code>twisted.python.threadpool.ThreadPool</code>.
+</td></tr><tr><td></td><td class="fieldArg">f</td><td>The function to call.
+</td></tr><tr><td></td><td class="fieldArg">*args</td><td>positional arguments to pass to f.
+</td></tr><tr><td></td><td class="fieldArg">**kwargs</td><td>keyword arguments to pass to f.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A Deferred which fires a callback with the result of f, or an errback with 
+a <a 
+href="twisted.python.failure.Failure.html"><code>twisted.python.failure.Failure</code></a>
+if f throws an exception.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.threads.deferToThread">
+    
+  </a>
+  <a name="deferToThread">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    deferToThread(f, *args, **kwargs):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/internet/threads.py#L54" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Run a function in a thread and return the result as a Deferred.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">f</td><td>The function to call.
+</td></tr><tr><td></td><td class="fieldArg">*args</td><td>positional arguments to pass to f.
+</td></tr><tr><td></td><td class="fieldArg">**kwargs</td><td>keyword arguments to pass to f.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A Deferred which fires a callback with the result of f, or an errback with 
+a <a 
+href="twisted.python.failure.Failure.html"><code>twisted.python.failure.Failure</code></a>
+if f throws an exception.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.threads._runMultiple">
+    
+  </a>
+  <a name="_runMultiple">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _runMultiple(tupleList):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/internet/threads.py#L71" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Run a list of functions.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.threads.callMultipleInThread">
+    
+  </a>
+  <a name="callMultipleInThread">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    callMultipleInThread(tupleList):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/internet/threads.py#L79" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Run a list of functions in the same thread.</p>
+<p>tupleList should be a list of (function, argsList, kwargsDict) 
+tuples.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.internet.threads.blockingCallFromThread">
+    
+  </a>
+  <a name="blockingCallFromThread">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    blockingCallFromThread(reactor, f, *a, **kw):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.1.0/twisted/internet/threads.py#L89" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Run a function in the reactor from a thread, and wait for the result 
+synchronously.  If the function returns a <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>, wait
+for its result and return that.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">reactor</td><td>The <a 
+href="twisted.internet.interfaces.IReactorThreads.html"><code>IReactorThreads</code></a>
+provider which will be used to schedule the function call.
+</td></tr><tr><td></td><td class="fieldArg">f</td><td>the callable to run in the reactor thread
+ (type: any callable.
+)</td></tr><tr><td></td><td class="fieldArg">a</td><td>the arguments to pass to <code>f</code>.
+</td></tr><tr><td></td><td class="fieldArg">kw</td><td>the keyword arguments to pass to <code>f</code>.
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">the result of the <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+returned by <code>f</code>, or the result of <code>f</code> if it returns 
+anything other than a <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a>.
+</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td colspan="2">If <code>f</code> raises a synchronous exception, 
+<code>blockingCallFromThread</code> will raise that exception.  If 
+<code>f</code> returns a <a 
+href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> which
+fires with a <a 
+href="twisted.python.failure.Failure.html"><code>Failure</code></a>, 
+<code>blockingCallFromThread</code> will raise that failure's exception 
+(see <a 
+href="twisted.python.failure.Failure.html#raiseException"><code>Failure.raiseException</code></a>).
+</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-11-17 13:59:56.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

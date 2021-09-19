@@ -1,0 +1,212 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web.client.CookieAgent : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.w.c.CookieAgent(<span title="object">object</span>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web.html">web</a>.<a href="twisted.web.client.html">client</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/web/client.py#L1597">View Source</a>
+      <a href="classIndex.html#twisted.web.client.CookieAgent">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div><a 
+href="twisted.web.client.CookieAgent.html"><code>CookieAgent</code></a> 
+extends the basic <a 
+href="twisted.web.client.Agent.html"><code>Agent</code></a> to add 
+RFC-compliant handling of HTTP cookies.  Cookies are written to and 
+extracted from a <code>cookielib.CookieJar</code> instance.</p>
+<p>The same cookie jar instance will be used for any requests through this 
+agent, mutating it whenever a <i>Set-Cookie</i> header appears in a 
+response.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">11.1</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3215">
+  
+  
+<tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.client.CookieAgent.html#cookieJar">cookieJar</a></td>
+    <td>Initialized cookie jar to read cookies from and store cookies to. (type: <code>cookielib.CookieJar</code>)</td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.CookieAgent.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.CookieAgent.html#request">request</a></td>
+    <td><span>Issue a new request to the wrapped <a 
+href="twisted.web.client.Agent.html"><code>Agent</code></a>.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web.client.CookieAgent.html#_agent">_agent</a></td>
+    <td>Underlying Twisted Web agent to issue requests through. (type: <a 
+href="twisted.web.client.Agent.html"><code>twisted.web.client.Agent</code></a>)</td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web.client.CookieAgent.html#_extractCookies">_extractCookies</a></td>
+    <td><span>Extract response cookies and store them in the cookie jar.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.web.client.CookieAgent._agent">
+    
+  </a>
+  <a name="_agent">
+    
+  </a>
+  <div class="functionHeader">
+    _agent =
+  </div>
+  <div class="functionBody">
+    Underlying Twisted Web agent to issue requests through. (type: <a 
+href="twisted.web.client.Agent.html"><code>twisted.web.client.Agent</code></a>)
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.CookieAgent.cookieJar">
+    
+  </a>
+  <a name="cookieJar">
+    
+  </a>
+  <div class="functionHeader">
+    cookieJar =
+  </div>
+  <div class="functionBody">
+    Initialized cookie jar to read cookies from and store cookies to. (type: <code>cookielib.CookieJar</code>)
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.CookieAgent.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, agent, cookieJar):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/web/client.py#L1615" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.CookieAgent.request">
+    
+  </a>
+  <a name="request">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    request(self, method, uri, headers=None, bodyProducer=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/web/client.py#L1620" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Issue a new request to the wrapped <a 
+href="twisted.web.client.Agent.html"><code>Agent</code></a>.</p>
+<p>Send a <i>Cookie</i> header if a cookie for <code>uri</code> is stored 
+in <a 
+href="twisted.web.client.CookieAgent.html#cookieJar"><code>CookieAgent.cookieJar</code></a>.
+Cookies are automatically extracted and stored from requests.</p>
+<p>If a <code>'cookie'</code> header appears in <code>headers</code> it 
+will override the automatic cookie header obtained from the cookie jar.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><a 
+href="twisted.web.client.Agent.html#request"><code>Agent.request</code></a></td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web.client.CookieAgent._extractCookies">
+    
+  </a>
+  <a name="_extractCookies">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _extractCookies(self, response, request):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.1/twisted/web/client.py#L1650" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Extract response cookies and store them in the cookie jar.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">response</td><td>Twisted Web response. (type: <a 
+href="twisted.web.iweb.IResponse.html"><code>twisted.web.iweb.IResponse</code></a>)</td></tr><tr><td></td><td class="fieldArg">request</td><td>A urllib2 compatible request object.</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2014-09-17 19:15:55.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,222 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.conch.client.knownhosts : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="module">t.c.c.knownhosts : module documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.conch.html">conch</a>.<a href="twisted.conch.client.html">client</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/conch/client/knownhosts.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div>An implementation of the OpenSSH known_hosts database.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">8.2</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id81">
+  
+  
+<tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.client.knownhosts.PlainEntry.html">PlainEntry</a></td>
+    <td><span>A <a 
+href="twisted.conch.client.knownhosts.PlainEntry.html"><code>PlainEntry</code></a>
+is a representation of a plain-text entry in a known_hosts file.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.client.knownhosts.UnparsedEntry.html">UnparsedEntry</a></td>
+    <td><span><a 
+href="twisted.conch.client.knownhosts.UnparsedEntry.html"><code>UnparsedEntry</code></a>
+is an entry in a <a 
+href="twisted.conch.client.knownhosts.KnownHostsFile.html"><code>KnownHostsFile</code></a>
+which can't actually be parsed; therefore it matches no keys and no 
+hosts.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.client.knownhosts.HashedEntry.html">HashedEntry</a></td>
+    <td><span>A <a 
+href="twisted.conch.client.knownhosts.HashedEntry.html"><code>HashedEntry</code></a>
+is a representation of an entry in a known_hosts file where the hostname 
+has been hashed and salted.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.client.knownhosts.KnownHostsFile.html">KnownHostsFile</a></td>
+    <td><span>A structured representation of an OpenSSH-format ~/.ssh/known_hosts 
+file.</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.client.knownhosts.ConsoleUI.html">ConsoleUI</a></td>
+    <td><span>A UI object that can ask true/false questions and post notifications on 
+the console, to be used during key verification.</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.conch.client.knownhosts.html#_b64encode">_b64encode</a></td>
+    <td><span>Encode a binary string as base64 with no trailing newline.</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.conch.client.knownhosts.html#_extractCommon">_extractCommon</a></td>
+    <td><span>Extract common elements of base64 keys from an entry in a hosts 
+file.</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.client.knownhosts._BaseEntry.html">_BaseEntry</a></td>
+    <td><span>Abstract base of both hashed and non-hashed entry objects, since they 
+represent keys and key types the same way.</span></td>
+  </tr><tr class="function private">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.conch.client.knownhosts.html#_hmacedString">_hmacedString</a></td>
+    <td><span>Return the SHA-1 HMAC hash of the given key and string.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.conch.client.knownhosts._b64encode">
+    
+  </a>
+  <a name="_b64encode">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _b64encode(s):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/conch/client/knownhosts.py#L26" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Encode a binary string as base64 with no trailing newline.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">s</td><td>The string to encode. (type: <a 
+href="http://docs.python.org/library/functions.html#bytes"><code>bytes</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The base64-encoded string. (type: <a 
+href="http://docs.python.org/library/functions.html#bytes"><code>bytes</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.client.knownhosts._extractCommon">
+    
+  </a>
+  <a name="_extractCommon">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _extractCommon(string):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/conch/client/knownhosts.py#L40" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Extract common elements of base64 keys from an entry in a hosts 
+file.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">string</td><td>A known hosts file entry (a single line). (type: <a 
+href="http://docs.python.org/library/functions.html#bytes"><code>bytes</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a 4-tuple of hostname data (<a 
+href="http://docs.python.org/library/functions.html#bytes"><code>bytes</code></a>),
+ssh key type (<a 
+href="http://docs.python.org/library/functions.html#bytes"><code>bytes</code></a>),
+key (<a href="twisted.conch.ssh.keys.Key.html"><code>Key</code></a>), and 
+comment (<a 
+href="http://docs.python.org/library/functions.html#bytes"><code>bytes</code></a>
+or <a 
+href="http://docs.python.org/library/functions.html#None"><code>None</code></a>).
+The hostname data is simply the beginning of the line up to the first 
+occurrence of whitespace. (type: <a 
+href="http://docs.python.org/library/functions.html#tuple"><code>tuple</code></a>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.conch.client.knownhosts._hmacedString">
+    
+  </a>
+  <a name="_hmacedString">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _hmacedString(key, string):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.2/twisted/conch/client/knownhosts.py#L226" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Return the SHA-1 HMAC hash of the given key and string.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">key</td><td>The HMAC key. (type: <a 
+href="http://docs.python.org/library/functions.html#bytes"><code>bytes</code></a>)</td></tr><tr><td></td><td class="fieldArg">string</td><td>The string to be hashed. (type: <a 
+href="http://docs.python.org/library/functions.html#bytes"><code>bytes</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The keyed hash value. (type: <a 
+href="http://docs.python.org/library/functions.html#bytes"><code>bytes</code></a>)</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2014-09-18 22:01:49.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

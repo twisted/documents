@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.conch.insults.text : API documentation</title>
+
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="bootstrap.min.css" type="text/css" rel="stylesheet" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a href="index.html" class="navbar-brand">
+            Twisted API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+   <div style="display: none" id="current-docs-container" class="container">
+      <div class="col-sm-12">
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </div>
+    </div>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="module"><code>twisted.conch.insults.text</code> <small>module documentation</small></h1>
+
+        <span id="partOf">
+          Part of <code><a href="twisted.html" class="code">twisted</a>.<a href="twisted.conch.html" class="code">conch</a>.<a href="twisted.conch.insults.html" class="code">insults</a></code>
+          <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.0/twisted/conch/insults/text.py">View Source</a>
+          
+        </span>
+      </div>
+
+      <div class="extrasDocstring">
+        
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Character attribute manipulation API.</p>
+<p>This module provides a domain-specific language (using Python syntax) 
+for the creation of text with additional display attributes associated with
+it.  It is intended as an alternative to manually building up strings 
+containing ECMA 48 character attribute control codes.  It currently 
+supports foreground and background colors (black, red, green, yellow, blue,
+magenta, cyan, and white), intensity selection, underlining, blinking and 
+reverse video.  Character set selection support is planned.</p>
+<p>Character attributes are specified by using two Python operations: 
+attribute lookup and indexing.  For example, the string "Hello 
+world" with red foreground and all other attributes set to their 
+defaults, assuming the name twisted.conch.insults.text.attributes has been 
+imported and bound to the name "A" (with the statement <code>from
+twisted.conch.insults.text import attributes as A</code>, for example) one 
+uses this expression:</p>
+<pre class="literalblock">
+   A.fg.red["Hello world"]
+</pre>
+<p>Other foreground colors are set by substituting their name for 
+"red".  To set both a foreground and a background color, this 
+expression is used:</p>
+<pre class="literalblock">
+   A.fg.red[A.bg.green["Hello world"]]
+</pre>
+<p>Note that either A.bg.green can be nested within A.fg.red or vice versa.
+Also note that multiple items can be nested within a single index operation
+by separating them with commas:</p>
+<pre class="literalblock">
+   A.bg.green[A.fg.red["Hello"], " ", A.fg.blue["world"]]
+</pre>
+<p>Other character attributes are set in a similar fashion.  To specify a 
+blinking version of the previous expression:</p>
+<pre class="literalblock">
+   A.blink[A.bg.green[A.fg.red["Hello"], " ", A.fg.blue["world"]]]
+</pre>
+<p><code>A.reverseVideo</code>, <code>A.underline</code>, and 
+<code>A.bold</code> are also valid.</p>
+<p>A third operation is actually supported: unary negation.  This turns off
+an attribute when an enclosing expression would otherwise have caused it to
+be on.  For example:</p>
+<pre class="literalblock">
+   A.underline[A.fg.red["Hello", -A.underline[" world"]]]
+</pre>
+<p>A formatting structure can then be serialized into a string containing 
+the necessary VT102 control codes with <a href="twisted.conch.insults.text.html#assembleFormattedText"><code>assembleFormattedText</code></a>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Author</td><td colspan="2">Jp Calderone</td></tr><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><code>twisted.conch.insults.text.attributes</code></td></tr></table></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id152">
+  
+  <tr class="function">
+    
+    <td>Function</td>
+    <td><a href="twisted.conch.insults.text.html#assembleFormattedText" class="code">assembleFormattedText</a></td>
+    <td><span>Assemble formatted text from structured information.</span></td>
+  </tr><tr class="class private">
+    
+    <td>Class</td>
+    <td><a href="twisted.conch.insults.text._CharacterAttributes.html" class="code">_CharacterAttributes</a></td>
+    <td><span>Factory for character attributes, including foreground and background 
+color and non-color attributes such as bold, reverse video and 
+underline.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="basefunction">
+  
+  <a name="twisted.conch.insults.text.assembleFormattedText">
+    
+  </a>
+  <a name="assembleFormattedText">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    assembleFormattedText(formatted):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.2.0/twisted/conch/insults/text.py#L143" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Assemble formatted text from structured information.</p>
+<p>Currently handled formatting includes: bold, blink, reverse, underline 
+and color codes.</p>
+<p>For example:</p>
+<pre class="literalblock">
+   from twisted.conch.insults.text import attributes as A
+   assembleFormattedText(
+       A.normal[A.bold['Time: '], A.fg.lightRed['Now!']])
+</pre>
+<p>Would produce "Time: " in bold formatting, followed by 
+"Now!" with a foreground color of light red and without any 
+additional formatting.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">formatted</td><td>Structured text and attributes.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">String containing VT102 control sequences that mimic those specified by 
+<code>formatted</code>. (type: <code>str</code>)</td></tr><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><code>twisted.conch.insults.text.attributes</code></td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">13.1</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> at 2015-05-19 13:11:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+        <!-- Give the user a link to this page, but in the current version of the docs. -->
+        var link = document.getElementById('current-docs-link');
+        link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+        <!-- And make it visible -->
+        var container = document.getElementById('current-docs-container');
+        container.style.display = "";
+        delete link;
+        delete container;
+      }
+    </script>
+
+  </body>
+</html>

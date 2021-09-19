@@ -1,0 +1,444 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.conch.interfaces.ISFTPServer&rdquo;</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="interface">Interface t.c.i.ISFTPServer(<span title="zope.interface.Interface">Interface</span>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.conch.html">conch</a>.<a href="twisted.conch.interfaces.html">interfaces</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/interfaces.py#L92">View Source</a>
+      <a href="classIndex.html#twisted.conch.interfaces.ISFTPServer">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known implementations: <a href="twisted.conch.unix.SFTPServerForUnixConchUser.html">twisted.conch.unix.SFTPServerForUnixConchUser</a>, <a href="twisted.vfs.adapters.sftp.AdaptFileSystemUserToISFTP.html">twisted.vfs.adapters.sftp.AdaptFileSystemUserToISFTP</a></p>
+    </div>
+    <div>The only attribute of this class is &quot;avatar&quot;. It is the 
+avatar returned by the Realm that we are authenticated with, and 
+represents the logged-in user. Each method should check to verify that 
+the user has permission for their actions.
+<table class="fieldTable"></table></div>
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id4981">
+  
+  
+  
+  
+  <tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPServer.html#gotVersion">gotVersion</a></td>
+    <td><span>Called when the client sends their version info.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPServer.html#openFile">openFile</a></td>
+    <td><span>Called when the clients asks to open a file.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPServer.html#removeFile">removeFile</a></td>
+    <td><span>Remove the given file.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPServer.html#renameFile">renameFile</a></td>
+    <td><span>Rename the given file.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPServer.html#makeDirectory">makeDirectory</a></td>
+    <td><span>Make a directory.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPServer.html#removeDirectory">removeDirectory</a></td>
+    <td><span>Remove a directory (non-recursively)
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPServer.html#openDirectory">openDirectory</a></td>
+    <td><span>Open a directory for scanning.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPServer.html#getAttrs">getAttrs</a></td>
+    <td><span>Return the attributes for the given path.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPServer.html#setAttrs">setAttrs</a></td>
+    <td><span>Set the attributes for the path.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPServer.html#readLink">readLink</a></td>
+    <td><span>Find the root of a set of symbolic links.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPServer.html#makeLink">makeLink</a></td>
+    <td><span>Create a symbolic link.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPServer.html#realPath">realPath</a></td>
+    <td><span>Convert any path to an absolute path.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.conch.interfaces.ISFTPServer.html#extendedRequest">extendedRequest</a></td>
+    <td><span>This is the extension mechanism for SFTP. The other side can send 
+us
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+    <div class="function">
+        <a name="twisted.conch.interfaces.ISFTPServer.gotVersion"></a>
+        <a name="gotVersion"></a>
+        <div class="functionHeader">
+        
+        def gotVersion(otherVersion, extData):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/interfaces.py#L100" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Called when the client sends their version info.</p>
+<p>otherVersion is an integer representing the version of the SFTP 
+protocol they are claiming. extData is a dictionary of extended_name : 
+extended_data items. These items are sent by the client to indicate 
+additional features.</p>
+This method should return a dictionary of extended_name : 
+extended_data items. These items are the additional features (if any) 
+supported by the server.
+<table class="fieldTable"></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.interfaces.ISFTPServer.openFile"></a>
+        <a name="openFile"></a>
+        <div class="functionHeader">
+        
+        def openFile(filename, flags, attrs):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/interfaces.py#L115" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div>Called when the clients asks to open a file.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">filename</td><td>a string representing the file to open.
+</td></tr><tr><td></td><td class="fieldArg">flags</td><td>an integer of the flags to open the file with, ORed together. The 
+flags and their values are listed at the bottom of this file.
+</td></tr><tr><td></td><td class="fieldArg">attrs</td><td>a list of attributes to open the file with. It is a dictionary, 
+consisting of 0 or more keys. The possible keys are:
+<pre class="literalblock">
+   size: the size of the file in bytes
+   uid: the user ID of the file as an integer
+   gid: the group ID of the file as an integer
+   permissions: the permissions of the file with as an integer.
+   the bit representation of this field is defined by POSIX.
+   atime: the access time of the file as seconds since the epoch.
+   mtime: the modification time of the file as seconds since the epoch.
+   ext_*: extended attributes.  The server is not required to
+   understand this, but it may.
+</pre>
+<p>NOTE: there is no way to indicate text or binary files. it is up to 
+the SFTP client to deal with this.</p>
+This method returns an object that meets the ISFTPFile interface. 
+Alternatively, it can return a <code>Deferred</code> that will be called 
+back with the object.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.interfaces.ISFTPServer.removeFile"></a>
+        <a name="removeFile"></a>
+        <div class="functionHeader">
+        
+        def removeFile(filename):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/interfaces.py#L145" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Remove the given file.</p>
+This method returns when the remove succeeds, or a Deferred that is 
+called back when it succeeds.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">filename</td><td>the name of the file as a string.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.interfaces.ISFTPServer.renameFile"></a>
+        <a name="renameFile"></a>
+        <div class="functionHeader">
+        
+        def renameFile(oldpath, newpath):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/interfaces.py#L155" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Rename the given file.</p>
+This method returns when the rename succeeds, or a 
+<code>Deferred</code> that is called back when it succeeds. If the rename 
+fails, <code>renameFile</code> will raise an implementation-dependent 
+exception.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">oldpath</td><td>the current location of the file.
+</td></tr><tr><td></td><td class="fieldArg">newpath</td><td>the new file name.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.interfaces.ISFTPServer.makeDirectory"></a>
+        <a name="makeDirectory"></a>
+        <div class="functionHeader">
+        
+        def makeDirectory(path, attrs):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/interfaces.py#L167" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Make a directory.</p>
+This method returns when the directory is created, or a Deferred that 
+is called back when it is created.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">path</td><td>the name of the directory to create as a string.
+</td></tr><tr><td></td><td class="fieldArg">attrs</td><td>a dictionary of attributes to create the directory with. Its meaning 
+is the same as the attrs in the <a 
+href="twisted.conch.interfaces.ISFTPServer.html#openFile"><code>openFile</code></a> 
+method.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.interfaces.ISFTPServer.removeDirectory"></a>
+        <a name="removeDirectory"></a>
+        <div class="functionHeader">
+        
+        def removeDirectory(path):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/interfaces.py#L179" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Remove a directory (non-recursively)</p>
+<p>It is an error to remove a directory that has files or directories in 
+it.</p>
+This method returns when the directory is removed, or a Deferred that 
+is called back when it is removed.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">path</td><td>the directory to remove.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.interfaces.ISFTPServer.openDirectory"></a>
+        <a name="openDirectory"></a>
+        <div class="functionHeader">
+        
+        def openDirectory(path):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/interfaces.py#L192" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Open a directory for scanning.</p>
+<p>This method returns an iterable object that has a close() method, or a 
+Deferred that is called back with same.</p>
+<p>The close() method is called when the client is finished reading from 
+the directory. At this point, the iterable will no longer be used.</p>
+<p>The iterable should return triples of the form (filename, longname, 
+attrs) or Deferreds that return the same. The sequence must support 
+__getitem__, but otherwise may be any 'sequence-like' object.</p>
+<p>filename is the name of the file relative to the directory. logname is 
+an expanded format of the filename. The recommended format is: -rwxr-xr-x 
+1 mjos staff 348911 Mar 25 14:29 t-filexfer 1234567890 123 12345678 
+12345678 12345678 123456789012</p>
+<p>The first line is sample output, the second is the length of the 
+field. The fields are: permissions, link count, user owner, group owner, 
+size in bytes, modification time.</p>
+attrs is a dictionary in the format of the attrs argument to 
+openFile.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">path</td><td>the directory to open.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.interfaces.ISFTPServer.getAttrs"></a>
+        <a name="getAttrs"></a>
+        <div class="functionHeader">
+        
+        def getAttrs(path, followLinks):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/interfaces.py#L223" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Return the attributes for the given path.</p>
+This method returns a dictionary in the same format as the attrs 
+argument to openFile or a Deferred that is called back with same.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">path</td><td>the path to return attributes for as a string.
+</td></tr><tr><td></td><td class="fieldArg">followLinks</td><td>a boolean. If it is True, follow symbolic links and return attributes 
+for the real path at the base. If it is False, return attributes for the 
+specified path.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.interfaces.ISFTPServer.setAttrs"></a>
+        <a name="setAttrs"></a>
+        <div class="functionHeader">
+        
+        def setAttrs(path, attrs):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/interfaces.py#L236" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Set the attributes for the path.</p>
+This method returns when the attributes are set or a Deferred that is 
+called back when they are.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">path</td><td>the path to set attributes for as a string.
+</td></tr><tr><td></td><td class="fieldArg">attrs</td><td>a dictionary in the same format as the attrs argument to <a 
+href="twisted.conch.interfaces.ISFTPServer.html#openFile"><code>openFile</code></a>.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.interfaces.ISFTPServer.readLink"></a>
+        <a name="readLink"></a>
+        <div class="functionHeader">
+        
+        def readLink(path):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/interfaces.py#L248" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Find the root of a set of symbolic links.</p>
+This method returns the target of the link, or a Deferred that returns 
+the same.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">path</td><td>the path of the symlink to read.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.interfaces.ISFTPServer.makeLink"></a>
+        <a name="makeLink"></a>
+        <div class="functionHeader">
+        
+        def makeLink(linkPath, targetPath):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/interfaces.py#L258" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Create a symbolic link.</p>
+This method returns when the link is made, or a Deferred that returns 
+the same.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">linkPath</td><td>the pathname of the symlink as a string.
+</td></tr><tr><td></td><td class="fieldArg">targetPath</td><td>the path of the target of the link as a string.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.interfaces.ISFTPServer.realPath"></a>
+        <a name="realPath"></a>
+        <div class="functionHeader">
+        
+        def realPath(path):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/interfaces.py#L269" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>Convert any path to an absolute path.</p>
+This method returns the absolute path as a string, or a Deferred that 
+returns the same.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">path</td><td>the path to convert as a string.
+</td></tr></table></div>
+        </div>
+      </div><div class="function">
+        <a name="twisted.conch.interfaces.ISFTPServer.extendedRequest"></a>
+        <a name="extendedRequest"></a>
+        <div class="functionHeader">
+        
+        def extendedRequest(extendedName, extendedData):
+        <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/conch/interfaces.py#L279" class="functionSourceLink">
+        
+        (source)
+      </a>
+      </div>
+        <div class="functionBody">
+          
+          <div><p>This is the extension mechanism for SFTP. The other side can send us 
+arbitrary requests.</p>
+<p>If we don't implement the request given by extendedName, raise 
+NotImplementedError.</p>
+The return value is a string, or a Deferred that will be called back 
+with a string.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">extendedName</td><td>the name of the request as a string.
+</td></tr><tr><td></td><td class="fieldArg">extendedData</td><td>the data the other side sent with the request, as a string.
+</td></tr></table></div>
+        </div>
+      </div>
+    
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/trac">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2008-05-18 16:50:21.
+    </address>
+  </body>
+</html>

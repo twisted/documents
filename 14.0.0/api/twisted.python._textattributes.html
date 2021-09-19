@@ -1,0 +1,195 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.python._textattributes : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="module private">t.p._textattributes : module documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.python.html">python</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.0/twisted/python/_textattributes.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div>This module provides some common functionality for the manipulation of 
+formatting states.</p>
+<p>Defining the mechanism by which text containing character attributes is 
+constructed begins by subclassing <a 
+href="twisted.python._textattributes.CharacterAttributesMixin.html"><code>CharacterAttributesMixin</code></a>.</p>
+<p>Defining how a single formatting state is to be serialized begins by 
+subclassing <a 
+href="twisted.python._textattributes._FormattingStateMixin.html"><code>_FormattingStateMixin</code></a>.</p>
+<p>Serializing a formatting structure is done with <a 
+href="twisted.python._textattributes.html#flatten"><code>flatten</code></a>.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">See Also</td><td colspan="2"><a 
+href="twisted.conch.insults.helper._FormattingState.html"><code>twisted.conch.insults.helper._FormattingState</code></a></td></tr><tr><td></td><td colspan="2"><a 
+href="twisted.conch.insults.text._CharacterAttributes.html"><code>twisted.conch.insults.text._CharacterAttributes</code></a></td></tr><tr><td></td><td colspan="2"><a 
+href="twisted.words.protocols.irc._FormattingState.html"><code>twisted.words.protocols.irc._FormattingState</code></a></td></tr><tr><td></td><td colspan="2"><a 
+href="twisted.words.protocols.irc._CharacterAttributes.html"><code>twisted.words.protocols.irc._CharacterAttributes</code></a></td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id2570">
+  
+  
+<tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.python._textattributes.CharacterAttributesMixin.html">CharacterAttributesMixin</a></td>
+    <td><span class="undocumented">No summary</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.python._textattributes.DefaultFormattingState.html">DefaultFormattingState</a></td>
+    <td><span>A character attribute that does nothing, thus applying no attributes to 
+text.</span></td>
+  </tr><tr class="function">
+    
+    
+    <td>Function</td>
+    <td><a href="twisted.python._textattributes.html#flatten">flatten</a></td>
+    <td><span>Serialize a sequence of characters with attribute information</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.python._textattributes._Attribute.html">_Attribute</a></td>
+    <td><span>A text attribute.</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.python._textattributes._NormalAttr.html">_NormalAttr</a></td>
+    <td><span>A text attribute for normal text.</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.python._textattributes._OtherAttr.html">_OtherAttr</a></td>
+    <td><span>A text attribute for text with formatting attributes.</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.python._textattributes._ColorAttr.html">_ColorAttr</a></td>
+    <td><span>Generic color attribute.</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.python._textattributes._ForegroundColorAttr.html">_ForegroundColorAttr</a></td>
+    <td><span>Foreground color attribute.</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.python._textattributes._BackgroundColorAttr.html">_BackgroundColorAttr</a></td>
+    <td><span>Background color attribute.</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.python._textattributes._ColorAttribute.html">_ColorAttribute</a></td>
+    <td><span>A color text attribute.</span></td>
+  </tr><tr class="class private">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.python._textattributes._FormattingStateMixin.html">_FormattingStateMixin</a></td>
+    <td><span>Mixin for the formatting state/attributes of a single character.</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.python._textattributes.flatten">
+    
+  </a>
+  <a name="flatten">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    flatten(output, attrs, attributeRenderer='toVT102'):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-14.0.0/twisted/python/_textattributes.py#L275" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Serialize a sequence of characters with attribute information</p>
+<p>The resulting string can be interpreted by compatible software so that 
+the contained characters are displayed and, for those attributes which are 
+supported by the software, the attributes expressed. The exact result of 
+the serialization depends on the behavior of the method specified by 
+<code>attributeRenderer</code>.</p>
+<p>For example, if your terminal is VT102 compatible, you might run this 
+for a colorful variation on the &quot;hello world&quot; theme:</p>
+<pre class="literalblock">
+   from twisted.conch.insults.text import flatten, attributes as A
+   from twisted.conch.insults.helper import CharacterAttribute
+   print flatten(
+       A.normal[A.bold[A.fg.red['He'], A.fg.green['ll'], A.fg.magenta['o'], ' ',
+                       A.fg.yellow['Wo'], A.fg.blue['rl'], A.fg.cyan['d!']]],
+       CharacterAttribute())
+</pre><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">output</td><td>Object returned by accessing attributes of the module-level attributes 
+object.</td></tr><tr><td></td><td class="fieldArg">attrs</td><td>A formatting state instance used to determine how to serialize 
+<code>output</code>.</td></tr><tr><td></td><td class="fieldArg">attributeRenderer</td><td>Name of the method on <code>attrs</code> that should be called to render 
+the attributes during serialization. Defaults to <code>'toVT102'</code>. (type: <code>str</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A string expressing the text and display attributes specified by 
+<code>output</code>.</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2014-05-12 18:27:00.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="//www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

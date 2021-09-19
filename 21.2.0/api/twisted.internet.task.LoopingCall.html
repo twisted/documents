@@ -1,0 +1,639 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.internet.task.LoopingCall : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://twistedmatrix.com/">Twisted</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><a href="twisted.html" class="code" data-type="Package">twisted</a>.<a href="twisted.internet.html" class="code" data-type="Package">internet</a>.<a href="twisted.internet.task.html" class="code" data-type="Module">task</a>.<a href="twisted.internet.task.LoopingCall.html" class="code" data-type="Class">LoopingCall</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> twisted.internet.task.LoopingCall: <a href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L28">(source)</a></code></p>
+        <p><a href="classIndex.html#twisted.internet.task.LoopingCall">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>Call a function repeatedly.</p><p>If <code>f</code> returns a deferred, rescheduling will not take place until the deferred has fired. The result value is ignored.</p></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1206">
+  
+  <tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#f" class="code" data-type="Instance Variable">f</a></td>
+    <td><span>The function to call.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#a" class="code" data-type="Instance Variable">a</a></td>
+    <td><span>A tuple of arguments to pass the function.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#kw" class="code" data-type="Instance Variable">kw</a></td>
+    <td><span>A dictionary of keyword arguments to pass to the function.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#clock" class="code" data-type="Instance Variable">clock</a></td>
+    <td><span>A provider of <a href="twisted.internet.interfaces.IReactorTime.html"><code>twisted.internet.interfaces.IReactorTime</code></a>.  The default is <a href="twisted.internet.reactor.html"><code>twisted.internet.reactor</code></a>. Feel free to set this to something else, but it probably ought to be set *before* calling <a href="twisted.internet.task.LoopingCall.html#start"><code>start</code></a>.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#running" class="code" data-type="Instance Variable">running</a></td>
+    <td><span>A flag which is <code>True</code> while <code>f</code> is scheduled to be called (or is currently being called). It is set to <code>True</code> when <a href="twisted.internet.task.LoopingCall.html#start"><code>start</code></a> is called and set to <code>False</code> when <a href="twisted.internet.task.LoopingCall.html#stop"><code>stop</code></a> is called or if <code>f</code> raises an exception. In either case, it will be <code>False</code> by the time the <code>Deferred</code> returned by <a href="twisted.internet.task.LoopingCall.html#start"><code>start</code></a> fires its callback or errback.</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#call" class="code" data-type="Instance Variable">call</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#interval" class="code" data-type="Instance Variable">interval</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#starttime" class="code" data-type="Instance Variable">starttime</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#__init__" class="code" data-type="Method">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="property">
+    
+    <td>Property</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#deferred" class="code" data-type="Property">deferred</a></td>
+    <td><span>DEPRECATED. <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> fired when loop stops or fails.</span></td>
+  </tr><tr class="classmethod">
+    
+    <td>Class Method</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#withCount" class="code" data-type="Class Method">withCount</a></td>
+    <td><span>An alternate constructor for <a href="twisted.internet.task.LoopingCall.html"><code>LoopingCall</code></a> that makes available the number of calls which should have occurred since it was last invoked.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#start" class="code" data-type="Method">start</a></td>
+    <td><span>Start running function every interval seconds.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#stop" class="code" data-type="Method">stop</a></td>
+    <td><span>Stop running function.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#reset" class="code" data-type="Method">reset</a></td>
+    <td><span>Skip the next iteration and reset the timer.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#__call__" class="code" data-type="Method">__call__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#__repr__" class="code" data-type="Method">__repr__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#_realLastTime" class="code" data-type="Instance Variable">_realLastTime</a></td>
+    <td><span>When counting skips, the time at which the skip counter was last invoked.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#_runAtStart" class="code" data-type="Instance Variable">_runAtStart</a></td>
+    <td><span>A flag indicating whether the 'now' argument was passed to <a href="twisted.internet.task.LoopingCall.html#start"><code>LoopingCall.start</code></a>.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#_deferred" class="code" data-type="Instance Variable">_deferred</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#_intervalOf" class="code" data-type="Method">_intervalOf</a></td>
+    <td><span>Determine the number of intervals passed as of the given point in time.</span></td>
+  </tr><tr class="method private">
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.task.LoopingCall.html#_scheduleFrom" class="code" data-type="Method">_scheduleFrom</a></td>
+    <td><span>Schedule the next iteration of this looping call.</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseinstancevariable">
+  
+  <a name="twisted.internet.task.LoopingCall.f">
+    
+  </a>
+  <a name="f">
+    
+  </a>
+  <div class="functionHeader">
+    
+    f =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L34">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The function to call.</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.task.LoopingCall.a">
+    
+  </a>
+  <a name="a">
+    
+  </a>
+  <div class="functionHeader">
+    
+    a =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L35">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A tuple of arguments to pass the function.</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.task.LoopingCall.kw">
+    
+  </a>
+  <a name="kw">
+    
+  </a>
+  <div class="functionHeader">
+    
+    kw =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L36">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A dictionary of keyword arguments to pass to the function.</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.task.LoopingCall.clock">
+    
+  </a>
+  <a name="clock">
+    
+  </a>
+  <div class="functionHeader">
+    
+    clock =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L37">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A provider of <a href="twisted.internet.interfaces.IReactorTime.html"><code>twisted.internet.interfaces.IReactorTime</code></a>.  The default is <a href="twisted.internet.reactor.html"><code>twisted.internet.reactor</code></a>. Feel free to set this to something else, but it probably ought to be set *before* calling <a href="twisted.internet.task.LoopingCall.html#start"><code>start</code></a>.</div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.task.LoopingCall.running">
+    
+  </a>
+  <a name="running">
+    
+  </a>
+  <div class="functionHeader">
+    
+    running =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L43">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A flag which is <code>True</code> while <code>f</code> is scheduled to be called (or is currently being called). It is set to <code>True</code> when <a href="twisted.internet.task.LoopingCall.html#start"><code>start</code></a> is called and set to <code>False</code> when <a href="twisted.internet.task.LoopingCall.html#stop"><code>stop</code></a> is called or if <code>f</code> raises an exception. In either case, it will be <code>False</code> by the time the <code>Deferred</code> returned by <a href="twisted.internet.task.LoopingCall.html#start"><code>start</code></a> fires its callback or errback.</div> (type: <code>bool</code>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.internet.task.LoopingCall._realLastTime">
+    
+  </a>
+  <a name="_realLastTime">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _realLastTime =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L50">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>When counting skips, the time at which the skip counter was last invoked.</div> (type: <code>float</code>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.internet.task.LoopingCall._runAtStart">
+    
+  </a>
+  <a name="_runAtStart">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _runAtStart =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L54">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A flag indicating whether the 'now' argument was passed to <a href="twisted.internet.task.LoopingCall.html#start"><code>LoopingCall.start</code></a>.</div> (type: <code>bool</code>)
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.task.LoopingCall.call">
+    
+  </a>
+  <a name="call">
+    
+  </a>
+  <div class="functionHeader">
+    
+    call =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L59">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.internet.task.LoopingCall._deferred">
+    
+  </a>
+  <a name="_deferred">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _deferred =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L61">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.task.LoopingCall.interval">
+    
+  </a>
+  <a name="interval">
+    
+  </a>
+  <div class="functionHeader">
+    
+    interval =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L62">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable">
+  
+  <a name="twisted.internet.task.LoopingCall.starttime">
+    
+  </a>
+  <a name="starttime">
+    
+  </a>
+  <div class="functionHeader">
+    
+    starttime =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L64">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.task.LoopingCall.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def __init__(self, f, *a, **kw):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L66">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseproperty">
+  
+  <a name="twisted.internet.task.LoopingCall.deferred">
+    
+  </a>
+  <a name="deferred">
+    
+  </a>
+  <div class="functionHeader">
+    @property<br />
+    deferred =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L74">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p>DEPRECATED. <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> fired when loop stops or fails.</p><p>Use the <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> returned by <a href="twisted.internet.task.LoopingCall.html#start"><code>LoopingCall.start</code></a>.</p></div>
+  </div>
+</div><div class="baseclassmethod">
+  
+  <a name="twisted.internet.task.LoopingCall.withCount">
+    
+  </a>
+  <a name="withCount">
+    
+  </a>
+  <div class="functionHeader">
+    @classmethod<br />
+    def withCount(cls, countCallable):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L90">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>An alternate constructor for <a href="twisted.internet.task.LoopingCall.html"><code>LoopingCall</code></a> that makes available the number of calls which should have occurred since it was last invoked.</p><p>Note that this number is an <code>int</code> value; It represents the discrete number of calls that should have been made.  For example, if you are using a looping call to display an animation with discrete frames, this number would be the number of frames to advance.</p><p>The count is normally 1, but can be higher. For example, if the reactor is blocked and takes too long to invoke the <a href="twisted.internet.task.LoopingCall.html"><code>LoopingCall</code></a>, a Deferred returned from a previous call is not fired before an interval has elapsed, or if the callable itself blocks for longer than an interval, preventing <i>itself</i> from being called.</p><p>When running with an interval if 0, count will be always 1.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">countCallable</td><td>A callable that will be invoked each time the resulting LoopingCall is run, with an integer specifying the number of calls that should have been invoked. (type: 1-argument callable which takes an <code>int</code>)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">An instance of <a href="twisted.internet.task.LoopingCall.html"><code>LoopingCall</code></a> with call counting enabled, which provides the count as the first positional argument. (type: <a href="twisted.internet.task.LoopingCall.html"><code>LoopingCall</code></a>)</td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">9.0</td></tr></table></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.internet.task.LoopingCall._intervalOf">
+    
+  </a>
+  <a name="_intervalOf">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _intervalOf(self, t):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L148">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Determine the number of intervals passed as of the given point in time.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">t</td><td>The specified time (from the start of the <a href="twisted.internet.task.LoopingCall.html"><code>LoopingCall</code></a>) to be measured in intervals</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The <code>int</code> number of intervals which have passed as of the given point in time.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.task.LoopingCall.start">
+    
+  </a>
+  <a name="start">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def start(self, interval, now=True):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L163">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Start running function every interval seconds.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">interval</td><td>The number of seconds between calls.  May be less than one.  Precision will depend on the underlying platform, the available hardware, and the load on the system.</td></tr><tr><td></td><td class="fieldArg">now</td><td>If True, run this call right now.  Otherwise, wait until the interval has elapsed before beginning.</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A Deferred whose callback will be invoked with <code>self</code> when <code>self.stop</code> is called, or whose errback will be invoked when the function raises an exception or returned a deferred that has its errback invoked.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.task.LoopingCall.stop">
+    
+  </a>
+  <a name="stop">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def stop(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L195">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Stop running function.</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.task.LoopingCall.reset">
+    
+  </a>
+  <a name="reset">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def reset(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L205">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Skip the next iteration and reset the timer.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">11.1</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.task.LoopingCall.__call__">
+    
+  </a>
+  <a name="__call__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def __call__(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L218">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod private">
+  
+  <a name="twisted.internet.task.LoopingCall._scheduleFrom">
+    
+  </a>
+  <a name="_scheduleFrom">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def _scheduleFrom(self, when):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L236">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Schedule the next iteration of this looping call.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">when</td><td>The present time from whence the call is scheduled.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.internet.task.LoopingCall.__repr__">
+    
+  </a>
+  <a name="__repr__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def __repr__(self):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/internet/task.py#L272">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2"><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-02-28 19:53:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>

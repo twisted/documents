@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.protocols.ftp.FTPFileListProtocol : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">t.p.f.FTPFileListProtocol(<a href="twisted.protocols.basic.LineReceiver.html">basic.LineReceiver</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.protocols.html">protocols</a>.<a href="twisted.protocols.ftp.html">ftp</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/protocols/ftp.py#L3095">View Source</a>
+      <a href="classIndex.html#twisted.protocols.ftp.FTPFileListProtocol">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div class="docstring">
+      <div><p>Parser for standard FTP file listings</p>
+<p>This is the evil required to match:</p>
+<pre class="literalblock">
+   -rw-r--r--   1 root     other        531 Jan 29 03:26 README
+</pre>
+<p>If you need different evil for a wacky FTP server, you can override 
+either <code>fileLinePattern</code> or 
+<code>parseDirectoryLine()</code>.</p>
+<p>It populates the instance attribute self.files, which is a list 
+containing dicts with the following keys (examples from the above 
+line):</p>
+<ul>
+  <li>
+    filetype:   e.g. 'd' for directories, or '-' for an ordinary file
+  </li>
+  <li>
+    perms:      e.g. 'rw-r--r--'
+  </li>
+  <li>
+    nlinks:     e.g. 1
+  </li>
+  <li>
+    owner:      e.g. 'root'
+  </li>
+  <li>
+    group:      e.g. 'other'
+  </li>
+  <li>
+    size:       e.g. 531
+  </li>
+  <li>
+    date:       e.g. 'Jan 29 03:26'
+  </li>
+  <li>
+    filename:   e.g. 'README'
+  </li>
+  <li>
+    linktarget: e.g. 'some/file'
+  </li>
+</ul>
+<p>Note that the 'date' value will be formatted differently depending on 
+the date.  Check <a href="http://cr.yp.to/ftp.html" target="_top">http://cr.yp.to/ftp.html</a> if you really want to try to 
+parse it.</p>
+<p>It also matches the following:</p>
+<pre class="literalblock">
+   -rw-r--r--   1 root     other        531 Jan 29 03:26 I HAVE\ SPACE
+      - filename:   e.g. 'I HAVE SPACE'
+
+   -rw-r--r--   1 root     other        531 Jan 29 03:26 LINK -&gt; TARGET
+      - filename:   e.g. 'LINK'
+      - linktarget: e.g. 'TARGET'
+
+   -rw-r--r--   1 root     other        531 Jan 29 03:26 N S -&gt; L S
+      - filename:   e.g. 'N S'
+      - linktarget: e.g. 'L S'
+</pre><table class="fieldTable"></table></div>
+    </div>
+
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id2340">
+  
+  
+  <tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.protocols.ftp.FTPFileListProtocol.html#files">files</a></td>
+    <td>list of dicts describing the files in this listing</td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.ftp.FTPFileListProtocol.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.ftp.FTPFileListProtocol.html#lineReceived">lineReceived</a></td>
+    <td><span>Override this for when each line is received.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.ftp.FTPFileListProtocol.html#parseDirectoryLine">parseDirectoryLine</a></td>
+    <td><span>Return a dictionary of fields, or None if line cannot be parsed.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.ftp.FTPFileListProtocol.html#addFile">addFile</a></td>
+    <td><span>Append file information dictionary to the list of known files.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.ftp.FTPFileListProtocol.html#unknownLine">unknownLine</a></td>
+    <td><span>Deal with received lines which could not be parsed as file 
+information.</span></td>
+  </tr>
+</table>
+      <invisible>
+        <p>
+          Inherited from <a href="twisted.protocols.basic._PauseableMixin.html">_PauseableMixin</a> (via <a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a>):
+        </p>
+        <table class="children sortable" id="id2344">
+  
+  
+  <tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#pauseProducing">pauseProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#resumeProducing">resumeProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#stopProducing">stopProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+      </invisible><invisible>
+        <p>
+          Inherited from <a href="twisted.protocols.basic._PauseableMixin.html">_PauseableMixin</a> (via <a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a>):
+        </p>
+        <table class="children sortable" id="id2344">
+  
+  
+  <tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#pauseProducing">pauseProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#resumeProducing">resumeProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#stopProducing">stopProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+      </invisible><invisible>
+        <p>
+          Inherited from <a href="twisted.protocols.basic._PauseableMixin.html">_PauseableMixin</a> (via <a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a>):
+        </p>
+        <table class="children sortable" id="id2344">
+  
+  
+  <tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#pauseProducing">pauseProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#resumeProducing">resumeProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#stopProducing">stopProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+      </invisible><invisible>
+        <p>
+          Inherited from <a href="twisted.protocols.basic._PauseableMixin.html">_PauseableMixin</a> (via <a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a>):
+        </p>
+        <table class="children sortable" id="id2344">
+  
+  
+  <tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#pauseProducing">pauseProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#resumeProducing">resumeProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#stopProducing">stopProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+      </invisible>
+    </div>
+    
+    
+
+    <div class="function">
+  <a name="twisted.protocols.ftp.FTPFileListProtocol.files">
+    
+  </a>
+  <a name="files">
+    
+  </a>
+  <div class="functionHeader">
+    files =
+  </div>
+  <div class="functionBody">
+    list of dicts describing the files in this listing
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.ftp.FTPFileListProtocol.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/protocols/ftp.py#L3144" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.ftp.FTPFileListProtocol.lineReceived">
+    
+  </a>
+  <a name="lineReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    lineReceived(self, line):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/protocols/ftp.py#L3147" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.protocols.basic.LineReceiver.html#lineReceived">twisted.protocols.basic.LineReceiver.lineReceived</a></div>
+    <div><p>Override this for when each line is received.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">line</td><td>The line which was received with the delimiter removed. (type: <code>bytes</code>)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.ftp.FTPFileListProtocol.parseDirectoryLine">
+    
+  </a>
+  <a name="parseDirectoryLine">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    parseDirectoryLine(self, line):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/protocols/ftp.py#L3154" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Return a dictionary of fields, or None if line cannot be parsed.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">line</td><td>line of text expected to contain a directory entry (type: str)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">dict</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.ftp.FTPFileListProtocol.addFile">
+    
+  </a>
+  <a name="addFile">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addFile(self, info):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/protocols/ftp.py#L3175" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Append file information dictionary to the list of known files.</p>
+<p>Subclasses can override or extend this method to handle file information
+differently without affecting the parsing of data from the server.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">info</td><td>dictionary containing the parsed representation of the file information (type: dict)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.protocols.ftp.FTPFileListProtocol.unknownLine">
+    
+  </a>
+  <a name="unknownLine">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    unknownLine(self, line):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/protocols/ftp.py#L3189" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Deal with received lines which could not be parsed as file 
+information.</p>
+<p>Subclasses can override this to perform any special processing 
+needed.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">line</td><td>unparsable line as received (type: str)</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://launchpad.net/pydoctor/">pydoctor</a> at 2015-04-13 15:26:48.
+    </address>
+  </body>
+</html>

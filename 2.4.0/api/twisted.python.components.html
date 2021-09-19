@@ -1,0 +1,184 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.python.components&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="module">Module t.p.components</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.python.html">twisted.python</a></span>
+      <a></a>
+      <a></a>
+    </p>
+    <div></div>
+    <div><p>Component architecture for Twisted, based on Zope3 components.</p>
+Using the Zope3 API directly is strongly recommended. Everything you 
+need is in the top-level of the zope.interface package, e.g.:
+<pre class="literalblock">
+  from zope.interface import Interface, implements
+
+  class IFoo(Interface):
+      pass
+
+  class Foo:
+      implements(IFoo)
+
+  print IFoo.implementedBy(Foo) # True
+  print IFoo.providedBy(Foo()) # True
+</pre>
+The one exception is <a 
+href="twisted.python.components.html#twisted.python.components.registerAdapter">twisted.python.components.registerAdapter</a>, 
+which is still the way to register adapters (at least, if you want 
+Twisted's global adapter registry).
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.python.components.ComponentsDeprecationWarning.html">ComponentsDeprecationWarning</a></td>
+          <td><span>So you can filter new-components related deprecations easier.
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.components.registerAdapter">registerAdapter</a></td>
+          <td><span>Register an adapter class.
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.components.getAdapterFactory">getAdapterFactory</a></td>
+          <td><span>Return registered adapter for a given class and interface.
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.components._hook">_hook</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.components.backwardsCompatImplements">backwardsCompatImplements</a></td>
+          <td><span>DEPRECATED.
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.components.fixClassImplements">fixClassImplements</a></td>
+          <td><span>DEPRECATED.
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.components.getAdapterClass">getAdapterClass</a></td>
+          <td><span>DEPRECATEED.
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.components.getAdapterClassWithInheritance">getAdapterClassWithInheritance</a></td>
+          <td><span>DEPRECATEED.
+</span></td>
+        </tr><tr class="function">
+          <td>Function</td>
+          <td><a href="#twisted.python.components.getRegistry">getRegistry</a></td>
+          <td><span>Returns the Twisted global
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.python.components._Nothing.html">_Nothing</a></td>
+          <td><span>Default value for functions which raise if default not passed.
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.python.components.MetaInterface.html">MetaInterface</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.python.components.Adapter.html">Adapter</a></td>
+          <td><span>I am the default implementation of an Adapter for some interface.
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.python.components.Componentized.html">Componentized</a></td>
+          <td><span>I am a mixin to allow you to be adapted in various ways 
+persistently.
+</span></td>
+        </tr><tr class="class">
+          <td>Class</td>
+          <td><a href="twisted.python.components.ReprableComponentized.html">ReprableComponentized</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="interface">
+          <td>Interface</td>
+          <td><a href="twisted.python.components.Interface.html">Interface</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.python.components.registerAdapter"></a>
+        <div class="functionHeader">
+          def <span>registerAdapter(adapterFactory, origInterface, *interfaceClasses):</span>
+        </div>
+        <div class="functionBody"><div><p>Register an adapter class.</p>
+An adapter class is expected to implement the given interface, by 
+adapting instances implementing 'origInterface'. An adapter class's 
+__init__ method should accept one parameter, an instance implementing 
+'origInterface'.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.components.getAdapterFactory"></a>
+        <div class="functionHeader">
+          def <span>getAdapterFactory(fromInterface, toInterface, default):</span>
+        </div>
+        <div class="functionBody"><div><p>Return registered adapter for a given class and interface.</p>
+Note that is tied to the *Twisted* global registry, and will thus not 
+find adapters registered elsewhere.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.components._hook"></a>
+        <div class="functionHeader">
+          def <span>_hook(iface, ob, lookup=globalRegistry.lookup1):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.python.components.backwardsCompatImplements"></a>
+        <div class="functionHeader">
+          def <span>backwardsCompatImplements(klass):</span>
+        </div>
+        <div class="functionBody"><div><p>DEPRECATED.</p>
+Does nothing. Previously handled backwards compat from a 
+zope.interface using class to a class wanting old twisted components 
+interface behaviors.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.components.fixClassImplements"></a>
+        <div class="functionHeader">
+          def <span>fixClassImplements(klass):</span>
+        </div>
+        <div class="functionBody"><div><p>DEPRECATED.</p>
+Does nothing. Previously converted class from __implements__ to zope 
+implementation.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.components.getAdapterClass"></a>
+        <div class="functionHeader">
+          def <span>getAdapterClass(klass, interfaceClass, default):</span>
+        </div>
+        <div class="functionBody"><div><p>DEPRECATEED.</p>
+Use getAdapterFactory instead.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.components.getAdapterClassWithInheritance"></a>
+        <div class="functionHeader">
+          def <span>getAdapterClassWithInheritance(klass, interfaceClass, default):</span>
+        </div>
+        <div class="functionBody"><div><p>DEPRECATEED.</p>
+Use getAdapterFactory instead.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.python.components.getRegistry"></a>
+        <div class="functionHeader">
+          def <span>getRegistry(r=None):</span>
+        </div>
+        <div class="functionBody"><div>Returns the Twisted global 
+<code>zope.interface.adapter.AdapterRegistry</code> instance.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

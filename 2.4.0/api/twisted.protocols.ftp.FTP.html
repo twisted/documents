@@ -1,0 +1,509 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.protocols.ftp.FTP&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="class">Class t.p.f.FTP(object, <a href="twisted.protocols.basic.LineReceiver.html">basic.LineReceiver</a>, <a href="twisted.protocols.policies.TimeoutMixin.html">policies.TimeoutMixin</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.protocols.ftp.html">twisted.protocols.ftp</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.protocols.ftp.FTP">View In Hierarchy</a>
+    </p>
+    <div></div>
+    <div>Protocol Interpreter for the File Transfer Protocol
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">state</td><td>The current server state. One of UNAUTH, INAUTH, AUTHED, RENAMING.
+</td></tr><tr><td></td><td class="fieldArg">shell</td><td>The connected avatar
+</td></tr><tr><td></td><td class="fieldArg">binary</td><td>The transfer mode. If false, ASCII.
+</td></tr><tr><td></td><td class="fieldArg">dtpFactory</td><td>Generates a single DTP for this session
+</td></tr><tr><td></td><td class="fieldArg">dtpPort</td><td>Port returned from listenTCP
+</td></tr></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.reply">reply</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.connectionMade">connectionMade</a></td>
+          <td><span>Called when a connection is made.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.connectionLost">connectionLost</a></td>
+          <td><span>Called when the connection is shut down.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.timeoutConnection">timeoutConnection</a></td>
+          <td><span>Called when the connection times out.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.lineReceived">lineReceived</a></td>
+          <td><span>Override this for when each line is received.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.processCommand">processCommand</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_USER">ftp_USER</a></td>
+          <td><span>First part of login. Get the username the peer wants to
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_PASS">ftp_PASS</a></td>
+          <td><span>Second part of login. Get the password the peer wants to
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_PASV">ftp_PASV</a></td>
+          <td><span>Request for a passive connection
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_PORT">ftp_PORT</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_LIST">ftp_LIST</a></td>
+          <td><span>This command causes a list to be sent from the server to the
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_NLST">ftp_NLST</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_CWD">ftp_CWD</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_CDUP">ftp_CDUP</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_PWD">ftp_PWD</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_RETR">ftp_RETR</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_STOR">ftp_STOR</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_SIZE">ftp_SIZE</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_MDTM">ftp_MDTM</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_TYPE">ftp_TYPE</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.type_A">type_A</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.type_I">type_I</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.type_UNKNOWN">type_UNKNOWN</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_SYST">ftp_SYST</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_STRU">ftp_STRU</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_MODE">ftp_MODE</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_MKD">ftp_MKD</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_RMD">ftp_RMD</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_DELE">ftp_DELE</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_NOOP">ftp_NOOP</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_RNFR">ftp_RNFR</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_RNTO">ftp_RNTO</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.ftp_QUIT">ftp_QUIT</a></td>
+          <td><span class="undocumented">Undocumented</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.protocols.ftp.FTP.cleanupDTP">cleanupDTP</a></td>
+          <td><span>call when DTP connection exits
+</span></td>
+        </tr></table>
+    
+    
+        <p>
+          Inherited from <span><a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a></span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic.LineReceiver.html#twisted.protocols.basic.LineReceiver.clearLineBuffer">clearLineBuffer</a></td>
+            <td><span>Clear buffered data.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic.LineReceiver.html#twisted.protocols.basic.LineReceiver.dataReceived">dataReceived</a></td>
+            <td><span>Protocol.dataReceived.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic.LineReceiver.html#twisted.protocols.basic.LineReceiver.setLineMode">setLineMode</a></td>
+            <td><span>Sets the line-mode of this receiver.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic.LineReceiver.html#twisted.protocols.basic.LineReceiver.setRawMode">setRawMode</a></td>
+            <td><span>Sets the raw mode of this receiver.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic.LineReceiver.html#twisted.protocols.basic.LineReceiver.rawDataReceived">rawDataReceived</a></td>
+            <td><span>Override this for when raw data is received.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic.LineReceiver.html#twisted.protocols.basic.LineReceiver.sendLine">sendLine</a></td>
+            <td><span>Sends a line to the other end of the connection.
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic.LineReceiver.html#twisted.protocols.basic.LineReceiver.lineLengthExceeded">lineLengthExceeded</a></td>
+            <td><span>Called when the maximum line length has been reached.
+</span></td>
+          </tr></table>
+      
+        <p>
+          Inherited from <span><a href="twisted.internet.protocol.BaseProtocol.html">BaseProtocol</a> (via <a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a>, <a href="twisted.internet.protocol.Protocol.html">Protocol</a>)</span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.internet.protocol.BaseProtocol.html#twisted.internet.protocol.BaseProtocol.makeConnection">makeConnection</a></td>
+            <td><span>Make a connection to a transport and a server.
+</span></td>
+          </tr></table>
+      
+        <p>
+          Inherited from <span><a href="twisted.protocols.basic._PauseableMixin.html">_PauseableMixin</a> (via <a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a>)</span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic._PauseableMixin.html#twisted.protocols.basic._PauseableMixin.pauseProducing">pauseProducing</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic._PauseableMixin.html#twisted.protocols.basic._PauseableMixin.resumeProducing">resumeProducing</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.basic._PauseableMixin.html#twisted.protocols.basic._PauseableMixin.stopProducing">stopProducing</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr></table>
+      
+        <p>
+          Inherited from <span><a href="twisted.protocols.policies.TimeoutMixin.html">TimeoutMixin</a></span>:
+        </p>
+        <table class="children"><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.policies.TimeoutMixin.html#twisted.protocols.policies.TimeoutMixin.callLater">callLater</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.policies.TimeoutMixin.html#twisted.protocols.policies.TimeoutMixin.resetTimeout">resetTimeout</a></td>
+            <td><span>Reset the timeout count down
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.policies.TimeoutMixin.html#twisted.protocols.policies.TimeoutMixin.setTimeout">setTimeout</a></td>
+            <td><span>Change the timeout period
+</span></td>
+          </tr><tr class="basefunction">
+            <td>Method</td>
+            <td><a href="twisted.protocols.policies.TimeoutMixin.html#twisted.protocols.policies.TimeoutMixin.__timedOut">__timedOut</a></td>
+            <td><span class="undocumented">Undocumented</span></td>
+          </tr></table>
+      
+    <div class="function">
+        <a name="twisted.protocols.ftp.FTP.reply"></a>
+        <div class="functionHeader">
+          def <span>reply(self, key, *args):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.connectionMade"></a>
+        <div class="functionHeader">
+          def <span>connectionMade(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#twisted.internet.interfaces.IProtocol.connectionMade">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.BaseProtocol.html#twisted.internet.protocol.BaseProtocol.connectionMade">twisted.internet.protocol.BaseProtocol.connectionMade</a></div><div><p>Called when a connection is made.</p>
+This may be considered the initializer of the protocol, because it is 
+called when the connection is completed. For clients, this is called once 
+the connection to the server has been established; for servers, this is 
+called after an accept() call stops blocking and a socket has been 
+received. If you need to send any greeting or initial message, do it 
+here.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.connectionLost"></a>
+        <div class="functionHeader">
+          def <span>connectionLost(self, reason):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#twisted.internet.interfaces.IProtocol.connectionLost">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Protocol.html#twisted.internet.protocol.Protocol.connectionLost">twisted.internet.protocol.Protocol.connectionLost</a></div><div><p>Called when the connection is shut down.</p>
+Clear any circular references here, and any external references to 
+this Protocol. The connection has been closed. The reason Failure wraps a 
+<a 
+href="twisted.internet.error.ConnectionDone.html">twisted.internet.error.ConnectionDone</a> 
+or <a 
+href="twisted.internet.error.ConnectionLost.html">twisted.internet.error.ConnectionLost</a> 
+instance (or a subclass of one of those).
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">reason</td><td>(type: <a 
+href="twisted.python.failure.Failure.html">twisted.python.failure.Failure</a>
+)</td></tr></table></div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.timeoutConnection"></a>
+        <div class="functionHeader">
+          def <span>timeoutConnection(self):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.protocols.policies.TimeoutMixin.html#twisted.protocols.policies.TimeoutMixin.timeoutConnection">twisted.protocols.policies.TimeoutMixin.timeoutConnection</a></div><div>Called when the connection times out. Override to define behavior 
+other than dropping the connection.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.lineReceived"></a>
+        <div class="functionHeader">
+          def <span>lineReceived(self, line):</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.protocols.basic.LineReceiver.html#twisted.protocols.basic.LineReceiver.lineReceived">twisted.protocols.basic.LineReceiver.lineReceived</a></div><div>Override this for when each line is received.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.processCommand"></a>
+        <div class="functionHeader">
+          def <span>processCommand(self, cmd, *params):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_USER"></a>
+        <div class="functionHeader">
+          def <span>ftp_USER(self, username):</span>
+        </div>
+        <div class="functionBody"><div>First part of login. Get the username the peer wants to authenticate 
+as.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_PASS"></a>
+        <div class="functionHeader">
+          def <span>ftp_PASS(self, password):</span>
+        </div>
+        <div class="functionBody"><div>Second part of login. Get the password the peer wants to authenticate 
+with.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_PASV"></a>
+        <div class="functionHeader">
+          def <span>ftp_PASV(self):</span>
+        </div>
+        <div class="functionBody"><div><p>Request for a passive connection</p>
+from the rfc:
+<pre class="literalblock">
+   This command requests the server-DTP to &quot;listen&quot; on a data port
+   (which is not its default data port) and to wait for a connection
+   rather than initiate one upon receipt of a transfer command.  The
+   response to this command includes the host and port address this
+   server is listening on.
+</pre>
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_PORT"></a>
+        <div class="functionHeader">
+          def <span>ftp_PORT(self, address):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_LIST"></a>
+        <div class="functionHeader">
+          def <span>ftp_LIST(self, path=''):</span>
+        </div>
+        <div class="functionBody"><div>This command causes a list to be sent from the server to the passive 
+DTP. If the pathname specifies a directory or other group of files, the 
+server should transfer a list of files in the specified directory. If the 
+pathname specifies a file then the server should send current information 
+on the file. A null argument implies the user's current working or 
+default directory.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_NLST"></a>
+        <div class="functionHeader">
+          def <span>ftp_NLST(self, path):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_CWD"></a>
+        <div class="functionHeader">
+          def <span>ftp_CWD(self, path):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_CDUP"></a>
+        <div class="functionHeader">
+          def <span>ftp_CDUP(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_PWD"></a>
+        <div class="functionHeader">
+          def <span>ftp_PWD(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_RETR"></a>
+        <div class="functionHeader">
+          def <span>ftp_RETR(self, path):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_STOR"></a>
+        <div class="functionHeader">
+          def <span>ftp_STOR(self, path):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_SIZE"></a>
+        <div class="functionHeader">
+          def <span>ftp_SIZE(self, path):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_MDTM"></a>
+        <div class="functionHeader">
+          def <span>ftp_MDTM(self, path):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_TYPE"></a>
+        <div class="functionHeader">
+          def <span>ftp_TYPE(self, type):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.type_A"></a>
+        <div class="functionHeader">
+          def <span>type_A(self, code):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.type_I"></a>
+        <div class="functionHeader">
+          def <span>type_I(self, code):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.type_UNKNOWN"></a>
+        <div class="functionHeader">
+          def <span>type_UNKNOWN(self, code):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_SYST"></a>
+        <div class="functionHeader">
+          def <span>ftp_SYST(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_STRU"></a>
+        <div class="functionHeader">
+          def <span>ftp_STRU(self, structure):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_MODE"></a>
+        <div class="functionHeader">
+          def <span>ftp_MODE(self, mode):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_MKD"></a>
+        <div class="functionHeader">
+          def <span>ftp_MKD(self, path):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_RMD"></a>
+        <div class="functionHeader">
+          def <span>ftp_RMD(self, path):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_DELE"></a>
+        <div class="functionHeader">
+          def <span>ftp_DELE(self, path):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_NOOP"></a>
+        <div class="functionHeader">
+          def <span>ftp_NOOP(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_RNFR"></a>
+        <div class="functionHeader">
+          def <span>ftp_RNFR(self, fromName):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_RNTO"></a>
+        <div class="functionHeader">
+          def <span>ftp_RNTO(self, toName):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.ftp_QUIT"></a>
+        <div class="functionHeader">
+          def <span>ftp_QUIT(self):</span>
+        </div>
+        <div class="functionBody"><div class="undocumented">Undocumented</div></div>
+      </div><div class="function">
+        <a name="twisted.protocols.ftp.FTP.cleanupDTP"></a>
+        <div class="functionHeader">
+          def <span>cleanupDTP(self):</span>
+        </div>
+        <div class="functionBody"><div>call when DTP connection exits
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

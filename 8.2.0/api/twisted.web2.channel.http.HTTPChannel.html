@@ -1,0 +1,746 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web2.channel.http.HTTPChannel : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.w.c.h.HTTPChannel(<a href="twisted.protocols.basic.LineReceiver.html">basic.LineReceiver</a>, <a href="twisted.protocols.policies.TimeoutMixin.html">policies.TimeoutMixin</a>, <span title="object">object</span>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web2.html">web2</a>.<a href="twisted.web2.channel.html">channel</a>.<a href="twisted.web2.channel.http.html">http</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/web2/channel/http.py#L604">View Source</a>
+      <a href="classIndex.html#twisted.web2.channel.http.HTTPChannel">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Implements interfaces: <a href="twisted.internet.interfaces.IHalfCloseableProtocol.html">twisted.internet.interfaces.IHalfCloseableProtocol</a></p>
+    </div>
+    <div>A receiver for HTTP requests. Handles splitting up the connection for 
+the multiple HTTPChannelRequests that may be in progress on this 
+channel.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">timeOut</td><td>number of seconds to wait before terminating an idle connection.
+</td></tr><tr><td></td><td class="fieldArg">maxPipeline</td><td>number of outstanding in-progress requests to allow before pausing the 
+input.
+</td></tr><tr><td></td><td class="fieldArg">maxHeaderLength</td><td>number of bytes of header to accept from the client.
+</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1855">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.channel.http.HTTPChannel.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.channel.http.HTTPChannel.html#connectionMade">connectionMade</a></td>
+    <td><span>Called when a connection is made.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.channel.http.HTTPChannel.html#lineReceived">lineReceived</a></td>
+    <td><span>Override this for when each line is received.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.channel.http.HTTPChannel.html#lineLengthExceeded">lineLengthExceeded</a></td>
+    <td><span>Called when the maximum line length has been reached. Override if it 
+needs to be dealt with in some special way.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.channel.http.HTTPChannel.html#rawDataReceived">rawDataReceived</a></td>
+    <td><span>Override this for when raw data is received.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.channel.http.HTTPChannel.html#requestReadFinished">requestReadFinished</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.channel.http.HTTPChannel.html#setReadPersistent">setReadPersistent</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.channel.http.HTTPChannel.html#dropQueuedRequests">dropQueuedRequests</a></td>
+    <td><span>Called when a response is written that forces a connection close.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.channel.http.HTTPChannel.html#isLastRequest">isLastRequest</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.channel.http.HTTPChannel.html#requestWriteFinished">requestWriteFinished</a></td>
+    <td><span>Called by first request in queue when it is done.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.channel.http.HTTPChannel.html#timeoutConnection">timeoutConnection</a></td>
+    <td><span>Called when the connection times out. Override to define behavior other 
+than dropping the connection.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.channel.http.HTTPChannel.html#lingeringClose">lingeringClose</a></td>
+    <td><span>This is a bit complicated. This process is necessary to ensure proper 
+workingness when HTTP pipelining is in use.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.channel.http.HTTPChannel.html#writeConnectionLost">writeConnectionLost</a></td>
+    <td><span>Notification of the write connection being closed.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.channel.http.HTTPChannel.html#readConnectionLost">readConnectionLost</a></td>
+    <td><span>Read connection lost
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.channel.http.HTTPChannel.html#connectionLost">connectionLost</a></td>
+    <td><span>Called when the connection is shut down.
+</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.channel.http.HTTPChannel.html#_callLater">_callLater</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.channel.http.HTTPChannel.html#_startNextRequest">_startNextRequest</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web2.channel.http.HTTPChannel.html#_lingerClose">_lingerClose</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a>:
+        </p>
+        <table class="children sortable" id="id1856">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#clearLineBuffer">clearLineBuffer</a></td>
+    <td><span>Clear buffered data.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#dataReceived">dataReceived</a></td>
+    <td><span>Protocol.dataReceived. Translates bytes into lines, and calls 
+lineReceived (or rawDataReceived, depending on mode.)
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#setLineMode">setLineMode</a></td>
+    <td><span>Sets the line-mode of this receiver.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#setRawMode">setRawMode</a></td>
+    <td><span>Sets the raw mode of this receiver. Further data received will be sent 
+to rawDataReceived rather than lineReceived.
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic.LineReceiver.html#sendLine">sendLine</a></td>
+    <td><span>Sends a line to the other end of the connection.
+</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.internet.protocol.BaseProtocol.html">BaseProtocol</a> (via <a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a>, <a href="twisted.internet.protocol.Protocol.html">Protocol</a>):
+        </p>
+        <table class="children sortable" id="id1857">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.internet.protocol.BaseProtocol.html#makeConnection">makeConnection</a></td>
+    <td><span>Make a connection to a transport and a server.
+</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.protocols.basic._PauseableMixin.html">_PauseableMixin</a> (via <a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a>):
+        </p>
+        <table class="children sortable" id="id1858">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#pauseProducing">pauseProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#resumeProducing">resumeProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#stopProducing">stopProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+        <p>
+          Inherited from <a href="twisted.protocols.policies.TimeoutMixin.html">TimeoutMixin</a>:
+        </p>
+        <table class="children sortable" id="id1859">
+  
+  
+<tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.policies.TimeoutMixin.html#callLater">callLater</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.policies.TimeoutMixin.html#resetTimeout">resetTimeout</a></td>
+    <td><span>Reset the timeout count down
+</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.policies.TimeoutMixin.html#setTimeout">setTimeout</a></td>
+    <td><span>Change the timeout period
+</span></td>
+  </tr><tr class="basemethod private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.policies.TimeoutMixin.html#__timedOut">__timedOut</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.web2.channel.http.HTTPChannel._callLater">
+    
+  </a>
+  <a name="_callLater">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _callLater(self, secs, fun):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/web2/channel/http.py#L652" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.channel.http.HTTPChannel.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/web2/channel/http.py#L655" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.channel.http.HTTPChannel.connectionMade">
+    
+  </a>
+  <a name="connectionMade">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    connectionMade(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/web2/channel/http.py#L659" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#connectionMade">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.BaseProtocol.html#connectionMade">twisted.internet.protocol.BaseProtocol.connectionMade</a></div>
+    <div><p>Called when a connection is made.</p>
+This may be considered the initializer of the protocol, because it is 
+called when the connection is completed.  For clients, this is called once 
+the connection to the server has been established; for servers, this is 
+called after an accept() call stops blocking and a socket has been 
+received.  If you need to send any greeting or initial message, do it 
+here.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.channel.http.HTTPChannel.lineReceived">
+    
+  </a>
+  <a name="lineReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    lineReceived(self, line):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/web2/channel/http.py#L663" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.protocols.basic.LineReceiver.html#lineReceived">twisted.protocols.basic.LineReceiver.lineReceived</a></div>
+    <div>Override this for when each line is received.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.channel.http.HTTPChannel.lineLengthExceeded">
+    
+  </a>
+  <a name="lineLengthExceeded">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    lineLengthExceeded(self, line):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/web2/channel/http.py#L696" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.protocols.basic.LineReceiver.html#lineLengthExceeded">twisted.protocols.basic.LineReceiver.lineLengthExceeded</a></div>
+    <div><p>Called when the maximum line length has been reached. Override if it 
+needs to be dealt with in some special way.</p>
+The argument 'line' contains the remainder of the buffer, starting with 
+(at least some part) of the line which is too long. This may be more than 
+one line, or may be only the initial portion of the line.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.channel.http.HTTPChannel.rawDataReceived">
+    
+  </a>
+  <a name="rawDataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    rawDataReceived(self, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/web2/channel/http.py#L708" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.protocols.basic.LineReceiver.html#rawDataReceived">twisted.protocols.basic.LineReceiver.rawDataReceived</a></div>
+    <div>Override this for when raw data is received.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.channel.http.HTTPChannel.requestReadFinished">
+    
+  </a>
+  <a name="requestReadFinished">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    requestReadFinished(self, request):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/web2/channel/http.py#L715" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.channel.http.HTTPChannel._startNextRequest">
+    
+  </a>
+  <a name="_startNextRequest">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _startNextRequest(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/web2/channel/http.py#L730" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.channel.http.HTTPChannel.setReadPersistent">
+    
+  </a>
+  <a name="setReadPersistent">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    setReadPersistent(self, persistent):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/web2/channel/http.py#L752" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.channel.http.HTTPChannel.dropQueuedRequests">
+    
+  </a>
+  <a name="dropQueuedRequests">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dropQueuedRequests(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/web2/channel/http.py#L757" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called when a response is written that forces a connection close.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.channel.http.HTTPChannel.isLastRequest">
+    
+  </a>
+  <a name="isLastRequest">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    isLastRequest(self, request):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/web2/channel/http.py#L765" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.channel.http.HTTPChannel.requestWriteFinished">
+    
+  </a>
+  <a name="requestWriteFinished">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    requestWriteFinished(self, request):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/web2/channel/http.py#L769" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Called by first request in queue when it is done.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.channel.http.HTTPChannel.timeoutConnection">
+    
+  </a>
+  <a name="timeoutConnection">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    timeoutConnection(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/web2/channel/http.py#L785" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.protocols.policies.TimeoutMixin.html#timeoutConnection">twisted.protocols.policies.TimeoutMixin.timeoutConnection</a></div>
+    <div>Called when the connection times out. Override to define behavior other 
+than dropping the connection.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.channel.http.HTTPChannel.lingeringClose">
+    
+  </a>
+  <a name="lingeringClose">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    lingeringClose(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/web2/channel/http.py#L789" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>This is a bit complicated. This process is necessary to ensure proper 
+workingness when HTTP pipelining is in use.</p>
+Here is what it wants to do:
+<ol start="1">
+  <li>
+    Finish writing any buffered data, then close our write side. While 
+    doing so, read and discard any incoming data.
+  </li>
+  <li>
+    When that happens (writeConnectionLost called), wait up to 20 
+    seconds for the remote end to close their write side (our read 
+    side).
+  </li>
+  <li>
+    <ul>
+      <li>
+        If they do (readConnectionLost called), close the socket, and 
+        cancel the timeout.
+      </li>
+      <li>
+        If that doesn't happen, the timer fires, and makes the socket 
+        close anyways.
+      </li>
+    </ul>
+  </li>
+</ol>
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.channel.http.HTTPChannel.writeConnectionLost">
+    
+  </a>
+  <a name="writeConnectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    writeConnectionLost(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/web2/channel/http.py#L818" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IHalfCloseableProtocol.html#writeConnectionLost">twisted.internet.interfaces.IHalfCloseableProtocol</a></div>
+    <div><p>Notification of the write connection being closed.</p>
+This will never be called for TCP connections as TCP does not support 
+notification of this type of half-close.
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.channel.http.HTTPChannel._lingerClose">
+    
+  </a>
+  <a name="_lingerClose">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _lingerClose(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/web2/channel/http.py#L824" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.channel.http.HTTPChannel.readConnectionLost">
+    
+  </a>
+  <a name="readConnectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    readConnectionLost(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/web2/channel/http.py#L828" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IHalfCloseableProtocol.html#readConnectionLost">twisted.internet.interfaces.IHalfCloseableProtocol</a></div>
+    <div>Read connection lost
+<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web2.channel.http.HTTPChannel.connectionLost">
+    
+  </a>
+  <a name="connectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    connectionLost(self, reason):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.2.0/twisted/web2/channel/http.py#L849" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#connectionLost">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Protocol.html#connectionLost">twisted.internet.protocol.Protocol.connectionLost</a></div>
+    <div><p>Called when the connection is shut down.</p>
+Clear any circular references here, and any external references to this 
+Protocol.  The connection has been closed.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">reason</td><td> (type: <a 
+href="twisted.python.failure.Failure.html"><code>twisted.python.failure.Failure</code></a>
+)</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-10-27 16:02:37.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

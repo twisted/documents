@@ -1,0 +1,169 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web.woven.template : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="module">t.w.w.template : module documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web.html">web</a>.<a href="twisted.web.woven.html">woven</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.1.0/twisted/web/woven/template.py">View Source</a>
+      
+    </p>
+    <div>
+      
+    </div>
+    <div><p>DOMTemplate</p>
+<p>Most templating systems provide commands that you embed in the HTML to 
+repeat elements, include fragments from other files, etc. This works fairly
+well for simple constructs and people tend to get a false sense of 
+simplicity from this. However, in my experience, as soon as the programmer 
+wants to make the logic even slightly more complicated, the templating 
+system must be bent and abused in ways it was never meant to be used.</p>
+<p>The theory behind DOMTemplate is that Python code instead of template 
+syntax in the HTML should be used to manipulate the structure of the HTML. 
+DOMTemplate uses the DOM, a w3c standard tree-based representation of an 
+HTML document that provides an API that allows you to traverse nodes in the
+tree, examine their attributes, move, add, and delete them. It is a fairly 
+low level API, meaning it takes quite a bit of code to get a bit done, but 
+it is standard -- learn the DOM once, you can use it from ActionScript, 
+JavaScript, Java, C++, whatever.</p>
+<p>A DOMTemplate subclass must do two things: indicate which template it 
+wants to use, and indicate which elements it is interested in.</p>
+A short example:
+<pre class="literalblock">
+  | class Test(DOMTemplate):
+  |     template = '''
+  | &lt;html&gt;&lt;head&gt;&lt;title&gt;Foo&lt;/title&gt;&lt;/head&gt;&lt;body&gt;
+  |
+  | &lt;div view=&quot;Test&quot;&gt;
+  | This test node will be replaced
+  | &lt;/div&gt;
+  |
+  | &lt;/body&gt;&lt;/html&gt;
+  | '''
+  |
+  |     def factory_test(self, request, node):
+  |         '''
+  |         The test method will be called with the request and the
+  |         DOM node that the test method was associated with.
+  |         '''
+  |         # self.d has been bound to the main DOM &quot;document&quot; object
+  |         newNode = self.d.createTextNode(&quot;Testing, 1,2,3&quot;)
+  |
+  |         # Replace the test node with our single new text node
+  |         return newNode
+</pre>
+<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id2533">
+  
+  
+<tr class="interface">
+    
+    
+    <td>Interface</td>
+    <td><a href="twisted.web.woven.template.INodeMutator.html">INodeMutator</a></td>
+    <td><span>A component that implements NodeMutator knows how to mutate DOM based on
+the instructions in the object it wraps.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web.woven.template.NodeMutator.html">NodeMutator</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web.woven.template.NodeNodeMutator.html">NodeNodeMutator</a></td>
+    <td><span>A NodeNodeMutator replaces the node that is passed in to generate with 
+the node it adapts.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web.woven.template.NoneNodeMutator.html">NoneNodeMutator</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web.woven.template.StringNodeMutator.html">StringNodeMutator</a></td>
+    <td><span>A StringNodeMutator replaces the node that is passed in to generate with
+the string it adapts.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web.woven.template.DOMTemplate.html">DOMTemplate</a></td>
+    <td><span>A resource that renders pages using DOM.
+</span></td>
+  </tr><tr class="class">
+    
+    
+    <td>Class</td>
+    <td><a href="twisted.web.woven.template.DOMController.html">DOMController</a></td>
+    <td><span>A simple controller that automatically passes responsibility on to the 
+view class registered for the model. You can override render to perform 
+more advanced template lookup logic.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-10-27 15:57:47.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

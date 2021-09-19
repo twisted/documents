@@ -1,0 +1,217 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.words.protocols.jabber.component.Router : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="class">t.w.p.j.c.Router(<span title="object">object</span>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.words.html">words</a>.<a href="twisted.words.protocols.html">protocols</a>.<a href="twisted.words.protocols.jabber.html">jabber</a>.<a href="twisted.words.protocols.jabber.component.html">component</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0/twisted/words/protocols/jabber/component.py#L329">View Source</a>
+      <a href="classIndex.html#twisted.words.protocols.jabber.component.Router">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div><p>XMPP Server's Router.</p>
+<p>A router connects the different components of the XMPP service and 
+routes messages between them based on the given routing table.</p>
+<p>Connected components are trusted to have correct addressing in the 
+stanzas they offer for routing.</p>
+A route destination of <code>None</code> adds a default route. Traffic 
+for which no specific route exists, will be routed to this default 
+route.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Instance Variables</td><td class="fieldArg">routes</td><td>Routes based on the host part of JIDs. Maps host names to the <a 
+href="twisted.words.xish.utility.EventDispatcher.html"><code>EventDispatcher</code></a>s
+that should receive the traffic. A key of <code>None</code> means the 
+default route.
+ (type: <code>dict</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Present Since</td><td colspan="2">8.2
+</td></tr></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id2202">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.jabber.component.Router.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.jabber.component.Router.html#addRoute">addRoute</a></td>
+    <td><span>Add a new route.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.jabber.component.Router.html#removeRoute">removeRoute</a></td>
+    <td><span>Remove a route.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.words.protocols.jabber.component.Router.html#route">route</a></td>
+    <td><span>Route a stanza.
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.words.protocols.jabber.component.Router.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0/twisted/words/protocols/jabber/component.py#L350" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.jabber.component.Router.addRoute">
+    
+  </a>
+  <a name="addRoute">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addRoute(self, destination, xs):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0/twisted/words/protocols/jabber/component.py#L354" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div><p>Add a new route.</p>
+The passed XML Stream <code>xs</code> will have an observer for all 
+stanzas added to route its outgoing traffic. In turn, traffic for 
+<code>destination</code> will be passed to this stream.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">destination</td><td>Destination of the route to be added as a host name or <code>None</code>
+for the default route.
+ (type: <code>str</code> or <code>NoneType</code>.
+)</td></tr><tr><td></td><td class="fieldArg">xs</td><td>XML Stream to register the route for.
+ (type: <a 
+href="twisted.words.xish.utility.EventDispatcher.html"><code>EventDispatcher</code></a>.
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.jabber.component.Router.removeRoute">
+    
+  </a>
+  <a name="removeRoute">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    removeRoute(self, destination, xs):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0/twisted/words/protocols/jabber/component.py#L372" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Remove a route.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">destination</td><td>Destination of the route that should be removed.
+ (type: <code>str</code>.
+)</td></tr><tr><td></td><td class="fieldArg">xs</td><td>XML Stream to remove the route for.
+ (type: <a 
+href="twisted.words.xish.utility.EventDispatcher.html"><code>EventDispatcher</code></a>.
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.words.protocols.jabber.component.Router.route">
+    
+  </a>
+  <a name="route">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    route(self, stanza):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-10.0.0/twisted/words/protocols/jabber/component.py#L386" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Route a stanza.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">stanza</td><td>The stanza to be routed.
+ (type: <a 
+href="twisted.words.xish.domish.Element.html"><code>domish.Element</code></a>.
+)</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-10-27 16:12:41.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

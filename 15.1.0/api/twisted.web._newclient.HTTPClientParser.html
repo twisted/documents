@@ -1,0 +1,504 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.web._newclient.HTTPClientParser : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class">t.w._.HTTPClientParser(<a href="twisted.web._newclient.HTTPParser.html">HTTPParser</a>) : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.web.html">web</a>.<a href="twisted.web._newclient.html">_newclient</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L347">View Source</a>
+      <a href="classIndex.html#twisted.web._newclient.HTTPClientParser">View In Hierarchy</a>
+    </p>
+    <div>
+      
+    </div>
+    <div class="docstring">
+      <div><p>An HTTP parser which only handles HTTP responses.</p><table class="fieldTable"></table></div>
+    </div>
+
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3229">
+  
+  
+  <tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._newclient.HTTPClientParser.html#request">request</a></td>
+    <td>The request with which the expected response is associated. (type: <a href="twisted.web._newclient.Request.html"><code>Request</code></a>)</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._newclient.HTTPClientParser.html#NO_BODY_CODES">NO_BODY_CODES</a></td>
+    <td>A <code>set</code> of response codes which <b>MUST NOT</b> have a body.</td>
+  </tr><tr class="instancevariable">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._newclient.HTTPClientParser.html#finisher">finisher</a></td>
+    <td>A callable to invoke when this response is fully parsed.</td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTPClientParser.html#__init__">__init__</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTPClientParser.html#dataReceived">dataReceived</a></td>
+    <td><span>Override so that we know if any response has been received.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTPClientParser.html#parseVersion">parseVersion</a></td>
+    <td><span>Parse version strings of the form Protocol '/' Major '.' Minor. E.g. 
+b'HTTP/1.1'.  Returns (protocol, major, minor).  Will raise ValueError on 
+bad syntax.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTPClientParser.html#statusReceived">statusReceived</a></td>
+    <td><span>Parse the status line into its components and create a response object 
+to keep track of this response's state.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTPClientParser.html#isConnectionControlHeader">isConnectionControlHeader</a></td>
+    <td><span>Content-Length in the response to a HEAD request is an entity header, 
+not a connection control header.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTPClientParser.html#allHeadersReceived">allHeadersReceived</a></td>
+    <td><span>Figure out how long the response body is going to be by examining 
+headers and stuff.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTPClientParser.html#connectionLost">connectionLost</a></td>
+    <td><span>Called when the connection is shut down.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._newclient.HTTPClientParser.html#_responseDeferred">_responseDeferred</a></td>
+    <td>A <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+which will be called back with the response when all headers in the 
+response have been received. Thereafter, <code>None</code>.</td>
+  </tr><tr class="instancevariable private">
+    
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.web._newclient.HTTPClientParser.html#_everReceivedData">_everReceivedData</a></td>
+    <td><code>True</code> if any bytes have been received.</td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.web._newclient.HTTPClientParser.html#_finished">_finished</a></td>
+    <td><span>Called to indicate that an entire response has been received.  No more 
+bytes will be interpreted by this <a href="twisted.web._newclient.HTTPClientParser.html"><code>HTTPClientParser</code></a>.
+Extra bytes are passed up and the state of this <a href="twisted.web._newclient.HTTPClientParser.html"><code>HTTPClientParser</code></a>
+is set to <i>DONE</i>.</span></td>
+  </tr>
+</table>
+      <invisible>
+        <p>
+          Inherited from <a href="twisted.protocols.basic._PauseableMixin.html">_PauseableMixin</a> (via <a href="twisted.web._newclient.HTTPParser.html">HTTPParser</a>, <a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a>):
+        </p>
+        <table class="children sortable" id="id3234">
+  
+  
+  <tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#pauseProducing">pauseProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#resumeProducing">resumeProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#stopProducing">stopProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+      </invisible><invisible>
+        <p>
+          Inherited from <a href="twisted.protocols.basic._PauseableMixin.html">_PauseableMixin</a> (via <a href="twisted.web._newclient.HTTPParser.html">HTTPParser</a>, <a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a>):
+        </p>
+        <table class="children sortable" id="id3234">
+  
+  
+  <tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#pauseProducing">pauseProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#resumeProducing">resumeProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#stopProducing">stopProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+      </invisible><invisible>
+        <p>
+          Inherited from <a href="twisted.protocols.basic._PauseableMixin.html">_PauseableMixin</a> (via <a href="twisted.web._newclient.HTTPParser.html">HTTPParser</a>, <a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a>):
+        </p>
+        <table class="children sortable" id="id3234">
+  
+  
+  <tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#pauseProducing">pauseProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#resumeProducing">resumeProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#stopProducing">stopProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+      </invisible><invisible>
+        <p>
+          Inherited from <a href="twisted.protocols.basic._PauseableMixin.html">_PauseableMixin</a> (via <a href="twisted.web._newclient.HTTPParser.html">HTTPParser</a>, <a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a>):
+        </p>
+        <table class="children sortable" id="id3234">
+  
+  
+  <tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#pauseProducing">pauseProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#resumeProducing">resumeProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#stopProducing">stopProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+      </invisible><invisible>
+        <p>
+          Inherited from <a href="twisted.protocols.basic._PauseableMixin.html">_PauseableMixin</a> (via <a href="twisted.web._newclient.HTTPParser.html">HTTPParser</a>, <a href="twisted.protocols.basic.LineReceiver.html">LineReceiver</a>):
+        </p>
+        <table class="children sortable" id="id3234">
+  
+  
+  <tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#pauseProducing">pauseProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#resumeProducing">resumeProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="basemethod">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.protocols.basic._PauseableMixin.html#stopProducing">stopProducing</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+      </invisible>
+    </div>
+    
+    
+
+    <div class="function">
+  <a name="twisted.web._newclient.HTTPClientParser.request">
+    
+  </a>
+  <a name="request">
+    
+  </a>
+  <div class="functionHeader">
+    request =
+  </div>
+  <div class="functionBody">
+    The request with which the expected response is associated. (type: <a href="twisted.web._newclient.Request.html"><code>Request</code></a>)
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTPClientParser.NO_BODY_CODES">
+    
+  </a>
+  <a name="NO_BODY_CODES">
+    
+  </a>
+  <div class="functionHeader">
+    NO_BODY_CODES =
+  </div>
+  <div class="functionBody">
+    A <code>set</code> of response codes which <b>MUST NOT</b> have a body.
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTPClientParser.finisher">
+    
+  </a>
+  <a name="finisher">
+    
+  </a>
+  <div class="functionHeader">
+    finisher =
+  </div>
+  <div class="functionBody">
+    A callable to invoke when this response is fully parsed.
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTPClientParser._responseDeferred">
+    
+  </a>
+  <a name="_responseDeferred">
+    
+  </a>
+  <div class="functionHeader">
+    _responseDeferred =
+  </div>
+  <div class="functionBody">
+    A <a href="twisted.internet.defer.Deferred.html"><code>Deferred</code></a> 
+which will be called back with the response when all headers in the 
+response have been received. Thereafter, <code>None</code>.
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTPClientParser._everReceivedData">
+    
+  </a>
+  <a name="_everReceivedData">
+    
+  </a>
+  <div class="functionHeader">
+    _everReceivedData =
+  </div>
+  <div class="functionBody">
+    <code>True</code> if any bytes have been received.
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTPClientParser.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __init__(self, request, finisher):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L373" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div class="undocumented">Undocumented</div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTPClientParser.dataReceived">
+    
+  </a>
+  <a name="dataReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    dataReceived(self, data):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L380" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#dataReceived">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.protocols.basic.LineReceiver.html#dataReceived">twisted.protocols.basic.LineReceiver.dataReceived</a></div>
+    <div><p>Override so that we know if any response has been received.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTPClientParser.parseVersion">
+    
+  </a>
+  <a name="parseVersion">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    parseVersion(self, strversion):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L388" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Parse version strings of the form Protocol '/' Major '.' Minor. E.g. 
+b'HTTP/1.1'.  Returns (protocol, major, minor).  Will raise ValueError on 
+bad syntax.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTPClientParser.statusReceived">
+    
+  </a>
+  <a name="statusReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    statusReceived(self, status):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L406" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.web._newclient.HTTPParser.html#statusReceived">twisted.web._newclient.HTTPParser.statusReceived</a></div>
+    <div><p>Parse the status line into its components and create a response object 
+to keep track of this response's state.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTPClientParser._finished">
+    
+  </a>
+  <a name="_finished">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _finished(self, rest):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L429" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    <div><p>Called to indicate that an entire response has been received.  No more 
+bytes will be interpreted by this <a href="twisted.web._newclient.HTTPClientParser.html"><code>HTTPClientParser</code></a>.
+Extra bytes are passed up and the state of this <a href="twisted.web._newclient.HTTPClientParser.html"><code>HTTPClientParser</code></a>
+is set to <i>DONE</i>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">rest</td><td>A <code>bytes</code> giving any extra bytes delivered to this <a href="twisted.web._newclient.HTTPClientParser.html"><code>HTTPClientParser</code></a>
+which are not part of the response being parsed.</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTPClientParser.isConnectionControlHeader">
+    
+  </a>
+  <a name="isConnectionControlHeader">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    isConnectionControlHeader(self, name):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L443" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.web._newclient.HTTPParser.html#isConnectionControlHeader">twisted.web._newclient.HTTPParser.isConnectionControlHeader</a></div>
+    <div><p>Content-Length in the response to a HEAD request is an entity header, 
+not a connection control header.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTPClientParser.allHeadersReceived">
+    
+  </a>
+  <a name="allHeadersReceived">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    allHeadersReceived(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L453" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">overrides <a href="twisted.web._newclient.HTTPParser.html#allHeadersReceived">twisted.web._newclient.HTTPParser.allHeadersReceived</a></div>
+    <div><p>Figure out how long the response body is going to be by examining 
+headers and stuff.</p><table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.web._newclient.HTTPClientParser.connectionLost">
+    
+  </a>
+  <a name="connectionLost">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    connectionLost(self, reason):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-15.1.0/twisted/web/_newclient.py#L525" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    <div class="interfaceinfo">from <a href="twisted.internet.interfaces.IProtocol.html#connectionLost">twisted.internet.interfaces.IProtocol</a></div><div class="interfaceinfo">overrides <a href="twisted.internet.protocol.Protocol.html#connectionLost">twisted.internet.protocol.Protocol.connectionLost</a></div>
+    <div><p>Called when the connection is shut down.</p>
+<p>Clear any circular references here, and any external references to this 
+Protocol.  The connection has been closed.</p><table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="https://launchpad.net/pydoctor/">pydoctor</a> at 2015-04-13 15:26:48.
+    </address>
+  </body>
+</html>

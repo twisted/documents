@@ -1,0 +1,266 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.python.modules._ModuleIteratorHelper : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+    <h1 class="class private">t.p.m._ModuleIteratorHelper : class documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.python.html">python</a>.<a href="twisted.python.modules.html">modules</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/python/modules.py#L104">View Source</a>
+      <a href="classIndex.html#twisted.python.modules._ModuleIteratorHelper">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known subclasses: <a href="twisted.python.modules.PathEntry.html">twisted.python.modules.PathEntry</a>, <a href="twisted.python.modules.PythonModule.html">twisted.python.modules.PythonModule</a></p>
+    </div>
+    <div>This mixin provides common behavior between python module and path 
+entries, since the mechanism for searching sys.path and __path__ attributes
+is remarkably similar.<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id1866">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.modules._ModuleIteratorHelper.html#iterModules">iterModules</a></td>
+    <td><span>Loop over the modules present below this entry or package on 
+PYTHONPATH.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.modules._ModuleIteratorHelper.html#walkModules">walkModules</a></td>
+    <td><span>Similar to <a 
+href="twisted.python.modules._ModuleIteratorHelper.html#iterModules"><code>iterModules</code></a>,
+this yields self, and then every module in my</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.modules._ModuleIteratorHelper.html#__getitem__">__getitem__</a></td>
+    <td><span>Retrieve a module from below this path or package.</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.modules._ModuleIteratorHelper.html#__iter__">__iter__</a></td>
+    <td><span>Implemented to raise NotImplementedError for clarity, so that attempting
+to</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.modules._ModuleIteratorHelper.html#_subModuleName">_subModuleName</a></td>
+    <td><span>This is a hook to provide packages with the ability to specify their 
+names</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.modules._ModuleIteratorHelper.html#_packagePaths">_packagePaths</a></td>
+    <td><span>Implement in subclasses to specify where to look for modules.</span></td>
+  </tr><tr class="method private">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.python.modules._ModuleIteratorHelper.html#_getEntry">_getEntry</a></td>
+    <td><span>Implement in subclasses to specify what path entry submodules will 
+come</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.python.modules._ModuleIteratorHelper.iterModules">
+    
+  </a>
+  <a name="iterModules">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    iterModules(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/python/modules.py#L111" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Loop over the modules present below this entry or package on 
+PYTHONPATH.</p>
+<p>For modules which are not packages, this will yield nothing.</p>
+<p>For packages and path entries, this will only yield modules one level 
+down; i.e. if there is a package a.b.c, iterModules on a will only return 
+a.b.  If you want to descend deeply, use walkModules.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a generator which yields PythonModule instances that describe modules which
+can be, or have been, imported.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.modules._ModuleIteratorHelper.walkModules">
+    
+  </a>
+  <a name="walkModules">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    walkModules(self, importPackages=False):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/python/modules.py#L168" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.python.modules.PythonModule.html">twisted.python.modules.PythonModule</a></div>
+    <div>Similar to <a 
+href="twisted.python.modules._ModuleIteratorHelper.html#iterModules"><code>iterModules</code></a>,
+this yields self, and then every module in my package or entry, and every 
+submodule in each package or entry.</p>
+<p>In other words, this is deep, and <a 
+href="twisted.python.modules._ModuleIteratorHelper.html#iterModules"><code>iterModules</code></a>
+is shallow.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.modules._ModuleIteratorHelper._subModuleName">
+    
+  </a>
+  <a name="_subModuleName">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _subModuleName(self, mn):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/python/modules.py#L180" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.python.modules.PythonModule.html">twisted.python.modules.PythonModule</a></div>
+    <div>This is a hook to provide packages with the ability to specify their 
+names as a prefix to submodules here.<table class="fieldTable"></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.modules._ModuleIteratorHelper._packagePaths">
+    
+  </a>
+  <a name="_packagePaths">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _packagePaths(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/python/modules.py#L187" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.python.modules.PathEntry.html">twisted.python.modules.PathEntry</a>, <a href="twisted.python.modules.PythonModule.html">twisted.python.modules.PythonModule</a></div>
+    <div>Implement in subclasses to specify where to look for modules.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">iterable of FilePath-like objects.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.modules._ModuleIteratorHelper._getEntry">
+    
+  </a>
+  <a name="_getEntry">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    _getEntry(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/python/modules.py#L195" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    <div class="interfaceinfo">overridden in <a href="twisted.python.modules.PathEntry.html">twisted.python.modules.PathEntry</a>, <a href="twisted.python.modules.PythonModule.html">twisted.python.modules.PythonModule</a></div>
+    <div>Implement in subclasses to specify what path entry submodules will come 
+from.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a PathEntry instance.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.modules._ModuleIteratorHelper.__getitem__">
+    
+  </a>
+  <a name="__getitem__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __getitem__(self, modname):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/python/modules.py#L205" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Retrieve a module from below this path or package.<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">modname</td><td>a str naming a module to be loaded.  For entries, this is a top-level, 
+undotted package name, and for packages it is the name of the module 
+without the package prefix.  For example, if you have a PythonModule 
+representing the 'twisted' package, you could use:
+<pre class="literalblock">
+   twistedPackageObj['python']['modules']
+</pre>
+<p>to retrieve this module.</p>
+</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">a PythonModule.
+</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td colspan="2">KeyError if the module is not found.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.python.modules._ModuleIteratorHelper.__iter__">
+    
+  </a>
+  <a name="__iter__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    __iter__(self):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-11.0.0/twisted/python/modules.py#L227" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Implemented to raise NotImplementedError for clarity, so that attempting
+to loop over this object won't call __getitem__.</p>
+<p>Note: in the future there might be some sensible default for iteration, 
+like 'walkEverything', so this is deliberately untested and undefined 
+behavior.<table class="fieldTable"></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-04-03 00:32:03.
+    </address>
+  </body>
+</html>

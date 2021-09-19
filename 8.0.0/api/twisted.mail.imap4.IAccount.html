@@ -1,0 +1,412 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.mail.imap4.IAccount : API documentation</title>
+    <meta content="text/html;charset=utf-8" http-equiv="Content-Type" />
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+    
+    
+  </head>
+  <body>
+
+    <span style="display: none" id="current-docs-container">
+      <em>
+        <a id="current-docs-link">
+          Go to the latest version of this document.
+        </a>
+      </em>
+    </span>
+
+    <h1 class="interface">t.m.i.IAccount(<span title="zope.interface.Interface">Interface</span>) : interface documentation</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.html">twisted</a>.<a href="twisted.mail.html">mail</a>.<a href="twisted.mail.imap4.html">imap4</a></span>
+      <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0/twisted/mail/imap4.py#L4098">View Source</a>
+      <a href="classIndex.html#twisted.mail.imap4.IAccount">View In Hierarchy</a>
+    </p>
+    <div>
+      <p>Known implementations: <a href="twisted.mail.imap4.MemoryAccount.html">twisted.mail.imap4.MemoryAccount</a></p>
+    </div>
+    <div><p>Interface for Account classes</p>
+Implementors of this interface should consider implementing 
+<code>INamespacePresenter</code>.
+<table class="fieldTable"></table></div>
+
+    
+    
+    <div id="splitTables">
+      <table class="children sortable" id="id3021">
+  
+  
+<tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.IAccount.html#addMailbox">addMailbox</a></td>
+    <td><span>Add a new mailbox to this account
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.IAccount.html#create">create</a></td>
+    <td><span>Create a new mailbox from the given hierarchical name.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.IAccount.html#select">select</a></td>
+    <td><span>Acquire a mailbox, given its name.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.IAccount.html#delete">delete</a></td>
+    <td><span>Delete the mailbox with the specified name.
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.IAccount.html#rename">rename</a></td>
+    <td><span>Rename a mailbox
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.IAccount.html#isSubscribed">isSubscribed</a></td>
+    <td><span>Check the subscription status of a mailbox
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.IAccount.html#subscribe">subscribe</a></td>
+    <td><span>Subscribe to a mailbox
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.IAccount.html#unsubscribe">unsubscribe</a></td>
+    <td><span>Unsubscribe from a mailbox
+</span></td>
+  </tr><tr class="method">
+    
+    
+    <td>Method</td>
+    <td><a href="twisted.mail.imap4.IAccount.html#listMailboxes">listMailboxes</a></td>
+    <td><span>List all the mailboxes that meet a certain criteria
+</span></td>
+  </tr>
+  
+</table>
+      
+      
+    </div>
+    
+    
+    
+
+    <div class="function">
+  <a name="twisted.mail.imap4.IAccount.addMailbox">
+    
+  </a>
+  <a name="addMailbox">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    addMailbox(name, mbox=None):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0/twisted/mail/imap4.py#L4105" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Add a new mailbox to this account
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>The name associated with this mailbox.  It may not contain multiple 
+hierarchical parts.
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">mbox</td><td>The mailbox to associate with this name.  If <code>None</code>, a 
+suitable default is created and used.
+ (type: An object implementing <code>IMailbox</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A true value if the creation succeeds, or a deferred whose callback will
+be invoked when the creation succeeds.
+ (type: <code>Deferred</code> or <code>bool</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">MailboxException</td><td>Raised if this mailbox cannot be added for some reason.  This may also 
+be raised asynchronously, if a <code>Deferred</code> is returned.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.imap4.IAccount.create">
+    
+  </a>
+  <a name="create">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    create(pathspec):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0/twisted/mail/imap4.py#L4125" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Create a new mailbox from the given hierarchical name.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">pathspec</td><td>The full hierarchical name of a new mailbox to create. If any of the 
+inferior hierarchical names to this one do not exist, they are created as 
+well.
+ (type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A true value if the creation succeeds, or a deferred whose callback will
+be invoked when the creation succeeds.
+ (type: <code>Deferred</code> or <code>bool</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">MailboxException</td><td>Raised if this mailbox cannot be added. This may also be raised 
+asynchronously, if a <code>Deferred</code> is returned.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.imap4.IAccount.select">
+    
+  </a>
+  <a name="select">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    select(name, rw=True):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0/twisted/mail/imap4.py#L4142" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Acquire a mailbox, given its name.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>The mailbox to acquire
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">rw</td><td>If a true value, request a read-write version of this mailbox.  If a 
+false value, request a read-only version.
+ (type: <code>bool</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">The mailbox object, or a <code>Deferred</code> whose callback will be 
+invoked with the mailbox object.  None may be returned if the specified 
+mailbox may not be selected for any reason.
+ (type: Any object implementing <code>IMailbox</code> or 
+<code>Deferred</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.imap4.IAccount.delete">
+    
+  </a>
+  <a name="delete">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    delete(name):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0/twisted/mail/imap4.py#L4158" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Delete the mailbox with the specified name.
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>The mailbox to delete.
+ (type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A true value if the mailbox is successfully deleted, or a 
+<code>Deferred</code> whose callback will be invoked when the deletion 
+completes.
+ (type: <code>Deferred</code> or <code>bool</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">MailboxException</td><td>Raised if this mailbox cannot be deleted. This may also be raised 
+asynchronously, if a <code>Deferred</code> is returned.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.imap4.IAccount.rename">
+    
+  </a>
+  <a name="rename">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    rename(oldname, newname):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0/twisted/mail/imap4.py#L4173" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Rename a mailbox
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">oldname</td><td>The current name of the mailbox to rename.
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">newname</td><td>The new name to associate with the mailbox.
+ (type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A true value if the mailbox is successfully renamed, or a 
+<code>Deferred</code> whose callback will be invoked when the rename 
+operation is completed.
+ (type: <code>Deferred</code> or <code>bool</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">MailboxException</td><td>Raised if this mailbox cannot be renamed.  This may also be raised 
+asynchronously, if a <code>Deferred</code> is returned.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.imap4.IAccount.isSubscribed">
+    
+  </a>
+  <a name="isSubscribed">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    isSubscribed(name):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0/twisted/mail/imap4.py#L4192" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Check the subscription status of a mailbox
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>The name of the mailbox to check
+ (type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A true value if the given mailbox is currently subscribed to, a false 
+value otherwise.  A <code>Deferred</code> may also be returned whose 
+callback will be invoked with one of these values.
+ (type: <code>Deferred</code> or <code>bool</code>
+)</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.imap4.IAccount.subscribe">
+    
+  </a>
+  <a name="subscribe">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    subscribe(name):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0/twisted/mail/imap4.py#L4204" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Subscribe to a mailbox
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>The name of the mailbox to subscribe to
+ (type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A true value if the mailbox is subscribed to successfully, or a Deferred
+whose callback will be invoked with this value when the subscription is 
+successful.
+ (type: <code>Deferred</code> or <code>bool</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">MailboxException</td><td>Raised if this mailbox cannot be subscribed to.  This may also be raised
+asynchronously, if a <code>Deferred</code> is returned.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.imap4.IAccount.unsubscribe">
+    
+  </a>
+  <a name="unsubscribe">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    unsubscribe(name):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0/twisted/mail/imap4.py#L4220" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>Unsubscribe from a mailbox
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">name</td><td>The name of the mailbox to unsubscribe from
+ (type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A true value if the mailbox is unsubscribed from successfully, or a 
+Deferred whose callback will be invoked with this value when the 
+unsubscription is successful.
+ (type: <code>Deferred</code> or <code>bool</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Raises</td><td class="fieldArg">MailboxException</td><td>Raised if this mailbox cannot be unsubscribed from.  This may also be 
+raised asynchronously, if a <code>Deferred</code> is returned.
+</td></tr></table></div>
+  </div>
+</div><div class="function">
+  <a name="twisted.mail.imap4.IAccount.listMailboxes">
+    
+  </a>
+  <a name="listMailboxes">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def
+    listMailboxes(ref, wildcard):
+    <a href="http://twistedmatrix.com/trac/browser/tags/releases/twisted-8.0.0/twisted/mail/imap4.py#L4236" class="functionSourceLink">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    <div>List all the mailboxes that meet a certain criteria
+<table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">ref</td><td>The context in which to apply the wildcard
+ (type: <code>str</code>
+)</td></tr><tr><td></td><td class="fieldArg">wildcard</td><td>An expression against which to match mailbox names. '*' matches any 
+number of characters in a mailbox name, and '%' matches similarly, but will
+not match across hierarchical boundaries.
+ (type: <code>str</code>
+)</td></tr><tr class="fieldStart"><td class="fieldName">Returns</td><td colspan="2">A list of <code>(mailboxName, mailboxObject)</code> which meet the given
+criteria.  <code>mailboxObject</code> should implement either 
+<code>IMailboxInfo</code> or <code>IMailbox</code>.  A Deferred may also be
+returned.
+ (type: <code>list</code> of <code>tuple</code>
+)</td></tr></table></div>
+  </div>
+</div>
+    <address>
+      <a href="index.html">API Documentation</a> for <a href="http://twistedmatrix.com/">Twisted</a>, generated by <a href="http://codespeak.net/~mwh/pydoctor/">pydoctor</a> at 2011-10-27 15:46:52.
+    </address>
+
+    <!-- Google analytics, obviously. -->
+    <script src="http://www.google-analytics.com/urchin.js" type="text/javascript"></script>
+    <script type="text/javascript">
+      _uacct = "UA-99018-6";
+      urchinTracker();
+    </script>
+
+    <!-- If the documentation isn't current, insert a current link. -->
+    <script type="text/javascript">
+      if (window.location.pathname.indexOf('/current/') == -1) {
+          <!-- Give the user a link to this page, but in the current version of the docs. -->
+          var link = document.getElementById('current-docs-link');
+          link.href = window.location.pathname.replace(/\/\d+\.\d+\.\d+\/api\//, '/current/api/');
+          <!-- And make it visible -->
+          var container = document.getElementById('current-docs-container');
+          container.style.display = "";
+          delete link;
+          delete container;
+      }
+    </script>
+
+  </body>
+</html>

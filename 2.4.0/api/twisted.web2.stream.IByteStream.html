@@ -1,0 +1,74 @@
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+  "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>API docs for &ldquo;twisted.web2.stream.IByteStream&rdquo;</title>
+    <link href="apidocs.css" type="text/css" rel="stylesheet" />
+  </head>
+  <body>
+    <h1 class="interface">Interface t.w.s.IByteStream(<a href="twisted.web2.stream.IStream.html">IStream</a>):</h1>
+    <p>
+      <span id="part">Part of <a href="twisted.web2.stream.html">twisted.web2.stream</a></span>
+      <a></a>
+      <a href="classIndex.html#twisted.web2.stream.IByteStream">View In Hierarchy</a>
+    </p>
+    <div><p>Known implementations: <a href="twisted.web2.stream.SimpleStream.html">twisted.web2.stream.SimpleStream</a>, <a href="twisted.web2.stream.CompoundStream.html">twisted.web2.stream.CompoundStream</a>, <a href="twisted.web2.stream.ProducerStream.html">twisted.web2.stream.ProducerStream</a>, <a href="twisted.web2.log._LogByteCounter.html">twisted.web2.log._LogByteCounter</a></p></div>
+    <div>A stream which is of bytes.
+<table class="fieldTable"></table></div>
+    
+      <table class="children"><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.stream.IByteStream.read">read</a></td>
+          <td><span>Read some data.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.stream.IByteStream.split">split</a></td>
+          <td><span>Split this stream into two, at byte position 'point'.
+</span></td>
+        </tr><tr class="function">
+          <td>Method</td>
+          <td><a href="#twisted.web2.stream.IByteStream.close">close</a></td>
+          <td><span>Prematurely close this stream. Should also cause further reads to
+</span></td>
+        </tr></table>
+    
+    
+    <div class="function">
+        <a name="twisted.web2.stream.IByteStream.read"></a>
+        <div class="functionHeader">
+          def <span>read():</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.web2.stream.IStream.html#twisted.web2.stream.IStream.read">twisted.web2.stream.IStream.read</a></div><div><p>Read some data.</p>
+<p>Returns an object conforming to the buffer interface, or if there is 
+no more data available, returns None. Can also return a Deferred 
+resulting in one of the above.</p>
+Errors may be indicated by exception or by a Deferred of a 
+Failure.
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.stream.IByteStream.split"></a>
+        <div class="functionHeader">
+          def <span>split(point):</span>
+        </div>
+        <div class="functionBody"><div><p>Split this stream into two, at byte position 'point'.</p>
+<p>Returns a tuple of (before, after). After calling split, no other 
+methods should be called on this stream. Doing so will have undefined 
+behavior.</p>
+If you cannot implement split easily, you may implement it as:
+<pre class="literalblock">
+   return fallbackSplit(self, point)
+</pre>
+<table class="fieldTable"></table></div></div>
+      </div><div class="function">
+        <a name="twisted.web2.stream.IByteStream.close"></a>
+        <div class="functionHeader">
+          def <span>close():</span>
+        </div>
+        <div class="functionBody"><div class="interfaceinfo">overrides <a href="twisted.web2.stream.IStream.html#twisted.web2.stream.IStream.close">twisted.web2.stream.IStream.close</a></div><div>Prematurely close this stream. Should also cause further reads to 
+return None. Additionally, .length should be set to 0.
+<table class="fieldTable"></table></div></div>
+      </div>    
+  </body>
+</html>

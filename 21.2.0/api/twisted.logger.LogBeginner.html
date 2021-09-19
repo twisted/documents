@@ -1,0 +1,396 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+          "DTD/xhtml1-strict.dtd">
+<html>
+  <head>
+    <title>twisted.logger.LogBeginner : API documentation</title>
+
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="apidocs.css" />
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <a class="navbar-brand" href="index.html">
+            <a href="https://twistedmatrix.com/">Twisted</a> API Documentation
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <div id="showPrivate">
+      <button class="btn btn-link" onclick="togglePrivate()">Toggle Private API</button>
+    </div>
+
+    <div class="container">
+
+      <div class="page-header">
+        <h1 class="class"><code><a href="twisted.html" class="code" data-type="Package">twisted</a>.<a href="twisted.logger.html" class="code" data-type="Package">logger</a>.<a href="twisted.logger.LogBeginner.html" class="code" data-type="Class">LogBeginner</a></code></h1>
+      </div>
+
+      <div class="categoryHeader">
+        class documentation
+      </div>
+
+      <div class="extrasDocstring">
+        <p><code><span class="py-keyword">class</span> twisted.logger.LogBeginner: <a href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/logger/_global.py#L35">(source)</a></code></p>
+        <p><a href="classIndex.html#twisted.logger.LogBeginner">View In Hierarchy</a></p>
+      </div>
+
+      <div class="moduleDocstring">
+        <div><p>A <a href="twisted.logger.LogBeginner.html"><code>LogBeginner</code></a> holds state related to logging before logging has begun, and begins logging when told to do so.  Logging "begins" when someone has selected a set of observers, like, for example, a <a href="twisted.logger.FileLogObserver.html"><code>FileLogObserver</code></a> that writes to a file on disk, or to standard output.</p><p>Applications will not typically need to instantiate this class, except those which intend to initialize the global logging system themselves, which may wish to instantiate this for testing.  The global instance for the current process is exposed as <a href="twisted.logger.html#globalLogBeginner"><code>twisted.logger.globalLogBeginner</code></a>.</p><p>Before logging has begun, a <a href="twisted.logger.LogBeginner.html"><code>LogBeginner</code></a> will:</p><ol><li>Log any critical messages (e.g.: unhandled exceptions) to the given file-like object.</li><li>Save (a limited number of) log events in a <a href="twisted.logger.LimitedHistoryLogObserver.html"><code>LimitedHistoryLogObserver</code></a>.</li></ol></div>
+      </div>
+
+      <div id="splitTables">
+        <table class="children sortable" id="id1398">
+  
+  <tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.logger.LogBeginner.html#__init__" class="code" data-type="Method">__init__</a></td>
+    <td><span>Initialize this <a href="twisted.logger.LogBeginner.html"><code>LogBeginner</code></a>.</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.logger.LogBeginner.html#beginLoggingTo" class="code" data-type="Method">beginLoggingTo</a></td>
+    <td><span>Begin logging to the given set of observers.  This will:</span></td>
+  </tr><tr class="method">
+    
+    <td>Method</td>
+    <td><a href="twisted.logger.LogBeginner.html#showwarning" class="code" data-type="Method">showwarning</a></td>
+    <td><span>Twisted-enabled wrapper around <a href="https://docs.python.org/3/library/warnings.html#warnings.showwarning"><code>warnings.showwarning</code></a>.</span></td>
+  </tr><tr class="classvariable private">
+    
+    <td>Class Variable</td>
+    <td><a href="twisted.logger.LogBeginner.html#_DEFAULT_BUFFER_SIZE" class="code" data-type="Class Variable">_DEFAULT_BUFFER_SIZE</a></td>
+    <td><span>The default size for the initial log events buffer.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.logger.LogBeginner.html#_initialBuffer" class="code" data-type="Instance Variable">_initialBuffer</a></td>
+    <td><span>A buffer of messages logged before logging began.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.logger.LogBeginner.html#_publisher" class="code" data-type="Instance Variable">_publisher</a></td>
+    <td><span>The log publisher passed in to <a href="twisted.logger.LogBeginner.html"><code>LogBeginner</code></a>'s constructor.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.logger.LogBeginner.html#_log" class="code" data-type="Instance Variable">_log</a></td>
+    <td><span>The logger used to log messages about the operation of the <a href="twisted.logger.LogBeginner.html"><code>LogBeginner</code></a> itself.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.logger.LogBeginner.html#_stdio" class="code" data-type="Instance Variable">_stdio</a></td>
+    <td><span>An object with <code>stderr</code> and <code>stdout</code> attributes (like the <a href="https://docs.python.org/3/library/sys.html#module-sys"><code>sys</code></a> module) which will be replaced when redirecting standard I/O.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.logger.LogBeginner.html#_temporaryObserver" class="code" data-type="Instance Variable">_temporaryObserver</a></td>
+    <td><span>If not <a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>, an <a href="twisted.logger.ILogObserver.html"><code>ILogObserver</code></a> that observes events on <code>_publisher</code> for this <a href="twisted.logger.LogBeginner.html"><code>LogBeginner</code></a>.</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.logger.LogBeginner.html#_warningsModule" class="code" data-type="Instance Variable">_warningsModule</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.logger.LogBeginner.html#_previousBegin" class="code" data-type="Instance Variable">_previousBegin</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr><tr class="instancevariable private">
+    
+    <td>Instance Variable</td>
+    <td><a href="twisted.logger.LogBeginner.html#_oldshowwarning" class="code" data-type="Instance Variable">_oldshowwarning</a></td>
+    <td><span class="undocumented">Undocumented</span></td>
+  </tr>
+</table>
+        
+
+          
+      </div>
+
+      <div id="childList">
+
+        <div class="baseclassvariable private">
+  
+  <a name="twisted.logger.LogBeginner._DEFAULT_BUFFER_SIZE">
+    
+  </a>
+  <a name="_DEFAULT_BUFFER_SIZE">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _DEFAULT_BUFFER_SIZE =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/logger/_global.py#L56">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The default size for the initial log events buffer.</div> (type: <code><a href="https://docs.python.org/3/library/functions.html#int" class="code">int</a></code>)
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.logger.LogBeginner._initialBuffer">
+    
+  </a>
+  <a name="_initialBuffer">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _initialBuffer =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/logger/_global.py#L59">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>A buffer of messages logged before logging began.</div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.logger.LogBeginner._publisher">
+    
+  </a>
+  <a name="_publisher">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _publisher =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/logger/_global.py#L60">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The log publisher passed in to <a href="twisted.logger.LogBeginner.html"><code>LogBeginner</code></a>'s constructor.</div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.logger.LogBeginner._log">
+    
+  </a>
+  <a name="_log">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _log =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/logger/_global.py#L62">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>The logger used to log messages about the operation of the <a href="twisted.logger.LogBeginner.html"><code>LogBeginner</code></a> itself.</div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.logger.LogBeginner._stdio">
+    
+  </a>
+  <a name="_stdio">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _stdio =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/logger/_global.py#L64">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>An object with <code>stderr</code> and <code>stdout</code> attributes (like the <a href="https://docs.python.org/3/library/sys.html#module-sys"><code>sys</code></a> module) which will be replaced when redirecting standard I/O.</div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.logger.LogBeginner._temporaryObserver">
+    
+  </a>
+  <a name="_temporaryObserver">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _temporaryObserver =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/logger/_global.py#L66">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div>If not <a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>, an <a href="twisted.logger.ILogObserver.html"><code>ILogObserver</code></a> that observes events on <code>_publisher</code> for this <a href="twisted.logger.LogBeginner.html"><code>LogBeginner</code></a>.</div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.logger.LogBeginner.__init__">
+    
+  </a>
+  <a name="__init__">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def __init__(self, publisher, errorStream, stdio, warningsModule, initialBufferSize=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/logger/_global.py#L72">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Initialize this <a href="twisted.logger.LogBeginner.html"><code>LogBeginner</code></a>.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">publisher</td><td><span class="undocumented">Undocumented</span> (type: <code><a href="twisted.logger.LogPublisher.html" class="code">LogPublisher</a></code>)</td></tr><tr><td></td><td class="fieldArg">errorStream</td><td><span class="undocumented">Undocumented</span> (type: <code>IO[Any]</code>)</td></tr><tr><td></td><td class="fieldArg">stdio</td><td><span class="undocumented">Undocumented</span> (type: <code><a href="https://docs.python.org/3/library/functions.html#object" class="code">object</a></code>)</td></tr><tr><td></td><td class="fieldArg">warningsModule</td><td><span class="undocumented">Undocumented</span> (type: <code>Any</code>)</td></tr><tr><td></td><td class="fieldArg">initialBufferSize</td><td>The size of the event buffer into which events are collected until <code>beginLoggingTo</code> is called.  Or <code>None</code> to use the default size. (type: <code>Optional[<a href="https://docs.python.org/3/library/functions.html#int" class="code">int</a>]</code>)</td></tr></table></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.logger.LogBeginner._warningsModule">
+    
+  </a>
+  <a name="_warningsModule">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _warningsModule =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/logger/_global.py#L93">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.logger.LogBeginner._previousBegin">
+    
+  </a>
+  <a name="_previousBegin">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _previousBegin =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/logger/_global.py#L109">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="baseinstancevariable private">
+  
+  <a name="twisted.logger.LogBeginner._oldshowwarning">
+    
+  </a>
+  <a name="_oldshowwarning">
+    
+  </a>
+  <div class="functionHeader">
+    
+    _oldshowwarning =
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/logger/_global.py#L111">
+      
+      (source)
+    </a>
+  </div>
+  <div class="functionBody">
+    
+    
+    <div><p class="undocumented">Undocumented</p></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.logger.LogBeginner.beginLoggingTo">
+    
+  </a>
+  <a name="beginLoggingTo">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def beginLoggingTo(self, observers, discardBuffer=False, redirectStandardIO=True):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/logger/_global.py#L113">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Begin logging to the given set of observers.  This will:</p><ol><li>Add all the observers given in <code>observers</code> to the <a href="twisted.logger.LogPublisher.html"><code>LogPublisher</code></a> associated with this <a href="twisted.logger.LogBeginner.html"><code>LogBeginner</code></a>.</li><li>Optionally re-direct standard output and standard error streams to the logging system.</li><li>Re-play any messages that were previously logged to that publisher to the new observers, if <code>discardBuffer</code> is not set.</li><li>Stop logging critical errors from the <a href="twisted.logger.LogPublisher.html"><code>LogPublisher</code></a> as strings to the <code>errorStream</code> associated with this <a href="twisted.logger.LogBeginner.html"><code>LogBeginner</code></a>, and allow them to be logged normally.</li><li>Re-direct warnings from the <a href="https://docs.python.org/3/library/warnings.html#module-warnings"><code>warnings</code></a> module associated with this <a href="twisted.logger.LogBeginner.html"><code>LogBeginner</code></a> to log messages.</li></ol><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">observers</td><td>The observers to register. (type: <code>Iterable[<a href="twisted.logger.ILogObserver.html" class="code">ILogObserver</a>]</code>)</td></tr><tr><td></td><td class="fieldArg">discardBuffer</td><td>Whether to discard the buffer and not re-play it to the added observers.  (This argument is provided mainly for compatibility with legacy concerns.) (type: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="code">bool</a></code>)</td></tr><tr><td></td><td class="fieldArg">redirectStandardIO</td><td>If true, redirect standard output and standard error to the observers. (type: <code><a href="https://docs.python.org/3/library/functions.html#bool" class="code">bool</a></code>)</td></tr><tr class="fieldStart"><td class="fieldName">Note</td><td colspan="2">Since a <a href="twisted.logger.LogBeginner.html"><code>LogBeginner</code></a> is designed to encapsulate the transition between process-startup and log-system-configuration, this method is intended to be invoked <i>once</i>.</td></tr></table></div>
+  </div>
+</div><div class="basemethod">
+  
+  <a name="twisted.logger.LogBeginner.showwarning">
+    
+  </a>
+  <a name="showwarning">
+    
+  </a>
+  <div class="functionHeader">
+    
+    def showwarning(self, message, category, filename, lineno, file=None, line=None):
+    <a class="functionSourceLink" href="https://github.com/twisted/twisted/tree/release-21.2.0-10091
+/src/twisted/logger/_global.py#L187">
+      
+      (source)
+    </a>
+  </div>
+  <div class="docstring functionBody">
+    
+    
+    <div><p>Twisted-enabled wrapper around <a href="https://docs.python.org/3/library/warnings.html#warnings.showwarning"><code>warnings.showwarning</code></a>.</p><p>If <code>file</code> is <a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>, the default behaviour is to emit the warning to the log system, otherwise the original <a href="https://docs.python.org/3/library/warnings.html#warnings.showwarning"><code>warnings.showwarning</code></a> Python function is called.</p><table class="fieldTable"><tr class="fieldStart"><td class="fieldName">Parameters</td><td class="fieldArg">message</td><td>A warning message to emit. (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)</td></tr><tr><td></td><td class="fieldArg">category</td><td>A warning category to associate with <code>message</code>. (type: <code>Type[<a href="https://docs.python.org/3/library/exceptions.html#Warning" class="code">Warning</a>]</code>)</td></tr><tr><td></td><td class="fieldArg">filename</td><td>A file name for the source code file issuing the warning. (type: <code><a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a></code>)</td></tr><tr><td></td><td class="fieldArg">lineno</td><td>A line number in the source file where the warning was issued. (type: <code><a href="https://docs.python.org/3/library/functions.html#int" class="code">int</a></code>)</td></tr><tr><td></td><td class="fieldArg">file</td><td>A file to write the warning message to.  If <a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>, write to <a href="https://docs.python.org/3/library/sys.html#sys.stderr"><code>sys.stderr</code></a>. (type: <code>Optional[IO[Any]]</code>)</td></tr><tr><td></td><td class="fieldArg">line</td><td>A line of source code to include with the warning message. If <a href="https://docs.python.org/3/library/constants.html#None"><code>None</code></a>, attempt to read the line from <code>filename</code> and <code>lineno</code>. (type: <code>Optional[<a href="https://docs.python.org/3/library/stdtypes.html#str" class="code">str</a>]</code>)</td></tr></table></div>
+  </div>
+</div>
+
+      </div>
+      <address>
+        <a href="index.html">API Documentation</a> for <a href="https://twistedmatrix.com/">Twisted</a>, generated by <a href="https://github.com/twisted/pydoctor/">pydoctor</a> 20.12.1 at 2021-02-28 19:53:36.
+      </address>
+
+    </div>
+
+    <script src="pydoctor.js" type="text/javascript"></script>
+
+  </body>
+</html>
