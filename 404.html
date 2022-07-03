@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html; charset=utf-8">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'none'; style-src 'unsafe-inline'; img-src data:; connect-src 'self'; script-src 'sha256-vTXsPyiZ6TBGJTnhL2gAcH+WTr8d6N/FEaRobXcoF7w='">
+    <title>Page not found &middot; Twisted Legacy Documentation Pages</title>
+    <style type="text/css" media="screen">
+      body {
+        background-color: #f1f1f1;
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+      }
+
+      .container { margin: 50px auto 40px auto; width: 600px; text-align: center; }
+
+      a { color: #4183c4; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+
+      h1 { width: 800px; position:relative; left: -100px; letter-spacing: -1px; line-height: 60px; font-size: 60px; font-weight: 100; margin: 0px 0 50px 0; text-shadow: 0 1px 0 #fff; }
+      p { color: rgba(0, 0, 0, 0.5); margin: 20px 0; line-height: 1.6; }
+
+      ul { list-style: none; margin: 25px 0; padding: 0; }
+      li { display: table-cell; font-weight: bold; width: 1%; }
+
+      .logo { display: inline-block; margin-top: 35px; }
+      .logo-img-2x { display: none; }
+      @media
+      only screen and (-webkit-min-device-pixel-ratio: 2),
+      only screen and (   min--moz-device-pixel-ratio: 2),
+      only screen and (     -o-min-device-pixel-ratio: 2/1),
+      only screen and (        min-device-pixel-ratio: 2),
+      only screen and (                min-resolution: 192dpi),
+      only screen and (                min-resolution: 2dppx) {
+        .logo-img-1x { display: none; }
+        .logo-img-2x { display: inline-block; }
+      }
+
+      #suggestions {
+        margin-top: 35px;
+        color: #ccc;
+      }
+      #suggestions a {
+        color: #666666;
+        font-weight: 200;
+        font-size: 14px;
+        margin: 0 10px;
+      }
+
+    </style>
+  </head>
+  <body>
+
+    <div class="container">
+
+      <h1>404</h1>
+      <p><strong>Legacy documentation page not found</strong></p>
+
+      <p>
+        A legacy documentation page don't exist for this URL.
+      </p>
+
+      <p>
+        You will be redirected to the latest Twisted documentation site.
+      </p>
+
+      <p>
+        If automatic redirection doesn't work,
+        <a id="js-redirection-link" href="https://docs.twistedmatrix.com/">click here</a>
+        to go to the latest <strong>Twisted Documentation Pages</strong>.
+      </p>
+
+    </div>
+    <script>
+      // JavaScript Code
+      function get_latest_url(url) {
+        var current_page = url.match(new RegExp('/documents/current/(.+)'))
+        var base_url = 'https://docs.twistedmatrix.com/en/stable/'
+        if (!current_page) {
+          // Fallback to default URL.
+          return base_url
+        }
+
+        return base_url + current_page[1]
+      }
+
+      var new_url = get_latest_url(window.location.href)
+      if (new_url) {
+          document.getElementById('js-redirection-link').setAttribute('href', new_url)
+          window.location = new_url
+      }
+    </script>
+  </body>
+</html>
